@@ -1,11 +1,13 @@
 #include <node_api.h>
 
+#include <stdio.h>
+
 
 #include <winsock.h>
 #define SECURITY_WIN32
 #include <sspi.h>
 
-namespace demo {
+namespace myAddon {
 
 napi_value hello(napi_env env, napi_callback_info args) {
   napi_value greeting;
@@ -16,11 +18,15 @@ napi_value hello(napi_env env, napi_callback_info args) {
   return greeting;
 }
 
-napi_value hello2(napi_env env, napi_callback_info args) {
+napi_value e_InitSecurityInterface(napi_env env, napi_callback_info args) {
   napi_value greeting;
   napi_status status;
 
-  status = napi_create_string_utf8(env, "world2", NAPI_AUTO_LENGTH, &greeting);
+  printf("about to InitSecurityInterface\n");
+
+  PSecurityFunctionTable ptable = InitSecurityInterface();
+
+  status = napi_create_string_utf8(env, "PSecurityFunctionTable", NAPI_AUTO_LENGTH, &greeting);
   if (status != napi_ok) return nullptr;
   return greeting;
 }
@@ -35,10 +41,10 @@ napi_value init(napi_env env, napi_value exports) {
   status = napi_set_named_property(env, exports, "hello", fn);
   if (status != napi_ok) return nullptr;
 
-  status = napi_create_function(env, nullptr, 0, hello2, nullptr, &fn);
+  status = napi_create_function(env, nullptr, 0, e_InitSecurityInterface, nullptr, &fn);
   if (status != napi_ok) return nullptr;
 
-  status = napi_set_named_property(env, exports, "hello2", fn);
+  status = napi_set_named_property(env, exports, "InitSecurityInterface", fn);
   if (status != napi_ok) return nullptr;
 
   return exports;
