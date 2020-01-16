@@ -10,47 +10,33 @@
 
 namespace myAddon {
 
-napi_value hello(napi_env env, napi_callback_info args) {
-  napi_value greeting;
-  napi_status status;
-
-  status = napi_create_string_utf8(env, "world", NAPI_AUTO_LENGTH, &greeting);
-  if (status != napi_ok) return nullptr;
-  return greeting;
+Napi::Value hello(const Napi::CallbackInfo& info) {
+  Napi::Env env = info.Env();
+  return Napi::String::New(env, "Coucou JL!!!");
 }
 
-napi_value e_InitSecurityInterface(napi_env env, napi_callback_info args) {
-  napi_value greeting;
-  napi_status status;
+Napi::Value e_InitSecurityInterface(const Napi::CallbackInfo& info) {
 
   printf("about to InitSecurityInterface\n");
 
   PSecurityFunctionTable ptable = InitSecurityInterface();
 
-  status = napi_create_string_utf8(env, "PSecurityFunctionTable", NAPI_AUTO_LENGTH, &greeting);
-  if (status != napi_ok) return nullptr;
-  return greeting;
+
+  Napi::Env env = info.Env();
+  return Napi::String::New(env, "PSecurityFunctionTable");
 }
 
-napi_value init(napi_env env, napi_value exports) {
-  napi_status status;
-  napi_value fn;
+Napi::Object Init(Napi::Env env, Napi::Object exports) {
 
-  status = napi_create_function(env, nullptr, 0, hello, nullptr, &fn);
-  if (status != napi_ok) return nullptr;
-
-  status = napi_set_named_property(env, exports, "hello", fn);
-  if (status != napi_ok) return nullptr;
-
-  status = napi_create_function(env, nullptr, 0, e_InitSecurityInterface, nullptr, &fn);
-  if (status != napi_ok) return nullptr;
-
-  status = napi_set_named_property(env, exports, "InitSecurityInterface", fn);
-  if (status != napi_ok) return nullptr;
+  exports.Set(Napi::String::New(env, "hello"), 
+				Napi::Function::New(env, hello));
+  
+  exports.Set(Napi::String::New(env, "InitSecurityInterface"), 
+				Napi::Function::New(env, e_InitSecurityInterface));
 
   return exports;
 }
 
-NAPI_MODULE(NODE_GYP_MODULE_NAME, init)
+NODE_API_MODULE(NODE_GYP_MODULE_NAME, Init)
 
 }  // namespace demo
