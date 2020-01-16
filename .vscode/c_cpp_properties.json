@@ -4,7 +4,8 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "D:\\formation\\node\\src"
+                "D:\\formation\\node\\src",
+                "${workspaceFolder}/node_modules/node-addon-api"
             ],
             "defines": [
                 "_DEBUG",
