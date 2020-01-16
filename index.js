@@ -1,4 +1,4 @@
-const addon = require('bindings')('addon');
+const sspi = require('bindings')('sspi');
 
-const result = addon.hello();
+const result = sspi.hello();
 console.log(result);

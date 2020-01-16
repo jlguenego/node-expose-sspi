@@ -1,8 +1,8 @@
 {
   "targets": [
     {
-      "target_name": "addon",
-      "sources": [ "hello.cc" ]
+      "target_name": "sspi",
+      "sources": [ "cpp/main.cc" ]
     }
   ]
 }
