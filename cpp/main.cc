@@ -1,5 +1,10 @@
 #include <node_api.h>
 
+
+#include <winsock.h>
+#define SECURITY_WIN32
+#include <sspi.h>
+
 namespace demo {
 
 napi_value hello(napi_env env, napi_callback_info args) {
