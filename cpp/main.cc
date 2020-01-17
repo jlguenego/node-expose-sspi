@@ -3,6 +3,8 @@
 
 #include <stdio.h>
 
+#include <codecvt>
+#include <locale>
 #include <string>
 
 #include <winsock.h>
@@ -10,6 +12,12 @@
 #include <sspi.h>
 
 #include "log.h"
+
+// convert WCHAR_T* to std::string
+std::wstring_convert<std::codecvt_utf8<wchar_t>, wchar_t> converter;
+#define TO_STR converter.to_bytes
+
+// use converter (.to_bytes: wstr->str, .from_bytes: str->wstr)
 
 namespace myAddon {
 
@@ -38,12 +46,12 @@ Napi::Value e_EnumerateSecurityPackages(const Napi::CallbackInfo &info) {
 #pragma warning(disable : 6385)
     logSecPkgInfo(&(pPackageInfo[i]));
 
-	Napi::Object package = Napi::Object::New(env);
-	std::wstring ws(pPackageInfo[i].Name);
-	std::string str(ws.begin(), ws.end());
-	package["Name"] = Napi::String::New(env, str);
+    Napi::Object package = Napi::Object::New(env);
+    package["Name"] = Napi::String::New(env, TO_STR(pPackageInfo[i].Name));
+    package["Comment"] = Napi::String::New(env, TO_STR(pPackageInfo[i].Comment));
+    package["cbMaxToken"] = Napi::Number::New(env, pPackageInfo[i].cbMaxToken);
 
-	std::string strI = std::to_string(i);
+    std::string strI = std::to_string(i);
     result[strI] = package;
   }
 
