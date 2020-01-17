@@ -3,8 +3,9 @@
     {
       "target_name": "sspi",
       "sources": [
-        "cpp/main.cc"
+        "cpp/*.cc"
       ],
+      "defines": ["_UNICODE", "UNICODE"],
       "link_settings": {
         "libraries": [
           "Secur32.lib",
