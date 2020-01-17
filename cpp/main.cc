@@ -1,7 +1,5 @@
 #include "misc.h"
 
-std::wstring_convert<std::codecvt_utf8<wchar_t>, wchar_t> converter;
-
 namespace myAddon {
 
 Napi::Value hello(const Napi::CallbackInfo &info) {
@@ -37,9 +35,9 @@ Napi::Value e_EnumerateSecurityPackages(const Napi::CallbackInfo &info) {
     package["wVersion"] = Napi::Number::New(env, pPackageInfo[i].wVersion);
     package["wRPCID"] = Napi::Number::New(env, pPackageInfo[i].wRPCID);
     package["cbMaxToken"] = Napi::Number::New(env, pPackageInfo[i].cbMaxToken);
-    package["Name"] = Napi::String::New(env, FROM_WSTR(pPackageInfo[i].Name));
+    package["Name"] = Napi::String::New(env, (char16_t *)pPackageInfo[i].Name);
     package["Comment"] =
-        Napi::String::New(env, FROM_WSTR(pPackageInfo[i].Comment));
+        Napi::String::New(env, (char16_t *)pPackageInfo[i].Comment);
 
     std::string strI = std::to_string(i);
     result[strI] = package;
