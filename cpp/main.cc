@@ -47,9 +47,12 @@ Napi::Value e_EnumerateSecurityPackages(const Napi::CallbackInfo &info) {
     logSecPkgInfo(&(pPackageInfo[i]));
 
     Napi::Object package = Napi::Object::New(env);
+    package["fCapabilities"] = Napi::Number::New(env, pPackageInfo[i].fCapabilities);
+    package["wVersion"] = Napi::Number::New(env, pPackageInfo[i].wVersion);
+    package["wRPCID"] = Napi::Number::New(env, pPackageInfo[i].wRPCID);
+    package["cbMaxToken"] = Napi::Number::New(env, pPackageInfo[i].cbMaxToken);
     package["Name"] = Napi::String::New(env, TO_STR(pPackageInfo[i].Name));
     package["Comment"] = Napi::String::New(env, TO_STR(pPackageInfo[i].Comment));
-    package["cbMaxToken"] = Napi::Number::New(env, pPackageInfo[i].cbMaxToken);
 
     std::string strI = std::to_string(i);
     result[strI] = package;
