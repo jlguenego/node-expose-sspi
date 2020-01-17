@@ -1,6 +1,12 @@
 #include "misc.h"
 
-// use converter (.to_bytes: wstr->str, .from_bytes: str->wstr)
+#define WINDOWS_TICK 10000000
+#define SEC_TO_UNIX_EPOCH 11644473600LL
+
+double TimeStampToUnix(TimeStamp ts) {
+  double result = (double)(ts.QuadPart / WINDOWS_TICK - SEC_TO_UNIX_EPOCH);
+  return (double)result * 1000;
+}
 
 namespace myAddon {
 
@@ -34,7 +40,15 @@ Napi::Value e_AcquireCredentialsHandle(const Napi::CallbackInfo& info) {
   result["hCredential"] = hCredential;
   hCredential["dwLower"] = Napi::Number::New(env, cred.dwLower);
   hCredential["dwUpper"] = Napi::Number::New(env, cred.dwUpper);
-  result["tsExpiry"] = Napi::Date::New(env, 0);
+  FILETIME ft;
+  memcpy(&ft, &tsExpiry, sizeof(TimeStamp));
+  SYSTEMTIME st;
+  BOOL status = FileTimeToSystemTime(&ft, &st);
+  if (status == FALSE) {
+    throw Napi::Error::New(env, "FileTimeToSystemTime failed. status = " +
+                                    std::to_string(GetLastError()));
+  }
+  result["tsExpiry"] = Napi::Date::New(env, TimeStampToUnix(tsExpiry));
 
   return result;
 }

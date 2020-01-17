@@ -5,6 +5,7 @@
 
 #include <stdio.h>
 #include <string>
+#include <iostream>
 
 #include <winsock.h>
 #define SECURITY_WIN32
