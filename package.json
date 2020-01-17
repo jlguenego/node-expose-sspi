@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "install": "node-gyp rebuild"
+    "install": "node-gyp rebuild",
+    "start": "nodemon -x \"npm install && node index.js\""
   },
   "keywords": [],
   "author": "",
@@ -13,6 +14,7 @@
   "gypfile": true,
   "dependencies": {
     "bindings": "^1.5.0",
-    "node-addon-api": "^2.0.0"
+    "node-addon-api": "^2.0.0",
+    "nodemon": "^2.0.2"
   }
 }
