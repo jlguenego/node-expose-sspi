@@ -37,7 +37,7 @@ Napi::Value e_EnumerateSecurityPackages(const Napi::CallbackInfo &info) {
   SECURITY_STATUS secStatus =
       EnumerateSecurityPackages(&cPackages, &pPackageInfo);
   if (secStatus != SEC_E_OK) {
-    // TODO: throw an exception
+    throw Napi::Error::New(env, "Cannot EnumerateSecurityPackages: secStatus = " + std::to_string(secStatus));
   }
   log("size of pPackageInfo=%d", sizeof(pPackageInfo[0]));
   log("cPackages=%d", cPackages);
@@ -60,7 +60,7 @@ Napi::Value e_EnumerateSecurityPackages(const Napi::CallbackInfo &info) {
 
   secStatus = FreeContextBuffer(pPackageInfo);
   if (secStatus != SEC_E_OK) {
-    // TODO: throw an exception.
+    throw Napi::Error::New(env, "Cannot FreeContextBuffer: secStatus = " + std::to_string(secStatus));
   }
 
   return result;
