@@ -7,6 +7,8 @@
 #define SECURITY_WIN32
 #include <sspi.h>
 
+#include "log.h"
+
 namespace myAddon {
 
 Napi::Value hello(const Napi::CallbackInfo &info) {
@@ -14,14 +16,34 @@ Napi::Value hello(const Napi::CallbackInfo &info) {
   return Napi::String::New(env, "Coucou JL!!!");
 }
 
-Napi::Value e_InitSecurityInterface(const Napi::CallbackInfo &info) {
+Napi::Value e_EnumerateSecurityPackages(const Napi::CallbackInfo &info) {
   Napi::Env env = info.Env();
-  printf("about to InitSecurityInterface\n");
 
-  PSecurityFunctionTable ptable = InitSecurityInterface();
-  printf("debug: dwVersion=%d\n", ptable->dwVersion);
+  // Enumerates the SSPI packages.
+	unsigned long cPackages;
+	PSecPkgInfo pPackageInfo = NULL;
+	SECURITY_STATUS secStatus = EnumerateSecurityPackages(
+		&cPackages,
+		&pPackageInfo
+	);
+	if (secStatus != SEC_E_OK) {
+		// TODO: throw an exception
+	}
+	log("size of pPackageInfo=%d", sizeof(pPackageInfo[0]));
+	log("cPackages=%d", cPackages);
+	for (unsigned long i = 0; i < cPackages; i++) {
+		log("package[%d]=", i);
+#pragma warning( disable : 6385)
+		logSecPkgInfo(&(pPackageInfo[i]));
+	}
+
+	secStatus = FreeContextBuffer(pPackageInfo);
+	if (secStatus != SEC_E_OK) {
+		// TODO: throw an exception.
+	}
+
   Napi::Object obj = Napi::Object::New(env);
-  obj["dwVersion"] = Napi::Number::New(env, (double) ptable->dwVersion);
+  obj["dwVersion"] = Napi::Number::New(env, (double) 34.56);
 
   return obj;
 }
@@ -29,8 +51,8 @@ Napi::Value e_InitSecurityInterface(const Napi::CallbackInfo &info) {
 Napi::Object Init(Napi::Env env, Napi::Object exports) {
   exports.Set(Napi::String::New(env, "hello"), Napi::Function::New(env, hello));
 
-  exports.Set(Napi::String::New(env, "InitSecurityInterface"),
-              Napi::Function::New(env, e_InitSecurityInterface));
+  exports.Set(Napi::String::New(env, "EnumerateSecurityPackages"),
+              Napi::Function::New(env, e_EnumerateSecurityPackages));
 
   return exports;
 }
