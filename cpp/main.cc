@@ -3,6 +3,8 @@
 
 #include <stdio.h>
 
+#include <string>
+
 #include <winsock.h>
 #define SECURITY_WIN32
 #include <sspi.h>
@@ -19,33 +21,38 @@ Napi::Value hello(const Napi::CallbackInfo &info) {
 Napi::Value e_EnumerateSecurityPackages(const Napi::CallbackInfo &info) {
   Napi::Env env = info.Env();
 
+  Napi::Array result = Napi::Array::New(env);
+
   // Enumerates the SSPI packages.
-	unsigned long cPackages;
-	PSecPkgInfo pPackageInfo = NULL;
-	SECURITY_STATUS secStatus = EnumerateSecurityPackages(
-		&cPackages,
-		&pPackageInfo
-	);
-	if (secStatus != SEC_E_OK) {
-		// TODO: throw an exception
-	}
-	log("size of pPackageInfo=%d", sizeof(pPackageInfo[0]));
-	log("cPackages=%d", cPackages);
-	for (unsigned long i = 0; i < cPackages; i++) {
-		log("package[%d]=", i);
-#pragma warning( disable : 6385)
-		logSecPkgInfo(&(pPackageInfo[i]));
-	}
+  unsigned long cPackages;
+  PSecPkgInfo pPackageInfo = NULL;
+  SECURITY_STATUS secStatus =
+      EnumerateSecurityPackages(&cPackages, &pPackageInfo);
+  if (secStatus != SEC_E_OK) {
+    // TODO: throw an exception
+  }
+  log("size of pPackageInfo=%d", sizeof(pPackageInfo[0]));
+  log("cPackages=%d", cPackages);
+  for (unsigned long i = 0; i < cPackages; i++) {
+    log("package[%d]=", i);
+#pragma warning(disable : 6385)
+    logSecPkgInfo(&(pPackageInfo[i]));
 
-	secStatus = FreeContextBuffer(pPackageInfo);
-	if (secStatus != SEC_E_OK) {
-		// TODO: throw an exception.
-	}
+	Napi::Object package = Napi::Object::New(env);
+	std::wstring ws(pPackageInfo[i].Name);
+	std::string str(ws.begin(), ws.end());
+	package["Name"] = Napi::String::New(env, str);
 
-  Napi::Object obj = Napi::Object::New(env);
-  obj["dwVersion"] = Napi::Number::New(env, (double) 34.56);
+	std::string strI = std::to_string(i);
+    result[strI] = package;
+  }
 
-  return obj;
+  secStatus = FreeContextBuffer(pPackageInfo);
+  if (secStatus != SEC_E_OK) {
+    // TODO: throw an exception.
+  }
+
+  return result;
 }
 
 Napi::Object Init(Napi::Env env, Napi::Object exports) {
