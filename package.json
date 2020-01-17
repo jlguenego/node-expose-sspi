@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "install": "node-gyp rebuild",
-    "start": "nodemon -x \"npm install && node index.js\""
+    "start": "nodemon -x \"npm install && node test/index.js\""
   },
   "keywords": [],
   "author": "",
