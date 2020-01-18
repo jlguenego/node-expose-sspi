@@ -6,3 +6,4 @@
 
 void log(const char* format, ...);
 void logSecPkgInfo(PSecPkgInfo pSecPkgInfo);
+void logHandle(const char *prefix, SecHandle *sec);

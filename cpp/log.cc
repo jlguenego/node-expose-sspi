@@ -21,3 +21,10 @@ void logSecPkgInfo(PSecPkgInfo pSecPkgInfo) {
   log("Name=%S", pSecPkgInfo->Name);
   log("Comment=%S", pSecPkgInfo->Comment);
 }
+
+void logHandle(const char *prefix, SecHandle *sec) {
+	printf("%s\n", prefix);
+	log("dwLower=%u", sec->dwLower);
+	log("dwUpper=%u", sec->dwUpper);
+	// Note : I don't know how to display more.
+}

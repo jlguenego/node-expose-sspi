@@ -61,6 +61,9 @@ Napi::Object Init(Napi::Env env, Napi::Object exports) {
   exports.Set(Napi::String::New(env, "AcquireCredentialsHandle"),
               Napi::Function::New(env, e_AcquireCredentialsHandle));
 
+  exports.Set(Napi::String::New(env, "InitializeSecurityContext"),
+              Napi::Function::New(env, e_InitializeSecurityContext));
+
   return exports;
 }
 

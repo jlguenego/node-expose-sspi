@@ -1,13 +1,5 @@
 #include "misc.h"
 
-#define WINDOWS_TICK 10000000
-#define SEC_TO_UNIX_EPOCH 11644473600LL
-
-double TimeStampToUnix(TimeStamp ts) {
-  double result = (double)(ts.QuadPart / WINDOWS_TICK - SEC_TO_UNIX_EPOCH);
-  return (double)result * 1000;
-}
-
 namespace myAddon {
 
 Napi::Value e_AcquireCredentialsHandle(const Napi::CallbackInfo& info) {
@@ -31,8 +23,7 @@ Napi::Value e_AcquireCredentialsHandle(const Napi::CallbackInfo& info) {
     throw Napi::Error::New(env, "Cannot FreeContextBuffer: secStatus = " +
                                     std::to_string(secStatus));
   }
-
-  //   logHandle("credentials handle", &cred);
+  logHandle("credentials handle", &cred);
   //   logTimeStamp("tsExpiry=", tsExpiry);
 
   Napi::Object result = Napi::Object::New(env);
