@@ -6,15 +6,17 @@
 #include <stdio.h>
 #include <iostream>
 #include <string>
+#include <map>
 
-#include <winsock.h>
-#define SECURITY_WIN32
-#include <sspi.h>
+
 
 #include <codecvt>
 #include <locale>
 
 #include "log.h"
+#include "Credentials.h"
+#include "JS.h"
+
 
 // TODO: to be removed because it would be better to let the user enter this or
 // allocate.
@@ -26,7 +28,7 @@
 
 namespace myAddon {
 
-extern CredHandle cred;
+extern std::map<std::string, Credentials> credMap;
 
 double TimeStampToUnix(TimeStamp ts);
 Napi::Value e_EnumerateSecurityPackages(const Napi::CallbackInfo &info);

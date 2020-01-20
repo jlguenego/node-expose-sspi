@@ -15,11 +15,17 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo& info) {
 
   Napi::Object input = info[0].As<Napi::Object>();
   Napi::Object hCredential = input.Get("hCredential").As<Napi::Object>();
+  Credentials c;
+  c.credHandle.dwLower =
+      hCredential.Get("dwLower").As<Napi::Number>().Int64Value();
+  c.credHandle.dwUpper =
+      hCredential.Get("dwUpper").As<Napi::Number>().Int64Value();
   std::u16string ws = input.Get("pszTargetName").As<Napi::String>();
   LPWSTR pszTargetName = (LPWSTR)ws.c_str();
   log("pszTargetName=%S", pszTargetName);
 
   TimeStamp tsExpiry;
+  CredHandle cred = credMap[c.serialize()].credHandle;
 
   logHandle("credentials handle", &cred);
 
@@ -43,9 +49,7 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo& info) {
   SECURITY_STATUS secStatus = InitializeSecurityContext(
       &cred, NULL, pszTargetName, ISC_REQ_CONNECTION, RESERVED,
       SECURITY_NATIVE_DREP, NULL, RESERVED, &clientContext,
-      &fromClientSecBufferDesc, &ulContextAttr,
-      &tsExpiry
-  );
+      &fromClientSecBufferDesc, &ulContextAttr, &tsExpiry);
 
   if (secStatus < SEC_E_OK) {
     char buffer[BUFFER_SIZE];
@@ -61,6 +65,19 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo& info) {
     throw Napi::Error::New(env, buffer);
   }
 
+  Napi::Object result = Napi::Object::New(env);
+
+  switch (secStatus) {
+    case SEC_I_CONTINUE_NEEDED:
+      result["SECURITY_STATUS"] =
+          Napi::String::New(env, "SEC_I_CONTINUE_NEEDED");
+          result["SecBufferDesc"] = JS::convert(env, &fromClientSecBufferDesc);
+      break;
+    default:
+      result["SECURITY_STATUS"] =
+          Napi::String::New(env, std::to_string(secStatus));
+  }
+
   // if (secStatus != SEC_I_CONTINUE_NEEDED) {
   // 	error("InitializeSecurityContext did not returned
   // SEC_I_CONTINUE_NEEDED"); 	cleanup(); 	exit(1);
@@ -69,9 +86,6 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo& info) {
 
   // logHandle("clientContext handle", &clientContext);
   // logSecBufferDesc("client token #1", &fromClientSecBufferDesc);
-
-  Napi::Object result = Napi::Object::New(env);
-  result["SECURITY_STATUS"] = Napi::String::New(env, "SEC_I_CONTINUE_NEEDED");
 
   return result;
 }
