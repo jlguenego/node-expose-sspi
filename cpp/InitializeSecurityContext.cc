@@ -19,22 +19,8 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo& info) {
   LPWSTR pszTargetName = (LPWSTR)ws.c_str();
   log("pszTargetName=%S", pszTargetName);
 
-  // CredHandle cred;
-  // cred.dwLower = hCredential.Get("dwLower").As<Napi::Number>().Uint32Value();
-  // cred.dwUpper = hCredential.Get("dwUpper").As<Napi::Number>().Uint32Value();
-  // logHandle("InitializeSecurityContext credentials: ", &cred);
-
-
-  CredHandle cred;
   TimeStamp tsExpiry;
 
-  SECURITY_STATUS secStatus =
-      AcquireCredentialsHandle(NULL, (LPWSTR)L"Negotiate", SECPKG_CRED_BOTH, NULL,
-                               NULL, NULL, NULL, &cred, &tsExpiry);
-  if (secStatus != SEC_E_OK) {
-    throw Napi::Error::New(env, "Cannot FreeContextBuffer: secStatus = " +
-                                    std::to_string(secStatus));
-  }
   logHandle("credentials handle", &cred);
 
   CtxtHandle clientContext;
@@ -54,7 +40,7 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo& info) {
 
   // TimeStamp tsExpiry;
 
-  secStatus = InitializeSecurityContext(
+  SECURITY_STATUS secStatus = InitializeSecurityContext(
       &cred, NULL, pszTargetName, ISC_REQ_CONNECTION, RESERVED,
       SECURITY_NATIVE_DREP, NULL, RESERVED, &clientContext,
       &fromClientSecBufferDesc, &ulContextAttr,

@@ -26,7 +26,10 @@
 
 namespace myAddon {
 
+extern CredHandle cred;
+
 double TimeStampToUnix(TimeStamp ts);
+Napi::Value e_EnumerateSecurityPackages(const Napi::CallbackInfo &info);
 Napi::Value e_AcquireCredentialsHandle(const Napi::CallbackInfo &info);
 Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo &info);
 Napi::Value count(const Napi::CallbackInfo &info);

@@ -2,6 +2,8 @@
 
 namespace myAddon {
 
+CredHandle cred;
+
 Napi::Value e_AcquireCredentialsHandle(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
 
@@ -13,7 +15,6 @@ Napi::Value e_AcquireCredentialsHandle(const Napi::CallbackInfo& info) {
   std::u16string ws = info[0].As<Napi::String>();
   const char16_t* pPackage = ws.c_str();
 
-  CredHandle cred;
   TimeStamp tsExpiry;
 
   SECURITY_STATUS secStatus =
