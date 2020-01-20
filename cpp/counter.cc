@@ -2,7 +2,7 @@
 
 namespace myAddon {
 
-static int counter = 0;
+int counter = 0;
 
 Napi::Value count(const Napi::CallbackInfo &info) {
   Napi::Env env = info.Env();
