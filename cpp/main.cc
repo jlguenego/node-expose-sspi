@@ -64,6 +64,8 @@ Napi::Object Init(Napi::Env env, Napi::Object exports) {
   exports.Set(Napi::String::New(env, "InitializeSecurityContext"),
               Napi::Function::New(env, e_InitializeSecurityContext));
 
+  exports.Set(Napi::String::New(env, "count"), Napi::Function::New(env, count));
+
   return exports;
 }
 

@@ -16,7 +16,8 @@
 
 #include "log.h"
 
-// TODO: to be removed because it would be better to let the user enter this or allocate.
+// TODO: to be removed because it would be better to let the user enter this or
+// allocate.
 #define cbMaxMessage 48000
 
 #define RESERVED NULL
@@ -28,5 +29,6 @@ namespace myAddon {
 double TimeStampToUnix(TimeStamp ts);
 Napi::Value e_AcquireCredentialsHandle(const Napi::CallbackInfo &info);
 Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo &info);
+Napi::Value count(const Napi::CallbackInfo &info);
 
 }  // namespace myAddon
