@@ -4,7 +4,6 @@ namespace myAddon {
 
 std::map<std::string, Credentials> credMap;
 
-
 Napi::Value e_AcquireCredentialsHandle(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
 
@@ -29,10 +28,7 @@ Napi::Value e_AcquireCredentialsHandle(const Napi::CallbackInfo& info) {
 
   Napi::Object result = Napi::Object::New(env);
   Napi::Object hCredential = JS::convert(env, &c);
-  
   result["hCredential"] = hCredential;
- 
-
   return result;
 }
 
