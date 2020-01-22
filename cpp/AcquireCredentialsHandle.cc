@@ -28,11 +28,10 @@ Napi::Value e_AcquireCredentialsHandle(const Napi::CallbackInfo& info) {
   credMap[key] = c;
 
   Napi::Object result = Napi::Object::New(env);
-  Napi::Object hCredential = Napi::Object::New(env);
+  Napi::Object hCredential = JS::convert(env, &c);
+  
   result["hCredential"] = hCredential;
-  hCredential["dwLower"] = Napi::Number::New(env, c.credHandle.dwLower);
-  hCredential["dwUpper"] = Napi::Number::New(env, c.credHandle.dwUpper);
-  result["tsExpiry"] = JS::convert(env, &c.expiry);
+ 
 
   return result;
 }

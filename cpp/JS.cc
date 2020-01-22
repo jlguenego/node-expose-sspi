@@ -45,4 +45,12 @@ Napi::Array JS::convert(Napi::Env env, unsigned long cPackages, PSecPkgInfo pPac
   return result;
 }
 
+Napi::Object JS::convert(Napi::Env env, Credentials *c) {
+ Napi::Object credentials = Napi::Object::New(env);
+  credentials["dwLower"] = Napi::Number::New(env, c->credHandle.dwLower);
+  credentials["dwUpper"] = Napi::Number::New(env, c->credHandle.dwUpper);
+  credentials["tsExpiry"] = JS::convert(env, &c->expiry);
+  return credentials;
+}
+
 }  // namespace myAddon
