@@ -32,8 +32,6 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo& info) {
 
   logHandle("credentials handle", &cred);
 
-  CtxtHandle clientContext;
-
   BYTE buffer[cbMaxMessage];
   SecBuffer secBuffer;
   secBuffer.cbBuffer = cbMaxMessage;
@@ -49,9 +47,12 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo& info) {
 
   // TimeStamp tsExpiry;
 
+  static CtxtHandle clientContextHandle;
+  static bool isFirstCall = true;
+
   SECURITY_STATUS secStatus = InitializeSecurityContext(
-      &cred, NULL, pszTargetName, ISC_REQ_CONNECTION, RESERVED,
-      SECURITY_NATIVE_DREP, NULL, RESERVED, &clientContext,
+      &cred, isFirstCall ? NULL : &clientContextHandle, pszTargetName, ISC_REQ_CONNECTION, RESERVED,
+      SECURITY_NATIVE_DREP, NULL, RESERVED, &clientContextHandle,
       &fromClientSecBufferDesc, &ulContextAttr, &tsExpiry);
 
   if (secStatus < SEC_E_OK) {

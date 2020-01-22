@@ -31,11 +31,14 @@ Napi::Value e_AcceptSecurityContext(const Napi::CallbackInfo& info) {
   PSecBufferDesc pOutput = JS::initSecBufferDesc();
 
   static CtxtHandle serverContextHandle;
+  static bool isFirstCall = true;
+
   ULONG ulServerContextAttr;
   TimeStamp tsExpiry;
   SECURITY_STATUS secStatus = AcceptSecurityContext(
-      &cred, NULL, pInput, ASC_REQ_CONNECTION, SECURITY_NATIVE_DREP,
-      &serverContextHandle, pOutput, &ulServerContextAttr, &tsExpiry);
+      &cred, isFirstCall ? NULL : &serverContextHandle, pInput,
+      ASC_REQ_CONNECTION, SECURITY_NATIVE_DREP, &serverContextHandle, pOutput,
+      &ulServerContextAttr, &tsExpiry);
 
   Napi::Object result = Napi::Object::New(env);
 
@@ -49,15 +52,17 @@ Napi::Value e_AcceptSecurityContext(const Napi::CallbackInfo& info) {
       break;
     case SEC_E_INVALID_TOKEN:
       result["SECURITY_STATUS"] = Napi::String::New(env, "SEC_E_INVALID_TOKEN");
-      throw Napi::Error::New(
-          env, "AcceptSecurityContext: SECURITY_STATUS = SEC_E_INVALID_TOKEN.");
+      break;
     default:
       result["SECURITY_STATUS"] =
           Napi::String::New(env, plf::string_format("0x%08x", secStatus));
   }
-cleanup:
   FreeContextBuffer(pInput);
   FreeContextBuffer(pOutput);
+  if (secStatus < 0) {
+    throw Napi::Error::New(
+        env, "AcceptSecurityContext: SECURITY_STATUS incorrect (<0).");
+  }
   return result;
 }
 

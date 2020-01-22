@@ -26,3 +26,12 @@ const serverSecurityContext = sspi.AcceptSecurityContext({
 });
 console.log('serverSecurityContext: ', serverSecurityContext);
 console.log(printHexDump(serverSecurityContext.SecBufferDesc.buffers[0]));
+const input2 = {
+  credential,
+  targetName: "kiki",
+  serverSecurityContext
+};
+console.log('input2: ', input2);
+const clientSecurityContext2 = sspi.InitializeSecurityContext(input2);
+console.log('clientSecurityContext2: ', clientSecurityContext2);
+console.log(printHexDump(clientSecurityContext2.SecBufferDesc.buffers[0]));
