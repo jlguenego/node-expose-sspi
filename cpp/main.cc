@@ -7,8 +7,6 @@ Napi::Value hello(const Napi::CallbackInfo &info) {
   return Napi::String::New(env, "Coucou JL!!!");
 }
 
-
-
 Napi::Object Init(Napi::Env env, Napi::Object exports) {
   exports.Set(Napi::String::New(env, "hello"), Napi::Function::New(env, hello));
 

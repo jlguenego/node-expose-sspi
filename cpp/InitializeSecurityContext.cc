@@ -2,6 +2,8 @@
 
 namespace myAddon {
 
+
+
 Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
 
@@ -52,17 +54,15 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo& info) {
       &fromClientSecBufferDesc, &ulContextAttr, &tsExpiry);
 
   if (secStatus < SEC_E_OK) {
-    char buffer[BUFFER_SIZE];
+    std::string message;
     if (secStatus == SEC_E_INVALID_HANDLE) {
-      snprintf(buffer, BUFFER_SIZE,
-               "Cannot InitializeSecurityContext: invalid handle");
+      message = "Cannot InitializeSecurityContext: invalid handle";
     } else {
-      snprintf(buffer, BUFFER_SIZE,
-               "Cannot InitializeSecurityContext: secStatus = 0x%08x",
-               secStatus);
+      std::string str = "Cannot InitializeSecurityContext: secStatus = 0x%08x";
+      message = plf::string_format(str, secStatus);
     }
 
-    throw Napi::Error::New(env, buffer);
+    throw Napi::Error::New(env, message);
   }
 
   Napi::Object result = Napi::Object::New(env);
@@ -71,7 +71,7 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo& info) {
     case SEC_I_CONTINUE_NEEDED:
       result["SECURITY_STATUS"] =
           Napi::String::New(env, "SEC_I_CONTINUE_NEEDED");
-          result["SecBufferDesc"] = JS::convert(env, &fromClientSecBufferDesc);
+      result["SecBufferDesc"] = JS::convert(env, &fromClientSecBufferDesc);
       break;
     default:
       result["SECURITY_STATUS"] =

@@ -5,16 +5,17 @@
 
 #include <stdio.h>
 #include <iostream>
-#include <string>
 #include <map>
+#include <string>
 
 #include <codecvt>
 #include <locale>
 
-#include "log.h"
+#include "polyfill.h"
+
 #include "Credentials.h"
 #include "JS.h"
-
+#include "log.h"
 
 // TODO: to be removed because it would be better to let the user enter this or
 // allocate.
