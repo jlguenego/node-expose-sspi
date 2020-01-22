@@ -34,15 +34,7 @@ Napi::Value e_AcquireCredentialsHandle(const Napi::CallbackInfo& info) {
   result["hCredential"] = hCredential;
   hCredential["dwLower"] = Napi::Number::New(env, c.credHandle.dwLower);
   hCredential["dwUpper"] = Napi::Number::New(env, c.credHandle.dwUpper);
-  FILETIME ft;
-  memcpy(&ft, &c.expiry, sizeof(TimeStamp));
-  SYSTEMTIME st;
-  BOOL status = FileTimeToSystemTime(&ft, &st);
-  if (status == FALSE) {
-    throw Napi::Error::New(env, "FileTimeToSystemTime failed. status = " +
-                                    std::to_string(GetLastError()));
-  }
-  result["tsExpiry"] = Napi::Date::New(env, TimeStampToUnix(c.expiry));
+  result["tsExpiry"] = JS::convert(env, &c.expiry);
 
   return result;
 }

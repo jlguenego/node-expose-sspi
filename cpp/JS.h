@@ -13,6 +13,7 @@ namespace myAddon {
 class JS {
  public:
     static Napi::Value convert(Napi::Env env, SecBufferDesc* pSecBufferDesc);
+    static Napi::Value convert(Napi::Env env, TimeStamp* pTimeStamp);
 };
 
 }  // namespace myAddon
