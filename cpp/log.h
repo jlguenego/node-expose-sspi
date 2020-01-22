@@ -6,4 +6,9 @@
 
 void log(const char* format, ...);
 void logSecPkgInfo(PSecPkgInfo pSecPkgInfo);
-void logHandle(const char *prefix, SecHandle *sec);
+void logHandle(const char* prefix, SecHandle* sec);
+
+void logSecBufferDesc(const char* pBuffer, SecBufferDesc* pSecBufferDesc);
+void logSecBuffer(const char* pBuffer, SecBuffer* pSecBuffer);
+
+void PrintHexDump(DWORD length, const BYTE* buffer);

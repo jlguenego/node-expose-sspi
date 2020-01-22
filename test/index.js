@@ -29,7 +29,8 @@ console.log(printHexDump(serverSecurityContext.SecBufferDesc.buffers[0]));
 const input2 = {
   credential,
   targetName: "kiki",
-  serverSecurityContext
+  serverSecurityContext,
+  isFirstCall: false
 };
 console.log('input2: ', input2);
 const clientSecurityContext2 = sspi.InitializeSecurityContext(input2);

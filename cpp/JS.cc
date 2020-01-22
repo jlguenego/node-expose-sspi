@@ -93,6 +93,7 @@ PSecBufferDesc JS::initSecBufferDesc(Napi::Object& napiSecBufferDesc) {
   pSecBufferDesc->ulVersion = 0;
   pSecBufferDesc->cBuffers = 1;
   pSecBufferDesc->pBuffers = pSecBuffer;
+  log("ok");
   return pSecBufferDesc;
 }
 

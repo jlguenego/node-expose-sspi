@@ -2,8 +2,6 @@
 
 namespace myAddon {
 
-
-
 Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
 
@@ -12,7 +10,8 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo& info) {
     throw Napi::Error::New(
         env,
         "InitializeSecurityContext: Wrong number of arguments. "
-        "InitializeSecurityContext({ hCredential })");
+        "InitializeSecurityContext({ credential, targetName, isFirstCall, "
+        "serverSecurityContext })");
   }
 
   Napi::Object input = info[0].As<Napi::Object>();
@@ -22,17 +21,30 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo& info) {
       credential.Get("dwLower").As<Napi::Number>().Int64Value();
   c.credHandle.dwUpper =
       credential.Get("dwUpper").As<Napi::Number>().Int64Value();
-  std::u16string ws = input.Get("targetName").As<Napi::String>();
-  LPWSTR pszTargetName = (LPWSTR)ws.c_str();
-  log("pszTargetName=%S", pszTargetName);
-  log("ok3");
+  LPWSTR packageName =
+      (LPWSTR)((std::u16string)input.Get("targetName").As<Napi::String>())
+          .c_str();
+
+  PSecBufferDesc pInput = NULL;
+  if (input.Has("serverSecurityContext")) {
+    log("serverSecurityContext provided");
+    Napi::Object serverSecurityContext =
+        input.Get("serverSecurityContext").As<Napi::Object>();
+    if (serverSecurityContext.Has("SecBufferDesc")) {
+      log("SecBufferDesc provided");
+      Napi::Object secBufferDesc =
+          serverSecurityContext.Get("SecBufferDesc").As<Napi::Object>();
+      pInput = JS::initSecBufferDesc(secBufferDesc);
+    }
+    logSecBufferDesc("pInput xxxxxxxxxxxxxxxxxxxxxxxxx", pInput);
+  }
 
   TimeStamp tsExpiry;
   CredHandle cred = credMap[c.serialize()].credHandle;
 
   logHandle("credentials handle", &cred);
 
-  BYTE buffer[cbMaxMessage];
+  static BYTE buffer[cbMaxMessage]; // need to use the same to complete the buffer at the second call.
   SecBuffer secBuffer;
   secBuffer.cbBuffer = cbMaxMessage;
   secBuffer.BufferType = SECBUFFER_TOKEN;
@@ -50,22 +62,16 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo& info) {
   static CtxtHandle clientContextHandle;
   static bool isFirstCall = true;
 
-  SECURITY_STATUS secStatus = InitializeSecurityContext(
-      &cred, isFirstCall ? NULL : &clientContextHandle, pszTargetName, ISC_REQ_CONNECTION, RESERVED,
-      SECURITY_NATIVE_DREP, NULL, RESERVED, &clientContextHandle,
-      &fromClientSecBufferDesc, &ulContextAttr, &tsExpiry);
-
-  if (secStatus < SEC_E_OK) {
-    std::string message;
-    if (secStatus == SEC_E_INVALID_HANDLE) {
-      message = "Cannot InitializeSecurityContext: invalid handle";
-    } else {
-      std::string str = "Cannot InitializeSecurityContext: secStatus = 0x%08x";
-      message = plf::string_format(str, secStatus);
-    }
-
-    throw Napi::Error::New(env, message);
+  if (input.HasOwnProperty("isFirstCall")) {
+    isFirstCall = input.Get("isFirstCall").As<Napi::Boolean>().ToBoolean();
   }
+  log("isFirstCall=%d", isFirstCall);
+
+  SECURITY_STATUS secStatus = InitializeSecurityContext(
+      &cred, (isFirstCall) ? NULL : (&clientContextHandle), packageName,
+      ISC_REQ_CONNECTION, RESERVED, SECURITY_NATIVE_DREP, pInput, RESERVED,
+      &clientContextHandle, &fromClientSecBufferDesc, &ulContextAttr,
+      &tsExpiry);
 
   Napi::Object result = Napi::Object::New(env);
 
@@ -75,9 +81,31 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo& info) {
           Napi::String::New(env, "SEC_I_CONTINUE_NEEDED");
       result["SecBufferDesc"] = JS::convert(env, &fromClientSecBufferDesc);
       break;
+
     default:
       result["SECURITY_STATUS"] =
           Napi::String::New(env, std::to_string(secStatus));
+  }
+
+  isFirstCall = false;
+
+  if (secStatus < SEC_E_OK) {
+    std::string message;
+    switch (secStatus) {
+      case SEC_E_INVALID_HANDLE:
+        message =
+            "Cannot InitializeSecurityContext: secStatus = "
+            "SEC_E_INVALID_HANDLE";
+        break;
+      case SEC_E_INVALID_TOKEN:
+        message =
+            "Cannot InitializeSecurityContext: secStatus = SEC_E_INVALID_TOKEN";
+        break;
+      default:
+        message = plf::string_format(
+            "Cannot InitializeSecurityContext: secStatus = 0x%08x", secStatus);
+    }
+    throw Napi::Error::New(env, message);
   }
 
   return result;
