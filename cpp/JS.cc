@@ -20,9 +20,29 @@ Napi::Value JS::convert(Napi::Env env, SecBufferDesc* pSecBufferDesc) {
 }
 
 Napi::Value JS::convert(Napi::Env env, TimeStamp* pTimeStamp) {
-  Napi::Object result = Napi::Object::New(env);
-  double secondsSince1970 = (double)(pTimeStamp->QuadPart / WINDOWS_TICK - SEC_TO_UNIX_EPOCH);
+  double secondsSince1970 =
+      (double)(pTimeStamp->QuadPart / WINDOWS_TICK - SEC_TO_UNIX_EPOCH);
   return Napi::Date::New(env, secondsSince1970 * 1000);
+}
+
+Napi::Array JS::convert(Napi::Env env, unsigned long cPackages, PSecPkgInfo pPackageInfo) {
+  Napi::Array result = Napi::Array::New(env);
+  for (unsigned long i = 0; i < cPackages; i++) {
+    
+    Napi::Object package = Napi::Object::New(env);
+    package["fCapabilities"] =
+        Napi::Number::New(env, pPackageInfo[i].fCapabilities);
+    package["wVersion"] = Napi::Number::New(env, pPackageInfo[i].wVersion);
+    package["wRPCID"] = Napi::Number::New(env, pPackageInfo[i].wRPCID);
+    package["cbMaxToken"] = Napi::Number::New(env, pPackageInfo[i].cbMaxToken);
+    package["Name"] = Napi::String::New(env, (char16_t*)pPackageInfo[i].Name);
+    package["Comment"] =
+        Napi::String::New(env, (char16_t*)pPackageInfo[i].Comment);
+
+    std::string strI = std::to_string(i);
+    result[strI] = package;
+  }
+  return result;
 }
 
 }  // namespace myAddon

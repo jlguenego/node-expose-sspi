@@ -23,8 +23,6 @@ Napi::Value e_AcquireCredentialsHandle(const Napi::CallbackInfo& info) {
     throw Napi::Error::New(env, "Cannot FreeContextBuffer: secStatus = " +
                                     std::to_string(secStatus));
   }
-  logHandle("credentials handle", &c.credHandle);
-  //   logTimeStamp("tsExpiry=", tsExpiry);
   
   std::string key = c.serialize();
   credMap[key] = c;
