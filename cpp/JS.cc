@@ -1,4 +1,5 @@
 #include "JS.h"
+#include "log.h"
 
 #define WINDOWS_TICK 10000000
 #define SEC_TO_UNIX_EPOCH 11644473600LL
@@ -64,9 +65,35 @@ Credentials JS::initCredentials(Napi::Object& credential) {
   return c;
 }
 
-PSecBufferDesc JS::initSecBufferDesc() { return NULL; }
-PSecBufferDesc JS::initSecBufferDesc(Napi::Object& clientSecurityContext) {
-  return NULL;
+PSecBufferDesc JS::initSecBufferDesc() {
+  BYTE buffer[cbMaxMessage];
+  SecBuffer secBuffer;
+  secBuffer.cbBuffer = cbMaxMessage;
+  secBuffer.BufferType = SECBUFFER_TOKEN;
+  secBuffer.pvBuffer = buffer;
+
+  PSecBufferDesc pSecBufferDesc = new SecBufferDesc();
+  pSecBufferDesc->ulVersion = 0;
+  pSecBufferDesc->cBuffers = 1;
+  pSecBufferDesc->pBuffers = &secBuffer;
+  return pSecBufferDesc;
+}
+
+PSecBufferDesc JS::initSecBufferDesc(Napi::Object& napiSecBufferDesc) {
+  PSecBuffer pSecBuffer = new SecBuffer();
+  pSecBuffer->BufferType = SECBUFFER_TOKEN;
+  Napi::Array array = napiSecBufferDesc.Get("buffers").As<Napi::Array>();
+  Napi::ArrayBuffer obj2 =
+      array.Get("0").As<Napi::ArrayBuffer>();
+  log("init3.1");
+  pSecBuffer->pvBuffer = obj2.Data();
+  pSecBuffer->cbBuffer = obj2.ByteLength();
+  log("init4");
+  PSecBufferDesc pSecBufferDesc = new SecBufferDesc();
+  pSecBufferDesc->ulVersion = 0;
+  pSecBufferDesc->cBuffers = 1;
+  pSecBufferDesc->pBuffers = pSecBuffer;
+  return pSecBufferDesc;
 }
 
 }  // namespace myAddon

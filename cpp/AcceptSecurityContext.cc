@@ -26,7 +26,8 @@ Napi::Value e_AcceptSecurityContext(const Napi::CallbackInfo& info) {
   CredHandle cred = credMap[c.serialize()].credHandle;
   logHandle("credentials handle", &cred);
 
-  PSecBufferDesc pInput = JS::initSecBufferDesc(clientSecurityContext);
+  PSecBufferDesc pInput = JS::initSecBufferDesc(
+      clientSecurityContext.Get("SecBufferDesc").As<Napi::Object>());
   PSecBufferDesc pOutput = JS::initSecBufferDesc();
 
   static CtxtHandle serverContextHandle;
@@ -39,6 +40,22 @@ Napi::Value e_AcceptSecurityContext(const Napi::CallbackInfo& info) {
   Napi::Object result = Napi::Object::New(env);
 
   log("e_AcceptSecurityContext completed.");
+
+  switch (secStatus) {
+    case SEC_I_CONTINUE_NEEDED:
+      result["SECURITY_STATUS"] =
+          Napi::String::New(env, "SEC_I_CONTINUE_NEEDED");
+      result["SecBufferDesc"] = JS::convert(env, pOutput);
+      break;
+    case SEC_E_INVALID_TOKEN:
+      result["SECURITY_STATUS"] = Napi::String::New(env, "SEC_E_INVALID_TOKEN");
+      throw Napi::Error::New(
+          env,
+          "AcceptSecurityContext: SECURITY_STATUS = SEC_E_INVALID_TOKEN.");
+    default:
+      result["SECURITY_STATUS"] =
+          Napi::String::New(env, plf::string_format("0x%08x", secStatus));
+  }
   return result;
 }
 

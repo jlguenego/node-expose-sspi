@@ -10,6 +10,10 @@
 
 #include "Credentials.h"
 
+// TODO: to be removed because it would be better to let the user enter this or
+// allocate.
+#define cbMaxMessage 48000
+
 namespace myAddon {
 
 class JS {

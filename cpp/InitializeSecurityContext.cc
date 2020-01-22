@@ -79,15 +79,6 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo& info) {
           Napi::String::New(env, std::to_string(secStatus));
   }
 
-  // if (secStatus != SEC_I_CONTINUE_NEEDED) {
-  // 	error("InitializeSecurityContext did not returned
-  // SEC_I_CONTINUE_NEEDED"); 	cleanup(); 	exit(1);
-  // }
-  // log("need to send to the server the output token.");
-
-  // logHandle("clientContext handle", &clientContext);
-  // logSecBufferDesc("client token #1", &fromClientSecBufferDesc);
-
   return result;
 }
 

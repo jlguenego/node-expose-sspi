@@ -17,9 +17,7 @@
 #include "JS.h"
 #include "log.h"
 
-// TODO: to be removed because it would be better to let the user enter this or
-// allocate.
-#define cbMaxMessage 48000
+
 
 #define RESERVED NULL
 
