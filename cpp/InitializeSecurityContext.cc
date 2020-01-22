@@ -21,9 +21,8 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo& info) {
       credential.Get("dwLower").As<Napi::Number>().Int64Value();
   c.credHandle.dwUpper =
       credential.Get("dwUpper").As<Napi::Number>().Int64Value();
-  LPWSTR packageName =
-      (LPWSTR)((std::u16string)input.Get("targetName").As<Napi::String>())
-          .c_str();
+  std::u16string wstr = input.Get("targetName").As<Napi::String>();
+  LPWSTR packageName = (LPWSTR)wstr.c_str();
 
   PSecBufferDesc pInput = NULL;
   if (input.Has("serverSecurityContext")) {
@@ -79,6 +78,11 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo& info) {
     case SEC_I_CONTINUE_NEEDED:
       result["SECURITY_STATUS"] =
           Napi::String::New(env, "SEC_I_CONTINUE_NEEDED");
+      result["SecBufferDesc"] = JS::convert(env, &fromClientSecBufferDesc);
+      break;
+    case SEC_E_OK:
+      result["SECURITY_STATUS"] =
+          Napi::String::New(env, "SEC_E_OK");
       result["SecBufferDesc"] = JS::convert(env, &fromClientSecBufferDesc);
       break;
 
