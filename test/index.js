@@ -10,12 +10,17 @@ const result = sspi.hello();
 console.log(result);
 const result2 = sspi.EnumerateSecurityPackages();
 console.log(result2);
-const credentialObject = sspi.AcquireCredentialsHandle("Negotiate");
-console.log(credentialObject);
-const result3 = sspi.InitializeSecurityContext({
-  hCredential: credentialObject.hCredential,
-  pszTargetName: "kiki"
+const credential = sspi.AcquireCredentialsHandle("Negotiate");
+console.log(credential);
+const input = {
+  credential,
+  targetName: "kiki"
+};
+console.log('input: ', input);
+const clientSecurityContext = sspi.InitializeSecurityContext(input);
+console.log('clientSecurityContext: ', clientSecurityContext);
+console.log(printHexDump(clientSecurityContext.SecBufferDesc.buffers[0]));
+const securityContext2 = sspi.AcceptSecurityContext({
+  credential,
+  clientSecurityContext
 });
-console.log(result3);
-console.log(result3.SecBufferDesc.buffers[0]);
-console.log(printHexDump(result3.SecBufferDesc.buffers[0]));

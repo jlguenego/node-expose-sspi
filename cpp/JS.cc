@@ -3,6 +3,8 @@
 #define WINDOWS_TICK 10000000
 #define SEC_TO_UNIX_EPOCH 11644473600LL
 
+#include "Credentials.h"
+
 namespace myAddon {
 
 Napi::Value JS::convert(Napi::Env env, SecBufferDesc* pSecBufferDesc) {
@@ -25,10 +27,10 @@ Napi::Value JS::convert(Napi::Env env, TimeStamp* pTimeStamp) {
   return Napi::Date::New(env, secondsSince1970 * 1000);
 }
 
-Napi::Array JS::convert(Napi::Env env, unsigned long cPackages, PSecPkgInfo pPackageInfo) {
+Napi::Array JS::convert(Napi::Env env, unsigned long cPackages,
+                        PSecPkgInfo pPackageInfo) {
   Napi::Array result = Napi::Array::New(env);
   for (unsigned long i = 0; i < cPackages; i++) {
-    
     Napi::Object package = Napi::Object::New(env);
     package["fCapabilities"] =
         Napi::Number::New(env, pPackageInfo[i].fCapabilities);
@@ -45,12 +47,26 @@ Napi::Array JS::convert(Napi::Env env, unsigned long cPackages, PSecPkgInfo pPac
   return result;
 }
 
-Napi::Object JS::convert(Napi::Env env, Credentials *c) {
- Napi::Object credentials = Napi::Object::New(env);
+Napi::Object JS::convert(Napi::Env env, Credentials* c) {
+  Napi::Object credentials = Napi::Object::New(env);
   credentials["dwLower"] = Napi::Number::New(env, c->credHandle.dwLower);
   credentials["dwUpper"] = Napi::Number::New(env, c->credHandle.dwUpper);
   credentials["tsExpiry"] = JS::convert(env, &c->expiry);
   return credentials;
+}
+
+Credentials JS::initCredentials(Napi::Object& credential) {
+  Credentials c;
+  c.credHandle.dwLower =
+      credential.Get("dwLower").As<Napi::Number>().Int64Value();
+  c.credHandle.dwUpper =
+      credential.Get("dwUpper").As<Napi::Number>().Int64Value();
+  return c;
+}
+
+PSecBufferDesc JS::initSecBufferDesc() { return NULL; }
+PSecBufferDesc JS::initSecBufferDesc(Napi::Object& clientSecurityContext) {
+  return NULL;
 }
 
 }  // namespace myAddon

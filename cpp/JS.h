@@ -19,6 +19,10 @@ class JS {
   static Napi::Object convert(Napi::Env env, Credentials* c);
   static Napi::Array convert(Napi::Env env, unsigned long cPackages,
                              PSecPkgInfo pPackageInfo);
+
+  static Credentials initCredentials(Napi::Object& credential);
+  static PSecBufferDesc initSecBufferDesc();
+  static PSecBufferDesc initSecBufferDesc(Napi::Object& clientSecurityContext);
 };
 
 }  // namespace myAddon

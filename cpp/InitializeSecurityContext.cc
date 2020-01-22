@@ -16,15 +16,16 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo& info) {
   }
 
   Napi::Object input = info[0].As<Napi::Object>();
-  Napi::Object hCredential = input.Get("hCredential").As<Napi::Object>();
+  Napi::Object credential = input.Get("credential").As<Napi::Object>();
   Credentials c;
   c.credHandle.dwLower =
-      hCredential.Get("dwLower").As<Napi::Number>().Int64Value();
+      credential.Get("dwLower").As<Napi::Number>().Int64Value();
   c.credHandle.dwUpper =
-      hCredential.Get("dwUpper").As<Napi::Number>().Int64Value();
-  std::u16string ws = input.Get("pszTargetName").As<Napi::String>();
+      credential.Get("dwUpper").As<Napi::Number>().Int64Value();
+  std::u16string ws = input.Get("targetName").As<Napi::String>();
   LPWSTR pszTargetName = (LPWSTR)ws.c_str();
   log("pszTargetName=%S", pszTargetName);
+  log("ok3");
 
   TimeStamp tsExpiry;
   CredHandle cred = credMap[c.serialize()].credHandle;

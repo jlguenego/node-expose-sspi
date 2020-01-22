@@ -26,10 +26,7 @@ Napi::Value e_AcquireCredentialsHandle(const Napi::CallbackInfo& info) {
   std::string key = c.serialize();
   credMap[key] = c;
 
-  Napi::Object result = Napi::Object::New(env);
-  Napi::Object hCredential = JS::convert(env, &c);
-  result["hCredential"] = hCredential;
-  return result;
+  return JS::convert(env, &c);
 }
 
 }  // namespace myAddon
