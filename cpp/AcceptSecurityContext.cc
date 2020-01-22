@@ -50,12 +50,14 @@ Napi::Value e_AcceptSecurityContext(const Napi::CallbackInfo& info) {
     case SEC_E_INVALID_TOKEN:
       result["SECURITY_STATUS"] = Napi::String::New(env, "SEC_E_INVALID_TOKEN");
       throw Napi::Error::New(
-          env,
-          "AcceptSecurityContext: SECURITY_STATUS = SEC_E_INVALID_TOKEN.");
+          env, "AcceptSecurityContext: SECURITY_STATUS = SEC_E_INVALID_TOKEN.");
     default:
       result["SECURITY_STATUS"] =
           Napi::String::New(env, plf::string_format("0x%08x", secStatus));
   }
+cleanup:
+  FreeContextBuffer(pInput);
+  FreeContextBuffer(pOutput);
   return result;
 }
 
