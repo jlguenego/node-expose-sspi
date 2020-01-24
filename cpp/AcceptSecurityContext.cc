@@ -28,7 +28,10 @@ Napi::Value e_AcceptSecurityContext(const Napi::CallbackInfo& info) {
 
   PSecBufferDesc pInput = JS::initSecBufferDesc(
       clientSecurityContext.Get("SecBufferDesc").As<Napi::Object>());
-  PSecBufferDesc pOutput = JS::initSecBufferDesc();
+  static PSecBufferDesc pOutput = NULL;
+  if (pOutput == NULL) {
+    pOutput = JS::initSecBufferDesc();
+  }
 
   static CtxtHandle serverContextHandle;
   static bool isFirstCall = true;
