@@ -78,7 +78,6 @@ Napi::Value e_AcceptSecurityContext(const Napi::CallbackInfo& info) {
                  "AcceptSecurityContext: SECURITY_STATUS incorrect (<0): %s",
                  secStatusStr.c_str()));
   }
-  log("e_AcceptSecurityContext completed.");
   result["SecBufferDesc"] = JS::convert(env, &fromServerSecBufferDesc);
   isFirstCall = false;
 

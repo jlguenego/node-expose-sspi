@@ -66,7 +66,6 @@ Credentials JS::initCredentials(Napi::Object& credential) {
 }
 
 PSecBufferDesc JS::initSecBufferDesc() {
-  log("initSecBufferDesc");
   BYTE* buffer = (BYTE*)malloc(cbMaxMessage * sizeof(BYTE));
   PSecBuffer pSecBuffer = new SecBuffer();
   pSecBuffer->cbBuffer = cbMaxMessage;
@@ -93,7 +92,6 @@ PSecBufferDesc JS::initSecBufferDesc(Napi::Object& napiSecBufferDesc) {
   pSecBufferDesc->ulVersion = 0;
   pSecBufferDesc->cBuffers = 1;
   pSecBufferDesc->pBuffers = pSecBuffer;
-  log("ok initSecBufferDesc");
   return pSecBufferDesc;
 }
 

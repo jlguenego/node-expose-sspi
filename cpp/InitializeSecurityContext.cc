@@ -26,11 +26,9 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo& info) {
 
   PSecBufferDesc pInput = NULL;
   if (input.Has("serverSecurityContext")) {
-    log("serverSecurityContext provided");
     Napi::Object serverSecurityContext =
         input.Get("serverSecurityContext").As<Napi::Object>();
     if (serverSecurityContext.Has("SecBufferDesc")) {
-      log("SecBufferDesc provided");
       Napi::Object secBufferDesc =
           serverSecurityContext.Get("SecBufferDesc").As<Napi::Object>();
       pInput = JS::initSecBufferDesc(secBufferDesc);
@@ -64,7 +62,6 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo& info) {
   if (input.HasOwnProperty("isFirstCall")) {
     isFirstCall = input.Get("isFirstCall").As<Napi::Boolean>().ToBoolean();
   }
-  log("isFirstCall=%d", isFirstCall);
 
   SECURITY_STATUS secStatus = InitializeSecurityContext(
       &cred, (isFirstCall) ? NULL : (&clientContextHandle), packageName,

@@ -15,8 +15,6 @@ Napi::Value e_EnumerateSecurityPackages(const Napi::CallbackInfo &info) {
                            "Cannot EnumerateSecurityPackages: secStatus = " +
                                std::to_string(secStatus));
   }
-  log("size of pPackageInfo=%d", sizeof(pPackageInfo[0]));
-  log("cPackages=%d", cPackages);
 
   Napi::Array result = JS::convert(env, cPackages, pPackageInfo);
 
