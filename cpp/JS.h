@@ -12,7 +12,7 @@
 
 // TODO: to be removed because it would be better to let the user enter this or
 // allocate.
-#define cbMaxMessage 48000
+#define cbMaxMessage 48256
 
 namespace myAddon {
 

@@ -67,7 +67,7 @@ Credentials JS::initCredentials(Napi::Object& credential) {
 
 PSecBufferDesc JS::initSecBufferDesc() {
   log("initSecBufferDesc");
-  BYTE *buffer = (BYTE*) malloc(cbMaxMessage * sizeof(BYTE));
+  BYTE* buffer = (BYTE*)malloc(cbMaxMessage * sizeof(BYTE));
   PSecBuffer pSecBuffer = new SecBuffer();
   pSecBuffer->cbBuffer = cbMaxMessage;
   pSecBuffer->BufferType = SECBUFFER_TOKEN;
@@ -84,15 +84,19 @@ PSecBufferDesc JS::initSecBufferDesc(Napi::Object& napiSecBufferDesc) {
   PSecBuffer pSecBuffer = new SecBuffer();
   pSecBuffer->BufferType = SECBUFFER_TOKEN;
   Napi::Array array = napiSecBufferDesc.Get("buffers").As<Napi::Array>();
-  Napi::ArrayBuffer obj2 =
-      array.Get("0").As<Napi::ArrayBuffer>();
-  pSecBuffer->pvBuffer = obj2.Data();
+  Napi::ArrayBuffer obj2 = array.Get("0").As<Napi::ArrayBuffer>();
+
+  static BYTE buffer[cbMaxMessage];
+  memcpy(buffer, obj2.Data(), obj2.ByteLength() * sizeof(BYTE));
+
+  pSecBuffer->pvBuffer = buffer;
+  
   pSecBuffer->cbBuffer = obj2.ByteLength();
   PSecBufferDesc pSecBufferDesc = new SecBufferDesc();
   pSecBufferDesc->ulVersion = 0;
   pSecBufferDesc->cBuffers = 1;
   pSecBufferDesc->pBuffers = pSecBuffer;
-  log("ok");
+  log("ok initSecBufferDesc");
   return pSecBufferDesc;
 }
 
