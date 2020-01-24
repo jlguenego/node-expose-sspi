@@ -33,13 +33,10 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo& info) {
           serverSecurityContext.Get("SecBufferDesc").As<Napi::Object>();
       pInput = JS::initSecBufferDesc(secBufferDesc);
     }
-    logSecBufferDesc("pInput xxxxxxxxxxxxxxxxxxxxxxxxx", pInput);
   }
 
   TimeStamp tsExpiry;
   CredHandle cred = credMap[c.serialize()].credHandle;
-
-  logHandle("credentials handle", &cred);
 
   BYTE buffer[cbMaxMessage]; // need to use the same to complete the buffer at the second call.
   SecBuffer secBuffer;

@@ -24,7 +24,6 @@ Napi::Value e_AcceptSecurityContext(const Napi::CallbackInfo& info) {
 
   Credentials c = JS::initCredentials(credential);
   CredHandle cred = credMap[c.serialize()].credHandle;
-  logHandle("credentials handle", &cred);
 
   PSecBufferDesc pInput = JS::initSecBufferDesc(
       clientSecurityContext.Get("SecBufferDesc").As<Napi::Object>());
