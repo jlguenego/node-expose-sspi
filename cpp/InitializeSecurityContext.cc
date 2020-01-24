@@ -41,7 +41,7 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo& info) {
 
   logHandle("credentials handle", &cred);
 
-  static BYTE buffer[cbMaxMessage]; // need to use the same to complete the buffer at the second call.
+  BYTE buffer[cbMaxMessage]; // need to use the same to complete the buffer at the second call.
   SecBuffer secBuffer;
   secBuffer.cbBuffer = cbMaxMessage;
   secBuffer.BufferType = SECBUFFER_TOKEN;
