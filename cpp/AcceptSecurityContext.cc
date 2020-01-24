@@ -29,11 +29,11 @@ Napi::Value e_AcceptSecurityContext(const Napi::CallbackInfo& info) {
   PSecBufferDesc pInput = JS::initSecBufferDesc(
       clientSecurityContext.Get("SecBufferDesc").As<Napi::Object>());
   static PSecBufferDesc pOutput = NULL;
-  // if (pOutput == NULL) {
-  pOutput = JS::initSecBufferDesc();
-  // } else {
-  //   log("reusing pOutput");
-  // }
+  if (pOutput == NULL) {
+    pOutput = JS::initSecBufferDesc();
+  } else {
+    log("reusing pOutput");
+  }
 
   static CtxtHandle serverContextHandle;
   static bool isFirstCall = true;
@@ -62,17 +62,19 @@ Napi::Value e_AcceptSecurityContext(const Napi::CallbackInfo& info) {
       result["SECURITY_STATUS"] =
           Napi::String::New(env, plf::string_format("0x%08x", secStatus));
   }
-  FreeContextBuffer(pInput);
-  FreeContextBuffer(pOutput);
+  // FreeContextBuffer(pInput);
+  // FreeContextBuffer(pOutput);
   std::string secStatusStr = plf::string_format("0x%08x", secStatus);
   if (secStatus < 0) {
     switch (secStatus) {
       case SEC_E_INVALID_TOKEN:
-      secStatusStr = "SEC_E_INVALID_TOKEN";
-      break;
+        secStatusStr = "SEC_E_INVALID_TOKEN";
+        break;
     }
     throw Napi::Error::New(
-        env, plf::string_format("AcceptSecurityContext: SECURITY_STATUS incorrect (<0): %s", secStatusStr.c_str()));
+        env, plf::string_format(
+                 "AcceptSecurityContext: SECURITY_STATUS incorrect (<0): %s",
+                 secStatusStr.c_str()));
   }
   return result;
 }
