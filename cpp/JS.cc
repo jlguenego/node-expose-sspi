@@ -84,14 +84,11 @@ PSecBufferDesc JS::initSecBufferDesc(Napi::Object& napiSecBufferDesc) {
   PSecBuffer pSecBuffer = new SecBuffer();
   pSecBuffer->BufferType = SECBUFFER_TOKEN;
   Napi::Array array = napiSecBufferDesc.Get("buffers").As<Napi::Array>();
-  Napi::ArrayBuffer obj2 = array.Get("0").As<Napi::ArrayBuffer>();
+  Napi::ArrayBuffer obj = array.Get("0").As<Napi::ArrayBuffer>();
 
-  static BYTE buffer[cbMaxMessage];
-  memcpy(buffer, obj2.Data(), obj2.ByteLength() * sizeof(BYTE));
-
-  pSecBuffer->pvBuffer = buffer;
+  pSecBuffer->pvBuffer = obj.Data();
   
-  pSecBuffer->cbBuffer = obj2.ByteLength();
+  pSecBuffer->cbBuffer = obj.ByteLength();
   PSecBufferDesc pSecBufferDesc = new SecBufferDesc();
   pSecBufferDesc->ulVersion = 0;
   pSecBufferDesc->cBuffers = 1;
