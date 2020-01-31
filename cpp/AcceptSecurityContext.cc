@@ -24,7 +24,7 @@ Napi::Value e_AcceptSecurityContext(const Napi::CallbackInfo& info) {
   PSecBufferDesc pInput = JS::initSecBufferDesc(
       clientSecurityContext.Get("SecBufferDesc").As<Napi::Object>());
 
-  static BYTE buffer[cbMaxMessage];  // need to use the same to complete the
+  BYTE buffer[cbMaxMessage];  // need to use the same to complete the
                                      // buffer at the second call.
   SecBuffer secBuffer;
   secBuffer.cbBuffer = cbMaxMessage;
@@ -36,13 +36,15 @@ Napi::Value e_AcceptSecurityContext(const Napi::CallbackInfo& info) {
   fromServerSecBufferDesc.cBuffers = 1;
   fromServerSecBufferDesc.pBuffers = &secBuffer;
 
-  CtxtHandle serverContextHandle;
+  CtxtHandle serverContextHandle = {0, 0};
+  bool isFirstCall = true;
   if (input.Has("serverContextHandle")) {
+    isFirstCall = false;
     Napi::String serverContextHandleString =
         input.Get("serverContextHandle").As<Napi::String>();
-    serverContextHandle = SecHandleUtil::deserialize(serverContextHandleString.Utf8Value());
+    serverContextHandle =
+        SecHandleUtil::deserialize(serverContextHandleString.Utf8Value());
   }
-  static bool isFirstCall = true;
 
   ULONG ulServerContextAttr;
   TimeStamp tsExpiry;
