@@ -14,6 +14,8 @@
 #include "polyfill.h"
 
 #include "Credentials.h"
+#include "SecHandleUtil.h"
+
 #include "JS.h"
 #include "log.h"
 

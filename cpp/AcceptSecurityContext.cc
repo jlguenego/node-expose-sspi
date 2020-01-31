@@ -47,6 +47,7 @@ Napi::Value e_AcceptSecurityContext(const Napi::CallbackInfo& info) {
       &fromServerSecBufferDesc, &ulServerContextAttr, &tsExpiry);
 
   Napi::Object result = Napi::Object::New(env);
+  result["serverContextHandle"] = SecHandleUtil::serialize(serverContextHandle);
 
   switch (secStatus) {
     case SEC_I_CONTINUE_NEEDED:
