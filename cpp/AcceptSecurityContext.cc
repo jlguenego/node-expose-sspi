@@ -5,7 +5,6 @@ namespace myAddon {
 Napi::Value e_AcceptSecurityContext(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
 
-  // get the credentials.
   if (info.Length() < 1) {
     throw Napi::Error::New(env,
                            "AcceptSecurityContext: Wrong number of arguments. "
@@ -14,12 +13,10 @@ Napi::Value e_AcceptSecurityContext(const Napi::CallbackInfo& info) {
   }
 
   Napi::Object input = info[0].As<Napi::Object>();
-  Napi::Object credential = input.Get("credential").As<Napi::Object>();
+  CredHandle cred = SecHandleUtil::deserialize(
+      input.Get("credential").As<Napi::String>().Utf8Value());
   Napi::Object clientSecurityContext =
       input.Get("clientSecurityContext").As<Napi::Object>();
-
-  Credentials c = JS::initCredentials(credential);
-  CredHandle cred = credMap[c.serialize()].credHandle;
 
   PSecBufferDesc pInput = JS::initSecBufferDesc(
       clientSecurityContext.Get("SecBufferDesc").As<Napi::Object>());

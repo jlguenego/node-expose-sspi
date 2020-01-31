@@ -2,8 +2,6 @@
 
 namespace myAddon {
 
-std::map<std::string, Credentials> credMap;
-
 Napi::Value e_AcquireCredentialsHandle(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
 
@@ -13,20 +11,22 @@ Napi::Value e_AcquireCredentialsHandle(const Napi::CallbackInfo& info) {
   }
 
   std::u16string packageName = info[0].As<Napi::String>();
-  Credentials c;
+  CredHandle credHandle = {0, 0};
+  TimeStamp tsExpiry;
 
-  SECURITY_STATUS secStatus =
-      AcquireCredentialsHandle(NULL, (LPWSTR)packageName.c_str(), SECPKG_CRED_BOTH, NULL,
-                               NULL, NULL, NULL, &c.credHandle, &c.expiry);
+  SECURITY_STATUS secStatus = AcquireCredentialsHandle(
+      NULL, (LPWSTR)packageName.c_str(), SECPKG_CRED_BOTH, NULL, NULL, NULL,
+      NULL, &credHandle, &tsExpiry);
   if (secStatus != SEC_E_OK) {
     throw Napi::Error::New(env, "Cannot FreeContextBuffer: secStatus = " +
                                     std::to_string(secStatus));
   }
-  
-  std::string key = c.serialize();
-  credMap[key] = c;
 
-  return JS::convert(env, &c);
+  Napi::Object result = Napi::Object::New(env);
+  result["credential"] =
+      Napi::String::New(env, SecHandleUtil::serialize(credHandle));
+  result["tsExpiry"] = JS::convert(env, &tsExpiry);
+  return result;
 }
 
 }  // namespace myAddon

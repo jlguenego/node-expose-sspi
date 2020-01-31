@@ -5,7 +5,6 @@ namespace myAddon {
 Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
 
-  // get the credentials.
   if (info.Length() < 1) {
     throw Napi::Error::New(
         env,
@@ -15,12 +14,9 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo& info) {
   }
 
   Napi::Object input = info[0].As<Napi::Object>();
-  Napi::Object credential = input.Get("credential").As<Napi::Object>();
-  Credentials c;
-  c.credHandle.dwLower =
-      credential.Get("dwLower").As<Napi::Number>().Int64Value();
-  c.credHandle.dwUpper =
-      credential.Get("dwUpper").As<Napi::Number>().Int64Value();
+  CredHandle cred = SecHandleUtil::deserialize(
+      input.Get("credential").As<Napi::String>().Utf8Value());
+
   std::u16string wstr = input.Get("targetName").As<Napi::String>();
   LPWSTR packageName = (LPWSTR)wstr.c_str();
 
@@ -36,7 +32,6 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo& info) {
   }
 
   TimeStamp tsExpiry;
-  CredHandle cred = credMap[c.serialize()].credHandle;
 
   BYTE buffer[cbMaxMessage]; // need to use the same to complete the buffer at the second call.
   SecBuffer secBuffer;

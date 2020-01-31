@@ -13,21 +13,16 @@
 
 #include "polyfill.h"
 
-#include "Credentials.h"
 #include "SecHandleUtil.h"
 
 #include "JS.h"
 #include "log.h"
-
-
 
 #define RESERVED NULL
 
 #define BUFFER_SIZE 1024
 
 namespace myAddon {
-
-extern std::map<std::string, Credentials> credMap;
 
 double TimeStampToUnix(TimeStamp ts);
 Napi::Value e_EnumerateSecurityPackages(const Napi::CallbackInfo &info);
