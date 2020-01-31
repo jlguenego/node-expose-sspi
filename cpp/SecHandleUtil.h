@@ -10,6 +10,7 @@ namespace myAddon {
 class SecHandleUtil {
  public:
   static std::string serialize(SecHandle& handle);
+  static SecHandle deserialize(std::string& s);
 };
 
 }  // namespace myAddon

@@ -7,10 +7,10 @@ Napi::Value e_AcceptSecurityContext(const Napi::CallbackInfo& info) {
 
   // get the credentials.
   if (info.Length() < 1) {
-    throw Napi::Error::New(
-        env,
-        "AcceptSecurityContext: Wrong number of arguments. "
-        "AcceptSecurityContext({ credential, clientSecurityContext })");
+    throw Napi::Error::New(env,
+                           "AcceptSecurityContext: Wrong number of arguments. "
+                           "AcceptSecurityContext({ credential, "
+                           "clientSecurityContext, serverContextHandle })");
   }
 
   Napi::Object input = info[0].As<Napi::Object>();
@@ -36,7 +36,12 @@ Napi::Value e_AcceptSecurityContext(const Napi::CallbackInfo& info) {
   fromServerSecBufferDesc.cBuffers = 1;
   fromServerSecBufferDesc.pBuffers = &secBuffer;
 
-  static CtxtHandle serverContextHandle;
+  CtxtHandle serverContextHandle;
+  if (input.Has("serverContextHandle")) {
+    Napi::String serverContextHandleString =
+        input.Get("serverContextHandle").As<Napi::String>();
+    serverContextHandle = SecHandleUtil::deserialize(serverContextHandleString.Utf8Value());
+  }
   static bool isFirstCall = true;
 
   ULONG ulServerContextAttr;
@@ -47,7 +52,8 @@ Napi::Value e_AcceptSecurityContext(const Napi::CallbackInfo& info) {
       &fromServerSecBufferDesc, &ulServerContextAttr, &tsExpiry);
 
   Napi::Object result = Napi::Object::New(env);
-  result["serverContextHandle"] = SecHandleUtil::serialize(serverContextHandle);
+  result["serverContextHandle"] =
+      Napi::String::New(env, SecHandleUtil::serialize(serverContextHandle));
 
   switch (secStatus) {
     case SEC_I_CONTINUE_NEEDED:

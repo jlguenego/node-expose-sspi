@@ -40,7 +40,8 @@ console.log(printHexDump(clientSecurityContext2.SecBufferDesc.buffers[0]));
 
 const serverSecurityContext2 = sspi.AcceptSecurityContext({
   credential,
-  clientSecurityContext: clientSecurityContext2
+  clientSecurityContext: clientSecurityContext2,
+  serverContextHandle: serverSecurityContext.serverContextHandle
 });
 console.log('serverSecurityContext2: ', serverSecurityContext2);
 console.log(printHexDump(serverSecurityContext2.SecBufferDesc.buffers[0]));
