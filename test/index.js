@@ -1,11 +1,6 @@
 const sspi = require("..");
 const { printHexDump } = require("../misc/misc");
 
-let counter = sspi.count();
-console.log("counter: ", counter);
-counter = sspi.count();
-console.log("counter: ", counter);
-
 const result = sspi.hello();
 console.log(result);
 const securityPackages = sspi.EnumerateSecurityPackages();
