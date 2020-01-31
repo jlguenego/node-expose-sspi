@@ -13,10 +13,6 @@ Napi::Value e_AcceptSecurityContext(const Napi::CallbackInfo& info) {
         "AcceptSecurityContext({ credential, clientSecurityContext })");
   }
 
-  // {
-  //   credential,
-  //   clientSecurityContext
-  // }
   Napi::Object input = info[0].As<Napi::Object>();
   Napi::Object credential = input.Get("credential").As<Napi::Object>();
   Napi::Object clientSecurityContext =
