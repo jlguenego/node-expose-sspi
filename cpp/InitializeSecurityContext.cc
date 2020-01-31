@@ -10,7 +10,7 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo& info) {
     throw Napi::Error::New(
         env,
         "InitializeSecurityContext: Wrong number of arguments. "
-        "InitializeSecurityContext({ credential, targetName, isFirstCall, "
+        "InitializeSecurityContext({ credential, targetName, clientContextHandle, "
         "serverSecurityContext })");
   }
 
@@ -51,10 +51,15 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo& info) {
 
   ULONG ulContextAttr;
 
-  // TimeStamp tsExpiry;
-
-  static CtxtHandle clientContextHandle;
-  static bool isFirstCall = true;
+  CtxtHandle clientContextHandle = {0, 0};
+  bool isFirstCall = true;
+  if (input.Has("clientContextHandle")) {
+    isFirstCall = false;
+    Napi::String clientContextHandleString =
+        input.Get("clientContextHandle").As<Napi::String>();
+    clientContextHandle =
+        SecHandleUtil::deserialize(clientContextHandleString.Utf8Value());
+  }
 
   if (input.HasOwnProperty("isFirstCall")) {
     isFirstCall = input.Get("isFirstCall").As<Napi::Boolean>().ToBoolean();
@@ -85,8 +90,6 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo& info) {
           Napi::String::New(env, std::to_string(secStatus));
   }
 
-  isFirstCall = false;
-
   if (secStatus < SEC_E_OK) {
     std::string message;
     switch (secStatus) {
@@ -105,6 +108,9 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo& info) {
     }
     throw Napi::Error::New(env, message);
   }
+
+  result["clientContextHandle"] =
+          Napi::String::New(env, SecHandleUtil::serialize(clientContextHandle));
 
   return result;
 }

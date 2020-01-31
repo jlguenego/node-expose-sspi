@@ -30,7 +30,7 @@ const input2 = {
   credential,
   targetName: "kiki",
   serverSecurityContext,
-  isFirstCall: false
+  clientContextHandle: clientSecurityContext.clientContextHandle
 };
 console.log('input2: ', input2);
 const clientSecurityContext2 = sspi.InitializeSecurityContext(input2);

@@ -24,8 +24,7 @@ Napi::Value e_AcceptSecurityContext(const Napi::CallbackInfo& info) {
   PSecBufferDesc pInput = JS::initSecBufferDesc(
       clientSecurityContext.Get("SecBufferDesc").As<Napi::Object>());
 
-  BYTE buffer[cbMaxMessage];  // need to use the same to complete the
-                                     // buffer at the second call.
+  BYTE buffer[cbMaxMessage];
   SecBuffer secBuffer;
   secBuffer.cbBuffer = cbMaxMessage;
   secBuffer.BufferType = SECBUFFER_TOKEN;
