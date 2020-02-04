@@ -28,6 +28,9 @@ Napi::Object Init(Napi::Env env, Napi::Object exports) {
   exports.Set(Napi::String::New(env, "ImpersonateSecurityContext"),
               Napi::Function::New(env, e_ImpersonateSecurityContext));
 
+  exports.Set(Napi::String::New(env, "RevertSecurityContext"),
+              Napi::Function::New(env, e_RevertSecurityContext));
+
   exports.Set(Napi::String::New(env, "GetUserName"),
               Napi::Function::New(env, e_GetUserName));
 

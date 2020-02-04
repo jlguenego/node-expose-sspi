@@ -24,8 +24,6 @@ SecHandle SecHandleUtil::deserialize(std::string& s) {
   string s2 = s.substr(s.find(".") + 1);
   s1 = s1.substr(2);
   s2 = s2.substr(2);
-  cout << "s1=" << s1 << endl;
-  cout << "s2=" << s2 << endl;
 
   std::istringstream c1(s1);
   c1 >> std::hex >> result.dwUpper;

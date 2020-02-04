@@ -46,3 +46,7 @@ sspi.ImpersonateSecurityContext(serverSecurityContext.serverContextHandle);
 console.log("impersonate security context ok");
 const username = sspi.GetUserName();
 console.log('username: ', username);
+sspi.RevertSecurityContext(serverSecurityContext.serverContextHandle);
+console.log("revert security context ok");
+const username2 = sspi.GetUserName();
+console.log('username2: ', username2);
