@@ -44,3 +44,5 @@ console.log("serverSecurityContext2: ", serverSecurityContext2);
 console.log(printHexDump(serverSecurityContext2.SecBufferDesc.buffers[0]));
 sspi.ImpersonateSecurityContext(serverSecurityContext.serverContextHandle);
 console.log("impersonate security context ok");
+const username = sspi.GetUserName();
+console.log('username: ', username);
