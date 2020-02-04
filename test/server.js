@@ -72,6 +72,10 @@ app.use((req, res, next) => {
     const username = sspi.GetUserName();
     console.log("username: ", username);
     req.user = username;
+    sspi.RevertSecurityContext(serverContextHandle);
+    const owner = sspi.GetUserName();
+    console.log('owner: ', owner);
+    req.owner = owner;
   }
 
   next();
@@ -81,7 +85,8 @@ app.use((req, res, next) => {
   console.log("req: ", req.auth);
 
   res.json({
-    connexion: req.user
+    connexion: req.user,
+    owner: req.owner
   });
 });
 
