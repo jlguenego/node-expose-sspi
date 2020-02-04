@@ -50,3 +50,6 @@ sspi.RevertSecurityContext(serverSecurityContext.serverContextHandle);
 console.log("revert security context ok");
 const username2 = sspi.GetUserName();
 console.log('username2: ', username2);
+
+sspi.FreeCredentialsHandle(credential);
+console.log('free credentials ok');
