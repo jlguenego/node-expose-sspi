@@ -2,9 +2,12 @@ const sspi = require("..");
 const { printHexDump } = require("../misc/misc");
 
 const result = sspi.hello();
-console.log(result);
+console.log('result: ', result);
 const securityPackages = sspi.EnumerateSecurityPackages();
 console.log(securityPackages);
+const packageInfo = sspi.QuerySecurityPackageInfo("Negotiate");
+console.log('packageInfo: ', packageInfo);
+
 const { credential, tsExpiry } = sspi.AcquireCredentialsHandle("Negotiate");
 console.log(credential);
 const input = {

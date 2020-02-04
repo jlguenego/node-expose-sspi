@@ -20,6 +20,7 @@ class JS {
   static Napi::Value convert(Napi::Env env, TimeStamp* pTimeStamp);
   static Napi::Array convert(Napi::Env env, unsigned long cPackages,
                              PSecPkgInfo pPackageInfo);
+  static Napi::Object JS::convert(Napi::Env env, PSecPkgInfo pPackageInfo);
 
   static PSecBufferDesc initSecBufferDesc();
   static PSecBufferDesc initSecBufferDesc(Napi::Object& clientSecurityContext);

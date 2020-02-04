@@ -46,6 +46,23 @@ Napi::Array JS::convert(Napi::Env env, unsigned long cPackages,
   return result;
 }
 
+Napi::Object JS::convert(Napi::Env env,
+                        PSecPkgInfo pPackageInfo) {
+  
+  
+    Napi::Object package = Napi::Object::New(env);
+    package["fCapabilities"] =
+        Napi::Number::New(env, pPackageInfo->fCapabilities);
+    package["wVersion"] = Napi::Number::New(env, pPackageInfo->wVersion);
+    package["wRPCID"] = Napi::Number::New(env, pPackageInfo->wRPCID);
+    package["cbMaxToken"] = Napi::Number::New(env, pPackageInfo->cbMaxToken);
+    package["Name"] = Napi::String::New(env, (char16_t*)pPackageInfo->Name);
+    package["Comment"] =
+        Napi::String::New(env, (char16_t*)pPackageInfo->Comment);
+
+    return package;
+}
+
 PSecBufferDesc JS::initSecBufferDesc() {
   BYTE* buffer = (BYTE*)malloc(cbMaxMessage * sizeof(BYTE));
   PSecBuffer pSecBuffer = new SecBuffer();
