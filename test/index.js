@@ -2,11 +2,11 @@ const sspi = require("..");
 const { printHexDump } = require("../misc/misc");
 
 const result = sspi.hello();
-console.log('result: ', result);
+console.log("result: ", result);
 const securityPackages = sspi.EnumerateSecurityPackages();
 console.log(securityPackages);
 const packageInfo = sspi.QuerySecurityPackageInfo("Negotiate");
-console.log('packageInfo: ', packageInfo);
+console.log("packageInfo: ", packageInfo);
 
 const { credential, tsExpiry } = sspi.AcquireCredentialsHandle("Negotiate");
 console.log(credential);
@@ -42,3 +42,5 @@ const serverSecurityContext2 = sspi.AcceptSecurityContext({
 });
 console.log("serverSecurityContext2: ", serverSecurityContext2);
 console.log(printHexDump(serverSecurityContext2.SecBufferDesc.buffers[0]));
+sspi.ImpersonateSecurityContext(serverSecurityContext.serverContextHandle);
+console.log("impersonate security context ok");
