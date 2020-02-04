@@ -51,5 +51,8 @@ console.log("revert security context ok");
 const username2 = sspi.GetUserName();
 console.log('username2: ', username2);
 
+const attributes = sspi.QueryCredentialsAttributes(credential, "SECPKG_CRED_ATTR_NAMES");
+console.log('attributes: ', attributes);
+
 sspi.FreeCredentialsHandle(credential);
 console.log('free credentials ok');

@@ -7,6 +7,7 @@ const sspi = require("..");
 const app = express();
 
 const { credential, tsExpiry } = sspi.AcquireCredentialsHandle("Negotiate");
+console.log('tsExpiry: ', tsExpiry);
 let serverContextHandle;
 
 app.use((req, res, next) => {
