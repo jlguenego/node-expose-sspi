@@ -66,6 +66,12 @@ app.use((req, res, next) => {
 
     // get the username.
     // impersonate the user.
+
+    sspi.ImpersonateSecurityContext(serverContextHandle);
+    console.log("impersonate security context ok");
+    const username = sspi.GetUserName();
+    console.log("username: ", username);
+    req.user = username;
   }
 
   next();
