@@ -31,6 +31,9 @@ Napi::Object Init(Napi::Env env, Napi::Object exports) {
   exports.Set(Napi::String::New(env, "AcceptSecurityContext"),
               Napi::Function::New(env, e_AcceptSecurityContext));
 
+  exports.Set(Napi::String::New(env, "DeleteSecurityContext"),
+              Napi::Function::New(env, e_DeleteSecurityContext));
+
   exports.Set(Napi::String::New(env, "ImpersonateSecurityContext"),
               Napi::Function::New(env, e_ImpersonateSecurityContext));
 

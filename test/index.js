@@ -54,5 +54,11 @@ console.log('username2: ', username2);
 const attributes = sspi.QueryCredentialsAttributes(credential, "SECPKG_CRED_ATTR_NAMES");
 console.log('attributes: ', attributes);
 
+sspi.DeleteSecurityContext(serverSecurityContext.serverContextHandle);
+console.log("DeleteSecurityContext ok");
+sspi.DeleteSecurityContext(clientSecurityContext.clientContextHandle);
+console.log("DeleteSecurityContext ok");
+
+
 sspi.FreeCredentialsHandle(credential);
 console.log('free credentials ok');
