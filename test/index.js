@@ -59,6 +59,9 @@ console.log('attributes: ', attributes);
 const names = sspi.QueryContextAttributes(serverSecurityContext.serverContextHandle, "SECPKG_ATTR_NAMES");
 console.log('names: ', names);
 
+const accessToken = sspi.QuerySecurityContextToken(serverSecurityContext.serverContextHandle);
+console.log('accessToken: ', accessToken);
+
 sspi.DeleteSecurityContext(serverSecurityContext.serverContextHandle);
 console.log("DeleteSecurityContext ok");
 sspi.DeleteSecurityContext(clientSecurityContext.clientContextHandle);

@@ -30,6 +30,7 @@ Napi::Value e_QuerySecurityPackageInfo(const Napi::CallbackInfo &info);
 Napi::Value e_AcquireCredentialsHandle(const Napi::CallbackInfo &info);
 Napi::Value e_QueryCredentialsAttributes(const Napi::CallbackInfo &info);
 Napi::Value e_QueryContextAttributes(const Napi::CallbackInfo &info);
+Napi::Value e_QuerySecurityContextToken(const Napi::CallbackInfo &info);
 void e_FreeCredentialsHandle(const Napi::CallbackInfo &info);
 Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo &info);
 Napi::Value e_AcceptSecurityContext(const Napi::CallbackInfo &info);
