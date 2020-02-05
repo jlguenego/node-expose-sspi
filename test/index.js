@@ -13,7 +13,7 @@ console.log(credential);
 const input = {
   credential,
   targetName: "kiki",
-  cbMaxToken: 48256
+  cbMaxToken: packageInfo.cbMaxToken
 };
 console.log("input: ", input);
 const clientSecurityContext = sspi.InitializeSecurityContext(input);
@@ -28,7 +28,7 @@ console.log(printHexDump(serverSecurityContext.SecBufferDesc.buffers[0]));
 const input2 = {
   credential,
   targetName: "kiki",
-  cbMaxToken: 48256,
+  cbMaxToken: packageInfo.cbMaxToken,
   serverSecurityContext,
   clientContextHandle: clientSecurityContext.clientContextHandle
 };
