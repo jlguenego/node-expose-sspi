@@ -61,6 +61,10 @@ console.log('names: ', names);
 
 const accessToken = sspi.QuerySecurityContextToken(serverSecurityContext.serverContextHandle);
 console.log('accessToken: ', accessToken);
+
+const groups = sspi.GetTokenInformation(accessToken, 'TokenGroups');
+console.log('groups: ', groups);
+
 sspi.CloseHandle(accessToken);
 console.log("CloseHandle ok");
 
