@@ -2,15 +2,17 @@
 
 namespace myAddon {
 
-Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo& info) {
+Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo &info) {
   Napi::Env env = info.Env();
 
   if (info.Length() < 1) {
     throw Napi::Error::New(
         env,
         "InitializeSecurityContext: Wrong number of arguments. "
-        "InitializeSecurityContext({ credential, targetName, clientContextHandle, "
-        "serverSecurityContext })");
+        "InitializeSecurityContext({ credential: string, targetName: string, "
+        "cbMaxToken?: number, "
+        "clientContextHandle, "
+        "serverSecurityContext?: Object })");
   }
 
   Napi::Object input = info[0].As<Napi::Object>();
@@ -19,6 +21,11 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo& info) {
 
   std::u16string wstr = input.Get("targetName").As<Napi::String>();
   LPWSTR packageName = (LPWSTR)wstr.c_str();
+
+  unsigned int cbMaxToken = 48256;
+  if (input.Has("cbMaxToken")) {
+    cbMaxToken = input.Get("cbMaxToken").As<Napi::Number>().Uint32Value();
+  }
 
   PSecBufferDesc pInput = NULL;
   if (input.Has("serverSecurityContext")) {
@@ -32,10 +39,10 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo& info) {
   }
 
   TimeStamp tsExpiry;
-
-  BYTE buffer[cbMaxMessage]; // need to use the same to complete the buffer at the second call.
+  std::cout << "cbMaxToken=" << cbMaxToken << std::endl;
+  BYTE *buffer = (BYTE *)malloc(cbMaxToken * sizeof(BYTE));
   SecBuffer secBuffer;
-  secBuffer.cbBuffer = cbMaxMessage;
+  secBuffer.cbBuffer = cbMaxToken;
   secBuffer.BufferType = SECBUFFER_TOKEN;
   secBuffer.pvBuffer = buffer;
 
@@ -68,6 +75,9 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo& info) {
 
   Napi::Object result = Napi::Object::New(env);
 
+  result["clientContextHandle"] =
+      Napi::String::New(env, SecHandleUtil::serialize(clientContextHandle));
+
   switch (secStatus) {
     case SEC_I_CONTINUE_NEEDED:
       result["SECURITY_STATUS"] =
@@ -75,8 +85,7 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo& info) {
       result["SecBufferDesc"] = JS::convert(env, &fromClientSecBufferDesc);
       break;
     case SEC_E_OK:
-      result["SECURITY_STATUS"] =
-          Napi::String::New(env, "SEC_E_OK");
+      result["SECURITY_STATUS"] = Napi::String::New(env, "SEC_E_OK");
       result["SecBufferDesc"] = JS::convert(env, &fromClientSecBufferDesc);
       break;
 
@@ -84,6 +93,9 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo& info) {
       result["SECURITY_STATUS"] =
           Napi::String::New(env, std::to_string(secStatus));
   }
+
+  // buffer was built with malloc so free it.
+  free(buffer);
 
   if (secStatus < SEC_E_OK) {
     std::string message;
@@ -103,9 +115,6 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo& info) {
     }
     throw Napi::Error::New(env, message);
   }
-
-  result["clientContextHandle"] =
-          Napi::String::New(env, SecHandleUtil::serialize(clientContextHandle));
 
   return result;
 }
