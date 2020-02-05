@@ -61,6 +61,9 @@ console.log('names: ', names);
 
 const accessToken = sspi.QuerySecurityContextToken(serverSecurityContext.serverContextHandle);
 console.log('accessToken: ', accessToken);
+sspi.CloseHandle(accessToken);
+console.log("CloseHandle ok");
+
 
 sspi.DeleteSecurityContext(serverSecurityContext.serverContextHandle);
 console.log("DeleteSecurityContext ok");
