@@ -22,6 +22,9 @@ Napi::Object Init(Napi::Env env, Napi::Object exports) {
   exports.Set(Napi::String::New(env, "QueryCredentialsAttributes"),
               Napi::Function::New(env, e_QueryCredentialsAttributes));
 
+  exports.Set(Napi::String::New(env, "QueryContextAttributes"),
+              Napi::Function::New(env, e_QueryContextAttributes));
+
   exports.Set(Napi::String::New(env, "FreeCredentialsHandle"),
               Napi::Function::New(env, e_FreeCredentialsHandle));
 

@@ -56,6 +56,9 @@ console.log('username2: ', username2);
 const attributes = sspi.QueryCredentialsAttributes(credential, "SECPKG_CRED_ATTR_NAMES");
 console.log('attributes: ', attributes);
 
+const names = sspi.QueryContextAttributes(serverSecurityContext.serverContextHandle, "SECPKG_ATTR_NAMES");
+console.log('names: ', names);
+
 sspi.DeleteSecurityContext(serverSecurityContext.serverContextHandle);
 console.log("DeleteSecurityContext ok");
 sspi.DeleteSecurityContext(clientSecurityContext.clientContextHandle);
