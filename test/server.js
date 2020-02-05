@@ -73,6 +73,9 @@ app.use((req, res, next) => {
     const username = sspi.GetUserName();
     console.log("username: ", username);
     req.user = username;
+    const accessToken = sspi.QuerySecurityContextToken(serverContextHandle);
+    const groups = sspi.GetTokenInformation(accessToken, 'TokenGroups');
+    req.groups = groups;
     sspi.RevertSecurityContext(serverContextHandle);
     const owner = sspi.GetUserName();
     console.log('owner: ', owner);
@@ -87,7 +90,8 @@ app.use((req, res, next) => {
 
   res.json({
     connexion: req.user,
-    owner: req.owner
+    owner: req.owner,
+    groups: req.groups
   });
 });
 
