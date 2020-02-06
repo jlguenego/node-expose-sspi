@@ -80,6 +80,7 @@ app.use((req, res, next) => {
     const owner = sspi.GetUserName();
     console.log('owner: ', owner);
     req.owner = owner;
+    serverContextHandle = undefined;
   }
 
   next();
