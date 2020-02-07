@@ -14,7 +14,6 @@ module.exports = sspi;
 
 sspi.auth = () => {
   const { credential, tsExpiry } = sspi.AcquireCredentialsHandle("Negotiate");
-  console.log("tsExpiry: ", tsExpiry);
   let serverContextHandle;
 
   return (req, res, next) => {
@@ -31,12 +30,10 @@ sspi.auth = () => {
       return next(createError(400, `Malformed authentication token ${auth}`));
     }
 
-    console.log("auth: ", auth);
     req.auth = req.auth || {};
     req.auth.token = auth.substring("Negotiate ".length);
 
     const buffer = decode(req.auth.token);
-    console.log(printHexDump(buffer));
 
     const input = {
       credential,
@@ -52,9 +49,6 @@ sspi.auth = () => {
     }
     const serverSecurityContext = sspi.AcceptSecurityContext(input);
     serverContextHandle = serverSecurityContext.serverContextHandle;
-
-    console.log("serverSecurityContext: ", serverSecurityContext);
-    console.log(printHexDump(serverSecurityContext.SecBufferDesc.buffers[0]));
 
     if (serverSecurityContext.SECURITY_STATUS === "SEC_I_CONTINUE_NEEDED") {
       return res
@@ -72,20 +66,14 @@ sspi.auth = () => {
         "Negotiate " + encode(serverSecurityContext.SecBufferDesc.buffers[0])
       );
 
-      // get the username.
-      // impersonate the user.
-
       sspi.ImpersonateSecurityContext(serverContextHandle);
-      console.log("impersonate security context ok");
       const username = sspi.GetUserName();
-      console.log("username: ", username);
       req.user = username;
       const accessToken = sspi.QuerySecurityContextToken(serverContextHandle);
       const groups = sspi.GetTokenInformation(accessToken, "TokenGroups");
       req.groups = groups;
       sspi.RevertSecurityContext(serverContextHandle);
       const owner = sspi.GetUserName();
-      console.log("owner: ", owner);
       req.owner = owner;
       serverContextHandle = undefined;
     }

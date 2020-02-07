@@ -6,8 +6,6 @@ const app = express();
 app.use(sspi.auth());
 
 app.use((req, res, next) => {
-  console.log("req: ", req.auth);
-
   res.json({
     connexion: req.user,
     owner: req.owner,
