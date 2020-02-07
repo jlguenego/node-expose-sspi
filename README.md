@@ -43,7 +43,6 @@ npm run server
 ## TODO
 
 - Typescript
-- user structure
 
 
 ## Author
