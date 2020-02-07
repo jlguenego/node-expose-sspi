@@ -5,13 +5,13 @@ const sspi = require("..");
 
 const app = express();
 
-app.use(sspi.auth());
+app.use(sspi.ssoAuth());
 
 app.use((req, res, next) => {
   res.json({
-    connexion: req.user,
-    owner: req.owner,
-    groups: req.groups
+    connection: req.user.name,
+    owner: req.owner.name,
+    groups: req.user.groups
   });
 });
 

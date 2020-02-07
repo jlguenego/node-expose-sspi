@@ -12,8 +12,11 @@ const { printHexDump, trace } = require("./misc/misc");
 
 module.exports = sspi;
 
-sspi.auth = () => {
+sspi.ssoAuth = () => {
   const { credential, tsExpiry } = sspi.AcquireCredentialsHandle("Negotiate");
+
+  // serverContextHandle seems to be useful only for NTLM, not Kerberos.
+  // because Kerberos will not request many times the client to complete the SSO Authentication.
   let serverContextHandle;
 
   return (req, res, next) => {
@@ -75,14 +78,14 @@ sspi.auth = () => {
       trace("impersonate security context ok");
       const username = sspi.GetUserName();
       trace("username: ", username);
-      req.user = username;
+      req.user = { name: username };
       const accessToken = sspi.QuerySecurityContextToken(serverContextHandle);
       const groups = sspi.GetTokenInformation(accessToken, "TokenGroups");
-      req.groups = groups;
+      req.user.groups = groups;
       sspi.RevertSecurityContext(serverContextHandle);
       const owner = sspi.GetUserName();
       trace("owner: ", owner);
-      req.owner = owner;
+      req.owner = { name: owner };
       serverContextHandle = undefined;
     }
 
