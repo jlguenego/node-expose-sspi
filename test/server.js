@@ -1,6 +1,8 @@
 const express = require("express");
 const sspi = require("..");
 
+// global.debug = true;
+
 const app = express();
 
 app.use(sspi.auth());

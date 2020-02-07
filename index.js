@@ -8,7 +8,7 @@ const createError = require("http-errors");
 const { decode, encode } = require("base64-arraybuffer");
 const sspi = require("bindings")("sspi");
 
-const { printHexDump } = require("./misc/misc");
+const { printHexDump, trace } = require("./misc/misc");
 
 module.exports = sspi;
 
@@ -50,6 +50,8 @@ sspi.auth = () => {
     const serverSecurityContext = sspi.AcceptSecurityContext(input);
     serverContextHandle = serverSecurityContext.serverContextHandle;
 
+    trace(printHexDump(serverSecurityContext.SecBufferDesc.buffers[0]));
+
     if (serverSecurityContext.SECURITY_STATUS === "SEC_I_CONTINUE_NEEDED") {
       return res
         .status(401)
@@ -66,14 +68,20 @@ sspi.auth = () => {
         "Negotiate " + encode(serverSecurityContext.SecBufferDesc.buffers[0])
       );
 
+      // get the username.
+      // impersonate the user.
+
       sspi.ImpersonateSecurityContext(serverContextHandle);
+      trace("impersonate security context ok");
       const username = sspi.GetUserName();
+      trace("username: ", username);
       req.user = username;
       const accessToken = sspi.QuerySecurityContextToken(serverContextHandle);
       const groups = sspi.GetTokenInformation(accessToken, "TokenGroups");
       req.groups = groups;
       sspi.RevertSecurityContext(serverContextHandle);
       const owner = sspi.GetUserName();
+      trace("owner: ", owner);
       req.owner = owner;
       serverContextHandle = undefined;
     }

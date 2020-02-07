@@ -40,7 +40,10 @@ password: Toto123!
 npm run server
 ```
 
+## TODO
 
+- Typescript
+- user structure
 
 
 ## Author

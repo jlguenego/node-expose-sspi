@@ -1,5 +1,13 @@
+const trace = (...args) => {
+  if (global.debug) {
+    console.log(...args);
+    return;
+  }
+}
+
 module.exports = {
-  printHexDump
+  printHexDump,
+  trace
 };
 
 function isPrintable(keycode) {
@@ -15,7 +23,7 @@ function isPrintable(keycode) {
 
 function printHexDump(buffer) {
   const dataView = new DataView(buffer, 0);
-  console.log("buffer length", buffer.byteLength);
+  trace("buffer length", buffer.byteLength);
   let result = "";
   let line = "";
   for (let i = 0; i < buffer.byteLength; i++) {
