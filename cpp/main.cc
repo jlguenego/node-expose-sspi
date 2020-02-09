@@ -28,6 +28,9 @@ Napi::Object Init(Napi::Env env, Napi::Object exports) {
   exports.Set(Napi::String::New(env, "QuerySecurityContextToken"),
               Napi::Function::New(env, e_QuerySecurityContextToken));
 
+  exports.Set(Napi::String::New(env, "OpenThreadToken"),
+              Napi::Function::New(env, e_OpenThreadToken));
+
   exports.Set(Napi::String::New(env, "GetTokenInformation"),
               Napi::Function::New(env, e_GetTokenInformation));
 

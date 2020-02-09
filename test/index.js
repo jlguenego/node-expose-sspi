@@ -48,6 +48,16 @@ sspi.ImpersonateSecurityContext(serverSecurityContext.serverContextHandle);
 console.log("impersonate security context ok");
 const username = sspi.GetUserName();
 console.log('username: ', username);
+
+const userToken = sspi.OpenThreadToken();
+console.log('userToken: ', userToken);
+
+const userGroups = sspi.GetTokenInformation(userToken, 'TokenGroups');
+console.log('userGroups: ', userGroups);
+
+sspi.CloseHandle(userToken);
+console.log("CloseHandle ok");
+
 sspi.RevertSecurityContext(serverSecurityContext.serverContextHandle);
 console.log("revert security context ok");
 const username2 = sspi.GetUserName();
@@ -67,7 +77,6 @@ console.log('groups: ', groups);
 
 sspi.CloseHandle(accessToken);
 console.log("CloseHandle ok");
-
 
 sspi.DeleteSecurityContext(serverSecurityContext.serverContextHandle);
 console.log("DeleteSecurityContext ok");
