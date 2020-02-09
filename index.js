@@ -35,7 +35,7 @@ sspi.ssoAuth = () => {
 
     req.auth = req.auth || {};
     req.auth.token = auth.substring("Negotiate ".length);
-
+    trace(req.auth.token);
     const buffer = decode(req.auth.token);
 
     const input = {
