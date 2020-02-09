@@ -35,7 +35,8 @@ sspi.ssoAuth = () => {
 
     req.auth = req.auth || {};
     req.auth.token = auth.substring("Negotiate ".length);
-    trace(req.auth.token);
+    const protocol = req.auth.token.startsWith("YII") ? "Kerberos" : "NTLM";
+    trace("SPNEGO token: " + protocol);
     const buffer = decode(req.auth.token);
 
     const input = {
