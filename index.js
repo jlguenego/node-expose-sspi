@@ -80,8 +80,9 @@ sspi.ssoAuth = () => {
       const username = sspi.GetUserName();
       trace("username: ", username);
       req.user = { name: username };
-      const accessToken = sspi.QuerySecurityContextToken(serverContextHandle);
-      const groups = sspi.GetTokenInformation(accessToken, "TokenGroups");
+      const userToken = sspi.OpenThreadToken();
+      const groups = sspi.GetTokenInformation(userToken, "TokenGroups");
+      sspi.CloseHandle(userToken);
       req.user.groups = groups;
       sspi.RevertSecurityContext(serverContextHandle);
       const owner = sspi.GetUserName();
