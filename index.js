@@ -81,7 +81,9 @@ sspi.ssoAuth = () => {
       trace("username: ", username);
       req.user = { name: username };
       const userToken = sspi.OpenThreadToken();
+      trace("userToken: ", userToken);
       const groups = sspi.GetTokenInformation(userToken, "TokenGroups");
+      trace('groups: ', groups);
       sspi.CloseHandle(userToken);
       req.user.groups = groups;
       sspi.RevertSecurityContext(serverContextHandle);

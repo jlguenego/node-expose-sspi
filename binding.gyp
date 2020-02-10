@@ -3,7 +3,7 @@
     {
       "target_name": "sspi",
       "sources": [
-        "cpp/*.cc"
+        "cpp/**/*.cc",
       ],
 
       # Macros to define for using WCHAR on Windows.
