@@ -49,6 +49,9 @@ console.log("impersonate security context ok");
 const username = sspi.GetUserName();
 console.log('username: ', username);
 
+const sidObject = sspi.LookupAccountName(username);
+console.log('sidObject: ', sidObject);
+
 const userToken = sspi.OpenThreadToken();
 console.log('userToken: ', userToken);
 

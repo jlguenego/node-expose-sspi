@@ -58,6 +58,9 @@ Napi::Object Init(Napi::Env env, Napi::Object exports) {
   exports.Set(Napi::String::New(env, "GetUserName"),
               Napi::Function::New(env, e_GetUserName));
 
+  exports.Set(Napi::String::New(env, "LookupAccountName"),
+              Napi::Function::New(env, e_LookupAccountName));
+
   return exports;
 }
 
