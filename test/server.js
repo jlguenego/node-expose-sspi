@@ -9,9 +9,8 @@ app.use(sspi.ssoAuth());
 
 app.use((req, res, next) => {
   res.json({
-    connection: req.user.name,
-    owner: req.owner.name,
-    groups: req.user.groups
+    user: req.user,
+    owner: req.owner
   });
 });
 

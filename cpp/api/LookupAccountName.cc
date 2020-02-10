@@ -46,12 +46,12 @@ Napi::Value e_LookupAccountName(const Napi::CallbackInfo& info) {
   }
 
   Napi::Object result = Napi::Object::New(env);
-  result["DomainName"] =
+  result["domain"] =
       Napi::String::New(env, (char16_t*)ReferencedDomainName);
 
   LPTSTR StringSid;
   ConvertSidToStringSid(pSid, &StringSid);
-  result["SID"] = Napi::String::New(env, (char16_t*)StringSid);
+  result["sid"] = Napi::String::New(env, (char16_t*)StringSid);
   LocalFree(StringSid);
 
   delete pSid;
