@@ -1,5 +1,6 @@
 #include "JS.h"
 #include "log.h"
+#include "polyfill.h"
 
 #define WINDOWS_TICK 10000000
 #define SEC_TO_UNIX_EPOCH 11644473600LL
@@ -40,8 +41,9 @@ Napi::Array JS::convert(Napi::Env env, unsigned long cPackages,
 
 Napi::Object JS::convert(Napi::Env env, PSecPkgInfo pPackageInfo) {
   Napi::Object package = Napi::Object::New(env);
-  package["fCapabilities"] =
-      Napi::Number::New(env, pPackageInfo->fCapabilities);
+  std::string capabilities =
+      plf::string_format("0x%08x", pPackageInfo->fCapabilities);
+  package["capabilities"] = Napi::String::New(env, capabilities);
   package["wVersion"] = Napi::Number::New(env, pPackageInfo->wVersion);
   package["wRPCID"] = Napi::Number::New(env, pPackageInfo->wRPCID);
   package["cbMaxToken"] = Napi::Number::New(env, pPackageInfo->cbMaxToken);
