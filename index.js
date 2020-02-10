@@ -81,20 +81,20 @@ sspi.ssoAuth = () => {
         serverContextHandle,
         "SECPKG_ATTR_NAMES"
       );
-      const [ domain, name ] = names.sUserName.split('\\');
+      const [domain, name] = names.sUserName.split("\\");
       req.user = { domain, name };
 
       const userToken = sspi.OpenThreadToken();
       trace("userToken: ", userToken);
+
+      sspi.RevertSecurityContext(serverContextHandle);
       const groups = sspi.GetTokenInformation(userToken, "TokenGroups");
       trace("groups: ", groups);
-      sspi.CloseHandle(userToken);
       req.user.groups = groups;
-      sspi.RevertSecurityContext(serverContextHandle);
+      sspi.CloseHandle(userToken);
       const owner = sspi.GetUserName();
       trace("owner: ", owner);
       req.owner = { name: owner };
-
       try {
         const { sid, domain } = sspi.LookupAccountName(owner);
         req.owner.sid = sid;
