@@ -72,11 +72,6 @@ sspi.ssoAuth = () => {
         "Negotiate " + encode(serverSecurityContext.SecBufferDesc.buffers[0])
       );
 
-      // get the username.
-      // impersonate the user.
-
-      sspi.ImpersonateSecurityContext(serverContextHandle);
-      trace("impersonate security context ok");
       const names = sspi.QueryContextAttributes(
         serverContextHandle,
         "SECPKG_ATTR_NAMES"
@@ -84,14 +79,24 @@ sspi.ssoAuth = () => {
       const [domain, name] = names.sUserName.split("\\");
       req.user = { domain, name };
 
+      // impersonate to retrieve the userToken.
+      sspi.ImpersonateSecurityContext(serverContextHandle);
+      trace("impersonate security context ok");
       const userToken = sspi.OpenThreadToken();
       trace("userToken: ", userToken);
-
       sspi.RevertSecurityContext(serverContextHandle);
+
       const groups = sspi.GetTokenInformation(userToken, "TokenGroups");
       trace("groups: ", groups);
       req.user.groups = groups;
+
+      // free the userToken
       sspi.CloseHandle(userToken);
+
+      const { sid } = sspi.LookupAccountName(names.sUserName);
+      req.user.sid = sid;
+
+      // owner info.
       const owner = sspi.GetUserName();
       trace("owner: ", owner);
       req.owner = { name: owner };
@@ -100,12 +105,7 @@ sspi.ssoAuth = () => {
         req.owner.sid = sid;
         req.owner.domain = domain;
       } catch (e) {}
-      try {
-        const { sid, domain } = sspi.LookupAccountName(names.sUserName);
-        req.user.sid = sid;
-      } catch (e) {
-        console.log("error: ", e);
-      }
+
       serverContextHandle = undefined;
     }
 
