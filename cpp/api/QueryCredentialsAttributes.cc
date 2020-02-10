@@ -20,7 +20,6 @@ Napi::Value e_QueryCredentialsAttributes(const Napi::CallbackInfo& info) {
   SECURITY_STATUS secStatus;
 
   if (attributesStr == "SECPKG_CRED_ATTR_NAMES") {
-    std::cout << "this is SECPKG_CRED_ATTR_NAMES" << std::endl;
     SecPkgCredentials_Names credNames;
     secStatus =
         QueryCredentialsAttributes(&cred, SECPKG_CRED_ATTR_NAMES, &credNames);

@@ -20,7 +20,6 @@ Napi::Value e_QueryContextAttributes(const Napi::CallbackInfo& info) {
   SECURITY_STATUS secStatus;
 
   if (attributesStr == "SECPKG_ATTR_NAMES") {
-    std::cout << "this is SECPKG_ATTR_NAMES" << std::endl;
     SecPkgContext_Names contextNames;
     secStatus =
         QueryContextAttributes(&context, SECPKG_ATTR_NAMES, &contextNames);

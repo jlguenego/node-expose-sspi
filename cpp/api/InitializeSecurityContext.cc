@@ -39,7 +39,6 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo &info) {
   }
 
   TimeStamp tsExpiry;
-  std::cout << "cbMaxToken=" << cbMaxToken << std::endl;
   BYTE *buffer = (BYTE *)malloc(cbMaxToken * sizeof(BYTE));
   SecBuffer secBuffer;
   secBuffer.cbBuffer = cbMaxToken;
