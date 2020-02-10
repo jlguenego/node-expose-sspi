@@ -97,8 +97,6 @@ sspi.ssoAuth = () => {
       req.user.sid = sid;
 
       // owner info.
-      
-
       const owner = sspi.GetUserName();
       trace("owner: ", owner);
       req.owner = { name: owner };
@@ -108,7 +106,7 @@ sspi.ssoAuth = () => {
       trace("ownerGroups: ", ownerGroups);
       req.owner.groups = ownerGroups;
       sspi.CloseHandle(processToken);
-      
+
       try {
         const { sid, domain } = sspi.LookupAccountName(owner);
         req.owner.sid = sid;
