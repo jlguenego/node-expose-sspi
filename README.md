@@ -103,6 +103,13 @@ spooky.jlg.local
 No need to add the port.
 
 
+## Develop
+
+To compile the native node module, you need:
+```
+npm install --global windows-build-tools
+```
+
 
 ## TODO
 

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node test/index.js",
     "install": "node-gyp rebuild -j 8",
     "start": "nodemon -x \"npm install && node test/index.js\"",
     "server": "nodemon test/server.js"
