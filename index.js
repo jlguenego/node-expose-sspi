@@ -80,9 +80,13 @@ sspi.ssoAuth = () => {
       const username = sspi.GetUserName();
       trace("username: ", username);
       req.user = { name: username };
-      const { sid, domain } = sspi.LookupAccountName(username);
-      req.user.sid = sid;
-      req.user.domain = domain;
+      try {
+        const { sid, domain } = sspi.LookupAccountName(username);
+        req.user.sid = sid;
+        req.user.domain = domain;
+      } catch (e) {
+        console.log('error: ', e);
+      }
       const userToken = sspi.OpenThreadToken();
       trace("userToken: ", userToken);
       const groups = sspi.GetTokenInformation(userToken, "TokenGroups");
@@ -93,6 +97,12 @@ sspi.ssoAuth = () => {
       const owner = sspi.GetUserName();
       trace("owner: ", owner);
       req.owner = { name: owner };
+
+      try {
+        const { sid, domain } = sspi.LookupAccountName(owner);
+        req.owner.sid = sid;
+        req.owner.domain = domain;
+      } catch (e) {}
       serverContextHandle = undefined;
     }
 
