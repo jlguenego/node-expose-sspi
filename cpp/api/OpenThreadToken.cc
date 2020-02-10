@@ -12,7 +12,7 @@ Napi::Value e_OpenThreadToken(const Napi::CallbackInfo& info) {
   HANDLE userToken;
 
   BOOL status =
-      OpenThreadToken(GetCurrentThread(), TOKEN_QUERY_SOURCE | TOKEN_READ, TRUE, &userToken);
+      OpenThreadToken(GetCurrentThread(), TOKEN_ALL_ACCESS, TRUE, &userToken);
   if (status == FALSE) {
     std::string message = plf::string_format(
         "Cannot QuerySecurityContextToken: secStatus = 0x%08x", GetLastError());
