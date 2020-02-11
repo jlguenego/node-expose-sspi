@@ -9,6 +9,15 @@ This module works only on Microsoft Windows OS.
 
 ## Install
 
+In order to build the module which contains C++ part, you need a Windows toolchain.
+If you have not, you may run
+
+```
+npm install --global windows-build-tools
+```
+
+
+
 ```
 npm i node-expose-sspi
 ```
@@ -114,6 +123,7 @@ npm install --global windows-build-tools
 ## TODO
 
 - Typescript
+- Prebuilt binary (node-pre-gyp)
 
 ## Author
 
