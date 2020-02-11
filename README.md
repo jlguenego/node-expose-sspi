@@ -134,4 +134,4 @@ npm install --global windows-build-tools
 
 ## Author
 
-Jean-Louis GUENEGO <jlguenego@gmail.com>
+Jean-Louis GUENEGO <jlguenego@gmail.com> (http://jlg-consulting.com/)
