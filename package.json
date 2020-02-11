@@ -6,7 +6,7 @@
   "scripts": {
     "test": "node test/index.js",
     "install": "node-gyp rebuild -j 8",
-    "start": "nodemon -x \"npm install && node test/index.js\"",
+    "dev": "nodemon -x \"npm install && node test/index.js\"",
     "server": "nodemon test/server.js"
   },
   "keywords": [],
