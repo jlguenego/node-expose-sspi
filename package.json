@@ -11,6 +11,8 @@
   },
   "keywords": [
     "SSPI",
+    "SSO",
+    "Single Sign On",
     "node-addon",
     "kerberos",
     "NTLM",

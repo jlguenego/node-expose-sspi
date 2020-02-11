@@ -9,18 +9,13 @@ This module works only on Microsoft Windows OS.
 
 ## Install
 
-In order to build the module which contains C++ part, you need a Windows toolchain.
-If you have not, you may run
-
-```
-npm install --global windows-build-tools
-```
-
-
+Just do:
 
 ```
 npm i node-expose-sspi
 ```
+
+Note: There is a prebuilt binary that will be installed (Node addon).
 
 ## Usage
 
@@ -81,18 +76,23 @@ you could run :
 - one VM with a Microsft Windows Server 2016 (hostname: JLGDC01),
 - two VM with Microsoft Windows 10 (hostname: fifi and spooky).
 
+You may see for instance [this tutorial for details about how to set up a domain](https://www.tenforums.com/tutorials/51456-windows-server-2016-setup-local-domain-controller.html).
+
+
+
 On Microsft Windows Server 2016, make a Active Directory Domain Controller (AD DC).
 Call it for instance jlg.local (NETBIOS: JLG)
 
 Declare two real domain users on AD DC:
-login: jlouis
-login: suzana
+- login: jlouis
+- login: suzana
 
 The webserver will be run with another account. Create it as well:
-login: spookyweb
-login NETBIOS : JLG\SPOOKYWEB
-password: Toto123!
-Password must not expires.
+
+- login: spookyweb
+- login NETBIOS : JLG\SPOOKYWEB
+- password (example): Toto123!
+- Password must not expire.
 
 Set two Service Principal Names (SPN) on this wpookyweb account:
 ```
@@ -100,23 +100,60 @@ setspn -a HTTP/spooky.jlg.local JLG\SPOOKYWEB
 setspn -a HTTP/spooky JLG\SPOOKYWEB
 ```
 
-Start the server on spooky machine with the user JLG\SPOOKYWEB.
+Start the server on `spooky` host with the user JLG\SPOOKYWEB.
 ```
 runas /user:JLG\SPOOKYWS cmd
 password: Toto123!
 
-cd <the web server directory>
-npm run server
+cd <myproject>
+node server.js
 ```
 
-Go on the fifi machine. Log as `jlouis`.
-Setup the control panel > Network and Internet > Internet options.
-Go on Security > Local Intranet > Sites > Advanced
-Add two website to the list:
-spooky
-spooky.jlg.local
+Go on the `fifi` host. Log as `jlouis`.
+Make sure the browser is configured. For Chrome, you need to add
+the website domain name to the advanced list of local intranet sites.
 
-No need to add the port.
+For that, open
+
+`Control Panel > Network and Internet > Internet options`.
+
+Then go on 
+
+`Security > Local Intranet > Sites > Advanced`
+
+
+Add two websites to the list:
+- spooky
+- spooky.jlg.local
+
+No need to specify any port.
+
+Then go on your `fifi` Chrome, and run `http://spooky:3000` or `http://spooky.jlg.local:3000`
+
+The SSO authentication should be in Kerberos. If you set in the `server.js` file
+
+```
+global.debug = true;
+```
+You should see the token exchanged and the protocol name used (Kerberos).
+
+
+## Rebuilding the binary
+
+If the provided Windows binary does not work for your OS,
+You can rebuild the Node addon binary:
+
+```
+cd .\node_modules\node-expose-sspi
+npm run build
+```
+
+Note: You may need a proper C++ Windows Toolchain installed.
+One way to do it is to install this module:
+
+```
+npm install --global windows-build-tools
+```
 
 
 ## Develop
@@ -130,7 +167,7 @@ npm install --global windows-build-tools
 ## TODO
 
 - Typescript
-- Prebuilt binary (node-pre-gyp)
+
 
 ## Author
 
