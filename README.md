@@ -26,11 +26,19 @@ npm i node-expose-sspi
 
 ### SSO Authentication use case
 
+```
+mkdir myproject
+cd myproject
+npm init -y
+npm i express
+npm i node-expose-sspi
+```
+
 Make an express web server by doing the `server.js` file:
 
 ```
 const express = require("express");
-const sspi = require("..");
+const sspi = require("node-expose-sspi");
 
 // global.debug = true;
 

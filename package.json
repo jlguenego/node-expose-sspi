@@ -14,11 +14,12 @@
   "author": "",
   "license": "ISC",
   "gypfile": true,
-  "dependencies": {},
-  "devDependencies": {
+  "dependencies": {
     "base64-arraybuffer": "^0.2.0",
+    "http-errors": "^1.7.3"
+  },
+  "devDependencies": {
     "express": "^4.17.1",
-    "http-errors": "^1.7.3",
     "node-addon-api": "^2.0.0",
     "nodemon": "^2.0.2"
   }
