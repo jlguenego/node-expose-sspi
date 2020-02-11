@@ -39,6 +39,19 @@
           "ExceptionHandling": 1
         }
       }
+    },
+    {
+      # This target will be executed after the sspi target 
+      # to copy the file to its final destination.
+      "target_name": "action_after_build",
+      "type": "none",
+      "dependencies": [ "sspi" ],
+      "copies": [
+        {
+          "files": [ "./build/Release/sspi.node" ],
+          "destination": "lib"
+        }
+      ]
     }
   ]
 }

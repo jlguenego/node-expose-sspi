@@ -4,10 +4,9 @@ if (require("os").platform() !== "win32") {
   );
 }
 
+const sspi = require("./lib/sspi");
 const createError = require("http-errors");
 const { decode, encode } = require("base64-arraybuffer");
-const sspi = require("bindings")("sspi");
-
 const { printHexDump, trace } = require("./misc/misc");
 
 module.exports = sspi;

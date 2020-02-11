@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "node test/index.js",
-    "install": "node-gyp rebuild -j 8",
-    "dev": "nodemon -x \"npm install && node test/index.js\"",
+    "build": "node-gyp rebuild -j 8",
+    "install": "echo install",
+    "dev": "nodemon -x \"npm run build && node test/index.js\"",
     "server": "nodemon test/server.js"
   },
   "keywords": [],
@@ -14,7 +15,6 @@
   "license": "ISC",
   "gypfile": true,
   "dependencies": {
-    "bindings": "^1.5.0",
     "node-addon-api": "^2.0.0"
   },
   "devDependencies": {
