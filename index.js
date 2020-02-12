@@ -83,6 +83,7 @@ sspi.ssoAuth = () => {
       trace("impersonate security context ok");
       const userToken = sspi.OpenThreadToken();
       trace("userToken: ", userToken);
+      req.user.displayName = sspi.GetUserNameEx();
       sspi.RevertSecurityContext(serverContextHandle);
 
       const groups = sspi.GetTokenInformation(userToken, "TokenGroups");
@@ -99,6 +100,7 @@ sspi.ssoAuth = () => {
       const owner = sspi.GetUserName();
       trace("owner: ", owner);
       req.owner = { name: owner };
+      req.owner.displayName = sspi.GetUserNameEx();
 
       const processToken = sspi.OpenProcessToken();
       const ownerGroups = sspi.GetTokenInformation(processToken, "TokenGroups");
