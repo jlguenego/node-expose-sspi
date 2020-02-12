@@ -16,18 +16,12 @@ Napi::Value e_GetUserNameEx(const Napi::CallbackInfo &info) {
   BOOLEAN status = GetUserNameEx(extendedNameFormat, NULL, &nSize);
 
   if (status == FALSE && GetLastError() != ERROR_MORE_DATA) {
-    std::string msg = plf::string_format(
-        "GetUserNameEx: error first call. (error code: 0x%08x)",
-        GetLastError());
-    throw Napi::Error::New(env, msg);
+    throw Napi::Error::New(env, "GetUserNameEx: error first call. " + plf::error_msg());
   }
   lpNameBuffer = (LPWSTR)malloc(nSize * sizeof(TCHAR));
   status = GetUserNameEx(extendedNameFormat, lpNameBuffer, &nSize);
   if (status == FALSE) {
-    std::string msg = plf::string_format(
-        "GetUserNameEx: error second call. (error code: 0x%08x)",
-        GetLastError());
-    throw Napi::Error::New(env, msg);
+    throw Napi::Error::New(env, "GetUserNameEx: error second call. " + plf::error_msg());
   }
 
   Napi::String result = Napi::String::New(env, (char16_t *)lpNameBuffer);

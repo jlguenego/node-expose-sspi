@@ -3,9 +3,15 @@
 #include <stdarg.h>  // For va_start, etc.
 #include <memory>    // For std::unique_ptr
 
+#include <windows.h>
+#include <stdio.h>
+
+#include <iostream>
+
 namespace plf {
 
-// See https://stackoverflow.com/questions/2342162/stdstring-formatting-like-sprintf
+// See
+// https://stackoverflow.com/questions/2342162/stdstring-formatting-like-sprintf
 std::string string_format(const std::string fmt_str, ...) {
   int final_n,
       n = ((int)fmt_str.size()) *
@@ -25,6 +31,18 @@ std::string string_format(const std::string fmt_str, ...) {
       break;
   }
   return std::string(formatted.get());
+}
+
+std::string error_msg() {
+  DWORD code = GetLastError();
+  char buffer[512];  // Buffer for text.
+
+  DWORD dwChars =
+      FormatMessageA(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
+                    NULL, code, 0, buffer, 512, NULL);
+
+  std::string str = string_format("(error code: 0x%08x) ", code) + buffer;
+  return str;
 }
 
 }  // namespace plf
