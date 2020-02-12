@@ -90,6 +90,13 @@ sspi.ssoAuth = () => {
   };
 };
 
+/**
+ * Once the security context is correctly created, we can create the SSO Object.
+ * This function generate a SSO object with all useful properties.
+ *
+ * @param {*} serverContextHandle
+ * @returns
+ */
 function createSSO(serverContextHandle) {
   const sso = {};
   const names = sspi.QueryContextAttributes(
