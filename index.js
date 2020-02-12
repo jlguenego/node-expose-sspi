@@ -73,64 +73,66 @@ sspi.ssoAuth = () => {
           "Negotiate " + encode(serverSecurityContext.SecBufferDesc.buffers[0])
         );
 
-        const sso = {};
-
-        const names = sspi.QueryContextAttributes(
-          serverContextHandle,
-          "SECPKG_ATTR_NAMES"
-        );
-        const [domain, name] = names.sUserName.split("\\");
-        sso.user = { domain, name };
-
-        // impersonate to retrieve the userToken.
-        sspi.ImpersonateSecurityContext(serverContextHandle);
-        trace("impersonate security context ok");
-        const userToken = sspi.OpenThreadToken();
-        trace("userToken: ", userToken);
-        sso.user.displayName = sspi.GetUserNameEx("NameDisplay");
-        sspi.RevertSecurityContext(serverContextHandle);
-
-        const groups = sspi.GetTokenInformation(userToken, "TokenGroups");
-        trace("groups: ", groups);
-        sso.user.groups = groups;
-
-        // free the userToken
-        sspi.CloseHandle(userToken);
-
-        const { sid } = sspi.LookupAccountName(names.sUserName);
-        sso.user.sid = sid;
-
-        // owner info.
-        const owner = sspi.GetUserName();
-        trace("owner: ", owner);
-        sso.owner = { name: owner };
-        sso.owner.displayName = sspi.GetUserNameEx("NameDisplay");
-
-        const processToken = sspi.OpenProcessToken();
-        const ownerGroups = sspi.GetTokenInformation(
-          processToken,
-          "TokenGroups"
-        );
-        trace("ownerGroups: ", ownerGroups);
-        sso.owner.groups = ownerGroups;
-        sspi.CloseHandle(processToken);
-
-        try {
-          const { sid, domain } = sspi.LookupAccountName(owner);
-          sso.owner.sid = sid;
-          sso.owner.domain = domain;
-        } catch (e) {}
-
+        req.sso = createSSO(serverContextHandle);
         serverContextHandle = undefined;
-
-        // publish sso on request.
-        req.sso = sso;
       }
     } catch (e) {
       console.error(e);
-      next(createError(400, `Unexpected error while doing SSO. Please contact your system administrator.`));
+      next(
+        createError(
+          400,
+          `Unexpected error while doing SSO. Please contact your system administrator.`
+        )
+      );
     }
 
     next();
   };
 };
+
+function createSSO(serverContextHandle) {
+  const sso = {};
+  const names = sspi.QueryContextAttributes(
+    serverContextHandle,
+    "SECPKG_ATTR_NAMES"
+  );
+  const [domain, name] = names.sUserName.split("\\");
+  sso.user = { domain, name };
+
+  // impersonate to retrieve the userToken.
+  sspi.ImpersonateSecurityContext(serverContextHandle);
+  trace("impersonate security context ok");
+  const userToken = sspi.OpenThreadToken();
+  trace("userToken: ", userToken);
+  sso.user.displayName = sspi.GetUserNameEx("NameDisplay");
+  sspi.RevertSecurityContext(serverContextHandle);
+
+  const groups = sspi.GetTokenInformation(userToken, "TokenGroups");
+  trace("groups: ", groups);
+  sso.user.groups = groups;
+
+  // free the userToken
+  sspi.CloseHandle(userToken);
+
+  const { sid } = sspi.LookupAccountName(names.sUserName);
+  sso.user.sid = sid;
+
+  // owner info.
+  const owner = sspi.GetUserName();
+  trace("owner: ", owner);
+  sso.owner = { name: owner };
+  sso.owner.displayName = sspi.GetUserNameEx("NameDisplay");
+
+  const processToken = sspi.OpenProcessToken();
+  const ownerGroups = sspi.GetTokenInformation(processToken, "TokenGroups");
+  trace("ownerGroups: ", ownerGroups);
+  sso.owner.groups = ownerGroups;
+  sspi.CloseHandle(processToken);
+
+  try {
+    const { sid, domain } = sspi.LookupAccountName(owner);
+    sso.owner.sid = sid;
+    sso.owner.domain = domain;
+  } catch (e) {}
+  return sso;
+}
