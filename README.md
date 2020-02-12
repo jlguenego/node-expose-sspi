@@ -171,7 +171,8 @@ npm install --global windows-build-tools
 
 ## TODO
 
-- Macro for converting Flag to string and string to flag. 
+- Example combined with JWT
+- Add options to filter guest or equivalent.
 
 
 ## Author
