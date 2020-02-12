@@ -17,6 +17,7 @@
 
 #include "JS.h"
 #include "log.h"
+#include "flags.h"
 
 #define RESERVED NULL
 
