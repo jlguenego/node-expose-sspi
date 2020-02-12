@@ -1,14 +1,33 @@
-import * as express from "express";
+import { Request, RequestHandler } from "express";
 
-export as namespace nodeExposeSspi;
+declare global {
+  namespace Express {
+    interface Request {
+      /**
+       * User authenticated
+       *
+       * @type {*}
+       * @memberof Request
+       */
+      user: any;
 
-export interface Options {
-    [key:string]:any;
+      /**
+       * Owner of the webserver process
+       *
+       * @type {*}
+       * @memberof Request
+       */
+      owner: any;
+    }
+  }
 }
 
-export function ssoAuth(options?: Options): express.RequestHandler;
+declare namespace nodeExposeSspi {
+  interface Options {
+    [key: string]: any;
+  }
 
-export interface Request extends express.Request {
-    user: string;
-    owner: string;
+  function ssoAuth(options?: nodeExposeSspi.Options): RequestHandler;
 }
+
+export = nodeExposeSspi;

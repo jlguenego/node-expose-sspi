@@ -7,7 +7,8 @@ const app = express();
 
 app.use(sspi.ssoAuth({ toto: 123 }));
 
-app.use((req: sspi.Request, res, next) => {
+
+app.use((req, res, next) => {
   res.json({
     user: req.user,
     owner: req.owner
