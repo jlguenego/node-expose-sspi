@@ -38,6 +38,7 @@
   "devDependencies": {
     "@types/express": "^4.17.2",
     "express": "^4.17.1",
+    "generate-changelog": "^1.8.0",
     "node-addon-api": "^2.0.0",
     "nodemon": "^2.0.2",
     "ts-node": "^8.6.2",
