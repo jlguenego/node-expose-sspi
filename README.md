@@ -171,7 +171,7 @@ npm install --global windows-build-tools
 
 ## TODO
 
-- Typescript
+- Macro for converting Flag to string and string to flag. 
 
 
 ## Author
