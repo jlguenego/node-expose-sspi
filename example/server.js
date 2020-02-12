@@ -15,7 +15,14 @@ app.get("/login", (req, res) => {
   return res.render("login");
 });
 
-app.use(express.static(path.resolve(__dirname, '.')));
+app.get("/sso", sspi.ssoAuth(), (req, res) => {
+  console.log("sso");
+  res.json({
+    sso: req.sso
+  });
+});
+
+app.use(express.static(path.resolve(__dirname, ".")));
 
 // app.use(jwt({ secret: "this is my server secret" }));
 
