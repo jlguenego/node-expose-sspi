@@ -57,6 +57,12 @@ node server.js
 
 Open a web browser and go to `http://localhost:3000`
 
+#### Typescript
+
+This module is also integrated with Typescript.
+
+[Typescript example](./doc/typescript.md)
+
 #### NTLM
 
 If you are not on a Microsoft Windows Active Directory Domain, it will use the NLTM authentication protocol.
