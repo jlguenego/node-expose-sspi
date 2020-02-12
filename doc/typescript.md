@@ -21,8 +21,7 @@ app.use(sspi.ssoAuth());
 
 app.use((req, res, next) => {
   res.json({
-    user: req.user,
-    owner: req.owner
+    sso: req.sso
   });
 });
 
