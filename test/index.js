@@ -47,21 +47,27 @@ console.log(printHexDump(serverSecurityContext2.SecBufferDesc.buffers[0]));
 sspi.ImpersonateSecurityContext(serverSecurityContext.serverContextHandle);
 console.log("impersonate security context ok");
 const username = sspi.GetUserName();
-console.log('username: ', username);
+console.log("username: ", username);
 
 const displayName = sspi.GetUserNameEx("NameDisplay");
-console.log('displayName: ', displayName);
+console.log("displayName: ", displayName);
 const NameSamCompatible = sspi.GetUserNameEx("NameSamCompatible");
-console.log('NameSamCompatible: ', NameSamCompatible);
+console.log("NameSamCompatible: ", NameSamCompatible);
+try {
+  const NameDnsDomain = sspi.GetUserNameEx("NameDnsDomain");
+  console.log("NameDnsDomain: ", NameDnsDomain);
+} catch (e) {
+  console.log('e: ', e);
+}
 
 const sidObject = sspi.LookupAccountName(username);
-console.log('sidObject: ', sidObject);
+console.log("sidObject: ", sidObject);
 
 const userToken = sspi.OpenThreadToken();
-console.log('userToken: ', userToken);
+console.log("userToken: ", userToken);
 
-const userGroups = sspi.GetTokenInformation(userToken, 'TokenGroups');
-console.log('userGroups: ', userGroups);
+const userGroups = sspi.GetTokenInformation(userToken, "TokenGroups");
+console.log("userGroups: ", userGroups);
 
 sspi.CloseHandle(userToken);
 console.log("CloseHandle ok");
@@ -69,19 +75,27 @@ console.log("CloseHandle ok");
 sspi.RevertSecurityContext(serverSecurityContext.serverContextHandle);
 console.log("revert security context ok");
 const username2 = sspi.GetUserName();
-console.log('username2: ', username2);
+console.log("username2: ", username2);
 
-const attributes = sspi.QueryCredentialsAttributes(credential, "SECPKG_CRED_ATTR_NAMES");
-console.log('attributes: ', attributes);
+const attributes = sspi.QueryCredentialsAttributes(
+  credential,
+  "SECPKG_CRED_ATTR_NAMES"
+);
+console.log("attributes: ", attributes);
 
-const names = sspi.QueryContextAttributes(serverSecurityContext.serverContextHandle, "SECPKG_ATTR_NAMES");
-console.log('names: ', names);
+const names = sspi.QueryContextAttributes(
+  serverSecurityContext.serverContextHandle,
+  "SECPKG_ATTR_NAMES"
+);
+console.log("names: ", names);
 
-const accessToken = sspi.QuerySecurityContextToken(serverSecurityContext.serverContextHandle);
-console.log('accessToken: ', accessToken);
+const accessToken = sspi.QuerySecurityContextToken(
+  serverSecurityContext.serverContextHandle
+);
+console.log("accessToken: ", accessToken);
 
-const groups = sspi.GetTokenInformation(accessToken, 'TokenGroups');
-console.log('groups: ', groups);
+const groups = sspi.GetTokenInformation(accessToken, "TokenGroups");
+console.log("groups: ", groups);
 
 sspi.CloseHandle(accessToken);
 console.log("CloseHandle ok");
@@ -91,6 +105,5 @@ console.log("DeleteSecurityContext ok");
 sspi.DeleteSecurityContext(clientSecurityContext.clientContextHandle);
 console.log("DeleteSecurityContext ok");
 
-
 sspi.FreeCredentialsHandle(credential);
-console.log('free credentials ok');
+console.log("free credentials ok");
