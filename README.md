@@ -21,7 +21,7 @@ Note: There is a prebuilt binary that will be installed (Node addon).
 
 ### SSO Authentication use case
 
-```
+```bat
 mkdir myproject
 cd myproject
 npm init -y
@@ -31,7 +31,7 @@ npm i node-expose-sspi
 
 Make an express web server by doing the `server.js` file:
 
-```
+```js
 const express = require("express");
 const sspi = require("node-expose-sspi");
 
