@@ -7,7 +7,8 @@
     "test": "node test/index.js",
     "build": "node-gyp rebuild -j 8",
     "dev": "nodemon -x \"npm run build && node test/index.js\"",
-    "server": "nodemon test/server.js"
+    "server": "nodemon test/server.js",
+    "ts-server": "nodemon --exec \"ts-node --project test/tsconfig.json\" test/ts-server.ts"
   },
   "keywords": [
     "SSPI",
@@ -35,8 +36,11 @@
     "http-errors": "^1.7.3"
   },
   "devDependencies": {
+    "@types/express": "^4.17.2",
     "express": "^4.17.1",
     "node-addon-api": "^2.0.0",
-    "nodemon": "^2.0.2"
+    "nodemon": "^2.0.2",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.7.5"
   }
 }
