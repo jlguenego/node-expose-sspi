@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     display: flex;
     flex-flow: column;
@@ -8,6 +12,7 @@ main, form {
     display: flex;
     flex-flow: column;
     align-items: strecth;
+    width: 20em;
 }
 
 h1 {
@@ -15,6 +20,7 @@ h1 {
 }
 
 button, input {
+    width: 100%;
     margin: 0.5em;
     padding: 0.5em 1em;
 }

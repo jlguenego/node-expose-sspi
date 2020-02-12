@@ -15,11 +15,22 @@ app.get("/login", (req, res) => {
   return res.render("login");
 });
 
+app.get("/no-sso", (req, res) => {
+  return res.render("no-sso");
+});
+
 app.get("/sso", sspi.ssoAuth(), (req, res) => {
   console.log("sso");
-  res.json({
-    sso: req.sso
-  });
+  if (!req.sso) {
+    return res.redirect("/no-sso");
+  }
+  // TODO: add a JWT token
+  return res.redirect("/welcome");
+});
+
+app.get("/welcome", sspi.ssoAuth(), (req, res) => {
+  console.log("welcome", req.sso);
+  return res.render("welcome", { user: req.sso.user });
 });
 
 app.use(express.static(path.resolve(__dirname, ".")));
