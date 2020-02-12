@@ -4,20 +4,12 @@ declare global {
   namespace Express {
     interface Request {
       /**
-       * User authenticated
+       * SSO object provided by ssoAuth middleware.
        *
        * @type {*}
        * @memberof Request
        */
-      user: any;
-
-      /**
-       * Owner of the webserver process
-       *
-       * @type {*}
-       * @memberof Request
-       */
-      owner: any;
+      sso: any;
     }
   }
 }

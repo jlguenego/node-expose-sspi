@@ -10,8 +10,7 @@ app.use(sspi.ssoAuth({ toto: 123 }));
 
 app.use((req, res, next) => {
   res.json({
-    user: req.user,
-    owner: req.owner
+    sso: req.sso
   });
 });
 
