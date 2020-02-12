@@ -1,0 +1,30 @@
+body {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+main, form {
+    display: flex;
+    flex-flow: column;
+    align-items: strecth;
+}
+
+h1 {
+    text-align: center;
+}
+
+button, input {
+    margin: 0.5em;
+    padding: 0.5em 1em;
+}
+
+button {
+    cursor: pointer;
+    background: #eee;
+    border: 0.1em solid #eee;
+}
+
+button:hover {
+    background: #ddd;
+}
