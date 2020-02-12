@@ -1,5 +1,5 @@
-import express from "express";
-import sspi from "..";
+import express = require("express");
+import sspi = require("..");
 
 // global.debug = true;
 
