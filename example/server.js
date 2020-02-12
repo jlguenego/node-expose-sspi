@@ -2,8 +2,8 @@ const express = require("express");
 const path = require("path");
 const session = require("express-session");
 const sspi = require("..");
+const serveIndex = require("serve-index");
 
-// global.debug = true;
 
 const app = express();
 
@@ -33,15 +33,15 @@ app.get("/sso", sspi.ssoAuth(), (req, res) => {
     return res.redirect("/no-sso");
   }
   req.session.sso = req.sso;
-  return res.redirect("/welcome");
+  return res.redirect("/protected/welcome");
 });
 
-app.get("/style.css", (req, res, next) => {
-  console.log("style");
-  res.sendFile(path.resolve(__dirname, "style.css"));
-});
+// app.get("/styles.css", (req, res, next) => {
+//   console.log("style");
+//   res.sendFile(path.resolve(__dirname, "styles.css"));
+// });
 
-app.use((req, res, next) => {
+app.use("/protected", (req, res, next) => {
   console.log("oooooooooooooooooooooooooooooooo");
   if (!req.session.sso) {
     return res.redirect("/login");
@@ -49,11 +49,12 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/welcome", (req, res) => {
+app.get("/protected/welcome", (req, res) => {
   console.log("welcome", req.session.sso);
   return res.render("welcome", { user: req.session.sso.user });
 });
 
 app.use(express.static(path.resolve(__dirname, ".")));
+app.use(serveIndex(path.resolve(__dirname, "."), { icons: true }));
 
 app.listen(3000, () => console.log("Server started on port 3000"));
