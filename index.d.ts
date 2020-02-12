@@ -9,8 +9,25 @@ declare global {
        * @type {*}
        * @memberof Request
        */
-      sso: any;
+      sso: SSO.Object;
     }
+
+    namespace SSO {
+      interface Object {
+        user: User;
+        owner: User;
+      }
+  
+      interface User {
+        name: string;
+        sid: string;
+        displayName: string;
+        domain: string;
+        groups: string[];
+      }
+    } 
+
+
   }
 }
 
