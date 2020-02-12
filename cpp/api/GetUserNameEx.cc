@@ -22,7 +22,7 @@ Napi::Value e_GetUserNameEx(const Napi::CallbackInfo &info) {
     throw Napi::Error::New(env, msg);
   }
   lpNameBuffer = (LPWSTR)malloc(nSize * sizeof(TCHAR));
-  status = GetUserNameEx(NameDisplay, lpNameBuffer, &nSize);
+  status = GetUserNameEx(extendedNameFormat, lpNameBuffer, &nSize);
   if (status == FALSE) {
     std::string msg = plf::string_format(
         "GetUserNameEx: error second call. (error code: 0x%08x)",

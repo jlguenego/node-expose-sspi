@@ -51,6 +51,8 @@ console.log('username: ', username);
 
 const displayName = sspi.GetUserNameEx("NameDisplay");
 console.log('displayName: ', displayName);
+const NameSamCompatible = sspi.GetUserNameEx("NameSamCompatible");
+console.log('NameSamCompatible: ', NameSamCompatible);
 
 const sidObject = sspi.LookupAccountName(username);
 console.log('sidObject: ', sidObject);

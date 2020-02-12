@@ -13,7 +13,10 @@
 
 std::map<int, std::string> extendedNameFormatMap;
 
-void init() { extendedNameFormatMap[NameDisplay] = "NameDisplay"; }
+void init() {
+  extendedNameFormatMap[NameDisplay] = "NameDisplay";
+  extendedNameFormatMap[NameSamCompatible] = "NameSamCompatible";
+}
 
 namespace myAddon {
 
