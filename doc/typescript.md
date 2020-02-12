@@ -9,7 +9,7 @@ npm i typescript ts-node express @types/express
 
 Here is the `server.ts` script to write:
 
-```
+```js
 import express = require("express");
 import sspi = require("node-expose-sspi");
 
