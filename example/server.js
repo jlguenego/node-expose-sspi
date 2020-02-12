@@ -1,6 +1,6 @@
 const express = require("express");
-const jwt = require("express-jwt");
 const path = require("path");
+const session = require("express-session");
 const sspi = require("..");
 
 // global.debug = true;
@@ -9,6 +9,14 @@ const app = express();
 
 app.set("view engine", "ejs");
 app.set("views", path.resolve(__dirname, "views"));
+
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: true
+  })
+);
 
 app.get("/login", (req, res) => {
   console.log("login");
@@ -24,41 +32,28 @@ app.get("/sso", sspi.ssoAuth(), (req, res) => {
   if (!req.sso) {
     return res.redirect("/no-sso");
   }
-  // TODO: add a JWT token
+  req.session.sso = req.sso;
   return res.redirect("/welcome");
 });
 
-app.get("/welcome", sspi.ssoAuth(), (req, res) => {
-  console.log("welcome", req.sso);
-  return res.render("welcome", { user: req.sso.user });
+app.get("/style.css", (req, res, next) => {
+  console.log("style");
+  res.sendFile(path.resolve(__dirname, "style.css"));
+});
+
+app.use((req, res, next) => {
+  console.log("oooooooooooooooooooooooooooooooo");
+  if (!req.session.sso) {
+    return res.redirect("/login");
+  }
+  next();
+});
+
+app.get("/welcome", (req, res) => {
+  console.log("welcome", req.session.sso);
+  return res.render("welcome", { user: req.session.sso.user });
 });
 
 app.use(express.static(path.resolve(__dirname, ".")));
-
-// app.use(jwt({ secret: "this is my server secret" }));
-
-// app.use((req, res, next) => {
-//   if (req.user) {
-//     if (req.url !== "/welcome") {
-//       return res.redirect("/welcome");
-//     }
-//     return res.render("./views/welcome", { user: req.user });
-//   }
-//   return res.redirect("/login");
-// });
-
-// app.use((err, req, res, next) => {
-//   if (err.status === 401) {
-//     return res.redirect("/login");
-//   }
-// });
-
-// app.use(sspi.ssoAuth());
-
-// app.use((req, res, next) => {
-//   res.json({
-//     sso: req.sso
-//   });
-// });
 
 app.listen(3000, () => console.log("Server started on port 3000"));

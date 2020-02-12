@@ -9,7 +9,8 @@
     "dev": "nodemon -x \"npm run build && node test/index.js\"",
     "server": "nodemon test/server.js",
     "ts-server": "nodemon test/ts-server.ts",
-    "release": "standard-version"
+    "release": "standard-version",
+    "example": "nodemon example/server.js"
   },
   "keywords": [
     "SSPI",
@@ -41,6 +42,7 @@
     "ejs": "^3.0.1",
     "express": "^4.17.1",
     "express-jwt": "^5.3.1",
+    "express-session": "^1.17.0",
     "node-addon-api": "^2.0.0",
     "nodemon": "^2.0.2",
     "standard-version": "^7.1.0",
