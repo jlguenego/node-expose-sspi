@@ -1,24 +1,14 @@
-# Changelog
+#### 0.0.5 (2020-02-12)
 
-To see the changelog, please install in global the npm module `changelog`:
+##### New Features
 
-```
-npm install -g changelog
-```
+* **changelog:**  added generate changelog module. ([76f2cc4c](https://github.com/jlguenego/node-expose-sspi/commit/76f2cc4c2bcb25fa6a6d3c3a2dc607d53ff4466f))
 
-Then run:
+##### Other Changes
 
-```
-changelog node-expose-sspi
-```
+*  readme update and adding keywords ([e767c6df](https://github.com/jlguenego/node-expose-sspi/commit/e767c6df6a8cd92760fca652a247022cfff807e7))
 
-or even 
 
-```
-changelog node-expose-sspi all
-```
-
-For more information, see the [changelog](https://github.com/dylang/changelog) module.
 
 ## Authors
 
