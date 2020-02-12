@@ -70,51 +70,56 @@ sspi.ssoAuth = () => {
         "WWW-Authenticate",
         "Negotiate " + encode(serverSecurityContext.SecBufferDesc.buffers[0])
       );
+      
+      const sso = {};
 
       const names = sspi.QueryContextAttributes(
         serverContextHandle,
         "SECPKG_ATTR_NAMES"
       );
       const [domain, name] = names.sUserName.split("\\");
-      req.user = { domain, name };
+      sso.user = { domain, name };
 
       // impersonate to retrieve the userToken.
       sspi.ImpersonateSecurityContext(serverContextHandle);
       trace("impersonate security context ok");
       const userToken = sspi.OpenThreadToken();
       trace("userToken: ", userToken);
-      req.user.displayName = sspi.GetUserNameEx();
+      sso.user.displayName = sspi.GetUserNameEx();
       sspi.RevertSecurityContext(serverContextHandle);
 
       const groups = sspi.GetTokenInformation(userToken, "TokenGroups");
       trace("groups: ", groups);
-      req.user.groups = groups;
+      sso.user.groups = groups;
 
       // free the userToken
       sspi.CloseHandle(userToken);
 
       const { sid } = sspi.LookupAccountName(names.sUserName);
-      req.user.sid = sid;
+      sso.user.sid = sid;
 
       // owner info.
       const owner = sspi.GetUserName();
       trace("owner: ", owner);
-      req.owner = { name: owner };
-      req.owner.displayName = sspi.GetUserNameEx();
+      sso.owner = { name: owner };
+      sso.owner.displayName = sspi.GetUserNameEx();
 
       const processToken = sspi.OpenProcessToken();
       const ownerGroups = sspi.GetTokenInformation(processToken, "TokenGroups");
       trace("ownerGroups: ", ownerGroups);
-      req.owner.groups = ownerGroups;
+      sso.owner.groups = ownerGroups;
       sspi.CloseHandle(processToken);
 
       try {
         const { sid, domain } = sspi.LookupAccountName(owner);
-        req.owner.sid = sid;
-        req.owner.domain = domain;
+        sso.owner.sid = sid;
+        sso.owner.domain = domain;
       } catch (e) {}
 
       serverContextHandle = undefined;
+
+      // publish sso on request.
+      req.sso = sso;
     }
 
     next();
