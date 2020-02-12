@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.8](https://github.com/jlguenego/node-expose-sspi/compare/v0.0.7...v0.0.8) (2020-02-12)
+
+
+### Features
+
+* add flags support ([1469b86](https://github.com/jlguenego/node-expose-sspi/commit/1469b86af858058ec02538726d885f1bcd0139aa))
+* added NameSamCompatible for GetUserNameEx ([4e9e6f2](https://github.com/jlguenego/node-expose-sspi/commit/4e9e6f26a20e204195cfa3a83049692378554f54))
+
+
+### Bug Fixes
+
+* added proper error message ([7b19fb2](https://github.com/jlguenego/node-expose-sspi/commit/7b19fb21bd0e91df962017a467ede58da2d20a68))
+
 ### [0.0.7](https://github.com/jlguenego/node-expose-sspi/compare/v0.0.6...v0.0.7) (2020-02-12)
 
 
