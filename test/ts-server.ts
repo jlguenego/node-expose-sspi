@@ -5,9 +5,9 @@ import sspi = require("..");
 
 const app = express();
 
-app.use(sspi.ssoAuth());
+app.use(sspi.ssoAuth({ toto: 123 }));
 
-app.use((req: any, res, next) => {
+app.use((req: sspi.Request, res, next) => {
   res.json({
     user: req.user,
     owner: req.owner
