@@ -111,7 +111,9 @@ function createSSO(serverContextHandle) {
   trace("impersonate security context ok");
   const userToken = sspi.OpenThreadToken();
   trace("userToken: ", userToken);
-  sso.user.displayName = sspi.GetUserNameEx("NameDisplay");
+  try {
+    sso.user.displayName = sspi.GetUserNameEx("NameDisplay");
+  } catch (e) {}
   sspi.RevertSecurityContext(serverContextHandle);
 
   const groups = sspi.GetTokenInformation(userToken, "TokenGroups");
@@ -128,7 +130,9 @@ function createSSO(serverContextHandle) {
   const owner = sspi.GetUserName();
   trace("owner: ", owner);
   sso.owner = { name: owner };
-  sso.owner.displayName = sspi.GetUserNameEx("NameDisplay");
+  try {
+    sso.owner.displayName = sspi.GetUserNameEx("NameDisplay");
+  } catch (e) {}
 
   const processToken = sspi.OpenProcessToken();
   const ownerGroups = sspi.GetTokenInformation(processToken, "TokenGroups");
