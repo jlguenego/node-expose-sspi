@@ -160,6 +160,19 @@ One way to do it is to install this module:
 npm install --global windows-build-tools
 ```
 
+## Test and Example
+
+You can run the test and the example only in development.
+
+Just clone this project.
+
+```
+git clone https://github.com/jlguenego/node-expose-sspi.git
+cd node-expose-sspi
+npm i
+npm test
+npm run example
+```
 
 ## Develop
 
