@@ -34,12 +34,16 @@ app.get("/login", (req, res) => {
 
 app.post("/action/connect", (req, res) => {
   console.log("connect", req.body);
-  const credentials = req.body;
+  const credentials = {
+    domain: req.body.domain,
+    user: req.body.login,
+    password: req.body.password
+  };
   console.log("credentials: ", credentials);
   const sso = sspi.connect(credentials);
   if (sso) {
     req.session.user = sso.user;
-    return res.redirect("/welcome");
+    return res.redirect("/protected/welcome");
   }
   req.session.error = "bad login/password.";
   return res.redirect("/login");

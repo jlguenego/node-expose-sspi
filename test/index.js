@@ -10,11 +10,11 @@ console.log("packageInfo: ", packageInfo);
 
 const clientCred = sspi.AcquireCredentialsHandle({
   packageName: "Negotiate",
-  authData: {
-    domain: "CHOUCHOU",
-    user: "titi",
-    password: "toto"
-  }
+  // authData: {
+  //   domain: "CHOUCHOU",
+  //   user: "titi",
+  //   password: "toto"
+  // }
 });
 console.log('clientCred: ', clientCred);
 const serverCred = sspi.AcquireCredentialsHandle({

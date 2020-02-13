@@ -12,7 +12,7 @@
       <h1>Home</h1>
       <% if (user) { %>
       <h2>Hello <%= user.name %></h2>
-      <button onclick="window.location.href = '/disconnect'">Disconnect</button>
+      <button onclick="window.location.href = '/action/disconnect'">Disconnect</button>
       <% } else { %>
       <button onclick="window.location.href = '/login'">Login page</button>
       <% } %>
