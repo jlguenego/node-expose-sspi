@@ -12,7 +12,9 @@ const { printHexDump, trace } = require("./misc/misc");
 module.exports = sspi;
 
 sspi.ssoAuth = () => {
-  const { credential, tsExpiry } = sspi.AcquireCredentialsHandle("Negotiate");
+  const { credential, tsExpiry } = sspi.AcquireCredentialsHandle({
+    packageName: "Negotiate"
+  });
 
   // serverContextHandle seems to be useful only for NTLM, not Kerberos.
   // because Kerberos will not request many times the client to complete the SSO Authentication.
@@ -152,7 +154,9 @@ sspi.connect = userCredential => {
   const errorMsg = "error while building the security context";
   try {
     const packageInfo = sspi.QuerySecurityPackageInfo("Negotiate");
-    const { credential, tsExpiry } = sspi.AcquireCredentialsHandle("Negotiate");
+    const { credential, tsExpiry } = sspi.AcquireCredentialsHandle({
+      packageName: "Negotiate"
+    });
 
     let serverSecurityContext;
     let clientSecurityContext;

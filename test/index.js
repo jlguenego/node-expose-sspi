@@ -8,7 +8,9 @@ console.log(securityPackages);
 const packageInfo = sspi.QuerySecurityPackageInfo("Negotiate");
 console.log("packageInfo: ", packageInfo);
 
-const { credential, tsExpiry } = sspi.AcquireCredentialsHandle("Negotiate");
+const { credential, tsExpiry } = sspi.AcquireCredentialsHandle({
+  packageName: "Negotiate"
+});
 console.log(credential);
 const input = {
   credential,
@@ -57,7 +59,7 @@ try {
   const NameDnsDomain = sspi.GetUserNameEx("NameDnsDomain");
   console.log("NameDnsDomain: ", NameDnsDomain);
 } catch (e) {
-  console.log('e: ', e);
+  console.log("e: ", e);
 }
 
 const sidObject = sspi.LookupAccountName(username);

@@ -7,16 +7,26 @@ Napi::Value e_AcquireCredentialsHandle(const Napi::CallbackInfo& info) {
 
   if (info.Length() < 1) {
     throw Napi::Error::New(
-        env, "AcquireCredentialsHandle: Wrong number of arguments.");
+        env,
+        "AcquireCredentialsHandle: Wrong number of arguments. "
+        "AcquireCredentialsHandle({ packageName: string, authIden?: {login: "
+        "string, password: string} })");
   }
 
-  std::u16string packageName = info[0].As<Napi::String>();
+  bool isBasicAuth = false;
+
+  Napi::Object input = info[0].As<Napi::Object>();
+
+  std::u16string packageName = input.Get("packageName").As<Napi::String>();
   CredHandle credHandle = {0, 0};
   TimeStamp tsExpiry;
 
+  SEC_WINNT_AUTH_IDENTITY authIden;
+
   SECURITY_STATUS secStatus = AcquireCredentialsHandle(
-      NULL, (LPWSTR)packageName.c_str(), SECPKG_CRED_BOTH, NULL, NULL, NULL,
-      NULL, &credHandle, &tsExpiry);
+      NULL, (LPWSTR)packageName.c_str(), SECPKG_CRED_BOTH, NULL,
+      isBasicAuth ? &authIden : NULL, RESERVED, RESERVED, &credHandle,
+      &tsExpiry);
   if (secStatus != SEC_E_OK) {
     throw Napi::Error::New(env, "Cannot FreeContextBuffer: secStatus = " +
                                     std::to_string(secStatus));
