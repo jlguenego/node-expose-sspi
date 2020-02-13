@@ -10,7 +10,7 @@ console.log("packageInfo: ", packageInfo);
 
 const clientCred = sspi.AcquireCredentialsHandle({
   packageName: "Negotiate",
-  authDatax: {
+  authData: {
     domain: "CHOUCHOU",
     user: "jlouis",
     password: "toto"
@@ -66,8 +66,13 @@ console.log("impersonate security context ok");
 const username = sspi.GetUserName();
 console.log("username: ", username);
 
-const displayName = sspi.GetUserNameEx("NameDisplay");
-console.log("displayName: ", displayName);
+try {
+  const displayName = sspi.GetUserNameEx("NameDisplay");
+  console.log("displayName: ", displayName);
+} catch (e) {
+  console.log("this account does not seems to have a Display Name");
+}
+
 const NameSamCompatible = sspi.GetUserNameEx("NameSamCompatible");
 console.log("NameSamCompatible: ", NameSamCompatible);
 try {
@@ -77,8 +82,7 @@ try {
   console.log("error for fun... no worries: ", e);
 }
 
-const sidObject = sspi.LookupAccountName(username);
-console.log("sidObject: ", sidObject);
+
 
 const userToken = sspi.OpenThreadToken();
 console.log("userToken: ", userToken);
@@ -91,6 +95,10 @@ console.log("CloseHandle ok");
 
 sspi.RevertSecurityContext(serverSecurityContext.serverContextHandle);
 console.log("revert security context ok");
+
+const sidObject = sspi.LookupAccountName(username);
+console.log("sidObject: ", sidObject);
+
 const username2 = sspi.GetUserName();
 console.log("username2: ", username2);
 

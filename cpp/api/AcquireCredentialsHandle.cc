@@ -30,7 +30,7 @@ Napi::Value e_AcquireCredentialsHandle(const Napi::CallbackInfo &info) {
     authData.Domain = (unsigned short *)domain;
     authData.DomainLength = wcslen(domain);
 
-    const wchar_t *user = L"jlouis";
+    const wchar_t *user = L"titi";
         // userObj.Get("user").As<Napi::String>().Utf16Value().c_str();
     log("user %S", user);
     std::cout << "user: " << user << std::endl;
