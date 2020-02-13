@@ -184,8 +184,7 @@ npm install --global windows-build-tools
 
 ## TODO
 
-- Example combined with JWT
-- Add options to filter guest or equivalent.
+- Typescript documentation of the API
 
 
 ## Author
