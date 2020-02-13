@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.9](https://github.com/jlguenego/node-expose-sspi/compare/v0.0.8...v0.0.9) (2020-02-13)
+
+
+### Features
+
+* add default domain fn ([b919405](https://github.com/jlguenego/node-expose-sspi/commit/b9194054f6adce36d1629a1b5e8c852d005e9371))
+* added sspi.connect() ([84c07d1](https://github.com/jlguenego/node-expose-sspi/commit/84c07d1701455543684ff8e0452d17472fe3f367))
+
+
+### Bug Fixes
+
+* add createSSO function ([c2c7e64](https://github.com/jlguenego/node-expose-sspi/commit/c2c7e64884eb4c23bd53292a5ce35e6876e316b1))
+* adding typescript interfaces ([bc649b2](https://github.com/jlguenego/node-expose-sspi/commit/bc649b2e8e17b3be607085578ad260c26019dc2b))
+* displayName optionals ([52431cd](https://github.com/jlguenego/node-expose-sspi/commit/52431cd38069978e2816a66e8bd222ccf3494482))
+* example done with session ([2665566](https://github.com/jlguenego/node-expose-sspi/commit/266556628ff407134e9ef247baa18c8c354b7535))
+* managing a bad login/password error ([c2b9207](https://github.com/jlguenego/node-expose-sspi/commit/c2b9207f8352124e1a9193eafd6557da6a788cfc))
+* refactor code for smaller file ([ad5e282](https://github.com/jlguenego/node-expose-sspi/commit/ad5e2828fdc1700690e6e8a81442f34051cc7a5a))
+* server error management ([8bdf16b](https://github.com/jlguenego/node-expose-sspi/commit/8bdf16b342f08240b6ba4b3b12d007adc423fd04))
+* splitted code into smaller file ([c0f041d](https://github.com/jlguenego/node-expose-sspi/commit/c0f041dced4604630494100395cf0b3fbc7299b9))
+
 ### [0.0.8](https://github.com/jlguenego/node-expose-sspi/compare/v0.0.7...v0.0.8) (2020-02-12)
 
 
