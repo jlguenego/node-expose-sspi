@@ -12,7 +12,7 @@ const clientCred = sspi.AcquireCredentialsHandle({
   packageName: "Negotiate",
   authData: {
     domain: "CHOUCHOU",
-    user: "jlouis",
+    user: "titi",
     password: "toto"
   }
 });
@@ -59,7 +59,7 @@ console.log(printHexDump(serverSecurityContext2.SecBufferDesc.buffers[0]));
 sspi.FreeCredentialsHandle(clientCred.credential);
 console.log("free client credentials ok");
 
-
+// security context ok
 
 sspi.ImpersonateSecurityContext(serverSecurityContext.serverContextHandle);
 console.log("impersonate security context ok");

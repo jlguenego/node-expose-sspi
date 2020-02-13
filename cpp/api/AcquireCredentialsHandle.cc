@@ -20,28 +20,35 @@ Napi::Value e_AcquireCredentialsHandle(const Napi::CallbackInfo &info) {
   std::u16string packageName = input.Get("packageName").As<Napi::String>();
 
   SEC_WINNT_AUTH_IDENTITY authData;
+
+  std::u16string domainStr, userStr, passwordStr;
+
   if (input.Has("authData")) {
     isBasicAuth = true;
     Napi::Object userObj = input.Get("authData").As<Napi::Object>();
 
-    std::u16string domainStr = userObj.Get("domain").As<Napi::String>();
-    // wchar_t *domain = (wchar_t *)domainStr.c_str();
-    wchar_t *domain = L"CHOUCHOU";
-    log("domain %S", domain);
+    if (!(userObj.Has("domain") && userObj.Has("user") && userObj.Has("password"))) {
+      throw Napi::Error::New(
+        env,
+        "AcquireCredentialsHandle: authData must have 3 properties: {user: "
+        "string, password: string, domain: string})");
+    }
+
+    domainStr =
+        userObj.Get("domain").As<Napi::String>().Utf16Value();
+    wchar_t *domain = (wchar_t *)domainStr.c_str();
     authData.Domain = (unsigned short *)domain;
     authData.DomainLength = wcslen(domain);
 
-    std::u16string userStr = userObj.Get("user").As<Napi::String>();
-    // wchar_t *user = (wchar_t *)userStr.c_str();
-    wchar_t *user = L"titi";
-    log("user %S", user);
+    userStr =
+        userObj.Get("user").As<Napi::String>().Utf16Value();
+    wchar_t *user = (wchar_t *)userStr.c_str();
     authData.User = (unsigned short *)user;
     authData.UserLength = wcslen(user);
 
-    std::u16string passwordStr = userObj.Get("password").As<Napi::String>();
-    // wchar_t *password = (wchar_t *)passwordStr.c_str();
-    wchar_t *password = L"toto";
-    log("password %S", password);
+    passwordStr =
+        userObj.Get("password").As<Napi::String>().Utf16Value();
+    wchar_t *password = (wchar_t *)passwordStr.c_str();
     authData.Password = (unsigned short *)password;
     authData.PasswordLength = wcslen(password);
 

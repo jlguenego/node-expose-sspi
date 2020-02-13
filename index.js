@@ -75,7 +75,9 @@ sspi.ssoAuth = () => {
           "Negotiate " + encode(serverSecurityContext.SecBufferDesc.buffers[0])
         );
 
-        req.sso = createSSO(serverContextHandle);
+        req.sso = sspi.createSSO(serverContextHandle);
+        
+        sspi.DeleteSecurityContext(serverContextHandle);
         serverContextHandle = undefined;
       }
     } catch (e) {
@@ -99,7 +101,7 @@ sspi.ssoAuth = () => {
  * @param {*} serverContextHandle
  * @returns
  */
-function createSSO(serverContextHandle) {
+sspi.createSSO = (serverContextHandle) => {
   const sso = {};
   const names = sspi.QueryContextAttributes(
     serverContextHandle,
