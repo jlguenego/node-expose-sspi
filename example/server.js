@@ -34,8 +34,11 @@ app.get("/login", (req, res) => {
 
 app.post("/action/connect", (req, res) => {
   console.log("connect", req.body);
+  const domain = sspi.getDefaultDomain();
+  console.log('domain: ', domain);
+
   const credentials = {
-    domain: req.body.domain,
+    domain,
     user: req.body.login,
     password: req.body.password
   };

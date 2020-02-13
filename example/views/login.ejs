@@ -13,18 +13,15 @@
       <button onclick="window.location.href = '/sso'">SSO</button>
       <form action="/action/connect" method="POST">
         <label>
-          <input name="login" type="text" placeholder="Login" value="titi" />
+          <input name="login" type="text" placeholder="Login" value="" />
         </label>
         <label>
           <input
             name="password"
             type="password"
             placeholder="Password"
-            value="toto"
+            value=""
           />
-        </label>
-        <label>
-          <input name="domain" type="text" placeholder="Domain" value="CHOUCHOU" />
         </label>
         <button type="submit">Connect</button>
         <% if (error) { %>
