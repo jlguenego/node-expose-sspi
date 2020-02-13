@@ -147,3 +147,7 @@ function createSSO(serverContextHandle) {
   } catch (e) {}
   return sso;
 }
+
+sspi.connect = (credential) => {
+  return undefined;
+};

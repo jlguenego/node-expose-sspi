@@ -4,11 +4,13 @@ const session = require("express-session");
 const sspi = require("..");
 const serveIndex = require("serve-index");
 
-
 const app = express();
 
 app.set("view engine", "ejs");
 app.set("views", path.resolve(__dirname, "views"));
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use(
   session({
@@ -25,10 +27,25 @@ app.get("/", (req, res) => {
 
 app.get("/login", (req, res) => {
   console.log("login");
-  return res.render("login");
+  const obj = { error: req.session.error };
+  req.session.error = undefined;
+  res.render("login", obj);
 });
 
-app.get("/disconnect", (req, res) => {
+app.post("/action/connect", (req, res) => {
+  console.log("connect", req.body);
+  const credentials = req.body;
+  console.log("credentials: ", credentials);
+  const sso = sspi.connect(credentials);
+  if (sso) {
+    req.session.user = sso.user;
+    return res.redirect("/welcome");
+  }
+  req.session.error = "bad login/password.";
+  return res.redirect("/login");
+});
+
+app.get("/action/disconnect", (req, res) => {
   console.log("disconnect");
   req.session.user = undefined;
   return res.redirect("/");

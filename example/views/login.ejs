@@ -11,14 +11,22 @@
     <main>
       <h1>Login</h1>
       <button onclick="window.location.href = '/sso'">SSO</button>
-      <form action="POST">
+      <form action="/action/connect" method="POST">
         <label>
-          <input type="text" placeholder="Login" />
+          <input name="login" type="text" placeholder="Login" value="titi" />
         </label>
         <label>
-          <input type="password" placeholder="Password" />
+          <input
+            name="password"
+            type="password"
+            placeholder="Password"
+            value="toto"
+          />
         </label>
         <button type="submit">Connect</button>
+        <% if (error) { %>
+        <p class="error"><%= error %></p>
+        <% } %>
       </form>
     </main>
   </body>
