@@ -1,3 +1,8 @@
+const createError = require("http-errors");
+const { decode, encode } = require("base64-arraybuffer");
+const { printHexDump, trace } = require("../src/misc");
+
+
 const ssoAuth = sspi => () => {
   const { credential, tsExpiry } = sspi.AcquireCredentialsHandle({
     packageName: "Negotiate"
