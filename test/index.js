@@ -1,5 +1,5 @@
 const sspi = require("..");
-const { printHexDump } = require("../misc/misc");
+const { printHexDump } = require("../src/misc");
 
 const result = sspi.hello();
 console.log("result: ", result);

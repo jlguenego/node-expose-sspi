@@ -55,13 +55,17 @@ connect = sspi => userCredential => {
 
       serverSecurityContext = sspi.AcceptSecurityContext(serverInput);
       console.log("serverSecurityContext: ", serverSecurityContext);
-      console.log(printHexDump(serverSecurityContext.SecBufferDesc.buffers[0]));
       if (
         serverSecurityContext.SECURITY_STATUS !== "SEC_I_CONTINUE_NEEDED" &&
         serverSecurityContext.SECURITY_STATUS !== "SEC_E_OK"
       ) {
+          if (serverSecurityContext.SECURITY_STATUS == "SEC_E_LOGON_DENIED") {
+            throw "sorry mate, wrong login/password.";
+          }
         throw errorMsg;
       }
+      
+      console.log(printHexDump(serverSecurityContext.SecBufferDesc.buffers[0]));
       if (serverSecurityContext.SECURITY_STATUS !== "SEC_E_OK") {
         continue;
       }

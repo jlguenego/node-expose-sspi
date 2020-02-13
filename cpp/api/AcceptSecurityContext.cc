@@ -57,17 +57,21 @@ Napi::Value e_AcceptSecurityContext(const Napi::CallbackInfo& info) {
     case SEC_I_CONTINUE_NEEDED:
       result["SECURITY_STATUS"] =
           Napi::String::New(env, "SEC_I_CONTINUE_NEEDED");
+      result["SecBufferDesc"] = JS::convert(env, &fromServerSecBufferDesc);
       break;
     case SEC_E_OK:
       result["SECURITY_STATUS"] = Napi::String::New(env, "SEC_E_OK");
-
+      result["SecBufferDesc"] = JS::convert(env, &fromServerSecBufferDesc);
+      break;
+    case SEC_E_LOGON_DENIED:
+      result["SECURITY_STATUS"] = Napi::String::New(env, "SEC_E_LOGON_DENIED");
       break;
     default:
       result["SECURITY_STATUS"] =
           Napi::String::New(env, plf::string_format("0x%08x", secStatus));
   }
   std::string secStatusStr = plf::string_format("0x%08x", secStatus);
-  if (secStatus < 0) {
+  if (secStatus < 0 && secStatus != SEC_E_LOGON_DENIED) {
     switch (secStatus) {
       case SEC_E_INVALID_TOKEN:
         secStatusStr = "SEC_E_INVALID_TOKEN";
@@ -78,8 +82,6 @@ Napi::Value e_AcceptSecurityContext(const Napi::CallbackInfo& info) {
                  "AcceptSecurityContext: SECURITY_STATUS incorrect (<0): %s",
                  secStatusStr.c_str()));
   }
-  result["SecBufferDesc"] = JS::convert(env, &fromServerSecBufferDesc);
-  isFirstCall = false;
 
   return result;
 }
