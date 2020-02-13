@@ -4,6 +4,8 @@ const session = require("express-session");
 const sspi = require("..");
 const serveIndex = require("serve-index");
 
+global.debug = true;
+
 const app = express();
 
 app.set("view engine", "ejs");
