@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <base href="/" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Home</h1>
+      <% if (user) { %>
+      <h2>Hello <%= user.name %></h2>
+      <button onclick="window.location.href = '/disconnect'">Disconnect</button>
+      <% } else { %>
+      <button onclick="window.location.href = '/login'">Login page</button>
+      <% } %>
+    </main>
+  </body>
+</html>

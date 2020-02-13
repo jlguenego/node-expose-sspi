@@ -18,9 +18,20 @@ app.use(
   })
 );
 
+app.get("/", (req, res) => {
+  console.log("home");
+  return res.render("home", { user: req.session.user });
+});
+
 app.get("/login", (req, res) => {
   console.log("login");
   return res.render("login");
+});
+
+app.get("/disconnect", (req, res) => {
+  console.log("disconnect");
+  req.session.user = undefined;
+  return res.redirect("/");
 });
 
 app.get("/no-sso", (req, res) => {
@@ -32,26 +43,21 @@ app.get("/sso", sspi.ssoAuth(), (req, res) => {
   if (!req.sso) {
     return res.redirect("/no-sso");
   }
-  req.session.sso = req.sso;
+  req.session.user = req.sso.user;
   return res.redirect("/protected/welcome");
 });
 
-// app.get("/styles.css", (req, res, next) => {
-//   console.log("style");
-//   res.sendFile(path.resolve(__dirname, "styles.css"));
-// });
-
 app.use("/protected", (req, res, next) => {
-  console.log("oooooooooooooooooooooooooooooooo");
-  if (!req.session.sso) {
+  console.log("protected");
+  if (!req.session.user) {
     return res.redirect("/login");
   }
   next();
 });
 
 app.get("/protected/welcome", (req, res) => {
-  console.log("welcome", req.session.sso);
-  return res.render("welcome", { user: req.session.sso.user });
+  console.log("welcome", req.session.user);
+  return res.render("welcome", { user: req.session.user });
 });
 
 app.use(express.static(path.resolve(__dirname, ".")));
