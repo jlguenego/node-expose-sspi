@@ -3,6 +3,7 @@
 #include "napi.h"
 
 #define GETFLAG_EXTENDED_NAME_FORMAT 0
+#define ACCESS_TOKEN_FLAGS 1
 
 namespace myAddon {
 

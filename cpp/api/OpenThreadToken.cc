@@ -9,14 +9,24 @@ namespace myAddon {
 Napi::Value e_OpenThreadToken(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
 
+  DWORD flags = TOKEN_QUERY | TOKEN_QUERY_SOURCE;
+
+  if (info.Length() == 1) {
+    flags = 0;
+    Napi::Array flagArray = info[0].As<Napi::Array>();
+    for (uint32_t i = 0; i < flagArray.Length(); i++) {
+      std::string flagStr = flagArray.Get(i).As<Napi::String>();
+      DWORD flag = getFlagValue(env, ACCESS_TOKEN_FLAGS, flagStr);
+      flags |= flag;
+    }
+  }
+
   HANDLE userToken;
 
   BOOL status =
-      OpenThreadToken(GetCurrentThread(), TOKEN_ALL_ACCESS, TRUE, &userToken);
+      OpenThreadToken(GetCurrentThread(), flags, TRUE, &userToken);
   if (status == FALSE) {
-    std::string message = plf::string_format(
-        "Cannot QuerySecurityContextToken: secStatus = 0x%08x", GetLastError());
-    throw Napi::Error::New(env, message);
+    throw Napi::Error::New(env, "OpenThreadToken: error. " + plf::error_msg());
   }
   std::stringstream sa;
   sa << "0x" << std::setfill('0') << std::setw(4)

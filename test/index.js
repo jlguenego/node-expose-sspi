@@ -10,11 +10,11 @@ console.log("packageInfo: ", packageInfo);
 
 const clientCred = sspi.AcquireCredentialsHandle({
   packageName: "Negotiate",
-  // authData: {
-  //   domain: "CHOUCHOU",
-  //   user: "titi",
-  //   password: "toto"
-  // }
+  authData: {
+    domain: "CHOUCHOU",
+    user: "jlouis",
+    password: "toto"
+  }
 });
 console.log('clientCred: ', clientCred);
 const serverCred = sspi.AcquireCredentialsHandle({
@@ -82,7 +82,7 @@ try {
   console.log("error for fun... no worries: ", e);
 }
 
-const userToken = sspi.OpenThreadToken();
+const userToken = sspi.OpenThreadToken(["TOKEN_QUERY", "TOKEN_QUERY_SOURCE"]);
 console.log("userToken: ", userToken);
 
 sspi.RevertSecurityContext(serverSecurityContext.serverContextHandle);

@@ -15,7 +15,7 @@ Napi::Value e_OpenProcessToken(const Napi::CallbackInfo& info) {
 
   if (status == FALSE) {
     std::string message = plf::string_format(
-        "Cannot QuerySecurityContextToken: secStatus = 0x%08x", GetLastError());
+        "Cannot OpenProcessToken: secStatus = 0x%08x", GetLastError());
     throw Napi::Error::New(env, message);
   }
   std::stringstream sa;
