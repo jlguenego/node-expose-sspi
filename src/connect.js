@@ -2,6 +2,7 @@ const { printHexDump, trace } = require("../src/misc");
 
 connect = sspi => userCredential => {
   const errorMsg = "error while building the security context";
+  const badLoginPasswordMsg = "sorry mate, wrong login/password.";
   try {
     const packageInfo = sspi.QuerySecurityPackageInfo("Negotiate");
     const clientCred = sspi.AcquireCredentialsHandle({
@@ -60,7 +61,7 @@ connect = sspi => userCredential => {
         serverSecurityContext.SECURITY_STATUS !== "SEC_E_OK"
       ) {
           if (serverSecurityContext.SECURITY_STATUS == "SEC_E_LOGON_DENIED") {
-            throw "sorry mate, wrong login/password.";
+            throw badLoginPasswordMsg;
           }
         throw errorMsg;
       }
@@ -75,6 +76,9 @@ connect = sspi => userCredential => {
     }
 
     const sso = sspi.createSSO(serverSecurityContext.serverContextHandle);
+    if (sso.user.name === "Guest") {
+      throw badLoginPasswordMsg;
+    }
     return sso;
   } catch (e) {
     console.error("error", e);
