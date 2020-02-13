@@ -138,7 +138,7 @@ sspi.createSSO = (serverContextHandle) => {
     sso.owner.displayName = sspi.GetUserNameEx("NameDisplay");
   } catch (e) {}
 
-  const processToken = sspi.OpenProcessToken();
+  const processToken = sspi.OpenProcessToken(["TOKEN_QUERY", "TOKEN_QUERY_SOURCE"]);
   const ownerGroups = sspi.GetTokenInformation(processToken, "TokenGroups");
   trace("ownerGroups: ", ownerGroups);
   sso.owner.groups = ownerGroups;
