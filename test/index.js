@@ -82,19 +82,17 @@ try {
   console.log("error for fun... no worries: ", e);
 }
 
-
-
 const userToken = sspi.OpenThreadToken();
 console.log("userToken: ", userToken);
+
+sspi.RevertSecurityContext(serverSecurityContext.serverContextHandle);
+console.log("revert security context ok");
 
 const userGroups = sspi.GetTokenInformation(userToken, "TokenGroups");
 console.log("userGroups: ", userGroups);
 
 sspi.CloseHandle(userToken);
 console.log("CloseHandle ok");
-
-sspi.RevertSecurityContext(serverSecurityContext.serverContextHandle);
-console.log("revert security context ok");
 
 const sidObject = sspi.LookupAccountName(username);
 console.log("sidObject: ", sidObject);

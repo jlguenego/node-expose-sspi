@@ -24,21 +24,23 @@ Napi::Value e_AcquireCredentialsHandle(const Napi::CallbackInfo &info) {
     isBasicAuth = true;
     Napi::Object userObj = input.Get("authData").As<Napi::Object>();
 
-    const wchar_t *domain = L"CHOUCHOU";
-        // userObj.Get("domain").As<Napi::String>().Utf16Value().c_str();
+    std::u16string domainStr = userObj.Get("domain").As<Napi::String>();
+    // wchar_t *domain = (wchar_t *)domainStr.c_str();
+    wchar_t *domain = L"CHOUCHOU";
     log("domain %S", domain);
     authData.Domain = (unsigned short *)domain;
     authData.DomainLength = wcslen(domain);
 
-    const wchar_t *user = L"titi";
-        // userObj.Get("user").As<Napi::String>().Utf16Value().c_str();
+    std::u16string userStr = userObj.Get("user").As<Napi::String>();
+    // wchar_t *user = (wchar_t *)userStr.c_str();
+    wchar_t *user = L"titi";
     log("user %S", user);
-    std::cout << "user: " << user << std::endl;
     authData.User = (unsigned short *)user;
     authData.UserLength = wcslen(user);
 
-    const wchar_t *password = L"toto";
-        // userObj.Get("password").As<Napi::String>().Utf16Value().c_str();
+    std::u16string passwordStr = userObj.Get("password").As<Napi::String>();
+    // wchar_t *password = (wchar_t *)passwordStr.c_str();
+    wchar_t *password = L"toto";
     log("password %S", password);
     authData.Password = (unsigned short *)password;
     authData.PasswordLength = wcslen(password);
