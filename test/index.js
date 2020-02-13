@@ -8,12 +8,21 @@ console.log(securityPackages);
 const packageInfo = sspi.QuerySecurityPackageInfo("Negotiate");
 console.log("packageInfo: ", packageInfo);
 
-const { credential, tsExpiry } = sspi.AcquireCredentialsHandle({
+const clientCred = sspi.AcquireCredentialsHandle({
+  packageName: "Negotiate",
+  authDatax: {
+    domain: "CHOUCHOU",
+    user: "jlouis",
+    password: "toto"
+  }
+});
+console.log('clientCred: ', clientCred);
+const serverCred = sspi.AcquireCredentialsHandle({
   packageName: "Negotiate"
 });
-console.log(credential);
+console.log('serverCred: ', serverCred);
 const input = {
-  credential,
+  credential: clientCred.credential,
   targetName: "kiki",
   cbMaxToken: packageInfo.cbMaxToken
 };
@@ -22,13 +31,13 @@ const clientSecurityContext = sspi.InitializeSecurityContext(input);
 console.log("clientSecurityContext: ", clientSecurityContext);
 console.log(printHexDump(clientSecurityContext.SecBufferDesc.buffers[0]));
 const serverSecurityContext = sspi.AcceptSecurityContext({
-  credential,
+  credential: serverCred.credential,
   clientSecurityContext
 });
 console.log("serverSecurityContext: ", serverSecurityContext);
 console.log(printHexDump(serverSecurityContext.SecBufferDesc.buffers[0]));
 const input2 = {
-  credential,
+  credential: clientCred.credential,
   targetName: "kiki",
   cbMaxToken: packageInfo.cbMaxToken,
   serverSecurityContext,
@@ -40,12 +49,18 @@ console.log("clientSecurityContext2: ", clientSecurityContext2);
 console.log(printHexDump(clientSecurityContext2.SecBufferDesc.buffers[0]));
 
 const serverSecurityContext2 = sspi.AcceptSecurityContext({
-  credential,
+  credential: serverCred.credential,
   clientSecurityContext: clientSecurityContext2,
   serverContextHandle: serverSecurityContext.serverContextHandle
 });
 console.log("serverSecurityContext2: ", serverSecurityContext2);
 console.log(printHexDump(serverSecurityContext2.SecBufferDesc.buffers[0]));
+
+sspi.FreeCredentialsHandle(clientCred.credential);
+console.log("free client credentials ok");
+
+
+
 sspi.ImpersonateSecurityContext(serverSecurityContext.serverContextHandle);
 console.log("impersonate security context ok");
 const username = sspi.GetUserName();
@@ -59,7 +74,7 @@ try {
   const NameDnsDomain = sspi.GetUserNameEx("NameDnsDomain");
   console.log("NameDnsDomain: ", NameDnsDomain);
 } catch (e) {
-  console.log("e: ", e);
+  console.log("error for fun... no worries: ", e);
 }
 
 const sidObject = sspi.LookupAccountName(username);
@@ -80,7 +95,7 @@ const username2 = sspi.GetUserName();
 console.log("username2: ", username2);
 
 const attributes = sspi.QueryCredentialsAttributes(
-  credential,
+  serverCred.credential,
   "SECPKG_CRED_ATTR_NAMES"
 );
 console.log("attributes: ", attributes);
@@ -107,5 +122,5 @@ console.log("DeleteSecurityContext ok");
 sspi.DeleteSecurityContext(clientSecurityContext.clientContextHandle);
 console.log("DeleteSecurityContext ok");
 
-sspi.FreeCredentialsHandle(credential);
-console.log("free credentials ok");
+sspi.FreeCredentialsHandle(serverCred.credential);
+console.log("free server credentials ok");
