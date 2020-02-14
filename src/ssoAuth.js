@@ -43,10 +43,10 @@ const ssoAuth = sspi => () => {
         }
       };
       if (serverContextHandle) {
-        input.serverContextHandle = serverContextHandle;
+        input.contextHandle = serverContextHandle;
       }
       const serverSecurityContext = sspi.AcceptSecurityContext(input);
-      serverContextHandle = serverSecurityContext.serverContextHandle;
+      serverContextHandle = serverSecurityContext.contextHandle;
 
       trace(printHexDump(serverSecurityContext.SecBufferDesc.buffers[0]));
 

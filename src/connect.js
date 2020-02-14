@@ -35,8 +35,8 @@ connect = sspi => userCredential => {
 
       if (serverSecurityContext) {
         clientInput.serverSecurityContext = serverSecurityContext;
-        clientInput.clientContextHandle =
-          clientSecurityContext.clientContextHandle;
+        clientInput.contextHandle =
+          clientSecurityContext.contextHandle;
       }
       clientSecurityContext = sspi.InitializeSecurityContext(clientInput);
       console.log("clientSecurityContext: ", clientSecurityContext);
@@ -50,8 +50,8 @@ connect = sspi => userCredential => {
 
       serverInput.clientSecurityContext = clientSecurityContext;
       if (serverSecurityContext) {
-        serverInput.serverContextHandle =
-          serverSecurityContext.serverContextHandle;
+        serverInput.contextHandle =
+          serverSecurityContext.contextHandle;
       }
 
       serverSecurityContext = sspi.AcceptSecurityContext(serverInput);
@@ -75,7 +75,7 @@ connect = sspi => userCredential => {
       break;
     }
 
-    const sso = sspi.createSSO(serverSecurityContext.serverContextHandle);
+    const sso = sspi.createSSO(serverSecurityContext.contextHandle);
     if (sso.user.name === "Guest") {
       throw badLoginPasswordMsg;
     }
