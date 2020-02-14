@@ -16,7 +16,9 @@ module.exports = sspi => serverContextHandle => {
   trace("userToken: ", userToken);
   try {
     sso.user.displayName = sspi.GetUserNameEx("NameDisplay");
-  } catch (e) {}
+  } catch (e) {
+    sso.user.displayName = sso.user.name;
+  }
   sspi.RevertSecurityContext(serverContextHandle);
 
   const groups = sspi.GetTokenInformation(userToken, "TokenGroups");
