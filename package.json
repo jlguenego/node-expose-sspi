@@ -10,7 +10,7 @@
     "server": "nodemon test/server.js",
     "ts-server": "nodemon test/ts-server.ts",
     "release": "standard-version",
-    "example": "nodemon example/server.js"
+    "example": "nodemon example/server.ts"
   },
   "keywords": [
     "SSPI",
@@ -39,6 +39,8 @@
   },
   "devDependencies": {
     "@types/express": "^4.17.2",
+    "@types/express-session": "^1.15.16",
+    "@types/serve-index": "^1.7.30",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
     "express-jwt": "^5.3.1",
