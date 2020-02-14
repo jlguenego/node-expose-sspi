@@ -39,7 +39,7 @@ app.post("/action/connect", (req, res) => {
   const domain = sspi.getDefaultDomain();
   console.log('domain: ', domain);
 
-  const credentials = {
+  const credentials: SSO.UserCredential = {
     domain,
     user: req.body.login,
     password: req.body.password
