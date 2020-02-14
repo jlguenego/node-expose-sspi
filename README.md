@@ -184,7 +184,7 @@ npm install --global windows-build-tools
 
 ## TODO
 
-- Typescript documentation of the API
+- Rewrite the javascript function in typescript for better maintenance.
 
 
 ## Author
