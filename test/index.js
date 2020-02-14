@@ -1,6 +1,7 @@
-const sspi = require("..");
+const { sso } = require("..");
 const { printHexDump } = require("../src/misc");
 
+const sspi = sso.sspi;
 const result = sspi.hello();
 console.log("result: ", result);
 const securityPackages = sspi.EnumerateSecurityPackages();
@@ -16,11 +17,11 @@ const clientCred = sspi.AcquireCredentialsHandle({
     password: "toto"
   }
 });
-console.log('clientCred: ', clientCred);
+console.log("clientCred: ", clientCred);
 const serverCred = sspi.AcquireCredentialsHandle({
   packageName: "Negotiate"
 });
-console.log('serverCred: ', serverCred);
+console.log("serverCred: ", serverCred);
 const input = {
   credential: clientCred.credential,
   targetName: "kiki",

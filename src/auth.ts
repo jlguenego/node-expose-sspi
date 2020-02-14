@@ -1,9 +1,10 @@
 const createError = require("http-errors");
 const { decode, encode } = require("base64-arraybuffer");
-const { printHexDump, trace } = require("../src/misc");
+import { printHexDump, trace } from "./misc";
+import sspi = require("../lib/sspi");
+import { createSSO } from "./createSSO";
 
-
-const ssoAuth = sspi => () => {
+export const auth = () => {
   const { credential, tsExpiry } = sspi.AcquireCredentialsHandle({
     packageName: "Negotiate"
   });
@@ -33,7 +34,7 @@ const ssoAuth = sspi => () => {
       trace("SPNEGO token: " + protocol);
       const buffer = decode(req.auth.token);
 
-      const input = {
+      const input: sspi.AcceptSecurityContextInput = {
         credential,
         clientSecurityContext: {
           SecBufferDesc: {
@@ -67,7 +68,7 @@ const ssoAuth = sspi => () => {
           "Negotiate " + encode(serverSecurityContext.SecBufferDesc.buffers[0])
         );
 
-        req.sso = sspi.createSSO(serverContextHandle);
+        req.sso = createSSO(serverContextHandle);
 
         sspi.DeleteSecurityContext(serverContextHandle);
         serverContextHandle = undefined;
@@ -86,4 +87,3 @@ const ssoAuth = sspi => () => {
   };
 };
 
-module.exports = ssoAuth;
