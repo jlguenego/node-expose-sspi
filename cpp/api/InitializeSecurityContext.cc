@@ -11,7 +11,7 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo &info) {
         "InitializeSecurityContext: Wrong number of arguments. "
         "InitializeSecurityContext({ credential: string, targetName: string, "
         "cbMaxToken?: number, "
-        "clientContextHandle, "
+        "contextHandle, "
         "serverSecurityContext?: Object })");
   }
 
@@ -54,10 +54,10 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo &info) {
 
   CtxtHandle clientContextHandle = {0, 0};
   bool isFirstCall = true;
-  if (input.Has("clientContextHandle")) {
+  if (input.Has("contextHandle")) {
     isFirstCall = false;
     Napi::String clientContextHandleString =
-        input.Get("clientContextHandle").As<Napi::String>();
+        input.Get("contextHandle").As<Napi::String>();
     clientContextHandle =
         SecHandleUtil::deserialize(clientContextHandleString.Utf8Value());
   }
@@ -74,7 +74,7 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo &info) {
 
   Napi::Object result = Napi::Object::New(env);
 
-  result["clientContextHandle"] =
+  result["contextHandle"] =
       Napi::String::New(env, SecHandleUtil::serialize(clientContextHandle));
 
   switch (secStatus) {

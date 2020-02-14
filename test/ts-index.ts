@@ -1,5 +1,7 @@
-const sspi = require("..");
-const { printHexDump } = require("../src/misc");
+import sspi = require("..");
+import misc = require("../src/misc.js");
+
+const { printHexDump } = misc;
 
 const result = sspi.hello();
 console.log("result: ", result);
@@ -32,7 +34,7 @@ console.log("clientSecurityContext: ", clientSecurityContext);
 console.log(printHexDump(clientSecurityContext.SecBufferDesc.buffers[0]));
 const serverSecurityContext = sspi.AcceptSecurityContext({
   credential: serverCred.credential,
-  clientSecurityContext
+  clientSecurityContext: clientSecurityContext
 });
 console.log("serverSecurityContext: ", serverSecurityContext);
 console.log(printHexDump(serverSecurityContext.SecBufferDesc.buffers[0]));

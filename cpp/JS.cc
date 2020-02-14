@@ -43,7 +43,7 @@ Napi::Object JS::convert(Napi::Env env, PSecPkgInfo pPackageInfo) {
   Napi::Object package = Napi::Object::New(env);
   std::string capabilities =
       plf::string_format("0x%08x", pPackageInfo->fCapabilities);
-  package["capabilities"] = Napi::String::New(env, capabilities);
+  package["fCapabilities"] = Napi::String::New(env, capabilities);
   package["wVersion"] = Napi::Number::New(env, pPackageInfo->wVersion);
   package["wRPCID"] = Napi::Number::New(env, pPackageInfo->wRPCID);
   package["cbMaxToken"] = Napi::Number::New(env, pPackageInfo->cbMaxToken);

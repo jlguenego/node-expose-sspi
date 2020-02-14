@@ -9,8 +9,7 @@ Napi::Value e_LookupAccountName(const Napi::CallbackInfo& info) {
   if (info.Length() < 1) {
     throw Napi::Error::New(env,
                            "LookupAccountName: Wrong number of arguments. "
-                           "LookupAccountName({ credential, "
-                           "LookupAccountName, serverContextHandle })");
+                           "LookupAccountName(username: string)");
   }
 
   std::u16string accountName = info[0].As<Napi::String>();
