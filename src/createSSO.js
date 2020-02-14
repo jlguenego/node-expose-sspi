@@ -37,7 +37,9 @@ module.exports = sspi => serverContextHandle => {
   sso.owner = { name: owner };
   try {
     sso.owner.displayName = sspi.GetUserNameEx("NameDisplay");
-  } catch (e) {}
+  } catch (e) {
+    sso.owner.displayName = sso.owner.name;
+  }
 
   const processToken = sspi.OpenProcessToken([
     "TOKEN_QUERY",
