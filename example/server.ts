@@ -1,10 +1,10 @@
-const express = require("express");
-const path = require("path");
-const session = require("express-session");
-const sspi = require("..");
-const serveIndex = require("serve-index");
+import express = require("express");
+import path = require("path");
+import session = require("express-session");
+import sspi = require("..");
+import serveIndex = require("serve-index");
 
-global.debug = true;
+global['debug'] = true;
 
 const app = express();
 

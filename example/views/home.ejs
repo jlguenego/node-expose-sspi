@@ -11,10 +11,18 @@
     <main>
       <h1>Home</h1>
       <% if (user) { %>
-      <h2>Hello <%= user.name %></h2>
-      <button onclick="window.location.href = '/action/disconnect'">Disconnect</button>
+      <p>Hello <%= user.displayName %>!</p>
+      <button
+        class="primary"
+        onclick="window.location.href = '/action/disconnect'"
+      >
+        Disconnect
+      </button>
       <% } else { %>
-      <button onclick="window.location.href = '/login'">Login page</button>
+      <p>Nobody is connected.</p>
+      <button class="primary" onclick="window.location.href = '/login'">
+        Login page
+      </button>
       <% } %>
     </main>
   </body>

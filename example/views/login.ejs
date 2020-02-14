@@ -10,7 +10,12 @@
   <body>
     <main>
       <h1>Login</h1>
-      <button onclick="window.location.href = '/sso'">SSO</button>
+      <button class="primary" onclick="window.location.href = '/sso'">Connect with SSO</button>
+      <hr />
+      <br />
+      <br />
+      <br />
+      <div>Or connect with the good old way:</div>
       <form action="/action/connect" method="POST">
         <label>
           <input name="login" type="text" placeholder="Login" value="" />

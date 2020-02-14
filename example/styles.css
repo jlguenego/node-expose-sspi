@@ -1,40 +1,74 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    display: flex;
-    flex-flow: column;
-    align-items: center;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
 }
 
-main, form {
-    display: flex;
-    flex-flow: column;
-    align-items: strecth;
-    width: 20em;
+main,
+form {
+  display: flex;
+  flex-flow: column;
+  align-items: stretch;
+  width: 100%;
 }
 
-h1, h2, div, p {
-    text-align: center;
+main {
+  width: 20em;
+  padding: 0.5em;
 }
 
-button, input {
-    width: 100%;
-    margin: 0.5em;
-    padding: 0.5em 1em;
+label,
+form > div {
+  display: flex;
+  flex-flow: column;
+  align-items: stretch;
+}
+
+h1,
+h2,
+div,
+p {
+  text-align: center;
+}
+
+hr {
+  width: 100%;
+}
+
+button,
+input {
+  display: flex;
+  width: 100%;
+  margin: 0.5em 0;
+  padding: 0.5em 1em;
 }
 
 button {
-    cursor: pointer;
-    background: #eee;
-    border: 0.1em solid #eee;
+  justify-content: center;
+  cursor: pointer;
+  background: #eee;
+  border: 0.1em solid #eee;
 }
 
 button:hover {
-    background: #ddd;
+  background: #ddd;
+}
+
+button.primary {
+  background: #333;
+  border: 0.1em solid #333;
+  color: white;
+}
+
+button.primary:hover {
+  background: #444;
+  border: 0.1em solid #444;
 }
 
 .error {
-    color: red;
+  color: red;
 }

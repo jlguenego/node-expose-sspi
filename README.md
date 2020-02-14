@@ -1,6 +1,6 @@
 # node-expose-sspi
 
-Expose to the javascript node world the Microsoft Windows SSPI (SSP Interface).
+Expose the Microsoft Windows SSPI (SSP Interface) to [Node.js®](https://nodejs.org/).
 
 It has been done in order to do NTLM and Kerberos SSO authentication.
 You may participate to complete this project if you need to use SSPI in another use case.
