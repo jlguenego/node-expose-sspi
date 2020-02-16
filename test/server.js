@@ -1,6 +1,5 @@
 const express = require("express");
 const { sso, sspi } = require("..");
-console.log('sso: ', sso);
 
 // global.debug = true;
 

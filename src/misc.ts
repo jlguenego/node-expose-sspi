@@ -5,11 +5,6 @@ export const trace = (...args: any[]) => {
   }
 };
 
-module.exports = {
-  printHexDump,
-  trace
-};
-
 function isPrintable(keycode: number) {
   var valid =
     (keycode > 47 && keycode < 58) || // number keys

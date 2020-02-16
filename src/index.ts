@@ -1,4 +1,4 @@
-import { SSO, createSSO } from "./createSSO";
+import { createSSO } from "./createSSO";
 import { auth } from "./auth";
 import { connect } from "./connect";
 import { getDefaultDomain } from "./getDefaultDomain";

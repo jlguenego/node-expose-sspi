@@ -3,7 +3,8 @@
     "noImplicitAny": false,
     "outDir": "./dist",
     "module": "CommonJS",
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "esModuleInterop": true
   },
   "files": [
       "./src/index.ts"
