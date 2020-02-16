@@ -23,7 +23,7 @@ Napi::Value e_QuerySecurityPackageInfo(const Napi::CallbackInfo &info) {
   if (secStatus != SEC_E_OK) {
     throw Napi::Error::New(env,
                            "Cannot QuerySecurityPackageInfo: secStatus = " +
-                               std::to_string(secStatus));
+                               plf::error_msg(secStatus));
   }
 
   Napi::Object result = JS::convert(env, pPackageInfo);
@@ -31,7 +31,7 @@ Napi::Value e_QuerySecurityPackageInfo(const Napi::CallbackInfo &info) {
   secStatus = FreeContextBuffer(pPackageInfo);
   if (secStatus != SEC_E_OK) {
     throw Napi::Error::New(env, "Cannot FreeContextBuffer: secStatus = " +
-                                    std::to_string(secStatus));
+                                    plf::error_msg(secStatus));
   }
 
   return result;

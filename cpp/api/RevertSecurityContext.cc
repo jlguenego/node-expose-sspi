@@ -19,7 +19,7 @@ void e_RevertSecurityContext(const Napi::CallbackInfo &info) {
   SECURITY_STATUS secStatus = RevertSecurityContext(&serverContextHandle);
   if (secStatus != SEC_E_OK) {
     throw Napi::Error::New(env, "Cannot RevertSecurityContext: secStatus = " +
-                                    std::to_string(secStatus));
+                                    plf::error_msg(secStatus));
   }
 }
 

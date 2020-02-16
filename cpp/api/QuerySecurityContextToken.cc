@@ -22,9 +22,7 @@ Napi::Value e_QuerySecurityContextToken(const Napi::CallbackInfo& info) {
   SECURITY_STATUS secStatus =
       QuerySecurityContextToken(&serverContextHandle, &pAccessToken);
   if (secStatus != SEC_E_OK) {
-    std::string message = plf::string_format(
-        "Cannot QuerySecurityContextToken: secStatus = 0x%08x", secStatus);
-    throw Napi::Error::New(env, message);
+    throw Napi::Error::New(env, "Cannot QuerySecurityContextToken: secStatus = " + plf::error_msg(secStatus));
   }
   std::stringstream sa;
   sa << "0x" << std::setfill('0') << std::setw(4)
