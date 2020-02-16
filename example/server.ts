@@ -1,10 +1,10 @@
 import express = require("express");
 import path = require("path");
 import session = require("express-session");
-import sspi = require("..");
+import { sspi, sso } from "..";
 import serveIndex = require("serve-index");
 
-global['debug'] = true;
+global["debug"] = true;
 
 const app = express();
 
@@ -36,18 +36,18 @@ app.get("/login", (req, res) => {
 
 app.post("/action/connect", (req, res) => {
   console.log("connect", req.body);
-  const domain = sspi.getDefaultDomain();
-  console.log('domain: ', domain);
+  const domain = sso.getDefaultDomain();
+  console.log("domain: ", domain);
 
-  const credentials: SSO.UserCredential = {
+  const credentials: sspi.UserCredential = {
     domain,
     user: req.body.login,
     password: req.body.password
   };
   console.log("credentials: ", credentials);
-  const sso = sspi.connect(credentials);
-  if (sso) {
-    req.session.user = sso.user;
+  const ssoObject = sso.connect(credentials);
+  if (ssoObject) {
+    req.session.user = ssoObject.user;
     return res.redirect("/protected/welcome");
   }
   req.session.error = "bad login/password.";
@@ -64,7 +64,7 @@ app.get("/no-sso", (req, res) => {
   return res.render("no-sso");
 });
 
-app.get("/sso", sspi.ssoAuth(), (req, res) => {
+app.get("/sso", sso.auth(), (req, res) => {
   console.log("sso");
   if (!req.sso) {
     return res.redirect("/no-sso");
