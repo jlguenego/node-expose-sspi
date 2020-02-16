@@ -78,7 +78,6 @@ Napi::Value e_AcceptSecurityContext(const Napi::CallbackInfo& info) {
       result["SECURITY_STATUS"] =
           Napi::String::New(env, plf::string_format("0x%08x", secStatus));
   }
-  std::string secStatusStr = plf::string_format("0x%08x", secStatus);
   if (secStatus < 0 && secStatus != SEC_E_LOGON_DENIED) {
     throw Napi::Error::New(
         env, "AcceptSecurityContext: SECURITY_STATUS incorrect (<0): " +
