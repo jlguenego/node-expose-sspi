@@ -9,11 +9,12 @@
 #define ASC_RET_FLAGS 4
 #define ISC_RET_FLAGS 5
 
-
 namespace myAddon {
 
+void initFlags();
 int64_t getFlagValue(Napi::Env env, int context, std::string str);
-int64_t getFlags(Napi::Env env, int context, Napi::Object input, std::string value, int64_t defaultFlags = 0);
+int64_t getFlags(Napi::Env env, int context, Napi::Object input,
+                 std::string value, int64_t defaultFlags = 0);
 
 Napi::Array setFlags(Napi::Env env, int context, int64_t flags);
 

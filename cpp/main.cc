@@ -8,6 +8,8 @@ Napi::Value hello(const Napi::CallbackInfo &info) {
 }
 
 Napi::Object Init(Napi::Env env, Napi::Object exports) {
+  initFlags();
+
   exports.Set(Napi::String::New(env, "hello"), Napi::Function::New(env, hello));
 
   exports.Set(Napi::String::New(env, "EnumerateSecurityPackages"),

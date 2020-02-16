@@ -17,15 +17,20 @@ flagmap accessTokenFlagsMap;
 flagmap AscReqMap;
 flagmap AscRetMap;
 flagmap IscReqMap;
+flagmap IscRetMap;
 
 std::map<int64_t, flagmap *> contextMap;
 
-void init() {
+namespace myAddon {
+
+void initFlags() {
   contextMap[GETFLAG_EXTENDED_NAME_FORMAT] = &extendedNameFormatMap;
   contextMap[ACCESS_TOKEN_FLAGS] = &accessTokenFlagsMap;
   contextMap[ASC_REQ_FLAGS] = &AscReqMap;
   contextMap[ISC_REQ_FLAGS] = &IscReqMap;
   contextMap[ASC_RET_FLAGS] = &AscRetMap;
+  contextMap[ISC_RET_FLAGS] = &IscRetMap;
+
 
   FLAG_INSERT(extendedNameFormatMap, NameUnknown);
   FLAG_INSERT(extendedNameFormatMap, NameFullyQualifiedDN);
@@ -136,16 +141,38 @@ void init() {
   FLAG_INSERT(AscRetMap, ASC_RET_NO_TOKEN);
   FLAG_INSERT(AscRetMap, ASC_RET_NO_ADDITIONAL_TOKEN);
   FLAG_INSERT(AscRetMap, ASC_RET_MESSAGES);
+
+  FLAG_INSERT(IscRetMap, ISC_RET_DELEGATE);
+  FLAG_INSERT(IscRetMap, ISC_RET_MUTUAL_AUTH);
+  FLAG_INSERT(IscRetMap, ISC_RET_REPLAY_DETECT);
+  FLAG_INSERT(IscRetMap, ISC_RET_SEQUENCE_DETECT);
+  FLAG_INSERT(IscRetMap, ISC_RET_CONFIDENTIALITY);
+  FLAG_INSERT(IscRetMap, ISC_RET_USE_SESSION_KEY);
+  FLAG_INSERT(IscRetMap, ISC_RET_USED_COLLECTED_CREDS);
+  FLAG_INSERT(IscRetMap, ISC_RET_USED_SUPPLIED_CREDS);
+  FLAG_INSERT(IscRetMap, ISC_RET_ALLOCATED_MEMORY);
+  FLAG_INSERT(IscRetMap, ISC_RET_USED_DCE_STYLE);
+  FLAG_INSERT(IscRetMap, ISC_RET_DATAGRAM);
+  FLAG_INSERT(IscRetMap, ISC_RET_CONNECTION);
+  FLAG_INSERT(IscRetMap, ISC_RET_INTERMEDIATE_RETURN);
+  FLAG_INSERT(IscRetMap, ISC_RET_CALL_LEVEL);
+  FLAG_INSERT(IscRetMap, ISC_RET_EXTENDED_ERROR);
+  FLAG_INSERT(IscRetMap, ISC_RET_STREAM);
+  FLAG_INSERT(IscRetMap, ISC_RET_INTEGRITY);
+  FLAG_INSERT(IscRetMap, ISC_RET_IDENTIFY);
+  FLAG_INSERT(IscRetMap, ISC_RET_NULL_SESSION);
+  FLAG_INSERT(IscRetMap, ISC_RET_MANUAL_CRED_VALIDATION);
+  FLAG_INSERT(IscRetMap, ISC_RET_RESERVED1);
+  FLAG_INSERT(IscRetMap, ISC_RET_FRAGMENT_ONLY);
+  FLAG_INSERT(IscRetMap, ISC_RET_FORWARD_CREDENTIALS);
+  FLAG_INSERT(IscRetMap, ISC_RET_USED_HTTP_STYLE);
+  FLAG_INSERT(IscRetMap, ISC_RET_REAUTHENTICATION);
+  FLAG_INSERT(IscRetMap, ISC_RET_NO_ADDITIONAL_TOKEN);
+  FLAG_INSERT(IscRetMap, ISC_RET_CONFIDENTIALITY_ONLY);
+  FLAG_INSERT(IscRetMap, ISC_RET_MESSAGES);
 }
 
-namespace myAddon {
-
 int64_t getFlagValue(Napi::Env env, int context, std::string str) {
-  static bool initiated = false;
-  if (!initiated) {
-    init();
-  }
-
   auto itr = contextMap.find(context);
 
   if (itr != contextMap.end()) {

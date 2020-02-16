@@ -79,6 +79,8 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo &info) {
 
   result["contextHandle"] =
       Napi::String::New(env, SecHandleUtil::serialize(clientContextHandle));
+  result["contextAttr"] = setFlags(env, ISC_RET_FLAGS, ulContextAttr);
+      
 
   switch (secStatus) {
     case SEC_I_CONTINUE_NEEDED:
