@@ -1,10 +1,10 @@
 #include "../misc.h"
 
+#include <atlenc.h>
+#include <atlstr.h>
 #include <iomanip>
 #include <iostream>
 #include <sstream>
-#include <atlenc.h>
-#include <atlstr.h>
 
 namespace myAddon {
 
@@ -23,28 +23,25 @@ Napi::Value e_GetTokenInformation(const Napi::CallbackInfo& info) {
   std::istringstream iss(handleStr);
   iss >> std::hex >> handle;
 
-  std::string tokenInformationClassStr =
-      info[1].As<Napi::String>().Utf8Value();
+  std::string tokenInformationClassStr = info[1].As<Napi::String>().Utf8Value();
   if (tokenInformationClassStr == "TokenGroups") {
     TOKEN_GROUPS* groupinfo = NULL;
     DWORD groupinfosize = 0;
     BOOL status = GetTokenInformation(handle, TokenGroups, groupinfo,
                                       groupinfosize, &groupinfosize);
     if (status == FALSE && (GetLastError() != ERROR_INSUFFICIENT_BUFFER)) {
-      std::string message = plf::string_format(
-          "Cannot GetTokenInformation: first call error = 0x%08x",
-          GetLastError());
-      throw Napi::Error::New(env, message);
+      throw Napi::Error::New(
+          env,
+          "Cannot GetTokenInformation: first call error = " + plf::error_msg());
     }
 
     groupinfo = (TOKEN_GROUPS*)malloc(groupinfosize);
     status = GetTokenInformation(handle, TokenGroups, groupinfo, groupinfosize,
                                  &groupinfosize);
     if (status == FALSE) {
-      std::string message = plf::string_format(
-          "Cannot GetTokenInformation: second call error = 0x%08x",
-          GetLastError());
-      throw Napi::Error::New(env, message);
+      throw Napi::Error::New(
+          env, "Cannot GetTokenInformation: second call error = " +
+                   plf::error_msg());
     }
 
     Napi::Array result = Napi::Array::New(env);

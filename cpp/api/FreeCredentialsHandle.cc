@@ -14,14 +14,9 @@ void e_FreeCredentialsHandle(const Napi::CallbackInfo& info) {
       SecHandleUtil::deserialize(info[0].As<Napi::String>().Utf8Value());
 
   SECURITY_STATUS secStatus = FreeCredentialsHandle(&cred);
-
-  if (secStatus == SEC_E_INVALID_HANDLE) {
-    throw Napi::Error::New(
-        env, "FreeCredentialsHandle SEC_E_INVALID_HANDLE");
-  }
   if (secStatus != SEC_E_OK) {
     throw Napi::Error::New(
-        env, "FreeCredentialsHandle error = " + std::to_string(secStatus));
+        env, "FreeCredentialsHandle error = " + plf::error_msg(secStatus));
   }
 }
 

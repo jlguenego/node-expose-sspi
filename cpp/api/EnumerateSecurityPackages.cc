@@ -13,7 +13,7 @@ Napi::Value e_EnumerateSecurityPackages(const Napi::CallbackInfo &info) {
   if (secStatus != SEC_E_OK) {
     throw Napi::Error::New(env,
                            "Cannot EnumerateSecurityPackages: secStatus = " +
-                               std::to_string(secStatus));
+                               plf::error_msg(secStatus));
   }
 
   Napi::Array result = JS::convert(env, cPackages, pPackageInfo);
@@ -21,7 +21,7 @@ Napi::Value e_EnumerateSecurityPackages(const Napi::CallbackInfo &info) {
   secStatus = FreeContextBuffer(pPackageInfo);
   if (secStatus != SEC_E_OK) {
     throw Napi::Error::New(env, "Cannot FreeContextBuffer: secStatus = " +
-                                    std::to_string(secStatus));
+                                    plf::error_msg(secStatus));
   }
 
   return result;
