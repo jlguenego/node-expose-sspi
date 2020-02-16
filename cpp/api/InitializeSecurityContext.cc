@@ -104,22 +104,7 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo &info) {
   free(buffer);
 
   if (secStatus < SEC_E_OK) {
-    std::string message;
-    switch (secStatus) {
-      case SEC_E_INVALID_HANDLE:
-        message =
-            "Cannot InitializeSecurityContext: secStatus = "
-            "SEC_E_INVALID_HANDLE";
-        break;
-      case SEC_E_INVALID_TOKEN:
-        message =
-            "Cannot InitializeSecurityContext: secStatus = SEC_E_INVALID_TOKEN";
-        break;
-      default:
-        message = plf::string_format(
-            "Cannot InitializeSecurityContext: secStatus = 0x%08x", secStatus);
-    }
-    throw Napi::Error::New(env, message);
+    throw Napi::Error::New(env, "Cannot InitializeSecurityContext: secStatus = " + plf::error_msg(secStatus));
   }
 
   return result;
