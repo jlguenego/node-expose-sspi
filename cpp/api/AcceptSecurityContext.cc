@@ -56,6 +56,7 @@ Napi::Value e_AcceptSecurityContext(const Napi::CallbackInfo& info) {
   Napi::Object result = Napi::Object::New(env);
   result["contextHandle"] =
       Napi::String::New(env, SecHandleUtil::serialize(serverContextHandle));
+  result["contextAttr"] = setFlags(env, ASC_RET_FLAGS, ulServerContextAttr);
 
   switch (secStatus) {
     case SEC_I_CONTINUE_NEEDED:

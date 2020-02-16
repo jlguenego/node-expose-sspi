@@ -146,4 +146,9 @@ int64_t getFlags(Napi::Env env, int context, Napi::Object input, std::string val
   return flags;
 }
 
+Napi::Array setFlags(Napi::Env env, int context, int64_t flags) {
+  Napi::Array result = Napi::Array::New(env);
+  return result;
+}
+
 }  // namespace myAddon
