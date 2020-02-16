@@ -1,5 +1,6 @@
 import { AscReqFlag } from "./AscReqFlag";
 import { ExtendedNameFormatFlag } from "./ExtendedNameFormatFlag";
+import { AccessTokenFlag } from "./AccessTokenFlag";
 
 export as namespace SSPI;
 
@@ -74,11 +75,11 @@ export function ImpersonateSecurityContext(handle: SSPI.CtxtHandle): void;
 export function RevertSecurityContext(handle: SSPI.CtxtHandle): void;
 export function GetUserName(): string;
 export function GetUserNameEx(extendedNameFormat: ExtendedNameFormatFlag): string;
-export function OpenThreadToken(flags?: string[]): SSPI.Token;
-export function OpenProcessToken(flags?: string[]): SSPI.Token;
+export function OpenThreadToken(flags?: AccessTokenFlag[]): Token;
+export function OpenProcessToken(flags?: AccessTokenFlag[]): Token;
 export function GetTokenInformation(
   token: SSPI.Token,
-  infoClass: SSPI.InformationClass
+  infoClass: InformationClass
 ): any;
 export function CloseHandle(handle: SSPI.HANDLE): void;
 export function LookupAccountName(username: string): SSPI.SidObject;
