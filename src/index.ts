@@ -3,7 +3,7 @@ import { auth } from "./auth";
 import { connect } from "./connect";
 import { getDefaultDomain } from "./getDefaultDomain";
 
-export const sso = {
+export {
   auth,
   connect,
   createSSO,

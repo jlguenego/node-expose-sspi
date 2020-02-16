@@ -1,11 +1,12 @@
 const express = require("express");
-const sspi = require("..");
+const { sso, sspi } = require("..");
+console.log('sso: ', sso);
 
 // global.debug = true;
 
 const app = express();
 
-app.use(sspi.ssoAuth());
+app.use(sso.auth());
 
 app.use((req, res, next) => {
   res.json({
