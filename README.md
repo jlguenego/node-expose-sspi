@@ -15,7 +15,7 @@ Just do:
 npm i node-expose-sspi
 ```
 
-Note: There is a prebuilt binary that will be installed (Node addon).
+Note: There is a prebuilt binary node addon that will be installed.
 
 ## Usage
 
@@ -32,14 +32,14 @@ npm i node-expose-sspi
 Make an express web server by doing the `server.js` file:
 
 ```js
-const express = require("express");
-const sspi = require("node-expose-sspi");
+import express = require("express");
+import { sso } from "node-expose-sspi";
 
 // global.debug = true;
 
 const app = express();
 
-app.use(sspi.ssoAuth());
+app.use(sso.auth());
 
 app.use((req, res, next) => {
   res.json({
@@ -47,14 +47,14 @@ app.use((req, res, next) => {
   });
 });
 
-app.listen(3000, () => console.log("Server started on port 3000"));
+app.listen(3001, () => console.log("Server started on port 3001"));
 ```
 
 ```
 node server.js
 ```
 
-Open a web browser and go to `http://localhost:3000`
+Open a web browser and go to `http://localhost:3001`
 
 #### Typescript
 
@@ -184,8 +184,8 @@ npm install --global windows-build-tools
 
 ## TODO
 
-- Rewrite the javascript function in typescript for better maintenance.
-
+- Check that there is no memory leak.
+- Typing flags
 
 ## Author
 
