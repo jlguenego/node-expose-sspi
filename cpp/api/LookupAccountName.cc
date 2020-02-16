@@ -24,9 +24,7 @@ Napi::Value e_LookupAccountName(const Napi::CallbackInfo& info) {
                                   /* ReferencedDomainName */ NULL,
                                   &cchReferencedDomainName, &eUse);
   if (status == FALSE && GetLastError() != ERROR_INSUFFICIENT_BUFFER) {
-    std::string msg =
-        plf::string_format("LookupAccountName: error 0x%08x", GetLastError());
-    throw Napi::Error::New(env, msg);
+    throw Napi::Error::New(env, "LookupAccountName: error = " + plf::error_msg());
   }
 
   BYTE* pSid = new BYTE[cbSid];
@@ -39,9 +37,7 @@ Napi::Value e_LookupAccountName(const Napi::CallbackInfo& info) {
   if (status == FALSE) {
     delete pSid;
     delete ReferencedDomainName;
-    std::string msg =
-        plf::string_format("LookupAccountName: error 0x%08x", GetLastError());
-    throw Napi::Error::New(env, msg);
+    throw Napi::Error::New(env, "LookupAccountName: error = " + plf::error_msg());
   }
 
   Napi::Object result = Napi::Object::New(env);
