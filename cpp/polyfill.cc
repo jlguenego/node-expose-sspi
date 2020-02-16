@@ -1,12 +1,6 @@
 #include "polyfill.h"
 
-#include <stdarg.h>  // For va_start, etc.
-#include <memory>    // For std::unique_ptr
 
-#include <windows.h>
-#include <stdio.h>
-
-#include <iostream>
 
 namespace plf {
 
@@ -33,8 +27,10 @@ std::string string_format(const std::string fmt_str, ...) {
   return std::string(formatted.get());
 }
 
-std::string error_msg() {
-  DWORD code = GetLastError();
+std::string error_msg(DWORD code) {
+  if (code == 0) {
+    code = GetLastError();
+  }
   char buffer[512];  // Buffer for text.
 
   DWORD dwChars =

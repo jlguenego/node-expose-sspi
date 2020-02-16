@@ -25,8 +25,8 @@ Napi::Value e_AcceptSecurityContext(const Napi::CallbackInfo& info) {
   DWORD fContextReq =
       getFlags(env, ASC_REQ_FLAGS, input, "contextReq", ASC_REQ_CONNECTION);
 
-  DWORD targetDataRep =
-      getFlag(env, SECURITY_DREP_FLAGS, input, "targetDataRep", SECURITY_NATIVE_DREP);
+  DWORD targetDataRep = getFlag(env, SECURITY_DREP_FLAGS, input,
+                                "targetDataRep", SECURITY_NATIVE_DREP);
 
   BYTE buffer[cbMaxMessage];
   SecBuffer secBuffer;
@@ -86,9 +86,8 @@ Napi::Value e_AcceptSecurityContext(const Napi::CallbackInfo& info) {
         break;
     }
     throw Napi::Error::New(
-        env, plf::string_format(
-                 "AcceptSecurityContext: SECURITY_STATUS incorrect (<0): %s",
-                 secStatusStr.c_str()));
+        env, "AcceptSecurityContext: SECURITY_STATUS incorrect (<0): " +
+                 plf::error_msg(secStatus));
   }
 
   return result;
