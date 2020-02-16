@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.11](https://github.com/jlguenego/node-expose-sspi/compare/v0.0.10...v0.0.11) (2020-02-16)
+
+
+### Bug Fixes
+
+* refactor library in ts ([a8d7c5d](https://github.com/jlguenego/node-expose-sspi/commit/a8d7c5d602ad674cd5e898f3fc0577e7f2f742d4))
+
 ### [0.0.10](https://github.com/jlguenego/node-expose-sspi/compare/v0.0.9...v0.0.10) (2020-02-14)
 
 
