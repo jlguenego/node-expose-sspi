@@ -1,3 +1,5 @@
+import { AscReqFlag } from "./AscReqFlag";
+
 export as namespace SSPI;
 
 interface CtxtHandle {}
@@ -46,8 +48,6 @@ interface InitializeSecurityContextInput {
   contextHandle?: CtxtHandle;
 }
 
-type AscReqFlag = string;
-
 interface AcceptSecurityContextInput {
   credential: CredHandle;
   clientSecurityContext: SecurityContext;
@@ -62,8 +62,12 @@ export function AcquireCredentialsHandle(input: {
   packageName: string;
   authData?: UserCredential;
 }): SSPI.CredentialWithExpiry;
-export function InitializeSecurityContext(input: InitializeSecurityContextInput): SSPI.SecurityContext;
-export function AcceptSecurityContext(input: AcceptSecurityContextInput): SSPI.SecurityContext;
+export function InitializeSecurityContext(
+  input: InitializeSecurityContextInput
+): SSPI.SecurityContext;
+export function AcceptSecurityContext(
+  input: AcceptSecurityContextInput
+): SSPI.SecurityContext;
 export function FreeCredentialsHandle(credentials: string): void;
 export function ImpersonateSecurityContext(handle: SSPI.CtxtHandle): void;
 export function RevertSecurityContext(handle: SSPI.CtxtHandle): void;
@@ -85,6 +89,7 @@ export function QueryContextAttributes(
   ctxtHandle: SSPI.CtxtHandle,
   attribute: string
 ): any;
-export function QuerySecurityContextToken(ctxtHandle: SSPI.CtxtHandle): SSPI.Token;
+export function QuerySecurityContextToken(
+  ctxtHandle: SSPI.CtxtHandle
+): SSPI.Token;
 export function DeleteSecurityContext(ctxtHandle: SSPI.CtxtHandle): void;
-

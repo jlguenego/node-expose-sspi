@@ -13,9 +13,9 @@
 
 #define FLAG_INSERT(map, flag) map[flag] = #flag
 
-std::map<int, std::string> extendedNameFormatMap;
-std::map<int, std::string> accessTokenFlagsMap;
-std::map<int, std::string> AscReqMap;
+std::map<int64_t, std::string> extendedNameFormatMap;
+std::map<int64_t, std::string> accessTokenFlagsMap;
+std::map<int64_t, std::string> AscReqMap;
 
 void init() {
   FLAG_INSERT(extendedNameFormatMap, NameUnknown);
@@ -76,7 +76,7 @@ void init() {
 
 namespace myAddon {
 
-int getFlagValue(Napi::Env env, int context, std::string str) {
+int64_t getFlagValue(Napi::Env env, int context, std::string str) {
   static bool initiated = false;
   if (!initiated) {
     init();
@@ -95,7 +95,7 @@ int getFlagValue(Napi::Env env, int context, std::string str) {
   throw Napi::Error::New(env, "Flag unknown: " + str);
 }
 
-int getFlags(Napi::Env env, int context, Napi::Object input, std::string value, int defaultFlags) {
+int64_t getFlags(Napi::Env env, int context, Napi::Object input, std::string value, int64_t defaultFlags) {
   if (!input.Has(value)) {
     return defaultFlags;
   }

@@ -8,7 +8,7 @@
 
 namespace myAddon {
 
-int getFlagValue(Napi::Env env, int context, std::string str);
-int getFlags(Napi::Env env, int context, Napi::Object input, std::string value, int defaultFlags = 0);
+int64_t getFlagValue(Napi::Env env, int context, std::string str);
+int64_t getFlags(Napi::Env env, int context, Napi::Object input, std::string value, int64_t defaultFlags = 0);
 
 }  // namespace myAddon
