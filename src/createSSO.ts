@@ -1,18 +1,6 @@
 import { printHexDump, trace } from "./misc";
 import sspi = require("../lib/sspi");
-
-export interface SSO {
-  user?: User;
-  owner?: User;
-}
-
-export interface User {
-  name?: string;
-  sid?: string;
-  displayName?: string;
-  domain?: string;
-  groups?: string[];
-}
+import { SSO } from "./SSO";
 
 export const createSSO = serverContextHandle => {
   const sso: SSO = {};
@@ -71,4 +59,3 @@ export const createSSO = serverContextHandle => {
   } catch (e) {}
   return sso;
 };
-

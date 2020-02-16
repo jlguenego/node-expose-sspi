@@ -3,8 +3,9 @@ const { decode, encode } = require("base64-arraybuffer");
 import { printHexDump, trace } from "./misc";
 import sspi = require("../lib/sspi");
 import { createSSO } from "./createSSO";
+import { RequestHandler } from 'express';
 
-export const auth = () => {
+export const auth: () => RequestHandler = () => {
   const { credential, tsExpiry } = sspi.AcquireCredentialsHandle({
     packageName: "Negotiate"
   });
@@ -28,11 +29,11 @@ export const auth = () => {
         return next(createError(400, `Malformed authentication token ${auth}`));
       }
 
-      req.auth = req.auth || {};
-      req.auth.token = auth.substring("Negotiate ".length);
-      const protocol = req.auth.token.startsWith("YII") ? "Kerberos" : "NTLM";
+      
+      const token = auth.substring("Negotiate ".length);
+      const protocol = token.startsWith("YII") ? "Kerberos" : "NTLM";
       trace("SPNEGO token: " + protocol);
-      const buffer = decode(req.auth.token);
+      const buffer = decode(token);
 
       const input: sspi.AcceptSecurityContextInput = {
         credential,
