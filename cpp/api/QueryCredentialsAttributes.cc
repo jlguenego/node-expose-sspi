@@ -25,9 +25,7 @@ Napi::Value e_QueryCredentialsAttributes(const Napi::CallbackInfo& info) {
         QueryCredentialsAttributes(&cred, SECPKG_CRED_ATTR_NAMES, &credNames);
 
     if (secStatus != SEC_E_OK) {
-      std::string message = plf::string_format(
-          "Cannot QueryCredentialsAttributes: secStatus = 0x%08x", secStatus);
-      throw Napi::Error::New(env, message);
+      throw Napi::Error::New(env, "Cannot QueryCredentialsAttributes: secStatus = " + plf::error_msg(secStatus));
     }
 
     Napi::Object result = Napi::Object::New(env);
