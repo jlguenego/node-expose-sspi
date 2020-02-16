@@ -25,6 +25,9 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo &info) {
   DWORD fContextReq =
       getFlags(env, ISC_REQ_FLAGS, input, "contextReq", ISC_REQ_CONNECTION);
 
+  DWORD targetDataRep = getFlag(env, SECURITY_DREP_FLAGS, input,
+                                 "targetDataRep", SECURITY_NATIVE_DREP);
+
   unsigned int cbMaxToken = 48256;
   if (input.Has("cbMaxToken")) {
     cbMaxToken = input.Get("cbMaxToken").As<Napi::Number>().Uint32Value();
@@ -71,7 +74,7 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo &info) {
 
   SECURITY_STATUS secStatus = InitializeSecurityContext(
       &cred, (isFirstCall) ? NULL : (&clientContextHandle), packageName,
-      fContextReq, RESERVED, SECURITY_NATIVE_DREP, pInput, RESERVED,
+      fContextReq, RESERVED, targetDataRep, pInput, RESERVED,
       &clientContextHandle, &fromClientSecBufferDesc, &ulContextAttr,
       &tsExpiry);
 
@@ -80,7 +83,6 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo &info) {
   result["contextHandle"] =
       Napi::String::New(env, SecHandleUtil::serialize(clientContextHandle));
   result["contextAttr"] = setFlags(env, ISC_RET_FLAGS, ulContextAttr);
-      
 
   switch (secStatus) {
     case SEC_I_CONTINUE_NEEDED:

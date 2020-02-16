@@ -24,7 +24,8 @@ console.log("serverCred: ", serverCred);
 const input = {
   credential: clientCred.credential,
   targetName: "kiki",
-  cbMaxToken: packageInfo.cbMaxToken
+  cbMaxToken: packageInfo.cbMaxToken,
+  targetDataRep: "SECURITY_NATIVE_DREP"
 };
 console.log("input: ", input);
 const clientSecurityContext = sspi.InitializeSecurityContext(input);
