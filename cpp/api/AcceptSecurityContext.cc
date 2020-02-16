@@ -6,10 +6,11 @@ Napi::Value e_AcceptSecurityContext(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
 
   if (info.Length() < 1) {
-    throw Napi::Error::New(env,
-                           "AcceptSecurityContext: Wrong number of arguments. "
-                           "AcceptSecurityContext({ credential, "
-                           "clientSecurityContext, contextHandle })");
+    throw Napi::Error::New(
+        env,
+        "AcceptSecurityContext: Wrong number of arguments. "
+        "AcceptSecurityContext({ credential, contextReq?: AscReqFlag[],"
+        "clientSecurityContext, contextHandle })");
   }
 
   Napi::Object input = info[0].As<Napi::Object>();
@@ -21,7 +22,8 @@ Napi::Value e_AcceptSecurityContext(const Napi::CallbackInfo& info) {
   PSecBufferDesc pInput = JS::initSecBufferDesc(
       clientSecurityContext.Get("SecBufferDesc").As<Napi::Object>());
 
-  DWORD fContextReq = getFlags(env, ASC_REQ_FLAGS, input, "contextReq", ASC_REQ_CONNECTION);
+  DWORD fContextReq =
+      getFlags(env, ASC_REQ_FLAGS, input, "contextReq", ASC_REQ_CONNECTION);
 
   BYTE buffer[cbMaxMessage];
   SecBuffer secBuffer;
@@ -47,9 +49,9 @@ Napi::Value e_AcceptSecurityContext(const Napi::CallbackInfo& info) {
   ULONG ulServerContextAttr;
   TimeStamp tsExpiry;
   SECURITY_STATUS secStatus = AcceptSecurityContext(
-      &cred, isFirstCall ? NULL : &serverContextHandle, pInput,
-      fContextReq, SECURITY_NATIVE_DREP, &serverContextHandle,
-      &fromServerSecBufferDesc, &ulServerContextAttr, &tsExpiry);
+      &cred, isFirstCall ? NULL : &serverContextHandle, pInput, fContextReq,
+      SECURITY_NATIVE_DREP, &serverContextHandle, &fromServerSecBufferDesc,
+      &ulServerContextAttr, &tsExpiry);
 
   Napi::Object result = Napi::Object::New(env);
   result["contextHandle"] =

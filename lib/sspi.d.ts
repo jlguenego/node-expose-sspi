@@ -1,4 +1,5 @@
 import { AscReqFlag } from "./AscReqFlag";
+import { IscReqFlag } from "./IscReqFlag";
 import { ExtendedNameFormatFlag } from "./ExtendedNameFormatFlag";
 import { AccessTokenFlag } from "./AccessTokenFlag";
 
@@ -48,6 +49,7 @@ interface InitializeSecurityContextInput {
   cbMaxToken?: number;
   serverSecurityContext?: SecurityContext;
   contextHandle?: CtxtHandle;
+  contextReq?: IscReqFlag[];
 }
 
 interface AcceptSecurityContextInput {

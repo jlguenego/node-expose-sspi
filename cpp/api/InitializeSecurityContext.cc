@@ -10,7 +10,7 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo &info) {
         env,
         "InitializeSecurityContext: Wrong number of arguments. "
         "InitializeSecurityContext({ credential: string, targetName: string, "
-        "cbMaxToken?: number, "
+        "cbMaxToken?: number, contextReq?: IscReqFlag[],"
         "contextHandle, "
         "serverSecurityContext?: Object })");
   }
@@ -21,6 +21,9 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo &info) {
 
   std::u16string wstr = input.Get("targetName").As<Napi::String>();
   LPWSTR packageName = (LPWSTR)wstr.c_str();
+
+  DWORD fContextReq =
+      getFlags(env, ISC_REQ_FLAGS, input, "contextReq", ISC_REQ_CONNECTION);
 
   unsigned int cbMaxToken = 48256;
   if (input.Has("cbMaxToken")) {
@@ -68,7 +71,7 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo &info) {
 
   SECURITY_STATUS secStatus = InitializeSecurityContext(
       &cred, (isFirstCall) ? NULL : (&clientContextHandle), packageName,
-      ISC_REQ_CONNECTION, RESERVED, SECURITY_NATIVE_DREP, pInput, RESERVED,
+      fContextReq, RESERVED, SECURITY_NATIVE_DREP, pInput, RESERVED,
       &clientContextHandle, &fromClientSecBufferDesc, &ulContextAttr,
       &tsExpiry);
 

@@ -5,6 +5,7 @@
 #define GETFLAG_EXTENDED_NAME_FORMAT 0
 #define ACCESS_TOKEN_FLAGS 1
 #define ASC_REQ_FLAGS 2
+#define ISC_REQ_FLAGS 3
 
 namespace myAddon {
 

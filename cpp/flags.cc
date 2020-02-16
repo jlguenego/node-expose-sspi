@@ -16,6 +16,7 @@
 std::map<int64_t, std::string> extendedNameFormatMap;
 std::map<int64_t, std::string> accessTokenFlagsMap;
 std::map<int64_t, std::string> AscReqMap;
+std::map<int64_t, std::string> IscReqMap;
 
 void init() {
   FLAG_INSERT(extendedNameFormatMap, NameUnknown);
@@ -72,6 +73,35 @@ void init() {
   FLAG_INSERT(AscReqMap, ASC_REQ_PROXY_BINDINGS);
   FLAG_INSERT(AscReqMap, ASC_REQ_ALLOW_MISSING_BINDINGS);
   FLAG_INSERT(AscReqMap, ASC_REQ_MESSAGES);
+
+  FLAG_INSERT(IscReqMap, ISC_REQ_DELEGATE);
+  FLAG_INSERT(IscReqMap, ISC_REQ_MUTUAL_AUTH);
+  FLAG_INSERT(IscReqMap, ISC_REQ_REPLAY_DETECT);
+  FLAG_INSERT(IscReqMap, ISC_REQ_SEQUENCE_DETECT);
+  FLAG_INSERT(IscReqMap, ISC_REQ_CONFIDENTIALITY);
+  FLAG_INSERT(IscReqMap, ISC_REQ_USE_SESSION_KEY);
+  FLAG_INSERT(IscReqMap, ISC_REQ_PROMPT_FOR_CREDS);
+  FLAG_INSERT(IscReqMap, ISC_REQ_USE_SUPPLIED_CREDS);
+  FLAG_INSERT(IscReqMap, ISC_REQ_ALLOCATE_MEMORY);
+  FLAG_INSERT(IscReqMap, ISC_REQ_USE_DCE_STYLE);
+  FLAG_INSERT(IscReqMap, ISC_REQ_DATAGRAM);
+  FLAG_INSERT(IscReqMap, ISC_REQ_CONNECTION);
+  FLAG_INSERT(IscReqMap, ISC_REQ_CALL_LEVEL);
+  FLAG_INSERT(IscReqMap, ISC_REQ_FRAGMENT_SUPPLIED);
+  FLAG_INSERT(IscReqMap, ISC_REQ_EXTENDED_ERROR);
+  FLAG_INSERT(IscReqMap, ISC_REQ_STREAM);
+  FLAG_INSERT(IscReqMap, ISC_REQ_INTEGRITY);
+  FLAG_INSERT(IscReqMap, ISC_REQ_IDENTIFY);
+  FLAG_INSERT(IscReqMap, ISC_REQ_NULL_SESSION);
+  FLAG_INSERT(IscReqMap, ISC_REQ_MANUAL_CRED_VALIDATION);
+  FLAG_INSERT(IscReqMap, ISC_REQ_RESERVED1);
+  FLAG_INSERT(IscReqMap, ISC_REQ_FRAGMENT_TO_FIT);
+  FLAG_INSERT(IscReqMap, ISC_REQ_FORWARD_CREDENTIALS);
+  FLAG_INSERT(IscReqMap, ISC_REQ_NO_INTEGRITY);
+  FLAG_INSERT(IscReqMap, ISC_REQ_USE_HTTP_STYLE);
+  FLAG_INSERT(IscReqMap, ISC_REQ_UNVERIFIED_TARGET_NAME);
+  FLAG_INSERT(IscReqMap, ISC_REQ_CONFIDENTIALITY_ONLY);
+  FLAG_INSERT(IscReqMap, ISC_REQ_MESSAGES);
 }
 
 namespace myAddon {
@@ -90,6 +120,9 @@ int64_t getFlagValue(Napi::Env env, int context, std::string str) {
       break;
     case ASC_REQ_FLAGS:
       FIND_FLAG_VALUE(AscReqMap, str);
+      break;
+    case ISC_REQ_FLAGS:
+      FIND_FLAG_VALUE(IscReqMap, str);
       break;
   }
   throw Napi::Error::New(env, "Flag unknown: " + str);
