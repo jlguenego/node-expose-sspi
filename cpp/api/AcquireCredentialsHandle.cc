@@ -55,11 +55,14 @@ Napi::Value e_AcquireCredentialsHandle(const Napi::CallbackInfo &info) {
     authData.Flags = SEC_WINNT_AUTH_IDENTITY_UNICODE;
   }
 
+  DWORD fCredentialUse = getFlag(env, CREDENTIAL_USE_FLAG, input,
+                                 "credentialUse", SECPKG_CRED_BOTH);
+
   CredHandle credHandle = {0, 0};
   TimeStamp tsExpiry;
 
   SECURITY_STATUS secStatus = AcquireCredentialsHandle(
-      NULL, (LPWSTR)packageName.c_str(), SECPKG_CRED_BOTH, NULL,
+      NULL, (LPWSTR)packageName.c_str(), fCredentialUse, NULL,
       isBasicAuth ? &authData : NULL, RESERVED, RESERVED, &credHandle,
       &tsExpiry);
   if (secStatus != SEC_E_OK) {

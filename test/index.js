@@ -14,11 +14,13 @@ const clientCred = sspi.AcquireCredentialsHandle({
     domain: "CHOUCHOU",
     user: "jlouis",
     password: "toto"
-  }
+  },
+  credentialUse: "SECPKG_CRED_OUTBOUND"
 });
 console.log("clientCred: ", clientCred);
 const serverCred = sspi.AcquireCredentialsHandle({
-  packageName: "Negotiate"
+  packageName: "Negotiate",
+  credentialUse: "SECPKG_CRED_INBOUND"
 });
 console.log("serverCred: ", serverCred);
 const input = {

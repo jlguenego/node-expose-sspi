@@ -19,6 +19,7 @@ flagmap AscRetMap;
 flagmap IscReqMap;
 flagmap IscRetMap;
 flagmap TargetDataRepMap;
+flagmap CredentialUseMap;
 
 std::map<int64_t, flagmap *> contextMap;
 
@@ -32,6 +33,7 @@ void initFlags() {
   contextMap[ASC_RET_FLAGS] = &AscRetMap;
   contextMap[ISC_RET_FLAGS] = &IscRetMap;
   contextMap[SECURITY_DREP_FLAGS] = &TargetDataRepMap;
+  contextMap[CREDENTIAL_USE_FLAG] = &CredentialUseMap;
 
   FLAG_INSERT(extendedNameFormatMap, NameUnknown);
   FLAG_INSERT(extendedNameFormatMap, NameFullyQualifiedDN);
@@ -174,6 +176,13 @@ void initFlags() {
 
   FLAG_INSERT(TargetDataRepMap, SECURITY_NATIVE_DREP);
   FLAG_INSERT(TargetDataRepMap, SECURITY_NETWORK_DREP);
+
+  FLAG_INSERT(CredentialUseMap, SECPKG_CRED_INBOUND);
+  FLAG_INSERT(CredentialUseMap, SECPKG_CRED_OUTBOUND);
+  FLAG_INSERT(CredentialUseMap, SECPKG_CRED_BOTH);
+  FLAG_INSERT(CredentialUseMap, SECPKG_CRED_DEFAULT);
+  FLAG_INSERT(CredentialUseMap, SECPKG_CRED_RESERVED);
+
 }
 
 int64_t getFlagValue(Napi::Env env, int context, std::string str) {

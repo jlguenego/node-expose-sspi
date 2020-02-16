@@ -4,6 +4,7 @@ import { AscRetFlag } from "./flags/AscRetFlag";
 import { ExtendedNameFormatFlag } from "./flags/ExtendedNameFormatFlag";
 import { AccessTokenFlag } from "./flags/AccessTokenFlag";
 import { TargetDataRepMapFlag } from "./flags/TargetDataRepMapFlag";
+import { CredentialUseFlag } from "./flags/CredentialUseFlag";
 
 export as namespace SSPI;
 
@@ -72,6 +73,7 @@ export function QuerySecurityPackageInfo(packageName: string): SSPI.SecPkgInfo;
 export function AcquireCredentialsHandle(input: {
   packageName: string;
   authData?: UserCredential;
+  credentialUse?: CredentialUseFlag;
 }): SSPI.CredentialWithExpiry;
 export function InitializeSecurityContext(
   input: InitializeSecurityContextInput

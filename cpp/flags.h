@@ -9,6 +9,7 @@
 #define ASC_RET_FLAGS 4
 #define ISC_RET_FLAGS 5
 #define SECURITY_DREP_FLAGS 6
+#define CREDENTIAL_USE_FLAG 7
 
 namespace myAddon {
 
