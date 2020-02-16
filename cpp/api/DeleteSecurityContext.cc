@@ -16,9 +16,7 @@ void e_DeleteSecurityContext(const Napi::CallbackInfo& info) {
 
   SECURITY_STATUS secStatus = DeleteSecurityContext(&serverContextHandle);
   if (secStatus != SEC_E_OK) {
-    std::string message = plf::string_format(
-        "Cannot DeleteSecurityContext: secStatus = 0x%08x", secStatus);
-    throw Napi::Error::New(env, message);
+    throw Napi::Error::New(env, "Cannot DeleteSecurityContext: secStatus: " + plf::error_msg(secStatus));
   }
 }
 
