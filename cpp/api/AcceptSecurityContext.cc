@@ -21,6 +21,8 @@ Napi::Value e_AcceptSecurityContext(const Napi::CallbackInfo& info) {
   PSecBufferDesc pInput = JS::initSecBufferDesc(
       clientSecurityContext.Get("SecBufferDesc").As<Napi::Object>());
 
+  DWORD fContextReq = getFlags(env, ASC_REQ_FLAGS, input, "contextReq", ASC_REQ_CONNECTION);
+
   BYTE buffer[cbMaxMessage];
   SecBuffer secBuffer;
   secBuffer.cbBuffer = cbMaxMessage;
@@ -46,7 +48,7 @@ Napi::Value e_AcceptSecurityContext(const Napi::CallbackInfo& info) {
   TimeStamp tsExpiry;
   SECURITY_STATUS secStatus = AcceptSecurityContext(
       &cred, isFirstCall ? NULL : &serverContextHandle, pInput,
-      ASC_REQ_CONNECTION, SECURITY_NATIVE_DREP, &serverContextHandle,
+      fContextReq, SECURITY_NATIVE_DREP, &serverContextHandle,
       &fromServerSecBufferDesc, &ulServerContextAttr, &tsExpiry);
 
   Napi::Object result = Napi::Object::New(env);

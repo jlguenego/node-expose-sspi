@@ -46,10 +46,13 @@ interface InitializeSecurityContextInput {
   contextHandle?: CtxtHandle;
 }
 
+type AscReqFlag = string;
+
 interface AcceptSecurityContextInput {
   credential: CredHandle;
   clientSecurityContext: SecurityContext;
   contextHandle?: CtxtHandle;
+  contextReq?: AscReqFlag[];
 }
 
 export function hello(): string;

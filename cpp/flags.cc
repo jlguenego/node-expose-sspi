@@ -15,6 +15,7 @@
 
 std::map<int, std::string> extendedNameFormatMap;
 std::map<int, std::string> accessTokenFlagsMap;
+std::map<int, std::string> AscReqMap;
 
 void init() {
   FLAG_INSERT(extendedNameFormatMap, NameUnknown);
@@ -44,6 +45,29 @@ void init() {
   FLAG_INSERT(accessTokenFlagsMap, TOKEN_READ);
   FLAG_INSERT(accessTokenFlagsMap, TOKEN_WRITE);
   FLAG_INSERT(accessTokenFlagsMap, TOKEN_ALL_ACCESS);
+
+  FLAG_INSERT(AscReqMap, ASC_REQ_DELEGATE);
+  FLAG_INSERT(AscReqMap, ASC_REQ_MUTUAL_AUTH);
+  FLAG_INSERT(AscReqMap, ASC_REQ_REPLAY_DETECT);
+  FLAG_INSERT(AscReqMap, ASC_REQ_SEQUENCE_DETECT);
+  FLAG_INSERT(AscReqMap, ASC_REQ_CONFIDENTIALITY);
+  FLAG_INSERT(AscReqMap, ASC_REQ_USE_SESSION_KEY);
+  FLAG_INSERT(AscReqMap, ASC_REQ_SESSION_TICKET);
+  FLAG_INSERT(AscReqMap, ASC_REQ_ALLOCATE_MEMORY);
+  FLAG_INSERT(AscReqMap, ASC_REQ_USE_DCE_STYLE);
+  FLAG_INSERT(AscReqMap, ASC_REQ_DATAGRAM);
+  FLAG_INSERT(AscReqMap, ASC_REQ_CONNECTION);
+  FLAG_INSERT(AscReqMap, ASC_REQ_CALL_LEVEL);
+  FLAG_INSERT(AscReqMap, ASC_REQ_FRAGMENT_SUPPLIED);
+  FLAG_INSERT(AscReqMap, ASC_REQ_EXTENDED_ERROR);
+  FLAG_INSERT(AscReqMap, ASC_REQ_STREAM);
+  FLAG_INSERT(AscReqMap, ASC_REQ_INTEGRITY);
+  FLAG_INSERT(AscReqMap, ASC_REQ_LICENSING);
+  FLAG_INSERT(AscReqMap, ASC_REQ_IDENTIFY);
+  FLAG_INSERT(AscReqMap, ASC_REQ_ALLOW_NULL_SESSION);
+  FLAG_INSERT(AscReqMap, ASC_REQ_ALLOW_NON_USER_LOGONS);
+  FLAG_INSERT(AscReqMap, ASC_REQ_ALLOW_CONTEXT_REPLAY);
+  FLAG_INSERT(AscReqMap, ASC_REQ_FRAGMENT_TO_FIT);
 }
 
 namespace myAddon {
@@ -60,8 +84,29 @@ int getFlagValue(Napi::Env env, int context, std::string str) {
     case ACCESS_TOKEN_FLAGS:
       FIND_FLAG_VALUE(accessTokenFlagsMap, str);
       break;
+    case ASC_REQ_FLAGS:
+      FIND_FLAG_VALUE(AscReqMap, str);
+      break;
   }
   throw Napi::Error::New(env, "Flag unknown: " + str);
+}
+
+int getFlags(Napi::Env env, int context, Napi::Object input, std::string value, int defaultFlags) {
+  if (!input.Has(value)) {
+    return defaultFlags;
+  }
+  Napi::Value val = input.Get(value);
+  if (!val.IsArray()) {
+    throw Napi::Error::New(env, value + " must be a flag string array.");
+  }
+  Napi::Array flagArray = val.As<Napi::Array>();
+  DWORD flags = 0;
+  for (uint32_t i = 0; i < flagArray.Length(); i++) {
+    std::string flagStr = flagArray.Get(i).As<Napi::String>();
+    DWORD flag = getFlagValue(env, context, flagStr);
+    flags |= flag;
+  }
+  return flags;
 }
 
 }  // namespace myAddon
