@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.12](https://github.com/jlguenego/node-expose-sspi/compare/v0.0.11...v0.0.12) (2020-02-16)
+
+
+### Features
+
+* add access token flags in ts ([3204732](https://github.com/jlguenego/node-expose-sspi/commit/3204732c649cd1465b39ffacfc44aa4431c9c2e3))
+* added extended name format flag ([2d532cd](https://github.com/jlguenego/node-expose-sspi/commit/2d532cd1db37b112919278a91be1251da99812f9))
+* added flag to acceptSecurityContext ([9fc1160](https://github.com/jlguenego/node-expose-sspi/commit/9fc1160dee20294a8dc01fad9cac68c45d738567))
+* added flags for targetDataRep ([2b4bc92](https://github.com/jlguenego/node-expose-sspi/commit/2b4bc92c0c834411d5f8bc720b7737e6bce4df3f))
+* added IscReqFlag ([9e9aba4](https://github.com/jlguenego/node-expose-sspi/commit/9e9aba41ef069a800219c13c02e40007e31fbbd9))
+* added secStatus error msg ([245fb45](https://github.com/jlguenego/node-expose-sspi/commit/245fb451fc5355c534993f35a16c95e6e9071895))
+
+
+### Bug Fixes
+
+* added flags for credentialUse ([9c4e6f2](https://github.com/jlguenego/node-expose-sspi/commit/9c4e6f21a1e4842864b462cb727d1aede5f284ab))
+* added setFlags utility to return flags ([775e90c](https://github.com/jlguenego/node-expose-sspi/commit/775e90caef292b5be07eaa8eef059863bb1c4ba5))
+* added targetDataRep for ISC ([d7ee57f](https://github.com/jlguenego/node-expose-sspi/commit/d7ee57fd0aa4a851a7675e2c38958a0b928000b2))
+* added typings on auth() ([18f0379](https://github.com/jlguenego/node-expose-sspi/commit/18f03793f54dbe5ca0231871ffa105c657f657ee))
+* int64_t flags ([b918ca5](https://github.com/jlguenego/node-expose-sspi/commit/b918ca52b50d1b0675699a283de4990b96cc76bc))
+
 ### [0.0.11](https://github.com/jlguenego/node-expose-sspi/compare/v0.0.10...v0.0.11) (2020-02-16)
 
 
