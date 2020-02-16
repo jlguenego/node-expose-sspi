@@ -1,5 +1,5 @@
-import { sspi } from "..";
-import { printHexDump } from "../src/misc";
+import { sspi } from "../..";
+import { printHexDump } from "../../src/misc";
 
 const result = sspi.hello();
 console.log("result: ", result);

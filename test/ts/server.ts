@@ -1,5 +1,5 @@
 import express = require("express");
-import { sso } from "..";
+import { sso } from "../..";
 
 // global.debug = true;
 
