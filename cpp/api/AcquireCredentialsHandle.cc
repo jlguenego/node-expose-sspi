@@ -66,8 +66,8 @@ Napi::Value e_AcquireCredentialsHandle(const Napi::CallbackInfo &info) {
       isBasicAuth ? &authData : NULL, RESERVED, RESERVED, &credHandle,
       &tsExpiry);
   if (secStatus != SEC_E_OK) {
-    throw Napi::Error::New(env, "Cannot FreeContextBuffer: secStatus = " +
-                                    std::to_string(secStatus));
+    throw Napi::Error::New(env, "Cannot AcquireCredentialsHandle: secStatus = " +
+                                    plf::error_msg(secStatus));
   }
 
   Napi::Object result = Napi::Object::New(env);

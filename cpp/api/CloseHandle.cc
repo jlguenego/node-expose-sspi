@@ -22,12 +22,7 @@ void e_CloseHandle(const Napi::CallbackInfo& info) {
 
   BOOL status = CloseHandle(handle);
   if (status == FALSE) {
-    if (GetLastError() == ERROR_INVALID_HANDLE) {
-      throw Napi::Error::New(env, "Cannot CloseHandle: error invalid handle");
-    }
-    std::string message = plf::string_format(
-        "Cannot CloseHandle: error = 0x%08x", GetLastError());
-    throw Napi::Error::New(env, message);
+    throw Napi::Error::New(env, "CloseHandle: error: " + plf::error_msg());
   }
 }
 
