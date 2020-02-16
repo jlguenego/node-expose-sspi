@@ -20,7 +20,7 @@ void e_ImpersonateSecurityContext(const Napi::CallbackInfo &info) {
   if (secStatus != SEC_E_OK) {
     throw Napi::Error::New(env,
                            "Cannot ImpersonateSecurityContext: secStatus = " +
-                               std::to_string(secStatus));
+                               plf::error_msg(secStatus));
   }
 
 }
