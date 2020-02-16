@@ -1,7 +1,8 @@
-import { AscReqFlag } from "./AscReqFlag";
-import { IscReqFlag } from "./IscReqFlag";
-import { ExtendedNameFormatFlag } from "./ExtendedNameFormatFlag";
-import { AccessTokenFlag } from "./AccessTokenFlag";
+import { AscReqFlag } from "./flags/AscReqFlag";
+import { IscReqFlag } from "./flags/IscReqFlag";
+import { AscRetFlag } from "./flags/AscRetFlag";
+import { ExtendedNameFormatFlag } from "./flags/ExtendedNameFormatFlag";
+import { AccessTokenFlag } from "./flags/AccessTokenFlag";
 
 export as namespace SSPI;
 
@@ -30,6 +31,10 @@ interface SecurityContext {
   contextHandle?: CtxtHandle;
   SECURITY_STATUS?: string;
   SecBufferDesc?: any;
+}
+
+interface ServerSecurityContext extends SecurityContext {
+  contextAttr: AscRetFlag[];
 }
 
 interface SidObject {
@@ -71,7 +76,7 @@ export function InitializeSecurityContext(
 ): SSPI.SecurityContext;
 export function AcceptSecurityContext(
   input: AcceptSecurityContextInput
-): SSPI.SecurityContext;
+): ServerSecurityContext;
 export function FreeCredentialsHandle(credentials: string): void;
 export function ImpersonateSecurityContext(handle: SSPI.CtxtHandle): void;
 export function RevertSecurityContext(handle: SSPI.CtxtHandle): void;

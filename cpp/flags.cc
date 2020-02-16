@@ -1,5 +1,6 @@
 #include "flags.h"
 
+#include <iostream>
 #include <map>
 #include <string>
 
@@ -7,18 +8,25 @@
 #define SECURITY_WIN32
 #include <Security.h>
 
-#define FIND_FLAG_VALUE(someMap, someValue)                  \
-  for (auto it = someMap.begin(); it != someMap.end(); ++it) \
-    if (it->second == someValue) return it->first;
-
 #define FLAG_INSERT(map, flag) map[flag] = #flag
 
-std::map<int64_t, std::string> extendedNameFormatMap;
-std::map<int64_t, std::string> accessTokenFlagsMap;
-std::map<int64_t, std::string> AscReqMap;
-std::map<int64_t, std::string> IscReqMap;
+#define flagmap std::map<int64_t, std::string>
+
+flagmap extendedNameFormatMap;
+flagmap accessTokenFlagsMap;
+flagmap AscReqMap;
+flagmap AscRetMap;
+flagmap IscReqMap;
+
+std::map<int64_t, flagmap *> contextMap;
 
 void init() {
+  contextMap[GETFLAG_EXTENDED_NAME_FORMAT] = &extendedNameFormatMap;
+  contextMap[ACCESS_TOKEN_FLAGS] = &accessTokenFlagsMap;
+  contextMap[ASC_REQ_FLAGS] = &AscReqMap;
+  contextMap[ISC_REQ_FLAGS] = &IscReqMap;
+  contextMap[ASC_RET_FLAGS] = &AscRetMap;
+
   FLAG_INSERT(extendedNameFormatMap, NameUnknown);
   FLAG_INSERT(extendedNameFormatMap, NameFullyQualifiedDN);
   FLAG_INSERT(extendedNameFormatMap, NameSamCompatible);
@@ -102,6 +110,32 @@ void init() {
   FLAG_INSERT(IscReqMap, ISC_REQ_UNVERIFIED_TARGET_NAME);
   FLAG_INSERT(IscReqMap, ISC_REQ_CONFIDENTIALITY_ONLY);
   FLAG_INSERT(IscReqMap, ISC_REQ_MESSAGES);
+
+  FLAG_INSERT(AscRetMap, ASC_RET_DELEGATE);
+  FLAG_INSERT(AscRetMap, ASC_RET_MUTUAL_AUTH);
+  FLAG_INSERT(AscRetMap, ASC_RET_REPLAY_DETECT);
+  FLAG_INSERT(AscRetMap, ASC_RET_SEQUENCE_DETECT);
+  FLAG_INSERT(AscRetMap, ASC_RET_CONFIDENTIALITY);
+  FLAG_INSERT(AscRetMap, ASC_RET_USE_SESSION_KEY);
+  FLAG_INSERT(AscRetMap, ASC_RET_SESSION_TICKET);
+  FLAG_INSERT(AscRetMap, ASC_RET_ALLOCATED_MEMORY);
+  FLAG_INSERT(AscRetMap, ASC_RET_USED_DCE_STYLE);
+  FLAG_INSERT(AscRetMap, ASC_RET_DATAGRAM);
+  FLAG_INSERT(AscRetMap, ASC_RET_CONNECTION);
+  FLAG_INSERT(AscRetMap, ASC_RET_CALL_LEVEL);
+  FLAG_INSERT(AscRetMap, ASC_RET_THIRD_LEG_FAILED);
+  FLAG_INSERT(AscRetMap, ASC_RET_EXTENDED_ERROR);
+  FLAG_INSERT(AscRetMap, ASC_RET_STREAM);
+  FLAG_INSERT(AscRetMap, ASC_RET_INTEGRITY);
+  FLAG_INSERT(AscRetMap, ASC_RET_LICENSING);
+  FLAG_INSERT(AscRetMap, ASC_RET_IDENTIFY);
+  FLAG_INSERT(AscRetMap, ASC_RET_NULL_SESSION);
+  FLAG_INSERT(AscRetMap, ASC_RET_ALLOW_NON_USER_LOGONS);
+  FLAG_INSERT(AscRetMap, ASC_RET_ALLOW_CONTEXT_REPLAY);
+  FLAG_INSERT(AscRetMap, ASC_RET_FRAGMENT_ONLY);
+  FLAG_INSERT(AscRetMap, ASC_RET_NO_TOKEN);
+  FLAG_INSERT(AscRetMap, ASC_RET_NO_ADDITIONAL_TOKEN);
+  FLAG_INSERT(AscRetMap, ASC_RET_MESSAGES);
 }
 
 namespace myAddon {
@@ -111,24 +145,24 @@ int64_t getFlagValue(Napi::Env env, int context, std::string str) {
   if (!initiated) {
     init();
   }
-  switch (context) {
-    case GETFLAG_EXTENDED_NAME_FORMAT:
-      FIND_FLAG_VALUE(extendedNameFormatMap, str);
-      break;
-    case ACCESS_TOKEN_FLAGS:
-      FIND_FLAG_VALUE(accessTokenFlagsMap, str);
-      break;
-    case ASC_REQ_FLAGS:
-      FIND_FLAG_VALUE(AscReqMap, str);
-      break;
-    case ISC_REQ_FLAGS:
-      FIND_FLAG_VALUE(IscReqMap, str);
-      break;
+
+  auto itr = contextMap.find(context);
+
+  if (itr != contextMap.end()) {
+    auto map = itr->second;
+
+    for (auto it = map->begin(); it != map->end(); ++it) {
+      if (it->second == str) {
+        return it->first;
+      }
+    }
+    throw Napi::Error::New(env, "Flag unknown: " + str);
   }
-  throw Napi::Error::New(env, "Flag unknown: " + str);
+  throw Napi::Error::New(env, "context not found: " + context);
 }
 
-int64_t getFlags(Napi::Env env, int context, Napi::Object input, std::string value, int64_t defaultFlags) {
+int64_t getFlags(Napi::Env env, int context, Napi::Object input,
+                 std::string value, int64_t defaultFlags) {
   if (!input.Has(value)) {
     return defaultFlags;
   }
@@ -147,7 +181,22 @@ int64_t getFlags(Napi::Env env, int context, Napi::Object input, std::string val
 }
 
 Napi::Array setFlags(Napi::Env env, int context, int64_t flags) {
+  auto it = contextMap.find(context);
+  if (it == contextMap.end()) {
+    throw Napi::Error::New(env, "context map not found.");
+  }
+  flagmap *map = contextMap[context];
+
   Napi::Array result = Napi::Array::New(env);
+  int i = 0;
+
+  for (auto it = map->begin(); it != map->end(); ++it) {
+    int64_t f = it->first;
+    if (flags & f) {
+      result[std::to_string(i)] = Napi::String::New(env, it->second);
+      i++;
+    }
+  }
   return result;
 }
 
