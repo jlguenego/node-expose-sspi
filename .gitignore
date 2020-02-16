@@ -2,3 +2,4 @@
 /build
 /lib/sspi.node
 /srs/*.js
+/dist

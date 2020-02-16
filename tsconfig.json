@@ -1,5 +1,11 @@
 {
-    "compilerOptions": {
-        "noImplicitAny": false
-    }
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "outDir": "./dist",
+    "module": "CommonJS",
+    "moduleResolution": "node"
+  },
+  "files": [
+      "./src/index.ts"
+  ]
 }

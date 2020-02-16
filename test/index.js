@@ -1,7 +1,6 @@
-const { sso } = require("..");
-const { printHexDump } = require("../src/misc");
+const { sso, sspi } = require("..");
+const { printHexDump } = require("../dist/misc");
 
-const sspi = sso.sspi;
 const result = sspi.hello();
 console.log("result: ", result);
 const securityPackages = sspi.EnumerateSecurityPackages();

@@ -1,8 +1,6 @@
 import { Request, RequestHandler } from "express";
-import { SSO, createSSO } from "./src/createSSO";
-import { auth } from "./src/auth";
-import { connect } from "./src/connect";
-import { getDefaultDomain } from "./src/getDefaultDomain";
+import { SSO } from "./src/createSSO";
+import { sso } from "./src/index";
 
 declare global {
   namespace Express {
@@ -24,14 +22,9 @@ if (require("os").platform() !== "win32") {
   );
 }
 
-
-
 import sspi = require("./lib/sspi");
 
-export const sso = {
+export const nodeExposeSspi = {
   sspi,
-  auth,
-  connect,
-  createSSO,
-  getDefaultDomain
+  sso
 };

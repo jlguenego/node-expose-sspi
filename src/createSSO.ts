@@ -1,4 +1,4 @@
-import { printHexDump, trace } from "../src/misc";
+import { printHexDump, trace } from "./misc";
 import sspi = require("../lib/sspi");
 
 export interface SSO {

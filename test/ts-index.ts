@@ -1,5 +1,5 @@
 import sspi = require("..");
-import misc = require("../src/misc.js");
+import misc = require("./misc.js");
 
 const { printHexDump } = misc;
 

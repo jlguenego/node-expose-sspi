@@ -1,4 +1,4 @@
-const { printHexDump, trace } = require("../src/misc");
+import { printHexDump, trace } from "./misc";
 import sspi = require("../lib/sspi");
 import { createSSO } from './createSSO';
 
