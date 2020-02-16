@@ -26,9 +26,7 @@ Napi::Value e_OpenProcessToken(const Napi::CallbackInfo& info) {
   BOOL status = OpenProcessToken(GetCurrentProcess(), flags, &token);
 
   if (status == FALSE) {
-    std::string message = plf::string_format(
-        "Cannot OpenProcessToken: secStatus = 0x%08x", GetLastError());
-    throw Napi::Error::New(env, message);
+    throw Napi::Error::New(env, "Cannot OpenProcessToken: status = " + plf::error_msg());
   }
   std::stringstream sa;
   sa << "0x" << std::setfill('0') << std::setw(4) << std::hex << token;
