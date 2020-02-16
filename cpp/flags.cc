@@ -18,6 +18,7 @@ flagmap AscReqMap;
 flagmap AscRetMap;
 flagmap IscReqMap;
 flagmap IscRetMap;
+flagmap TargetDataRepMap;
 
 std::map<int64_t, flagmap *> contextMap;
 
@@ -30,7 +31,7 @@ void initFlags() {
   contextMap[ISC_REQ_FLAGS] = &IscReqMap;
   contextMap[ASC_RET_FLAGS] = &AscRetMap;
   contextMap[ISC_RET_FLAGS] = &IscRetMap;
-
+  contextMap[SECURITY_DREP_FLAGS] = &TargetDataRepMap;
 
   FLAG_INSERT(extendedNameFormatMap, NameUnknown);
   FLAG_INSERT(extendedNameFormatMap, NameFullyQualifiedDN);
@@ -170,6 +171,9 @@ void initFlags() {
   FLAG_INSERT(IscRetMap, ISC_RET_NO_ADDITIONAL_TOKEN);
   FLAG_INSERT(IscRetMap, ISC_RET_CONFIDENTIALITY_ONLY);
   FLAG_INSERT(IscRetMap, ISC_RET_MESSAGES);
+
+  FLAG_INSERT(TargetDataRepMap, SECURITY_NATIVE_DREP);
+  FLAG_INSERT(TargetDataRepMap, SECURITY_NETWORK_DREP);
 }
 
 int64_t getFlagValue(Napi::Env env, int context, std::string str) {
@@ -205,6 +209,19 @@ int64_t getFlags(Napi::Env env, int context, Napi::Object input,
     flags |= flag;
   }
   return flags;
+}
+
+int64_t getFlag(Napi::Env env, int context, Napi::Object input,
+                std::string value, int64_t defaultFlags) {
+  if (!input.Has(value)) {
+    return defaultFlags;
+  }
+  Napi::Value val = input.Get(value);
+  if (!val.IsString()) {
+    throw Napi::Error::New(env, value + " must be a flag string.");
+  }
+  Napi::String string = val.As<Napi::String>();
+  return getFlagValue(env, context, string);
 }
 
 Napi::Array setFlags(Napi::Env env, int context, int64_t flags) {

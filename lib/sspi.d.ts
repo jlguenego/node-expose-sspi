@@ -3,6 +3,7 @@ import { IscReqFlag } from "./flags/IscReqFlag";
 import { AscRetFlag } from "./flags/AscRetFlag";
 import { ExtendedNameFormatFlag } from "./flags/ExtendedNameFormatFlag";
 import { AccessTokenFlag } from "./flags/AccessTokenFlag";
+import { TargetDataRepMapFlag } from "./flags/TargetDataRepMapFlag";
 
 export as namespace SSPI;
 
@@ -62,6 +63,7 @@ interface AcceptSecurityContextInput {
   clientSecurityContext: SecurityContext;
   contextHandle?: CtxtHandle;
   contextReq?: AscReqFlag[];
+  targetDataRep?: TargetDataRepMapFlag;
 }
 
 export function hello(): string;
