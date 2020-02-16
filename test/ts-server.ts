@@ -1,12 +1,11 @@
 import express = require("express");
-import sspi = require("..");
+import { sso } from "..";
 
 // global.debug = true;
 
 const app = express();
 
-app.use(sspi.ssoAuth({ toto: 123 }));
-
+app.use(sso.auth());
 
 app.use((req, res, next) => {
   res.json({
@@ -14,4 +13,4 @@ app.use((req, res, next) => {
   });
 });
 
-app.listen(3000, () => console.log("Server started on port 3000"));
+app.listen(3001, () => console.log("Server started on port 3001"));
