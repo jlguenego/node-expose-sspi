@@ -25,9 +25,7 @@ Napi::Value e_QueryContextAttributes(const Napi::CallbackInfo& info) {
         QueryContextAttributes(&context, SECPKG_ATTR_NAMES, &contextNames);
 
     if (secStatus != SEC_E_OK) {
-      std::string message = plf::string_format(
-          "Cannot QueryContextAttributes: secStatus = 0x%08x", secStatus);
-      throw Napi::Error::New(env, message);
+      throw Napi::Error::New(env, "Cannot QueryContextAttributes: secStatus = " + plf::error_msg(secStatus));
     }
 
     Napi::Object result = Napi::Object::New(env);
