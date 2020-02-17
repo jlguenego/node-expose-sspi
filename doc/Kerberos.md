@@ -1,4 +1,4 @@
-#Setting up a Kerberos scenario
+# Setting up a Kerberos scenario
 
 If you want to do a SSO authentication using Kerberos, you must be on a Microsoft Windows Domain.
 So first make sure your computer is part of a domain.
