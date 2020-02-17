@@ -4,7 +4,7 @@ import session = require("express-session");
 import { sspi, sso } from "..";
 import serveIndex = require("serve-index");
 
-global["debug"] = true;
+sso.config.debug = true;
 
 const app = express();
 
