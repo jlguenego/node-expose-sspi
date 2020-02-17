@@ -81,7 +81,7 @@ export function InitializeSecurityContext(
 export function AcceptSecurityContext(
   input: AcceptSecurityContextInput
 ): ServerSecurityContext;
-export function FreeCredentialsHandle(credentials: string): void;
+export function FreeCredentialsHandle(credential: string): void;
 export function ImpersonateSecurityContext(handle: SSPI.CtxtHandle): void;
 export function RevertSecurityContext(handle: SSPI.CtxtHandle): void;
 export function GetUserName(): string;
@@ -95,7 +95,7 @@ export function GetTokenInformation(
 export function CloseHandle(handle: SSPI.HANDLE): void;
 export function LookupAccountName(username: string): SSPI.SidObject;
 export function QueryCredentialsAttributes(
-  credentials: string,
+  credential: string,
   attribute: string
 ): any;
 export function QueryContextAttributes(

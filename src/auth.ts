@@ -1,9 +1,9 @@
-const createError = require("http-errors");
-const { decode, encode } = require("base64-arraybuffer");
+import createError from "http-errors";
+import { decode, encode } from "base64-arraybuffer";
 import { printHexDump, trace } from "./misc";
 import sspi = require("../lib/sspi");
 import { createSSO } from "./createSSO";
-import { RequestHandler } from 'express';
+import { RequestHandler } from "express";
 
 export const auth: () => RequestHandler = () => {
   const { credential, tsExpiry } = sspi.AcquireCredentialsHandle({
@@ -29,7 +29,6 @@ export const auth: () => RequestHandler = () => {
         return next(createError(400, `Malformed authentication token ${auth}`));
       }
 
-      
       const token = auth.substring("Negotiate ".length);
       const protocol = token.startsWith("YII") ? "Kerberos" : "NTLM";
       trace("SPNEGO token: " + protocol);
@@ -87,4 +86,3 @@ export const auth: () => RequestHandler = () => {
     next();
   };
 };
-
