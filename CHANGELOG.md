@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.14](https://github.com/jlguenego/node-expose-sspi/compare/v0.0.13...v0.0.14) (2020-02-17)
+
+
+### Bug Fixes
+
+* credentials renew ([c83e1ea](https://github.com/jlguenego/node-expose-sspi/commit/c83e1ea35122335d4fdec6aef37b2974f484f1c3))
+* doc kerberos separated ([d1f8709](https://github.com/jlguenego/node-expose-sspi/commit/d1f87097654bf420e44532a5dbd00da9217264ae))
+* no more global variable ([18349f6](https://github.com/jlguenego/node-expose-sspi/commit/18349f6920b6aa366ad0c322c21ee47467c85bfa))
+* typings in auth.ts ([691e65d](https://github.com/jlguenego/node-expose-sspi/commit/691e65deedc81da2d50acc241efef7ea217a515f))
+
 ### [0.0.13](https://github.com/jlguenego/node-expose-sspi/compare/v0.0.12...v0.0.13) (2020-02-16)
 
 
