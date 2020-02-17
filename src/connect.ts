@@ -2,7 +2,7 @@ import { printHexDump, trace } from "./misc";
 import sspi = require("../lib/sspi");
 import { createSSO } from './createSSO';
 
-export const connect = userCredential => {
+export const connect = (userCredential: sspi.UserCredential) => {
   const errorMsg = "error while building the security context";
   const badLoginPasswordMsg = "sorry mate, wrong login/password.";
   try {
@@ -19,8 +19,8 @@ export const connect = userCredential => {
       packageName: "Negotiate"
     });
 
-    let serverSecurityContext;
-    let clientSecurityContext;
+    let serverSecurityContext: sspi.SecurityContext;
+    let clientSecurityContext: sspi.SecurityContext;
     let clientInput: sspi.InitializeSecurityContextInput = {
       credential: clientCred.credential,
       targetName: "kiki",

@@ -36,7 +36,7 @@ Make an express web server by doing the `server.js` file:
 import express = require("express");
 import { sso } from "node-expose-sspi";
 
-// global.debug = true;
+// sso.config.debug = true;
 
 const app = express();
 

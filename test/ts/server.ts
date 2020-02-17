@@ -1,7 +1,7 @@
 import express = require("express");
 import { sso } from "../..";
 
-// global.debug = true;
+// sso.config.debug = true;
 
 const app = express();
 

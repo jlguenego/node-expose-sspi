@@ -25,7 +25,7 @@ type Token = HANDLE;
 type InformationClass = string;
 
 interface CredentialWithExpiry {
-  credential: SSPI.CredHandle;
+  credential: CredHandle;
   tsExpiry: Date;
 }
 
@@ -68,41 +68,41 @@ interface AcceptSecurityContextInput {
 }
 
 export function hello(): string;
-export function EnumerateSecurityPackages(): SSPI.SecPkgInfo[];
+export function EnumerateSecurityPackages(): SecPkgInfo[];
 export function QuerySecurityPackageInfo(packageName: string): SSPI.SecPkgInfo;
 export function AcquireCredentialsHandle(input: {
   packageName: string;
   authData?: UserCredential;
   credentialUse?: CredentialUseFlag;
-}): SSPI.CredentialWithExpiry;
+}): CredentialWithExpiry;
 export function InitializeSecurityContext(
   input: InitializeSecurityContextInput
-): SSPI.SecurityContext;
+): SecurityContext;
 export function AcceptSecurityContext(
   input: AcceptSecurityContextInput
 ): ServerSecurityContext;
-export function FreeCredentialsHandle(credential: string): void;
-export function ImpersonateSecurityContext(handle: SSPI.CtxtHandle): void;
-export function RevertSecurityContext(handle: SSPI.CtxtHandle): void;
+export function FreeCredentialsHandle(credential: CredHandle): void;
+export function ImpersonateSecurityContext(handle: CtxtHandle): void;
+export function RevertSecurityContext(handle: CtxtHandle): void;
 export function GetUserName(): string;
 export function GetUserNameEx(extendedNameFormat: ExtendedNameFormatFlag): string;
 export function OpenThreadToken(flags?: AccessTokenFlag[]): Token;
 export function OpenProcessToken(flags?: AccessTokenFlag[]): Token;
 export function GetTokenInformation(
-  token: SSPI.Token,
+  token: Token,
   infoClass: InformationClass
 ): any;
-export function CloseHandle(handle: SSPI.HANDLE): void;
-export function LookupAccountName(username: string): SSPI.SidObject;
+export function CloseHandle(handle: HANDLE): void;
+export function LookupAccountName(username: string): SidObject;
 export function QueryCredentialsAttributes(
-  credential: string,
+  credential: CredHandle,
   attribute: string
 ): any;
 export function QueryContextAttributes(
-  ctxtHandle: SSPI.CtxtHandle,
+  ctxtHandle: CtxtHandle,
   attribute: string
 ): any;
 export function QuerySecurityContextToken(
-  ctxtHandle: SSPI.CtxtHandle
-): SSPI.Token;
-export function DeleteSecurityContext(ctxtHandle: SSPI.CtxtHandle): void;
+  ctxtHandle: CtxtHandle
+): Token;
+export function DeleteSecurityContext(ctxtHandle: CtxtHandle): void;

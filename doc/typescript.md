@@ -13,7 +13,7 @@ Here is the `server.ts` script to write:
 import express = require("express");
 import sspi = require("node-expose-sspi");
 
-// global.debug = true;
+// sso.config.debug = true;
 
 const app = express();
 

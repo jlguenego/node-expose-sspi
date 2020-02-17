@@ -1,7 +1,7 @@
 const express = require("express");
 const { sso, sspi } = require("..");
 
-// global.debug = true;
+sso.config.debug = false;
 
 const app = express();
 

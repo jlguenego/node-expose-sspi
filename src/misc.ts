@@ -1,9 +1,13 @@
 export const trace = (...args: any[]) => {
-  if (global["debug"]) {
+  if (config.debug) {
     console.log(...args);
     return;
   }
 };
+
+export const config = {
+  debug: false
+}
 
 function isPrintable(keycode: number) {
   var valid =

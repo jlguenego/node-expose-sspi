@@ -2,7 +2,7 @@ import { printHexDump, trace } from "./misc";
 import sspi = require("../lib/sspi");
 import { SSO } from "./SSO";
 
-export const createSSO = serverContextHandle => {
+export const createSSO = (serverContextHandle: sspi.CtxtHandle) => {
   const sso: SSO = {};
   const names = sspi.QueryContextAttributes(
     serverContextHandle,

@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "outDir": "./dist",
     "module": "CommonJS",
     "moduleResolution": "node",

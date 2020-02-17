@@ -24,7 +24,7 @@ export const auth: () => RequestHandler = () => {
 
   // serverContextHandle seems to be useful only for NTLM, not Kerberos.
   // because Kerberos will not request many times the client to complete the SSO Authentication.
-  let serverContextHandle;
+  let serverContextHandle: sspi.SecurityContext;
 
   return (req, res, next) => {
     try {
