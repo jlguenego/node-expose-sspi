@@ -115,7 +115,6 @@ npm install --global windows-build-tools
 
 ## TODO
 
-- Check that there is no memory leak.
 - Typing flags
 
 ## Author

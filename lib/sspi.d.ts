@@ -30,9 +30,9 @@ interface CredentialWithExpiry {
 }
 
 interface SecurityContext {
-  contextHandle?: CtxtHandle;
-  SECURITY_STATUS?: string;
-  SecBufferDesc?: any;
+  readonly contextHandle?: CtxtHandle;
+  readonly SECURITY_STATUS?: string;
+  readonly SecBufferDesc?: any;
 }
 
 interface ServerSecurityContext extends SecurityContext {

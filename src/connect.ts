@@ -33,7 +33,7 @@ export const connect = (userCredential: sspi.UserCredential) => {
     };
     let i = 0;
     while (true) {
-      console.log("i: ", i);
+      trace("i: ", i);
       i++;
 
       if (serverSecurityContext) {
@@ -42,8 +42,8 @@ export const connect = (userCredential: sspi.UserCredential) => {
           clientSecurityContext.contextHandle;
       }
       clientSecurityContext = sspi.InitializeSecurityContext(clientInput);
-      console.log("clientSecurityContext: ", clientSecurityContext);
-      console.log(printHexDump(clientSecurityContext.SecBufferDesc.buffers[0]));
+      trace("clientSecurityContext: ", clientSecurityContext);
+      trace(printHexDump(clientSecurityContext.SecBufferDesc.buffers[0]));
       if (
         clientSecurityContext.SECURITY_STATUS !== "SEC_I_CONTINUE_NEEDED" &&
         clientSecurityContext.SECURITY_STATUS !== "SEC_E_OK"
@@ -58,7 +58,7 @@ export const connect = (userCredential: sspi.UserCredential) => {
       }
 
       serverSecurityContext = sspi.AcceptSecurityContext(serverInput);
-      console.log("serverSecurityContext: ", serverSecurityContext);
+      trace("serverSecurityContext: ", serverSecurityContext);
       if (
         serverSecurityContext.SECURITY_STATUS !== "SEC_I_CONTINUE_NEEDED" &&
         serverSecurityContext.SECURITY_STATUS !== "SEC_E_OK"
@@ -69,12 +69,12 @@ export const connect = (userCredential: sspi.UserCredential) => {
         throw errorMsg;
       }
       
-      console.log(printHexDump(serverSecurityContext.SecBufferDesc.buffers[0]));
+      trace(printHexDump(serverSecurityContext.SecBufferDesc.buffers[0]));
       if (serverSecurityContext.SECURITY_STATUS !== "SEC_E_OK") {
         continue;
       }
       // we have the security context !!!
-      console.log("We have the security context !!!");
+      trace("We have the security context !!!");
       break;
     }
 
