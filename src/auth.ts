@@ -6,9 +6,21 @@ import { createSSO } from "./createSSO";
 import { RequestHandler } from "express";
 
 export const auth: () => RequestHandler = () => {
-  const { credential, tsExpiry } = sspi.AcquireCredentialsHandle({
+  let { credential, tsExpiry } = sspi.AcquireCredentialsHandle({
     packageName: "Negotiate"
   });
+
+  const checkCredentials = () => {
+    if (tsExpiry < new Date()) {
+      // renew server credentials
+      sspi.FreeCredentialsHandle(credential);
+      const renewed = sspi.AcquireCredentialsHandle({
+        packageName: "Negotiate"
+      });
+      credential = renewed.credential;
+      tsExpiry = renewed.tsExpiry;
+    }
+  };
 
   // serverContextHandle seems to be useful only for NTLM, not Kerberos.
   // because Kerberos will not request many times the client to complete the SSO Authentication.
@@ -16,6 +28,7 @@ export const auth: () => RequestHandler = () => {
 
   return (req, res, next) => {
     try {
+      checkCredentials();
       const auth = req.get("authorization");
       if (!auth) {
         serverContextHandle = undefined;
