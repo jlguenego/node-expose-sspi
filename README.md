@@ -70,7 +70,7 @@ Note: the NTLM protocol is not very secure.
 
 #### Kerberos
 
-You should see (this Node Expose SSPI Kerberos dedicated documentation)[./doc/Kerberos.md].
+You should see [this Node Expose SSPI Kerberos dedicated documentation](./doc/Kerberos.md).
 
 
 ## Rebuilding the binary
