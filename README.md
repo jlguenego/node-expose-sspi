@@ -116,7 +116,7 @@ npm run build
 ## Angular example
 
 See the Github repository:
-[https://github.com/jlguenego/angular-sso-example]
+https://github.com/jlguenego/angular-sso-example
 
 
 ## TODO
