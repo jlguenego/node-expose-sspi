@@ -59,6 +59,17 @@ Open a web browser and go to `http://localhost:3001`.
 
 You should see the JSON result with user, owner and used method (NTLM or Kerberos)
 
+## API
+
+There is 2 parts in this module:
+
+- sspi object which exposes the Microsoft SSPI library API.
+- sso object, written in typescript/javascript with 4 functions:
+  - `auth()`: express middleware finding the SSO logged user.
+  - `connect({login, password, domain)`: connect with a MS Windows account login/password.
+  - `createSSO(serverContextHandle)`: create a SSO object from a secure context handle.
+  - `getDefaultDomain()`: get the windows domain/hostname where the server started.
+
 #### Typescript
 
 This module is also integrated with Typescript.
