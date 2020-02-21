@@ -55,7 +55,9 @@ app.listen(3000, () => console.log("Server started on port 3000"));
 node server.js
 ```
 
-Open a web browser and go to `http://localhost:3001`
+Open a web browser and go to `http://localhost:3001`.
+
+You should see the JSON result with user, owner and used method (NTLM or Kerberos)
 
 #### Typescript
 
@@ -67,7 +69,7 @@ This module is also integrated with Typescript.
 
 If you are not on a Microsoft Windows Active Directory Domain, it will use the NLTM authentication protocol.
 
-Note: the NTLM protocol is not very secure.
+Note: the NTLM protocol is not very secure, so be sure to be above HTTPS.
 
 #### Kerberos
 
