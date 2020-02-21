@@ -75,7 +75,6 @@ export const auth: () => RequestHandler = () => {
         res.set('WWW-Authenticate', 'Negotiate ' + encode(serverSecurityContext.SecBufferDesc.buffers[0]));
 
         req.sso = createSSO(serverContextHandle);
-        trace('qqqqqqqqqqqqqqqqqqqqqqqqq');
         req.sso.method = method;
 
         sspi.DeleteSecurityContext(serverContextHandle);
