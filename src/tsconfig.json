@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
     "noImplicitAny": true,
-    "outDir": "./dist",
+    "outDir": "../dist",
     "module": "CommonJS",
     "moduleResolution": "node",
     "esModuleInterop": true
   },
   "files": [
-      "./src/index.ts"
+      "./index.ts"
   ]
 }
