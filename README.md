@@ -33,10 +33,10 @@ npm i node-expose-sspi
 Make an express web server by doing the `server.js` file:
 
 ```js
-import express = require("express");
-import { sso } from "node-expose-sspi";
+const express = require("express");
+const { sso, sspi } = require("node-expose-sspi");
 
-// sso.config.debug = true;
+sso.config.debug = false;
 
 const app = express();
 
@@ -48,7 +48,7 @@ app.use((req, res, next) => {
   });
 });
 
-app.listen(3001, () => console.log("Server started on port 3001"));
+app.listen(3000, () => console.log("Server started on port 3000"));
 ```
 
 ```
