@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.16](https://github.com/jlguenego/node-expose-sspi/compare/v0.0.15...v0.0.16) (2020-02-21)
+
+
+### Bug Fixes
+
+* req.sso not recognized in ts ([b6088f3](https://github.com/jlguenego/node-expose-sspi/commit/b6088f3c9cde5afcc9bc6ffc32aab6892a2b9ac7))
+
 ### [0.0.15](https://github.com/jlguenego/node-expose-sspi/compare/v0.0.14...v0.0.15) (2020-02-21)
 
 
