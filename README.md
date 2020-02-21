@@ -93,9 +93,7 @@ npm install --global windows-build-tools
 
 ## Test and Example
 
-You can run the test and the example only in development.
-
-Just clone this project.
+To run the test and the example, just clone this project.
 
 ```
 git clone https://github.com/jlguenego/node-expose-sspi.git
@@ -105,12 +103,20 @@ npm test
 npm run example
 ```
 
-## Develop
+## Development
 
 To compile the native node module, you need:
 ```
 npm install --global windows-build-tools
+git clone https://github.com/jlguenego/node-expose-sspi.git
+cd node-expose-sspi
+npm run build
 ```
+
+## Angular example
+
+See the Github repository:
+[https://github.com/jlguenego/angular-sso-example]
 
 
 ## TODO
