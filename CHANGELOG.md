@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.15](https://github.com/jlguenego/node-expose-sspi/compare/v0.0.14...v0.0.15) (2020-02-21)
+
+
+### Features
+
+* added method to sso ([1e6abc9](https://github.com/jlguenego/node-expose-sspi/commit/1e6abc9fa3f632e374950a81dd8cc8c27bfa6579))
+
+
+### Bug Fixes
+
+* moving some types to interfaces ([5c098f9](https://github.com/jlguenego/node-expose-sspi/commit/5c098f9bd53aa7c3a43181de4a1fd6ef7fd16cb1))
+* no console.log in api ([944d0ed](https://github.com/jlguenego/node-expose-sspi/commit/944d0ed9e42b70e1556c9e493e84e38fe276bc04))
+
 ### [0.0.14](https://github.com/jlguenego/node-expose-sspi/compare/v0.0.13...v0.0.14) (2020-02-17)
 
 
