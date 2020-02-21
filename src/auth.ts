@@ -1,13 +1,13 @@
-import createError from "http-errors";
-import { decode, encode } from "base64-arraybuffer";
-import { printHexDump, trace } from "./misc";
-import sspi = require("../lib/sspi");
-import { createSSO } from "./createSSO";
-import { RequestHandler } from "express";
+import createError from 'http-errors';
+import { decode, encode } from 'base64-arraybuffer';
+import { printHexDump, trace } from './misc';
+import sspi = require('../lib/sspi');
+import { createSSO } from './createSSO';
+import { RequestHandler } from 'express';
 
 export const auth: () => RequestHandler = () => {
   let { credential, tsExpiry } = sspi.AcquireCredentialsHandle({
-    packageName: "Negotiate"
+    packageName: 'Negotiate'
   });
 
   const checkCredentials = () => {
@@ -15,7 +15,7 @@ export const auth: () => RequestHandler = () => {
       // renew server credentials
       sspi.FreeCredentialsHandle(credential);
       const renewed = sspi.AcquireCredentialsHandle({
-        packageName: "Negotiate"
+        packageName: 'Negotiate'
       });
       credential = renewed.credential;
       tsExpiry = renewed.tsExpiry;
@@ -29,22 +29,22 @@ export const auth: () => RequestHandler = () => {
   return (req, res, next) => {
     try {
       checkCredentials();
-      const auth = req.get("authorization");
+      const auth = req.get('authorization');
       if (!auth) {
         serverContextHandle = undefined;
         return res
           .status(401)
-          .set("WWW-Authenticate", "Negotiate")
+          .set('WWW-Authenticate', 'Negotiate')
           .end();
       }
 
-      if (!auth.startsWith("Negotiate ")) {
+      if (!auth.startsWith('Negotiate ')) {
         return next(createError(400, `Malformed authentication token ${auth}`));
       }
 
-      const token = auth.substring("Negotiate ".length);
-      const protocol = token.startsWith("YII") ? "Kerberos" : "NTLM";
-      trace("SPNEGO token: " + protocol);
+      const token = auth.substring('Negotiate '.length);
+      const method = token.startsWith('YII') ? 'Kerberos' : 'NTLM';
+      trace('SPNEGO token: ' + method);
       const buffer = decode(token);
 
       const input: sspi.AcceptSecurityContextInput = {
@@ -64,36 +64,26 @@ export const auth: () => RequestHandler = () => {
 
       trace(printHexDump(serverSecurityContext.SecBufferDesc.buffers[0]));
 
-      if (serverSecurityContext.SECURITY_STATUS === "SEC_I_CONTINUE_NEEDED") {
+      if (serverSecurityContext.SECURITY_STATUS === 'SEC_I_CONTINUE_NEEDED') {
         return res
           .status(401)
-          .set(
-            "WWW-Authenticate",
-            "Negotiate " +
-              encode(serverSecurityContext.SecBufferDesc.buffers[0])
-          )
+          .set('WWW-Authenticate', 'Negotiate ' + encode(serverSecurityContext.SecBufferDesc.buffers[0]))
           .end();
       }
 
-      if (serverSecurityContext.SECURITY_STATUS === "SEC_E_OK") {
-        res.set(
-          "WWW-Authenticate",
-          "Negotiate " + encode(serverSecurityContext.SecBufferDesc.buffers[0])
-        );
+      if (serverSecurityContext.SECURITY_STATUS === 'SEC_E_OK') {
+        res.set('WWW-Authenticate', 'Negotiate ' + encode(serverSecurityContext.SecBufferDesc.buffers[0]));
 
         req.sso = createSSO(serverContextHandle);
+        trace('qqqqqqqqqqqqqqqqqqqqqqqqq');
+        req.sso.method = method;
 
         sspi.DeleteSecurityContext(serverContextHandle);
         serverContextHandle = undefined;
       }
     } catch (e) {
       console.error(e);
-      next(
-        createError(
-          400,
-          `Unexpected error while doing SSO. Please contact your system administrator.`
-        )
-      );
+      next(createError(400, `Unexpected error while doing SSO. Please contact your system administrator.`));
     }
 
     next();

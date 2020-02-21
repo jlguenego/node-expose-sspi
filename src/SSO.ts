@@ -15,6 +15,7 @@ declare global {
 export interface SSO {
   user?: User;
   owner?: User;
+  method?: "NTLM" | "Kerberos";
 }
 
 export interface User {
