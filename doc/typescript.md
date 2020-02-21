@@ -9,15 +9,13 @@ npm i typescript ts-node express @types/express
 
 Here is the `server.ts` script to write:
 
-```js
+```typescript
 import express = require("express");
-import sspi = require("node-expose-sspi");
-
-// sso.config.debug = true;
+import { sso } from "node-expose-sspi";
 
 const app = express();
 
-app.use(sspi.ssoAuth());
+app.use(sso.auth());
 
 app.use((req, res, next) => {
   res.json({
@@ -25,7 +23,7 @@ app.use((req, res, next) => {
   });
 });
 
-app.listen(3000, () => console.log("Server started on port 3000"));
+app.listen(3001, () => console.log("Server started on port 3001"));
 ```
 
 To start the typescript server, just run:
