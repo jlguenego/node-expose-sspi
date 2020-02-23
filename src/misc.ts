@@ -20,7 +20,7 @@ function isPrintable(keycode: number) {
   return valid;
 }
 
-export function printHexDump(buffer: ArrayBuffer) {
+export function hexDump(buffer: ArrayBuffer) {
   const dataView = new DataView(buffer, 0);
   trace('buffer length', buffer.byteLength);
   let result = '';

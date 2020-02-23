@@ -1,6 +1,6 @@
 import createError from 'http-errors';
 import { decode, encode } from 'base64-arraybuffer';
-import { printHexDump, trace } from './misc';
+import { hexDump, trace } from './misc';
 import sspi = require('../lib/sspi');
 import { RequestHandler } from 'express';
 import { SSO } from './SSO';
@@ -62,7 +62,7 @@ export const auth: () => RequestHandler = () => {
       const serverSecurityContext = sspi.AcceptSecurityContext(input);
       serverContextHandle = serverSecurityContext.contextHandle;
 
-      trace(printHexDump(serverSecurityContext.SecBufferDesc.buffers[0]));
+      trace(hexDump(serverSecurityContext.SecBufferDesc.buffers[0]));
 
       if (serverSecurityContext.SECURITY_STATUS === 'SEC_I_CONTINUE_NEEDED') {
         return res

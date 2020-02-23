@@ -1,4 +1,4 @@
-import { printHexDump, trace } from './misc';
+import { hexDump, trace } from './misc';
 import sspi = require('../lib/sspi');
 import { SSO } from './SSO';
 
@@ -42,7 +42,7 @@ export const connect = (userCredential: sspi.UserCredential) => {
       }
       clientSecurityContext = sspi.InitializeSecurityContext(clientInput);
       trace('clientSecurityContext: ', clientSecurityContext);
-      trace(printHexDump(clientSecurityContext.SecBufferDesc.buffers[0]));
+      trace(hexDump(clientSecurityContext.SecBufferDesc.buffers[0]));
       if (
         clientSecurityContext.SECURITY_STATUS !== 'SEC_I_CONTINUE_NEEDED' &&
         clientSecurityContext.SECURITY_STATUS !== 'SEC_E_OK'
@@ -67,7 +67,7 @@ export const connect = (userCredential: sspi.UserCredential) => {
         throw errorMsg;
       }
 
-      trace(printHexDump(serverSecurityContext.SecBufferDesc.buffers[0]));
+      trace(hexDump(serverSecurityContext.SecBufferDesc.buffers[0]));
       if (serverSecurityContext.SECURITY_STATUS !== 'SEC_E_OK') {
         continue;
       }

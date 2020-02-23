@@ -1,5 +1,4 @@
-import { sspi } from "../..";
-import { printHexDump } from "../../src/misc";
+import { sso, sspi } from "../..";
 
 const result = sspi.hello();
 console.log("result: ", result);
@@ -31,15 +30,15 @@ const input = {
 console.log("input: ", input);
 const clientSecurityContext = sspi.InitializeSecurityContext(input);
 console.log("clientSecurityContext: ", clientSecurityContext);
-console.log(printHexDump(clientSecurityContext.SecBufferDesc.buffers[0]));
+console.log(sso.hexDump(clientSecurityContext.SecBufferDesc.buffers[0]));
 const serverSecurityContext = sspi.AcceptSecurityContext({
   credential: serverCred.credential,
-  clientSecurityContext: clientSecurityContext,
+  clientSecurityContext,
   contextReq: ["ASC_REQ_CONNECTION"],
   targetDataRep: "SECURITY_NATIVE_DREP"
 });
 console.log("serverSecurityContext: ", serverSecurityContext);
-console.log(printHexDump(serverSecurityContext.SecBufferDesc.buffers[0]));
+console.log(sso.hexDump(serverSecurityContext.SecBufferDesc.buffers[0]));
 const input2 = {
   credential: clientCred.credential,
   targetName: "kiki",
@@ -50,7 +49,7 @@ const input2 = {
 console.log("input2: ", input2);
 const clientSecurityContext2 = sspi.InitializeSecurityContext(input2);
 console.log("clientSecurityContext2: ", clientSecurityContext2);
-console.log(printHexDump(clientSecurityContext2.SecBufferDesc.buffers[0]));
+console.log(sso.hexDump(clientSecurityContext2.SecBufferDesc.buffers[0]));
 
 const serverSecurityContext2 = sspi.AcceptSecurityContext({
   credential: serverCred.credential,
@@ -58,7 +57,7 @@ const serverSecurityContext2 = sspi.AcceptSecurityContext({
   contextHandle: serverSecurityContext.contextHandle
 });
 console.log("serverSecurityContext2: ", serverSecurityContext2);
-console.log(printHexDump(serverSecurityContext2.SecBufferDesc.buffers[0]));
+console.log(sso.hexDump(serverSecurityContext2.SecBufferDesc.buffers[0]));
 
 sspi.FreeCredentialsHandle(clientCred.credential);
 console.log("free client credentials ok");
