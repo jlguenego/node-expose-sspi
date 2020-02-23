@@ -6,7 +6,7 @@
 
 ### Functions
 
-* [printHexDump](_src_misc_.md#printhexdump)
+* [hexDump](_src_misc_.md#hexdump)
 * [trace](_src_misc_.md#const-trace)
 
 ### Object literals
@@ -15,11 +15,11 @@
 
 ## Functions
 
-###  printHexDump
+###  hexDump
 
-▸ **printHexDump**(`buffer`: ArrayBuffer): *string*
+▸ **hexDump**(`buffer`: ArrayBuffer): *string*
 
-*Defined in [src/misc.ts:23](https://github.com/jlguenego/node-expose-sspi/blob/db77f1b/src/misc.ts#L23)*
+*Defined in [src/misc.ts:23](https://github.com/jlguenego/node-expose-sspi/blob/cd3b9de/src/misc.ts#L23)*
 
 **Parameters:**
 
@@ -35,7 +35,7 @@ ___
 
 ▸ **trace**(...`args`: any[]): *void*
 
-*Defined in [src/misc.ts:1](https://github.com/jlguenego/node-expose-sspi/blob/db77f1b/src/misc.ts#L1)*
+*Defined in [src/misc.ts:1](https://github.com/jlguenego/node-expose-sspi/blob/cd3b9de/src/misc.ts#L1)*
 
 **Parameters:**
 
@@ -51,10 +51,10 @@ Name | Type |
 
 ### ▪ **config**: *object*
 
-*Defined in [src/misc.ts:8](https://github.com/jlguenego/node-expose-sspi/blob/db77f1b/src/misc.ts#L8)*
+*Defined in [src/misc.ts:8](https://github.com/jlguenego/node-expose-sspi/blob/cd3b9de/src/misc.ts#L8)*
 
 ###  debug
 
 • **debug**: *boolean* = false
 
-*Defined in [src/misc.ts:9](https://github.com/jlguenego/node-expose-sspi/blob/db77f1b/src/misc.ts#L9)*
+*Defined in [src/misc.ts:9](https://github.com/jlguenego/node-expose-sspi/blob/cd3b9de/src/misc.ts#L9)*
