@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.17](https://github.com/jlguenego/node-expose-sspi/compare/v0.0.16...v0.0.17) (2020-02-23)
+
+
+### Features
+
+* adding typedoc documentation ([1329844](https://github.com/jlguenego/node-expose-sspi/commit/1329844ba3e47b29f170bc586dbaa607eaddc1c3))
+
 ### [0.0.16](https://github.com/jlguenego/node-expose-sspi/compare/v0.0.15...v0.0.16) (2020-02-21)
 
 
