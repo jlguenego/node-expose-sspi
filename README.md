@@ -70,6 +70,9 @@ There is 2 parts in this module:
   - `createSSO(serverContextHandle)`: create a SSO object from a secure context handle.
   - `getDefaultDomain()`: get the windows domain/hostname where the server started.
 
+For more details, please access to the automatically generated [API documentation](./doc/api/README.md).
+
+
 #### Typescript
 
 This module is also integrated with Typescript.
