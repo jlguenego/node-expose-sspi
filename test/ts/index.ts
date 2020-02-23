@@ -1,4 +1,4 @@
-import { sso, sspi } from "../..";
+import { sso, sspi } from "node-expose-sspi";
 
 const result = sspi.hello();
 console.log("result: ", result);

@@ -1,5 +1,5 @@
 import express = require("express");
-import { sso } from "../..";
+import { sso } from "node-expose-sspi";
 
 sso.config.debug = true;
 
