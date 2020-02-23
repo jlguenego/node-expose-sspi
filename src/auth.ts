@@ -2,8 +2,8 @@ import createError from 'http-errors';
 import { decode, encode } from 'base64-arraybuffer';
 import { printHexDump, trace } from './misc';
 import sspi = require('../lib/sspi');
-import { createSSO } from './createSSO';
 import { RequestHandler } from 'express';
+import { SSOObject } from './SSOObject';
 
 export const auth: () => RequestHandler = () => {
   let { credential, tsExpiry } = sspi.AcquireCredentialsHandle({
@@ -74,8 +74,7 @@ export const auth: () => RequestHandler = () => {
       if (serverSecurityContext.SECURITY_STATUS === 'SEC_E_OK') {
         res.set('WWW-Authenticate', 'Negotiate ' + encode(serverSecurityContext.SecBufferDesc.buffers[0]));
 
-        req.sso = createSSO(serverContextHandle);
-        req.sso.method = method;
+        req.sso = new SSOObject(serverContextHandle, method);
 
         sspi.DeleteSecurityContext(serverContextHandle);
         serverContextHandle = undefined;

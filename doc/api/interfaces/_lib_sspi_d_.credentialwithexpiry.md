@@ -19,7 +19,7 @@
 
 • **credential**: *[CredHandle](_lib_sspi_d_.credhandle.md)*
 
-*Defined in [lib/sspi.d.ts:28](https://github.com/jlguenego/node-expose-sspi/blob/106f69c/lib/sspi.d.ts#L28)*
+*Defined in [lib/sspi.d.ts:28](https://github.com/jlguenego/node-expose-sspi/blob/4e9f9ae/lib/sspi.d.ts#L28)*
 
 ___
 
@@ -27,4 +27,4 @@ ___
 
 • **tsExpiry**: *Date*
 
-*Defined in [lib/sspi.d.ts:29](https://github.com/jlguenego/node-expose-sspi/blob/106f69c/lib/sspi.d.ts#L29)*
+*Defined in [lib/sspi.d.ts:29](https://github.com/jlguenego/node-expose-sspi/blob/4e9f9ae/lib/sspi.d.ts#L29)*

@@ -12,9 +12,9 @@
 
 ### `Const` connect
 
-▸ **connect**(`userCredential`: [UserCredential](../interfaces/_lib_sspi_d_.usercredential.md)): *[SSO](../interfaces/_src_sso_.sso.md)*
+▸ **connect**(`userCredential`: [UserCredential](../interfaces/_lib_sspi_d_.usercredential.md)): *[SSOObject](../classes/_src_ssoobject_.ssoobject.md)‹›*
 
-*Defined in [src/connect.ts:5](https://github.com/jlguenego/node-expose-sspi/blob/106f69c/src/connect.ts#L5)*
+*Defined in [src/connect.ts:5](https://github.com/jlguenego/node-expose-sspi/blob/4e9f9ae/src/connect.ts#L5)*
 
 **Parameters:**
 
@@ -22,4 +22,4 @@ Name | Type |
 ------ | ------ |
 `userCredential` | [UserCredential](../interfaces/_lib_sspi_d_.usercredential.md) |
 
-**Returns:** *[SSO](../interfaces/_src_sso_.sso.md)*
+**Returns:** *[SSOObject](../classes/_src_ssoobject_.ssoobject.md)‹›*
