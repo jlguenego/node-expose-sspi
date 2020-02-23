@@ -22,7 +22,7 @@
 
 • **displayName**? : *string*
 
-*Defined in [src/SSO.ts:7](https://github.com/jlguenego/node-expose-sspi/blob/cd3b9de/src/SSO.ts#L7)*
+*Defined in [src/SSO.ts:7](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/src/SSO.ts#L7)*
 
 ___
 
@@ -30,7 +30,7 @@ ___
 
 • **domain**? : *string*
 
-*Defined in [src/SSO.ts:8](https://github.com/jlguenego/node-expose-sspi/blob/cd3b9de/src/SSO.ts#L8)*
+*Defined in [src/SSO.ts:8](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/src/SSO.ts#L8)*
 
 ___
 
@@ -38,7 +38,7 @@ ___
 
 • **groups**? : *string[]*
 
-*Defined in [src/SSO.ts:9](https://github.com/jlguenego/node-expose-sspi/blob/cd3b9de/src/SSO.ts#L9)*
+*Defined in [src/SSO.ts:9](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/src/SSO.ts#L9)*
 
 ___
 
@@ -46,7 +46,7 @@ ___
 
 • **name**? : *string*
 
-*Defined in [src/SSO.ts:5](https://github.com/jlguenego/node-expose-sspi/blob/cd3b9de/src/SSO.ts#L5)*
+*Defined in [src/SSO.ts:5](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/src/SSO.ts#L5)*
 
 ___
 
@@ -54,4 +54,4 @@ ___
 
 • **sid**? : *string*
 
-*Defined in [src/SSO.ts:6](https://github.com/jlguenego/node-expose-sspi/blob/cd3b9de/src/SSO.ts#L6)*
+*Defined in [src/SSO.ts:6](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/src/SSO.ts#L6)*

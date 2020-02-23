@@ -52,7 +52,7 @@
 
 Ƭ **InformationClass**: *"TokenGroups"*
 
-*Defined in [lib/sspi.d.ts:25](https://github.com/jlguenego/node-expose-sspi/blob/cd3b9de/lib/sspi.d.ts#L25)*
+*Defined in [lib/sspi.d.ts:25](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L25)*
 
 ## Functions
 
@@ -60,7 +60,7 @@
 
 ▸ **AcceptSecurityContext**(`input`: [AcceptSecurityContextInput](../interfaces/_lib_sspi_d_.acceptsecuritycontextinput.md)): *[ServerSecurityContext](../interfaces/_lib_sspi_d_.serversecuritycontext.md)*
 
-*Defined in [lib/sspi.d.ts:81](https://github.com/jlguenego/node-expose-sspi/blob/cd3b9de/lib/sspi.d.ts#L81)*
+*Defined in [lib/sspi.d.ts:81](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L81)*
 
 **Parameters:**
 
@@ -76,7 +76,7 @@ ___
 
 ▸ **AcquireCredentialsHandle**(`input`: object): *[CredentialWithExpiry](../interfaces/_lib_sspi_d_.credentialwithexpiry.md)*
 
-*Defined in [lib/sspi.d.ts:73](https://github.com/jlguenego/node-expose-sspi/blob/cd3b9de/lib/sspi.d.ts#L73)*
+*Defined in [lib/sspi.d.ts:73](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L73)*
 
 **Parameters:**
 
@@ -96,7 +96,7 @@ ___
 
 ▸ **CloseHandle**(`handle`: [HANDLE](../interfaces/_lib_sspi_d_.handle.md)): *void*
 
-*Defined in [lib/sspi.d.ts:97](https://github.com/jlguenego/node-expose-sspi/blob/cd3b9de/lib/sspi.d.ts#L97)*
+*Defined in [lib/sspi.d.ts:97](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L97)*
 
 **Parameters:**
 
@@ -112,7 +112,7 @@ ___
 
 ▸ **DeleteSecurityContext**(`ctxtHandle`: [CtxtHandle](../interfaces/_lib_sspi_d_.ctxthandle.md)): *void*
 
-*Defined in [lib/sspi.d.ts:108](https://github.com/jlguenego/node-expose-sspi/blob/cd3b9de/lib/sspi.d.ts#L108)*
+*Defined in [lib/sspi.d.ts:108](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L108)*
 
 **Parameters:**
 
@@ -128,7 +128,7 @@ ___
 
 ▸ **EnumerateSecurityPackages**(): *[SecPkgInfo](../interfaces/_lib_sspi_d_.secpkginfo.md)[]*
 
-*Defined in [lib/sspi.d.ts:71](https://github.com/jlguenego/node-expose-sspi/blob/cd3b9de/lib/sspi.d.ts#L71)*
+*Defined in [lib/sspi.d.ts:71](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L71)*
 
 **Returns:** *[SecPkgInfo](../interfaces/_lib_sspi_d_.secpkginfo.md)[]*
 
@@ -138,7 +138,7 @@ ___
 
 ▸ **FreeCredentialsHandle**(`credential`: [CredHandle](../interfaces/_lib_sspi_d_.credhandle.md)): *void*
 
-*Defined in [lib/sspi.d.ts:84](https://github.com/jlguenego/node-expose-sspi/blob/cd3b9de/lib/sspi.d.ts#L84)*
+*Defined in [lib/sspi.d.ts:84](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L84)*
 
 **Parameters:**
 
@@ -154,7 +154,7 @@ ___
 
 ▸ **GetTokenInformation**(`token`: [Token](../interfaces/_lib_sspi_d_.token.md), `infoClass`: [InformationClass](_lib_sspi_d_.md#informationclass)): *any*
 
-*Defined in [lib/sspi.d.ts:93](https://github.com/jlguenego/node-expose-sspi/blob/cd3b9de/lib/sspi.d.ts#L93)*
+*Defined in [lib/sspi.d.ts:93](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L93)*
 
 **Parameters:**
 
@@ -171,7 +171,7 @@ ___
 
 ▸ **GetUserName**(): *string*
 
-*Defined in [lib/sspi.d.ts:87](https://github.com/jlguenego/node-expose-sspi/blob/cd3b9de/lib/sspi.d.ts#L87)*
+*Defined in [lib/sspi.d.ts:87](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L87)*
 
 **Returns:** *string*
 
@@ -181,7 +181,7 @@ ___
 
 ▸ **GetUserNameEx**(`extendedNameFormat`: [ExtendedNameFormatFlag](_lib_flags_extendednameformatflag_d_.md#extendednameformatflag)): *string*
 
-*Defined in [lib/sspi.d.ts:88](https://github.com/jlguenego/node-expose-sspi/blob/cd3b9de/lib/sspi.d.ts#L88)*
+*Defined in [lib/sspi.d.ts:88](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L88)*
 
 **Parameters:**
 
@@ -197,7 +197,7 @@ ___
 
 ▸ **ImpersonateSecurityContext**(`handle`: [CtxtHandle](../interfaces/_lib_sspi_d_.ctxthandle.md)): *void*
 
-*Defined in [lib/sspi.d.ts:85](https://github.com/jlguenego/node-expose-sspi/blob/cd3b9de/lib/sspi.d.ts#L85)*
+*Defined in [lib/sspi.d.ts:85](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L85)*
 
 **Parameters:**
 
@@ -213,7 +213,7 @@ ___
 
 ▸ **InitializeSecurityContext**(`input`: [InitializeSecurityContextInput](../interfaces/_lib_sspi_d_.initializesecuritycontextinput.md)): *[SecurityContext](../interfaces/_lib_sspi_d_.securitycontext.md)*
 
-*Defined in [lib/sspi.d.ts:78](https://github.com/jlguenego/node-expose-sspi/blob/cd3b9de/lib/sspi.d.ts#L78)*
+*Defined in [lib/sspi.d.ts:78](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L78)*
 
 **Parameters:**
 
@@ -229,7 +229,7 @@ ___
 
 ▸ **LookupAccountName**(`username`: string): *[SidObject](../interfaces/_lib_sspi_d_.sidobject.md)*
 
-*Defined in [lib/sspi.d.ts:98](https://github.com/jlguenego/node-expose-sspi/blob/cd3b9de/lib/sspi.d.ts#L98)*
+*Defined in [lib/sspi.d.ts:98](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L98)*
 
 **Parameters:**
 
@@ -245,7 +245,7 @@ ___
 
 ▸ **OpenProcessToken**(`flags?`: [AccessTokenFlag](_lib_flags_accesstokenflag_d_.md#accesstokenflag)[]): *[Token](../interfaces/_lib_sspi_d_.token.md)*
 
-*Defined in [lib/sspi.d.ts:92](https://github.com/jlguenego/node-expose-sspi/blob/cd3b9de/lib/sspi.d.ts#L92)*
+*Defined in [lib/sspi.d.ts:92](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L92)*
 
 **Parameters:**
 
@@ -261,7 +261,7 @@ ___
 
 ▸ **OpenThreadToken**(`flags?`: [AccessTokenFlag](_lib_flags_accesstokenflag_d_.md#accesstokenflag)[]): *[Token](../interfaces/_lib_sspi_d_.token.md)*
 
-*Defined in [lib/sspi.d.ts:91](https://github.com/jlguenego/node-expose-sspi/blob/cd3b9de/lib/sspi.d.ts#L91)*
+*Defined in [lib/sspi.d.ts:91](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L91)*
 
 **Parameters:**
 
@@ -277,7 +277,7 @@ ___
 
 ▸ **QueryContextAttributes**(`ctxtHandle`: [CtxtHandle](../interfaces/_lib_sspi_d_.ctxthandle.md), `attribute`: string): *any*
 
-*Defined in [lib/sspi.d.ts:103](https://github.com/jlguenego/node-expose-sspi/blob/cd3b9de/lib/sspi.d.ts#L103)*
+*Defined in [lib/sspi.d.ts:103](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L103)*
 
 **Parameters:**
 
@@ -294,7 +294,7 @@ ___
 
 ▸ **QueryCredentialsAttributes**(`credential`: [CredHandle](../interfaces/_lib_sspi_d_.credhandle.md), `attribute`: string): *any*
 
-*Defined in [lib/sspi.d.ts:99](https://github.com/jlguenego/node-expose-sspi/blob/cd3b9de/lib/sspi.d.ts#L99)*
+*Defined in [lib/sspi.d.ts:99](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L99)*
 
 **Parameters:**
 
@@ -311,7 +311,7 @@ ___
 
 ▸ **QuerySecurityContextToken**(`ctxtHandle`: [CtxtHandle](../interfaces/_lib_sspi_d_.ctxthandle.md)): *[Token](../interfaces/_lib_sspi_d_.token.md)*
 
-*Defined in [lib/sspi.d.ts:107](https://github.com/jlguenego/node-expose-sspi/blob/cd3b9de/lib/sspi.d.ts#L107)*
+*Defined in [lib/sspi.d.ts:107](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L107)*
 
 **Parameters:**
 
@@ -327,7 +327,7 @@ ___
 
 ▸ **QuerySecurityPackageInfo**(`packageName`: string): *[SecPkgInfo](../interfaces/_lib_sspi_d_.secpkginfo.md)*
 
-*Defined in [lib/sspi.d.ts:72](https://github.com/jlguenego/node-expose-sspi/blob/cd3b9de/lib/sspi.d.ts#L72)*
+*Defined in [lib/sspi.d.ts:72](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L72)*
 
 **Parameters:**
 
@@ -343,7 +343,7 @@ ___
 
 ▸ **RevertSecurityContext**(`handle`: [CtxtHandle](../interfaces/_lib_sspi_d_.ctxthandle.md)): *void*
 
-*Defined in [lib/sspi.d.ts:86](https://github.com/jlguenego/node-expose-sspi/blob/cd3b9de/lib/sspi.d.ts#L86)*
+*Defined in [lib/sspi.d.ts:86](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L86)*
 
 **Parameters:**
 
@@ -359,6 +359,6 @@ ___
 
 ▸ **hello**(): *string*
 
-*Defined in [lib/sspi.d.ts:70](https://github.com/jlguenego/node-expose-sspi/blob/cd3b9de/lib/sspi.d.ts#L70)*
+*Defined in [lib/sspi.d.ts:70](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L70)*
 
 **Returns:** *string*

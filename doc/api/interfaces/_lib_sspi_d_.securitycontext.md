@@ -22,7 +22,7 @@
 
 • **SECURITY_STATUS**? : *string*
 
-*Defined in [lib/sspi.d.ts:34](https://github.com/jlguenego/node-expose-sspi/blob/cd3b9de/lib/sspi.d.ts#L34)*
+*Defined in [lib/sspi.d.ts:34](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L34)*
 
 ___
 
@@ -30,7 +30,7 @@ ___
 
 • **SecBufferDesc**? : *any*
 
-*Defined in [lib/sspi.d.ts:35](https://github.com/jlguenego/node-expose-sspi/blob/cd3b9de/lib/sspi.d.ts#L35)*
+*Defined in [lib/sspi.d.ts:35](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L35)*
 
 ___
 
@@ -38,4 +38,4 @@ ___
 
 • **contextHandle**? : *[CtxtHandle](_lib_sspi_d_.ctxthandle.md)*
 
-*Defined in [lib/sspi.d.ts:33](https://github.com/jlguenego/node-expose-sspi/blob/cd3b9de/lib/sspi.d.ts#L33)*
+*Defined in [lib/sspi.d.ts:33](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L33)*

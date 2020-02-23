@@ -19,7 +19,7 @@
 
 • **domain**: *string*
 
-*Defined in [lib/sspi.d.ts:44](https://github.com/jlguenego/node-expose-sspi/blob/cd3b9de/lib/sspi.d.ts#L44)*
+*Defined in [lib/sspi.d.ts:44](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L44)*
 
 ___
 
@@ -27,4 +27,4 @@ ___
 
 • **sid**: *string*
 
-*Defined in [lib/sspi.d.ts:43](https://github.com/jlguenego/node-expose-sspi/blob/cd3b9de/lib/sspi.d.ts#L43)*
+*Defined in [lib/sspi.d.ts:43](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L43)*

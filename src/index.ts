@@ -5,8 +5,7 @@ import { config, hexDump } from './misc';
 import { SSO } from './SSO';
 import './express';
 
-// In CommonJS, default export must be written as 'export ='
-export = {
+const sso = {
   config,
   hexDump,
   auth,
@@ -14,3 +13,6 @@ export = {
   SSO,
   getDefaultDomain
 };
+
+// In CommonJS, default export must be written as 'export ='
+export = sso;

@@ -23,7 +23,7 @@
 
 • **Comment**: *string*
 
-*Defined in [lib/sspi.d.ts:19](https://github.com/jlguenego/node-expose-sspi/blob/cd3b9de/lib/sspi.d.ts#L19)*
+*Defined in [lib/sspi.d.ts:19](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L19)*
 
 ___
 
@@ -31,7 +31,7 @@ ___
 
 • **Name**: *string*
 
-*Defined in [lib/sspi.d.ts:18](https://github.com/jlguenego/node-expose-sspi/blob/cd3b9de/lib/sspi.d.ts#L18)*
+*Defined in [lib/sspi.d.ts:18](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L18)*
 
 ___
 
@@ -39,7 +39,7 @@ ___
 
 • **cbMaxToken**: *number*
 
-*Defined in [lib/sspi.d.ts:17](https://github.com/jlguenego/node-expose-sspi/blob/cd3b9de/lib/sspi.d.ts#L17)*
+*Defined in [lib/sspi.d.ts:17](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L17)*
 
 ___
 
@@ -47,7 +47,7 @@ ___
 
 • **fCapabilities**: *number*
 
-*Defined in [lib/sspi.d.ts:14](https://github.com/jlguenego/node-expose-sspi/blob/cd3b9de/lib/sspi.d.ts#L14)*
+*Defined in [lib/sspi.d.ts:14](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L14)*
 
 ___
 
@@ -55,7 +55,7 @@ ___
 
 • **wRPCID**: *number*
 
-*Defined in [lib/sspi.d.ts:16](https://github.com/jlguenego/node-expose-sspi/blob/cd3b9de/lib/sspi.d.ts#L16)*
+*Defined in [lib/sspi.d.ts:16](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L16)*
 
 ___
 
@@ -63,4 +63,4 @@ ___
 
 • **wVersion**: *number*
 
-*Defined in [lib/sspi.d.ts:15](https://github.com/jlguenego/node-expose-sspi/blob/cd3b9de/lib/sspi.d.ts#L15)*
+*Defined in [lib/sspi.d.ts:15](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L15)*
