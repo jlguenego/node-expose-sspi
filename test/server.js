@@ -1,5 +1,5 @@
 const express = require("express");
-const { sso } = require("..");
+const { sso } = require("node-expose-sspi");
 
 sso.config.debug = false;
 
