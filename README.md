@@ -100,7 +100,7 @@ cd .\node_modules\node-expose-sspi
 npm run build
 ```
 
-Note: You may need a proper C++ Windows Toolchain installed.
+Note: You need a proper C++ Windows Toolchain installed.
 One way to do it is to install this module:
 
 ```
@@ -138,6 +138,7 @@ https://github.com/jlguenego/angular-sso-example
 ## TODO
 
 - Typing flags
+- Class SSO
 
 ## Author
 
