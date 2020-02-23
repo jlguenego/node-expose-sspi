@@ -55,6 +55,7 @@
     "serve-index": "^1.9.1",
     "standard-version": "^7.1.0",
     "ts-node": "^8.6.2",
+    "tslint": "^6.0.0",
     "typedoc": "^0.16.10",
     "typedoc-plugin-markdown": "^2.2.16",
     "typescript": "^3.7.5"

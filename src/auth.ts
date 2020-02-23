@@ -29,8 +29,8 @@ export const auth: () => RequestHandler = () => {
   return (req, res, next) => {
     try {
       checkCredentials();
-      const auth = req.get('authorization');
-      if (!auth) {
+      const authorization = req.get('authorization');
+      if (!authorization) {
         serverContextHandle = undefined;
         return res
           .status(401)
@@ -38,11 +38,11 @@ export const auth: () => RequestHandler = () => {
           .end();
       }
 
-      if (!auth.startsWith('Negotiate ')) {
-        return next(createError(400, `Malformed authentication token ${auth}`));
+      if (!authorization.startsWith('Negotiate ')) {
+        return next(createError(400, `Malformed authentication token ${authorization}`));
       }
 
-      const token = auth.substring('Negotiate '.length);
+      const token = authorization.substring('Negotiate '.length);
       const method = token.startsWith('YII') ? 'Kerberos' : 'NTLM';
       trace('SPNEGO token: ' + method);
       const buffer = decode(token);
