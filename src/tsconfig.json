@@ -1,12 +1,7 @@
 {
+  "extends": "../tsconfig.json",
   "compilerOptions": {
-    "noImplicitAny": true,
-    "outDir": "../dist",
-    "module": "CommonJS",
-    "moduleResolution": "node",
-    "esModuleInterop": true
+    "outDir": "../dist"
   },
-  "files": [
-      "./index.ts"
-  ]
+  "files": ["./index.ts"]
 }

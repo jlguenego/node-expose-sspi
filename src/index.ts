@@ -5,11 +5,13 @@ import { getDefaultDomain } from "./getDefaultDomain";
 import { config } from "./misc";
 import "./SSO";
 
-// In CommonJS, default export must be written as 'export ='
-export = {
+const sso = {
   config,
   auth,
   connect,
   createSSO,
   getDefaultDomain
 };
+
+// In CommonJS, default export must be written as 'export ='
+export = sso;

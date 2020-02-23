@@ -1,0 +1,14 @@
+{
+  "out": "./doc/api/",
+  "includes": "./",
+  "exclude": ["**/node_modules/**/*"],
+
+  "mode": "modules",
+  "excludeExternals": true,
+  "excludeNotExported": true,
+  "excludePrivate": true,
+  "includeDeclarations": true,
+
+  "plugin": "typedoc-plugin-markdown",
+  "readme": "none"
+}

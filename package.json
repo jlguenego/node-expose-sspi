@@ -4,16 +4,17 @@
   "description": "Expose the Microsoft Windows SSPI interface in order to do NTLM and Kerberos authentication.",
   "main": "index.js",
   "scripts": {
-    "test": "node test/index.js",
     "build": "node-gyp rebuild -j 8",
-    "build-ts": "tsc -p src",
-    "watch-ts": "tsc -p src -w",
+    "build:ts": "tsc -p src",
+    "build:doc": "typedoc ./src ./lib",
+    "watch:ts": "tsc -p src -w",
     "dev": "nodemon -x \"npm run build && node test/index.js\"",
-    "server": "nodemon test/server.js",
-    "ts-index": "nodemon test/ts/index.ts",
-    "ts-server": "nodemon test/ts/server.ts",
-    "release": "standard-version",
-    "example": "nodemon example/server.ts"
+    "test": "node test/index.js",
+    "test:server": "nodemon test/server.js",
+    "test:ts": "ts-node test/ts/index.ts",
+    "test:ts:server": "nodemon test/ts/server.ts",
+    "test:example": "nodemon example/server.ts",
+    "release": "standard-version"
   },
   "keywords": [
     "SSPI",
@@ -54,6 +55,8 @@
     "serve-index": "^1.9.1",
     "standard-version": "^7.1.0",
     "ts-node": "^8.6.2",
+    "typedoc": "^0.16.10",
+    "typedoc-plugin-markdown": "^2.2.16",
     "typescript": "^3.7.5"
   }
 }
