@@ -1,6 +1,6 @@
 import { printHexDump, trace } from "./misc";
 import sspi = require("../lib/sspi");
-import { SSOObject } from './SSOObject';
+import { SSO } from './SSO';
 
 export const connect = (userCredential: sspi.UserCredential) => {
   const errorMsg = "error while building the security context";
@@ -78,7 +78,7 @@ export const connect = (userCredential: sspi.UserCredential) => {
       break;
     }
 
-    const sso = new SSOObject(serverSecurityContext.contextHandle);
+    const sso = new SSO(serverSecurityContext.contextHandle);
     if (sso.user.name === "Guest") {
       throw badLoginPasswordMsg;
     }

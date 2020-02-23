@@ -1,4 +1,4 @@
-import { printHexDump, trace } from "./misc";
+import { trace } from "./misc";
 import sspi = require("../lib/sspi");
 
 export interface User {
@@ -11,7 +11,7 @@ export interface User {
 
 export type SSOMethod = "NTLM" | "Kerberos";
 
-export class SSOObject {
+export class SSO {
   user: User;
   owner: User;
 

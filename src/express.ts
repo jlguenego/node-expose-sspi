@@ -1,9 +1,9 @@
-import { SSOObject } from './SSOObject';
+import { SSO } from './SSO';
 
 declare global {
   namespace Express {
     interface Request {
-      sso: SSOObject;
+      sso: SSO;
     }
   }
 }
