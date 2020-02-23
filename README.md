@@ -137,8 +137,7 @@ https://github.com/jlguenego/angular-sso-example
 
 ## TODO
 
-- Typing flags
-- Class SSO
+Any idea of new features ? Please tell me ;)
 
 ## Author
 
