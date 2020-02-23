@@ -19,7 +19,7 @@
 
 ▸ **printHexDump**(`buffer`: ArrayBuffer): *string*
 
-*Defined in [src/misc.ts:23](https://github.com/jlguenego/node-expose-sspi/blob/4e9f9ae/src/misc.ts#L23)*
+*Defined in [src/misc.ts:23](https://github.com/jlguenego/node-expose-sspi/blob/db77f1b/src/misc.ts#L23)*
 
 **Parameters:**
 
@@ -35,7 +35,7 @@ ___
 
 ▸ **trace**(...`args`: any[]): *void*
 
-*Defined in [src/misc.ts:1](https://github.com/jlguenego/node-expose-sspi/blob/4e9f9ae/src/misc.ts#L1)*
+*Defined in [src/misc.ts:1](https://github.com/jlguenego/node-expose-sspi/blob/db77f1b/src/misc.ts#L1)*
 
 **Parameters:**
 
@@ -51,10 +51,10 @@ Name | Type |
 
 ### ▪ **config**: *object*
 
-*Defined in [src/misc.ts:8](https://github.com/jlguenego/node-expose-sspi/blob/4e9f9ae/src/misc.ts#L8)*
+*Defined in [src/misc.ts:8](https://github.com/jlguenego/node-expose-sspi/blob/db77f1b/src/misc.ts#L8)*
 
 ###  debug
 
 • **debug**: *boolean* = false
 
-*Defined in [src/misc.ts:9](https://github.com/jlguenego/node-expose-sspi/blob/4e9f9ae/src/misc.ts#L9)*
+*Defined in [src/misc.ts:9](https://github.com/jlguenego/node-expose-sspi/blob/db77f1b/src/misc.ts#L9)*

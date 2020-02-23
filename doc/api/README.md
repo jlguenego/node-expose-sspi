@@ -14,7 +14,7 @@
 * ["lib/flags/IscReqFlag.d"](modules/_lib_flags_iscreqflag_d_.md)
 * ["lib/flags/TargetDataRepMapFlag.d"](modules/_lib_flags_targetdatarepmapflag_d_.md)
 * ["lib/sspi.d"](modules/_lib_sspi_d_.md)
-* ["src/SSOObject"](modules/_src_ssoobject_.md)
+* ["src/SSO"](modules/_src_sso_.md)
 * ["src/auth"](modules/_src_auth_.md)
 * ["src/connect"](modules/_src_connect_.md)
 * ["src/express"](modules/_src_express_.md)

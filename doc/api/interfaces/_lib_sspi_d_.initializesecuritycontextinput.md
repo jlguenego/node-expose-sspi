@@ -23,7 +23,7 @@
 
 • **cbMaxToken**? : *number*
 
-*Defined in [lib/sspi.d.ts:56](https://github.com/jlguenego/node-expose-sspi/blob/4e9f9ae/lib/sspi.d.ts#L56)*
+*Defined in [lib/sspi.d.ts:56](https://github.com/jlguenego/node-expose-sspi/blob/db77f1b/lib/sspi.d.ts#L56)*
 
 ___
 
@@ -31,7 +31,7 @@ ___
 
 • **contextHandle**? : *[CtxtHandle](_lib_sspi_d_.ctxthandle.md)*
 
-*Defined in [lib/sspi.d.ts:58](https://github.com/jlguenego/node-expose-sspi/blob/4e9f9ae/lib/sspi.d.ts#L58)*
+*Defined in [lib/sspi.d.ts:58](https://github.com/jlguenego/node-expose-sspi/blob/db77f1b/lib/sspi.d.ts#L58)*
 
 ___
 
@@ -39,7 +39,7 @@ ___
 
 • **contextReq**? : *[IscReqFlag](../modules/_lib_flags_iscreqflag_d_.md#iscreqflag)[]*
 
-*Defined in [lib/sspi.d.ts:59](https://github.com/jlguenego/node-expose-sspi/blob/4e9f9ae/lib/sspi.d.ts#L59)*
+*Defined in [lib/sspi.d.ts:59](https://github.com/jlguenego/node-expose-sspi/blob/db77f1b/lib/sspi.d.ts#L59)*
 
 ___
 
@@ -47,7 +47,7 @@ ___
 
 • **credential**: *[CredHandle](_lib_sspi_d_.credhandle.md)*
 
-*Defined in [lib/sspi.d.ts:54](https://github.com/jlguenego/node-expose-sspi/blob/4e9f9ae/lib/sspi.d.ts#L54)*
+*Defined in [lib/sspi.d.ts:54](https://github.com/jlguenego/node-expose-sspi/blob/db77f1b/lib/sspi.d.ts#L54)*
 
 ___
 
@@ -55,7 +55,7 @@ ___
 
 • **serverSecurityContext**? : *[SecurityContext](_lib_sspi_d_.securitycontext.md)*
 
-*Defined in [lib/sspi.d.ts:57](https://github.com/jlguenego/node-expose-sspi/blob/4e9f9ae/lib/sspi.d.ts#L57)*
+*Defined in [lib/sspi.d.ts:57](https://github.com/jlguenego/node-expose-sspi/blob/db77f1b/lib/sspi.d.ts#L57)*
 
 ___
 
@@ -63,4 +63,4 @@ ___
 
 • **targetName**: *string*
 
-*Defined in [lib/sspi.d.ts:55](https://github.com/jlguenego/node-expose-sspi/blob/4e9f9ae/lib/sspi.d.ts#L55)*
+*Defined in [lib/sspi.d.ts:55](https://github.com/jlguenego/node-expose-sspi/blob/db77f1b/lib/sspi.d.ts#L55)*

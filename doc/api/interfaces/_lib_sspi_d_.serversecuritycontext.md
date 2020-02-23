@@ -25,7 +25,7 @@
 
 *Inherited from [SecurityContext](_lib_sspi_d_.securitycontext.md).[SECURITY_STATUS](_lib_sspi_d_.securitycontext.md#optional-security_status)*
 
-*Defined in [lib/sspi.d.ts:34](https://github.com/jlguenego/node-expose-sspi/blob/4e9f9ae/lib/sspi.d.ts#L34)*
+*Defined in [lib/sspi.d.ts:34](https://github.com/jlguenego/node-expose-sspi/blob/db77f1b/lib/sspi.d.ts#L34)*
 
 ___
 
@@ -35,7 +35,7 @@ ___
 
 *Inherited from [SecurityContext](_lib_sspi_d_.securitycontext.md).[SecBufferDesc](_lib_sspi_d_.securitycontext.md#optional-secbufferdesc)*
 
-*Defined in [lib/sspi.d.ts:35](https://github.com/jlguenego/node-expose-sspi/blob/4e9f9ae/lib/sspi.d.ts#L35)*
+*Defined in [lib/sspi.d.ts:35](https://github.com/jlguenego/node-expose-sspi/blob/db77f1b/lib/sspi.d.ts#L35)*
 
 ___
 
@@ -43,7 +43,7 @@ ___
 
 • **contextAttr**: *[AscRetFlag](../modules/_lib_flags_ascretflag_d_.md#ascretflag)[]*
 
-*Defined in [lib/sspi.d.ts:39](https://github.com/jlguenego/node-expose-sspi/blob/4e9f9ae/lib/sspi.d.ts#L39)*
+*Defined in [lib/sspi.d.ts:39](https://github.com/jlguenego/node-expose-sspi/blob/db77f1b/lib/sspi.d.ts#L39)*
 
 ___
 
@@ -53,4 +53,4 @@ ___
 
 *Inherited from [SecurityContext](_lib_sspi_d_.securitycontext.md).[contextHandle](_lib_sspi_d_.securitycontext.md#optional-contexthandle)*
 
-*Defined in [lib/sspi.d.ts:33](https://github.com/jlguenego/node-expose-sspi/blob/4e9f9ae/lib/sspi.d.ts#L33)*
+*Defined in [lib/sspi.d.ts:33](https://github.com/jlguenego/node-expose-sspi/blob/db77f1b/lib/sspi.d.ts#L33)*

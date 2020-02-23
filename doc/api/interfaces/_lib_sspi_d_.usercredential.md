@@ -20,7 +20,7 @@
 
 • **domain**: *string*
 
-*Defined in [lib/sspi.d.ts:50](https://github.com/jlguenego/node-expose-sspi/blob/4e9f9ae/lib/sspi.d.ts#L50)*
+*Defined in [lib/sspi.d.ts:50](https://github.com/jlguenego/node-expose-sspi/blob/db77f1b/lib/sspi.d.ts#L50)*
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 • **password**: *string*
 
-*Defined in [lib/sspi.d.ts:49](https://github.com/jlguenego/node-expose-sspi/blob/4e9f9ae/lib/sspi.d.ts#L49)*
+*Defined in [lib/sspi.d.ts:49](https://github.com/jlguenego/node-expose-sspi/blob/db77f1b/lib/sspi.d.ts#L49)*
 
 ___
 
@@ -36,4 +36,4 @@ ___
 
 • **user**: *string*
 
-*Defined in [lib/sspi.d.ts:48](https://github.com/jlguenego/node-expose-sspi/blob/4e9f9ae/lib/sspi.d.ts#L48)*
+*Defined in [lib/sspi.d.ts:48](https://github.com/jlguenego/node-expose-sspi/blob/db77f1b/lib/sspi.d.ts#L48)*
