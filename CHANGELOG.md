@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.18](https://github.com/jlguenego/node-expose-sspi/compare/v0.0.17...v0.0.18) (2020-02-23)
+
+
+### Features
+
+* added require-self utility ([5946bcd](https://github.com/jlguenego/node-expose-sspi/commit/5946bcdbd68e214fc816ce2ecc33a79e09ca8959))
+
+
+### Bug Fixes
+
+* added tslint ([e52cd80](https://github.com/jlguenego/node-expose-sspi/commit/e52cd80d756e8a2d4efe50215f7b23ae55519c52))
+
 ### [0.0.17](https://github.com/jlguenego/node-expose-sspi/compare/v0.0.16...v0.0.17) (2020-02-23)
 
 
