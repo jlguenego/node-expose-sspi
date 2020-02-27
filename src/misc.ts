@@ -20,7 +20,14 @@ function isPrintable(keycode: number) {
   return valid;
 }
 
-export function hexDump(buffer: ArrayBuffer) {
+
+/**
+ * Gives a string representation of binary data.
+ *
+ * @param {ArrayBuffer} buffer
+ * @returns {string} the string representation.
+ */
+export function hexDump(buffer: ArrayBuffer): string {
   const dataView = new DataView(buffer, 0);
   trace('buffer length', buffer.byteLength);
   let result = '';
