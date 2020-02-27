@@ -14,7 +14,7 @@
 
 ▸ **auth**(): *RequestHandler*
 
-*Defined in [src/auth.ts:15](https://github.com/jlguenego/node-expose-sspi/blob/15baf5f/src/auth.ts#L15)*
+*Defined in [src/auth.ts:15](https://github.com/jlguenego/node-expose-sspi/blob/41d66b9/src/auth.ts#L15)*
 
 Tries to get SSO information from browser. If success, the SSO info
 is stored under req.sso

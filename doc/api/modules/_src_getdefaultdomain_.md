@@ -14,7 +14,7 @@
 
 ▸ **getDefaultDomain**(): *string*
 
-*Defined in [src/getDefaultDomain.ts:8](https://github.com/jlguenego/node-expose-sspi/blob/15baf5f/src/getDefaultDomain.ts#L8)*
+*Defined in [src/getDefaultDomain.ts:8](https://github.com/jlguenego/node-expose-sspi/blob/41d66b9/src/getDefaultDomain.ts#L8)*
 
 Get the domain (Microsoft domain) or hostname (workgroup) of this machine.
 
