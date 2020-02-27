@@ -6,14 +6,18 @@
 
 ### Functions
 
-* [getDefaultDomain](_src_getdefaultdomain_.md#const-getdefaultdomain)
+* [getDefaultDomain](_src_getdefaultdomain_.md#getdefaultdomain)
 
 ## Functions
 
-### `Const` getDefaultDomain
+###  getDefaultDomain
 
 ▸ **getDefaultDomain**(): *string*
 
-*Defined in [src/getDefaultDomain.ts:3](https://github.com/jlguenego/node-expose-sspi/blob/b79cf99/src/getDefaultDomain.ts#L3)*
+*Defined in [src/getDefaultDomain.ts:8](https://github.com/jlguenego/node-expose-sspi/blob/15baf5f/src/getDefaultDomain.ts#L8)*
+
+Get the domain (Microsoft domain) or hostname (workgroup) of this machine.
 
 **Returns:** *string*
+
+domain name

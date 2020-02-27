@@ -31,7 +31,7 @@ When the server want to send to the client authentication token input, this is d
 
 *Inherited from [SecurityContext](_lib_sspi_d_.securitycontext.md).[SECURITY_STATUS](_lib_sspi_d_.securitycontext.md#optional-security_status)*
 
-*Defined in [lib/sspi.d.ts:83](https://github.com/jlguenego/node-expose-sspi/blob/b79cf99/lib/sspi.d.ts#L83)*
+*Defined in [lib/sspi.d.ts:83](https://github.com/jlguenego/node-expose-sspi/blob/15baf5f/lib/sspi.d.ts#L83)*
 
 ___
 
@@ -41,7 +41,7 @@ ___
 
 *Inherited from [SecurityContext](_lib_sspi_d_.securitycontext.md).[SecBufferDesc](_lib_sspi_d_.securitycontext.md#optional-secbufferdesc)*
 
-*Defined in [lib/sspi.d.ts:84](https://github.com/jlguenego/node-expose-sspi/blob/b79cf99/lib/sspi.d.ts#L84)*
+*Defined in [lib/sspi.d.ts:84](https://github.com/jlguenego/node-expose-sspi/blob/15baf5f/lib/sspi.d.ts#L84)*
 
 ___
 
@@ -49,7 +49,7 @@ ___
 
 • **contextAttr**: *[AscRetFlag](../modules/_lib_flags_ascretflag_d_.md#ascretflag)[]*
 
-*Defined in [lib/sspi.d.ts:96](https://github.com/jlguenego/node-expose-sspi/blob/b79cf99/lib/sspi.d.ts#L96)*
+*Defined in [lib/sspi.d.ts:96](https://github.com/jlguenego/node-expose-sspi/blob/15baf5f/lib/sspi.d.ts#L96)*
 
 ___
 
@@ -59,4 +59,4 @@ ___
 
 *Inherited from [SecurityContext](_lib_sspi_d_.securitycontext.md).[contextHandle](_lib_sspi_d_.securitycontext.md#optional-contexthandle)*
 
-*Defined in [lib/sspi.d.ts:82](https://github.com/jlguenego/node-expose-sspi/blob/b79cf99/lib/sspi.d.ts#L82)*
+*Defined in [lib/sspi.d.ts:82](https://github.com/jlguenego/node-expose-sspi/blob/15baf5f/lib/sspi.d.ts#L82)*
