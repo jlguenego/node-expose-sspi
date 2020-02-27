@@ -8,6 +8,8 @@ You may participate to complete this project if you need to use SSPI in another 
 
 This module only works on Microsoft Windows OS.
 
+Require NodeJS version >=12.16.1
+
 ## Install
 
 Just do:
