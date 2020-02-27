@@ -63,6 +63,8 @@ You should see the JSON result with user, owner and used method (NTLM or Kerbero
 
 [Access to the detailed API document](./doc/api/README.md). This has been generated with [typedoc](https://github.com/TypeStrong/typedoc).
 
+Do see the API in action, you should read the `sso` source code object. `auth` and `connect` functions are two instructive example of how to use SSPI with Javascript.
+
 There is 2 parts in this module:
 
 - `sspi` object which exposes the Microsoft SSPI library API.
