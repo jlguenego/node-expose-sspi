@@ -1,6 +1,11 @@
 import sspi = require("../lib/sspi");
 
-export const getDefaultDomain = () => {
+/**
+ * Get the domain (Microsoft domain) or hostname (workgroup) of this machine.
+ *
+ * @returns {string} domain name
+ */
+export function getDefaultDomain(): string {
   const str = sspi.GetUserNameEx("NameSamCompatible");
   const domain = str.split("\\")[0];
   return domain;

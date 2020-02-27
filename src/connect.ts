@@ -2,7 +2,15 @@ import { hexDump, trace } from './misc';
 import sspi = require('../lib/sspi');
 import { SSO } from './SSO';
 
-export const connect = (userCredential: sspi.UserCredential) => {
+/**
+ * Retrieve SSO information from an explicit credential (login/password and domain).
+ * The SSO information will be retrieved only if the credential
+ * matches a local account or a domain account.
+ *
+ * @param {sspi.UserCredential} userCredential
+ * @returns {SSO} the SSO object or undefined.
+ */
+export function connect(userCredential: sspi.UserCredential): SSO {
   const errorMsg = 'error while building the security context';
   const badLoginPasswordMsg = 'sorry mate, wrong login/password.';
   try {
@@ -86,4 +94,4 @@ export const connect = (userCredential: sspi.UserCredential) => {
   }
 
   return undefined;
-};
+}
