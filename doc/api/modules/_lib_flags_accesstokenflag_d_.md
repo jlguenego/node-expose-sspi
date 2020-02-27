@@ -14,4 +14,4 @@
 
 Ƭ **AccessTokenFlag**: *"TOKEN_ADJUST_DEFAULT" | "TOKEN_ADJUST_GROUPS" | "TOKEN_ADJUST_PRIVILEGES" | "TOKEN_ADJUST_SESSIONID" | "TOKEN_ASSIGN_PRIMARY" | "TOKEN_DUPLICATE" | "TOKEN_EXECUTE" | "TOKEN_IMPERSONATE" | "TOKEN_QUERY" | "TOKEN_QUERY_SOURCE" | "TOKEN_READ" | "TOKEN_WRITE" | "TOKEN_ALL_ACCESS"*
 
-*Defined in [lib/flags/AccessTokenFlag.d.ts:1](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/flags/AccessTokenFlag.d.ts#L1)*
+*Defined in [lib/flags/AccessTokenFlag.d.ts:1](https://github.com/jlguenego/node-expose-sspi/blob/b79cf99/lib/flags/AccessTokenFlag.d.ts#L1)*

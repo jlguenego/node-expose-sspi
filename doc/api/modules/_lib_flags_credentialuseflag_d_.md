@@ -14,4 +14,4 @@
 
 Ƭ **CredentialUseFlag**: *"SECPKG_CRED_INBOUND" | "SECPKG_CRED_OUTBOUND" | "SECPKG_CRED_BOTH" | "SECPKG_CRED_DEFAULT" | "SECPKG_CRED_RESERVED"*
 
-*Defined in [lib/flags/CredentialUseFlag.d.ts:1](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/flags/CredentialUseFlag.d.ts#L1)*
+*Defined in [lib/flags/CredentialUseFlag.d.ts:1](https://github.com/jlguenego/node-expose-sspi/blob/b79cf99/lib/flags/CredentialUseFlag.d.ts#L1)*

@@ -2,6 +2,14 @@
 
 # Interface: CtxtHandle
 
+Context Handle
+
+A context handle is created with InitializeSecurityContext and AcceptSecurityContext
+function while establishing secure authentication.
+It is useful to use ImpersonateSecurityContext function
+
+**`interface`** CtxtHandle
+
 ## Hierarchy
 
 * **CtxtHandle**

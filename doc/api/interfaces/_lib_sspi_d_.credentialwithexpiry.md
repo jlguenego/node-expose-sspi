@@ -2,6 +2,10 @@
 
 # Interface: CredentialWithExpiry
 
+Credential with expiry date.
+
+**`interface`** CredentialWithExpiry
+
 ## Hierarchy
 
 * **CredentialWithExpiry**
@@ -19,7 +23,7 @@
 
 • **credential**: *[CredHandle](_lib_sspi_d_.credhandle.md)*
 
-*Defined in [lib/sspi.d.ts:28](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L28)*
+*Defined in [lib/sspi.d.ts:71](https://github.com/jlguenego/node-expose-sspi/blob/b79cf99/lib/sspi.d.ts#L71)*
 
 ___
 
@@ -27,4 +31,4 @@ ___
 
 • **tsExpiry**: *Date*
 
-*Defined in [lib/sspi.d.ts:29](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L29)*
+*Defined in [lib/sspi.d.ts:72](https://github.com/jlguenego/node-expose-sspi/blob/b79cf99/lib/sspi.d.ts#L72)*

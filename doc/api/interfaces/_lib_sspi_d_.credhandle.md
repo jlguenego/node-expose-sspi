@@ -2,6 +2,13 @@
 
 # Interface: CredHandle
 
+CredHandle is returned by AcquireCredentialsHandle.
+
+It is needed for using InitializeSecurityContext and AcceptSecurityContext.
+It represents the credential of a client or server user.
+
+**`interface`** CredHandle
+
 ## Hierarchy
 
 * **CredHandle**

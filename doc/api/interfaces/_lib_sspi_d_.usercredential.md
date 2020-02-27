@@ -2,6 +2,12 @@
 
 # Interface: UserCredential
 
+This is just a container for user login/password/domain.
+
+The domain is a Windows domain, or a computer name.
+
+**`interface`** UserCredential
+
 ## Hierarchy
 
 * **UserCredential**
@@ -20,7 +26,7 @@
 
 • **domain**: *string*
 
-*Defined in [lib/sspi.d.ts:50](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L50)*
+*Defined in [lib/sspi.d.ts:120](https://github.com/jlguenego/node-expose-sspi/blob/b79cf99/lib/sspi.d.ts#L120)*
 
 ___
 
@@ -28,7 +34,7 @@ ___
 
 • **password**: *string*
 
-*Defined in [lib/sspi.d.ts:49](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L49)*
+*Defined in [lib/sspi.d.ts:119](https://github.com/jlguenego/node-expose-sspi/blob/b79cf99/lib/sspi.d.ts#L119)*
 
 ___
 
@@ -36,4 +42,4 @@ ___
 
 • **user**: *string*
 
-*Defined in [lib/sspi.d.ts:48](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L48)*
+*Defined in [lib/sspi.d.ts:118](https://github.com/jlguenego/node-expose-sspi/blob/b79cf99/lib/sspi.d.ts#L118)*

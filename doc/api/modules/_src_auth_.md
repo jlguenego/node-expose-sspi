@@ -14,6 +14,6 @@
 
 ▸ **auth**(): *(Anonymous function)*
 
-*Defined in [src/auth.ts:8](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/src/auth.ts#L8)*
+*Defined in [src/auth.ts:8](https://github.com/jlguenego/node-expose-sspi/blob/b79cf99/src/auth.ts#L8)*
 
 **Returns:** *(Anonymous function)*

@@ -2,6 +2,10 @@
 
 # Interface: Token
 
+A Token is a pointer to some user information.
+
+**`interface`** Token
+
 ## Hierarchy
 
 * **Token**

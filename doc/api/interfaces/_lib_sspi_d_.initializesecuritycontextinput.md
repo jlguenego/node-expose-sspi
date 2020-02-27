@@ -2,6 +2,10 @@
 
 # Interface: InitializeSecurityContextInput
 
+Input of InitializeSecurityContext function.
+
+**`interface`** InitializeSecurityContextInput
+
 ## Hierarchy
 
 * **InitializeSecurityContextInput**
@@ -23,7 +27,7 @@
 
 • **cbMaxToken**? : *number*
 
-*Defined in [lib/sspi.d.ts:56](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L56)*
+*Defined in [lib/sspi.d.ts:131](https://github.com/jlguenego/node-expose-sspi/blob/b79cf99/lib/sspi.d.ts#L131)*
 
 ___
 
@@ -31,7 +35,7 @@ ___
 
 • **contextHandle**? : *[CtxtHandle](_lib_sspi_d_.ctxthandle.md)*
 
-*Defined in [lib/sspi.d.ts:58](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L58)*
+*Defined in [lib/sspi.d.ts:133](https://github.com/jlguenego/node-expose-sspi/blob/b79cf99/lib/sspi.d.ts#L133)*
 
 ___
 
@@ -39,7 +43,7 @@ ___
 
 • **contextReq**? : *[IscReqFlag](../modules/_lib_flags_iscreqflag_d_.md#iscreqflag)[]*
 
-*Defined in [lib/sspi.d.ts:59](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L59)*
+*Defined in [lib/sspi.d.ts:134](https://github.com/jlguenego/node-expose-sspi/blob/b79cf99/lib/sspi.d.ts#L134)*
 
 ___
 
@@ -47,7 +51,7 @@ ___
 
 • **credential**: *[CredHandle](_lib_sspi_d_.credhandle.md)*
 
-*Defined in [lib/sspi.d.ts:54](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L54)*
+*Defined in [lib/sspi.d.ts:129](https://github.com/jlguenego/node-expose-sspi/blob/b79cf99/lib/sspi.d.ts#L129)*
 
 ___
 
@@ -55,7 +59,7 @@ ___
 
 • **serverSecurityContext**? : *[SecurityContext](_lib_sspi_d_.securitycontext.md)*
 
-*Defined in [lib/sspi.d.ts:57](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L57)*
+*Defined in [lib/sspi.d.ts:132](https://github.com/jlguenego/node-expose-sspi/blob/b79cf99/lib/sspi.d.ts#L132)*
 
 ___
 
@@ -63,4 +67,4 @@ ___
 
 • **targetName**: *string*
 
-*Defined in [lib/sspi.d.ts:55](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L55)*
+*Defined in [lib/sspi.d.ts:130](https://github.com/jlguenego/node-expose-sspi/blob/b79cf99/lib/sspi.d.ts#L130)*

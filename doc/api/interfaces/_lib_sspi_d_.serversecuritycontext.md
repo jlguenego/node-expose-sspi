@@ -2,6 +2,12 @@
 
 # Interface: ServerSecurityContext
 
+ServerSecurityContext is the SecurityContext, specific to the server.
+It is the output of AcceptSecurityContext, and used in the input of InitializeSecurityContext.
+When the server want to send to the client authentication token input, this is done with this interface.
+
+**`interface`** ServerSecurityContext
+
 ## Hierarchy
 
 * [SecurityContext](_lib_sspi_d_.securitycontext.md)
@@ -25,7 +31,7 @@
 
 *Inherited from [SecurityContext](_lib_sspi_d_.securitycontext.md).[SECURITY_STATUS](_lib_sspi_d_.securitycontext.md#optional-security_status)*
 
-*Defined in [lib/sspi.d.ts:34](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L34)*
+*Defined in [lib/sspi.d.ts:83](https://github.com/jlguenego/node-expose-sspi/blob/b79cf99/lib/sspi.d.ts#L83)*
 
 ___
 
@@ -35,7 +41,7 @@ ___
 
 *Inherited from [SecurityContext](_lib_sspi_d_.securitycontext.md).[SecBufferDesc](_lib_sspi_d_.securitycontext.md#optional-secbufferdesc)*
 
-*Defined in [lib/sspi.d.ts:35](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L35)*
+*Defined in [lib/sspi.d.ts:84](https://github.com/jlguenego/node-expose-sspi/blob/b79cf99/lib/sspi.d.ts#L84)*
 
 ___
 
@@ -43,7 +49,7 @@ ___
 
 • **contextAttr**: *[AscRetFlag](../modules/_lib_flags_ascretflag_d_.md#ascretflag)[]*
 
-*Defined in [lib/sspi.d.ts:39](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L39)*
+*Defined in [lib/sspi.d.ts:96](https://github.com/jlguenego/node-expose-sspi/blob/b79cf99/lib/sspi.d.ts#L96)*
 
 ___
 
@@ -53,4 +59,4 @@ ___
 
 *Inherited from [SecurityContext](_lib_sspi_d_.securitycontext.md).[contextHandle](_lib_sspi_d_.securitycontext.md#optional-contexthandle)*
 
-*Defined in [lib/sspi.d.ts:33](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L33)*
+*Defined in [lib/sspi.d.ts:82](https://github.com/jlguenego/node-expose-sspi/blob/b79cf99/lib/sspi.d.ts#L82)*

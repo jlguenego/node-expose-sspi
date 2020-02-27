@@ -2,6 +2,11 @@
 
 # Interface: SidObject
 
+Wrapper containing a Microsoft windows domain name and a user sid.
+sid = security id.
+
+**`interface`** SidObject
+
 ## Hierarchy
 
 * **SidObject**
@@ -19,7 +24,7 @@
 
 • **domain**: *string*
 
-*Defined in [lib/sspi.d.ts:44](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L44)*
+*Defined in [lib/sspi.d.ts:107](https://github.com/jlguenego/node-expose-sspi/blob/b79cf99/lib/sspi.d.ts#L107)*
 
 ___
 
@@ -27,4 +32,4 @@ ___
 
 • **sid**: *string*
 
-*Defined in [lib/sspi.d.ts:43](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/lib/sspi.d.ts#L43)*
+*Defined in [lib/sspi.d.ts:106](https://github.com/jlguenego/node-expose-sspi/blob/b79cf99/lib/sspi.d.ts#L106)*

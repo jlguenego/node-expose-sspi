@@ -2,6 +2,10 @@
 
 # Interface: HANDLE
 
+A HANDLE representing something. Technically it is a pointer reference on something.
+
+**`interface`** HANDLE
+
 ## Hierarchy
 
 * **HANDLE**

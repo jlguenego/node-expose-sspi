@@ -14,6 +14,6 @@
 
 ▸ **getDefaultDomain**(): *string*
 
-*Defined in [src/getDefaultDomain.ts:3](https://github.com/jlguenego/node-expose-sspi/blob/70cc17a/src/getDefaultDomain.ts#L3)*
+*Defined in [src/getDefaultDomain.ts:3](https://github.com/jlguenego/node-expose-sspi/blob/b79cf99/src/getDefaultDomain.ts#L3)*
 
 **Returns:** *string*
