@@ -5,7 +5,15 @@ import sspi = require('../lib/sspi');
 import { RequestHandler } from 'express';
 import { SSO } from './SSO';
 
-export const auth: () => RequestHandler = () => {
+
+/**
+ * Tries to get SSO information from browser. If success, the SSO info
+ * is stored under req.sso
+ *
+ * @export
+ * @returns {RequestHandler}
+ */
+export function auth(): RequestHandler {
   let { credential, tsExpiry } = sspi.AcquireCredentialsHandle({
     packageName: 'Negotiate'
   });
@@ -26,9 +34,11 @@ export const auth: () => RequestHandler = () => {
   // because Kerberos will not request many times the client to complete the SSO Authentication.
   let serverContextHandle: sspi.SecurityContext;
 
+  // returns the middleware.
   return (req, res, next) => {
     try {
       checkCredentials();
+
       const authorization = req.get('authorization');
       if (!authorization) {
         serverContextHandle = undefined;
