@@ -3,6 +3,9 @@
   "version": "0.0.18",
   "description": "Expose the Microsoft Windows SSPI interface in order to do NTLM and Kerberos authentication.",
   "main": "index.js",
+  "engines": {
+    "node": ">=12.16.1"
+  },
   "scripts": {
     "build": "node-gyp rebuild -j 8",
     "build:doc": "typedoc ./src ./lib",
