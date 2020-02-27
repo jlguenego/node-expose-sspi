@@ -6,7 +6,7 @@ It has been done in order to do NTLM and Kerberos SSO authentication.
 
 You may participate to complete this project if you need to use SSPI in another use case.
 
-This module works only on Microsoft Windows OS.
+This module only works on Microsoft Windows OS.
 
 ## Install
 
