@@ -10,8 +10,7 @@ import { SSO } from './SSO';
  * Tries to get SSO information from browser. If success, the SSO info
  * is stored under req.sso
  *
- * @export
- * @returns {RequestHandler}
+ * @returns {RequestHandler} a middleware
  */
 export function auth(): RequestHandler {
   let { credential, tsExpiry } = sspi.AcquireCredentialsHandle({
