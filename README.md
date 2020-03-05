@@ -141,6 +141,7 @@ https://github.com/jlguenego/angular-sso-example
 ## TODO
 
 Any idea of new features ? Please tell me ;)
+- write a NTLM/Kerberos web client example.
 
 ## Author
 
