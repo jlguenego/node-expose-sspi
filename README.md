@@ -57,7 +57,7 @@ app.listen(3000, () => console.log("Server started on port 3000"));
 node server.js
 ```
 
-Open a web browser and go to `http://localhost:3001`.
+Open a web browser and go to `http://localhost:3000`.
 
 You should see the JSON result with user, owner and used method (NTLM or Kerberos)
 

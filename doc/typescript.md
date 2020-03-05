@@ -31,3 +31,4 @@ To start the typescript server, just run:
 npx ts-node server.ts
 ```
 
+Open a web browser and go to `http://localhost:3001`.
