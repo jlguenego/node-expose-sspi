@@ -61,9 +61,9 @@ Note: To read JSON file on Chrome, you should use the [JSON Formatter Chrome Ext
 
 ## Firefox
 
-NTLM and Kerberos are not activated by default. To make it working, you need to follow these steps:
+Unlike Chrome, NTLM and Kerberos are not activated by default in Firefox. To make it working, you need to follow these steps:
 
-1. Navigate to the URL about:config.
+1. Navigate to the URL `about:config`.
 2. Click past the warning of harmful consequences.
 3. Type `negotiate-auth` into the filter at the top of the page, in order to remove most of the irrelevant settings from the list.
 4. Double-click on `network.negotiate-auth.trusted-uris`. A dialogue box for editing the value should appear.
