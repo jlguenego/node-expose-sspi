@@ -2,11 +2,9 @@
 
 Expose the Microsoft Windows SSPI (SSP Interface) to [Node.js®](https://nodejs.org/).
 
-It has been done in order to do NTLM and Kerberos SSO authentication.
+:smirk: It has been done in order to do **NTLM** and **Kerberos** SSO authentication.
 
-This module only works on Microsoft Windows OS.
-
-Require NodeJS version >=12.16.1
+Requirements: Microsoft Windows OS, NodeJS version >=12.16.1.
 
 ## Install
 
@@ -146,7 +144,7 @@ TODO
 
 ## TODO
 
-Any idea of new features ? Please tell me and raise an issue :blush:
+Any idea of new features ? Please tell me and raise an issue. :blush:
 - write a NTLM/Kerberos web client example.
 - write a proxy example (writing sso user in the HTTP header)
 
