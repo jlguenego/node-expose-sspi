@@ -69,7 +69,7 @@ NTLM and Kerberos are not activated by default. To make it working, you need to 
 4. Double-click on `network.negotiate-auth.trusted-uris`. A dialogue box for editing the value should appear.
 5. Enter the required hostname(s) and/or URL prefix(es) then click OK. For the above example, it is `http://localhost:3000`
 
-[You can find more info here](http://www.microhowto.info/howto/configure_firefox_to_authenticate_using_spnego_and_kerberos.html).
+[More detailed info here](http://www.microhowto.info/howto/configure_firefox_to_authenticate_using_spnego_and_kerberos.html). 
 
 ## API
 
