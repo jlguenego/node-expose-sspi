@@ -137,11 +137,20 @@ npm run build
 See the Github repository:
 https://github.com/jlguenego/angular-sso-example
 
+## React example
+
+See the Github repository:
+https://github.com/jlguenego/react-sso-example
+
+## Vue example
+
+TODO
 
 ## TODO
 
 Any idea of new features ? Please tell me ;)
 - write a NTLM/Kerberos web client example.
+- write a proxy example (writing sso user in the HTTP header)
 
 ## Author
 
