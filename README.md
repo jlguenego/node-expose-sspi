@@ -75,7 +75,7 @@ npm run pretest
 npm run test:proxy
 ```
 
-The reverse proxy do an authentication and gives the authentication info to the target server in the `x-sso` HTTP header.
+The reverse proxy performs an authentication and gives the authentication info to the target server in the `x-sso` HTTP header.
 
 ## Browsers
 
