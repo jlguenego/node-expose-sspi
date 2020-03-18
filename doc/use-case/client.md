@@ -1,5 +1,7 @@
 # Client use case
 
+## Example
+
 Create a node module:
 
 ```
@@ -58,6 +60,9 @@ Server successfully closed.
 
 Of course, `Jean-Louis GUÉNÉGO` is whatever your windows account is.
 
+## The client object
+
+`sso.client.fetch` is a `fetch` API from the node module `node-fetch`, with the Windows Authentication Integration.
 
 ## Author
 
