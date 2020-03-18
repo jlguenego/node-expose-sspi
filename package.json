@@ -18,6 +18,7 @@
     "test": "node test/index.js",
     "test:client": "node test/client-server.js",
     "test:server": "nodemon test/server.js",
+    "test:proxy": "nodemon test/reverse-proxy-server.js",
     "test:ts": "ts-node test/ts/index.ts",
     "test:ts:server": "nodemon test/ts/server.ts"
   },
