@@ -1,6 +1,5 @@
 import fetch, { RequestInit, Response } from 'node-fetch';
-import sspi, { InitializeSecurityContextInput } from '../lib/sspi';
-import { hexDump } from './misc';
+import sspi from '../lib/sspi';
 import { encode, decode } from 'base64-arraybuffer';
 
 async function handleAuth(response: Response, resource: string, init: RequestInit = {}) {
@@ -18,23 +17,19 @@ async function handleAuth(response: Response, resource: string, init: RequestIni
     packageName: 'Negotiate',
     credentialUse: 'SECPKG_CRED_OUTBOUND'
   });
-  console.log('clientCred: ', clientCred);
   const packageInfo = sspi.QuerySecurityPackageInfo('Negotiate');
-  let input: InitializeSecurityContextInput = {
+  let input: sspi.InitializeSecurityContextInput = {
     credential: clientCred.credential,
     targetName: 'kiki',
     cbMaxToken: packageInfo.cbMaxToken,
     targetDataRep: 'SECURITY_NATIVE_DREP'
   };
   let clientSecurityContext = sspi.InitializeSecurityContext(input);
-  console.log('clientSecurityContext: ', clientSecurityContext);
-  console.log(hexDump(clientSecurityContext.SecBufferDesc.buffers[0]));
   // encode to Base64 and send via HTTP
   let base64 = encode(clientSecurityContext.SecBufferDesc.buffers[0]);
   let requestInit: RequestInit = { ...init };
   requestInit.headers = { ...init.headers, authorization: 'Negotiate ' + base64 };
   response = await fetch(resource, requestInit);
-  console.log('start while');
   while (
     response.headers.has('www-authenticate') &&
     response.status === 401 &&
@@ -54,10 +49,7 @@ async function handleAuth(response: Response, resource: string, init: RequestIni
       contextHandle: clientSecurityContext.contextHandle,
       targetDataRep: 'SECURITY_NATIVE_DREP'
     };
-    console.log('input: ', input);
     clientSecurityContext = sspi.InitializeSecurityContext(input);
-    console.log('clientSecurityContext: ', clientSecurityContext);
-    console.log(hexDump(clientSecurityContext.SecBufferDesc.buffers[0]));
     base64 = encode(clientSecurityContext.SecBufferDesc.buffers[0]);
     requestInit = { ...init };
     requestInit.headers = { ...init.headers, authorization: 'Negotiate ' + base64 };
