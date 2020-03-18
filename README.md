@@ -188,7 +188,6 @@ TODO
 
 Any idea of new features ? Please tell me and raise an issue. :blush:
 
-- write a proxy example (writing sso user in the HTTP header)
 
 ## Author
 
