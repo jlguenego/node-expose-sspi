@@ -59,7 +59,13 @@ You should see the JSON result with user, owner and used method (NTLM or Kerbero
 
 Note: To read JSON file on Chrome, you should use the [JSON Formatter Chrome Extension](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa).
 
-## Firefox
+## Browsers
+
+### Chrome
+
+No conf. It just works.
+
+### Firefox
 
 Unlike Chrome, NTLM and Kerberos are not activated by default in Firefox. To make it working, you need to follow these steps:
 
@@ -70,6 +76,10 @@ Unlike Chrome, NTLM and Kerberos are not activated by default in Firefox. To mak
 5. Enter the required hostname(s) and/or URL prefix(es) then click OK. For the above example, it is `http://localhost:3000`
 
 [More detailed info here](http://www.microhowto.info/howto/configure_firefox_to_authenticate_using_spnego_and_kerberos.html). 
+
+### Edge
+
+Edge does not require any configuration. But the browser ask the credentials to the user each time it is started.
 
 ## API
 
