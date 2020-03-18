@@ -16,6 +16,7 @@
     "release": "standard-version",
     "pretest": "require-self",
     "test": "node test/index.js",
+    "test:client": "node test/client-server.js",
     "test:server": "nodemon test/server.js",
     "test:ts": "ts-node test/ts/index.ts",
     "test:ts:server": "nodemon test/ts/server.ts"
@@ -43,12 +44,14 @@
   "gypfile": false,
   "dependencies": {
     "base64-arraybuffer": "^0.2.0",
-    "http-errors": "^1.7.3"
+    "http-errors": "^1.7.3",
+    "node-fetch": "^2.6.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.2",
     "@types/express-session": "^1.15.16",
     "@types/http-errors": "^1.6.3",
+    "@types/node-fetch": "^2.5.5",
     "@types/serve-index": "^1.7.30",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
@@ -61,7 +64,7 @@
     "standard-version": "^7.1.0",
     "ts-node": "^8.6.2",
     "tslint": "^6.0.0",
-    "typedoc": "^0.16.10",
+    "typedoc": "^0.17.1",
     "typedoc-plugin-markdown": "^2.2.16",
     "typescript": "^3.7.5"
   }

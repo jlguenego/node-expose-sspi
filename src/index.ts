@@ -4,6 +4,7 @@ import { getDefaultDomain } from './getDefaultDomain';
 import { config, hexDump } from './misc';
 import { SSO } from './SSO';
 import './express';
+import { client } from './client';
 
 const sso = {
   config,
@@ -11,7 +12,8 @@ const sso = {
   auth,
   connect,
   SSO,
-  getDefaultDomain
+  getDefaultDomain,
+  client
 };
 
 // In CommonJS, default export must be written as 'export ='
