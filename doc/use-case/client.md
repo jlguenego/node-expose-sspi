@@ -1,3 +1,17 @@
+# Client use case
+
+Create a node module:
+
+```
+mkdir project
+cd project
+npm init -y
+npm i express node-expose-sspi
+```
+
+Create a `index.js` script with the following content:
+
+```js
 const express = require('express');
 const { sso } = require('node-expose-sspi');
 
@@ -25,3 +39,26 @@ const server = app.listen(3000, () => console.log('Server started on port 3000')
 
   server.close(() => console.log('Server successfully closed.'));
 })();
+
+```
+
+And to run it, just do:
+
+```
+node index.js
+```
+
+The script output:
+
+```
+Server started on port 3000
+json:  { sso: 'Jean-Louis GUÉNÉGO' }
+Server successfully closed.
+```
+
+Of course, `Jean-Louis GUÉNÉGO` is whatever your windows account is.
+
+
+## Author
+
+Jean-Louis GUENEGO <jlguenego@gmail.com>

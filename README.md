@@ -18,7 +18,7 @@ Note: There is a prebuilt binary node addon that will be installed.
 
 ## Usage
 
-### SSO Authentication use case
+### SSO Authentication server use case
 
 ```bat
 mkdir myproject
@@ -58,6 +58,10 @@ Open a Google Chrome web browser and go to `http://localhost:3000`.
 You should see the JSON result with user, owner and used method (NTLM or Kerberos).
 
 Note: To read JSON file on Chrome, you should use the [JSON Formatter Chrome Extension](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa).
+
+### SSO Authentication client use case
+
+[See the example here.](./doc/use-case/client.md)
 
 ## Browsers
 
