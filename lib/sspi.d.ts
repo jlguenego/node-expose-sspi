@@ -132,6 +132,7 @@ interface InitializeSecurityContextInput {
   serverSecurityContext?: SecurityContext;
   contextHandle?: CtxtHandle;
   contextReq?: IscReqFlag[];
+  targetDataRep?: TargetDataRepMapFlag;
 }
 
 /**
