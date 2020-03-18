@@ -17,8 +17,8 @@ const server = app.listen(3000, () => console.log('Server started on port 3000')
 
 (async () => {
   try {
-    const client = sso.client;
-    const response = await client.fetch('http://localhost:3000');
+    const { fetch } = sso.client;
+    const response = await fetch('http://localhost:3000');
     const json = await response.json();
     console.log('json: ', json);
   } catch (e) {
