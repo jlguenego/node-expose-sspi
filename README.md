@@ -180,4 +180,4 @@ Any idea of new features ? Please tell me and raise an issue. :blush:
 Jean-Louis GUENEGO <jlguenego@gmail.com> (http://jlg-consulting.com/)
 
 You may participate to complete this project if you need to use SSPI in another use case.
-Contributors would be welcome!
+Contributors are welcome!
