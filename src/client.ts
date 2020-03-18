@@ -2,7 +2,7 @@ import fetch, { RequestInit, Response } from 'node-fetch';
 import sspi from '../lib/sspi';
 import { encode, decode } from 'base64-arraybuffer';
 
-async function handleAuth(response: Response, resource: string, init: RequestInit = {}) {
+async function handleAuth(response: Response, resource: string, init: RequestInit = {}): Promise<Response> {
   if (!response.headers.has('www-authenticate')) {
     return response;
   }
@@ -59,7 +59,7 @@ async function handleAuth(response: Response, resource: string, init: RequestIni
 }
 
 class Client {
-  async fetch(resource: string, init?: RequestInit) {
+  async fetch(resource: string, init?: RequestInit): Promise<Response> {
     const response = await fetch(resource, init);
     return await handleAuth(response, resource, init);
   }
