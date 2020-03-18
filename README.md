@@ -31,8 +31,8 @@ npm i node-expose-sspi
 Make an express web server by doing the `server.js` file:
 
 ```js
-const express = require("express");
-const { sso, sspi } = require("node-expose-sspi");
+const express = require('express');
+const { sso, sspi } = require('node-expose-sspi');
 
 sso.config.debug = false;
 
@@ -42,11 +42,11 @@ app.use(sso.auth());
 
 app.use((req, res, next) => {
   res.json({
-    sso: req.sso
+    sso: req.sso,
   });
 });
 
-app.listen(3000, () => console.log("Server started on port 3000"));
+app.listen(3000, () => console.log('Server started on port 3000'));
 ```
 
 ```
@@ -62,6 +62,20 @@ Note: To read JSON file on Chrome, you should use the [JSON Formatter Chrome Ext
 ### SSO Authentication client use case
 
 [See the example here.](./doc/use-case/client.md)
+
+### SSO Authentication reverse proxy use case
+
+Clone this project.
+
+```
+git clone https://github.com/jlguenego/node-expose-sspi.git
+cd node-expose-sspi
+npm i
+npm run pretest
+npm run test:proxy
+```
+
+The reverse proxy do an authentication and gives the authentication info to the target server in the `x-sso` HTTP header.
 
 ## Browsers
 
@@ -79,7 +93,7 @@ Unlike Chrome, NTLM and Kerberos are not activated by default in Firefox. To mak
 4. Double-click on `network.negotiate-auth.trusted-uris`. A dialogue box for editing the value should appear.
 5. Enter the required hostname(s) and/or URL prefix(es) then click OK. For the above example, it is `http://localhost:3000`
 
-[More detailed info here](http://www.microhowto.info/howto/configure_firefox_to_authenticate_using_spnego_and_kerberos.html). 
+[More detailed info here](http://www.microhowto.info/howto/configure_firefox_to_authenticate_using_spnego_and_kerberos.html).
 
 ### Edge
 
@@ -116,7 +130,6 @@ Note: the NTLM protocol is not very secure, so be sure to be above HTTPS.
 
 You should see [this Node Expose SSPI Kerberos dedicated documentation](./doc/Kerberos.md).
 
-
 ## Rebuilding the binary
 
 If the provided Windows binary does not work for your OS,
@@ -149,6 +162,7 @@ npm run example
 ## Development
 
 To compile the native node module, you need:
+
 ```
 npm install --global windows-build-tools
 git clone https://github.com/jlguenego/node-expose-sspi.git
@@ -173,6 +187,7 @@ TODO
 ## TODO
 
 Any idea of new features ? Please tell me and raise an issue. :blush:
+
 - write a proxy example (writing sso user in the HTTP header)
 
 ## Author
