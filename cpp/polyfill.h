@@ -13,8 +13,7 @@
 #include <string>
 
 // Active Directory
-#include <iads.h>
-#include <adshlp.h>
+#include <Activeds.h>
 
 namespace plf {
 // polyfills

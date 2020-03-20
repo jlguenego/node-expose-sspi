@@ -6,29 +6,21 @@ namespace myAddon {
 Napi::Value e_ADsGestObject(const Napi::CallbackInfo &info) {
   Napi::Env env = info.Env();
 
-  log("on demarre");
-
   if (info.Length() < 1) {
-    throw Napi::Error::New(env, "ADsGestObject(bindingUri: string): need a binding string.");
+    throw Napi::Error::New(
+        env, "ADsGestObject(bindingUri: string): need a binding string.");
   }
 
   std::u16string bindingStr = info[0].As<Napi::String>().Utf16Value();
-  LPCWSTR binding = (LPCWSTR) bindingStr.c_str();
+  LPCWSTR binding = (LPCWSTR)bindingStr.c_str();
 
   IADs *pObject;
   HRESULT hr;
 
-  log("ok");
-
   // Initialize COM.
   CoInitialize(NULL);
 
-  log("initialized ok");
-
-  hr = ADsGetObject(binding, IID_IADs,
-                    (void **)&pObject);
-
-  log("ADsGetObject finished");
+  hr = ADsGetObject(binding, IID_IADs, (void **)&pObject);
 
   if (FAILED(hr)) {
     // clean resources
@@ -38,7 +30,15 @@ Napi::Value e_ADsGestObject(const Napi::CallbackInfo &info) {
   }
 
   // Use the object.
-  log("cool, ca marche");
+  BSTR bstrName;
+
+  // Get property.
+  hr = pObject->get_Name(&bstrName);
+  if (SUCCEEDED(hr)) {
+    wprintf(bstrName);
+
+    SysFreeString(bstrName);
+  }
 
   // Release the object.
   pObject->Release();
