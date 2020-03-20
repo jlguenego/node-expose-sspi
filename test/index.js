@@ -126,3 +126,6 @@ console.log('DeleteSecurityContext ok');
 
 sspi.FreeCredentialsHandle(serverCred.credential);
 console.log('free server credentials ok');
+
+// Test Active Directory
+sspi.ADsGestObject("WinNT://jlg.local/jlouis");

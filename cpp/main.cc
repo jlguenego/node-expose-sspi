@@ -68,6 +68,9 @@ Napi::Object Init(Napi::Env env, Napi::Object exports) {
 
   exports.Set(Napi::String::New(env, "LookupAccountName"),
               Napi::Function::New(env, e_LookupAccountName));
+              
+  exports.Set(Napi::String::New(env, "ADsGestObject"),
+              Napi::Function::New(env, e_ADsGestObject));
 
   return exports;
 }

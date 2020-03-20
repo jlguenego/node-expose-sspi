@@ -13,7 +13,9 @@
       "link_settings": {
         "libraries": [
           "Secur32.lib",
-          "Ws2_32.lib"
+          "Ws2_32.lib",
+          "ActiveDS.lib",
+          "ADSIid.lib",
         ]
       },
       "include_dirs": [

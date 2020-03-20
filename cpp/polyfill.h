@@ -12,9 +12,14 @@
 #include <stdexcept>
 #include <string>
 
+// Active Directory
+#include <iads.h>
+#include <adshlp.h>
+
 namespace plf {
 // polyfills
 std::string string_format(const std::string fmt_str, ...);
 std::string error_msg(DWORD code = 0);
+std::string ad_error_msg(HRESULT hr);
 
 }  // namespace plf
