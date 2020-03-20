@@ -137,7 +137,12 @@ console.log('free server credentials ok');
 
 // Test Active Directory
 sspi.CoInitialize();
-const iads = sspi.ADsGestObject('WinNT://jlg.local/suzana');
+try {
+  const iads = sspi.ADsGestObject('WinNT://jlg.local//suzana');
+  console.log('iads: ', iads);
+} catch (error) {
+  console.log('error: ', error);
+}
 // const str = iads.get_Name();
 // console.log('str: ', str);
 // iads.release();

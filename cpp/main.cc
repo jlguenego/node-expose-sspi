@@ -1,5 +1,7 @@
 #include "misc.h"
 
+#include "api/adsi/IADs.h"
+
 namespace myAddon {
 
 Napi::Value hello(const Napi::CallbackInfo &info) {
@@ -76,7 +78,8 @@ Napi::Object Init(Napi::Env env, Napi::Object exports) {
 
   exports.Set("ADsGestObject", Napi::Function::New(env, e_ADsGestObject));
 
-  // exports.Set("IADs", func);
+  E_IADs::Init(env, exports);
+
 
   return exports;
 }
