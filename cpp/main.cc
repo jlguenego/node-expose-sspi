@@ -68,9 +68,13 @@ Napi::Object Init(Napi::Env env, Napi::Object exports) {
 
   exports.Set(Napi::String::New(env, "LookupAccountName"),
               Napi::Function::New(env, e_LookupAccountName));
-              
+
+  // ADSI
   exports.Set(Napi::String::New(env, "ADsGestObject"),
               Napi::Function::New(env, e_ADsGestObject));
+
+  exports.Set(Napi::String::New(env, "CoInitialize"),
+              Napi::Function::New(env, e_CoInitialize));
 
   return exports;
 }

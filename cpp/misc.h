@@ -45,6 +45,9 @@ void e_RevertSecurityContext(const Napi::CallbackInfo &info);
 Napi::Value e_GetUserName(const Napi::CallbackInfo &info);
 Napi::Value e_GetUserNameEx(const Napi::CallbackInfo &info);
 Napi::Value e_LookupAccountName(const Napi::CallbackInfo &info);
+
+// ADSI
 Napi::Value e_ADsGestObject(const Napi::CallbackInfo &info);
+void e_CoInitialize(const Napi::CallbackInfo &info);
 
 }  // namespace myAddon

@@ -1,5 +1,5 @@
 
-#include "../misc.h"
+#include "../../misc.h"
 
 namespace myAddon {
 
@@ -16,9 +16,6 @@ Napi::Value e_ADsGestObject(const Napi::CallbackInfo &info) {
 
   IADs *pObject;
   HRESULT hr;
-
-  // Initialize COM.
-  CoInitialize(NULL);
 
   hr = ADsGetObject(binding, IID_IADs, (void **)&pObject);
 
