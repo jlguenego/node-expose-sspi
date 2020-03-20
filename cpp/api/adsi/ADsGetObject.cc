@@ -20,10 +20,11 @@ Napi::Value e_ADsGestObject(const Napi::CallbackInfo &info) {
   hr = ADsGetObject(binding, IID_IADs, (void **)&pObject);
 
   if (FAILED(hr)) {
+    std::string msg = plf::ad_error_msg(hr);
     // clean resources
     CoUninitialize();
     throw Napi::Error::New(env,
-                           "error in ADsGetObject: " + plf::ad_error_msg(hr));
+                           "error in ADsGetObject: " + msg);
   }
 
   // Use the object.
@@ -40,8 +41,7 @@ Napi::Value e_ADsGestObject(const Napi::CallbackInfo &info) {
   // Release the object.
   pObject->Release();
 
-  Napi::Object result = Napi::Object::New(env);
-  return result;
+  return Napi::String::New(env, p2s(pObject));
 }
 
 }  // namespace myAddon

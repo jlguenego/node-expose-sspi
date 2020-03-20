@@ -12,21 +12,21 @@ const clientCred = sspi.AcquireCredentialsHandle({
   authData: {
     domain: 'CHOUCHOU',
     user: 'jlouis',
-    password: 'toto'
+    password: 'toto',
   },
-  credentialUse: 'SECPKG_CRED_OUTBOUND'
+  credentialUse: 'SECPKG_CRED_OUTBOUND',
 });
 console.log('clientCred: ', clientCred);
 const serverCred = sspi.AcquireCredentialsHandle({
   packageName: 'Negotiate',
-  credentialUse: 'SECPKG_CRED_INBOUND'
+  credentialUse: 'SECPKG_CRED_INBOUND',
 });
 console.log('serverCred: ', serverCred);
 const input = {
   credential: clientCred.credential,
   targetName: 'kiki',
   cbMaxToken: packageInfo.cbMaxToken,
-  targetDataRep: 'SECURITY_NATIVE_DREP'
+  targetDataRep: 'SECURITY_NATIVE_DREP',
 };
 console.log('input: ', input);
 const clientSecurityContext = sspi.InitializeSecurityContext(input);
@@ -36,7 +36,7 @@ const serverSecurityContext = sspi.AcceptSecurityContext({
   credential: serverCred.credential,
   clientSecurityContext,
   contextReq: ['ASC_REQ_CONNECTION'],
-  targetDataRep: 'SECURITY_NATIVE_DREP'
+  targetDataRep: 'SECURITY_NATIVE_DREP',
 });
 console.log('serverSecurityContext: ', serverSecurityContext);
 console.log(sso.hexDump(serverSecurityContext.SecBufferDesc.buffers[0]));
@@ -45,7 +45,7 @@ const input2 = {
   targetName: 'kiki',
   cbMaxToken: packageInfo.cbMaxToken,
   serverSecurityContext,
-  contextHandle: clientSecurityContext.contextHandle
+  contextHandle: clientSecurityContext.contextHandle,
 };
 console.log('input2: ', input2);
 const clientSecurityContext2 = sspi.InitializeSecurityContext(input2);
@@ -55,7 +55,7 @@ console.log(sso.hexDump(clientSecurityContext2.SecBufferDesc.buffers[0]));
 const serverSecurityContext2 = sspi.AcceptSecurityContext({
   credential: serverCred.credential,
   clientSecurityContext: clientSecurityContext2,
-  contextHandle: serverSecurityContext.contextHandle
+  contextHandle: serverSecurityContext.contextHandle,
 });
 console.log('serverSecurityContext2: ', serverSecurityContext2);
 console.log(sso.hexDump(serverSecurityContext2.SecBufferDesc.buffers[0]));
@@ -104,13 +104,21 @@ console.log('sidObject: ', sidObject);
 const username2 = sspi.GetUserName();
 console.log('username2: ', username2);
 
-const attributes = sspi.QueryCredentialsAttributes(serverCred.credential, 'SECPKG_CRED_ATTR_NAMES');
+const attributes = sspi.QueryCredentialsAttributes(
+  serverCred.credential,
+  'SECPKG_CRED_ATTR_NAMES'
+);
 console.log('attributes: ', attributes);
 
-const names = sspi.QueryContextAttributes(serverSecurityContext.contextHandle, 'SECPKG_ATTR_NAMES');
+const names = sspi.QueryContextAttributes(
+  serverSecurityContext.contextHandle,
+  'SECPKG_ATTR_NAMES'
+);
 console.log('names: ', names);
 
-const accessToken = sspi.QuerySecurityContextToken(serverSecurityContext.contextHandle);
+const accessToken = sspi.QuerySecurityContextToken(
+  serverSecurityContext.contextHandle
+);
 console.log('accessToken: ', accessToken);
 
 const groups = sspi.GetTokenInformation(accessToken, 'TokenGroups');
@@ -129,5 +137,8 @@ console.log('free server credentials ok');
 
 // Test Active Directory
 sspi.CoInitialize();
-sspi.ADsGestObject("WinNT://jlg.local/jlouis");
+const iads = sspi.ADsGestObject('WinNT://jlg.local/suzana');
+// const str = iads.get_Name();
+// console.log('str: ', str);
+// iads.release();
 sspi.CoUninitialize();

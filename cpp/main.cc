@@ -66,18 +66,17 @@ Napi::Object Init(Napi::Env env, Napi::Object exports) {
   exports.Set(Napi::String::New(env, "GetUserNameEx"),
               Napi::Function::New(env, e_GetUserNameEx));
 
-  exports.Set(Napi::String::New(env, "LookupAccountName"),
+  exports.Set("LookupAccountName",
               Napi::Function::New(env, e_LookupAccountName));
 
   // ADSI
-  exports.Set(Napi::String::New(env, "CoUninitialize"),
-              Napi::Function::New(env, e_CoUninitialize));
+  exports.Set("CoInitialize", Napi::Function::New(env, e_CoInitialize));
 
-  exports.Set(Napi::String::New(env, "CoInitialize"),
-              Napi::Function::New(env, e_CoInitialize));
+  exports.Set("CoUninitialize", Napi::Function::New(env, e_CoUninitialize));
 
-  exports.Set(Napi::String::New(env, "ADsGestObject"),
-              Napi::Function::New(env, e_ADsGestObject));
+  exports.Set("ADsGestObject", Napi::Function::New(env, e_ADsGestObject));
+
+  // exports.Set("IADs", func);
 
   return exports;
 }

@@ -1,4 +1,5 @@
 #include "polyfill.h"
+#include "adsi_error.h"
 
 namespace plf {
 
@@ -40,25 +41,11 @@ std::string error_msg(DWORD code) {
 }
 
 std::string ad_error_msg(HRESULT hr) {
-  wprintf(L"An error occurred.\n  HRESULT: %x\n", hr);
-  // If facility is Win32, get the Win32 error
-  if (HRESULT_FACILITY(hr) == FACILITY_WIN32) {
-    DWORD dwLastError;
-    WCHAR szErrorBuf[MAX_PATH];
-    WCHAR szNameBuf[MAX_PATH];
-    // Get extended error value.
-    HRESULT hr_return = S_OK;
-    hr_return = ADsGetLastError(&dwLastError, szErrorBuf, MAX_PATH, szNameBuf,
-                                MAX_PATH);
-    if (FAILED(hr_return)) {
-      return "ADsGetLastError failed.";
-    }
-
-    return string_format(
-        "(hresult: 0x%08x) (error code: %d) (Error Text: %ws) (Provider: %ws)",
-        hr, dwLastError, szErrorBuf, szNameBuf);
-  }
-  return "Error message not yet handled (TODO)";
+  CString cs = myADSI::GetErrorMessage(hr);
+  // convert the CString to std::string
+  CT2CA a(cs);
+  std::string result(a);
+  return result;
 }
 
 }  // namespace plf
