@@ -1,5 +1,6 @@
 
 #include "../../misc.h"
+#include "./IADs.h"
 
 namespace myAddon {
 
@@ -34,14 +35,16 @@ Napi::Value e_ADsGestObject(const Napi::CallbackInfo &info) {
   hr = pObject->get_Name(&bstrName);
   if (SUCCEEDED(hr)) {
     wprintf(bstrName);
+    log("");
 
     SysFreeString(bstrName);
   }
 
   // Release the object.
   pObject->Release();
-
-  return Napi::String::New(env, p2s(pObject));
+  Napi::String str = Napi::String::New(env, p2s(pObject));
+  Napi::Number n = Napi::Number::New(env, 123);
+  return E_IADs::NewInstance(env, n);
 }
 
 }  // namespace myAddon

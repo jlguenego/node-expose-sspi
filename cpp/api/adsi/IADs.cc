@@ -8,15 +8,15 @@ Napi::Object E_IADs::Init(Napi::Env env, Napi::Object exports) {
   Napi::HandleScope scope(env);
 
   Napi::Function func =
-      DefineClass(env, "E_IADs",
+      DefineClass(env, "IADs",
                   {InstanceMethod("plusOne", &E_IADs::PlusOne),
-                   InstanceMethod("value", &E_IADs::GetValue),
+                   InstanceMethod("getValue", &E_IADs::GetValue),
                    InstanceMethod("multiply", &E_IADs::Multiply)});
 
   constructor = Napi::Persistent(func);
   constructor.SuppressDestruct();
 
-  exports.Set("E_IADs", func);
+  exports.Set("IADs", func);
   return exports;
 }
 
@@ -34,6 +34,12 @@ E_IADs::E_IADs(const Napi::CallbackInfo& info)
 
   Napi::Number value = info[0].As<Napi::Number>();
   this->value_ = value.DoubleValue();
+}
+
+Napi::Object E_IADs::NewInstance(Napi::Env env, Napi::Value arg) {
+  Napi::EscapableHandleScope scope(env);
+  Napi::Object obj = constructor.New({arg});
+  return scope.Escape(napi_value(obj)).ToObject();
 }
 
 Napi::Value E_IADs::GetValue(const Napi::CallbackInfo& info) {
