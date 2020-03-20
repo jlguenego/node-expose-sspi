@@ -18,10 +18,7 @@ Napi::Value e_GetTokenInformation(const Napi::CallbackInfo& info) {
                            "tokenInformationClass: string)");
   }
 
-  HANDLE handle;
-  std::string handleStr = info[0].As<Napi::String>().Utf8Value().substr(2);
-  std::istringstream iss(handleStr);
-  iss >> std::hex >> handle;
+  HANDLE handle = s2p(info[0].As<Napi::String>().Utf8Value());
 
   std::string tokenInformationClassStr = info[1].As<Napi::String>().Utf8Value();
   if (tokenInformationClassStr == "TokenGroups") {

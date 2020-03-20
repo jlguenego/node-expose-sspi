@@ -1,4 +1,5 @@
 #include "SecHandleUtil.h"
+#include "pointer.h"
 #include <iomanip>
 #include <iostream>
 #include <sstream>
@@ -22,13 +23,8 @@ SecHandle SecHandleUtil::deserialize(std::string& s) {
   SecHandle result = {0, 0};
   string s1 = s.substr(0, s.find("."));
   string s2 = s.substr(s.find(".") + 1);
-  s1 = s1.substr(2);
-  s2 = s2.substr(2);
-
-  std::istringstream c1(s1);
-  c1 >> std::hex >> result.dwUpper;
-  std::istringstream c2(s2);
-  c2 >> std::hex >> result.dwLower;
+  result.dwUpper = (ULONG_PTR) s2p(s1);
+  result.dwLower = (ULONG_PTR) s2p(s2);
   return result;
 }
 
