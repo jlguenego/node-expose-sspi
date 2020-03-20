@@ -130,3 +130,4 @@ console.log('free server credentials ok');
 // Test Active Directory
 sspi.CoInitialize();
 sspi.ADsGestObject("WinNT://jlg.local/jlouis");
+sspi.CoUninitialize();

@@ -40,9 +40,6 @@ Napi::Value e_ADsGestObject(const Napi::CallbackInfo &info) {
   // Release the object.
   pObject->Release();
 
-  // Uninitialize COM.
-  CoUninitialize();
-
   Napi::Object result = Napi::Object::New(env);
   return result;
 }
