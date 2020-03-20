@@ -15,11 +15,7 @@ void e_CloseHandle(const Napi::CallbackInfo& info) {
                            "CloseHandle(accessToken: string)");
   }
 
-  HANDLE handle;
-  std::string handleStr = info[0].As<Napi::String>().Utf8Value().substr(2);
-  std::istringstream c1(handleStr);
-  c1 >> std::hex >> handle;
-
+  HANDLE handle = s2p(info[0].As<Napi::String>().Utf8Value());
   BOOL status = CloseHandle(handle);
   if (status == FALSE) {
     throw Napi::Error::New(env, "CloseHandle: error: " + plf::error_msg());

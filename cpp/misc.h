@@ -12,6 +12,7 @@
 #include <locale>
 
 #include "polyfill.h"
+#include "pointer.h"
 
 #include "SecHandleUtil.h"
 
