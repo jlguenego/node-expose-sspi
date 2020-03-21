@@ -2,9 +2,6 @@
 #include "../../misc.h"
 #include "./IADs.h"
 
-#include <atlbase.h>
-#include <comutil.h>
-
 namespace myAddon {
 
 Napi::Value e_ADsGestObject(const Napi::CallbackInfo &info) {
@@ -23,17 +20,6 @@ Napi::Value e_ADsGestObject(const Napi::CallbackInfo &info) {
   if (FAILED(hr)) {
     throw Napi::Error::New(env,
                            "error in ADsGetObject: " + plf::ad_error_msg(hr));
-  }
-
-  VARIANT var;
-  VariantInit(&var);
-
-  hr = pObject->Get(CComBSTR("sn"), &var);
-  if (SUCCEEDED(hr)) {
-    std::string str = _bstr_t(V_BSTR(&var));
-    VariantClear(&var);
-    printf("FullName: %s\n", str.c_str());
-    
   }
 
   return E_IADs::NewInstance(env, Napi::String::New(info.Env(), p2s(pObject)));
