@@ -44,21 +44,17 @@ Napi::Object E_IADs::NewInstance(Napi::Env env, Napi::Value arg) {
 Napi::Value E_IADs::get_Name(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
   BSTR bstrName;
-
-  // Get property.
   HRESULT hr = this->iads->get_Name(&bstrName);
   if (FAILED(hr)) {
     throw Napi::Error::New(env, "get_Name failed:" + plf::ad_error_msg(hr));
   }
   std::string str = _bstr_t(bstrName);
-
   SysFreeString(bstrName);
-  log("get_Name worked ok.");
   return Napi::String::New(info.Env(), str);
 }
 
 void E_IADs::Release(const Napi::CallbackInfo& info) {
-  log("about to release");
+  this->iads->Release();
 }
 
 }  // namespace myAddon
