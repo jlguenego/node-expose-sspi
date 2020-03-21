@@ -138,14 +138,13 @@ console.log('free server credentials ok');
 // Test Active Directory
 sspi.CoInitialize();
 try {
-  const iads = sspi.ADsGestObject('WinNT://jlg.local/suzana');
+  // const iads = sspi.ADsGestObject('WinNT://jlg.local/jlouis,user');
+  const iads = sspi.ADsGestObject('LDAP://CN=Jean-Louis P. GUÉNÉGO,OU=JLG_LOCAL,DC=jlg,DC=local');
   const str = iads.get_Name();
   console.log('str: ', str);
   iads.Release();
 } catch (error) {
   console.log('error: ', error);
 }
-// const str = iads.get_Name();
-// console.log('str: ', str);
-// iads.release();
+
 sspi.CoUninitialize();
