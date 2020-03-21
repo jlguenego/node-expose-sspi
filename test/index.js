@@ -139,16 +139,9 @@ console.log('free server credentials ok');
 sspi.CoInitialize();
 try {
   const iads = sspi.ADsGestObject('WinNT://jlg.local/suzana');
-  console.log('sspi: ', sspi);
-  console.log('iads: ', iads);
-  console.log('iads.__proto__: ', Object.getPrototypeOf(iads));
-  const value = iads.getValue();
-  console.log('value: ', value);
-
-  const iads2 = new sspi.IADs(345);
-  console.log('iads2: ', iads2);
-  console.log('iads2: ', Object.getPrototypeOf(iads2));
-  console.log('value2: ', iads2.getValue());
+  const str = iads.get_Name();
+  console.log('str: ', str);
+  iads.Release();
 } catch (error) {
   console.log('error: ', error);
 }

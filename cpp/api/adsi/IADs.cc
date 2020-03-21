@@ -1,4 +1,10 @@
 #include "IADs.h"
+#include "../../log.h"
+
+#include "../../pointer.h"
+#include "../../polyfill.h"
+
+#include <comutil.h>
 
 namespace myAddon {
 
@@ -9,9 +15,8 @@ Napi::Object E_IADs::Init(Napi::Env env, Napi::Object exports) {
 
   Napi::Function func =
       DefineClass(env, "IADs",
-                  {InstanceMethod("plusOne", &E_IADs::PlusOne),
-                   InstanceMethod("getValue", &E_IADs::GetValue),
-                   InstanceMethod("multiply", &E_IADs::Multiply)});
+                  {InstanceMethod("get_Name", &E_IADs::get_Name),
+                   InstanceMethod("Release", &E_IADs::Release)});
 
   constructor = Napi::Persistent(func);
   constructor.SuppressDestruct();
@@ -25,15 +30,9 @@ E_IADs::E_IADs(const Napi::CallbackInfo& info)
   Napi::Env env = info.Env();
   Napi::HandleScope scope(env);
 
-  int length = info.Length();
-
-  if (length <= 0 || !info[0].IsNumber()) {
-    Napi::TypeError::New(env, "Number expected").ThrowAsJavaScriptException();
-    return;
-  }
-
-  Napi::Number value = info[0].As<Napi::Number>();
-  this->value_ = value.DoubleValue();
+  Napi::String str = info[0].As<Napi::String>();
+  IADs* iads = (IADs*)s2p(str.Utf8Value());
+  this->iads = iads;
 }
 
 Napi::Object E_IADs::NewInstance(Napi::Env env, Napi::Value arg) {
@@ -42,30 +41,24 @@ Napi::Object E_IADs::NewInstance(Napi::Env env, Napi::Value arg) {
   return scope.Escape(napi_value(obj)).ToObject();
 }
 
-Napi::Value E_IADs::GetValue(const Napi::CallbackInfo& info) {
-  double num = this->value_;
+Napi::Value E_IADs::get_Name(const Napi::CallbackInfo& info) {
+  Napi::Env env = info.Env();
+  BSTR bstrName;
 
-  return Napi::Number::New(info.Env(), num);
-}
-
-Napi::Value E_IADs::PlusOne(const Napi::CallbackInfo& info) {
-  this->value_ = this->value_ + 1;
-
-  return E_IADs::GetValue(info);
-}
-
-Napi::Value E_IADs::Multiply(const Napi::CallbackInfo& info) {
-  Napi::Number multiple;
-  if (info.Length() <= 0 || !info[0].IsNumber()) {
-    multiple = Napi::Number::New(info.Env(), 1);
-  } else {
-    multiple = info[0].As<Napi::Number>();
+  // Get property.
+  HRESULT hr = this->iads->get_Name(&bstrName);
+  if (FAILED(hr)) {
+    throw Napi::Error::New(env, "get_Name failed:" + plf::ad_error_msg(hr));
   }
+  std::string str = _bstr_t(bstrName);
 
-  Napi::Object obj = constructor.New(
-      {Napi::Number::New(info.Env(), this->value_ * multiple.DoubleValue())});
+  SysFreeString(bstrName);
+  log("get_Name worked ok.");
+  return Napi::String::New(info.Env(), str);
+}
 
-  return obj;
+void E_IADs::Release(const Napi::CallbackInfo& info) {
+  log("about to release");
 }
 
 }  // namespace myAddon

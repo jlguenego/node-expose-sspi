@@ -1,6 +1,7 @@
 #pragma once
 
 #include <napi.h>
+#include <Iads.h>
 
 namespace myAddon {
 
@@ -13,11 +14,10 @@ class E_IADs : public Napi::ObjectWrap<E_IADs> {
  private:
   static Napi::FunctionReference constructor;
 
-  Napi::Value GetValue(const Napi::CallbackInfo& info);
-  Napi::Value PlusOne(const Napi::CallbackInfo& info);
-  Napi::Value Multiply(const Napi::CallbackInfo& info);
+  Napi::Value get_Name(const Napi::CallbackInfo& info);
+  void Release(const Napi::CallbackInfo& info);
 
-  double value_;
+  IADs* iads;
 };
 
 }  // namespace myAddon

@@ -16,6 +16,7 @@
           "Ws2_32.lib",
           "ActiveDS.lib",
           "ADSIid.lib",
+          "comsuppw.lib",
         ]
       },
       "include_dirs": [
