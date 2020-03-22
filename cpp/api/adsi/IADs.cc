@@ -101,9 +101,13 @@ void E_IADs::GetInfoEx(const Napi::CallbackInfo& info) {
     pszAttrs[i] = s;
   }
   HRESULT hr = ADsBuildVarArrayStr(pszAttrs, length, &var);
-
+  if (FAILED(hr)) {
+    throw Napi::Error::New(
+        env, "ADsBuildVarArrayStr failed:" + plf::ad_error_msg(hr));
+  }
   hr = this->iads->GetInfoEx(var, 0);
   VariantClear(&var);
+  free(pszAttrs);
   if (FAILED(hr)) {
     throw Napi::Error::New(env, "IADs.GetInfo failed:" + plf::ad_error_msg(hr));
   }
