@@ -1,5 +1,6 @@
 #include "IADsContainer.h"
 #include "../../log.h"
+#include "IDispatch.h"
 
 #include "../../pointer.h"
 #include "../../polyfill.h"
@@ -34,6 +35,12 @@ E_IADsContainer::E_IADsContainer(const Napi::CallbackInfo& info)
   Napi::String str = info[0].As<Napi::String>();
   IADsContainer* iadsContainer = (IADsContainer*)s2p(str.Utf8Value());
   this->iadsContainer = iadsContainer;
+
+  HRESULT hr = ADsBuildEnumerator(this->iadsContainer, &(this->pEnum));
+  if (FAILED(hr)) {
+    throw Napi::Error::New(
+        env, "IADsContainer constructor failed:" + plf::ad_error_msg(hr));
+  }
 }
 
 Napi::Object E_IADsContainer::NewInstance(Napi::Env env, Napi::Value arg) {
@@ -47,7 +54,21 @@ void E_IADsContainer::Release(const Napi::CallbackInfo& info) {
 }
 
 Napi::Value E_IADsContainer::Next(const Napi::CallbackInfo& info) {
-  return Napi::String::New(info.Env(), "To be implemented");
+  Napi::Env env = info.Env();
+  VARIANT var;
+  ULONG lFetch;
+  HRESULT hr = this->pEnum->Next(1, &var, &lFetch);
+  if (FAILED(hr)) {
+    throw Napi::Error::New(env, "Next failed:" + plf::ad_error_msg(hr));
+  }
+  if (lFetch == 0) {
+    return env.Undefined();
+  }
+
+  IDispatch* pDisp = V_DISPATCH(&var);
+
+  return E_IDispatch::NewInstance(env,
+                                  Napi::String::New(info.Env(), p2s(pDisp)));
 }
 
 }  // namespace myAddon

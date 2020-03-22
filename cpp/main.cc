@@ -2,6 +2,7 @@
 
 #include "api/adsi/IADs.h"
 #include "api/adsi/IADsContainer.h"
+#include "api/adsi/IDispatch.h"
 
 namespace myAddon {
 
@@ -80,6 +81,7 @@ Napi::Object Init(Napi::Env env, Napi::Object exports) {
 
   E_IADs::Init(env, exports);
   E_IADsContainer::Init(env, exports);
+  E_IDispatch::Init(env, exports);
 
 
   return exports;
