@@ -96,8 +96,7 @@ void E_IADs::GetInfoEx(const Napi::CallbackInfo& info) {
 
   LPWSTR* pszAttrs = (LPWSTR*)malloc(length * (sizeof LPWSTR));
   for (uint32_t i = 0; i < length; i++) {
-    std::u16string str = info[i].As<Napi::String>().Utf16Value();
-    LPWSTR s = (LPWSTR)str.c_str();
+    LPWSTR s = (LPWSTR)info[i].As<Napi::String>().Utf16Value().c_str();
     pszAttrs[i] = s;
   }
   HRESULT hr = ADsBuildVarArrayStr(pszAttrs, length, &var);
