@@ -145,7 +145,6 @@ try {
   const element = gc.Next();
   console.log('element: ', element);
 
-
   // 1) Get the Distinguished Name (LDAP notion) for the domain
   const root = sspi.ADsGestObject('LDAP://rootDSE');
   const distinguishedName = root.Get('defaultNamingContext');
