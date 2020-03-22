@@ -51,6 +51,7 @@ Napi::Object E_IADsContainer::NewInstance(Napi::Env env, Napi::Value arg) {
 
 void E_IADsContainer::Release(const Napi::CallbackInfo& info) {
   this->iadsContainer->Release();
+  ADsFreeEnumerator(this->pEnum);
 }
 
 Napi::Value E_IADsContainer::Next(const Napi::CallbackInfo& info) {
