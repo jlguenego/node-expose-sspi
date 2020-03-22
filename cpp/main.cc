@@ -1,6 +1,7 @@
 #include "misc.h"
 
 #include "api/adsi/IADs.h"
+#include "api/adsi/IADsContainer.h"
 
 namespace myAddon {
 
@@ -79,6 +80,7 @@ Napi::Object Init(Napi::Env env, Napi::Object exports) {
   exports.Set("ADsBuildEnumerator", Napi::Function::New(env, e_ADsBuildEnumerator));
 
   E_IADs::Init(env, exports);
+  E_IADsContainer::Init(env, exports);
 
 
   return exports;

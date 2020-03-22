@@ -1,6 +1,7 @@
 
 #include "../../misc.h"
 #include "./IADs.h"
+#include "./IADsContainer.h"
 
 namespace myAddon {
 
@@ -57,8 +58,7 @@ Napi::Value e_ADsOpenObject(const Napi::CallbackInfo &info) {
   Napi::String s = Napi::String::New(info.Env(), p2s(pObject));
 
   if (riid == IID_IADsContainer) {
-    // return E_IADsContainer::NewInstance(env, s);
-    return E_IADs::NewInstance(env, s);
+    return E_IADsContainer::NewInstance(env, s);
   }
 
   return E_IADs::NewInstance(env, s);
