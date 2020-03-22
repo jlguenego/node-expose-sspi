@@ -20,6 +20,7 @@ Napi::Object E_IADs::Init(Napi::Env env, Napi::Object exports) {
                    InstanceMethod("GetInfo", &E_IADs::GetInfo),
                    InstanceMethod("GetInfoEx", &E_IADs::GetInfoEx),
                    InstanceMethod("get_Name", &E_IADs::get_Name),
+                   InstanceMethod("get_GUID", &E_IADs::get_GUID),
                    InstanceMethod("Release", &E_IADs::Release)});
 
   constructor = Napi::Persistent(func);
@@ -49,6 +50,18 @@ Napi::Value E_IADs::get_Name(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
   BSTR bstrName;
   HRESULT hr = this->iads->get_Name(&bstrName);
+  if (FAILED(hr)) {
+    throw Napi::Error::New(env, "get_Name failed:" + plf::ad_error_msg(hr));
+  }
+  std::wstring str = _bstr_t(bstrName);
+  SysFreeString(bstrName);
+  return Napi::String::New(info.Env(), (const char16_t*)str.c_str());
+}
+
+Napi::Value E_IADs::get_GUID(const Napi::CallbackInfo& info) {
+  Napi::Env env = info.Env();
+  BSTR bstrName;
+  HRESULT hr = this->iads->get_GUID(&bstrName);
   if (FAILED(hr)) {
     throw Napi::Error::New(env, "get_Name failed:" + plf::ad_error_msg(hr));
   }
