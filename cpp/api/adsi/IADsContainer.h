@@ -15,6 +15,7 @@ class E_IADsContainer : public Napi::ObjectWrap<E_IADsContainer> {
   static Napi::FunctionReference constructor;
 
   void Release(const Napi::CallbackInfo& info);
+  Napi::Value Next(const Napi::CallbackInfo& info);
 
  public:
   IADsContainer* iadsContainer;

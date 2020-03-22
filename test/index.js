@@ -140,8 +140,11 @@ sspi.CoInitialize();
 
 try {
   // 1) Global Catalog (specify domain uri is faster than servername)
-  const gc = sspi.ADsOpenObject({ binding: 'GC:' });
-  console.log('gc initialized');
+  const gc = sspi.ADsOpenObject({ binding: 'GC:', riid: "IID_IADsContainer" });
+  console.log('gc initialized', gc.__proto__.constructor.name);
+  const element = gc.Next();
+  console.log('element: ', element);
+
 
   // 1) Get the Distinguished Name (LDAP notion) for the domain
   const root = sspi.ADsGestObject('LDAP://rootDSE');

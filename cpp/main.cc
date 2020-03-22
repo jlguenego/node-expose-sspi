@@ -77,7 +77,6 @@ Napi::Object Init(Napi::Env env, Napi::Object exports) {
   exports.Set("CoUninitialize", Napi::Function::New(env, e_CoUninitialize));
   exports.Set("ADsGestObject", Napi::Function::New(env, e_ADsGestObject));
   exports.Set("ADsOpenObject", Napi::Function::New(env, e_ADsOpenObject));
-  exports.Set("ADsBuildEnumerator", Napi::Function::New(env, e_ADsBuildEnumerator));
 
   E_IADs::Init(env, exports);
   E_IADsContainer::Init(env, exports);

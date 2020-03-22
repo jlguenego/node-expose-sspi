@@ -14,8 +14,10 @@ Napi::FunctionReference E_IADsContainer::constructor;
 Napi::Object E_IADsContainer::Init(Napi::Env env, Napi::Object exports) {
   Napi::HandleScope scope(env);
 
-  Napi::Function func = DefineClass(
-      env, "IADsContainer", {InstanceMethod("Release", &E_IADsContainer::Release)});
+  Napi::Function func =
+      DefineClass(env, "IADsContainer",
+                  {InstanceMethod("Release", &E_IADsContainer::Release),
+                   InstanceMethod("Next", &E_IADsContainer::Next)});
 
   constructor = Napi::Persistent(func);
   constructor.SuppressDestruct();
@@ -42,6 +44,10 @@ Napi::Object E_IADsContainer::NewInstance(Napi::Env env, Napi::Value arg) {
 
 void E_IADsContainer::Release(const Napi::CallbackInfo& info) {
   this->iadsContainer->Release();
+}
+
+Napi::Value E_IADsContainer::Next(const Napi::CallbackInfo& info) {
+  return Napi::String::New(info.Env(), "To be implemented");
 }
 
 }  // namespace myAddon
