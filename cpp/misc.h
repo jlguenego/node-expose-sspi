@@ -52,5 +52,6 @@ void e_CoInitialize(const Napi::CallbackInfo &info);
 void e_CoUninitialize(const Napi::CallbackInfo &info);
 Napi::Value e_ADsGestObject(const Napi::CallbackInfo &info);
 Napi::Value e_ADsOpenObject(const Napi::CallbackInfo &info);
+Napi::Value e_ADsBuildEnumerator(const Napi::CallbackInfo &info);
 
 }  // namespace myAddon
