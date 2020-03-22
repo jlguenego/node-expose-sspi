@@ -73,13 +73,11 @@ Napi::Value E_IADs::Get(const Napi::CallbackInfo& info) {
   std::wstring ws(bs, SysStringLen(bs));
   const char16_t* str = (const char16_t*)ws.c_str();
   VariantClear(&var);
-
   return Napi::String::New(info.Env(), str);
 }
 
 void E_IADs::GetInfo(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
-
   HRESULT hr = this->iads->GetInfo();
   if (FAILED(hr)) {
     throw Napi::Error::New(env, "IADs.GetInfo failed:" + plf::ad_error_msg(hr));
