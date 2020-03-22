@@ -39,13 +39,14 @@ Napi::Value e_ADsOpenObject(const Napi::CallbackInfo &info) {
 
   IID riid = IID_IADs;
   if (input.Has("riid")) {
-    std::string outputTypeStr = input.Get("riid").As<Napi::String>().Utf8Value();
+    std::string outputTypeStr =
+        input.Get("riid").As<Napi::String>().Utf8Value();
     if (outputTypeStr == "IID_IADsContainer") {
       riid = IID_IADsContainer;
     }
   }
 
-  IADs *pObject;
+  void *pObject;
   HRESULT hr =
       ADsOpenObject(binding, user, password, flag, riid, (void **)&pObject);
   if (FAILED(hr)) {
@@ -53,7 +54,14 @@ Napi::Value e_ADsOpenObject(const Napi::CallbackInfo &info) {
                            "error in ADsOpenObject: " + plf::ad_error_msg(hr));
   }
 
-  return E_IADs::NewInstance(env, Napi::String::New(info.Env(), p2s(pObject)));
+  Napi::String s = Napi::String::New(info.Env(), p2s(pObject));
+
+  if (riid == IID_IADsContainer) {
+    // return E_IADsContainer::NewInstance(env, s);
+    return E_IADs::NewInstance(env, s);
+  }
+
+  return E_IADs::NewInstance(env, s);
 }
 
 }  // namespace myAddon
