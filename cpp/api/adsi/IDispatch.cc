@@ -14,8 +14,10 @@ Napi::FunctionReference E_IDispatch::constructor;
 Napi::Object E_IDispatch::Init(Napi::Env env, Napi::Object exports) {
   Napi::HandleScope scope(env);
 
-  Napi::Function func = DefineClass(
-      env, "IDispatch", {InstanceMethod("Release", &E_IDispatch::Release)});
+  Napi::Function func =
+      DefineClass(env, "IDispatch",
+                  {InstanceMethod("Release", &E_IDispatch::Release),
+                   InstanceMethod("QueryInterface", &E_IDispatch::QueryInterface)});
 
   constructor = Napi::Persistent(func);
   constructor.SuppressDestruct();
@@ -42,6 +44,11 @@ Napi::Object E_IDispatch::NewInstance(Napi::Env env, Napi::Value arg) {
 
 void E_IDispatch::Release(const Napi::CallbackInfo& info) {
   this->iDispatch->Release();
+}
+
+Napi::Value E_IDispatch::QueryInterface(const Napi::CallbackInfo& info) {
+  Napi::Env env = info.Env();
+  return Napi::String::New(env, "To be implemented");
 }
 
 }  // namespace myAddon

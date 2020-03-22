@@ -15,6 +15,7 @@ class E_IDispatch : public Napi::ObjectWrap<E_IDispatch> {
   static Napi::FunctionReference constructor;
 
   void Release(const Napi::CallbackInfo& info);
+  Napi::Value QueryInterface(const Napi::CallbackInfo& info);
 
   IDispatch* iDispatch;
 };
