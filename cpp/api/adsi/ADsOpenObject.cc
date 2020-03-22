@@ -11,7 +11,8 @@ Napi::Value e_ADsOpenObject(const Napi::CallbackInfo &info) {
     throw Napi::Error::New(
         env,
         "ADsOpenObject({bindingUri: string, user: string, password: string, "
-        "adsAuthentication: ADS_AUTHENTICATION_ENUM}): bad arguments.");
+        "adsAuthentication: ADS_AUTHENTICATION_ENUM, riid: IID_IADs | "
+        "IID_IADsContainer}): bad arguments.");
   }
 
   Napi::Object input = info[0].As<Napi::Object>();
@@ -36,9 +37,17 @@ Napi::Value e_ADsOpenObject(const Napi::CallbackInfo &info) {
   DWORD flag = getFlag(env, ADS_AUTHENTICATION_FLAGS, input,
                        "authenticationFlag", ADS_SECURE_AUTHENTICATION);
 
+  IID riid = IID_IADs;
+  if (input.Has("riid")) {
+    std::string outputTypeStr = input.Get("riid").As<Napi::String>().Utf8Value();
+    if (outputTypeStr == "IID_IADsContainer") {
+      riid = IID_IADsContainer;
+    }
+  }
+
   IADs *pObject;
   HRESULT hr =
-      ADsOpenObject(binding, user, password, flag, IID_IADs, (void **)&pObject);
+      ADsOpenObject(binding, user, password, flag, riid, (void **)&pObject);
   if (FAILED(hr)) {
     throw Napi::Error::New(env,
                            "error in ADsOpenObject: " + plf::ad_error_msg(hr));
