@@ -137,14 +137,21 @@ console.log('free server credentials ok');
 
 // Test Active Directory
 sspi.CoInitialize();
+
 try {
+  // 1) Get the Distinguished Name (LDAP notion) for the domain
+  const root = sspi.ADsGestObject('LDAP://rootDSE');
+  const distinguishedName = root.Get("defaultNamingContext");
+  console.log('distinguishedName: ', distinguishedName);
+
+  // 2) Get info about my account
   console.log('about to do sspi.ADsGestObject');
-  const myself = sspi.ADsGestObject('WinNT://jlg.local/jlouis,user');
+  const myself = sspi.ADsGestObject(`WinNT://jlg.local/${username},user`);
   console.log('about to do myself.Get');
   const fullName = myself.Get("FullName");
   console.log('fullName: ', fullName);
   console.log('about to do sspi.ADsGestObject LDAP');
-  const iads = sspi.ADsGestObject(`LDAP://CN=${fullName},OU=JLG_LOCAL,DC=jlg,DC=local`);
+  const iads = sspi.ADsGestObject(`LDAP://CN=${fullName},OU=JLG_LOCAL,${distinguishedName}`);
   console.log('about to do iads.get_Name');
   const str = iads.get_Name();
   console.log('str: ', str);
