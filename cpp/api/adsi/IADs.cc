@@ -17,6 +17,8 @@ Napi::Object E_IADs::Init(Napi::Env env, Napi::Object exports) {
   Napi::Function func =
       DefineClass(env, "IADs",
                   {InstanceMethod("Get", &E_IADs::Get),
+                   InstanceMethod("GetInfo", &E_IADs::GetInfo),
+                   InstanceMethod("GetInfoEx", &E_IADs::GetInfoEx),
                    InstanceMethod("get_Name", &E_IADs::get_Name),
                    InstanceMethod("Release", &E_IADs::Release)});
 
@@ -52,7 +54,7 @@ Napi::Value E_IADs::get_Name(const Napi::CallbackInfo& info) {
   }
   std::wstring str = _bstr_t(bstrName);
   SysFreeString(bstrName);
-  return Napi::String::New(info.Env(), (const char16_t *) str.c_str());
+  return Napi::String::New(info.Env(), (const char16_t*)str.c_str());
 }
 
 Napi::Value E_IADs::Get(const Napi::CallbackInfo& info) {
@@ -69,10 +71,43 @@ Napi::Value E_IADs::Get(const Napi::CallbackInfo& info) {
   }
   BSTR bs = V_BSTR(&var);
   std::wstring ws(bs, SysStringLen(bs));
-  const char16_t *str = (const char16_t *) ws.c_str();
+  const char16_t* str = (const char16_t*)ws.c_str();
   VariantClear(&var);
 
   return Napi::String::New(info.Env(), str);
+}
+
+void E_IADs::GetInfo(const Napi::CallbackInfo& info) {
+  Napi::Env env = info.Env();
+
+  HRESULT hr = this->iads->GetInfo();
+  if (FAILED(hr)) {
+    throw Napi::Error::New(env, "IADs.GetInfo failed:" + plf::ad_error_msg(hr));
+  }
+}
+
+void E_IADs::GetInfoEx(const Napi::CallbackInfo& info) {
+  Napi::Env env = info.Env();
+
+  VARIANT var;
+  VariantInit(&var);
+
+  uint32_t length = info.Length();
+
+  LPWSTR* pszAttrs = (LPWSTR*)malloc(length * (sizeof LPWSTR));
+  for (uint32_t i = 0; i < length; i++) {
+    std::u16string str = info[i].As<Napi::String>().Utf16Value();
+    LPWSTR s = (LPWSTR)str.c_str();
+    pszAttrs[i] = s;
+  }
+  HRESULT hr = ADsBuildVarArrayStr(pszAttrs, length, &var);
+
+  hr = this->iads->GetInfoEx(var, 0);
+  VariantClear(&var);
+  if (FAILED(hr)) {
+    throw Napi::Error::New(env, "IADs.GetInfo failed:" + plf::ad_error_msg(hr));
+  }
+  log("GetInfoEx done");
 }
 
 void E_IADs::Release(const Napi::CallbackInfo& info) { this->iads->Release(); }

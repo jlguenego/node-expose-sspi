@@ -16,6 +16,8 @@ class E_IADs : public Napi::ObjectWrap<E_IADs> {
 
   Napi::Value get_Name(const Napi::CallbackInfo& info);
   Napi::Value Get(const Napi::CallbackInfo& info);
+  void GetInfo(const Napi::CallbackInfo& info);
+  void GetInfoEx(const Napi::CallbackInfo& info);
   void Release(const Napi::CallbackInfo& info);
 
   IADs* iads;
