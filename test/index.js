@@ -146,6 +146,9 @@ try {
   console.log('element: ', element);
   const ds = element.QueryInterface("IID_IDirectorySearch");
   console.log('ds: ', ds);
+  element.Release();
+  ds.Release();
+  gc.Release();
 
   // 1) Get the Distinguished Name (LDAP notion) for the domain
   const root = sspi.ADsGestObject('LDAP://rootDSE');
