@@ -161,6 +161,7 @@ try {
   console.log('about to do myself.Get');
   const fullName = myself.Get('FullName');
   console.log('fullName: ', fullName);
+  
   console.log('about to do sspi.ADsGestObject LDAP');
   const iads = sspi.ADsGestObject(
     `LDAP://CN=${fullName},OU=JLG_LOCAL,${distinguishedName}`
@@ -175,6 +176,8 @@ try {
   console.log('sn: ', sn);
   const givenName = iads.Get('givenName');
   console.log('givenName: ', givenName);
+  const guid = iads.Get('objectGUID');
+  console.log('guid: ', guid);
   iads.Release();
 } catch (error) {
   console.log('error: ', error);
