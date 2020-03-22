@@ -1,4 +1,5 @@
 #include "IDispatch.h"
+#include "IDirectorySearch.h"
 #include "../../log.h"
 
 #include "../../pointer.h"
@@ -14,10 +15,10 @@ Napi::FunctionReference E_IDispatch::constructor;
 Napi::Object E_IDispatch::Init(Napi::Env env, Napi::Object exports) {
   Napi::HandleScope scope(env);
 
-  Napi::Function func =
-      DefineClass(env, "IDispatch",
-                  {InstanceMethod("Release", &E_IDispatch::Release),
-                   InstanceMethod("QueryInterface", &E_IDispatch::QueryInterface)});
+  Napi::Function func = DefineClass(
+      env, "IDispatch",
+      {InstanceMethod("Release", &E_IDispatch::Release),
+       InstanceMethod("QueryInterface", &E_IDispatch::QueryInterface)});
 
   constructor = Napi::Persistent(func);
   constructor.SuppressDestruct();
@@ -48,7 +49,13 @@ void E_IDispatch::Release(const Napi::CallbackInfo& info) {
 
 Napi::Value E_IDispatch::QueryInterface(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
-  return Napi::String::New(env, "To be implemented");
+  void *pObject;
+  HRESULT hr = this->iDispatch->QueryInterface(IID_IDirectorySearch, &pObject);
+  if (FAILED(hr)) {
+    throw Napi::Error::New(
+        env, "E_IDispatch.QueryInterface failed:" + plf::ad_error_msg(hr));
+  }
+  return E_IDirectorySearch::NewInstance(env, Napi::String::New(info.Env(), p2s(pObject)));
 }
 
 }  // namespace myAddon

@@ -108,7 +108,6 @@ void E_IADs::GetInfoEx(const Napi::CallbackInfo& info) {
   if (FAILED(hr)) {
     throw Napi::Error::New(env, "IADs.GetInfo failed:" + plf::ad_error_msg(hr));
   }
-  log("GetInfoEx done");
 }
 
 void E_IADs::Release(const Napi::CallbackInfo& info) { this->iads->Release(); }
