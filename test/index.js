@@ -141,7 +141,7 @@ sspi.CoInitialize();
 try {
   // 1) Global Catalog (specify domain uri is faster than servername)
   const gc = sspi.ADsOpenObject({
-    binding: 'GC://jlg.local',
+    binding: 'GC:',
   });
   console.log('gc initialized');
 
