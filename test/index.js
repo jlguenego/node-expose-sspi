@@ -186,6 +186,7 @@ try {
   console.log('about to do myself2.Get');
   const cname = myself2.get_Name();
   console.log('cname: ', cname);
+  myself2.Release();
 
 } catch (error) {
   console.log('error: ', error);
