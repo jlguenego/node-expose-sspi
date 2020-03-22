@@ -8,6 +8,8 @@
 #define SECURITY_WIN32
 #include <Security.h>
 
+#include <iads.h>
+
 #define FLAG_INSERT(map, flag) map[flag] = #flag
 
 #define flagmap std::map<int64_t, std::string>
@@ -20,6 +22,7 @@ flagmap IscReqMap;
 flagmap IscRetMap;
 flagmap TargetDataRepMap;
 flagmap CredentialUseMap;
+flagmap AdsAuthenticationMap;
 
 std::map<int64_t, flagmap *> contextMap;
 
@@ -34,6 +37,7 @@ void initFlags() {
   contextMap[ISC_RET_FLAGS] = &IscRetMap;
   contextMap[SECURITY_DREP_FLAGS] = &TargetDataRepMap;
   contextMap[CREDENTIAL_USE_FLAG] = &CredentialUseMap;
+  contextMap[ADS_AUTHENTICATION_FLAGS] = &AdsAuthenticationMap;
 
   FLAG_INSERT(extendedNameFormatMap, NameUnknown);
   FLAG_INSERT(extendedNameFormatMap, NameFullyQualifiedDN);
@@ -182,6 +186,20 @@ void initFlags() {
   FLAG_INSERT(CredentialUseMap, SECPKG_CRED_BOTH);
   FLAG_INSERT(CredentialUseMap, SECPKG_CRED_DEFAULT);
   FLAG_INSERT(CredentialUseMap, SECPKG_CRED_RESERVED);
+
+  FLAG_INSERT(AdsAuthenticationMap, ADS_SECURE_AUTHENTICATION);
+  FLAG_INSERT(AdsAuthenticationMap, ADS_USE_ENCRYPTION);
+  FLAG_INSERT(AdsAuthenticationMap, ADS_USE_SSL);
+  FLAG_INSERT(AdsAuthenticationMap, ADS_READONLY_SERVER);
+  FLAG_INSERT(AdsAuthenticationMap, ADS_PROMPT_CREDENTIALS);
+  FLAG_INSERT(AdsAuthenticationMap, ADS_NO_AUTHENTICATION);
+  FLAG_INSERT(AdsAuthenticationMap, ADS_FAST_BIND);
+  FLAG_INSERT(AdsAuthenticationMap, ADS_USE_SIGNING);
+  FLAG_INSERT(AdsAuthenticationMap, ADS_USE_SEALING);
+  FLAG_INSERT(AdsAuthenticationMap, ADS_USE_DELEGATION);
+  FLAG_INSERT(AdsAuthenticationMap, ADS_SERVER_BIND);
+  FLAG_INSERT(AdsAuthenticationMap, ADS_NO_REFERRAL_CHASING);
+  FLAG_INSERT(AdsAuthenticationMap, ADS_AUTH_RESERVED);
 
 }
 
