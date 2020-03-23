@@ -44,8 +44,8 @@ Napi::Value convertColumn(Napi::Env env, PADS_SEARCH_COLUMN pCol) {
         result[std::to_string(x)] =
             Napi::Number::New(env, (double)pCol->pADsValues[x].Integer);
       }
+      return result;
     case ADSTYPE_OCTET_STRING:
-
       if (_wcsicmp(pCol->pszAttrName, L"objectSID") == 0) {
         result = Napi::Array::New(env);
         for (x = 0; x < pCol->dwNumValues; x++) {
