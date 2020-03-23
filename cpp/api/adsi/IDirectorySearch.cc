@@ -65,7 +65,7 @@ void E_IDirectorySearch::SetSearchPreference(const Napi::CallbackInfo& info) {
   }
 }
 
-Napi::Value E_IDirectorySearch::ExecuteSearch(const Napi::CallbackInfo& info) {
+void E_IDirectorySearch::ExecuteSearch(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
 
   if (info.Length() != 1) {
@@ -79,14 +79,9 @@ Napi::Value E_IDirectorySearch::ExecuteSearch(const Napi::CallbackInfo& info) {
       input.Get("filter").As<Napi::String>().Utf16Value();
   LPWSTR pszSearchFilter = (LPWSTR)filterStr.c_str();
 
-  ADS_SEARCH_HANDLE hSearchResult = NULL;
-
   HRESULT hr = this->iDirectorySearch->ExecuteSearch(pszSearchFilter, NULL,
-                                                     (DWORD)-1, &hSearchResult);
+                                                     (DWORD)-1, &(this->hSearchResult));
   AD_CHECK_ERROR(hr, "ExecuteSearch");
-
-  Napi::Value result = Napi::Object::New(env);
-  return result;
 }
 
 }  // namespace myAddon

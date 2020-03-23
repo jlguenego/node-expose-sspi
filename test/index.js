@@ -168,8 +168,7 @@ try {
   });
   console.log('dirsearch: ', dirsearch);
   dirsearch.SetSearchPreference();
-  const result = dirsearch.ExecuteSearch({ filter: "(&(objectClass=user)(objectCategory=person)"});
-  console.log('result: ', result);
+  dirsearch.ExecuteSearch({ filter: "(&(objectClass=user)(objectCategory=person)"});
   dirsearch.Release();
 
   // 2) Get info about my account
