@@ -22,6 +22,8 @@
 
 #include "macros.h"
 
+#include "adsi.h"
+
 #define RESERVED NULL
 
 #define BUFFER_SIZE 1024

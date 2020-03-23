@@ -20,6 +20,7 @@ class E_IDirectorySearch : public Napi::ObjectWrap<E_IDirectorySearch> {
   Napi::Value GetNextRow(const Napi::CallbackInfo& info);
   Napi::Value GetFirstRow(const Napi::CallbackInfo& info);
   Napi::Value GetNextColumnName(const Napi::CallbackInfo& info);
+  Napi::Value GetColumn(const Napi::CallbackInfo& info);
 
   IDirectorySearch* iDirectorySearch;
   ADS_SEARCH_HANDLE hSearchResult;

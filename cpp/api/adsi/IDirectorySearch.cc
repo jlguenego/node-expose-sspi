@@ -22,7 +22,9 @@ Napi::Object E_IDirectorySearch::Init(Napi::Env env, Napi::Object exports) {
        InstanceMethod("ExecuteSearch", &E_IDirectorySearch::ExecuteSearch),
        InstanceMethod("GetNextRow", &E_IDirectorySearch::GetNextRow),
        InstanceMethod("GetFirstRow", &E_IDirectorySearch::GetFirstRow),
-       InstanceMethod("GetNextColumnName", &E_IDirectorySearch::GetNextColumnName)});
+       InstanceMethod("GetColumn", &E_IDirectorySearch::GetColumn),
+       InstanceMethod("GetNextColumnName",
+                      &E_IDirectorySearch::GetNextColumnName)});
 
   constructor = Napi::Persistent(func);
   constructor.SuppressDestruct();
@@ -101,7 +103,8 @@ Napi::Value E_IDirectorySearch::GetFirstRow(const Napi::CallbackInfo& info) {
   return Napi::Number::New(env, hr);
 }
 
-Napi::Value E_IDirectorySearch::GetNextColumnName(const Napi::CallbackInfo& info) {
+Napi::Value E_IDirectorySearch::GetNextColumnName(
+    const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
   LPWSTR pszColumnName;
   HRESULT hr = this->iDirectorySearch->GetNextColumnName(this->hSearchResult,
@@ -110,8 +113,35 @@ Napi::Value E_IDirectorySearch::GetNextColumnName(const Napi::CallbackInfo& info
   if (hr == S_ADS_NOMORE_COLUMNS) {
     return Napi::Number::New(env, hr);
   }
-  Napi::Value result = Napi::String::New(env, (char16_t *) pszColumnName);
+  Napi::Value result = Napi::String::New(env, (char16_t*)pszColumnName);
   FreeADsMem(pszColumnName);
+  return result;
+}
+
+Napi::Value E_IDirectorySearch::GetColumn(const Napi::CallbackInfo& info) {
+  Napi::Env env = info.Env();
+
+  if (info.Length() != 1) {
+    throw Napi::Error::New(env,
+                           "ExecuteSearch({filter: string}): bad arguments.");
+  }
+
+  Napi::Object input = info[0].As<Napi::Object>();
+
+  std::u16string columnNameStr =
+      input.Get("name").As<Napi::String>().Utf16Value();
+  LPWSTR szColumnName = (LPWSTR)columnNameStr.c_str();
+
+  ADS_SEARCH_COLUMN searchColumn;
+
+  HRESULT hr =
+      this->iDirectorySearch->GetColumn(this->hSearchResult, szColumnName, &searchColumn);
+  AD_CHECK_ERROR(hr, "GetColumn");
+
+
+  
+  Napi::Value result = convertColumn(env, &searchColumn);
+  this->iDirectorySearch->FreeColumn(&searchColumn);
   return result;
 }
 
