@@ -20,6 +20,8 @@
 #include "log.h"
 #include "flags.h"
 
+#include "macros.h"
+
 #define RESERVED NULL
 
 #define BUFFER_SIZE 1024
