@@ -140,7 +140,7 @@ sspi.CoInitialize();
 
 try {
   // 1) Global Catalog (specify domain uri is faster than servername)
-  const gc = sspi.ADsOpenObject({ binding: 'GC:', riid: "IID_IADsContainer" });
+  const gc = sspi.ADsOpenObject({ binding: 'GC:', riid: 'IID_IADsContainer' });
   if (gc === undefined) {
     throw new Error('Domain controller not reachable');
   }
@@ -150,9 +150,9 @@ try {
   if (element === undefined) {
     throw new Error('Domain controller not reachable');
   }
-  const ds = element.QueryInterface("IID_IDirectorySearch");
+  const ds = element.QueryInterface('IID_IDirectorySearch');
   console.log('ds: ', ds);
-  
+
   element.Release();
   ds.Release();
   gc.Release();
@@ -161,6 +161,10 @@ try {
   const root = sspi.ADsGestObject('LDAP://rootDSE');
   const distinguishedName = root.Get('defaultNamingContext');
   console.log('distinguishedName: ', distinguishedName);
+
+  const dirsearch = sspi.ADsOpenObject({ binding: `LDAP://${distinguishedName}`, riid: 'IID_IDirectorySearch' });
+  console.log('dirsearch: ', dirsearch);
+
 
   // 2) Get info about my account
   console.log('about to do sspi.ADsGestObject');
@@ -194,7 +198,6 @@ try {
   const cname = myself2.get_Name();
   console.log('cname: ', cname);
   myself2.Release();
-
 } catch (error) {
   console.log('error: ', error);
 }

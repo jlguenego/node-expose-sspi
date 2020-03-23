@@ -2,6 +2,7 @@
 #include "../../misc.h"
 #include "./IADs.h"
 #include "./IADsContainer.h"
+#include "./IDirectorySearch.h"
 
 namespace myAddon {
 
@@ -13,7 +14,7 @@ Napi::Value e_ADsOpenObject(const Napi::CallbackInfo &info) {
         env,
         "ADsOpenObject({bindingUri: string, user: string, password: string, "
         "adsAuthentication: ADS_AUTHENTICATION_ENUM, riid: IID_IADs | "
-        "IID_IADsContainer}): bad arguments.");
+        "IID_IADsContainer | IID_IDirectorySearch}): bad arguments.");
   }
 
   Napi::Object input = info[0].As<Napi::Object>();
@@ -45,6 +46,9 @@ Napi::Value e_ADsOpenObject(const Napi::CallbackInfo &info) {
     if (outputTypeStr == "IID_IADsContainer") {
       riid = IID_IADsContainer;
     }
+    if (outputTypeStr == "IID_IDirectorySearch") {
+      riid = IID_IDirectorySearch;
+    }
   }
 
   void *pObject;
@@ -59,6 +63,9 @@ Napi::Value e_ADsOpenObject(const Napi::CallbackInfo &info) {
 
   if (riid == IID_IADsContainer) {
     return E_IADsContainer::NewInstance(env, s);
+  }
+  if (riid == IID_IDirectorySearch) {
+    return E_IDirectorySearch::NewInstance(env, s);
   }
 
   return E_IADs::NewInstance(env, s);
