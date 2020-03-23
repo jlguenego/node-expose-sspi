@@ -93,57 +93,64 @@ Napi::Value convertColumn(Napi::Env env, PADS_SEARCH_COLUMN pCol) {
         VariantClear(&varDate);
       }
       return result;
-    // case ADSTYPE_LARGE_INTEGER:
-    //   for (x = 0; x < pCol->dwNumValues; x++) {
-    //     liValue = pCol->pADsValues[x].LargeInteger;
-    //     filetime.dwLowDateTime = liValue.LowPart;
-    //     filetime.dwHighDateTime = liValue.HighPart;
-    //     if ((filetime.dwHighDateTime == 0) && (filetime.dwLowDateTime == 0))
-    //     {
-    //       wprintf(L"  No value set.\n");
-    //     } else {
-    //       //  Verify properties of type LargeInteger that represent time.
-    //       //  If TRUE, then convert to variant time.
-    //       if ((0 == wcscmp(L"accountExpires", pCol->pszAttrName)) |
-    //               (0 == wcscmp(L"badPasswordTime", pCol->pszAttrName)) ||
-    //           (0 == wcscmp(L"lastLogon", pCol->pszAttrName)) ||
-    //           (0 == wcscmp(L"lastLogoff", pCol->pszAttrName)) ||
-    //           (0 == wcscmp(L"lockoutTime", pCol->pszAttrName)) ||
-    //           (0 == wcscmp(L"pwdLastSet", pCol->pszAttrName))) {
-    //         //  Handle special case for Never Expires where low part is -1.
-    //         if (filetime.dwLowDateTime == -1) {
-    //           wprintf(L"  Never Expires.\n");
-    //         } else {
-    //           if (FileTimeToLocalFileTime(&filetime, &filetime) != 0) {
-    //             if (FileTimeToSystemTime(&filetime, &systemtime) != 0) {
-    //               if (SystemTimeToVariantTime(&systemtime, &date) != 0) {
-    //                 //  Pack in variant.vt.
-    //                 varDate.vt = VT_DATE;
-    //                 varDate.date = date;
-    //                 VariantChangeType(&varDate, &varDate,
-    //                 VARIANT_NOVALUEPROP,
-    //                                   VT_BSTR);
-    //                 wprintf(L"  %s\r\n", varDate.bstrVal);
-    //                 VariantClear(&varDate);
-    //               } else {
-    //                 wprintf(L"  FileTimeToVariantTime failed\n");
-    //               }
-    //             } else {
-    //               wprintf(L"  FileTimeToSystemTime failed\n");
-    //             }
+    case ADSTYPE_LARGE_INTEGER:
+      result = Napi::Array::New(env);
+      for (x = 0; x < pCol->dwNumValues; x++) {
+        LARGE_INTEGER liValue = pCol->pADsValues[x].LargeInteger;
+        FILETIME filetime;
+        filetime.dwLowDateTime = liValue.LowPart;
+        filetime.dwHighDateTime = liValue.HighPart;
+        if ((filetime.dwHighDateTime == 0) && (filetime.dwLowDateTime == 0)) {
+          result[std::to_string(x)] = Napi::String::New(env, "<No value set>");
+          continue;
+        }
+        //  Verify properties of type LargeInteger that represent time.
+        //  If TRUE, then convert to variant time.
+        if ((0 != wcscmp(L"accountExpires", pCol->pszAttrName)) &&
+            (0 != wcscmp(L"badPasswordTime", pCol->pszAttrName)) &&
+            (0 != wcscmp(L"lastLogon", pCol->pszAttrName)) &&
+            (0 != wcscmp(L"lastLogoff", pCol->pszAttrName)) &&
+            (0 != wcscmp(L"lockoutTime", pCol->pszAttrName)) &&
+            (0 != wcscmp(L"pwdLastSet", pCol->pszAttrName))) {
+          std::string str =
+              plf::string_format("high: %d low: %d", filetime.dwHighDateTime,
+                                 filetime.dwLowDateTime);
+          result[std::to_string(x)] = Napi::String::New(env, str);
+          continue;
+        }
+        //  Handle special case for Never Expires where low part is -1.
+        if (filetime.dwLowDateTime == -1) {
+          result[std::to_string(x)] = Napi::String::New(env, "<Never Expires>");
+          continue;
+        }
+        if (FileTimeToLocalFileTime(&filetime, &filetime) == 0) {
+          result[std::to_string(x)] =
+              Napi::String::New(env, "<FileTimeToLocalFileTime failed>");
+          continue;
+        }
+        SYSTEMTIME systemtime;
+        if (FileTimeToSystemTime(&filetime, &systemtime) == 0) {
+          result[std::to_string(x)] =
+              Napi::String::New(env, "<FileTimeToSystemTime failed>");
+          continue;
+        }
+        DATE date;
+        if (SystemTimeToVariantTime(&systemtime, &date) == 0) {
+          result[std::to_string(x)] =
+              Napi::String::New(env, "<FileTimeToVariantTime failed>");
+          continue;
+        }
+        //  Pack in variant.vt.
+        VARIANT varDate;
+        varDate.vt = VT_DATE;
+        varDate.date = date;
+        VariantChangeType(&varDate, &varDate, VARIANT_NOVALUEPROP, VT_BSTR);
+        result[std::to_string(x)] =
+            Napi::String::New(env, (char16_t *)varDate.bstrVal);
+        VariantClear(&varDate);
+      }
 
-    //           } else {
-    //             wprintf(L"  FileTimeToLocalFileTime failed\n");
-    //           }
-    //         }
-    //       } else {
-    //         //  Print the LargeInteger.
-    //         wprintf(L"  high: %d low: %d\r\n", filetime.dwHighDateTime,
-    //                 filetime.dwLowDateTime);
-    //       }
-    //     }
-    //   }
-    //   break;
+      return result;
     case ADSTYPE_NT_SECURITY_DESCRIPTOR:
       result = Napi::Array::New(env);
       for (x = 0; x < pCol->dwNumValues; x++) {
@@ -155,6 +162,6 @@ Napi::Value convertColumn(Napi::Env env, PADS_SEARCH_COLUMN pCol) {
       std::string str =
           plf::string_format("<Unknown type %d>", pCol->dwADsType);
       return Napi::String::New(env, str);
-  }
-}
+  }  // namespace myAddon
+}  // namespace myAddon
 }  // namespace myAddon

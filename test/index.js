@@ -169,7 +169,7 @@ try {
   console.log('dirsearch: ', dirsearch);
   dirsearch.SetSearchPreference();
   dirsearch.ExecuteSearch({
-    filter: '(&(objectClass=user)(objectCategory=person)(sn=DEMETRESCU))',
+    filter: '(&(objectClass=user)(objectCategory=person)(sn=GUÉNÉGO))',
   });
   let hr = dirsearch.GetFirstRow();
   if (hr === adsi.S_ADS_NOMORE_ROWS) {
