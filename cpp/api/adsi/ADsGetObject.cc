@@ -7,12 +7,7 @@ namespace myAddon {
 Napi::Promise e_ADsGestObject(const Napi::CallbackInfo &info) {
   Napi::Env env = info.Env();
   auto deferred = Napi::Promise::Deferred::New(env);
-  if (info.Length() != 1) {
-    deferred.Reject(
-      Napi::Error::New(env, "ADsGestObject(bindingUri: string)").Value()
-    );
-    return deferred.Promise();
-  }
+  CHECK_INPUT_DEFERRED("ADsGestObject(bindingUri: string)", 1);
 
   std::u16string bindingStr = info[0].As<Napi::String>().Utf16Value();
   LPCWSTR binding = (LPCWSTR)bindingStr.c_str();
