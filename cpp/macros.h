@@ -16,3 +16,11 @@
     deferred.Reject(Napi::Error::New(env, msg ": Bad arguments").Value()); \
     return deferred.Promise();                                             \
   }
+
+#define AD_CHECK_ERROR_DEFERRED(hr, name)                                     \
+  if (FAILED(hr)) {                                                           \
+    deferred.Reject(                                                          \
+        Napi::Error::New(env, ##name " has failed: " + plf::ad_error_msg(hr)) \
+            .Value());                                                        \
+    return deferred.Promise();                                                \
+  }

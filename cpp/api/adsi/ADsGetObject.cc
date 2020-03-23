@@ -14,14 +14,10 @@ Napi::Promise e_ADsGestObject(const Napi::CallbackInfo &info) {
 
   IADs *pObject;
   HRESULT hr = ADsGetObject(binding, IID_IADs, (void **)&pObject);
-  if (FAILED(hr)) {
-    deferred.Reject(
-      Napi::Error::New(env, "ADsGetObject has failed: " + plf::ad_error_msg(hr)).Value()
-    );
-    return deferred.Promise();
-  }
+  AD_CHECK_ERROR_DEFERRED(hr, "ADsGetObject");
 
-  auto result = E_IADs::NewInstance(env, Napi::String::New(info.Env(), p2s(pObject)));
+  auto result =
+      E_IADs::NewInstance(env, Napi::String::New(info.Env(), p2s(pObject)));
   deferred.Resolve(result);
   return deferred.Promise();
 }
