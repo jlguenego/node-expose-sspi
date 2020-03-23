@@ -169,15 +169,22 @@ try {
   console.log('dirsearch: ', dirsearch);
   dirsearch.SetSearchPreference();
   dirsearch.ExecuteSearch({
-    filter: '(&(objectClass=user)(objectCategory=person)(sn=Smith))',
+    filter: '(&(objectClass=user)(objectCategory=person)(sn=DEMETRESCU))',
   });
   let hr = dirsearch.GetFirstRow();
   if (hr === adsi.S_ADS_NOMORE_ROWS) {
-    console.log('GetFirstRow: no more rows');
+    throw new Error('GetFirstRow: no more rows');
   }
+
+  let colName = dirsearch.GetNextColumnName();
+  while (colName !== adsi.S_ADS_NOMORE_COLUMNS) {
+    console.log('colName: ', colName);
+    colName = dirsearch.GetNextColumnName();
+  }
+  
   hr = dirsearch.GetNextRow();
   if (hr === adsi.S_ADS_NOMORE_ROWS) {
-    console.log('GetFirstRow: no more rows');
+    console.log('GetNextRow: no more rows');
   }
   dirsearch.Release();
 

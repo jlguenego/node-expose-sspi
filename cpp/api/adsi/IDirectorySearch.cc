@@ -21,7 +21,8 @@ Napi::Object E_IDirectorySearch::Init(Napi::Env env, Napi::Object exports) {
                       &E_IDirectorySearch::SetSearchPreference),
        InstanceMethod("ExecuteSearch", &E_IDirectorySearch::ExecuteSearch),
        InstanceMethod("GetNextRow", &E_IDirectorySearch::GetNextRow),
-       InstanceMethod("GetFirstRow", &E_IDirectorySearch::GetFirstRow)});
+       InstanceMethod("GetFirstRow", &E_IDirectorySearch::GetFirstRow),
+       InstanceMethod("GetNextColumnName", &E_IDirectorySearch::GetNextColumnName)});
 
   constructor = Napi::Persistent(func);
   constructor.SuppressDestruct();
@@ -98,6 +99,20 @@ Napi::Value E_IDirectorySearch::GetFirstRow(const Napi::CallbackInfo& info) {
   HRESULT hr = this->iDirectorySearch->GetFirstRow(this->hSearchResult);
   AD_CHECK_ERROR(hr, "GetFirstRow");
   return Napi::Number::New(env, hr);
+}
+
+Napi::Value E_IDirectorySearch::GetNextColumnName(const Napi::CallbackInfo& info) {
+  Napi::Env env = info.Env();
+  LPWSTR pszColumnName;
+  HRESULT hr = this->iDirectorySearch->GetNextColumnName(this->hSearchResult,
+                                                         &pszColumnName);
+  AD_CHECK_ERROR(hr, "GetNextColumnName");
+  if (hr == S_ADS_NOMORE_COLUMNS) {
+    return Napi::Number::New(env, hr);
+  }
+  Napi::Value result = Napi::String::New(env, (char16_t *) pszColumnName);
+  FreeADsMem(pszColumnName);
+  return result;
 }
 
 }  // namespace myAddon
