@@ -14,11 +14,12 @@ Napi::FunctionReference E_IDirectorySearch::constructor;
 Napi::Object E_IDirectorySearch::Init(Napi::Env env, Napi::Object exports) {
   Napi::HandleScope scope(env);
 
-  Napi::Function func =
-      DefineClass(env, "IDirectorySearch",
-                  {InstanceMethod("Release", &E_IDirectorySearch::Release),
-                   InstanceMethod("SetSearchPreference",
-                                  &E_IDirectorySearch::SetSearchPreference)});
+  Napi::Function func = DefineClass(
+      env, "IDirectorySearch",
+      {InstanceMethod("Release", &E_IDirectorySearch::Release),
+       InstanceMethod("SetSearchPreference",
+                      &E_IDirectorySearch::SetSearchPreference),
+       InstanceMethod("ExecuteSearch", &E_IDirectorySearch::ExecuteSearch)});
 
   constructor = Napi::Persistent(func);
   constructor.SuppressDestruct();
@@ -62,6 +63,13 @@ void E_IDirectorySearch::SetSearchPreference(const Napi::CallbackInfo& info) {
     throw Napi::Error::New(
         env, "SetSearchPreference failed." + plf::ad_error_msg(hr));
   }
+}
+
+Napi::Value E_IDirectorySearch::ExecuteSearch(const Napi::CallbackInfo& info) {
+  Napi::Env env = info.Env();
+
+  Napi::Value result = Napi::Object::New(env);
+  return result;
 }
 
 }  // namespace myAddon

@@ -168,6 +168,8 @@ try {
   });
   console.log('dirsearch: ', dirsearch);
   dirsearch.SetSearchPreference();
+  const result = dirsearch.ExecuteSearch();
+  console.log('result: ', result);
   dirsearch.Release();
 
   // 2) Get info about my account
