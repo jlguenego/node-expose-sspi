@@ -14,8 +14,11 @@ Napi::FunctionReference E_IDirectorySearch::constructor;
 Napi::Object E_IDirectorySearch::Init(Napi::Env env, Napi::Object exports) {
   Napi::HandleScope scope(env);
 
-  Napi::Function func = DefineClass(
-      env, "IDirectorySearch", {InstanceMethod("Release", &E_IDirectorySearch::Release)});
+  Napi::Function func =
+      DefineClass(env, "IDirectorySearch",
+                  {InstanceMethod("Release", &E_IDirectorySearch::Release),
+                   InstanceMethod("SetSearchPreference",
+                                  &E_IDirectorySearch::SetSearchPreference)});
 
   constructor = Napi::Persistent(func);
   constructor.SuppressDestruct();
@@ -42,6 +45,23 @@ Napi::Object E_IDirectorySearch::NewInstance(Napi::Env env, Napi::Value arg) {
 
 void E_IDirectorySearch::Release(const Napi::CallbackInfo& info) {
   this->iDirectorySearch->Release();
+}
+
+void E_IDirectorySearch::SetSearchPreference(const Napi::CallbackInfo& info) {
+  Napi::Env env = info.Env();
+
+  ADS_SEARCHPREF_INFO SearchPrefs;
+  SearchPrefs.dwSearchPref = ADS_SEARCHPREF_SEARCH_SCOPE;
+  SearchPrefs.vValue.dwType = ADSTYPE_INTEGER;
+  SearchPrefs.vValue.Integer = ADS_SCOPE_SUBTREE;
+  DWORD dwNumPrefs = 1;
+
+  HRESULT hr =
+      this->iDirectorySearch->SetSearchPreference(&SearchPrefs, dwNumPrefs);
+  if (FAILED(hr)) {
+    throw Napi::Error::New(
+        env, "SetSearchPreference failed." + plf::ad_error_msg(hr));
+  }
 }
 
 }  // namespace myAddon

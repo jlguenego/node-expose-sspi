@@ -15,6 +15,7 @@ class E_IDirectorySearch : public Napi::ObjectWrap<E_IDirectorySearch> {
   static Napi::FunctionReference constructor;
 
   void Release(const Napi::CallbackInfo& info);
+  void SetSearchPreference(const Napi::CallbackInfo& info);
 
   IDirectorySearch* iDirectorySearch;
 };

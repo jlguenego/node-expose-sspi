@@ -162,9 +162,13 @@ try {
   const distinguishedName = root.Get('defaultNamingContext');
   console.log('distinguishedName: ', distinguishedName);
 
-  const dirsearch = sspi.ADsOpenObject({ binding: `LDAP://${distinguishedName}`, riid: 'IID_IDirectorySearch' });
+  const dirsearch = sspi.ADsOpenObject({
+    binding: `LDAP://${distinguishedName}`,
+    riid: 'IID_IDirectorySearch',
+  });
   console.log('dirsearch: ', dirsearch);
-
+  dirsearch.SetSearchPreference();
+  dirsearch.Release();
 
   // 2) Get info about my account
   console.log('about to do sspi.ADsGestObject');
