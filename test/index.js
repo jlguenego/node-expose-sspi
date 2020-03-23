@@ -1,4 +1,4 @@
-const { sso, sspi } = require('node-expose-sspi');
+const { sso, sspi, adsi } = require('node-expose-sspi');
 
 const result = sspi.hello();
 console.log('result: ', result);
@@ -168,9 +168,17 @@ try {
   });
   console.log('dirsearch: ', dirsearch);
   dirsearch.SetSearchPreference();
-  dirsearch.ExecuteSearch({ filter: "(&(objectClass=user)(objectCategory=person))"});
-  dirsearch.GetFirstRow();
-  dirsearch.GetNextRow();
+  dirsearch.ExecuteSearch({
+    filter: '(&(objectClass=user)(objectCategory=person)(sn=Smith))',
+  });
+  let hr = dirsearch.GetFirstRow();
+  if (hr === adsi.S_ADS_NOMORE_ROWS) {
+    console.log('GetFirstRow: no more rows');
+  }
+  hr = dirsearch.GetNextRow();
+  if (hr === adsi.S_ADS_NOMORE_ROWS) {
+    console.log('GetFirstRow: no more rows');
+  }
   dirsearch.Release();
 
   // 2) Get info about my account

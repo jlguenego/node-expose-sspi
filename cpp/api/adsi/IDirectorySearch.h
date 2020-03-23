@@ -17,8 +17,8 @@ class E_IDirectorySearch : public Napi::ObjectWrap<E_IDirectorySearch> {
   void Release(const Napi::CallbackInfo& info);
   void SetSearchPreference(const Napi::CallbackInfo& info);
   void ExecuteSearch(const Napi::CallbackInfo& info);
-  void GetNextRow(const Napi::CallbackInfo& info);
-  void GetFirstRow(const Napi::CallbackInfo& info);
+  Napi::Value GetNextRow(const Napi::CallbackInfo& info);
+  Napi::Value GetFirstRow(const Napi::CallbackInfo& info);
 
   IDirectorySearch* iDirectorySearch;
   ADS_SEARCH_HANDLE hSearchResult;

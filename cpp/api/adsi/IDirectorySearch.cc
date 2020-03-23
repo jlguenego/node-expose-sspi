@@ -86,16 +86,18 @@ void E_IDirectorySearch::ExecuteSearch(const Napi::CallbackInfo& info) {
   AD_CHECK_ERROR(hr, "ExecuteSearch");
 }
 
-void E_IDirectorySearch::GetNextRow(const Napi::CallbackInfo& info) {
+Napi::Value E_IDirectorySearch::GetNextRow(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
   HRESULT hr = this->iDirectorySearch->GetNextRow(this->hSearchResult);
   AD_CHECK_ERROR(hr, "GetNextRow");
+  return Napi::Number::New(env, hr);
 }
 
-void E_IDirectorySearch::GetFirstRow(const Napi::CallbackInfo& info) {
+Napi::Value E_IDirectorySearch::GetFirstRow(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
   HRESULT hr = this->iDirectorySearch->GetFirstRow(this->hSearchResult);
-  AD_CHECK_ERROR(hr, "GetNextRow");
+  AD_CHECK_ERROR(hr, "GetFirstRow");
+  return Napi::Number::New(env, hr);
 }
 
 }  // namespace myAddon

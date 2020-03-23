@@ -5,6 +5,6 @@ if (require("os").platform() !== "win32") {
 }
 
 import sspi = require("./lib/sspi");
-import sso from "./src/index";
+import {sso, adsi } from "./src/index";
 
-export { sspi, sso };
+export { sspi, sso, adsi };

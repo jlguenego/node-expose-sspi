@@ -6,7 +6,10 @@ import { SSO } from './SSO';
 import './express';
 import { client } from './client';
 
-const sso = {
+
+export { adsi } from './adsi';
+
+export const sso = {
   config,
   hexDump,
   auth,
@@ -16,5 +19,4 @@ const sso = {
   client
 };
 
-// In CommonJS, default export must be written as 'export ='
-export = sso;
+
