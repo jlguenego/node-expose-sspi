@@ -83,7 +83,7 @@ Napi::Value E_IDirectorySearch::ExecuteSearch(const Napi::CallbackInfo& info) {
 
   HRESULT hr = this->iDirectorySearch->ExecuteSearch(pszSearchFilter, NULL,
                                                      (DWORD)-1, &hSearchResult);
-  CHECK_ERROR(hr, "ExecuteSearch");
+  AD_CHECK_ERROR(hr, "ExecuteSearch");
 
   Napi::Value result = Napi::Object::New(env);
   return result;

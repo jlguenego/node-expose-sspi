@@ -54,7 +54,7 @@ Napi::Value e_ADsOpenObject(const Napi::CallbackInfo &info) {
   void *pObject;
   HRESULT hr =
       ADsOpenObject(binding, user, password, flag, riid, (void **)&pObject);
-  CHECK_ERROR(hr, "ADsOpenObject");
+  AD_CHECK_ERROR(hr, "ADsOpenObject");
 
   Napi::String s = Napi::String::New(info.Env(), p2s(pObject));
 

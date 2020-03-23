@@ -17,7 +17,7 @@ Napi::Value e_ADsGestObject(const Napi::CallbackInfo &info) {
 
   IADs *pObject;
   HRESULT hr = ADsGetObject(binding, IID_IADs, (void **)&pObject);
-  CHECK_ERROR(hr, "ADsGetObject");
+  AD_CHECK_ERROR(hr, "ADsGetObject");
 
   return E_IADs::NewInstance(env, Napi::String::New(info.Env(), p2s(pObject)));
 }
