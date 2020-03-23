@@ -64,19 +64,12 @@ void E_IDirectorySearch::SetSearchPreference(const Napi::CallbackInfo& info) {
 
   HRESULT hr =
       this->iDirectorySearch->SetSearchPreference(&SearchPrefs, dwNumPrefs);
-  if (FAILED(hr)) {
-    throw Napi::Error::New(
-        env, "SetSearchPreference failed." + plf::ad_error_msg(hr));
-  }
+  AD_CHECK_ERROR(hr, "SetSearchPreference");
 }
 
 void E_IDirectorySearch::ExecuteSearch(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
-
-  if (info.Length() != 1) {
-    throw Napi::Error::New(env,
-                           "ExecuteSearch({filter: string}): bad arguments.");
-  }
+  CHECK_INPUT("ExecuteSearch({filter: string})", 1);
 
   Napi::Object input = info[0].As<Napi::Object>();
 
@@ -120,24 +113,17 @@ Napi::Value E_IDirectorySearch::GetNextColumnName(
 
 Napi::Value E_IDirectorySearch::GetColumn(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
+  CHECK_INPUT("GetColumn(name: string)", 1);
 
-  if (info.Length() != 1) {
-    throw Napi::Error::New(env,
-                           "GetColumn(name: string): bad arguments.");
-  }
-
-  std::u16string columnNameStr =
-      info[0].As<Napi::String>().Utf16Value();
+  std::u16string columnNameStr = info[0].As<Napi::String>().Utf16Value();
   LPWSTR szColumnName = (LPWSTR)columnNameStr.c_str();
 
   ADS_SEARCH_COLUMN searchColumn;
 
-  HRESULT hr =
-      this->iDirectorySearch->GetColumn(this->hSearchResult, szColumnName, &searchColumn);
+  HRESULT hr = this->iDirectorySearch->GetColumn(this->hSearchResult,
+                                                 szColumnName, &searchColumn);
   AD_CHECK_ERROR(hr, "GetColumn");
 
-
-  
   Napi::Value result = convertColumn(env, &searchColumn);
   this->iDirectorySearch->FreeColumn(&searchColumn);
   return result;
