@@ -20,7 +20,8 @@ Napi::Object E_IDirectorySearch::Init(Napi::Env env, Napi::Object exports) {
        InstanceMethod("SetSearchPreference",
                       &E_IDirectorySearch::SetSearchPreference),
        InstanceMethod("ExecuteSearch", &E_IDirectorySearch::ExecuteSearch),
-       InstanceMethod("GetNextRow", &E_IDirectorySearch::GetNextRow)});
+       InstanceMethod("GetNextRow", &E_IDirectorySearch::GetNextRow),
+       InstanceMethod("GetFirstRow", &E_IDirectorySearch::GetFirstRow)});
 
   constructor = Napi::Persistent(func);
   constructor.SuppressDestruct();
@@ -87,8 +88,13 @@ void E_IDirectorySearch::ExecuteSearch(const Napi::CallbackInfo& info) {
 
 void E_IDirectorySearch::GetNextRow(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
-  log("about to do GetNextRow");
   HRESULT hr = this->iDirectorySearch->GetNextRow(this->hSearchResult);
+  AD_CHECK_ERROR(hr, "GetNextRow");
+}
+
+void E_IDirectorySearch::GetFirstRow(const Napi::CallbackInfo& info) {
+  Napi::Env env = info.Env();
+  HRESULT hr = this->iDirectorySearch->GetFirstRow(this->hSearchResult);
   AD_CHECK_ERROR(hr, "GetNextRow");
 }
 

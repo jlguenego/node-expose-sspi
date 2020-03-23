@@ -169,6 +169,7 @@ try {
   console.log('dirsearch: ', dirsearch);
   dirsearch.SetSearchPreference();
   dirsearch.ExecuteSearch({ filter: "(&(objectClass=user)(objectCategory=person))"});
+  dirsearch.GetFirstRow();
   dirsearch.GetNextRow();
   dirsearch.Release();
 
