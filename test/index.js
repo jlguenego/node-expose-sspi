@@ -168,7 +168,8 @@ try {
   });
   console.log('dirsearch: ', dirsearch);
   dirsearch.SetSearchPreference();
-  dirsearch.ExecuteSearch({ filter: "(&(objectClass=user)(objectCategory=person)"});
+  dirsearch.ExecuteSearch({ filter: "(&(objectClass=user)(objectCategory=person))"});
+  dirsearch.GetNextRow();
   dirsearch.Release();
 
   // 2) Get info about my account
