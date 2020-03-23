@@ -141,11 +141,18 @@ sspi.CoInitialize();
 try {
   // 1) Global Catalog (specify domain uri is faster than servername)
   const gc = sspi.ADsOpenObject({ binding: 'GC:', riid: "IID_IADsContainer" });
+  if (gc === undefined) {
+    throw new Error('Domain controller not reachable');
+  }
   console.log('gc initialized', gc.__proto__.constructor.name);
   const element = gc.Next();
   console.log('element: ', element);
+  if (element === undefined) {
+    throw new Error('Domain controller not reachable');
+  }
   const ds = element.QueryInterface("IID_IDirectorySearch");
   console.log('ds: ', ds);
+  
   element.Release();
   ds.Release();
   gc.Release();
