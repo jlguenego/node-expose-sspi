@@ -169,7 +169,7 @@ try {
   console.log('dirsearch: ', dirsearch);
   dirsearch.SetSearchPreference();
   dirsearch.ExecuteSearch({
-    filter: '(&(objectClass=user)(objectCategory=person)(sn=GUÉNÉGO))',
+    filter: '(&(objectClass=user)(objectCategory=person)(sn=*))',
   });
   let hr = dirsearch.GetFirstRow();
   if (hr === adsi.S_ADS_NOMORE_ROWS) {
@@ -182,13 +182,23 @@ try {
     const value = dirsearch.GetColumn(colName);
     console.log('value: ', value);
     colName = dirsearch.GetNextColumnName();
+  }
+
+  while (true) {
+    hr = dirsearch.GetNextRow();
+    if (hr === adsi.S_ADS_NOMORE_ROWS) {
+      break;
+    }
+    let colName = dirsearch.GetNextColumnName();
+    while (colName !== adsi.S_ADS_NOMORE_COLUMNS) {
+      console.log('colName: ', colName);
+      const value = dirsearch.GetColumn(colName);
+      console.log('value: ', value);
+      colName = dirsearch.GetNextColumnName();
+    }
     
   }
-  
-  hr = dirsearch.GetNextRow();
-  if (hr === adsi.S_ADS_NOMORE_ROWS) {
-    console.log('GetNextRow: no more rows');
-  }
+
   dirsearch.Release();
 
   // 2) Get info about my account
