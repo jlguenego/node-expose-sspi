@@ -54,7 +54,7 @@ Napi::Value e_LookupAccountName(const Napi::CallbackInfo &info);
 // ADSI
 void e_CoInitialize(const Napi::CallbackInfo &info);
 void e_CoUninitialize(const Napi::CallbackInfo &info);
-Napi::Value e_ADsGestObject(const Napi::CallbackInfo &info);
+Napi::Promise e_ADsGestObject(const Napi::CallbackInfo &info);
 Napi::Value e_ADsOpenObject(const Napi::CallbackInfo &info);
 
 }  // namespace myAddon
