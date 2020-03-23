@@ -69,6 +69,7 @@ Napi::Value convertColumn(Napi::Env env, PADS_SEARCH_COLUMN pCol) {
           ::StringFromGUID2(*pObjectGUID, szDSGUID, 39);
           result[std::to_string(x)] =
               Napi::String::New(env, (char16_t *)szDSGUID);
+          delete[] szDSGUID;
         }
         return result;
       }
