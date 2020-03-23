@@ -6,11 +6,7 @@ namespace myAddon {
 
 Napi::Value e_ADsGestObject(const Napi::CallbackInfo &info) {
   Napi::Env env = info.Env();
-
-  if (info.Length() < 1) {
-    throw Napi::Error::New(
-        env, "ADsGestObject(bindingUri: string): need a binding string.");
-  }
+  CHECK_INPUT("ADsGestObject(bindingUri: string)", 1);
 
   std::u16string bindingStr = info[0].As<Napi::String>().Utf16Value();
   LPCWSTR binding = (LPCWSTR)bindingStr.c_str();
