@@ -68,6 +68,22 @@ void E_IDirectorySearch::SetSearchPreference(const Napi::CallbackInfo& info) {
 Napi::Value E_IDirectorySearch::ExecuteSearch(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
 
+  if (info.Length() != 1) {
+    throw Napi::Error::New(env,
+                           "ExecuteSearch({filter: string}): bad arguments.");
+  }
+
+  Napi::Object input = info[0].As<Napi::Object>();
+
+  std::u16string filterStr =
+      input.Get("filter").As<Napi::String>().Utf16Value();
+  LPWSTR pszSearchFilter = (LPWSTR)filterStr.c_str();
+
+  ADS_SEARCH_HANDLE hSearchResult = NULL;
+
+  HRESULT hr = this->iDirectorySearch->ExecuteSearch(
+      pszSearchFilter, NULL, (DWORD) -1, &hSearchResult);
+
   Napi::Value result = Napi::Object::New(env);
   return result;
 }

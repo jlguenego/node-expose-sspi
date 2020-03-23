@@ -12,8 +12,8 @@ Napi::Value e_ADsOpenObject(const Napi::CallbackInfo &info) {
   if (info.Length() != 1) {
     throw Napi::Error::New(
         env,
-        "ADsOpenObject({bindingUri: string, user: string, password: string, "
-        "adsAuthentication: ADS_AUTHENTICATION_ENUM, riid: IID_IADs | "
+        "ADsOpenObject({bindingUri: string, user?: string, password?: string, "
+        "adsAuthentication?: ADS_AUTHENTICATION_ENUM, riid?: IID_IADs | "
         "IID_IADsContainer | IID_IDirectorySearch}): bad arguments.");
   }
 

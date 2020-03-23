@@ -168,7 +168,7 @@ try {
   });
   console.log('dirsearch: ', dirsearch);
   dirsearch.SetSearchPreference();
-  const result = dirsearch.ExecuteSearch();
+  const result = dirsearch.ExecuteSearch({ filter: "(&(objectClass=user)(objectCategory=person)"});
   console.log('result: ', result);
   dirsearch.Release();
 
