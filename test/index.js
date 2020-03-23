@@ -168,8 +168,8 @@ try {
   console.log('about to do myself.Get');
   const fullName = myself.Get('FullName');
   console.log('fullName: ', fullName);
-  const g = myself.get_GUID();
-  console.log('g: ', g);
+  const objectGUID = myself.get_GUID();
+  console.log('objectGUID: ', objectGUID);
 
   console.log('about to do sspi.ADsGestObject LDAP');
   const iads = sspi.ADsGestObject(
