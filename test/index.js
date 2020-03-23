@@ -179,7 +179,10 @@ try {
   let colName = dirsearch.GetNextColumnName();
   while (colName !== adsi.S_ADS_NOMORE_COLUMNS) {
     console.log('colName: ', colName);
+    const value = dirsearch.GetColumn(colName);
+    console.log('value: ', value);
     colName = dirsearch.GetNextColumnName();
+    
   }
   
   hr = dirsearch.GetNextRow();

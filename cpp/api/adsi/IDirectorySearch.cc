@@ -123,13 +123,11 @@ Napi::Value E_IDirectorySearch::GetColumn(const Napi::CallbackInfo& info) {
 
   if (info.Length() != 1) {
     throw Napi::Error::New(env,
-                           "ExecuteSearch({filter: string}): bad arguments.");
+                           "GetColumn(name: string): bad arguments.");
   }
 
-  Napi::Object input = info[0].As<Napi::Object>();
-
   std::u16string columnNameStr =
-      input.Get("name").As<Napi::String>().Utf16Value();
+      info[0].As<Napi::String>().Utf16Value();
   LPWSTR szColumnName = (LPWSTR)columnNameStr.c_str();
 
   ADS_SEARCH_COLUMN searchColumn;
