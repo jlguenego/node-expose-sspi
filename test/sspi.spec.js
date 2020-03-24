@@ -1,4 +1,4 @@
-const { sso, sspi, adsi } = require('node-expose-sspi');
+const { sspi } = require('node-expose-sspi');
 const assert = require('assert').strict;
 
 describe('SSPI Unit Test', function() {
