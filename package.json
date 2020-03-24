@@ -59,6 +59,7 @@
     "express-jwt": "^5.3.1",
     "express-session": "^1.17.0",
     "http-proxy-middleware": "^1.0.3",
+    "mocha": "^7.1.1",
     "node-addon-api": "^2.0.0",
     "nodemon": "^2.0.2",
     "require-self": "^0.2.2",
