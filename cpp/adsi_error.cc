@@ -13,31 +13,31 @@ CString GetErrorMessage(HRESULT hr) {
     return _T("Success");
   }
 
-  if (hr & 0x00005000)  // standard ADSI Errors
-  {
-    s = GetADSIError(hr);
-  } else if (HRESULT_FACILITY(hr) == FACILITY_WIN32) {
-    /////////////////////////////////////////////
-    // Retrieve the Win32 Error message
-    /////////////////////////////////////////////
-
-    bRet = FormatMessage(
-        FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM, NULL, hr,
-        MAKELANGID(LANG_NEUTRAL, SUBLANG_SYS_DEFAULT), (LPTSTR)&lpBuffer, 0,
-        NULL);
-
-    if (!bRet) {
-      s.Format(_T("Error %ld"), hr);
-    }
-
-    if (lpBuffer) {
-      s = lpBuffer;
-      LocalFree(lpBuffer);
-    }
-  } else  // Non Win32 Error
-  {
-    s.Format(_T("%X"), hr);
+  // standard ADSI Errors
+  if (hr & 0x00005000) {
+    return GetADSIError(hr);
+  }
+  if (HRESULT_FACILITY(hr) != FACILITY_WIN32) {
+    s.Format(_T("0x%08X"), hr);
     return s;
+  }
+  /////////////////////////////////////////////
+  // Retrieve the Win32 Error message
+  /////////////////////////////////////////////
+
+  bRet =
+      FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM,
+                    NULL, hr, MAKELANGID(LANG_NEUTRAL, SUBLANG_SYS_DEFAULT),
+                    (LPTSTR)&lpBuffer, 0, NULL);
+
+  if (!bRet) {
+    s.Format(_T("Error %08X"), hr);
+    return s;
+  }
+
+  if (lpBuffer) {
+    s = lpBuffer;
+    LocalFree(lpBuffer);
   }
 
   //////////////////////////////////////////////////////////////////
@@ -114,7 +114,8 @@ CString GetADSIError(HRESULT hr) {
     }
   }
 
-  return _T("");
+  s.Format(_T("0x%08X"), hr);
+  return s;
 }
 
 }  // namespace myADSI
