@@ -33,7 +33,6 @@ class ADsOpenObjectWorker : public Napi::AsyncWorker {
 
   // This code will be executed on the worker thread
   void Execute() override {
-    log("start execute");
     Napi::Env env = Env();
 
     LPCWSTR binding = (LPCWSTR)m_binding.c_str();
@@ -48,14 +47,11 @@ class ADsOpenObjectWorker : public Napi::AsyncWorker {
       password = (LPCWSTR)m_password.c_str();
     }
 
-    log("about to call ADsOpenObject");
     HRESULT hr =
         ADsOpenObject(binding, user, password, m_flag, m_riid, &m_pObject);
-    log("hr = 0x%08x", hr);
     if (FAILED(hr)) {
       return SetError("ADsOpenObject has failed. " + plf::ad_error_msg(hr));
     }
-    log("execute finished");
   }
 
   void OnOK() override {
@@ -65,7 +61,6 @@ class ADsOpenObjectWorker : public Napi::AsyncWorker {
     Napi::String s = Napi::String::New(env, p2s(m_pObject));
     Napi::Value result;
 
-    log("about to result");
 
     if (m_riid == IID_IADsContainer) {
       result = E_IADsContainer::NewInstance(env, s);
@@ -74,7 +69,6 @@ class ADsOpenObjectWorker : public Napi::AsyncWorker {
       result = E_IDirectorySearch::NewInstance(env, s);
     }
     if (m_riid == IID_IADs) {
-      log("return new E_IADs instance");
       result = E_IADs::NewInstance(env, s);
     }
     m_deferred.Resolve(result);
@@ -86,7 +80,6 @@ class ADsOpenObjectWorker : public Napi::AsyncWorker {
 };
 
 Napi::Value e_ADsOpenObject(const Napi::CallbackInfo &info) {
-  log("start e_ADsOpenObject");
   Napi::Env env = info.Env();
   auto deferred = Napi::Promise::Deferred::New(env);
   CHECK_INPUT_DEFERRED(
@@ -99,7 +92,6 @@ Napi::Value e_ADsOpenObject(const Napi::CallbackInfo &info) {
       "})",
       1);
 
-  log("check input ok");
   Napi::Object input = info[0].As<Napi::Object>();
 
   std::u16string binding = input.Get("binding").As<Napi::String>().Utf16Value();
@@ -130,9 +122,7 @@ Napi::Value e_ADsOpenObject(const Napi::CallbackInfo &info) {
     }
   }
 
-  log("about to init worker");
   ADsOpenObjectWorker *w = new ADsOpenObjectWorker(env, deferred, binding, user, password, flag, riid);
-  log("about to queue");
   w->Queue();
   return deferred.Promise();
 }
