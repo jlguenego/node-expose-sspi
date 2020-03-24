@@ -149,15 +149,19 @@ npm install --global windows-build-tools
 
 ## Test and Example
 
-To run the test and the example, just clone this project.
+To run the example, just clone this project.
 
 ```
 git clone https://github.com/jlguenego/node-expose-sspi.git
 cd node-expose-sspi
+cd examples
+cd express-ejs
 npm i
-npm test
-npm run example
+npm start
 ```
+
+Open a Google Chrome web browser and go to `http://localhost:3000`.
+
 
 ## Development
 
