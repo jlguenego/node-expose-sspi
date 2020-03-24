@@ -76,6 +76,7 @@ Napi::Object Init(Napi::Env env, Napi::Object exports) {
 
   // ADSI
   exports.Set("CoInitialize", Napi::Function::New(env, e_CoInitialize));
+  exports.Set("CoInitializeEx", Napi::Function::New(env, e_CoInitializeEx));
   exports.Set("CoUninitialize", Napi::Function::New(env, e_CoUninitialize));
   exports.Set("ADsGestObject", Napi::Function::New(env, e_ADsGestObject));
   exports.Set("ADsOpenObject", Napi::Function::New(env, e_ADsOpenObject));

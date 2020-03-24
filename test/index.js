@@ -136,7 +136,7 @@ sspi.FreeCredentialsHandle(serverCred.credential);
 console.log('free server credentials ok');
 
 // Test Active Directory
-sspi.CoInitialize();
+sspi.CoInitializeEx();
 
 async function testADSI() {
   try {
