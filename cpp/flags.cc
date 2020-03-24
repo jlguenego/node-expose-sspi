@@ -23,6 +23,7 @@ flagmap IscRetMap;
 flagmap TargetDataRepMap;
 flagmap CredentialUseMap;
 flagmap AdsAuthenticationMap;
+flagmap CoInitMap;
 
 std::map<int64_t, flagmap *> contextMap;
 
@@ -38,6 +39,7 @@ void initFlags() {
   contextMap[SECURITY_DREP_FLAGS] = &TargetDataRepMap;
   contextMap[CREDENTIAL_USE_FLAG] = &CredentialUseMap;
   contextMap[ADS_AUTHENTICATION_FLAGS] = &AdsAuthenticationMap;
+  contextMap[COINIT_FLAGS] = &CoInitMap;
 
   FLAG_INSERT(extendedNameFormatMap, NameUnknown);
   FLAG_INSERT(extendedNameFormatMap, NameFullyQualifiedDN);
@@ -201,6 +203,10 @@ void initFlags() {
   FLAG_INSERT(AdsAuthenticationMap, ADS_NO_REFERRAL_CHASING);
   FLAG_INSERT(AdsAuthenticationMap, ADS_AUTH_RESERVED);
 
+  FLAG_INSERT(CoInitMap, COINIT_APARTMENTTHREADED);
+  FLAG_INSERT(CoInitMap, COINIT_MULTITHREADED);
+  FLAG_INSERT(CoInitMap, COINIT_DISABLE_OLE1DDE);
+  FLAG_INSERT(CoInitMap, COINIT_SPEED_OVER_MEMORY);
 }
 
 int64_t getFlagValue(Napi::Env env, int context, std::string str) {
@@ -219,6 +225,17 @@ int64_t getFlagValue(Napi::Env env, int context, std::string str) {
   throw Napi::Error::New(env, "context not found: " + context);
 }
 
+int64_t getFlags(Napi::Env env, int context, Napi::Array flagArray,
+                 int64_t defaultFlags) {
+  DWORD flags = 0;
+  for (uint32_t i = 0; i < flagArray.Length(); i++) {
+    std::string flagStr = flagArray.Get(i).As<Napi::String>();
+    DWORD flag = getFlagValue(env, context, flagStr);
+    flags |= flag;
+  }
+  return flags;
+}
+
 int64_t getFlags(Napi::Env env, int context, Napi::Object input,
                  std::string value, int64_t defaultFlags) {
   if (!input.Has(value)) {
@@ -228,14 +245,7 @@ int64_t getFlags(Napi::Env env, int context, Napi::Object input,
   if (!val.IsArray()) {
     throw Napi::Error::New(env, value + " must be a flag string array.");
   }
-  Napi::Array flagArray = val.As<Napi::Array>();
-  DWORD flags = 0;
-  for (uint32_t i = 0; i < flagArray.Length(); i++) {
-    std::string flagStr = flagArray.Get(i).As<Napi::String>();
-    DWORD flag = getFlagValue(env, context, flagStr);
-    flags |= flag;
-  }
-  return flags;
+  return getFlags(env, context, val.As<Napi::Array>(), defaultFlags);
 }
 
 int64_t getFlag(Napi::Env env, int context, Napi::Object input,

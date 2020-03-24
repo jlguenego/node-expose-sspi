@@ -5,13 +5,13 @@ namespace myAddon {
 
 void e_CoInitializeEx(const Napi::CallbackInfo &info) {
   Napi::Env env = info.Env();
+  CHECK_INPUT("CoInitialize(flags: CoInitFlags[])", 1);
 
-  if (info.Length() > 0) {
-    throw Napi::Error::New(env, "CoInitialize(): no arguments needed.");
-  }
+  DWORD flags =
+      getFlags(env, COINIT_FLAGS, info[0].As<Napi::Array>(), COINIT_FLAGS);
 
   // Initialize COM.
-  HRESULT hr = CoInitializeEx(NULL, COINIT_MULTITHREADED);
+  HRESULT hr = CoInitializeEx(NULL, flags);
   if (hr != S_OK) {
     throw Napi::Error::New(env, "error in CoInitialize");
   }
