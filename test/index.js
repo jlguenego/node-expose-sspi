@@ -180,7 +180,7 @@ async function testADSI() {
     let colName = dirsearch.GetNextColumnName();
     while (colName !== adsi.S_ADS_NOMORE_COLUMNS) {
       console.log('colName: ', colName);
-      const value = dirsearch.GetColumn(colName);
+      const value = await dirsearch.GetColumn(colName);
       console.log('value: ', value);
       colName = dirsearch.GetNextColumnName();
     }
@@ -193,7 +193,7 @@ async function testADSI() {
       let colName = dirsearch.GetNextColumnName();
       while (colName !== adsi.S_ADS_NOMORE_COLUMNS) {
         console.log('colName: ', colName);
-        const value = dirsearch.GetColumn(colName);
+        const value = await dirsearch.GetColumn(colName);
         console.log('value: ', value);
         colName = dirsearch.GetNextColumnName();
       }

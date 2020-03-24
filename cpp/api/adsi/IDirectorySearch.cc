@@ -111,22 +111,59 @@ Napi::Value E_IDirectorySearch::GetNextColumnName(
   return result;
 }
 
+class IDirectorySearchWorker : public Napi::AsyncWorker {
+ private:
+  Napi::Promise::Deferred m_deferred;
+  std::u16string m_columnNameStr;
+  E_IDirectorySearch* m_iDirectorySearch;
+  ADS_SEARCH_COLUMN m_searchColumn;
+
+ public:
+  IDirectorySearchWorker(Napi::Env& env, Napi::Promise::Deferred& deferred,
+                         std::u16string& columnNameStr,
+                         E_IDirectorySearch* iDirectorySearch)
+      : AsyncWorker(env),
+        m_deferred(deferred),
+        m_columnNameStr(columnNameStr),
+        m_iDirectorySearch(iDirectorySearch) {}
+
+  ~IDirectorySearchWorker() {}
+
+  // This code will be executed on the worker thread
+  void Execute() override {
+    Napi::Env env = Env();
+    LPWSTR szColumnName = (LPWSTR)m_columnNameStr.c_str();
+    HRESULT hr = m_iDirectorySearch->iDirectorySearch->GetColumn(
+        m_iDirectorySearch->hSearchResult, szColumnName, &m_searchColumn);
+    if (FAILED(hr)) {
+      return SetError("GetColumn has failed. " + plf::ad_error_msg(hr));
+    }
+  }
+
+  void OnOK() override {
+    Napi::Env env = Env();
+    Napi::HandleScope scope(env);
+    Napi::Value result = convertColumn(env, &m_searchColumn);
+    m_iDirectorySearch->iDirectorySearch->FreeColumn(&m_searchColumn);
+    m_deferred.Resolve(result);
+  }
+
+  void OnError(Napi::Error const& error) override {
+    m_deferred.Reject(error.Value());
+  }
+};
+
 Napi::Value E_IDirectorySearch::GetColumn(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
-  CHECK_INPUT("GetColumn(name: string)", 1);
+  auto deferred = Napi::Promise::Deferred::New(env);
+  CHECK_INPUT_DEFERRED("GetColumn(name: string)", 1);
 
   std::u16string columnNameStr = info[0].As<Napi::String>().Utf16Value();
-  LPWSTR szColumnName = (LPWSTR)columnNameStr.c_str();
 
-  ADS_SEARCH_COLUMN searchColumn;
-
-  HRESULT hr = this->iDirectorySearch->GetColumn(this->hSearchResult,
-                                                 szColumnName, &searchColumn);
-  AD_CHECK_ERROR(hr, "GetColumn");
-
-  Napi::Value result = convertColumn(env, &searchColumn);
-  this->iDirectorySearch->FreeColumn(&searchColumn);
-  return result;
+  IDirectorySearchWorker* w =
+      new IDirectorySearchWorker(env, deferred, columnNameStr, this);
+  w->Queue();
+  return deferred.Promise();
 }
 
 }  // namespace myAddon
