@@ -21,79 +21,69 @@ describe('ADSI Unit Test', function() {
     }
     assert(gc instanceof sspi.IADsContainer);
     const element = gc.Next();
-    assert(element);
+    assert(element instanceof sspi.IDispatch);
+    const ds = element.QueryInterface('IID_IDirectorySearch');
+    assert(ds instanceof sspi.IDirectorySearch);
+    element.Release();
+    ds.Release();
+    gc.Release();
+  });
+
+  let distinguishedName;
+  it('should get the Root Distinguished Name (LDAP notion) for the domain', async function() {
+    const root = await sspi.ADsGestObject('LDAP://rootDSE');
+    assert(root instanceof sspi.IADs);
+    distinguishedName = root.Get('defaultNamingContext');
+    assert(distinguishedName.startsWith('DC='));
+  });
+
+  it('should get all users that have a defined surname', async function() {
+    this.timeout(15000); 
+    const dirsearch = await sspi.ADsOpenObject({
+      binding: `LDAP://${distinguishedName}`,
+      riid: 'IID_IDirectorySearch',
+    });
+    console.log('dirsearch: ', dirsearch);
+    assert(dirsearch instanceof sspi.IDirectorySearch);
+    dirsearch.SetSearchPreference();
+    dirsearch.ExecuteSearch({
+      filter: '(&(objectClass=user)(objectCategory=person)(sn=*))',
+    });
+    const result = [];
+    let hr = dirsearch.GetFirstRow();
+    if (hr === adsi.S_ADS_NOMORE_ROWS) {
+      throw new Error('GetFirstRow: no more rows');
+    }
+    const firstRow = {};
+
+    let colName = dirsearch.GetNextColumnName();
+    while (colName !== adsi.S_ADS_NOMORE_COLUMNS) {
+      const value = await dirsearch.GetColumn(colName);
+      firstRow[colName] = value;
+      colName = dirsearch.GetNextColumnName();
+    }
+
+    while (true) {
+      hr = dirsearch.GetNextRow();
+      if (hr === adsi.S_ADS_NOMORE_ROWS) {
+        break;
+      }
+      let colName = dirsearch.GetNextColumnName();
+      while (colName !== adsi.S_ADS_NOMORE_COLUMNS) {
+        console.log('colName: ', colName);
+        const value = await dirsearch.GetColumn(colName);
+        console.log('value: ', value);
+        colName = dirsearch.GetNextColumnName();
+      }
+    }
+
+    dirsearch.Release();
   });
 
   it('should test CoUninitialize', function() {
     sspi.CoUninitialize();
   });
 });
-
-// async function testADSI() {
-//   try {
-//     // 1) Global Catalog (specify domain uri is faster than servername)
-//     const gc = await sspi.ADsOpenObject({
-//       binding: 'GC:',
-//       riid: 'IID_IADsContainer',
-//     });
-//     if (gc === undefined) {
-//       throw new Error('Domain controller not reachable');
-//     }
-//     console.log('gc initialized', gc.__proto__.constructor.name);
-//     const element = gc.Next();
-//     console.log('element: ', element);
-//     if (element === undefined) {
-//       throw new Error('Domain controller not reachable');
-//     }
-//     const ds = element.QueryInterface('IID_IDirectorySearch');
-//     console.log('ds: ', ds);
-
-//     element.Release();
-//     ds.Release();
-//     gc.Release();
-
-//     // 1) Get the Distinguished Name (LDAP notion) for the domain
-//     const root = await sspi.ADsGestObject('LDAP://rootDSE');
-//     const distinguishedName = root.Get('defaultNamingContext');
-//     console.log('distinguishedName: ', distinguishedName);
-
-//     const dirsearch = await sspi.ADsOpenObject({
-//       binding: `LDAP://${distinguishedName}`,
-//       riid: 'IID_IDirectorySearch',
-//     });
-//     console.log('dirsearch: ', dirsearch);
-//     dirsearch.SetSearchPreference();
-//     dirsearch.ExecuteSearch({
-//       filter: '(&(objectClass=user)(objectCategory=person)(sn=*))',
-//     });
-//     let hr = dirsearch.GetFirstRow();
-//     if (hr === adsi.S_ADS_NOMORE_ROWS) {
-//       throw new Error('GetFirstRow: no more rows');
-//     }
-
-//     let colName = dirsearch.GetNextColumnName();
-//     while (colName !== adsi.S_ADS_NOMORE_COLUMNS) {
-//       console.log('colName: ', colName);
-//       const value = await dirsearch.GetColumn(colName);
-//       console.log('value: ', value);
-//       colName = dirsearch.GetNextColumnName();
-//     }
-
-//     while (true) {
-//       hr = dirsearch.GetNextRow();
-//       if (hr === adsi.S_ADS_NOMORE_ROWS) {
-//         break;
-//       }
-//       let colName = dirsearch.GetNextColumnName();
-//       while (colName !== adsi.S_ADS_NOMORE_COLUMNS) {
-//         console.log('colName: ', colName);
-//         const value = await dirsearch.GetColumn(colName);
-//         console.log('value: ', value);
-//         colName = dirsearch.GetNextColumnName();
-//       }
-//     }
-
-//     dirsearch.Release();
 
 //     // 2) Get info about my account
 //     console.log('about to do sspi.ADsGestObject');
