@@ -4,19 +4,19 @@
 
 namespace myAddon {
 
-class Worker : public Napi::AsyncWorker {
+class ADsGestObjectWorker : public Napi::AsyncWorker {
  private:
   Napi::Promise::Deferred m_deferred;
   std::u16string m_binding;
   void *m_pObject;
 
  public:
-  Worker(Napi::Env &env, Napi::Promise::Deferred &deferred,
+  ADsGestObjectWorker(Napi::Env &env, Napi::Promise::Deferred &deferred,
          std::u16string &binding)
       : AsyncWorker(env), m_deferred(deferred), m_binding(binding) {
   }
 
-  ~Worker() {}
+  ~ADsGestObjectWorker() {}
 
   // This code will be executed on the worker thread
   void Execute() override {
@@ -48,7 +48,7 @@ Napi::Promise e_ADsGestObject(const Napi::CallbackInfo &info) {
   auto deferred = Napi::Promise::Deferred::New(env);
   CHECK_INPUT_DEFERRED("ADsGestObject(bindingUri: string)", 1);
   std::u16string str = info[0].As<Napi::String>().Utf16Value();
-  Worker *w = new Worker(env, deferred, str);
+  ADsGestObjectWorker *w = new ADsGestObjectWorker(env, deferred, str);
   w->Queue();
   return deferred.Promise();
 }

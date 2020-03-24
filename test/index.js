@@ -141,7 +141,7 @@ sspi.CoInitializeEx(["COINIT_MULTITHREADED"]);
 async function testADSI() {
   try {
     // 1) Global Catalog (specify domain uri is faster than servername)
-    const gc = sspi.ADsOpenObject({ binding: 'GC:', riid: 'IID_IADsContainer' });
+    const gc = await sspi.ADsOpenObject({ binding: 'GC:', riid: 'IID_IADsContainer' });
     if (gc === undefined) {
       throw new Error('Domain controller not reachable');
     }
@@ -163,7 +163,7 @@ async function testADSI() {
     const distinguishedName = root.Get('defaultNamingContext');
     console.log('distinguishedName: ', distinguishedName);
   
-    const dirsearch = sspi.ADsOpenObject({
+    const dirsearch = await sspi.ADsOpenObject({
       binding: `LDAP://${distinguishedName}`,
       riid: 'IID_IDirectorySearch',
     });
