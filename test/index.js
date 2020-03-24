@@ -239,6 +239,9 @@ async function testADSI() {
   }
   
   sspi.CoUninitialize();
+
+  const str = sspi.GetComputerNameEx("ComputerNameDnsDomain");
+  console.log('str: ', str);
 }
 
 testADSI();

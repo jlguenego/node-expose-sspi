@@ -24,6 +24,7 @@ flagmap TargetDataRepMap;
 flagmap CredentialUseMap;
 flagmap AdsAuthenticationMap;
 flagmap CoInitMap;
+flagmap ComputerNameFormatMap;
 
 std::map<int64_t, flagmap *> contextMap;
 
@@ -40,6 +41,7 @@ void initFlags() {
   contextMap[CREDENTIAL_USE_FLAG] = &CredentialUseMap;
   contextMap[ADS_AUTHENTICATION_FLAGS] = &AdsAuthenticationMap;
   contextMap[COINIT_FLAGS] = &CoInitMap;
+  contextMap[COMPUTER_NAME_FORMAT_FLAGS] = &ComputerNameFormatMap;
 
   FLAG_INSERT(extendedNameFormatMap, NameUnknown);
   FLAG_INSERT(extendedNameFormatMap, NameFullyQualifiedDN);
@@ -207,6 +209,16 @@ void initFlags() {
   FLAG_INSERT(CoInitMap, COINIT_MULTITHREADED);
   FLAG_INSERT(CoInitMap, COINIT_DISABLE_OLE1DDE);
   FLAG_INSERT(CoInitMap, COINIT_SPEED_OVER_MEMORY);
+
+  FLAG_INSERT(ComputerNameFormatMap, ComputerNameNetBIOS);
+  FLAG_INSERT(ComputerNameFormatMap, ComputerNameDnsHostname);
+  FLAG_INSERT(ComputerNameFormatMap, ComputerNameDnsDomain);
+  FLAG_INSERT(ComputerNameFormatMap, ComputerNameDnsFullyQualified);
+  FLAG_INSERT(ComputerNameFormatMap, ComputerNamePhysicalNetBIOS);
+  FLAG_INSERT(ComputerNameFormatMap, ComputerNamePhysicalDnsHostname);
+  FLAG_INSERT(ComputerNameFormatMap, ComputerNamePhysicalDnsDomain);
+  FLAG_INSERT(ComputerNameFormatMap, ComputerNamePhysicalDnsFullyQualified);
+  FLAG_INSERT(ComputerNameFormatMap, ComputerNameMax);
 }
 
 int64_t getFlagValue(Napi::Env env, int context, std::string str) {
@@ -249,7 +261,7 @@ int64_t getFlags(Napi::Env env, int context, Napi::Object input,
 }
 
 int64_t getFlag(Napi::Env env, int context, Napi::Object input,
-                std::string value, int64_t defaultFlags) {
+                std::string value, int64_t defaultFlags = 0) {
   if (!input.Has(value)) {
     return defaultFlags;
   }

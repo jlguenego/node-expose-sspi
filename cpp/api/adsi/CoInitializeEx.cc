@@ -8,7 +8,7 @@ void e_CoInitializeEx(const Napi::CallbackInfo &info) {
   CHECK_INPUT("CoInitialize(flags: CoInitFlags[])", 1);
 
   DWORD flags =
-      getFlags(env, COINIT_FLAGS, info[0].As<Napi::Array>(), COINIT_FLAGS);
+      getFlags(env, COINIT_FLAGS, info[0].As<Napi::Array>());
 
   // Initialize COM.
   HRESULT hr = CoInitializeEx(NULL, flags);

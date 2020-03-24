@@ -58,4 +58,8 @@ void e_CoUninitialize(const Napi::CallbackInfo &info);
 Napi::Promise e_ADsGestObject(const Napi::CallbackInfo &info);
 Napi::Value e_ADsOpenObject(const Napi::CallbackInfo &info);
 
+// SYSINFO
+Napi::Value e_GetComputerNameEx(const Napi::CallbackInfo &info);
+
+
 }  // namespace myAddon
