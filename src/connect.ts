@@ -16,7 +16,7 @@ import { SSO } from './SSO';
  * @param {sspi.UserCredential} userCredential
  * @returns {SSO} the SSO object or undefined.
  */
-export function connect(userCredential: UserCredential): SSO {
+export async function connect(userCredential: UserCredential): Promise<SSO> {
   const errorMsg = 'error while building the security context';
   const badLoginPasswordMsg = 'sorry mate, wrong login/password.';
   try {
@@ -91,6 +91,7 @@ export function connect(userCredential: UserCredential): SSO {
     }
 
     const sso = new SSO(serverSecurityContext.contextHandle);
+    await sso.load();
     if (sso.user.name === 'Guest') {
       throw badLoginPasswordMsg;
     }

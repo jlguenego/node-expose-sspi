@@ -33,7 +33,7 @@ export function auth(): RequestHandler {
   let serverContextHandle: SecurityContext;
 
   // returns the middleware.
-  return (req, res, next) => {
+  return async (req, res, next) => {
     try {
       checkCredentials();
 
@@ -92,7 +92,7 @@ export function auth(): RequestHandler {
         );
 
         req.sso = new SSO(serverContextHandle, method);
-
+        await req.sso.load();
         sspi.DeleteSecurityContext(serverContextHandle);
         serverContextHandle = undefined;
       }

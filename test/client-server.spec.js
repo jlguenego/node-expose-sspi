@@ -2,9 +2,14 @@ const express = require('express');
 const { sso } = require('node-expose-sspi');
 const assert = require('assert').strict;
 
-describe('Client Server', function() {
+describe('ClientServer', function() {
   it('should return the right json', async function() {
+    this.timeout(15000);
     const app = express();
+    sso.config.debug = true;
+    await sso.init();
+    sso.config.debug = false;
+    console.log('users', sso.database.users);
 
     app.use(sso.auth());
 

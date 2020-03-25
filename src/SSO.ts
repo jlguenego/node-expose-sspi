@@ -1,5 +1,6 @@
 import { trace } from './misc';
 import { sspi, CtxtHandle } from '../lib/sspi';
+import { getUser, ADUser } from './userdb';
 
 export interface User {
   name?: string;
@@ -7,6 +8,7 @@ export interface User {
   displayName?: string;
   domain?: string;
   groups?: string[];
+  adUser?: ADUser;
 }
 
 export type SSOMethod = 'NTLM' | 'Kerberos';
@@ -15,16 +17,18 @@ export class SSO {
   user: User;
   owner: User;
 
-  constructor(serverContextHandle: CtxtHandle, public method?: SSOMethod) {
+  constructor(private serverContextHandle: CtxtHandle, public method?: SSOMethod) {}
+
+  async load() {
     const names = sspi.QueryContextAttributes(
-      serverContextHandle,
+      this.serverContextHandle,
       'SECPKG_ATTR_NAMES'
     );
     const [domain, name] = names.sUserName.split('\\');
     this.user = { domain, name };
 
     // impersonate to retrieve the userToken.
-    sspi.ImpersonateSecurityContext(serverContextHandle);
+    sspi.ImpersonateSecurityContext(this.serverContextHandle);
     trace('impersonate security context ok');
     const userToken = sspi.OpenThreadToken();
     trace('userToken: ', userToken);
@@ -33,7 +37,7 @@ export class SSO {
     } catch (e) {
       this.user.displayName = this.user.name;
     }
-    sspi.RevertSecurityContext(serverContextHandle);
+    sspi.RevertSecurityContext(this.serverContextHandle);
 
     const groups = sspi.GetTokenInformation(userToken, 'TokenGroups');
     trace('groups: ', groups);
@@ -44,6 +48,15 @@ export class SSO {
 
     const { sid } = sspi.LookupAccountName(names.sUserName);
     this.user.sid = sid;
+
+    try {
+      const adUser = await getUser(`(sAMAccountName=${name})`);
+      this.user.adUser = adUser;
+    } catch (e) {
+      console.log('e: ', e);
+
+    }
+
 
     // owner info.
     const owner = sspi.GetUserName();

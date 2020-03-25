@@ -12,10 +12,7 @@ void e_CoInitializeEx(const Napi::CallbackInfo &info) {
 
   // Initialize COM.
   HRESULT hr = CoInitializeEx(NULL, flags);
-  if (hr != S_OK) {
-    throw Napi::Error::New(env, "error in CoInitialize");
-  }
-  return;
+  AD_CHECK_ERROR(hr, "CoInitializeEx");
 }
 
 }  // namespace myAddon
