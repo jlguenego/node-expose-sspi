@@ -27,12 +27,11 @@ export async function init() {
 
     database.users = await getUsers();
   } catch (e) {
-    console.log('e: ', e);
+    trace('Cannot get users from AD. e: ', e);
   }
 }
 
 export async function getUser(ldapFilter: string): Promise<ADUser> {
-  console.log('ldapFilter: ', ldapFilter);
   adsi.CoInitializeEx(['COINIT_MULTITHREADED']);
 
   const distinguishedName = await getDistinguishedName();
@@ -48,7 +47,6 @@ export async function getUser(ldapFilter: string): Promise<ADUser> {
   let row: ADUser;
   const hr = dirsearch.GetNextRow();
   if (hr === adsi.S_ADS_NOMORE_ROWS) {
-    console.log('cannot find a user');
     dirsearch.Release();
     adsi.CoUninitialize();
     return undefined;
@@ -63,7 +61,6 @@ export async function getUser(ldapFilter: string): Promise<ADUser> {
 
   dirsearch.Release();
   adsi.CoUninitialize();
-  console.log('row: ', row);
   return row;
 }
 

@@ -53,8 +53,7 @@ export class SSO {
       const adUser = await getUser(`(sAMAccountName=${name})`);
       this.user.adUser = adUser;
     } catch (e) {
-      console.log('e: ', e);
-
+      trace('cannot getUser from AD. e: ', e);
     }
 
 

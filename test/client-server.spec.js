@@ -9,7 +9,6 @@ describe('ClientServer', function() {
     sso.config.debug = true;
     await sso.init();
     sso.config.debug = false;
-    console.log('users', sso.database.users);
 
     app.use(sso.auth());
 
