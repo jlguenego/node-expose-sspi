@@ -11,7 +11,7 @@
     "build:doc": "typedoc ./src ./lib",
     "build:ts": "tsc -p src",
     "build:tsw": "tsc -p src -w",
-    "dev": "nodemon -x \"npm run build && node test/index.js\"",
+    "dev": "nodemon -x \"npm run build && mocha\"",
     "release": "standard-version",
     "pretest": "require-self",
     "test": "node test/index.js",
