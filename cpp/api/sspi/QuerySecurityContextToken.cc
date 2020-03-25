@@ -1,4 +1,4 @@
-#include "../misc.h"
+#include "../../misc.h"
 
 #include <iomanip>
 #include <iostream>

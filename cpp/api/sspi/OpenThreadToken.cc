@@ -1,4 +1,4 @@
-#include "../misc.h"
+#include "../../misc.h"
 
 #include <iomanip>
 #include <iostream>
@@ -6,7 +6,7 @@
 
 namespace myAddon {
 
-Napi::Value e_OpenProcessToken(const Napi::CallbackInfo& info) {
+Napi::Value e_OpenThreadToken(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
 
   DWORD flags = TOKEN_QUERY | TOKEN_QUERY_SOURCE;
@@ -21,15 +21,16 @@ Napi::Value e_OpenProcessToken(const Napi::CallbackInfo& info) {
     }
   }
 
-  HANDLE token;
+  HANDLE userToken;
 
-  BOOL status = OpenProcessToken(GetCurrentProcess(), flags, &token);
-
+  BOOL status =
+      OpenThreadToken(GetCurrentThread(), flags, TRUE, &userToken);
   if (status == FALSE) {
-    throw Napi::Error::New(env, "Cannot OpenProcessToken: status = " + plf::error_msg());
+    throw Napi::Error::New(env, "OpenThreadToken: error. " + plf::error_msg());
   }
   std::stringstream sa;
-  sa << "0x" << std::setfill('0') << std::setw(4) << std::hex << token;
+  sa << "0x" << std::setfill('0') << std::setw(4)
+     << std::hex << userToken;
 
   return Napi::String::New(env, sa.str());
 }

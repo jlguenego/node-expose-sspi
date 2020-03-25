@@ -1,4 +1,4 @@
-#include "../misc.h"
+#include "../../misc.h"
 
 namespace myAddon {
 
@@ -11,7 +11,6 @@ void e_RevertSecurityContext(const Napi::CallbackInfo &info) {
         "RevertSecurityContext: Wrong number of arguments. "
         "RevertSecurityContext(serverContextHandle: string)");
   }
-
   Napi::String serverContextHandleString = info[0].As<Napi::String>();
   CtxtHandle serverContextHandle =
       SecHandleUtil::deserialize(serverContextHandleString.Utf8Value());
