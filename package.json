@@ -11,15 +11,13 @@
     "build:doc": "typedoc ./src ./lib",
     "build:ts": "tsc -p src",
     "build:tsw": "tsc -p src -w",
-    "dev": "nodemon -x \"npm run build && mocha\"",
-    "release": "standard-version",
+    "dev": "nodemon -x \"npm run build && npm run test\"",
     "pretest": "require-self",
-    "test": "node test/index.js",
-    "test:client": "node test/client-server.js",
+    "test": "mocha",
     "ex:server": "nodemon examples/express-simple/server.js",
-    "test:proxy": "nodemon test/reverse-proxy-server.js",
-    "test:ts": "ts-node examples/typescript/index.ts",
-    "test:ts:server": "nodemon examples/typescript/server.ts"
+    "ex:ts": "ts-node examples/typescript/index.ts",
+    "ex:ts:server": "nodemon examples/typescript/server.ts",
+    "release": "standard-version"
   },
   "keywords": [
     "SSPI",
