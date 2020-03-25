@@ -162,7 +162,6 @@ npm start
 
 Open a Google Chrome web browser and go to `http://localhost:3000`.
 
-
 ## Development
 
 As a prerequisites, you need a C++ toolchain installed on your environment.
@@ -172,7 +171,6 @@ Open a **PowerShell command line as an administrator** and do :
 ```
 npm i -g windows-build-tools
 ```
-
 
 To compile the native node module, do the following:
 
@@ -200,6 +198,10 @@ TODO
 
 Any idea of new features ? Please tell me and raise an issue. :blush:
 
+- split sspi into {sspi, adsi, sysinfo}
+- make some functions and methods async (promise)
+- typedoc
+- bring some account for cache
 
 ## Author
 

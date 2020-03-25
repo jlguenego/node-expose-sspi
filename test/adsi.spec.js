@@ -81,13 +81,46 @@ describe('ADSI Unit Test', function() {
     dirsearch.Release();
   });
 
+  let fullName;
   it('should test ADsGestObject with WinNT provider', async function() {
     const username = sspi.GetUserName();
     const myself = await sspi.ADsGestObject(
       `WinNT://jlg.local/${username},user`
     );
-    const fullName = await myself.Get('FullName');
+    fullName = await myself.Get('FullName');
+    assert(fullName);
     const objectGUID = myself.get_GUID();
+    assert(objectGUID);
+    assert(objectGUID.length === 38);
+  });
+
+  let guid;
+  it('should test AdsGestObject with LDAP provider', async function() {
+    const iads = await sspi.ADsGestObject(
+      `LDAP://CN=${fullName},OU=JLG_LOCAL,${distinguishedName}`
+    );
+    assert(iads instanceof sspi.IADs);
+    const str = iads.get_Name();
+    assert(str);
+    assert(str === 'CN=' + fullName);
+    iads.GetInfoEx();
+    iads.GetInfoEx('sn');
+    const sn = await iads.Get('sn');
+    assert(sn);
+    assert(typeof sn === 'string');
+    assert(str.indexOf(sn) !== -1);
+    const givenName = await iads.Get('givenName');
+    assert(str.indexOf(givenName) !== -1);
+    guid = iads.get_GUID();
+    assert(guid.length === 32);
+    iads.Release();
+  });
+
+  it('should test ADsGestObject with GUID', async function() {
+    const myself2 = await sspi.ADsGestObject(`LDAP://jlg.local/<GUID=${guid}>`);
+    const cname = myself2.get_Name();
+    assert(cname === 'CN=' + fullName);
+    myself2.Release();
   });
 
   it('should test CoUninitialize', function() {
@@ -95,39 +128,9 @@ describe('ADSI Unit Test', function() {
   });
 });
 
-//     // 2) Get info about my account
-
-//     console.log('about to do sspi.ADsGestObject LDAP');
-//     const iads = await sspi.ADsGestObject(
-//       `LDAP://CN=${fullName},OU=JLG_LOCAL,${distinguishedName}`
-//     );
-//     console.log('about to do iads.get_Name');
-//     const str = iads.get_Name();
-//     console.log('str: ', str);
-//     console.log('about to do iads.GetInfoEx');
-//     iads.GetInfoEx('sn');
-//     console.log('about to do iads.Get');
-//     const sn = iads.Get('sn');
-//     console.log('sn: ', sn);
-//     const givenName = iads.Get('givenName');
-//     console.log('givenName: ', givenName);
-//     const guid = iads.get_GUID();
-//     console.log('guid: ', guid);
-//     iads.Release();
-
-//     const myself2 = await sspi.ADsGestObject(`LDAP://jlg.local/<GUID=${guid}>`);
-//     console.log('about to do myself2.Get');
-//     const cname = myself2.get_Name();
-//     console.log('cname: ', cname);
-//     myself2.Release();
-//   } catch (error) {
-//     console.log('error: ', error);
-//   }
-
-//   sspi.CoUninitialize();
 
 //   const str = sspi.GetComputerNameEx('ComputerNameDnsDomain');
 //   console.log('str: ', str);
 // }
 
-// testADSI();
+
