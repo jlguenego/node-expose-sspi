@@ -12,9 +12,7 @@ Napi::Value hello(const Napi::CallbackInfo &info) {
   return Napi::String::New(env, "Coucou JL!!!");
 }
 
-Napi::Object Init(Napi::Env env, Napi::Object exports) {
-  initFlags();
-
+Napi::Object InitSSPI(Napi::Env env, Napi::Object exports) {
   exports.Set(Napi::String::New(env, "hello"), Napi::Function::New(env, hello));
 
   exports.Set(Napi::String::New(env, "EnumerateSecurityPackages"),
@@ -74,6 +72,10 @@ Napi::Object Init(Napi::Env env, Napi::Object exports) {
   exports.Set("LookupAccountName",
               Napi::Function::New(env, e_LookupAccountName));
 
+  return exports;
+}
+
+Napi::Object InitADSI(Napi::Env env, Napi::Object exports) {
   // ADSI
   exports.Set("CoInitialize", Napi::Function::New(env, e_CoInitialize));
   exports.Set("CoInitializeEx", Napi::Function::New(env, e_CoInitializeEx));
@@ -86,8 +88,22 @@ Napi::Object Init(Napi::Env env, Napi::Object exports) {
   E_IDispatch::Init(env, exports);
   E_IDirectorySearch::Init(env, exports);
 
+  return exports;
+}
+
+Napi::Object InitSYSINFO(Napi::Env env, Napi::Object exports) {
   // SYSINFO
-  exports.Set("GetComputerNameEx", Napi::Function::New(env, e_GetComputerNameEx));
+  exports.Set("GetComputerNameEx",
+              Napi::Function::New(env, e_GetComputerNameEx));
+  return exports;
+}
+
+Napi::Object Init(Napi::Env env, Napi::Object exports) {
+  initFlags();
+
+  exports.Set("sspi", InitSSPI(env, Napi::Object::New(env)));
+  exports.Set("adsi", InitADSI(env, Napi::Object::New(env)));
+  exports.Set("sysinfo", InitSYSINFO(env, Napi::Object::New(env)));
 
   return exports;
 }

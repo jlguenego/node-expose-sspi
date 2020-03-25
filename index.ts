@@ -1,10 +1,16 @@
-if (require("os").platform() !== "win32") {
+if (require('os').platform() !== 'win32') {
   throw new Error(
     "The module 'node-expose-sspi' can only work on Microsoft Windows platform."
   );
 }
 
-import sspi = require("./lib/sspi");
-import {sso, adsi } from "./src/index";
+import { sspi, adsi, sysinfo } from './lib/sspi';
+import { sso, cst } from './src/index';
 
-export { sspi, sso, adsi };
+export {
+  sspi,
+  adsi,
+  sysinfo,
+  sso,
+  cst,
+};

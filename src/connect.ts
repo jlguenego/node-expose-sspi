@@ -1,5 +1,11 @@
 import { hexDump, trace } from './misc';
-import sspi = require('../lib/sspi');
+import {
+  sspi,
+  UserCredential,
+  SecurityContext,
+  InitializeSecurityContextInput,
+  AcceptSecurityContextInput,
+} from '../lib/sspi';
 import { SSO } from './SSO';
 
 /**
@@ -10,7 +16,7 @@ import { SSO } from './SSO';
  * @param {sspi.UserCredential} userCredential
  * @returns {SSO} the SSO object or undefined.
  */
-export function connect(userCredential: sspi.UserCredential): SSO {
+export function connect(userCredential: UserCredential): SSO {
   const errorMsg = 'error while building the security context';
   const badLoginPasswordMsg = 'sorry mate, wrong login/password.';
   try {
@@ -20,24 +26,24 @@ export function connect(userCredential: sspi.UserCredential): SSO {
       authData: {
         domain: userCredential.domain,
         user: userCredential.user,
-        password: userCredential.password
-      }
+        password: userCredential.password,
+      },
     });
     const serverCred = sspi.AcquireCredentialsHandle({
-      packageName: 'Negotiate'
+      packageName: 'Negotiate',
     });
 
-    let serverSecurityContext: sspi.SecurityContext;
-    let clientSecurityContext: sspi.SecurityContext;
-    const clientInput: sspi.InitializeSecurityContextInput = {
+    let serverSecurityContext: SecurityContext;
+    let clientSecurityContext: SecurityContext;
+    const clientInput: InitializeSecurityContextInput = {
       credential: clientCred.credential,
       targetName: 'kiki',
-      cbMaxToken: packageInfo.cbMaxToken
+      cbMaxToken: packageInfo.cbMaxToken,
     };
 
-    const serverInput: sspi.AcceptSecurityContextInput = {
+    const serverInput: AcceptSecurityContextInput = {
       credential: serverCred.credential,
-      clientSecurityContext: undefined
+      clientSecurityContext: undefined,
     };
     let i = 0;
     while (true) {

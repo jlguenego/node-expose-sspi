@@ -1,5 +1,5 @@
 import fetch, { RequestInit, Response } from 'node-fetch';
-import sspi from '../lib/sspi';
+import { sspi, InitializeSecurityContextInput } from '../lib/sspi';
 import { encode, decode } from 'base64-arraybuffer';
 
 async function handleAuth(response: Response, resource: string, init: RequestInit = {}): Promise<Response> {
@@ -18,7 +18,7 @@ async function handleAuth(response: Response, resource: string, init: RequestIni
     credentialUse: 'SECPKG_CRED_OUTBOUND'
   });
   const packageInfo = sspi.QuerySecurityPackageInfo('Negotiate');
-  let input: sspi.InitializeSecurityContextInput = {
+  let input: InitializeSecurityContextInput = {
     credential: clientCred.credential,
     targetName: 'kiki',
     cbMaxToken: packageInfo.cbMaxToken,

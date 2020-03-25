@@ -1,5 +1,5 @@
 import { trace } from './misc';
-import sspi = require('../lib/sspi');
+import { sspi, CtxtHandle } from '../lib/sspi';
 
 export interface User {
   name?: string;
@@ -15,8 +15,11 @@ export class SSO {
   user: User;
   owner: User;
 
-  constructor(serverContextHandle: sspi.CtxtHandle, public method?: SSOMethod) {
-    const names = sspi.QueryContextAttributes(serverContextHandle, 'SECPKG_ATTR_NAMES');
+  constructor(serverContextHandle: CtxtHandle, public method?: SSOMethod) {
+    const names = sspi.QueryContextAttributes(
+      serverContextHandle,
+      'SECPKG_ATTR_NAMES'
+    );
     const [domain, name] = names.sUserName.split('\\');
     this.user = { domain, name };
 
@@ -52,7 +55,10 @@ export class SSO {
       this.owner.displayName = this.owner.name;
     }
 
-    const processToken = sspi.OpenProcessToken(['TOKEN_QUERY', 'TOKEN_QUERY_SOURCE']);
+    const processToken = sspi.OpenProcessToken([
+      'TOKEN_QUERY',
+      'TOKEN_QUERY_SOURCE',
+    ]);
     const ownerGroups = sspi.GetTokenInformation(processToken, 'TokenGroups');
     trace('ownerGroups: ', ownerGroups);
     this.owner.groups = ownerGroups;

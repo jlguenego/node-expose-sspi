@@ -1,10 +1,9 @@
 import createError from 'http-errors';
 import { decode, encode } from 'base64-arraybuffer';
 import { hexDump, trace } from './misc';
-import sspi = require('../lib/sspi');
+import { sspi, SecurityContext, AcceptSecurityContextInput } from '../lib/sspi';
 import { RequestHandler } from 'express';
 import { SSO } from './SSO';
-
 
 /**
  * Tries to get SSO information from browser. If success, the SSO info
@@ -14,7 +13,7 @@ import { SSO } from './SSO';
  */
 export function auth(): RequestHandler {
   let { credential, tsExpiry } = sspi.AcquireCredentialsHandle({
-    packageName: 'Negotiate'
+    packageName: 'Negotiate',
   });
 
   const checkCredentials = () => {
@@ -22,7 +21,7 @@ export function auth(): RequestHandler {
       // renew server credentials
       sspi.FreeCredentialsHandle(credential);
       const renewed = sspi.AcquireCredentialsHandle({
-        packageName: 'Negotiate'
+        packageName: 'Negotiate',
       });
       credential = renewed.credential;
       tsExpiry = renewed.tsExpiry;
@@ -31,7 +30,7 @@ export function auth(): RequestHandler {
 
   // serverContextHandle seems to be useful only for NTLM, not Kerberos.
   // because Kerberos will not request many times the client to complete the SSO Authentication.
-  let serverContextHandle: sspi.SecurityContext;
+  let serverContextHandle: SecurityContext;
 
   // returns the middleware.
   return (req, res, next) => {
@@ -48,7 +47,9 @@ export function auth(): RequestHandler {
       }
 
       if (!authorization.startsWith('Negotiate ')) {
-        return next(createError(400, `Malformed authentication token ${authorization}`));
+        return next(
+          createError(400, `Malformed authentication token ${authorization}`)
+        );
       }
 
       const token = authorization.substring('Negotiate '.length);
@@ -56,14 +57,14 @@ export function auth(): RequestHandler {
       trace('SPNEGO token: ' + method);
       const buffer = decode(token);
 
-      const input: sspi.AcceptSecurityContextInput = {
+      const input: AcceptSecurityContextInput = {
         credential,
         clientSecurityContext: {
           SecBufferDesc: {
             ulVersion: 0,
-            buffers: [buffer]
-          }
-        }
+            buffers: [buffer],
+          },
+        },
       };
       if (serverContextHandle) {
         input.contextHandle = serverContextHandle;
@@ -76,12 +77,19 @@ export function auth(): RequestHandler {
       if (serverSecurityContext.SECURITY_STATUS === 'SEC_I_CONTINUE_NEEDED') {
         return res
           .status(401)
-          .set('WWW-Authenticate', 'Negotiate ' + encode(serverSecurityContext.SecBufferDesc.buffers[0]))
+          .set(
+            'WWW-Authenticate',
+            'Negotiate ' +
+              encode(serverSecurityContext.SecBufferDesc.buffers[0])
+          )
           .end();
       }
 
       if (serverSecurityContext.SECURITY_STATUS === 'SEC_E_OK') {
-        res.set('WWW-Authenticate', 'Negotiate ' + encode(serverSecurityContext.SecBufferDesc.buffers[0]));
+        res.set(
+          'WWW-Authenticate',
+          'Negotiate ' + encode(serverSecurityContext.SecBufferDesc.buffers[0])
+        );
 
         req.sso = new SSO(serverContextHandle, method);
 
@@ -90,9 +98,14 @@ export function auth(): RequestHandler {
       }
     } catch (e) {
       console.error(e);
-      next(createError(400, `Unexpected error while doing SSO. Please contact your system administrator.`));
+      next(
+        createError(
+          400,
+          `Unexpected error while doing SSO. Please contact your system administrator.`
+        )
+      );
     }
 
     next();
   };
-};
+}

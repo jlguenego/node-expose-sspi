@@ -7,7 +7,7 @@ import './express';
 import { client } from './client';
 
 
-export { adsi } from './adsi';
+export { cst } from './cst';
 
 export const sso = {
   config,

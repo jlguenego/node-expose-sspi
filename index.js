@@ -4,11 +4,13 @@ if (require('os').platform() !== 'win32') {
   );
 }
 
-const sspi = require('./lib/sspi');
-const { sso, adsi } = require('./dist/index');
+const { sspi, adsi, sysinfo } = require('./lib/sspi');
+const { sso, cst } = require('./dist/index');
 
 module.exports = {
   sspi,
-  sso,
   adsi,
+  sysinfo,
+  sso,
+  cst,
 };

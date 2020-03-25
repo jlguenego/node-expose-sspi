@@ -1,29 +1,29 @@
-const { adsi, sspi } = require('node-expose-sspi');
+const { adsi, sspi, cst } = require('node-expose-sspi');
 const assert = require('assert').strict;
 
 describe('ADSI Unit Test', function() {
   it('should test CoInitialize and CoUninitialize', function() {
-    sspi.CoInitialize();
-    sspi.CoUninitialize();
+    adsi.CoInitialize();
+    adsi.CoUninitialize();
   });
 
   it('should test CoInitializeEx', function() {
-    sspi.CoInitializeEx(['COINIT_MULTITHREADED']);
+    adsi.CoInitializeEx(['COINIT_MULTITHREADED']);
   });
 
   it('should test ADsOpenObject with global catalog', async function() {
-    const gc = await sspi.ADsOpenObject({
+    const gc = await adsi.ADsOpenObject({
       binding: 'GC:',
       riid: 'IID_IADsContainer',
     });
     if (gc === undefined) {
       throw new Error('Domain controller not reachable');
     }
-    assert(gc instanceof sspi.IADsContainer);
+    assert(gc instanceof adsi.IADsContainer);
     const element = gc.Next();
-    assert(element instanceof sspi.IDispatch);
+    assert(element instanceof adsi.IDispatch);
     const ds = element.QueryInterface('IID_IDirectorySearch');
-    assert(ds instanceof sspi.IDirectorySearch);
+    assert(ds instanceof adsi.IDirectorySearch);
     element.Release();
     ds.Release();
     gc.Release();
@@ -31,8 +31,8 @@ describe('ADSI Unit Test', function() {
 
   let distinguishedName;
   it('should get the Root Distinguished Name (LDAP notion) for the domain', async function() {
-    const root = await sspi.ADsGestObject('LDAP://rootDSE');
-    assert(root instanceof sspi.IADs);
+    const root = await adsi.ADsGestObject('LDAP://rootDSE');
+    assert(root instanceof adsi.IADs);
     distinguishedName = await root.Get('defaultNamingContext');
     assert(distinguishedName);
     assert(distinguishedName.startsWith('DC='));
@@ -40,11 +40,11 @@ describe('ADSI Unit Test', function() {
 
   it('should get all users that have a defined surname', async function() {
     this.timeout(15000);
-    const dirsearch = await sspi.ADsOpenObject({
+    const dirsearch = await adsi.ADsOpenObject({
       binding: `LDAP://${distinguishedName}`,
       riid: 'IID_IDirectorySearch',
     });
-    assert(dirsearch instanceof sspi.IDirectorySearch);
+    assert(dirsearch instanceof adsi.IDirectorySearch);
     dirsearch.SetSearchPreference();
     dirsearch.ExecuteSearch({
       filter: '(&(objectClass=user)(objectCategory=person)(sn=*))',
@@ -57,7 +57,7 @@ describe('ADSI Unit Test', function() {
     const firstRow = {};
 
     let colName = dirsearch.GetNextColumnName();
-    while (colName !== adsi.S_ADS_NOMORE_COLUMNS) {
+    while (colName !== cst.S_ADS_NOMORE_COLUMNS) {
       const value = await dirsearch.GetColumn(colName);
       firstRow[colName] = value;
       colName = dirsearch.GetNextColumnName();
@@ -67,11 +67,11 @@ describe('ADSI Unit Test', function() {
     while (true) {
       const row = {};
       hr = dirsearch.GetNextRow();
-      if (hr === adsi.S_ADS_NOMORE_ROWS) {
+      if (hr === cst.S_ADS_NOMORE_ROWS) {
         break;
       }
       let colName = dirsearch.GetNextColumnName();
-      while (colName !== adsi.S_ADS_NOMORE_COLUMNS) {
+      while (colName !== cst.S_ADS_NOMORE_COLUMNS) {
         const value = await dirsearch.GetColumn(colName);
         row[colName] = value;
         colName = dirsearch.GetNextColumnName();
@@ -84,7 +84,7 @@ describe('ADSI Unit Test', function() {
   let fullName;
   it('should test ADsGestObject with WinNT provider', async function() {
     const username = sspi.GetUserName();
-    const myself = await sspi.ADsGestObject(
+    const myself = await adsi.ADsGestObject(
       `WinNT://jlg.local/${username},user`
     );
     fullName = await myself.Get('FullName');
@@ -96,10 +96,10 @@ describe('ADSI Unit Test', function() {
 
   let guid;
   it('should test AdsGestObject with LDAP provider', async function() {
-    const iads = await sspi.ADsGestObject(
+    const iads = await adsi.ADsGestObject(
       `LDAP://CN=${fullName},OU=JLG_LOCAL,${distinguishedName}`
     );
-    assert(iads instanceof sspi.IADs);
+    assert(iads instanceof adsi.IADs);
     const str = iads.get_Name();
     assert(str);
     assert(str === 'CN=' + fullName);
@@ -117,20 +117,13 @@ describe('ADSI Unit Test', function() {
   });
 
   it('should test ADsGestObject with GUID', async function() {
-    const myself2 = await sspi.ADsGestObject(`LDAP://jlg.local/<GUID=${guid}>`);
+    const myself2 = await adsi.ADsGestObject(`LDAP://jlg.local/<GUID=${guid}>`);
     const cname = myself2.get_Name();
     assert(cname === 'CN=' + fullName);
     myself2.Release();
   });
 
   it('should test CoUninitialize', function() {
-    sspi.CoUninitialize();
+    adsi.CoUninitialize();
   });
 });
-
-
-//   const str = sspi.GetComputerNameEx('ComputerNameDnsDomain');
-//   console.log('str: ', str);
-// }
-
-
