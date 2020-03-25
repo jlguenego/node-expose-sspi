@@ -165,10 +165,18 @@ Open a Google Chrome web browser and go to `http://localhost:3000`.
 
 ## Development
 
-To compile the native node module, you need:
+As a prerequisites, you need a C++ toolchain installed on your environment.
+
+Open a **PowerShell command line as an administrator** and do :
 
 ```
-npm install --global windows-build-tools
+npm i -g windows-build-tools
+```
+
+
+To compile the native node module, do the following:
+
+```
 git clone https://github.com/jlguenego/node-expose-sspi.git
 cd node-expose-sspi
 npm run build
