@@ -5,106 +5,66 @@
 #include "api/adsi/IDirectorySearch.h"
 #include "api/adsi/IDispatch.h"
 
+#define F(fn) Function::New(env, fn)
+#define EXPORT(str) exports.Set(#str, F(e_##str))
+
+using namespace Napi;
+
 namespace myAddon {
 
-Napi::Value hello(const Napi::CallbackInfo &info) {
-  Napi::Env env = info.Env();
-  return Napi::String::New(env, "Coucou JL!!!");
+Value e_hello(const CallbackInfo &info) {
+  Env env = info.Env();
+  return String::New(env, "Coucou JL!!!");
 }
 
-Napi::Object InitSSPI(Napi::Env env, Napi::Object exports) {
-  exports.Set(Napi::String::New(env, "hello"), Napi::Function::New(env, hello));
-
-  exports.Set(Napi::String::New(env, "EnumerateSecurityPackages"),
-              Napi::Function::New(env, e_EnumerateSecurityPackages));
-
-  exports.Set(Napi::String::New(env, "QuerySecurityPackageInfo"),
-              Napi::Function::New(env, e_QuerySecurityPackageInfo));
-
-  exports.Set(Napi::String::New(env, "AcquireCredentialsHandle"),
-              Napi::Function::New(env, e_AcquireCredentialsHandle));
-
-  exports.Set(Napi::String::New(env, "QueryCredentialsAttributes"),
-              Napi::Function::New(env, e_QueryCredentialsAttributes));
-
-  exports.Set(Napi::String::New(env, "QueryContextAttributes"),
-              Napi::Function::New(env, e_QueryContextAttributes));
-
-  exports.Set(Napi::String::New(env, "QuerySecurityContextToken"),
-              Napi::Function::New(env, e_QuerySecurityContextToken));
-
-  exports.Set(Napi::String::New(env, "OpenThreadToken"),
-              Napi::Function::New(env, e_OpenThreadToken));
-
-  exports.Set(Napi::String::New(env, "OpenProcessToken"),
-              Napi::Function::New(env, e_OpenProcessToken));
-
-  exports.Set(Napi::String::New(env, "GetTokenInformation"),
-              Napi::Function::New(env, e_GetTokenInformation));
-
-  exports.Set(Napi::String::New(env, "CloseHandle"),
-              Napi::Function::New(env, e_CloseHandle));
-
-  exports.Set(Napi::String::New(env, "FreeCredentialsHandle"),
-              Napi::Function::New(env, e_FreeCredentialsHandle));
-
-  exports.Set(Napi::String::New(env, "InitializeSecurityContext"),
-              Napi::Function::New(env, e_InitializeSecurityContext));
-
-  exports.Set(Napi::String::New(env, "AcceptSecurityContext"),
-              Napi::Function::New(env, e_AcceptSecurityContext));
-
-  exports.Set(Napi::String::New(env, "DeleteSecurityContext"),
-              Napi::Function::New(env, e_DeleteSecurityContext));
-
-  exports.Set(Napi::String::New(env, "ImpersonateSecurityContext"),
-              Napi::Function::New(env, e_ImpersonateSecurityContext));
-
-  exports.Set(Napi::String::New(env, "RevertSecurityContext"),
-              Napi::Function::New(env, e_RevertSecurityContext));
-
-  exports.Set(Napi::String::New(env, "GetUserName"),
-              Napi::Function::New(env, e_GetUserName));
-
-  exports.Set(Napi::String::New(env, "GetUserNameEx"),
-              Napi::Function::New(env, e_GetUserNameEx));
-
-  exports.Set("LookupAccountName",
-              Napi::Function::New(env, e_LookupAccountName));
-
+Object InitSSPI(Env env, Object exports) {
+  
+  EXPORT(hello);
+  EXPORT(EnumerateSecurityPackages);
+  EXPORT(QuerySecurityPackageInfo);
+  EXPORT(AcquireCredentialsHandle);
+  EXPORT(QueryCredentialsAttributes);
+  EXPORT(QueryContextAttributes);
+  EXPORT(QuerySecurityContextToken);
+  EXPORT(OpenThreadToken);
+  EXPORT(OpenProcessToken);
+  EXPORT(GetTokenInformation);
+  EXPORT(CloseHandle);
+  EXPORT(FreeCredentialsHandle);
+  EXPORT(InitializeSecurityContext);
+  EXPORT(AcceptSecurityContext);
+  EXPORT(DeleteSecurityContext);
+  EXPORT(ImpersonateSecurityContext);
+  EXPORT(RevertSecurityContext);
+  EXPORT(GetUserName);
+  EXPORT(GetUserNameEx);
+  EXPORT(LookupAccountName);
   return exports;
 }
 
-Napi::Object InitADSI(Napi::Env env, Napi::Object exports) {
-  // ADSI
-  exports.Set("CoInitialize", Napi::Function::New(env, e_CoInitialize));
-  exports.Set("CoInitializeEx", Napi::Function::New(env, e_CoInitializeEx));
-  exports.Set("CoUninitialize", Napi::Function::New(env, e_CoUninitialize));
-  exports.Set("ADsGestObject", Napi::Function::New(env, e_ADsGestObject));
-  exports.Set("ADsOpenObject", Napi::Function::New(env, e_ADsOpenObject));
-
+Object InitADSI(Env env, Object exports) {
+  EXPORT(CoInitialize);
+  EXPORT(CoInitializeEx);
+  EXPORT(CoUninitialize);
+  EXPORT(ADsGestObject);
+  EXPORT(ADsOpenObject);
   E_IADs::Init(env, exports);
   E_IADsContainer::Init(env, exports);
   E_IDispatch::Init(env, exports);
   E_IDirectorySearch::Init(env, exports);
-
   return exports;
 }
 
-Napi::Object InitSYSINFO(Napi::Env env, Napi::Object exports) {
-  // SYSINFO
-  exports.Set("GetComputerNameEx",
-              Napi::Function::New(env, e_GetComputerNameEx));
+Object InitSYSINFO(Env env, Object exports) {
+  EXPORT(GetComputerNameEx);
   return exports;
 }
 
-Napi::Object Init(Napi::Env env, Napi::Object exports) {
+Object Init(Env env, Object exports) {
   initFlags();
-
-  exports.Set("sspi", InitSSPI(env, Napi::Object::New(env)));
-  exports.Set("adsi", InitADSI(env, Napi::Object::New(env)));
-  exports.Set("sysinfo", InitSYSINFO(env, Napi::Object::New(env)));
-
+  exports.Set("sspi", InitSSPI(env, Object::New(env)));
+  exports.Set("adsi", InitADSI(env, Object::New(env)));
+  exports.Set("sysinfo", InitSYSINFO(env, Object::New(env)));
   return exports;
 }
 
