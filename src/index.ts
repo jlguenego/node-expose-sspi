@@ -6,9 +6,6 @@ import { SSO } from './SSO';
 import './express';
 import { client } from './client';
 
-
-export { cst } from './cst';
-
 export const sso = {
   config,
   hexDump,
@@ -16,7 +13,5 @@ export const sso = {
   connect,
   SSO,
   getDefaultDomain,
-  client
+  client,
 };
-
-

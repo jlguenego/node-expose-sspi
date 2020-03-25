@@ -5,12 +5,11 @@ if (require('os').platform() !== 'win32') {
 }
 
 import { sspi, adsi, sysinfo } from './lib/sspi';
-import { sso, cst } from './src/index';
+import { sso } from './src/index';
 
 export {
   sspi,
   adsi,
   sysinfo,
   sso,
-  cst,
 };

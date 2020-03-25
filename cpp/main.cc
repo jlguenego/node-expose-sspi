@@ -18,7 +18,6 @@ Value e_hello(const CallbackInfo &info) {
 }
 
 Object InitSSPI(Env env, Object exports) {
-  
   EXPORT(hello);
   EXPORT(EnumerateSecurityPackages);
   EXPORT(QuerySecurityPackageInfo);
@@ -52,6 +51,10 @@ Object InitADSI(Env env, Object exports) {
   E_IADsContainer::Init(env, exports);
   E_IDispatch::Init(env, exports);
   E_IDirectorySearch::Init(env, exports);
+
+  // Constant
+  exports.Set("S_ADS_NOMORE_ROWS", Number::New(env, 0x00005012));
+  exports.Set("S_ADS_NOMORE_COLUMNS", Number::New(env, 0x00005013));
   return exports;
 }
 

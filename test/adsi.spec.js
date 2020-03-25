@@ -1,4 +1,4 @@
-const { adsi, sspi, cst } = require('node-expose-sspi');
+const { adsi, sspi } = require('node-expose-sspi');
 const assert = require('assert').strict;
 
 describe('ADSI Unit Test', function() {
@@ -57,7 +57,7 @@ describe('ADSI Unit Test', function() {
     const firstRow = {};
 
     let colName = dirsearch.GetNextColumnName();
-    while (colName !== cst.S_ADS_NOMORE_COLUMNS) {
+    while (colName !== adsi.S_ADS_NOMORE_COLUMNS) {
       const value = await dirsearch.GetColumn(colName);
       firstRow[colName] = value;
       colName = dirsearch.GetNextColumnName();
@@ -67,11 +67,11 @@ describe('ADSI Unit Test', function() {
     while (true) {
       const row = {};
       hr = dirsearch.GetNextRow();
-      if (hr === cst.S_ADS_NOMORE_ROWS) {
+      if (hr === adsi.S_ADS_NOMORE_ROWS) {
         break;
       }
       let colName = dirsearch.GetNextColumnName();
-      while (colName !== cst.S_ADS_NOMORE_COLUMNS) {
+      while (colName !== adsi.S_ADS_NOMORE_COLUMNS) {
         const value = await dirsearch.GetColumn(colName);
         row[colName] = value;
         colName = dirsearch.GetNextColumnName();
