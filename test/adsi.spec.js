@@ -38,7 +38,7 @@ describe('ADSI Unit Test', function() {
   });
 
   it('should get all users that have a defined surname', async function() {
-    this.timeout(15000); 
+    this.timeout(15000);
     const dirsearch = await sspi.ADsOpenObject({
       binding: `LDAP://${distinguishedName}`,
       riid: 'IID_IDirectorySearch',
@@ -62,6 +62,7 @@ describe('ADSI Unit Test', function() {
       firstRow[colName] = value;
       colName = dirsearch.GetNextColumnName();
     }
+    result.push(firstRow);
 
     while (true) {
       hr = dirsearch.GetNextRow();
@@ -80,21 +81,21 @@ describe('ADSI Unit Test', function() {
     dirsearch.Release();
   });
 
+  it('should test ADsGestObject with WinNT provider', async function() {
+    const username = sspi.GetUserName();
+    const myself = await sspi.ADsGestObject(
+      `WinNT://jlg.local/${username},user`
+    );
+    const fullName = myself.Get('FullName');
+    const objectGUID = myself.get_GUID();
+  });
+
   it('should test CoUninitialize', function() {
     sspi.CoUninitialize();
   });
 });
 
 //     // 2) Get info about my account
-//     console.log('about to do sspi.ADsGestObject');
-//     const myself = await sspi.ADsGestObject(
-//       `WinNT://jlg.local/${username},user`
-//     );
-//     console.log('about to do myself.Get');
-//     const fullName = myself.Get('FullName');
-//     console.log('fullName: ', fullName);
-//     const objectGUID = myself.get_GUID();
-//     console.log('objectGUID: ', objectGUID);
 
 //     console.log('about to do sspi.ADsGestObject LDAP');
 //     const iads = await sspi.ADsGestObject(
