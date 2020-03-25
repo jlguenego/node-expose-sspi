@@ -6,9 +6,7 @@ describe('ClientServer', function() {
   it('should return the right json', async function() {
     this.timeout(15000);
     const app = express();
-    sso.config.debug = true;
     await sso.init();
-    sso.config.debug = false;
 
     app.use(sso.auth());
 
@@ -18,9 +16,7 @@ describe('ClientServer', function() {
       });
     });
 
-    const server = app.listen(3000, () =>
-      console.log('Server started on port 3000')
-    );
+    const server = app.listen(3000);
 
     let json;
     try {
@@ -31,7 +27,7 @@ describe('ClientServer', function() {
       console.error(e);
     }
 
-    server.close(() => console.log('Server successfully closed.'));
+    server.close();
 
     assert(json, 'json should be truthy');
     assert(json.sso, 'json.sso should be truthy');
