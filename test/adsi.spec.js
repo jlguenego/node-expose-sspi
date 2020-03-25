@@ -65,19 +65,19 @@ describe('ADSI Unit Test', function() {
     result.push(firstRow);
 
     while (true) {
+      const row = {};
       hr = dirsearch.GetNextRow();
       if (hr === adsi.S_ADS_NOMORE_ROWS) {
         break;
       }
       let colName = dirsearch.GetNextColumnName();
       while (colName !== adsi.S_ADS_NOMORE_COLUMNS) {
-        console.log('colName: ', colName);
         const value = await dirsearch.GetColumn(colName);
-        console.log('value: ', value);
+        row[colName] = value;
         colName = dirsearch.GetNextColumnName();
       }
+      result.push(row);
     }
-
     dirsearch.Release();
   });
 
