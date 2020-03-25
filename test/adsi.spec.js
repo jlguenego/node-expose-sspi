@@ -33,7 +33,8 @@ describe('ADSI Unit Test', function() {
   it('should get the Root Distinguished Name (LDAP notion) for the domain', async function() {
     const root = await sspi.ADsGestObject('LDAP://rootDSE');
     assert(root instanceof sspi.IADs);
-    distinguishedName = root.Get('defaultNamingContext');
+    distinguishedName = await root.Get('defaultNamingContext');
+    assert(distinguishedName);
     assert(distinguishedName.startsWith('DC='));
   });
 
@@ -43,7 +44,6 @@ describe('ADSI Unit Test', function() {
       binding: `LDAP://${distinguishedName}`,
       riid: 'IID_IDirectorySearch',
     });
-    console.log('dirsearch: ', dirsearch);
     assert(dirsearch instanceof sspi.IDirectorySearch);
     dirsearch.SetSearchPreference();
     dirsearch.ExecuteSearch({
@@ -86,7 +86,7 @@ describe('ADSI Unit Test', function() {
     const myself = await sspi.ADsGestObject(
       `WinNT://jlg.local/${username},user`
     );
-    const fullName = myself.Get('FullName');
+    const fullName = await myself.Get('FullName');
     const objectGUID = myself.get_GUID();
   });
 
