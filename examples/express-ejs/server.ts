@@ -1,7 +1,7 @@
 import express = require("express");
 import path = require("path");
 import session = require("express-session");
-import { sspi, sso } from "node-expose-sspi";
+import { sso, UserCredential } from "node-expose-sspi";
 import serveIndex = require("serve-index");
 
 sso.config.debug = true;
