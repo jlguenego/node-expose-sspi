@@ -102,7 +102,7 @@ Edge does not require any configuration. But the browser ask the credentials to 
 
 [Access to the detailed API document](./doc/api/README.md). This has been generated with [typedoc](https://github.com/TypeStrong/typedoc).
 
-Do see the API in action, you should read the `sso` source code object. `auth` and `connect` functions are two instructive examples of how to use SSPI with NodeJS.
+To see the API in action, you should read the `sso` source code object. `auth` and `connect` functions are two instructive examples of how to use SSPI with NodeJS. Also the `userdb.ts` file shows some good ADSI code snippets.
 
 There are many parts in this module:
 
