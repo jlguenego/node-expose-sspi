@@ -12,6 +12,6 @@
     "base64-arraybuffer": "^0.2.0",
     "express": "^4.17.1",
     "http-proxy-middleware": "^1.0.3",
-    "node-expose-sspi": "0.0.21"
+    "node-expose-sspi": "^0.1.1"
   }
 }
