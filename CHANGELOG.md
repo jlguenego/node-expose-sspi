@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.1](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.0...v0.1.1) (2020-03-26)
+
+
+### Bug Fixes
+
+* export all interfaces ([9fa59d7](https://github.com/jlguenego/node-expose-sspi/commit/9fa59d7d6745849805b45610297fe5abf3269987))
+
 ## [0.1.0](https://github.com/jlguenego/node-expose-sspi/compare/v0.0.21...v0.1.0) (2020-03-26)
 
 
