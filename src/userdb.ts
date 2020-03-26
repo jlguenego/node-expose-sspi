@@ -1,5 +1,6 @@
 import { trace } from './misc';
 import { adsi, sysinfo } from '../lib/sspi';
+import { IDirectorySearch } from '../lib/adsi';
 
 interface Database {
   users: ADUsers;
@@ -35,7 +36,7 @@ export async function getUser(ldapFilter: string): Promise<ADUser> {
   adsi.CoInitializeEx(['COINIT_MULTITHREADED']);
 
   const distinguishedName = await getDistinguishedName();
-  const dirsearch = await adsi.ADsOpenObject({
+  const dirsearch = await adsi.ADsOpenObject<IDirectorySearch>({
     binding: `LDAP://${distinguishedName}`,
     riid: 'IID_IDirectorySearch',
   });
@@ -54,7 +55,7 @@ export async function getUser(ldapFilter: string): Promise<ADUser> {
   row = {};
   let colName = dirsearch.GetNextColumnName();
   while (colName !== adsi.S_ADS_NOMORE_COLUMNS) {
-    const value = await dirsearch.GetColumn(colName);
+    const value = await dirsearch.GetColumn(colName as string);
     row[colName] = value;
     colName = dirsearch.GetNextColumnName();
   }
@@ -68,7 +69,7 @@ export async function getUsers(): Promise<ADUsers> {
   adsi.CoInitializeEx(['COINIT_MULTITHREADED']);
 
   const distinguishedName = await getDistinguishedName();
-  const dirsearch = await adsi.ADsOpenObject({
+  const dirsearch = await adsi.ADsOpenObject<IDirectorySearch>({
     binding: `LDAP://${distinguishedName}`,
     riid: 'IID_IDirectorySearch',
   });
@@ -86,7 +87,7 @@ export async function getUsers(): Promise<ADUsers> {
     }
     let colName = dirsearch.GetNextColumnName();
     while (colName !== adsi.S_ADS_NOMORE_COLUMNS) {
-      const value = await dirsearch.GetColumn(colName);
+      const value = await dirsearch.GetColumn(colName as string);
       row[colName] = value;
       colName = dirsearch.GetNextColumnName();
     }
@@ -99,6 +100,6 @@ export async function getUsers(): Promise<ADUsers> {
 
 export async function getDistinguishedName(): Promise<string> {
   const root = await adsi.ADsGestObject('LDAP://rootDSE');
-  const distinguishedName = await root.Get('defaultNamingContext');
+  const distinguishedName = root.Get('defaultNamingContext');
   return distinguishedName;
 }
