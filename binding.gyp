@@ -9,7 +9,7 @@
       # Macros to define for using WCHAR on Windows.
       "defines": ["_UNICODE", "UNICODE"],
 
-      # SSPI needs DLL. The .lib files are indicated here.
+      # All DLL for linking. The .lib files are indicated here.
       "link_settings": {
         "libraries": [
           "Secur32.lib",
