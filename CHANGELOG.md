@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.0](https://github.com/jlguenego/node-expose-sspi/compare/v0.0.21...v0.1.0) (2020-03-26)
+
+
+### Features
+
+* add lint in package.json target ([aa07886](https://github.com/jlguenego/node-expose-sspi/commit/aa078862562dfd1a93a4ff7110f00c4c9ccf6dfc))
+* add proxy test ([e6f6e07](https://github.com/jlguenego/node-expose-sspi/commit/e6f6e074c5897348e83ab5c07c83f4ee324491d8))
+* added ActiveDirectory functions ([2ccecc7](https://github.com/jlguenego/node-expose-sspi/commit/2ccecc733792c2006b69394a38654f1c89bb168a))
+* added CoInitialize api ([c510211](https://github.com/jlguenego/node-expose-sspi/commit/c5102114fdc61d02b4c722d1bb2ef1528a1f2f12))
+* added CoUninitialize ([26db537](https://github.com/jlguenego/node-expose-sspi/commit/26db5377e4e2f81595a367ba855f26b2dc27c367))
+* added init directly in auth ([fa69220](https://github.com/jlguenego/node-expose-sspi/commit/fa692206e32f6a42186a32ce5f8407102fcdc3bb))
+* added isOnDomain ([002a3de](https://github.com/jlguenego/node-expose-sspi/commit/002a3dec488ad4da5bc7037766c10449393c4810))
+* added mocha ([8a4a895](https://github.com/jlguenego/node-expose-sspi/commit/8a4a895df414a9dca18aa3fedc1cb9f3ff92810c))
+* expose GetComputerNameEx ([a587422](https://github.com/jlguenego/node-expose-sspi/commit/a5874221e3101ffe446879a527deb9b85eba7078))
+
+
+### Bug Fixes
+
+* add prettierrc ([5096255](https://github.com/jlguenego/node-expose-sspi/commit/5096255288cb3917b823c0cef1518de9f6b60134))
+* compatibility VC++2017 remove constant ([ef8010c](https://github.com/jlguenego/node-expose-sspi/commit/ef8010c1ea2cce27fe7561ec688c83ee13452cd6))
+* no need test doc .vscode in npm module. ([f700dfa](https://github.com/jlguenego/node-expose-sspi/commit/f700dfac96bc315a46b1e1c4eeafa68376e68468))
+
 ### [0.0.21](https://github.com/jlguenego/node-expose-sspi/compare/v0.0.20...v0.0.21) (2020-03-18)
 
 
