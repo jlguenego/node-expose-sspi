@@ -69,12 +69,15 @@ Clone this project.
 ```
 git clone https://github.com/jlguenego/node-expose-sspi.git
 cd node-expose-sspi
+cd examples
+cd reverse-proxy
 npm i
-npm run pretest
-npm run test:proxy
+npm start
 ```
 
 The reverse proxy performs an authentication and gives the authentication info to the target server in the `x-sso` HTTP header.
+
+TODO: prevent HTTP error 431 (request header too large)
 
 ## Browsers
 
