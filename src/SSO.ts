@@ -1,6 +1,7 @@
 import { trace } from './misc';
 import { sspi, CtxtHandle } from '../lib/api';
 import { getUser, ADUser } from './userdb';
+import { sso } from '.';
 
 export interface User {
   name?: string;
@@ -17,7 +18,10 @@ export class SSO {
   user: User;
   owner: User;
 
-  constructor(private serverContextHandle: CtxtHandle, public method?: SSOMethod) {}
+  constructor(
+    private serverContextHandle: CtxtHandle,
+    public method?: SSOMethod
+  ) {}
 
   async load() {
     const names = sspi.QueryContextAttributes(
@@ -55,7 +59,6 @@ export class SSO {
     } catch (e) {
       trace('cannot getUser from AD. e: ', e);
     }
-
 
     // owner info.
     const owner = sspi.GetUserName();

@@ -1,6 +1,7 @@
 import { trace } from './misc';
-import { adsi, sysinfo } from '../lib/api';
+import { adsi } from '../lib/api';
 import { IDirectorySearch } from '../lib/adsi';
+import { isOnDomain } from './domain';
 
 interface Database {
   users: ADUsers;
@@ -20,12 +21,12 @@ export const database: Database = {
 };
 
 export async function init() {
+  if (!isOnDomain()) {
+    return;
+  }
   try {
     trace('init');
-    // request all account from domain
-    const domainName = sysinfo.GetComputerNameEx('ComputerNameDnsDomain');
-    trace('domainName: ', domainName);
-
+    // request all accounts from domain
     database.users = await getUsers();
   } catch (e) {
     trace('Cannot get users from AD. e: ', e);
@@ -33,6 +34,9 @@ export async function init() {
 }
 
 export async function getUser(ldapFilter: string): Promise<ADUser> {
+  if (!isOnDomain()) {
+    return;
+  }
   adsi.CoInitializeEx(['COINIT_MULTITHREADED']);
 
   const distinguishedName = await getDistinguishedName();
@@ -66,6 +70,9 @@ export async function getUser(ldapFilter: string): Promise<ADUser> {
 }
 
 export async function getUsers(): Promise<ADUsers> {
+  if (!isOnDomain()) {
+    return;
+  }
   adsi.CoInitializeEx(['COINIT_MULTITHREADED']);
 
   const distinguishedName = await getDistinguishedName();
@@ -99,6 +106,9 @@ export async function getUsers(): Promise<ADUsers> {
 }
 
 export async function getDistinguishedName(): Promise<string> {
+  if (!isOnDomain()) {
+    return;
+  }
   const root = await adsi.ADsGestObject('LDAP://rootDSE');
   const distinguishedName = root.Get('defaultNamingContext');
   return distinguishedName;
