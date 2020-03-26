@@ -7,6 +7,7 @@
     "node": ">=12.16.1"
   },
   "scripts": {
+    "lint": "tslint -p .",
     "build": "node-gyp rebuild -j 8",
     "build:doc": "typedoc ./src ./lib",
     "build:ts": "tsc -p src",
