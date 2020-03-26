@@ -2,7 +2,10 @@
 
 Expose the Microsoft Windows SSPI (SSP Interface) to [Node.js®](https://nodejs.org/).
 
-:smirk: It has been done in order to do **NTLM** and **Kerberos** SSO authentication.
+:smirk: Use cases:
+- **NTLM** and **Kerberos** SSO authentication.
+- **Active Directory** access to users for detailed info.
+
 
 Requirements: Microsoft Windows OS, NodeJS version >=12.16.1.
 
