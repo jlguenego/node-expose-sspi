@@ -77,8 +77,6 @@ npm start
 
 The reverse proxy performs an authentication and gives the authentication info to the target server in the `x-sso` HTTP header.
 
-TODO: prevent HTTP error 431 (request header too large)
-
 ## Browsers
 
 ### Chrome
