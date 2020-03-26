@@ -3,8 +3,6 @@ const { sso } = require('../..');
 
 sso.config.debug = false;
 
-
-
 (async () => {
   await sso.init();
 
