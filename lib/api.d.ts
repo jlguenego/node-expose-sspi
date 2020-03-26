@@ -1,5 +1,5 @@
-export * from './mysspi';
-import { Sspi } from './mysspi';
+export * from './sspi';
+import { Sspi } from './sspi';
 import { Adsi } from './adsi';
 import { SysInfo } from './sysinfo';
 
