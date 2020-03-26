@@ -11,4 +11,12 @@ export function getDefaultDomain(): string {
   return domain;
 }
 
-
+/**
+ * Want to know if your computer has joined a Microsoft Windows domain ? 
+ *
+ * @export
+ * @returns {boolean} true if this computer joined a domain, false otherwise.
+ */
+export function isOnDomain(): boolean {
+  return sysinfo.GetComputerNameEx('ComputerNameDnsDomain').length > 0;
+}

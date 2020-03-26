@@ -1,6 +1,6 @@
 import { auth } from './auth';
 import { connect } from './connect';
-import { getDefaultDomain } from './domain';
+import { getDefaultDomain, isOnDomain } from './domain';
 import { config, hexDump } from './misc';
 import { SSO } from './SSO';
 import './express';
@@ -14,6 +14,7 @@ export const sso = {
   connect,
   SSO,
   getDefaultDomain,
+  isOnDomain,
   client,
   init,
   database,
