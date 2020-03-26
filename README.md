@@ -36,20 +36,16 @@ const { sso } = require('node-expose-sspi');
 
 sso.config.debug = false;
 
-(async () => {
-  await sso.init();
+const app = express();
+app.use(sso.auth());
 
-  const app = express();
-  app.use(sso.auth());
-
-  app.use((req, res, next) => {
-    res.json({
-      sso: req.sso,
-    });
+app.use((req, res, next) => {
+  res.json({
+    sso: req.sso,
   });
+});
 
-  app.listen(3000, () => console.log('Server started on port 3000'));
-})();
+app.listen(3000, () => console.log('Server started on port 3000'));
 ```
 
 ```
@@ -136,43 +132,28 @@ Note: the NTLM protocol is not very secure, so be sure to be above HTTPS.
 
 You should see [this Node Expose SSPI Kerberos dedicated documentation](./doc/Kerberos.md).
 
-## Rebuilding the binary
+## Examples
 
-If the provided Windows binary does not work for your OS,
-You can rebuild the Node addon binary:
-
-```
-cd .\node_modules\node-expose-sspi
-npm run build
-```
-
-Note: You need a proper C++ Windows Toolchain installed.
-One way to do it is to install this module:
-
-```
-npm install --global windows-build-tools
-```
-
-## Test and Example
-
-To run the example, just clone this project.
+To run the examples, just clone this project.
 
 ```
 git clone https://github.com/jlguenego/node-expose-sspi.git
+npm i
 cd node-expose-sspi
 cd examples
-cd express-ejs
+cd <example-name>
 npm i
 npm start
 ```
 
-Open a Google Chrome web browser and go to `http://localhost:3000`.
+Open a Google Chrome web browser and go to the requested URL (`http://localhost:3000` for `examples\express-simple`).
 
 ## Development
 
-As a prerequisites, you need a C++ toolchain installed on your environment.
+As a prerequisites, you need node-gyp and a C++ toolchain installed on your environment.
 
-Open a **PowerShell command line as an administrator** and do :
+If you did not installed node-gyp and the C++ toolchain,
+please open a **PowerShell command line as an administrator** and do :
 
 ```
 npm i -g windows-build-tools
@@ -184,7 +165,10 @@ To compile the native node module, do the following:
 git clone https://github.com/jlguenego/node-expose-sspi.git
 cd node-expose-sspi
 npm run build
+npm run test
 ```
+
+All tests are done with `mocha`.
 
 ## Angular example
 
@@ -205,10 +189,12 @@ TODO
 Any idea of new features ? Please tell me and raise an issue. :blush:
 
 - typedoc
+- update example Angular and React for 0.1.x versions
 
 ## Author
 
 Jean-Louis GUENEGO <jlguenego@gmail.com> (http://jlg-consulting.com/)
 
-You may participate to complete this project if you need to use SSPI in another use case.
+You may participate to complete this project. You can improve this doc, or check the code (memory leak, etc.), create new usefull business cases, etc.
+
 Contributors are welcome!

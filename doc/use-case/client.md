@@ -23,11 +23,13 @@ app.use(sso.auth());
 
 app.use((req, res, next) => {
   res.json({
-    sso: req.sso.user.displayName
+    sso: req.sso.user.displayName,
   });
 });
 
-const server = app.listen(3000, () => console.log('Server started on port 3000'));
+const server = app.listen(3000, () =>
+  console.log('Server started on port 3000')
+);
 
 (async () => {
   try {
@@ -41,7 +43,6 @@ const server = app.listen(3000, () => console.log('Server started on port 3000')
 
   server.close(() => console.log('Server successfully closed.'));
 })();
-
 ```
 
 And to run it, just do:
@@ -62,9 +63,11 @@ Of course, `Jean-Louis GUÉNÉGO` is whatever your windows account is.
 
 ## The client object
 
-`sso.client.fetch` is a `fetch` API from the node module [node-fetch](https://github.com/node-fetch/node-fetch), with the Windows Authentication Integration.
+`sso.client.fetch` is a `fetch` API from the node module
+[node-fetch](https://github.com/node-fetch/node-fetch), with the Windows Authentication Integration.
 
-More information on the [fetch API on the MDN website](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch).
+More information on the
+[fetch API on the MDN website](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch).
 
 ## Author
 
