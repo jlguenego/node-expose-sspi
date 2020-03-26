@@ -34,7 +34,7 @@ app.get("/login", (req, res) => {
   res.render("login", obj);
 });
 
-app.post("/action/connect", (req, res) => {
+app.post("/action/connect", async (req, res) => {
   console.log("connect", req.body);
   const domain = sso.getDefaultDomain();
   console.log("domain: ", domain);
@@ -45,7 +45,7 @@ app.post("/action/connect", (req, res) => {
     password: req.body.password
   };
   console.log("credentials: ", credentials);
-  const ssoObject = sso.connect(credentials);
+  const ssoObject = await sso.connect(credentials);
   if (ssoObject) {
     req.session.user = ssoObject.user;
     return res.redirect("/protected/welcome");
