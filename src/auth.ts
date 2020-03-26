@@ -4,6 +4,7 @@ import { hexDump, trace } from './misc';
 import { sspi, SecurityContext, AcceptSecurityContextInput } from '../lib/api';
 import { RequestHandler } from 'express';
 import { SSO } from './SSO';
+import { init } from './userdb';
 
 /**
  * Tries to get SSO information from browser. If success, the SSO info
@@ -12,6 +13,9 @@ import { SSO } from './SSO';
  * @returns {RequestHandler} a middleware
  */
 export function auth(): RequestHandler {
+  // start in parallel the async init()
+  init();
+
   let { credential, tsExpiry } = sspi.AcquireCredentialsHandle({
     packageName: 'Negotiate',
   });

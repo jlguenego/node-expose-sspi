@@ -32,21 +32,24 @@ Make an express web server by doing the `server.js` file:
 
 ```js
 const express = require('express');
-const { sso, sspi } = require('node-expose-sspi');
+const { sso } = require('node-expose-sspi');
 
 sso.config.debug = false;
 
-const app = express();
+(async () => {
+  await sso.init();
 
-app.use(sso.auth());
+  const app = express();
+  app.use(sso.auth());
 
-app.use((req, res, next) => {
-  res.json({
-    sso: req.sso,
+  app.use((req, res, next) => {
+    res.json({
+      sso: req.sso,
+    });
   });
-});
 
-app.listen(3000, () => console.log('Server started on port 3000'));
+  app.listen(3000, () => console.log('Server started on port 3000'));
+})();
 ```
 
 ```
@@ -105,14 +108,17 @@ Edge does not require any configuration. But the browser ask the credentials to 
 
 Do see the API in action, you should read the `sso` source code object. `auth` and `connect` functions are two instructive examples of how to use SSPI with NodeJS.
 
-There is 2 parts in this module:
+There are many parts in this module:
 
-- `sspi` object which exposes the Microsoft SSPI library API.
+- `sspi` object which exposes the Microsoft SSPI library API. (SSO Authentication)
+- `adsi` object which exposes the Microsoft ADSI library API. (Active Directory access)
 - `sso` object, written in typescript/javascript with the following classes or functions:
+  - `init()`: init by caching the Active Directory user data (only on domain).
   - `auth()`: express middleware finding the SSO logged user.
   - `connect({login, password, domain)`: connect with a MS Windows account login/password.
   - `new SSO(serverContextHandle)`: create a SSO object from a secure context handle.
   - `getDefaultDomain()`: get the windows domain/hostname where the server started.
+- `sysinfo` object which exposes some environment data.
 
 #### Typescript
 
@@ -198,10 +204,7 @@ TODO
 
 Any idea of new features ? Please tell me and raise an issue. :blush:
 
-- split sspi into {sspi, adsi, sysinfo}
-- make some functions and methods async (promise)
 - typedoc
-- bring some account for cache
 
 ## Author
 

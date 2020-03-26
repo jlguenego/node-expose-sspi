@@ -6,7 +6,7 @@ export const trace = (...args: any[]) => {
 };
 
 export const config = {
-  debug: false
+  debug: false,
 };
 
 function isPrintable(keycode: number) {
@@ -19,7 +19,6 @@ function isPrintable(keycode: number) {
     (keycode > 218 && keycode < 223); // [\]' (in order)
   return valid;
 }
-
 
 /**
  * Gives a string representation of binary data.
