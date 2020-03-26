@@ -146,197 +146,211 @@ export interface AcceptSecurityContextInput {
   targetDataRep?: TargetDataRepMapFlag;
 }
 
-/**
- * Just a hello world function. Useless... ;)
- *
- * @export
- * @returns {string}
- */
-export function hello(): string;
+export interface Sspi {
+  /**
+   * Just a hello world function. Useless... ;)
+   *
+   * @returns {string}
+   * @memberof Sspi
+   */
+  hello(): string;
 
-/**
- * EnumerateSecurityPackages get a list of SSP provider with some info.
- *
- * @export
- * @returns {SecPkgInfo[]}
- */
-export function EnumerateSecurityPackages(): SecPkgInfo[];
+  /**
+   * EnumerateSecurityPackages get a list of SSP provider with some info.
+   *
+   * @returns {SecPkgInfo[]}
+   * @memberof Sspi
+   */
+  EnumerateSecurityPackages(): SecPkgInfo[];
 
-/**
- * Get info about one SSP provider given its name.
- *
- * @export
- * @param {string} packageName
- * @returns {SecPkgInfo}
- */
-export function QuerySecurityPackageInfo(packageName: string): SecPkgInfo;
+  /**
+   * Get info about one SSP provider given its name.
+   *
+   * @param {string} packageName
+   * @returns {SecPkgInfo}
+   * @memberof Sspi
+   */
+  QuerySecurityPackageInfo(packageName: string): SecPkgInfo;
 
-/**
- * Get the credentials of a user, to be used with a specified SSP package.
- * The credentials will be used according the specified flags.
- *
- * Do not forget to free allocated memory with FreeCredentialsHandle.
- *
- * @export
- * @param {{
- *   packageName: string;
- *   authData?: UserCredential;
- *   credentialUse?: CredentialUseFlag;
- * }} input
- * @returns {CredentialWithExpiry}
- */
-export function AcquireCredentialsHandle(input: {
-  packageName: string;
-  authData?: UserCredential;
-  credentialUse?: CredentialUseFlag;
-}): CredentialWithExpiry;
+  /**
+   * Get the credentials of a user, to be used with a specified SSP package.
+   * The credentials will be used according the specified flags.
+   *
+   * FreeCredentialsHandle must be used to free the credentials pointer.
+   *
+   * @param {{
+   *     packageName: string;
+   *     authData?: UserCredential;
+   *     credentialUse?: CredentialUseFlag;
+   *   }} input
+   * @returns {CredentialWithExpiry}
+   * @memberof Sspi
+   */
+  AcquireCredentialsHandle(input: {
+    packageName: string;
+    authData?: UserCredential;
+    credentialUse?: CredentialUseFlag;
+  }): CredentialWithExpiry;
 
-/**
- * This function must be used only by a client. Its purpose is to setup a client/server security context.
- *
- * @export
- * @param {InitializeSecurityContextInput} input
- * @returns {SecurityContext}
- */
-export function InitializeSecurityContext(input: InitializeSecurityContextInput): SecurityContext;
+  /**
+   * This function must be used only by a client. Its purpose is to setup a client/server security context.
+   *
+   * @param {InitializeSecurityContextInput} input
+   * @returns {SecurityContext}
+   * @memberof Sspi
+   */
+  InitializeSecurityContext(
+    input: InitializeSecurityContextInput
+  ): SecurityContext;
 
-/**
- * This function must be used only by a server. Its purpose is to setup a client/server security context
- *
- * @export
- * @param {AcceptSecurityContextInput} input
- * @returns {ServerSecurityContext}
- */
-export function AcceptSecurityContext(input: AcceptSecurityContextInput): ServerSecurityContext;
+  /**
+   * AcceptSecurityContext must be used only on server side. Its purpose is to setup a client/server security context
+   *
+   * @param {AcceptSecurityContextInput} input
+   * @returns {ServerSecurityContext}
+   * @memberof Sspi
+   */
+  AcceptSecurityContext(
+    input: AcceptSecurityContextInput
+  ): ServerSecurityContext;
 
-/**
- * Free a allocated credential memory. Must be used after AcquireCredentialsHandle.
- *
- * @export
- * @param {CredHandle} credential
- */
-export function FreeCredentialsHandle(credential: CredHandle): void;
+  /**
+   * Free a allocated credential memory. Must be used after AcquireCredentialsHandle.
+   *
+   * @param {CredHandle} credential
+   * @memberof Sspi
+   */
+  FreeCredentialsHandle(credential: CredHandle): void;
 
-/**
- * Must be used only on a server.
- *
- * Change the server user temporarely with the client user.
- * When over, use RevertSecurityContext.
- *
- * @export
- * @param {CtxtHandle} handle
- */
-export function ImpersonateSecurityContext(handle: CtxtHandle): void;
+  /**
+   * Must be used only on server side.
+   *
+   * Change the server user temporarely with the client user.
+   * Allocated resource must be freed with RevertSecurityContext.
+   *
+   * @param {CtxtHandle} handle
+   * @memberof Sspi
+   */
+  ImpersonateSecurityContext(handle: CtxtHandle): void;
 
-/**
- * Revert the server user back to its original. Must be used with ImpersonateSecurityContext.
- *
- * @export
- * @param {CtxtHandle} handle
- */
-export function RevertSecurityContext(handle: CtxtHandle): void;
+  /**
+   * Revert the server user back to its original. Must be used with ImpersonateSecurityContext.
+   *
+   * @param {CtxtHandle} handle
+   * @memberof Sspi
+   */
+  RevertSecurityContext(handle: CtxtHandle): void;
 
-/**
- * Get the username of the current thread.
- *
- * @export
- * @returns {string}
- */
-export function GetUserName(): string;
+  /**
+   * Get the username of the current thread. (TODO: to be moved outside of SSPI)
+   *
+   * @returns {string}
+   * @memberof Sspi
+   */
+  GetUserName(): string;
 
-/**
- * Get the username and much more of the current thread.
- *
- * @export
- * @param {ExtendedNameFormatFlag} extendedNameFormat
- * @returns {string}
- */
-export function GetUserNameEx(extendedNameFormat: ExtendedNameFormatFlag): string;
+  /**
+   * Get the username and much more of the current thread.
+   *
+   * @param {ExtendedNameFormatFlag} extendedNameFormat
+   * @returns {string}
+   * @memberof Sspi
+   */
+  GetUserNameEx(extendedNameFormat: ExtendedNameFormatFlag): string;
 
-/**
- * Get the user token associated with the current thread. Used with ImpersonateSecurityContext.
- * 
- * Token must be freed with CloseHandle.
- *
- * @export
- * @param {AccessTokenFlag[]} [flags]
- * @returns {Token}
- */
-export function OpenThreadToken(flags?: AccessTokenFlag[]): Token;
+  /**
+   * Get the user token associated with the current thread. Used with ImpersonateSecurityContext.
+   *
+   * Token must be freed with CloseHandle.
+   *
+   * @param {AccessTokenFlag[]} [flags]
+   * @returns {Token}
+   * @memberof Sspi
+   */
+  OpenThreadToken(flags?: AccessTokenFlag[]): Token;
 
-/**
- * Get the user token associated with the current process. You will get always
- * the user that has started the process, and never the impersonated user.
- * 
- * CloseHandle must be used for freeing the token.
- *
- * @export
- * @param {AccessTokenFlag[]} [flags]
- * @returns {Token}
- */
-export function OpenProcessToken(flags?: AccessTokenFlag[]): Token;
+  /**
+   * Get the user token associated with the current process. You will get always
+   * the user that has started the process, and never the impersonated user.
+   *
+   * CloseHandle must be used for freeing the token.
+   *
+   * @param {AccessTokenFlag[]} [flags]
+   * @returns {Token}
+   * @memberof Sspi
+   */
+  OpenProcessToken(flags?: AccessTokenFlag[]): Token;
 
-/**
- * Get information from a user token.
- *
- * @export
- * @param {Token} token
- * @param {InformationClass} infoClass
- * @returns {*}
- */
-export function GetTokenInformation(token: Token, infoClass: InformationClass): any;
+  /**
+   * Get information from a user token.
+   *
+   * @param {Token} token
+   * @param {InformationClass} infoClass
+   * @returns {*}
+   * @memberof Sspi
+   */
+  GetTokenInformation(
+    token: Token,
+    infoClass: InformationClass
+  ): any;
 
-/**
- * Free allocated memory.
- *
- * @export
- * @param {HANDLE} handle
- */
-export function CloseHandle(handle: HANDLE): void;
+  /**
+   * Free allocated memory referenced by the handle.
+   *
+   * @param {HANDLE} handle
+   * @memberof Sspi
+   */
+  CloseHandle(handle: HANDLE): void;
 
-/**
- * Get the SID of username.
- *
- * @export
- * @param {string} username
- * @returns {SidObject}
- */
-export function LookupAccountName(username: string): SidObject;
+  /**
+   * Get the SID of username.
+   *
+   * @param {string} username
+   * @returns {SidObject}
+   * @memberof Sspi
+   */
+  LookupAccountName(username: string): SidObject;
 
-/**
- * Query what can be done with a given credential.
- *
- * @export
- * @param {CredHandle} credential
- * @param {string} attribute
- * @returns {*}
- */
-export function QueryCredentialsAttributes(credential: CredHandle, attribute: string): any;
+  /**
+   * Query what can be done with a given credential.
+   *
+   * @param {CredHandle} credential
+   * @param {string} attribute
+   * @returns {*}
+   * @memberof Sspi
+   */
+  QueryCredentialsAttributes(
+    credential: CredHandle,
+    attribute: string
+  ): any;
 
-/**
- * Query what can be done with a given context handle.
- *
- * @export
- * @param {CtxtHandle} ctxtHandle
- * @param {string} attribute
- * @returns {*}
- */
-export function QueryContextAttributes(ctxtHandle: CtxtHandle, attribute: string): any;
+  /**
+   * Query what can be done with a given context handle.
+   *
+   * @param {CtxtHandle} ctxtHandle
+   * @param {string} attribute
+   * @returns {*}
+   * @memberof Sspi
+   */
+  QueryContextAttributes(
+    ctxtHandle: CtxtHandle,
+    attribute: string
+  ): any;
 
-/**
- * Get a client user token.
- *
- * @export
- * @param {CtxtHandle} ctxtHandle
- * @returns {Token}
- */
-export function QuerySecurityContextToken(ctxtHandle: CtxtHandle): Token;
+  /**
+   * Get a client user token.
+   *
+   * @param {CtxtHandle} ctxtHandle
+   * @returns {Token}
+   * @memberof Sspi
+   */
+  QuerySecurityContextToken(ctxtHandle: CtxtHandle): Token;
 
-
-/**
- * Free a context handle.
- *
- * @export
- * @param {CtxtHandle} ctxtHandle
- */
-export function DeleteSecurityContext(ctxtHandle: CtxtHandle): void;
+  /**
+   * Free a context handle.
+   *
+   * @param {CtxtHandle} ctxtHandle
+   * @memberof Sspi
+   */
+  DeleteSecurityContext(ctxtHandle: CtxtHandle): void;
+}
