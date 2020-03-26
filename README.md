@@ -67,8 +67,6 @@ Note: To read JSON file on Chrome, you should use the [JSON Formatter Chrome Ext
 
 ### SSO Authentication reverse proxy use case
 
-Clone this project.
-
 ```
 git clone https://github.com/jlguenego/node-expose-sspi.git
 cd node-expose-sspi
@@ -192,7 +190,6 @@ TODO
 
 Any idea of new features ? Please tell me and raise an issue. :blush:
 
-- typedoc
 - update example Angular and React for 0.1.x versions
 
 ## Author
