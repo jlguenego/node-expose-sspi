@@ -1,5 +1,6 @@
 import { sso, sspi, sysinfo } from 'node-expose-sspi';
 import { CredentialUseFlag } from '../../lib/flags/CredentialUseFlag';
+import os from 'os';
 
 const result = sspi.hello();
 console.log('result: ', result);
@@ -14,13 +15,18 @@ console.log('domain: ', domain);
 const isOnDomain = domain === undefined;
 console.log('isOnDomain: ', isOnDomain);
 
-const hostname = 'maourourou';
+const nodeUsername = os.userInfo().username;
+console.log('nodeUsername: ', nodeUsername);
+const hostname = os.hostname();
+console.log('hostname: ', hostname);
 
 const credInput = {
   packageName: 'Negotiate',
   authData: {
     domain: isOnDomain ? domain : hostname,
-    user: 'suzana',
+    user: nodeUsername,
+    // the auth will fail if the account does not have a password set.
+    // if password is set, then it will be authenticated as Guest.
     password: 'toto',
   },
   credentialUse: 'SECPKG_CRED_OUTBOUND' as CredentialUseFlag,
