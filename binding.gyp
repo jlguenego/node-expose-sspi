@@ -1,7 +1,7 @@
 {
   "targets": [
     {
-      "target_name": "sspi",
+      "target_name": "api",
       "sources": [
         "cpp/**/*.cc",
       ],
@@ -48,10 +48,10 @@
       # to copy the file to its final destination.
       "target_name": "action_after_build",
       "type": "none",
-      "dependencies": [ "sspi" ],
+      "dependencies": [ "api" ],
       "copies": [
         {
-          "files": [ "./build/Release/sspi.node" ],
+          "files": [ "./build/Release/api.node" ],
           "destination": "lib"
         }
       ]

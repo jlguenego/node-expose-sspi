@@ -1,5 +1,5 @@
 import { trace } from './misc';
-import { adsi, sysinfo } from '../lib/sspi';
+import { adsi, sysinfo } from '../lib/api';
 import { IDirectorySearch } from '../lib/adsi';
 
 interface Database {

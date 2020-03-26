@@ -1,5 +1,5 @@
 import fetch, { RequestInit, Response } from 'node-fetch';
-import { sspi, InitializeSecurityContextInput } from '../lib/sspi';
+import { sspi, InitializeSecurityContextInput } from '../lib/api';
 import { encode, decode } from 'base64-arraybuffer';
 
 async function handleAuth(response: Response, resource: string, init: RequestInit = {}): Promise<Response> {

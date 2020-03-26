@@ -5,7 +5,7 @@ import {
   SecurityContext,
   InitializeSecurityContextInput,
   AcceptSecurityContextInput,
-} from '../lib/sspi';
+} from '../lib/api';
 import { SSO } from './SSO';
 
 /**

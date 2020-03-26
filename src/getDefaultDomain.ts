@@ -1,4 +1,4 @@
-import { sspi } from '../lib/sspi';
+import { sspi } from '../lib/api';
 
 /**
  * Get the domain (Microsoft domain) or hostname (workgroup) of this machine.

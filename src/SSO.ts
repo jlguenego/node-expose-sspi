@@ -1,5 +1,5 @@
 import { trace } from './misc';
-import { sspi, CtxtHandle } from '../lib/sspi';
+import { sspi, CtxtHandle } from '../lib/api';
 import { getUser, ADUser } from './userdb';
 
 export interface User {
