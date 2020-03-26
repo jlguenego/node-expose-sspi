@@ -27,7 +27,7 @@ It contains the security buffers exchanged between the client and the server.
 
 • **SECURITY_STATUS**? : *string*
 
-*Defined in [lib/sspi.d.ts:83](https://github.com/jlguenego/node-expose-sspi/blob/41d66b9/lib/sspi.d.ts#L83)*
+*Defined in [lib/sspi.d.ts:81](https://github.com/jlguenego/node-expose-sspi/blob/d0f69f6/lib/sspi.d.ts#L81)*
 
 ___
 
@@ -35,7 +35,7 @@ ___
 
 • **SecBufferDesc**? : *any*
 
-*Defined in [lib/sspi.d.ts:84](https://github.com/jlguenego/node-expose-sspi/blob/41d66b9/lib/sspi.d.ts#L84)*
+*Defined in [lib/sspi.d.ts:82](https://github.com/jlguenego/node-expose-sspi/blob/d0f69f6/lib/sspi.d.ts#L82)*
 
 ___
 
@@ -43,4 +43,4 @@ ___
 
 • **contextHandle**? : *[CtxtHandle](_lib_sspi_d_.ctxthandle.md)*
 
-*Defined in [lib/sspi.d.ts:82](https://github.com/jlguenego/node-expose-sspi/blob/41d66b9/lib/sspi.d.ts#L82)*
+*Defined in [lib/sspi.d.ts:80](https://github.com/jlguenego/node-expose-sspi/blob/d0f69f6/lib/sspi.d.ts#L80)*

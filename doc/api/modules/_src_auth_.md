@@ -1,6 +1,6 @@
 [node-expose-sspi](../README.md) › ["src/auth"](_src_auth_.md)
 
-# External module: "src/auth"
+# Module: "src/auth"
 
 ## Index
 
@@ -14,7 +14,7 @@
 
 ▸ **auth**(): *RequestHandler*
 
-*Defined in [src/auth.ts:15](https://github.com/jlguenego/node-expose-sspi/blob/41d66b9/src/auth.ts#L15)*
+*Defined in [src/auth.ts:15](https://github.com/jlguenego/node-expose-sspi/blob/d0f69f6/src/auth.ts#L15)*
 
 Tries to get SSO information from browser. If success, the SSO info
 is stored under req.sso

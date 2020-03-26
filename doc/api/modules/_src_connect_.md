@@ -1,6 +1,6 @@
 [node-expose-sspi](../README.md) › ["src/connect"](_src_connect_.md)
 
-# External module: "src/connect"
+# Module: "src/connect"
 
 ## Index
 
@@ -12,9 +12,9 @@
 
 ###  connect
 
-▸ **connect**(`userCredential`: [UserCredential](../interfaces/_lib_sspi_d_.usercredential.md)): *[SSO](../classes/_src_sso_.sso.md)*
+▸ **connect**(`userCredential`: [UserCredential](../interfaces/_lib_sspi_d_.usercredential.md)): *Promise‹[SSO](../classes/_src_sso_.sso.md)›*
 
-*Defined in [src/connect.ts:13](https://github.com/jlguenego/node-expose-sspi/blob/41d66b9/src/connect.ts#L13)*
+*Defined in [src/connect.ts:19](https://github.com/jlguenego/node-expose-sspi/blob/d0f69f6/src/connect.ts#L19)*
 
 Retrieves SSO information from an explicit credential (login/password and domain).
 The SSO information will be retrieved only if the credential
@@ -26,6 +26,6 @@ Name | Type |
 ------ | ------ |
 `userCredential` | [UserCredential](../interfaces/_lib_sspi_d_.usercredential.md) |
 
-**Returns:** *[SSO](../classes/_src_sso_.sso.md)*
+**Returns:** *Promise‹[SSO](../classes/_src_sso_.sso.md)›*
 
 the SSO object or undefined.

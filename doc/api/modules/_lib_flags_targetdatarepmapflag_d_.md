@@ -1,6 +1,6 @@
 [node-expose-sspi](../README.md) › ["lib/flags/TargetDataRepMapFlag.d"](_lib_flags_targetdatarepmapflag_d_.md)
 
-# External module: "lib/flags/TargetDataRepMapFlag.d"
+# Module: "lib/flags/TargetDataRepMapFlag.d"
 
 ## Index
 
@@ -14,4 +14,4 @@
 
 Ƭ **TargetDataRepMapFlag**: *"SECURITY_NATIVE_DREP" | "SECURITY_NETWORK_DREP"*
 
-*Defined in [lib/flags/TargetDataRepMapFlag.d.ts:1](https://github.com/jlguenego/node-expose-sspi/blob/41d66b9/lib/flags/TargetDataRepMapFlag.d.ts#L1)*
+*Defined in [lib/flags/TargetDataRepMapFlag.d.ts:1](https://github.com/jlguenego/node-expose-sspi/blob/d0f69f6/lib/flags/TargetDataRepMapFlag.d.ts#L1)*

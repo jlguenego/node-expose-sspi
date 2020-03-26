@@ -1,6 +1,6 @@
 [node-expose-sspi](../README.md) › ["src/SSO"](_src_sso_.md)
 
-# External module: "src/SSO"
+# Module: "src/SSO"
 
 ## Index
 
@@ -22,4 +22,4 @@
 
 Ƭ **SSOMethod**: *"NTLM" | "Kerberos"*
 
-*Defined in [src/SSO.ts:12](https://github.com/jlguenego/node-expose-sspi/blob/41d66b9/src/SSO.ts#L12)*
+*Defined in [src/SSO.ts:15](https://github.com/jlguenego/node-expose-sspi/blob/d0f69f6/src/SSO.ts#L15)*

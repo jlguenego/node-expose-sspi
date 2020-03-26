@@ -10,6 +10,7 @@
 
 ### Properties
 
+* [adUser](_src_sso_.user.md#optional-aduser)
 * [displayName](_src_sso_.user.md#optional-displayname)
 * [domain](_src_sso_.user.md#optional-domain)
 * [groups](_src_sso_.user.md#optional-groups)
@@ -18,11 +19,19 @@
 
 ## Properties
 
+### `Optional` adUser
+
+• **adUser**? : *[ADUser](_src_userdb_.aduser.md)*
+
+*Defined in [src/SSO.ts:12](https://github.com/jlguenego/node-expose-sspi/blob/d0f69f6/src/SSO.ts#L12)*
+
+___
+
 ### `Optional` displayName
 
 • **displayName**? : *string*
 
-*Defined in [src/SSO.ts:7](https://github.com/jlguenego/node-expose-sspi/blob/41d66b9/src/SSO.ts#L7)*
+*Defined in [src/SSO.ts:9](https://github.com/jlguenego/node-expose-sspi/blob/d0f69f6/src/SSO.ts#L9)*
 
 ___
 
@@ -30,7 +39,7 @@ ___
 
 • **domain**? : *string*
 
-*Defined in [src/SSO.ts:8](https://github.com/jlguenego/node-expose-sspi/blob/41d66b9/src/SSO.ts#L8)*
+*Defined in [src/SSO.ts:10](https://github.com/jlguenego/node-expose-sspi/blob/d0f69f6/src/SSO.ts#L10)*
 
 ___
 
@@ -38,7 +47,7 @@ ___
 
 • **groups**? : *string[]*
 
-*Defined in [src/SSO.ts:9](https://github.com/jlguenego/node-expose-sspi/blob/41d66b9/src/SSO.ts#L9)*
+*Defined in [src/SSO.ts:11](https://github.com/jlguenego/node-expose-sspi/blob/d0f69f6/src/SSO.ts#L11)*
 
 ___
 
@@ -46,7 +55,7 @@ ___
 
 • **name**? : *string*
 
-*Defined in [src/SSO.ts:5](https://github.com/jlguenego/node-expose-sspi/blob/41d66b9/src/SSO.ts#L5)*
+*Defined in [src/SSO.ts:7](https://github.com/jlguenego/node-expose-sspi/blob/d0f69f6/src/SSO.ts#L7)*
 
 ___
 
@@ -54,4 +63,4 @@ ___
 
 • **sid**? : *string*
 
-*Defined in [src/SSO.ts:6](https://github.com/jlguenego/node-expose-sspi/blob/41d66b9/src/SSO.ts#L6)*
+*Defined in [src/SSO.ts:8](https://github.com/jlguenego/node-expose-sspi/blob/d0f69f6/src/SSO.ts#L8)*
