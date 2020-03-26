@@ -1,4 +1,5 @@
-const { sspi } = require('node-expose-sspi');
+const { sspi, sso } = require('node-expose-sspi');
+const os = require('os');
 const assert = require('assert').strict;
 
 describe('SSPI Unit Test', function() {
@@ -21,13 +22,16 @@ describe('SSPI Unit Test', function() {
 
   const acquireCredentialsHandleClientInput = {
     packageName: 'Negotiate',
-    authData: {
-      domain: 'CHOUCHOU',
-      user: 'whatever',
-      password: 'something',
-    },
     credentialUse: 'SECPKG_CRED_OUTBOUND',
   };
+
+  if (sso.isOnDomain()) {
+    acquireCredentialsHandleClientInput.authData = {
+      domain: os.hostname().toUpperCase(),
+      user: 'whatever',
+      password: 'guess',
+    };
+  }
 
   it('should test AcquireCredentialsHandle for client', function() {
     const clientCred = sspi.AcquireCredentialsHandle(
@@ -155,10 +159,12 @@ describe('SSPI Unit Test', function() {
 
   it('should test GetUserName', function() {
     const username2 = sspi.GetUserName();
-    // mylogin is not Guest.
-    assert(username2 !== username);
-    // const displayName = sspi.GetUserNameEx('NameDisplay');
-    // assert(displayName);
+    // on Domain, username2='Guest'
+    if (sso.isOnDomain()) {
+      assert(username2 !== username);
+    } else {
+      assert(username2 === username);
+    }
   });
 
   it('should test QueryCredentialsAttributes', function() {
