@@ -6,12 +6,5 @@ if (os.platform() !== 'win32') {
   );
 }
 
-import { sspi, adsi, sysinfo } from './lib/api';
-import { sso } from './src/index';
-
-export {
-  sspi,
-  adsi,
-  sysinfo,
-  sso,
-};
+export * from './lib/api';
+export { sso } from './src/index';

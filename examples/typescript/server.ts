@@ -1,6 +1,5 @@
 import express = require('express');
 import { sso } from 'node-expose-sspi';
-import { config } from '../../src/misc';
 
 const app = express();
 
