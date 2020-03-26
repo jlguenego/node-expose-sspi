@@ -4,13 +4,14 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "node-expose-sspi": "0.0.21"
+    "node-expose-sspi": "0.0.21",
+    "nodemon": "^2.0.2"
   }
 }
