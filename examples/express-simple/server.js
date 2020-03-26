@@ -3,11 +3,12 @@ const { sso } = require('../..');
 
 sso.config.debug = false;
 
-const app = express();
+
 
 (async () => {
   await sso.init();
 
+  const app = express();
   app.use(sso.auth());
 
   app.use((req, res, next) => {
