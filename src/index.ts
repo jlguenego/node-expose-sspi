@@ -1,6 +1,6 @@
 import { auth } from './auth';
 import { connect } from './connect';
-import { getDefaultDomain } from './getDefaultDomain';
+import { getDefaultDomain } from './domain';
 import { config, hexDump } from './misc';
 import { SSO } from './SSO';
 import './express';
