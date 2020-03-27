@@ -67,11 +67,6 @@ Then go on your `fifi` Chrome, and run `http://spooky:3000` or `http://spooky.jl
 
 The SSO authentication should be in Kerberos. If you set in the `server.js` file
 
-```
-sso.config.debug = true;
-```
-You should see some logs about the token exchanged and the protocol name used (Kerberos).
-
 ## Author
 
 Jean-Louis GUENEGO <jlguenego@gmail.com> (http://jlg-consulting.com/)

@@ -37,8 +37,6 @@ Make an express web server by doing the `server.js` file:
 const express = require('express');
 const { sso } = require('node-expose-sspi');
 
-sso.config.debug = false;
-
 const app = express();
 app.use(sso.auth());
 
@@ -223,6 +221,8 @@ npm run test
 ```
 
 All tests are done with `mocha`.
+
+The module [debug](https://github.com/visionmedia/debug) is used for printing some debug info.
 
 ## Angular example
 

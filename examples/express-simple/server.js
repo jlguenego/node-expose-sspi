@@ -1,8 +1,6 @@
 const express = require('express');
 const { sso } = require('node-expose-sspi');
 
-sso.config.debug = false;
-
 const app = express();
 app.use(sso.auth());
 

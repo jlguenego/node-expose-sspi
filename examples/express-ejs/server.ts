@@ -4,8 +4,6 @@ import session = require("express-session");
 import { sso, UserCredential } from "node-expose-sspi";
 import serveIndex = require("serve-index");
 
-sso.config.debug = true;
-
 const app = express();
 
 app.set("view engine", "ejs");
