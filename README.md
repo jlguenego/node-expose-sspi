@@ -248,7 +248,16 @@ Any idea of new features ? Please tell me and raise an issue. :blush:
 
 - update example Angular and React for 0.1.x versions
 - write a vuejs example
-- write a fastifiy/koa example
+- write a fastifiy/restify/nestjs example
+- write a medium article
+- publish on Facebook
+- Reddit
+- Funding
+- Integrate with passport?
+- Test with 10000 users.
+- Bug of reloading multiple times.
+- Filter groups options.
+- Look at https://github.com/SamDecrock/node-http-ntlm
 
 ## Thanks
 
