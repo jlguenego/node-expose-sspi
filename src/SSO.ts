@@ -1,7 +1,6 @@
 import { trace } from './misc';
 import { sspi, CtxtHandle } from '../lib/api';
 import { getUser, ADUser } from './userdb';
-import { sso } from '.';
 
 export interface User {
   name?: string;
@@ -84,5 +83,11 @@ export class SSO {
       this.owner.sid = o.sid;
       this.owner.domain = o.domain;
     } catch (e) {}
+  }
+
+  getJSON() {
+    const json = {...this};
+    delete json.serverContextHandle;
+    return json;
   }
 }

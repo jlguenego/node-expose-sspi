@@ -95,8 +95,9 @@ export function auth(): RequestHandler {
           'Negotiate ' + encode(serverSecurityContext.SecBufferDesc.buffers[0])
         );
 
-        req.sso = new SSO(serverContextHandle, method);
-        await req.sso.load();
+        const sso = new SSO(serverContextHandle, method);
+        await sso.load();
+        req.sso = sso.getJSON();
         sspi.DeleteSecurityContext(serverContextHandle);
         serverContextHandle = undefined;
       }

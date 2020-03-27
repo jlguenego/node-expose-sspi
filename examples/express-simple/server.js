@@ -3,17 +3,13 @@ const { sso } = require('node-expose-sspi');
 
 sso.config.debug = false;
 
-(async () => {
-  await sso.init();
+const app = express();
+app.use(sso.auth());
 
-  const app = express();
-  app.use(sso.auth());
-
-  app.use((req, res, next) => {
-    res.json({
-      sso: req.sso,
-    });
+app.use((req, res, next) => {
+  res.json({
+    sso: req.sso,
   });
+});
 
-  app.listen(3000, () => console.log('Server started on port 3000'));
-})();
+app.listen(3000, () => console.log('Server started on port 3000'));
