@@ -200,6 +200,10 @@ npm start
 
 Open a Google Chrome web browser and go to the requested URL (for instance `http://localhost:3000` for `examples\express-simple`).
 
+### Reverse proxy example
+
+See the [README](./examples/reverse-proxy/README.md).
+
 ## Development
 
 As a prerequisites, you need node-gyp and a C++ toolchain installed on your environment.
