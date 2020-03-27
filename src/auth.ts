@@ -1,10 +1,13 @@
 import createError from 'http-errors';
 import { decode, encode } from 'base64-arraybuffer';
-import { hexDump, trace } from './misc';
+import { hexDump } from './misc';
 import { sspi, SecurityContext, AcceptSecurityContextInput } from '../lib/api';
 import { RequestHandler } from 'express';
 import { SSO } from './SSO';
 import { init } from './userdb';
+import dbg from 'debug';
+
+const debug = dbg('node-expose-sspi:auth');
 
 /**
  * Tries to get SSO information from browser. If success, the SSO info
@@ -58,7 +61,7 @@ export function auth(): RequestHandler {
 
       const token = authorization.substring('Negotiate '.length);
       const method = token.startsWith('YII') ? 'Kerberos' : 'NTLM';
-      trace('SPNEGO token: ' + method);
+      debug('SPNEGO token: ' + method);
       const buffer = decode(token);
 
       const input: AcceptSecurityContextInput = {
@@ -76,7 +79,7 @@ export function auth(): RequestHandler {
       const serverSecurityContext = sspi.AcceptSecurityContext(input);
       serverContextHandle = serverSecurityContext.contextHandle;
 
-      trace(hexDump(serverSecurityContext.SecBufferDesc.buffers[0]));
+      debug(hexDump(serverSecurityContext.SecBufferDesc.buffers[0]));
 
       if (serverSecurityContext.SECURITY_STATUS === 'SEC_I_CONTINUE_NEEDED') {
         return res

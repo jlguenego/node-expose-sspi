@@ -1,4 +1,4 @@
-import { hexDump, trace } from './misc';
+import { hexDump } from './misc';
 import {
   sspi,
   UserCredential,
@@ -7,6 +7,9 @@ import {
   AcceptSecurityContextInput,
 } from '../lib/api';
 import { SSO } from './SSO';
+import dbg from 'debug';
+
+const debug = dbg('node-expose-sspi:connect');
 
 /**
  * Retrieves SSO information from an explicit credential (login/password and domain).
@@ -47,7 +50,7 @@ export async function connect(userCredential: UserCredential): Promise<SSO> {
     };
     let i = 0;
     while (true) {
-      trace('i: ', i);
+      debug('i: ', i);
       i++;
 
       if (serverSecurityContext) {
@@ -55,8 +58,8 @@ export async function connect(userCredential: UserCredential): Promise<SSO> {
         clientInput.contextHandle = clientSecurityContext.contextHandle;
       }
       clientSecurityContext = sspi.InitializeSecurityContext(clientInput);
-      trace('clientSecurityContext: ', clientSecurityContext);
-      trace(hexDump(clientSecurityContext.SecBufferDesc.buffers[0]));
+      debug('clientSecurityContext: ', clientSecurityContext);
+      debug(hexDump(clientSecurityContext.SecBufferDesc.buffers[0]));
       if (
         clientSecurityContext.SECURITY_STATUS !== 'SEC_I_CONTINUE_NEEDED' &&
         clientSecurityContext.SECURITY_STATUS !== 'SEC_E_OK'
@@ -70,7 +73,7 @@ export async function connect(userCredential: UserCredential): Promise<SSO> {
       }
 
       serverSecurityContext = sspi.AcceptSecurityContext(serverInput);
-      trace('serverSecurityContext: ', serverSecurityContext);
+      debug('serverSecurityContext: ', serverSecurityContext);
       if (
         serverSecurityContext.SECURITY_STATUS !== 'SEC_I_CONTINUE_NEEDED' &&
         serverSecurityContext.SECURITY_STATUS !== 'SEC_E_OK'
@@ -81,12 +84,12 @@ export async function connect(userCredential: UserCredential): Promise<SSO> {
         throw errorMsg;
       }
 
-      trace(hexDump(serverSecurityContext.SecBufferDesc.buffers[0]));
+      debug(hexDump(serverSecurityContext.SecBufferDesc.buffers[0]));
       if (serverSecurityContext.SECURITY_STATUS !== 'SEC_E_OK') {
         continue;
       }
       // we have the security context !!!
-      trace('We have the security context !!!');
+      debug('We have the security context !!!');
       break;
     }
 

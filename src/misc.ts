@@ -1,13 +1,6 @@
-export const trace = (...args: any[]) => {
-  if (config.debug) {
-    console.log(...args);
-    return;
-  }
-};
+import dbg from 'debug';
 
-export const config = {
-  debug: false,
-};
+const debug = dbg('node-expose-sspi:misc');
 
 function isPrintable(keycode: number) {
   const valid =
@@ -28,7 +21,7 @@ function isPrintable(keycode: number) {
  */
 export function hexDump(buffer: ArrayBuffer): string {
   const dataView = new DataView(buffer, 0);
-  trace('buffer length', buffer.byteLength);
+  debug('buffer length', buffer.byteLength);
   let result = '';
   let line = '';
   for (let i = 0; i < buffer.byteLength; i++) {

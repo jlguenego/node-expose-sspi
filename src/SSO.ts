@@ -1,6 +1,8 @@
-import { trace } from './misc';
 import { sspi, CtxtHandle } from '../lib/api';
 import { getUser, ADUser } from './userdb';
+import dbg from 'debug';
+
+const debug = dbg('node-expose-sspi:SSO');
 
 export interface User {
   name?: string;
@@ -32,9 +34,9 @@ export class SSO {
 
     // impersonate to retrieve the userToken.
     sspi.ImpersonateSecurityContext(this.serverContextHandle);
-    trace('impersonate security context ok');
+    debug('impersonate security context ok');
     const userToken = sspi.OpenThreadToken();
-    trace('userToken: ', userToken);
+    debug('userToken: ', userToken);
     try {
       this.user.displayName = sspi.GetUserNameEx('NameDisplay');
     } catch (e) {
@@ -43,7 +45,7 @@ export class SSO {
     sspi.RevertSecurityContext(this.serverContextHandle);
 
     const groups = sspi.GetTokenInformation(userToken, 'TokenGroups');
-    trace('groups: ', groups);
+    debug('groups: ', groups);
     this.user.groups = groups;
 
     // free the userToken
@@ -56,12 +58,12 @@ export class SSO {
       const adUser = await getUser(`(sAMAccountName=${name})`);
       this.user.adUser = adUser;
     } catch (e) {
-      trace('cannot getUser from AD. e: ', e);
+      debug('cannot getUser from AD. e: ', e);
     }
 
     // owner info.
     const owner = sspi.GetUserName();
-    trace('owner: ', owner);
+    debug('owner: ', owner);
     this.owner = { name: owner };
     try {
       this.owner.displayName = sspi.GetUserNameEx('NameDisplay');
@@ -74,7 +76,7 @@ export class SSO {
       'TOKEN_QUERY_SOURCE',
     ]);
     const ownerGroups = sspi.GetTokenInformation(processToken, 'TokenGroups');
-    trace('ownerGroups: ', ownerGroups);
+    debug('ownerGroups: ', ownerGroups);
     this.owner.groups = ownerGroups;
     sspi.CloseHandle(processToken);
 
@@ -86,7 +88,7 @@ export class SSO {
   }
 
   getJSON() {
-    const json = {...this};
+    const json = { ...this };
     delete json.serverContextHandle;
     return json;
   }

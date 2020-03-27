@@ -1,7 +1,9 @@
-import { trace } from './misc';
 import { adsi } from '../lib/api';
 import { IDirectorySearch } from '../lib/adsi';
 import { isOnDomain } from './domain';
+import dbg from 'debug';
+
+const debug = dbg('node-expose-sspi:userdb');
 
 interface Database {
   users: ADUsers;
@@ -25,11 +27,11 @@ export async function init() {
     return;
   }
   try {
-    trace('init');
+    debug('init');
     // request all accounts from domain
     database.users = await getUsers();
   } catch (e) {
-    trace('Cannot get users from AD. e: ', e);
+    debug('Cannot get users from AD. e: ', e);
   }
 }
 
