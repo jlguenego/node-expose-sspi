@@ -57,8 +57,7 @@ node server.js
 
 Open a Google Chrome web browser and go to `http://localhost:3000`.
 
-You should see the JSON result with user, owner and used method (NTLM or Kerberos).
-
+You should see the JSON result with the browser user authentication info and the authentication method used (NTLM or Kerberos).
 ```
 {
   "sso": {
