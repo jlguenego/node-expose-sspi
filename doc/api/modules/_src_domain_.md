@@ -15,7 +15,7 @@
 
 ▸ **getDefaultDomain**(): *string*
 
-*Defined in [src/domain.ts:8](https://github.com/jlguenego/node-expose-sspi/blob/d0f69f6/src/domain.ts#L8)*
+*Defined in [src/domain.ts:8](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/domain.ts#L8)*
 
 Get the domain (Microsoft domain) or hostname (workgroup) of this machine.
 
@@ -29,7 +29,7 @@ ___
 
 ▸ **isOnDomain**(): *boolean*
 
-*Defined in [src/domain.ts:20](https://github.com/jlguenego/node-expose-sspi/blob/d0f69f6/src/domain.ts#L20)*
+*Defined in [src/domain.ts:20](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/domain.ts#L20)*
 
 Want to know if your computer has joined a Microsoft Windows domain ?
 

@@ -20,6 +20,7 @@
 
 ### Methods
 
+* [getJSON](_src_sso_.sso.md#getjson)
 * [load](_src_sso_.sso.md#load)
 
 ## Constructors
@@ -28,7 +29,7 @@
 
 \+ **new SSO**(`serverContextHandle`: [CtxtHandle](../interfaces/_lib_sspi_d_.ctxthandle.md), `method?`: [SSOMethod](../modules/_src_sso_.md#ssomethod)): *[SSO](_src_sso_.sso.md)*
 
-*Defined in [src/SSO.ts:19](https://github.com/jlguenego/node-expose-sspi/blob/d0f69f6/src/SSO.ts#L19)*
+*Defined in [src/SSO.ts:18](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/SSO.ts#L18)*
 
 **Parameters:**
 
@@ -45,7 +46,7 @@ Name | Type |
 
 • **method**? : *[SSOMethod](../modules/_src_sso_.md#ssomethod)*
 
-*Defined in [src/SSO.ts:23](https://github.com/jlguenego/node-expose-sspi/blob/d0f69f6/src/SSO.ts#L23)*
+*Defined in [src/SSO.ts:22](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/SSO.ts#L22)*
 
 ___
 
@@ -53,7 +54,7 @@ ___
 
 • **owner**: *[User](../interfaces/_src_sso_.user.md)*
 
-*Defined in [src/SSO.ts:19](https://github.com/jlguenego/node-expose-sspi/blob/d0f69f6/src/SSO.ts#L19)*
+*Defined in [src/SSO.ts:18](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/SSO.ts#L18)*
 
 ___
 
@@ -61,14 +62,24 @@ ___
 
 • **user**: *[User](../interfaces/_src_sso_.user.md)*
 
-*Defined in [src/SSO.ts:18](https://github.com/jlguenego/node-expose-sspi/blob/d0f69f6/src/SSO.ts#L18)*
+*Defined in [src/SSO.ts:17](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/SSO.ts#L17)*
 
 ## Methods
+
+###  getJSON
+
+▸ **getJSON**(): *this*
+
+*Defined in [src/SSO.ts:88](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/SSO.ts#L88)*
+
+**Returns:** *this*
+
+___
 
 ###  load
 
 ▸ **load**(): *Promise‹void›*
 
-*Defined in [src/SSO.ts:26](https://github.com/jlguenego/node-expose-sspi/blob/d0f69f6/src/SSO.ts#L26)*
+*Defined in [src/SSO.ts:25](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/SSO.ts#L25)*
 
 **Returns:** *Promise‹void›*

@@ -24,7 +24,7 @@
 
 • **cn**? : *string*
 
-*Defined in [src/userdb.ts:13](https://github.com/jlguenego/node-expose-sspi/blob/d0f69f6/src/userdb.ts#L13)*
+*Defined in [src/userdb.ts:13](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/userdb.ts#L13)*
 
 ___
 
@@ -32,7 +32,7 @@ ___
 
 • **givenName**? : *string*
 
-*Defined in [src/userdb.ts:12](https://github.com/jlguenego/node-expose-sspi/blob/d0f69f6/src/userdb.ts#L12)*
+*Defined in [src/userdb.ts:12](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/userdb.ts#L12)*
 
 ___
 
@@ -40,4 +40,4 @@ ___
 
 • **sn**? : *string*
 
-*Defined in [src/userdb.ts:11](https://github.com/jlguenego/node-expose-sspi/blob/d0f69f6/src/userdb.ts#L11)*
+*Defined in [src/userdb.ts:11](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/userdb.ts#L11)*

@@ -27,7 +27,7 @@
 
 • **S_ADS_NOMORE_COLUMNS**: *[HRESULT](../modules/_lib_adsi_d_.md#hresult)*
 
-*Defined in [lib/adsi.d.ts:38](https://github.com/jlguenego/node-expose-sspi/blob/d0f69f6/lib/adsi.d.ts#L38)*
+*Defined in [lib/adsi.d.ts:38](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/lib/adsi.d.ts#L38)*
 
 ___
 
@@ -35,7 +35,7 @@ ___
 
 • **S_ADS_NOMORE_ROWS**: *[HRESULT](../modules/_lib_adsi_d_.md#hresult)*
 
-*Defined in [lib/adsi.d.ts:37](https://github.com/jlguenego/node-expose-sspi/blob/d0f69f6/lib/adsi.d.ts#L37)*
+*Defined in [lib/adsi.d.ts:37](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/lib/adsi.d.ts#L37)*
 
 ## Methods
 
@@ -43,7 +43,7 @@ ___
 
 ▸ **ADsGestObject**(`bindingUri`: string): *Promise‹[IADs](_lib_adsi_d_.iads.md)›*
 
-*Defined in [lib/adsi.d.ts:32](https://github.com/jlguenego/node-expose-sspi/blob/d0f69f6/lib/adsi.d.ts#L32)*
+*Defined in [lib/adsi.d.ts:32](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/lib/adsi.d.ts#L32)*
 
 **Parameters:**
 
@@ -59,7 +59,7 @@ ___
 
 ▸ **ADsOpenObject**<**T**>(`input`: object): *Promise‹T›*
 
-*Defined in [lib/adsi.d.ts:33](https://github.com/jlguenego/node-expose-sspi/blob/d0f69f6/lib/adsi.d.ts#L33)*
+*Defined in [lib/adsi.d.ts:33](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/lib/adsi.d.ts#L33)*
 
 **Type parameters:**
 
@@ -82,7 +82,7 @@ ___
 
 ▸ **CoInitialize**(): *void*
 
-*Defined in [lib/adsi.d.ts:29](https://github.com/jlguenego/node-expose-sspi/blob/d0f69f6/lib/adsi.d.ts#L29)*
+*Defined in [lib/adsi.d.ts:29](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/lib/adsi.d.ts#L29)*
 
 **Returns:** *void*
 
@@ -92,7 +92,7 @@ ___
 
 ▸ **CoInitializeEx**(`flags`: [CoInitFlag](../modules/_lib_flags_coinitflag_d_.md#coinitflag)[]): *void*
 
-*Defined in [lib/adsi.d.ts:30](https://github.com/jlguenego/node-expose-sspi/blob/d0f69f6/lib/adsi.d.ts#L30)*
+*Defined in [lib/adsi.d.ts:30](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/lib/adsi.d.ts#L30)*
 
 **Parameters:**
 
@@ -108,6 +108,6 @@ ___
 
 ▸ **CoUninitialize**(): *void*
 
-*Defined in [lib/adsi.d.ts:31](https://github.com/jlguenego/node-expose-sspi/blob/d0f69f6/lib/adsi.d.ts#L31)*
+*Defined in [lib/adsi.d.ts:31](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/lib/adsi.d.ts#L31)*
 
 **Returns:** *void*

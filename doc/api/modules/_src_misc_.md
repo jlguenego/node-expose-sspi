@@ -19,7 +19,7 @@
 
 ▸ **hexDump**(`buffer`: ArrayBuffer): *string*
 
-*Defined in [src/misc.ts:29](https://github.com/jlguenego/node-expose-sspi/blob/d0f69f6/src/misc.ts#L29)*
+*Defined in [src/misc.ts:29](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/misc.ts#L29)*
 
 Gives a string representation of binary data.
 
@@ -39,7 +39,7 @@ ___
 
 ▸ **trace**(...`args`: any[]): *void*
 
-*Defined in [src/misc.ts:1](https://github.com/jlguenego/node-expose-sspi/blob/d0f69f6/src/misc.ts#L1)*
+*Defined in [src/misc.ts:1](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/misc.ts#L1)*
 
 **Parameters:**
 
@@ -55,10 +55,10 @@ Name | Type |
 
 ### ▪ **config**: *object*
 
-*Defined in [src/misc.ts:8](https://github.com/jlguenego/node-expose-sspi/blob/d0f69f6/src/misc.ts#L8)*
+*Defined in [src/misc.ts:8](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/misc.ts#L8)*
 
 ###  debug
 
 • **debug**: *boolean* = false
 
-*Defined in [src/misc.ts:9](https://github.com/jlguenego/node-expose-sspi/blob/d0f69f6/src/misc.ts#L9)*
+*Defined in [src/misc.ts:9](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/misc.ts#L9)*

@@ -25,7 +25,7 @@
 
 ▸ **getDistinguishedName**(): *Promise‹string›*
 
-*Defined in [src/userdb.ts:108](https://github.com/jlguenego/node-expose-sspi/blob/d0f69f6/src/userdb.ts#L108)*
+*Defined in [src/userdb.ts:108](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/userdb.ts#L108)*
 
 **Returns:** *Promise‹string›*
 
@@ -35,7 +35,7 @@ ___
 
 ▸ **getUser**(`ldapFilter`: string): *Promise‹[ADUser](../interfaces/_src_userdb_.aduser.md)›*
 
-*Defined in [src/userdb.ts:36](https://github.com/jlguenego/node-expose-sspi/blob/d0f69f6/src/userdb.ts#L36)*
+*Defined in [src/userdb.ts:36](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/userdb.ts#L36)*
 
 **Parameters:**
 
@@ -51,7 +51,7 @@ ___
 
 ▸ **getUsers**(): *Promise‹ADUsers›*
 
-*Defined in [src/userdb.ts:72](https://github.com/jlguenego/node-expose-sspi/blob/d0f69f6/src/userdb.ts#L72)*
+*Defined in [src/userdb.ts:72](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/userdb.ts#L72)*
 
 **Returns:** *Promise‹ADUsers›*
 
@@ -61,7 +61,7 @@ ___
 
 ▸ **init**(): *Promise‹void›*
 
-*Defined in [src/userdb.ts:23](https://github.com/jlguenego/node-expose-sspi/blob/d0f69f6/src/userdb.ts#L23)*
+*Defined in [src/userdb.ts:23](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/userdb.ts#L23)*
 
 **Returns:** *Promise‹void›*
 
@@ -71,10 +71,10 @@ ___
 
 ### ▪ **database**: *object*
 
-*Defined in [src/userdb.ts:19](https://github.com/jlguenego/node-expose-sspi/blob/d0f69f6/src/userdb.ts#L19)*
+*Defined in [src/userdb.ts:19](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/userdb.ts#L19)*
 
 ###  users
 
 • **users**: *undefined[]* = []
 
-*Defined in [src/userdb.ts:20](https://github.com/jlguenego/node-expose-sspi/blob/d0f69f6/src/userdb.ts#L20)*
+*Defined in [src/userdb.ts:20](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/userdb.ts#L20)*
