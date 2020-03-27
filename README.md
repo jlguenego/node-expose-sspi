@@ -248,6 +248,13 @@ Any idea of new features ? Please tell me and raise an issue. :blush:
 
 - update example Angular and React for 0.1.x versions
 
+## Thanks
+
+Thanks to all the people who wrotes the npm modules required by this project.
+
+And a very special thanks to the authors of the [node-sspi](https://github.com/abbr/NodeSSPI) project that helped me writing this one. I considere node-sspi to be the father of node-expose-sspi.
+
+
 ## Author
 
 Jean-Louis GUENEGO <jlguenego@gmail.com> (http://jlg-consulting.com/)
