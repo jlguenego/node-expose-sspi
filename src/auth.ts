@@ -44,13 +44,13 @@ export function auth(): RequestHandler {
     try {
       checkCredentials();
 
-      const authorization = req.get('authorization');
+      const authorization = req.headers.authorization;
       if (!authorization) {
+        debug('no authorization');
         serverContextHandle = undefined;
-        return res
-          .status(401)
-          .set('WWW-Authenticate', 'Negotiate')
-          .end();
+        res.statusCode = 401;
+        res.setHeader('WWW-Authenticate', 'Negotiate');
+        return res.end();
       }
 
       if (!authorization.startsWith('Negotiate ')) {
@@ -76,24 +76,25 @@ export function auth(): RequestHandler {
       if (serverContextHandle) {
         input.contextHandle = serverContextHandle;
       }
+      debug('input', input);
+      debug(hexDump(buffer));
       const serverSecurityContext = sspi.AcceptSecurityContext(input);
+      debug('serverSecurityContext', serverSecurityContext);
       serverContextHandle = serverSecurityContext.contextHandle;
 
       debug(hexDump(serverSecurityContext.SecBufferDesc.buffers[0]));
 
       if (serverSecurityContext.SECURITY_STATUS === 'SEC_I_CONTINUE_NEEDED') {
-        return res
-          .status(401)
-          .set(
-            'WWW-Authenticate',
-            'Negotiate ' +
-              encode(serverSecurityContext.SecBufferDesc.buffers[0])
-          )
-          .end();
+        res.statusCode = 401;
+        res.setHeader(
+          'WWW-Authenticate',
+          'Negotiate ' + encode(serverSecurityContext.SecBufferDesc.buffers[0])
+        );
+        return res.end();
       }
 
       if (serverSecurityContext.SECURITY_STATUS === 'SEC_E_OK') {
-        res.set(
+        res.setHeader(
           'WWW-Authenticate',
           'Negotiate ' + encode(serverSecurityContext.SecBufferDesc.buffers[0])
         );
