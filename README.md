@@ -3,7 +3,7 @@
 Expose the Microsoft Windows SSPI (SSP Interface) to [Node.js®](https://nodejs.org/).
 
 :smirk: Use cases:
-- **NTLM** and **Kerberos** SSO authentication.
+- **NTLM** and **Kerberos** SSO authentication inside a private organization network, for instance an ERP in private company.
 - **Active Directory** access to users for detailed info.
 
 
