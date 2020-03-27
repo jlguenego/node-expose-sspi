@@ -220,7 +220,7 @@ npm run build
 npm run test
 ```
 
-All tests are done with `mocha`.
+All tests are done with [mocha](https://github.com/mochajs/mocha).
 
 The module [debug](https://github.com/visionmedia/debug) is used for printing some debug info.
 
