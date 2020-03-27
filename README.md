@@ -200,9 +200,9 @@ npm start
 
 Open a Google Chrome web browser and go to the requested URL (for instance `http://localhost:3000` for `examples\express-simple`).
 
-### Reverse proxy example
-
-See the [README](./examples/reverse-proxy/README.md).
+Examples :
+- [Koa simple](./examples/koa-simple/README.md)
+- [Reverse proxy example](./examples/reverse-proxy/README.md).
 
 ## Development
 
