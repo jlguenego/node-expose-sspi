@@ -43,10 +43,12 @@
   "gypfile": false,
   "dependencies": {
     "base64-arraybuffer": "^0.2.0",
+    "debug": "^4.1.1",
     "http-errors": "^1.7.3",
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {
+    "@types/debug": "^4.1.5",
     "@types/express": "^4.17.2",
     "@types/express-session": "^1.15.16",
     "@types/http-errors": "^1.6.3",
