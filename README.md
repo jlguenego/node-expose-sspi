@@ -198,7 +198,7 @@ npm i
 npm start
 ```
 
-Open a Google Chrome web browser and go to the requested URL (`http://localhost:3000` for `examples\express-simple`).
+Open a Google Chrome web browser and go to the requested URL (for instance `http://localhost:3000` for `examples\express-simple`).
 
 ## Development
 
