@@ -59,6 +59,59 @@ Open a Google Chrome web browser and go to `http://localhost:3000`.
 
 You should see the JSON result with user, owner and used method (NTLM or Kerberos).
 
+```json
+{
+  "sso": {
+    "method": "NTLM",
+    "user": {
+      "domain": "JLG",
+      "name": "jlouis",
+      "displayName": "Jean-Louis P. GUÉNÉGO",
+      "groups": [
+        "JLG\\Domain Users",
+        "\\Everyone",
+// ...
+      ],
+      "sid": "S-1-5-21-2022955591-1730574677-3210790899-1103",
+      "adUser": {
+        "objectClass": ["top", "person", "organizationalPerson", "user"],
+        "cn": ["Jean-Louis P. GUÉNÉGO"],
+        "sn": ["GUÉNÉGO"],
+        "c": ["FR"],
+        "l": ["TORCY"],
+        "title": ["IT Consultant"],
+        "description": ["My microsoft domain account for demonstrating SSO"],
+        "postalCode": ["77200"],
+        "physicalDeliveryOfficeName": ["Office of my lovely wife Suzana"],
+        "telephoneNumber": ["+33612131415"],
+        "givenName": ["Jean-Louis"],
+        "initials": ["P"],
+        "distinguishedName": [
+          "CN=Jean-Louis P. GUÉNÉGO,OU=JLG_LOCAL,DC=jlg,DC=local"
+        ],
+        "instanceType": [4],
+        "whenCreated": ["3/19/2020 10:58:19 AM"],
+        "whenChanged": ["3/19/2020 5:40:06 PM"],
+        "displayName": ["Jean-Louis P. GUÉNÉGO"],
+// ...
+        "co": ["France"],
+        "company": ["JLG Consulting"],
+        "streetAddress": ["2 allée du Commandant Charcot"],
+        "wWWHomePage": ["www.jlg-consulting.com"],
+// ...
+        "sAMAccountName": ["jlouis"],
+// ...
+        "mail": ["jlguenego@gmail.com"],
+        "ADsPath": [
+          "LDAP://CN=Jean-Louis P. GUÉNÉGO,OU=JLG_LOCAL,DC=jlg,DC=local"
+        ]
+      }
+    },
+// ...
+  }
+}
+```
+
 Note: To read JSON file on Chrome, you should use the [JSON Formatter Chrome Extension](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa).
 
 ### SSO Authentication client use case
