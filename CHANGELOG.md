@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.2](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.1...v0.1.2) (2020-03-27)
+
+
+### Bug Fixes
+
+* error HTTP 431 - header too large ([bfd7b54](https://github.com/jlguenego/node-expose-sspi/commit/bfd7b54242da8a9e8b963ddbd9d915aa54db56e9))
+* examples debugged ([d920de0](https://github.com/jlguenego/node-expose-sspi/commit/d920de09698ac699dae6f673bad48623c65a5a93))
+* remove serverContextHandle ([496b732](https://github.com/jlguenego/node-expose-sspi/commit/496b732148ad43edb0288f2c8469ef84a4700177))
+* update api in examples ([0f841e7](https://github.com/jlguenego/node-expose-sspi/commit/0f841e7f912c62ab6de7e4a6bdcf1dfa46993f64))
+
 ### [0.1.1](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.0...v0.1.1) (2020-03-26)
 
 
