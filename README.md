@@ -59,7 +59,7 @@ Open a Google Chrome web browser and go to `http://localhost:3000`.
 
 You should see the JSON result with user, owner and used method (NTLM or Kerberos).
 
-```json
+```
 {
   "sso": {
     "method": "NTLM",
