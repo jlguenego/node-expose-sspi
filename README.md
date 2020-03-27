@@ -247,6 +247,8 @@ TODO
 Any idea of new features ? Please tell me and raise an issue. :blush:
 
 - update example Angular and React for 0.1.x versions
+- write a vuejs example
+- write a fastifiy/koa example
 
 ## Thanks
 
