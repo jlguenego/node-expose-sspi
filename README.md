@@ -111,23 +111,6 @@ You should see the JSON result with the browser user authentication info and the
 
 Note: To read JSON file on Chrome, you should use the [JSON Formatter Chrome Extension](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa).
 
-### SSO Authentication client use case
-
-[See the example here.](./doc/use-case/client.md)
-
-### SSO Authentication reverse proxy use case
-
-```
-git clone https://github.com/jlguenego/node-expose-sspi.git
-cd node-expose-sspi
-cd examples
-cd reverse-proxy
-npm i
-npm start
-```
-
-The reverse proxy performs an authentication and gives the authentication info to the target server in the `x-sso` HTTP header.
-
 ## Browsers
 
 ### Chrome
@@ -152,21 +135,14 @@ Edge does not require any configuration. But the browser ask the credentials to 
 
 ## API
 
-[Access to the detailed API document](./doc/api/README.md). This has been generated with [typedoc](https://github.com/TypeStrong/typedoc).
+The API is automatically documented with [typedoc](https://github.com/TypeStrong/typedoc).
 
-To see the API in action, you should read the `sso` source code object. `auth` and `connect` functions are two instructive examples of how to use SSPI with NodeJS. Also the `userdb.ts` file shows some good ADSI code snippets.
 
-There are many parts in this module:
+**[Access to the detailed API document](./doc/api/README.md)**. 
 
-- `sspi` object which exposes the Microsoft SSPI library API. (SSO Authentication)
-- `adsi` object which exposes the Microsoft ADSI library API. (Active Directory access)
-- `sso` object, written in typescript/javascript with the following classes or functions:
-  - `init()`: init by caching the Active Directory user data (only on domain).
-  - `auth()`: express middleware finding the SSO logged user.
-  - `connect({login, password, domain)`: connect with a MS Windows account login/password.
-  - `new SSO(serverContextHandle)`: create a SSO object from a secure context handle.
-  - `getDefaultDomain()`: get the windows domain/hostname where the server started.
-- `sysinfo` object which exposes some environment data.
+Note: you should read all the [sso source code](./src). You will how powerfull the `api.sspi`, and `api.adsi` can bring to you.
+
+You can also read the `mocha` [unit tests](./test) to see small examples.
 
 #### Typescript
 
@@ -193,12 +169,10 @@ git clone https://github.com/jlguenego/node-expose-sspi.git
 npm i
 cd node-expose-sspi
 cd examples
-cd <example-name>
-npm i
-npm start
+cd <***example-name***>
 ```
 
-Open a Google Chrome web browser and go to the requested URL (for instance `http://localhost:3000` for `examples\express-simple`).
+Look also at the `README.md` of the example.
 
 Examples :
 - [Express simple](./examples/express-simple/)
@@ -206,6 +180,8 @@ Examples :
 - [Reverse proxy example](./examples/reverse-proxy/).
 - [Angular SSO example](https://github.com/jlguenego/angular-sso-example)
 - [React SSO example](https://github.com/jlguenego/react-sso-example)
+- [HTTP(S) fetch API with SSO](./doc/use-case/client.md)
+
 
 
 TODO: VueJS example
