@@ -201,8 +201,14 @@ npm start
 Open a Google Chrome web browser and go to the requested URL (for instance `http://localhost:3000` for `examples\express-simple`).
 
 Examples :
-- [Koa simple](./examples/koa-simple/README.md)
-- [Reverse proxy example](./examples/reverse-proxy/README.md).
+- [Express simple](./examples/express-simple/)
+- [Koa simple](./examples/koa-simple/)
+- [Reverse proxy example](./examples/reverse-proxy/).
+- [Angular SSO example](https://github.com/jlguenego/angular-sso-example)
+- [React SSO example](https://github.com/jlguenego/react-sso-example)
+
+
+TODO: VueJS example
 
 ## Development
 
@@ -228,20 +234,6 @@ All tests are done with [mocha](https://github.com/mochajs/mocha).
 
 The module [debug](https://github.com/visionmedia/debug) is used for printing some debug info.
 
-## Angular example
-
-See the Github repository:
-https://github.com/jlguenego/angular-sso-example
-
-## React example
-
-See the Github repository:
-https://github.com/jlguenego/react-sso-example
-
-## Vue example
-
-TODO
-
 ## TODO
 
 Any idea of new features ? Please tell me and raise an issue. :blush:
@@ -257,7 +249,6 @@ Any idea of new features ? Please tell me and raise an issue. :blush:
 - Test with 10000 users.
 - Bug of reloading multiple times.
 - Filter groups options.
-- Look at https://github.com/SamDecrock/node-http-ntlm
 
 ## Thanks
 
