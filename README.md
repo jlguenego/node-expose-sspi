@@ -222,7 +222,6 @@ Any idea of new features ? Please tell me and raise an issue. :blush:
 - Funding
 - Integrate with passport?
 - Test with 10000 users.
-- Bug of reloading multiple times.
 - Filter groups options.
 
 ## Thanks
