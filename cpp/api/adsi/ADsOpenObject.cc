@@ -49,9 +49,7 @@ class ADsOpenObjectWorker : public Napi::AsyncWorker {
 
     HRESULT hr =
         ADsOpenObject(binding, user, password, m_flag, m_riid, &m_pObject);
-    if (FAILED(hr)) {
-      return SetError("ADsOpenObject has failed. " + plf::ad_error_msg(hr));
-    }
+        AD_CHECK_ERROR_ASYNC(hr, "ADsOpenObject");
   }
 
   void OnOK() override {
