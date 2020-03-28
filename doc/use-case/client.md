@@ -64,7 +64,7 @@ Of course, `Jean-Louis GUÉNÉGO` is whatever your windows account is.
 ## The client object
 
 `sso.client.fetch` is a `fetch` API from the node module
-[node-fetch](https://github.com/node-fetch/node-fetch), with the Windows Authentication Integration.
+[node-fetch](https://github.com/node-fetch/node-fetch), with the NTLM and Kerberos Windows Authentication Integration added.
 
 More information on the
 [fetch API on the MDN website](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch).
