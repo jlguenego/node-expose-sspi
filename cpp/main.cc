@@ -47,6 +47,7 @@ Object InitADSI(Env env, Object exports) {
   EXPORT(CoUninitialize);
   EXPORT(ADsGestObject);
   EXPORT(ADsOpenObject);
+  EXPORT(ADsOpenObjectSync);
   E_IADs::Init(env, exports);
   E_IADsContainer::Init(env, exports);
   E_IDispatch::Init(env, exports);

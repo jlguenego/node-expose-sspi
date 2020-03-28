@@ -1,4 +1,4 @@
-import { sspi, sysinfo } from '../lib/api';
+import { sspi, sysinfo, adsi } from '../lib/api';
 
 /**
  * Get the domain (Microsoft domain) or hostname (workgroup) of this machine.
@@ -12,11 +12,23 @@ export function getDefaultDomain(): string {
 }
 
 /**
- * Want to know if your computer has joined a Microsoft Windows domain ? 
+ * Want to know if your computer has joined a Microsoft Windows domain ?
  *
  * @export
  * @returns {boolean} true if this computer joined a domain, false otherwise.
  */
 export function isOnDomain(): boolean {
   return sysinfo.GetComputerNameEx('ComputerNameDnsDomain').length > 0;
+}
+
+export function isActiveDirectoryReachable(): boolean {
+  try {
+    adsi.ADsOpenObjectSync({
+      binding: 'GC:',
+      riid: 'IID_IADsContainer',
+    });
+  } catch (e) {
+    return false;
+  }
+  return true;
 }

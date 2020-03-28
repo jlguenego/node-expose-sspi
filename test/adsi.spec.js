@@ -11,7 +11,7 @@ describe('ADSI Unit Test', function() {
     adsi.CoInitializeEx(['COINIT_MULTITHREADED']);
   });
 
-  if (sso.isOnDomain()) {
+  if (sso.isOnDomain() && sso.isActiveDirectoryReachable()) {
     it('should test ADsOpenObject with global catalog', async function() {
       const gc = await adsi.ADsOpenObject({
         binding: 'GC:',

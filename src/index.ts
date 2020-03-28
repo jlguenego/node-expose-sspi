@@ -1,6 +1,6 @@
 import { auth } from './auth';
 import { connect } from './connect';
-import { getDefaultDomain, isOnDomain } from './domain';
+import { getDefaultDomain, isOnDomain, isActiveDirectoryReachable } from './domain';
 import { hexDump } from './misc';
 import { SSO } from './SSO';
 import './express';
@@ -14,6 +14,7 @@ export const sso = {
   SSO,
   getDefaultDomain,
   isOnDomain,
+  isActiveDirectoryReachable,
   client,
   init,
   database,

@@ -34,6 +34,10 @@ export interface Adsi {
     binding: string;
     riid: RiidFlag;
   }): Promise<T>;
+  ADsOpenObjectSync<T extends IID>(input: {
+    binding: string;
+    riid: RiidFlag;
+  }): T;
   S_ADS_NOMORE_ROWS: HRESULT;
   S_ADS_NOMORE_COLUMNS: HRESULT;
 }
