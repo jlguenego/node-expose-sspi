@@ -22,6 +22,7 @@ export function isOnDomain(): boolean {
 }
 
 export function isActiveDirectoryReachable(): boolean {
+  adsi.CoInitialize();
   try {
     adsi.ADsOpenObjectSync({
       binding: 'GC:',
@@ -30,5 +31,6 @@ export function isActiveDirectoryReachable(): boolean {
   } catch (e) {
     return false;
   }
+  adsi.CoUninitialize();
   return true;
 }
