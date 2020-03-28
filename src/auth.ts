@@ -5,6 +5,7 @@ import { sspi, SecurityContext, AcceptSecurityContextInput } from '../lib/api';
 import { RequestHandler } from 'express';
 import { SSO } from './SSO';
 import { init } from './userdb';
+import { ServerContextHandleManager} from './ServerContextHandleManager';
 import dbg from 'debug';
 
 const debug = dbg('node-expose-sspi:auth');
@@ -35,11 +36,9 @@ export function auth(): RequestHandler {
     }
   };
 
-  // serverContextHandle seems to be useful only for NTLM, not Kerberos.
-  // because Kerberos will not request many times the client to complete the SSO Authentication.
-  let serverContextHandle: SecurityContext;
+  const schManager = new ServerContextHandleManager(10000);
 
-  // returns the middleware.
+  // returns the node middleware.
   return async (req, res, next) => {
     try {
       checkCredentials();
@@ -47,7 +46,7 @@ export function auth(): RequestHandler {
       const authorization = req.headers.authorization;
       if (!authorization) {
         debug('no authorization');
-        serverContextHandle = undefined;
+        await schManager.waitForReleased();
         res.statusCode = 401;
         res.setHeader('WWW-Authenticate', 'Negotiate');
         return res.end();
@@ -73,6 +72,7 @@ export function auth(): RequestHandler {
           },
         },
       };
+      const serverContextHandle = schManager.getServerContextHandle();
       if (serverContextHandle) {
         input.contextHandle = serverContextHandle;
       }
@@ -80,7 +80,7 @@ export function auth(): RequestHandler {
       debug(hexDump(buffer));
       const serverSecurityContext = sspi.AcceptSecurityContext(input);
       debug('serverSecurityContext', serverSecurityContext);
-      serverContextHandle = serverSecurityContext.contextHandle;
+      schManager.set(serverSecurityContext.contextHandle);
 
       debug(hexDump(serverSecurityContext.SecBufferDesc.buffers[0]));
 
@@ -99,11 +99,11 @@ export function auth(): RequestHandler {
           'Negotiate ' + encode(serverSecurityContext.SecBufferDesc.buffers[0])
         );
 
-        const sso = new SSO(serverContextHandle, method);
+        const sso = new SSO(schManager.getServerContextHandle(), method);
         await sso.load();
         req.sso = sso.getJSON();
         sspi.DeleteSecurityContext(serverContextHandle);
-        serverContextHandle = undefined;
+        schManager.release();
       }
     } catch (e) {
       console.error(e);
