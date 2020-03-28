@@ -71,6 +71,7 @@ You should see the JSON result with the browser user authentication info and the
       ],
       "sid": "S-1-5-21-2022955591-1730574677-3210790899-1103",
       "adUser": {
+        // adUser filled only if Active Directory is reachable.
         "objectClass": ["top", "person", "organizationalPerson", "user"],
         "cn": ["Jean-Louis P. GUÉNÉGO"],
         "sn": ["GUÉNÉGO"],
