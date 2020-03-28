@@ -6,7 +6,6 @@ Expose the Microsoft Windows SSPI (SSP Interface) to [Node.js®](https://nodejs.
 - **NTLM** and **Kerberos** SSO authentication inside a private organization network, for instance an ERP in a private company.
 - **Active Directory** access to users for detailed info.
 
-
 Requirements: Microsoft Windows OS, NodeJS version >=12.16.1.
 
 ## Install
@@ -215,7 +214,6 @@ The module [debug](https://github.com/visionmedia/debug) is used for printing so
 
 Any idea of new features ? Please tell me and raise an issue. :blush:
 
-- update example Angular and React for 0.1.x versions
 - write a vuejs example
 - write a fastifiy/restify/nestjs example
 - write a medium article
