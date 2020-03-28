@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.3](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.2...v0.1.3) (2020-03-28)
+
+
+### Features
+
+* added isActiveDirectoryReachable ([c9be60b](https://github.com/jlguenego/node-expose-sspi/commit/c9be60b49c091e2afad9035edee3e3fdadb70b10))
+* make middleware koa compliant ([3036a3a](https://github.com/jlguenego/node-expose-sspi/commit/3036a3ae011979a6d38f609ccb540c44de01facf))
+* use npm module debug ([78a4770](https://github.com/jlguenego/node-expose-sspi/commit/78a4770c0e8c4ecfa638ecf99f7178092a49a50c))
+
+
+### Bug Fixes
+
+* stress test use case ([4dd1984](https://github.com/jlguenego/node-expose-sspi/commit/4dd1984773d7e85354f1df5e0e8709566ccef278))
+
 ### [0.1.2](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.1...v0.1.2) (2020-03-27)
 
 
