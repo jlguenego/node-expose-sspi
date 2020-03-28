@@ -1,7 +1,7 @@
 import createError from 'http-errors';
 import { decode, encode } from 'base64-arraybuffer';
 import { hexDump } from './misc';
-import { sspi, SecurityContext, AcceptSecurityContextInput } from '../lib/api';
+import { sspi, AcceptSecurityContextInput } from '../lib/api';
 import { RequestHandler } from 'express';
 import { SSO } from './SSO';
 import { init } from './userdb';

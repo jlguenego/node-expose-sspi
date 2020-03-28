@@ -8,7 +8,11 @@ export class ServerContextHandleManager {
   constructor(private delayMax = 2000) {}
 
   async waitForReleased() {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
+      if (this.serverContextHandle === undefined) {
+        resolve();
+        return;
+      }
       const timeout = setTimeout(() => {
         this.release();
       }, this.delayMax);
