@@ -7,8 +7,12 @@ export interface IID {
 export interface IADs extends IID {
   Get(name: string): string;
 }
-export interface IADsContainer extends IID {}
-export interface IDispatch extends IID {}
+export interface IADsContainer extends IID {
+  Next(): IDispatch;
+}
+export interface IDispatch extends IID {
+  QueryInterface(str: 'IID_IDirectorySearch'): IDirectorySearch;
+}
 export interface IDirectorySearch extends IID {
   SetSearchPreference(): void;
   ExecuteSearch(input: { filter: string }): void;
