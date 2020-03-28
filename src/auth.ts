@@ -5,7 +5,7 @@ import { sspi, AcceptSecurityContextInput } from '../lib/api';
 import { RequestHandler } from 'express';
 import { SSO } from './SSO';
 import { init } from './userdb';
-import { ServerContextHandleManager} from './ServerContextHandleManager';
+import { ServerContextHandleManager } from './ServerContextHandleManager';
 import dbg from 'debug';
 
 const debug = dbg('node-expose-sspi:auth');
@@ -98,8 +98,8 @@ export function auth(): RequestHandler {
           'WWW-Authenticate',
           'Negotiate ' + encode(serverSecurityContext.SecBufferDesc.buffers[0])
         );
-
-        const sso = new SSO(schManager.getServerContextHandle(), method);
+        const serverContextHandle = schManager.getServerContextHandle();
+        const sso = new SSO(serverContextHandle, method);
         await sso.load();
         req.sso = sso.getJSON();
         sspi.DeleteSecurityContext(serverContextHandle);

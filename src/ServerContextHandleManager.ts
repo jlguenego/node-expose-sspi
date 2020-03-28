@@ -1,25 +1,24 @@
-import { SecurityContext, CtxtHandle } from '../lib/api';
-import { EventEmitter } from 'events';
+import { CtxtHandle } from '../lib/api';
 
 export class ServerContextHandleManager {
   private serverContextHandle: CtxtHandle;
-  private releaseEvent = new EventEmitter();
+  private isAuthenticating = false;
+  private timeout: NodeJS.Timeout;
+  private resolve: (value?: unknown) => void;
 
-  constructor(private delayMax = 2000) {}
+  constructor(private delayMax = 20000) {}
 
   async waitForReleased() {
     return new Promise(resolve => {
-      if (this.serverContextHandle === undefined) {
-        resolve();
-        return;
+      if (this.isAuthenticating === false) {
+        this.isAuthenticating = true;
+        return resolve();
       }
-      const timeout = setTimeout(() => {
+      this.resolve = resolve;
+      this.timeout = setTimeout(() => {
+        // abondon the authenticating...
         this.release();
       }, this.delayMax);
-      this.releaseEvent.on('released', () => {
-        clearTimeout(timeout);
-        resolve();
-      });
     });
   }
 
@@ -33,6 +32,18 @@ export class ServerContextHandleManager {
 
   release() {
     this.serverContextHandle = undefined;
-    this.releaseEvent.emit('released');
+    this.isAuthenticating = false;
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+      this.timeout = undefined;
+    }
+    if (this.resolve) {
+      // it means another client B was waiting for authenticating.
+      // so we start authenticating this client B.
+      this.isAuthenticating = true;
+      const resolve = this.resolve;
+      this.resolve = undefined;
+      resolve();
+    }
   }
 }
