@@ -1,6 +1,10 @@
 # node-expose-sspi
 
+
+
 Expose the Microsoft Windows SSPI (SSP Interface) to [Node.js®](https://nodejs.org/).
+
+[![license](https://img.shields.io/badge/license-ISC-green.svg)](./LICENSE) ![David](https://img.shields.io/david/jlguenego/node-expose-sspi) ![npm](https://img.shields.io/npm/v/node-expose-sspi)
 
 :smirk: Use cases:
 - **NTLM** and **Kerberos** SSO authentication inside a private organization network, for instance an ERP in a private company.
@@ -230,7 +234,6 @@ Thanks to all the people who wrotes the npm modules required by this project.
 
 And a very special thanks to the authors of the [node-sspi](https://github.com/abbr/NodeSSPI) project that helped me writing this one. I considere node-sspi to be the father of node-expose-sspi.
 
-
 ## Author
 
 Jean-Louis GUENEGO <jlguenego@gmail.com> (http://jlg-consulting.com/)
@@ -238,3 +241,5 @@ Jean-Louis GUENEGO <jlguenego@gmail.com> (http://jlg-consulting.com/)
 You may participate to complete this project. You can improve this doc, or check the code (memory leak, etc.), create new usefull business cases, etc.
 
 Contributors are welcome!
+
+
