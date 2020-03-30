@@ -4,7 +4,7 @@
 
 Expose the Microsoft Windows SSPI (SSP Interface) to [Node.js®](https://nodejs.org/).
 
-[![license](https://img.shields.io/badge/license-ISC-green.svg)](./LICENSE) ![David](https://img.shields.io/david/jlguenego/node-expose-sspi) ![npm](https://img.shields.io/npm/v/node-expose-sspi)
+[![license](https://img.shields.io/badge/license-ISC-green.svg)](./LICENSE) [![npm version](https://badge.fury.io/js/node-expose-sspi.svg)](https://badge.fury.io/js/node-expose-sspi)
 
 :smirk: Use cases:
 - **NTLM** and **Kerberos** SSO authentication inside a private organization network, for instance an ERP in a private company.
