@@ -182,6 +182,7 @@ Examples :
 - [Express simple](./examples/express-simple/)
 - [Koa simple](./examples/koa-simple/)
 - [Fastify simple](./examples/fastify-simple/)
+- [Restify simple](./examples/restify-simple/)
 - [Reverse proxy example](./examples/reverse-proxy/)
 - [Angular SSO example](https://github.com/jlguenego/angular-sso-example)
 - [React SSO example](https://github.com/jlguenego/react-sso-example)
