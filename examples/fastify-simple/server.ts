@@ -4,9 +4,7 @@ import { sso } from 'node-expose-sspi';
 
 const app = fastify({ logger: true });
 
-const middleware = sso.auth();
-
-app.use(middleware);
+app.use(sso.auth());
 
 // Declare a route
 app.get('/', async request => (<any>request.raw).sso);
