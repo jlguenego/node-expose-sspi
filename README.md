@@ -144,7 +144,7 @@ The API is automatically documented with [typedoc](https://github.com/TypeStrong
 
 **[Access to the detailed API document](./doc/api/README.md)**. 
 
-Note: you should read all the [sso source code](./src). You will how powerfull the `api.sspi`, and `api.adsi` can bring to you.
+Note: you should read all the [sso source code](./src). You will see how powerfull the `api.sspi`, and `api.adsi` can bring to you.
 
 You can also read the `mocha` [unit tests](./test) to see small examples.
 
