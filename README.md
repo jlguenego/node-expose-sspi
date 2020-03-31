@@ -181,15 +181,12 @@ Look also at the `README.md` of the example.
 Examples :
 - [Express simple](./examples/express-simple/)
 - [Koa simple](./examples/koa-simple/)
-- [Reverse proxy example](./examples/reverse-proxy/).
+- [Fastify simple](./examples/fastify-simple/)
+- [Reverse proxy example](./examples/reverse-proxy/)
 - [Angular SSO example](https://github.com/jlguenego/angular-sso-example)
 - [React SSO example](https://github.com/jlguenego/react-sso-example)
 - [Vue SSO example](https://github.com/jlguenego/vue-sso-example)
 - [HTTP(S) fetch API with SSO](./doc/use-case/client.md)
-
-
-
-TODO: VueJS example
 
 ## Development
 
@@ -219,7 +216,7 @@ The module [debug](https://github.com/visionmedia/debug) is used for printing so
 
 Any idea of new features ? Please tell me and raise an issue. :blush:
 
-- write a fastifiy/restify/nestjs example
+- write a restify/nestjs example
 - write a medium article
 - publish on Facebook
 - Reddit
