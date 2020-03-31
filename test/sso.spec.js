@@ -17,4 +17,19 @@ describe('SSO Unit Test', function() {
     assert(sso.isOnDomain() === true);
     assert(domain.length > 0);
   });
+  it('should test connect', async function() {
+    try {
+      // in order to test that it is working, 
+      // create a local account titi with password toto
+      const userCredentials = {
+        domain: os.hostname(),
+        user: 'titi',
+        password: 'toto',
+      };
+      const mySSO = await sso.connect(userCredentials);
+      assert(mySSO);
+    } catch (error) {
+      assert(error);
+    }
+  });
 });

@@ -26,11 +26,7 @@ export async function connect(userCredential: UserCredential): Promise<SSO> {
     const packageInfo = sspi.QuerySecurityPackageInfo('Negotiate');
     const clientCred = sspi.AcquireCredentialsHandle({
       packageName: 'Negotiate',
-      authData: {
-        domain: userCredential.domain,
-        user: userCredential.user,
-        password: userCredential.password,
-      },
+      authData: userCredential,
     });
     const serverCred = sspi.AcquireCredentialsHandle({
       packageName: 'Negotiate',

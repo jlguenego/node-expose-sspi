@@ -1,6 +1,8 @@
 import { sspi, CtxtHandle } from '../lib/api';
 import { getUser, ADUser } from './userdb';
 import dbg from 'debug';
+import { sso } from '.';
+import os from 'os';
 
 const debug = dbg('node-expose-sspi:SSO');
 
@@ -55,8 +57,14 @@ export class SSO {
     this.user.sid = sid;
 
     try {
-      const adUser = await getUser(`(sAMAccountName=${name})`);
-      this.user.adUser = adUser;
+      if (
+        sso.isOnDomain() &&
+        sso.isActiveDirectoryReachable() &&
+        os.hostname() !== domain
+      ) {
+        const adUser = await getUser(`(sAMAccountName=${name})`);
+        this.user.adUser = adUser;
+      }
     } catch (e) {
       debug('cannot getUser from AD. e: ', e);
     }
