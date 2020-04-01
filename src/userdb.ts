@@ -13,6 +13,15 @@ export const database: Database = {
   users: [],
 };
 
+/**
+ * Waits until authentication middleware is ready.
+ * 
+ * When on domain, the sso.auth() function may takes time to init properly.
+ * You should use authIsReady to wait for sso.auth() is completely ready.
+ *
+ * @export
+ * @returns
+ */
 export function authIsReady() {
   return new Promise(resolve => {
     initAuthEvent.on('ready', () => {
