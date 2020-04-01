@@ -9,7 +9,7 @@ import { hexDump } from './misc';
 import { SSO } from './SSO';
 import './express';
 import { client } from './client';
-import { init, database } from './userdb';
+import { init, database, authIsReady } from './userdb';
 
 const sleep = (time: number) =>
   new Promise(resolve => setTimeout(resolve, time));
@@ -24,6 +24,7 @@ export const sso = {
   isActiveDirectoryReachable,
   client,
   init,
+  authIsReady,
   database,
   sleep,
 };

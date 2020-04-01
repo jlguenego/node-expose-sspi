@@ -3,12 +3,23 @@ import { IDirectorySearch, IADs } from '../lib/adsi';
 import { isOnDomain } from './domain';
 import dbg from 'debug';
 import { Database, ADUser, ADUsers } from './interfaces';
+import { EventEmitter } from 'events';
 
 const debug = dbg('node-expose-sspi:userdb');
+
+const initAuthEvent = new EventEmitter();
 
 export const database: Database = {
   users: [],
 };
+
+export function authIsReady() {
+  return new Promise(resolve => {
+    initAuthEvent.on('ready', () => {
+      resolve();
+    });
+  });
+}
 
 export async function init() {
   if (!isOnDomain()) {
@@ -18,6 +29,7 @@ export async function init() {
     debug('init');
     // request all accounts from domain
     database.users = await getUsers();
+    initAuthEvent.emit('ready');
   } catch (e) {
     debug('Cannot get users from AD. e: ', e);
   }

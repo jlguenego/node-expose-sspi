@@ -6,19 +6,20 @@ describe('ClientServer', function() {
   if (sso.isOnDomain() && sso.isActiveDirectoryReachable()) {
     it('should return the right json', async function() {
       this.timeout(15000);
-      await sso.init();
-      
+
       const app = express();
       app.use(sso.auth());
-  
+
       app.use((req, res, next) => {
         res.json({
           sso: req.sso,
         });
       });
-  
+
       const server = app.listen(3000);
-  
+
+      await sso.authIsReady();
+
       let json;
       try {
         const { fetch } = sso.client;
@@ -27,15 +28,15 @@ describe('ClientServer', function() {
       } catch (e) {
         console.error(e);
       }
-  
-      server.close();
-  
+
+      
+
       assert(json, 'json should be truthy');
       assert(json.sso, 'json.sso should be truthy');
       assert(json.sso.user, 'json.sso.user should be truthy');
       assert(json.sso.owner, 'json.sso.owner should be truthy');
       assert.equal(json.sso.method, 'NTLM');
+      server.close();
     });
   }
-  
 });
