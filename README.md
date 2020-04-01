@@ -4,8 +4,6 @@
 
 Expose the Microsoft Windows SSPI (SSP Interface) to [Node.js®](https://nodejs.org/).
 
-[![license](https://img.shields.io/badge/license-ISC-green.svg)](./LICENSE) [![npm version](https://badge.fury.io/js/node-expose-sspi.svg)](https://badge.fury.io/js/node-expose-sspi)
-
 :smirk: Use cases:
 - **NTLM** and **Kerberos** SSO authentication inside a private organization network, for instance an ERP in a private company.
 - **Active Directory** access to users for detailed info.
@@ -13,6 +11,8 @@ Expose the Microsoft Windows SSPI (SSP Interface) to [Node.js®](https://nodejs.
 Requirements: Microsoft Windows OS, NodeJS version >=12.16.1.
 
 ## Install
+
+[![license](https://img.shields.io/badge/license-ISC-green.svg)](./LICENSE) [![npm version](https://badge.fury.io/js/node-expose-sspi.svg)](https://badge.fury.io/js/node-expose-sspi)
 
 Just do:
 
