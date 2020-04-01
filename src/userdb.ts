@@ -21,9 +21,9 @@ export const database: Database = {
  * You should use authIsReady to wait for sso.auth() is completely ready.
  *
  * @export
- * @returns
+ * @returns {Promise<void>}
  */
-export function authIsReady() {
+export function authIsReady(): Promise<void> {
   return new Promise(resolve => {
     if (isAuthReady) {
       resolve();
