@@ -41,9 +41,9 @@ export function authIsReady() {
  * performance during authentication.
  *
  * @export
- * @returns
+ * @returns {Promise<void>}
  */
-export async function init() {
+export async function init(): Promise<void> {
   if (!isOnDomain()) {
     return;
   }
