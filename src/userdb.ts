@@ -34,6 +34,15 @@ export function authIsReady() {
   });
 }
 
+/**
+ * This function is internal. You should not call it directly.
+ *
+ * Purpose is to cache all Active Directory users for
+ * performance during authentication.
+ *
+ * @export
+ * @returns
+ */
 export async function init() {
   if (!isOnDomain()) {
     return;
