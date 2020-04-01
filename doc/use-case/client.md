@@ -33,6 +33,8 @@ const server = app.listen(3000, () =>
 
 (async () => {
   try {
+    await sso.authIsReady();
+    
     const { fetch } = sso.client;
     const response = await fetch('http://localhost:3000');
     const json = await response.json();
