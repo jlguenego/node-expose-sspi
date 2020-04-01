@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.4](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.3...v0.1.4) (2020-04-01)
+
+
+### Features
+
+* add authIsReady function ([34086d0](https://github.com/jlguenego/node-expose-sspi/commit/34086d02da9d47b5ecc7be734e0683175671f32b))
+* add fastify example ([54bdef2](https://github.com/jlguenego/node-expose-sspi/commit/54bdef2ab6ee81cbf09f81e20833244c91e5a883))
+* add sleep promise ([f62942b](https://github.com/jlguenego/node-expose-sspi/commit/f62942bde9e9e31795705f123648172ed8a38008))
+* added options for authentication ([f911e7f](https://github.com/jlguenego/node-expose-sspi/commit/f911e7f572ec8d944e834b5f96bd6747ae084790))
+* added restify example ([dc6c57b](https://github.com/jlguenego/node-expose-sspi/commit/dc6c57bbaa3529ecb4e670bb9dda6f279b75c381))
+
+
+### Bug Fixes
+
+* connect local account on domain ([e94dbe5](https://github.com/jlguenego/node-expose-sspi/commit/e94dbe58c60e0fd5f5c9b55dc6924fcf64c188fe))
+* improving test ([18f0795](https://github.com/jlguenego/node-expose-sspi/commit/18f0795377cf3cf3c9d88c7fb9f94d4e443a7064))
+
 ### [0.1.3](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.2...v0.1.3) (2020-03-28)
 
 
