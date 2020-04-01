@@ -7,6 +7,7 @@ import { SSO } from './SSO';
 import { init } from './userdb';
 import { ServerContextHandleManager } from './ServerContextHandleManager';
 import dbg from 'debug';
+import { AuthOptions } from './interfaces';
 
 const debug = dbg('node-expose-sspi:auth');
 
@@ -16,7 +17,7 @@ const debug = dbg('node-expose-sspi:auth');
  *
  * @returns {RequestHandler} a middleware
  */
-export function auth(): RequestHandler {
+export function auth(options: AuthOptions = {}): RequestHandler {
   // start in parallel the async init()
   init();
 
@@ -100,6 +101,7 @@ export function auth(): RequestHandler {
         );
         const serverContextHandle = schManager.getServerContextHandle();
         const sso = new SSO(serverContextHandle, method);
+        sso.setOptions(options);
         await sso.load();
         req.sso = sso.getJSON();
         sspi.DeleteSecurityContext(serverContextHandle);

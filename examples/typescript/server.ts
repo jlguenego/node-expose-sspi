@@ -1,9 +1,11 @@
 import express = require('express');
-import { sso } from 'node-expose-sspi';
+import { sso } from '../..';
 
 const app = express();
 
-app.use(sso.auth());
+app.use(
+  sso.auth({ useGroups: false, useOwner: false, useActiveDirectory: false })
+);
 
 app.use((req, res, next) => {
   res.json({

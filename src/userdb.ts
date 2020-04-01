@@ -2,21 +2,9 @@ import { adsi } from '../lib/api';
 import { IDirectorySearch } from '../lib/adsi';
 import { isOnDomain } from './domain';
 import dbg from 'debug';
+import { Database, ADUser, ADUsers } from './interfaces';
 
 const debug = dbg('node-expose-sspi:userdb');
-
-interface Database {
-  users: ADUsers;
-}
-
-export interface ADUser {
-  sn?: string;
-  givenName?: string;
-  cn?: string;
-  [key: string]: any;
-}
-
-type ADUsers = ADUser[];
 
 export const database: Database = {
   users: [],

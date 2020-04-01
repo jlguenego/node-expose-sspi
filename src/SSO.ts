@@ -1,25 +1,22 @@
 import { sspi, CtxtHandle } from '../lib/api';
-import { getUser, ADUser } from './userdb';
+import { getUser } from './userdb';
 import dbg from 'debug';
 import { sso } from '.';
 import os from 'os';
+import { AuthOptions, User } from './interfaces';
 
 const debug = dbg('node-expose-sspi:SSO');
-
-export interface User {
-  name?: string;
-  sid?: string;
-  displayName?: string;
-  domain?: string;
-  groups?: string[];
-  adUser?: ADUser;
-}
 
 export type SSOMethod = 'NTLM' | 'Kerberos';
 
 export class SSO {
   user: User;
   owner: User;
+  private options: AuthOptions = {
+    useActiveDirectory: true,
+    useGroups: true,
+    useOwner: true,
+  };
 
   constructor(
     private serverContextHandle: CtxtHandle,
@@ -46,9 +43,11 @@ export class SSO {
     }
     sspi.RevertSecurityContext(this.serverContextHandle);
 
-    const groups = sspi.GetTokenInformation(userToken, 'TokenGroups');
-    debug('groups: ', groups);
-    this.user.groups = groups;
+    if (this.options.useGroups) {
+      const groups = sspi.GetTokenInformation(userToken, 'TokenGroups');
+      debug('groups: ', groups);
+      this.user.groups = groups;
+    }
 
     // free the userToken
     sspi.CloseHandle(userToken);
@@ -60,7 +59,8 @@ export class SSO {
       if (
         sso.isOnDomain() &&
         sso.isActiveDirectoryReachable() &&
-        os.hostname() !== domain
+        os.hostname() !== domain &&
+        this.options.useActiveDirectory
       ) {
         const adUser = await getUser(`(sAMAccountName=${name})`);
         this.user.adUser = adUser;
@@ -70,34 +70,46 @@ export class SSO {
     }
 
     // owner info.
-    const owner = sspi.GetUserName();
-    debug('owner: ', owner);
-    this.owner = { name: owner };
-    try {
-      this.owner.displayName = sspi.GetUserNameEx('NameDisplay');
-    } catch (e) {
-      this.owner.displayName = this.owner.name;
+    if (this.options.useOwner) {
+      const owner = sspi.GetUserName();
+      debug('owner: ', owner);
+      this.owner = { name: owner };
+      try {
+        this.owner.displayName = sspi.GetUserNameEx('NameDisplay');
+      } catch (e) {
+        this.owner.displayName = this.owner.name;
+      }
+
+      if (this.options.useGroups) {
+        const processToken = sspi.OpenProcessToken([
+          'TOKEN_QUERY',
+          'TOKEN_QUERY_SOURCE',
+        ]);
+        const ownerGroups = sspi.GetTokenInformation(
+          processToken,
+          'TokenGroups'
+        );
+        debug('ownerGroups: ', ownerGroups);
+        this.owner.groups = ownerGroups;
+        sspi.CloseHandle(processToken);
+      }
+
+      try {
+        const o = sspi.LookupAccountName(owner);
+        this.owner.sid = o.sid;
+        this.owner.domain = o.domain;
+      } catch (e) {}
     }
-
-    const processToken = sspi.OpenProcessToken([
-      'TOKEN_QUERY',
-      'TOKEN_QUERY_SOURCE',
-    ]);
-    const ownerGroups = sspi.GetTokenInformation(processToken, 'TokenGroups');
-    debug('ownerGroups: ', ownerGroups);
-    this.owner.groups = ownerGroups;
-    sspi.CloseHandle(processToken);
-
-    try {
-      const o = sspi.LookupAccountName(owner);
-      this.owner.sid = o.sid;
-      this.owner.domain = o.domain;
-    } catch (e) {}
   }
 
   getJSON() {
     const json = { ...this };
+    delete json.options;
     delete json.serverContextHandle;
     return json;
+  }
+
+  setOptions(options: AuthOptions) {
+    Object.assign(this.options, options);
   }
 }
