@@ -1,11 +1,18 @@
 import { auth } from './auth';
 import { connect } from './connect';
-import { getDefaultDomain, isOnDomain, isActiveDirectoryReachable } from './domain';
+import {
+  getDefaultDomain,
+  isOnDomain,
+  isActiveDirectoryReachable,
+} from './domain';
 import { hexDump } from './misc';
 import { SSO } from './SSO';
 import './express';
 import { client } from './client';
 import { init, database } from './userdb';
+
+const sleep = (time: number) =>
+  new Promise(resolve => setTimeout(resolve, time));
 
 export const sso = {
   hexDump,
@@ -18,4 +25,5 @@ export const sso = {
   client,
   init,
   database,
+  sleep,
 };
