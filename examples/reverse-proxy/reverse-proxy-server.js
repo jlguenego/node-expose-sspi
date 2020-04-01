@@ -41,13 +41,13 @@ function str2ab(str) {
 
   const app = express();
 
-  app.use(sso.auth());
+  app.use(sso.auth({ useOwner: false }));
   app.use((req, res, next) => {
     if (req.sso) {
       // avoid header too large (error HTTP 431), so reduce it.
       const sso = {
-        user: req.sso.user
-      }
+        user: req.sso.user,
+      };
       req.headers['x-sso'] = encode(str2ab(JSON.stringify(sso)));
     }
     next();
