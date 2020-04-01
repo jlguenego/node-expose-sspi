@@ -6,6 +6,8 @@ describe('ClientServer', function() {
   if (sso.isOnDomain() && sso.isActiveDirectoryReachable()) {
     it('should return the right json', async function() {
       this.timeout(15000);
+      await sso.init();
+      
       const app = express();
       app.use(sso.auth());
   
