@@ -12,9 +12,26 @@
 
 ### Methods
 
+* [QueryInterface](_lib_adsi_d_.idispatch.md#queryinterface)
 * [Release](_lib_adsi_d_.idispatch.md#release)
 
 ## Methods
+
+###  QueryInterface
+
+▸ **QueryInterface**(`str`: "IID_IDirectorySearch"): *[IDirectorySearch](_lib_adsi_d_.idirectorysearch.md)*
+
+*Defined in [lib/adsi.d.ts:14](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/lib/adsi.d.ts#L14)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`str` | "IID_IDirectorySearch" |
+
+**Returns:** *[IDirectorySearch](_lib_adsi_d_.idirectorysearch.md)*
+
+___
 
 ###  Release
 
@@ -22,6 +39,6 @@
 
 *Inherited from [IID](_lib_adsi_d_.iid.md).[Release](_lib_adsi_d_.iid.md#release)*
 
-*Defined in [lib/adsi.d.ts:4](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/lib/adsi.d.ts#L4)*
+*Defined in [lib/adsi.d.ts:4](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/lib/adsi.d.ts#L4)*
 
 **Returns:** *void*

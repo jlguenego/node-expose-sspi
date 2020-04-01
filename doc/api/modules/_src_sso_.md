@@ -8,10 +8,6 @@
 
 * [SSO](../classes/_src_sso_.sso.md)
 
-### Interfaces
-
-* [User](../interfaces/_src_sso_.user.md)
-
 ### Type aliases
 
 * [SSOMethod](_src_sso_.md#ssomethod)
@@ -22,4 +18,4 @@
 
 Ƭ **SSOMethod**: *"NTLM" | "Kerberos"*
 
-*Defined in [src/SSO.ts:14](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/SSO.ts#L14)*
+*Defined in [src/SSO.ts:10](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/src/SSO.ts#L10)*

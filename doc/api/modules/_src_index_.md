@@ -14,68 +14,76 @@
 
 ### ▪ **sso**: *object*
 
-*Defined in [src/index.ts:10](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/index.ts#L10)*
+*Defined in [src/index.ts:17](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/src/index.ts#L17)*
 
 ###  SSO
 
 • **SSO**: *[SSO](../classes/_src_sso_.sso.md)*
 
-*Defined in [src/index.ts:15](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/index.ts#L15)*
+*Defined in [src/index.ts:21](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/src/index.ts#L21)*
 
 ###  auth
 
 • **auth**: *[auth](_src_auth_.md#auth)*
 
-*Defined in [src/index.ts:13](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/index.ts#L13)*
+*Defined in [src/index.ts:19](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/src/index.ts#L19)*
+
+###  authIsReady
+
+• **authIsReady**: *[authIsReady](_src_userdb_.md#authisready)*
+
+*Defined in [src/index.ts:27](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/src/index.ts#L27)*
 
 ###  client
 
 • **client**: *Client‹›*
 
-*Defined in [src/index.ts:18](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/index.ts#L18)*
-
-###  config
-
-• **config**: *object*
-
-*Defined in [src/index.ts:11](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/index.ts#L11)*
-
-#### Type declaration:
-
-* **debug**: *boolean* = false
+*Defined in [src/index.ts:25](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/src/index.ts#L25)*
 
 ###  connect
 
 • **connect**: *[connect](_src_connect_.md#connect)*
 
-*Defined in [src/index.ts:14](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/index.ts#L14)*
+*Defined in [src/index.ts:20](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/src/index.ts#L20)*
 
 ###  database
 
-• **database**: *Database*
+• **database**: *[Database](../interfaces/_src_interfaces_.database.md)*
 
-*Defined in [src/index.ts:20](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/index.ts#L20)*
+*Defined in [src/index.ts:28](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/src/index.ts#L28)*
 
 ###  getDefaultDomain
 
 • **getDefaultDomain**: *[getDefaultDomain](_src_domain_.md#getdefaultdomain)*
 
-*Defined in [src/index.ts:16](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/index.ts#L16)*
+*Defined in [src/index.ts:22](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/src/index.ts#L22)*
 
 ###  hexDump
 
 • **hexDump**: *[hexDump](_src_misc_.md#hexdump)*
 
-*Defined in [src/index.ts:12](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/index.ts#L12)*
+*Defined in [src/index.ts:18](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/src/index.ts#L18)*
 
 ###  init
 
 • **init**: *[init](_src_userdb_.md#init)*
 
-*Defined in [src/index.ts:19](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/index.ts#L19)*
+*Defined in [src/index.ts:26](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/src/index.ts#L26)*
+
+###  isActiveDirectoryReachable
+
+• **isActiveDirectoryReachable**: *[isActiveDirectoryReachable](_src_domain_.md#isactivedirectoryreachable)*
+
+*Defined in [src/index.ts:24](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/src/index.ts#L24)*
 
 ###  isOnDomain
 
 • **isOnDomain**: *[isOnDomain](_src_domain_.md#isondomain)*
 
-*Defined in [src/index.ts:17](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/index.ts#L17)*
+*Defined in [src/index.ts:23](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/src/index.ts#L23)*
+
+###  sleep
+
+• **sleep**: *sleep*
+
+*Defined in [src/index.ts:29](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/src/index.ts#L29)*

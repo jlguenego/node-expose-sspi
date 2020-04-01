@@ -7,11 +7,6 @@
 ### Functions
 
 * [hexDump](_src_misc_.md#hexdump)
-* [trace](_src_misc_.md#const-trace)
-
-### Object literals
-
-* [config](_src_misc_.md#const-config)
 
 ## Functions
 
@@ -19,7 +14,7 @@
 
 ▸ **hexDump**(`buffer`: ArrayBuffer): *string*
 
-*Defined in [src/misc.ts:29](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/misc.ts#L29)*
+*Defined in [src/misc.ts:22](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/src/misc.ts#L22)*
 
 Gives a string representation of binary data.
 
@@ -32,33 +27,3 @@ Name | Type |
 **Returns:** *string*
 
 the string representation.
-
-___
-
-### `Const` trace
-
-▸ **trace**(...`args`: any[]): *void*
-
-*Defined in [src/misc.ts:1](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/misc.ts#L1)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`...args` | any[] |
-
-**Returns:** *void*
-
-## Object literals
-
-### `Const` config
-
-### ▪ **config**: *object*
-
-*Defined in [src/misc.ts:8](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/misc.ts#L8)*
-
-###  debug
-
-• **debug**: *boolean* = false
-
-*Defined in [src/misc.ts:9](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/misc.ts#L9)*

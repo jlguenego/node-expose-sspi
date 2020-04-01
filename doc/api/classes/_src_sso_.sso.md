@@ -22,6 +22,7 @@
 
 * [getJSON](_src_sso_.sso.md#getjson)
 * [load](_src_sso_.sso.md#load)
+* [setOptions](_src_sso_.sso.md#setoptions)
 
 ## Constructors
 
@@ -29,7 +30,7 @@
 
 \+ **new SSO**(`serverContextHandle`: [CtxtHandle](../interfaces/_lib_sspi_d_.ctxthandle.md), `method?`: [SSOMethod](../modules/_src_sso_.md#ssomethod)): *[SSO](_src_sso_.sso.md)*
 
-*Defined in [src/SSO.ts:18](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/SSO.ts#L18)*
+*Defined in [src/SSO.ts:19](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/src/SSO.ts#L19)*
 
 **Parameters:**
 
@@ -46,23 +47,23 @@ Name | Type |
 
 • **method**? : *[SSOMethod](../modules/_src_sso_.md#ssomethod)*
 
-*Defined in [src/SSO.ts:22](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/SSO.ts#L22)*
+*Defined in [src/SSO.ts:23](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/src/SSO.ts#L23)*
 
 ___
 
 ###  owner
 
-• **owner**: *[User](../interfaces/_src_sso_.user.md)*
+• **owner**: *[User](../interfaces/_src_interfaces_.user.md)*
 
-*Defined in [src/SSO.ts:18](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/SSO.ts#L18)*
+*Defined in [src/SSO.ts:14](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/src/SSO.ts#L14)*
 
 ___
 
 ###  user
 
-• **user**: *[User](../interfaces/_src_sso_.user.md)*
+• **user**: *[User](../interfaces/_src_interfaces_.user.md)*
 
-*Defined in [src/SSO.ts:17](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/SSO.ts#L17)*
+*Defined in [src/SSO.ts:13](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/src/SSO.ts#L13)*
 
 ## Methods
 
@@ -70,7 +71,7 @@ ___
 
 ▸ **getJSON**(): *this*
 
-*Defined in [src/SSO.ts:88](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/SSO.ts#L88)*
+*Defined in [src/SSO.ts:105](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/src/SSO.ts#L105)*
 
 **Returns:** *this*
 
@@ -80,6 +81,22 @@ ___
 
 ▸ **load**(): *Promise‹void›*
 
-*Defined in [src/SSO.ts:25](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/SSO.ts#L25)*
+*Defined in [src/SSO.ts:26](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/src/SSO.ts#L26)*
 
 **Returns:** *Promise‹void›*
+
+___
+
+###  setOptions
+
+▸ **setOptions**(`options`: [AuthOptions](../interfaces/_src_interfaces_.authoptions.md)): *void*
+
+*Defined in [src/SSO.ts:112](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/src/SSO.ts#L112)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`options` | [AuthOptions](../interfaces/_src_interfaces_.authoptions.md) |
+
+**Returns:** *void*

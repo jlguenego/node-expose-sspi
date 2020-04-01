@@ -7,6 +7,7 @@
 ### Functions
 
 * [getDefaultDomain](_src_domain_.md#getdefaultdomain)
+* [isActiveDirectoryReachable](_src_domain_.md#isactivedirectoryreachable)
 * [isOnDomain](_src_domain_.md#isondomain)
 
 ## Functions
@@ -15,7 +16,7 @@
 
 ▸ **getDefaultDomain**(): *string*
 
-*Defined in [src/domain.ts:8](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/domain.ts#L8)*
+*Defined in [src/domain.ts:9](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/src/domain.ts#L9)*
 
 Get the domain (Microsoft domain) or hostname (workgroup) of this machine.
 
@@ -25,11 +26,21 @@ domain name
 
 ___
 
+###  isActiveDirectoryReachable
+
+▸ **isActiveDirectoryReachable**(): *boolean*
+
+*Defined in [src/domain.ts:25](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/src/domain.ts#L25)*
+
+**Returns:** *boolean*
+
+___
+
 ###  isOnDomain
 
 ▸ **isOnDomain**(): *boolean*
 
-*Defined in [src/domain.ts:20](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/src/domain.ts#L20)*
+*Defined in [src/domain.ts:21](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/src/domain.ts#L21)*
 
 Want to know if your computer has joined a Microsoft Windows domain ?
 

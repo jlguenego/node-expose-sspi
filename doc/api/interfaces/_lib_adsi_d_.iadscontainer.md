@@ -12,9 +12,20 @@
 
 ### Methods
 
+* [Next](_lib_adsi_d_.iadscontainer.md#next)
 * [Release](_lib_adsi_d_.iadscontainer.md#release)
 
 ## Methods
+
+###  Next
+
+▸ **Next**(): *[IDispatch](_lib_adsi_d_.idispatch.md)*
+
+*Defined in [lib/adsi.d.ts:11](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/lib/adsi.d.ts#L11)*
+
+**Returns:** *[IDispatch](_lib_adsi_d_.idispatch.md)*
+
+___
 
 ###  Release
 
@@ -22,6 +33,6 @@
 
 *Inherited from [IID](_lib_adsi_d_.iid.md).[Release](_lib_adsi_d_.iid.md#release)*
 
-*Defined in [lib/adsi.d.ts:4](https://github.com/jlguenego/node-expose-sspi/blob/e275dcb/lib/adsi.d.ts#L4)*
+*Defined in [lib/adsi.d.ts:4](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/lib/adsi.d.ts#L4)*
 
 **Returns:** *void*
