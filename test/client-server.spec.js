@@ -7,8 +7,6 @@ describe('ClientServer', function() {
     it('should return the right json', async function() {
       this.timeout(15000);
       const app = express();
-      await sso.init();
-  
       app.use(sso.auth());
   
       app.use((req, res, next) => {
