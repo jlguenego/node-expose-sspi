@@ -1,4 +1,3 @@
-
 #include "../../misc.h"
 #include "./IADs.h"
 
@@ -9,12 +8,15 @@ class ADsGestObjectWorker : public Napi::AsyncWorker {
   Napi::Promise::Deferred m_deferred;
   std::u16string m_binding;
   void *m_pObject;
+  Napi::Error m_err;
 
  public:
   ADsGestObjectWorker(Napi::Env &env, Napi::Promise::Deferred &deferred,
-         std::u16string &binding)
-      : AsyncWorker(env), m_deferred(deferred), m_binding(binding) {
-  }
+                      std::u16string &binding)
+      : AsyncWorker(env),
+        m_deferred(deferred),
+        m_binding(binding),
+        m_err(Napi::Error::New(env, "ADsGetObject has failed... (see detail below)")) {}
 
   ~ADsGestObjectWorker() {}
 
@@ -26,7 +28,7 @@ class ADsGestObjectWorker : public Napi::AsyncWorker {
 
     HRESULT hr = ADsGetObject(binding, IID_IADs, &m_pObject);
     if (FAILED(hr)) {
-      return SetError("ADsGetObject has failed. " + plf::ad_error_msg(hr));
+      return SetError("ADsGetObject has failed." + plf::ad_error_msg(hr));
     }
   }
 
@@ -39,7 +41,8 @@ class ADsGestObjectWorker : public Napi::AsyncWorker {
   }
 
   void OnError(Napi::Error const &error) override {
-    m_deferred.Reject(error.Value());
+    m_err.Value()["detail"] = error.Value();
+    m_deferred.Reject(m_err.Value());
   }
 };
 
