@@ -217,7 +217,7 @@ The module [debug](https://github.com/visionmedia/debug) is used for printing so
 
 Any idea of new features ? Please tell me and raise an issue. :blush:
 
-- write a restify/nestjs example
+- write a nestjs example
 - write a medium article
 - publish on Facebook
 - Reddit
