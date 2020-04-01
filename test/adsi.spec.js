@@ -2,32 +2,36 @@ const { adsi, sspi, sso } = require('node-expose-sspi');
 const assert = require('assert').strict;
 
 describe('ADSI Unit Test', function() {
-  it('should test CoInitialize and CoUninitialize', function() {
+  it('should test CoInitialize and CoUninitialize', async function() {
     adsi.CoInitialize();
     adsi.CoUninitialize();
   });
 
-  if (sso.isOnDomain() && sso.isActiveDirectoryReachable() ) {
+  if (sso.isOnDomain() && sso.isActiveDirectoryReachable()) {
     it('should test CoInitializeEx', function() {
       adsi.CoInitializeEx(['COINIT_MULTITHREADED']);
     });
 
     it('should test ADsOpenObject with global catalog', async function() {
-      const gc = await adsi.ADsOpenObject({
-        binding: 'GC:',
-        riid: 'IID_IADsContainer',
-      });
-      if (gc === undefined) {
-        throw new Error('Domain controller not reachable');
+      try {
+        const gc = await adsi.ADsOpenObject({
+          binding: 'GC:',
+          riid: 'IID_IADsContainer',
+        });
+        if (gc === undefined) {
+          throw new Error('Domain controller not reachable');
+        }
+        assert(gc instanceof adsi.IADsContainer);
+        const element = gc.Next();
+        assert(element instanceof adsi.IDispatch);
+        const ds = element.QueryInterface('IID_IDirectorySearch');
+        assert(ds instanceof adsi.IDirectorySearch);
+        element.Release();
+        ds.Release();
+        gc.Release();
+      } catch (e) {
+        assert(false);
       }
-      assert(gc instanceof adsi.IADsContainer);
-      const element = gc.Next();
-      assert(element instanceof adsi.IDispatch);
-      const ds = element.QueryInterface('IID_IDirectorySearch');
-      assert(ds instanceof adsi.IDirectorySearch);
-      element.Release();
-      ds.Release();
-      gc.Release();
     });
 
     let distinguishedName;
