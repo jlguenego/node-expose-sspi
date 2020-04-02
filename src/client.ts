@@ -38,7 +38,7 @@ async function handleAuth(
   let requestInit: RequestInit = { ...init };
   requestInit.headers = {
     ...init.headers,
-    authorization: 'Negotiate ' + base64,
+    'Authorization': 'Negotiate ' + base64,
   };
   response = await fetch(resource, requestInit);
   while (
@@ -67,7 +67,7 @@ async function handleAuth(
     requestInit = { ...init };
     requestInit.headers = {
       ...init.headers,
-      authorization: 'Negotiate ' + base64,
+      'Authorization': 'Negotiate ' + base64,
     };
     response = await fetch(resource, requestInit);
   }
