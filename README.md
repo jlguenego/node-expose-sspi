@@ -58,6 +58,10 @@ node server.js
 
 Open a Google Chrome web browser and go to `http://localhost:3000`.
 
+**Command line client:** 
+- Git Bash: `curl --negotiate -u : http://localhost:3000`
+- Powershell: `Invoke-WebRequest -uri http://localhost:3000 -UseDefaultCredentials`.
+
 You should see the JSON result with the browser user authentication info and the authentication method used (NTLM or Kerberos).
 ```
 {
