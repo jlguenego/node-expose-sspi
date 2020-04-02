@@ -3,14 +3,14 @@ import { sspi, InitializeSecurityContextInput } from '../lib/api';
 import { encode, decode } from 'base64-arraybuffer';
 import dbg from 'debug';
 
-const debug = dbg('node-expose-sspi:handleAuth');
+const debug = dbg('node-expose-sspi:client');
 
 async function handleAuth(
   response: Response,
   resource: string,
   init: RequestInit = {}
 ): Promise<Response> {
-  debug('handleAuth: start');
+  debug('handleAuth: start. headers', response.headers);
   if (!response.headers.has('www-authenticate')) {
     return response;
   }
