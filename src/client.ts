@@ -12,14 +12,19 @@ async function handleAuth(
 ): Promise<Response> {
   debug('handleAuth: start. headers', response.headers);
   if (!response.headers.has('www-authenticate')) {
+    debug('no header www-authenticate');
     return response;
   }
   if (!response.headers.get('www-authenticate').startsWith('Negotiate')) {
+    debug('no header www-authenticate with Negotiate:', response.headers.get('www-authenticate'));
     return response;
   }
   if (response.status !== 401) {
+    debug('no status 401');
     return response;
   }
+
+  debug('starting auth');
 
   const clientCred = sspi.AcquireCredentialsHandle({
     packageName: 'Negotiate',
@@ -38,7 +43,7 @@ async function handleAuth(
   let requestInit: RequestInit = { ...init };
   requestInit.headers = {
     ...init.headers,
-    'Authorization': 'Negotiate ' + base64,
+    Authorization: 'Negotiate ' + base64,
   };
   response = await fetch(resource, requestInit);
   while (
@@ -67,7 +72,7 @@ async function handleAuth(
     requestInit = { ...init };
     requestInit.headers = {
       ...init.headers,
-      'Authorization': 'Negotiate ' + base64,
+      Authorization: 'Negotiate ' + base64,
     };
     response = await fetch(resource, requestInit);
   }
