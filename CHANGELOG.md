@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.5](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.4...v0.1.5) (2020-04-02)
+
+
+### Features
+
+* async error stack trace ([245ea15](https://github.com/jlguenego/node-expose-sspi/commit/245ea156d13fcfdc025393584d1b0cda8212d57b))
+
+
+### Bug Fixes
+
+* case where authIsReady called too late ([a4ac4c6](https://github.com/jlguenego/node-expose-sspi/commit/a4ac4c6ac82ca189d24dad6fe2c4656edab7ba51))
+* Issue [#2](https://github.com/jlguenego/node-expose-sspi/issues/2) - crash server ([7b16afe](https://github.com/jlguenego/node-expose-sspi/commit/7b16afe977663e4b7116458841071e55bef436f5))
+* refactor getUser with try catch ([4f8a3b7](https://github.com/jlguenego/node-expose-sspi/commit/4f8a3b748cc9ab9094dbf1824cb5b6d901b0ca1a))
+
 ### [0.1.4](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.3...v0.1.4) (2020-04-01)
 
 
