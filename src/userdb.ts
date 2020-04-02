@@ -3,7 +3,6 @@ import { IDirectorySearch, IADs } from '../lib/adsi';
 import { isOnDomain } from './domain';
 import dbg from 'debug';
 import { Database, ADUser, ADUsers } from './interfaces';
-import { EventEmitter } from 'events';
 
 const debug = dbg('node-expose-sspi:userdb');
 
