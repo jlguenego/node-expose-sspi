@@ -35,10 +35,13 @@ export function authIsReady(): Promise<void> {
 }
 
 /**
- * This function is internal. You should not call it directly.
- *
- * Purpose is to cache all Active Directory users for
- * performance during authentication.
+ * 
+ * This function is recommanded to be called before starting a server.
+ * 
+ * Purpose is to cache all Active Directory (AD) users for
+ * performance during authentication, just for increasing performance.
+ * 
+ * Useless if you do not use AD.
  *
  * @export
  * @returns {Promise<void>}

@@ -7,9 +7,9 @@ describe('ClientServer', function() {
     it('should return the right json', async function() {
       this.timeout(15000);
 
+      await sso.init();
       const app = express();
       app.use(sso.auth());
-
       app.use((req, res, next) => {
         res.json({
           sso: req.sso,
@@ -17,8 +17,6 @@ describe('ClientServer', function() {
       });
 
       const server = app.listen(3000);
-
-      await sso.authIsReady();
 
       let json;
       try {
@@ -28,8 +26,6 @@ describe('ClientServer', function() {
       } catch (e) {
         console.error(e);
       }
-
-      
 
       assert(json, 'json should be truthy');
       assert(json.sso, 'json.sso should be truthy');

@@ -1,16 +1,19 @@
 import express = require('express');
 import { sso } from 'node-expose-sspi';
 
-const app = express();
+(async () => {
+  await sso.init();
+  const app = express();
 
-app.use(
-  sso.auth({ useGroups: false, useOwner: false, useActiveDirectory: false })
-);
+  app.use(
+    sso.auth({ useGroups: true, useOwner: false, useActiveDirectory: true })
+  );
 
-app.use((req, res, next) => {
-  res.json({
-    sso: req.sso,
+  app.use((req, res, next) => {
+    res.json({
+      sso: req.sso,
+    });
   });
-});
 
-app.listen(3001, () => console.log('Server started on port 3001'));
+  app.listen(3001, () => console.log('Server started on port 3001'));
+})();

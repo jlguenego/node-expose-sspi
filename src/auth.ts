@@ -4,7 +4,6 @@ import { hexDump } from './misc';
 import { sspi, AcceptSecurityContextInput } from '../lib/api';
 import { RequestHandler } from 'express';
 import { SSO } from './SSO';
-import { init } from './userdb';
 import { ServerContextHandleManager } from './ServerContextHandleManager';
 import dbg from 'debug';
 import { AuthOptions } from './interfaces';
@@ -18,9 +17,6 @@ const debug = dbg('node-expose-sspi:auth');
  * @returns {RequestHandler} a middleware
  */
 export function auth(options: AuthOptions = {}): RequestHandler {
-  // start in parallel the async init()
-  init();
-
   let { credential, tsExpiry } = sspi.AcquireCredentialsHandle({
     packageName: 'Negotiate',
   });
