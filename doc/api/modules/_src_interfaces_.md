@@ -21,4 +21,4 @@
 
 Ƭ **ADUsers**: *[ADUser](../interfaces/_src_interfaces_.aduser.md)[]*
 
-*Defined in [src/interfaces.ts:62](https://github.com/jlguenego/node-expose-sspi/blob/7b16afe/src/interfaces.ts#L62)*
+*Defined in [src/interfaces.ts:62](https://github.com/jlguenego/node-expose-sspi/blob/4e8c359/src/interfaces.ts#L62)*

@@ -14,4 +14,4 @@
 
 • **client**: *Client‹›* = new Client()
 
-*Defined in [src/client.ts:86](https://github.com/jlguenego/node-expose-sspi/blob/7b16afe/src/client.ts#L86)*
+*Defined in [src/client.ts:86](https://github.com/jlguenego/node-expose-sspi/blob/4e8c359/src/client.ts#L86)*

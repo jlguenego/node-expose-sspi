@@ -14,4 +14,4 @@
 
 Ƭ **TargetDataRepMapFlag**: *"SECURITY_NATIVE_DREP" | "SECURITY_NETWORK_DREP"*
 
-*Defined in [lib/flags/TargetDataRepMapFlag.d.ts:1](https://github.com/jlguenego/node-expose-sspi/blob/7b16afe/lib/flags/TargetDataRepMapFlag.d.ts#L1)*
+*Defined in [lib/flags/TargetDataRepMapFlag.d.ts:1](https://github.com/jlguenego/node-expose-sspi/blob/4e8c359/lib/flags/TargetDataRepMapFlag.d.ts#L1)*

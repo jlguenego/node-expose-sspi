@@ -29,4 +29,5 @@
 * ["src/index"](modules/_src_index_.md)
 * ["src/interfaces"](modules/_src_interfaces_.md)
 * ["src/misc"](modules/_src_misc_.md)
+* ["src/sleep"](modules/_src_sleep_.md)
 * ["src/userdb"](modules/_src_userdb_.md)

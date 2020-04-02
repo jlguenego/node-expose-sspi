@@ -26,7 +26,7 @@ options to provide to sso.auth() and SSO.setOptions().
 
 • **useActiveDirectory**? : *boolean*
 
-*Defined in [src/interfaces.ts:28](https://github.com/jlguenego/node-expose-sspi/blob/7b16afe/src/interfaces.ts#L28)*
+*Defined in [src/interfaces.ts:28](https://github.com/jlguenego/node-expose-sspi/blob/4e8c359/src/interfaces.ts#L28)*
 
 Brings back the Active Directory user information
 
@@ -42,7 +42,7 @@ ___
 
 • **useGroups**? : *boolean*
 
-*Defined in [src/interfaces.ts:16](https://github.com/jlguenego/node-expose-sspi/blob/7b16afe/src/interfaces.ts#L16)*
+*Defined in [src/interfaces.ts:16](https://github.com/jlguenego/node-expose-sspi/blob/4e8c359/src/interfaces.ts#L16)*
 
 Brings back the groups the user belongs to.
 
@@ -56,7 +56,7 @@ ___
 
 • **useOwner**? : *boolean*
 
-*Defined in [src/interfaces.ts:39](https://github.com/jlguenego/node-expose-sspi/blob/7b16afe/src/interfaces.ts#L39)*
+*Defined in [src/interfaces.ts:39](https://github.com/jlguenego/node-expose-sspi/blob/4e8c359/src/interfaces.ts#L39)*
 
 Brings back the server process owner info.
 

@@ -21,7 +21,7 @@
 
 ▸ **Get**(`name`: string): *string*
 
-*Defined in [lib/adsi.d.ts:8](https://github.com/jlguenego/node-expose-sspi/blob/7b16afe/lib/adsi.d.ts#L8)*
+*Defined in [lib/adsi.d.ts:8](https://github.com/jlguenego/node-expose-sspi/blob/4e8c359/lib/adsi.d.ts#L8)*
 
 **Parameters:**
 
@@ -39,6 +39,6 @@ ___
 
 *Inherited from [IID](_lib_adsi_d_.iid.md).[Release](_lib_adsi_d_.iid.md#release)*
 
-*Defined in [lib/adsi.d.ts:4](https://github.com/jlguenego/node-expose-sspi/blob/7b16afe/lib/adsi.d.ts#L4)*
+*Defined in [lib/adsi.d.ts:4](https://github.com/jlguenego/node-expose-sspi/blob/4e8c359/lib/adsi.d.ts#L4)*
 
 **Returns:** *void*

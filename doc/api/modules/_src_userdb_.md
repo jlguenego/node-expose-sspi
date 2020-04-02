@@ -6,7 +6,6 @@
 
 ### Functions
 
-* [authIsReady](_src_userdb_.md#authisready)
 * [getDistinguishedName](_src_userdb_.md#getdistinguishedname)
 * [getUser](_src_userdb_.md#getuser)
 * [getUsers](_src_userdb_.md#getusers)
@@ -18,28 +17,11 @@
 
 ## Functions
 
-###  authIsReady
-
-▸ **authIsReady**(): *Promise‹void›*
-
-*Defined in [src/userdb.ts:26](https://github.com/jlguenego/node-expose-sspi/blob/7b16afe/src/userdb.ts#L26)*
-
-Waits until authentication middleware is ready.
-
-When on domain, the sso.auth() function may takes time to init properly.
-You should use authIsReady to wait for sso.auth() is completely ready.
-
-**`export`** 
-
-**Returns:** *Promise‹void›*
-
-___
-
 ###  getDistinguishedName
 
 ▸ **getDistinguishedName**(): *Promise‹string›*
 
-*Defined in [src/userdb.ts:139](https://github.com/jlguenego/node-expose-sspi/blob/7b16afe/src/userdb.ts#L139)*
+*Defined in [src/userdb.ts:113](https://github.com/jlguenego/node-expose-sspi/blob/4e8c359/src/userdb.ts#L113)*
 
 **Returns:** *Promise‹string›*
 
@@ -49,7 +31,7 @@ ___
 
 ▸ **getUser**(`ldapFilter`: string): *Promise‹[ADUser](../interfaces/_src_interfaces_.aduser.md)›*
 
-*Defined in [src/userdb.ts:64](https://github.com/jlguenego/node-expose-sspi/blob/7b16afe/src/userdb.ts#L64)*
+*Defined in [src/userdb.ts:38](https://github.com/jlguenego/node-expose-sspi/blob/4e8c359/src/userdb.ts#L38)*
 
 **Parameters:**
 
@@ -65,7 +47,7 @@ ___
 
 ▸ **getUsers**(): *Promise‹[ADUsers](_src_interfaces_.md#adusers)›*
 
-*Defined in [src/userdb.ts:99](https://github.com/jlguenego/node-expose-sspi/blob/7b16afe/src/userdb.ts#L99)*
+*Defined in [src/userdb.ts:73](https://github.com/jlguenego/node-expose-sspi/blob/4e8c359/src/userdb.ts#L73)*
 
 **Returns:** *Promise‹[ADUsers](_src_interfaces_.md#adusers)›*
 
@@ -75,7 +57,7 @@ ___
 
 ▸ **init**(): *Promise‹void›*
 
-*Defined in [src/userdb.ts:49](https://github.com/jlguenego/node-expose-sspi/blob/7b16afe/src/userdb.ts#L49)*
+*Defined in [src/userdb.ts:25](https://github.com/jlguenego/node-expose-sspi/blob/4e8c359/src/userdb.ts#L25)*
 
 This function is recommanded to be called before starting a server.
 
@@ -94,10 +76,10 @@ Useless if you do not use AD.
 
 ### ▪ **database**: *object*
 
-*Defined in [src/userdb.ts:13](https://github.com/jlguenego/node-expose-sspi/blob/7b16afe/src/userdb.ts#L13)*
+*Defined in [src/userdb.ts:9](https://github.com/jlguenego/node-expose-sspi/blob/4e8c359/src/userdb.ts#L9)*
 
 ###  users
 
 • **users**: *undefined[]* = []
 
-*Defined in [src/userdb.ts:14](https://github.com/jlguenego/node-expose-sspi/blob/7b16afe/src/userdb.ts#L14)*
+*Defined in [src/userdb.ts:10](https://github.com/jlguenego/node-expose-sspi/blob/4e8c359/src/userdb.ts#L10)*
