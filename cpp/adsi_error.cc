@@ -1,6 +1,6 @@
 #include "adsi_error.h"
 #include <Activeds.h>
-#include <atlstr.h>
+
 
 namespace myADSI {
 
