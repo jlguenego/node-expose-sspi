@@ -1,12 +1,13 @@
 import { CtxtHandle } from '../lib/api';
 
-interface IResolve {
+interface IPromiseFn {
   (value?: unknown): void;
 }
 
 interface AuthItem {
-  resolve: IResolve;
-  // timeout: NodeJS.Timeout
+  resolve: IPromiseFn;
+  reject: IPromiseFn;
+  timeout?: NodeJS.Timeout;
 }
 
 export class ServerContextHandleManager {
@@ -17,19 +18,19 @@ export class ServerContextHandleManager {
   constructor(private delayMax = 20000) {}
 
   async waitForReleased() {
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       // if nobody else is currently authenticating then go now.
+      const authItem = { resolve, reject };
+      const timeout = setTimeout(() => {
+        this.tooLate(authItem);
+      }, this.delayMax);
       if (this.authItem === undefined) {
-        this.authItem = { resolve };
+        this.authItem = { resolve, reject, timeout };
         return this.authItem.resolve();
       }
 
       // someone is currently authenticating, go in the queue and wait for your turn.
-      this.queue.push({ resolve });
-      // const timeout = setTimeout(() => {
-      //   // abandon the authenticating...
-      //   this.release();
-      // }, this.delayMax);
+      this.queue.push({ resolve, reject, timeout });
     });
   }
 
@@ -42,6 +43,8 @@ export class ServerContextHandleManager {
   }
 
   release() {
+    clearTimeout(this.authItem.timeout);
+    console.log('released');
     this.serverContextHandle = undefined;
     this.authItem = undefined;
     if (this.queue.length > 0) {
@@ -50,5 +53,14 @@ export class ServerContextHandleManager {
       this.authItem = this.queue.shift();
       this.authItem.resolve();
     }
+  }
+
+  tooLate(authItem: AuthItem) {
+    while (this.queue.length > 0) {
+      const authItem = this.queue.shift();
+      clearTimeout(authItem.timeout);
+      this.authItem.reject();
+    }
+    return authItem.resolve();
   }
 }
