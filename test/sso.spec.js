@@ -25,12 +25,9 @@ describe('SSO Unit Test', function() {
     await sso.sleep(5000);
   });
 
-  it('should test sso.getUser() 101', async function() {
+  it('should test sso.getUser()', async function() {
     this.timeout(15000);
-    sso.init();
-    const user = await sso.getUser('sn=G*');
-    console.log('user: ', user);
-    await sso.sleep(5000);
+    const user = await sso.getUser(`sAMAccountName=${os.userInfo().username}`);
   });
 
   // it('should test connect', async function() {
