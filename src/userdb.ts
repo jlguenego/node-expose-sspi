@@ -102,7 +102,7 @@ export async function getUsers(): Promise<ADUsers> {
       result.push(row);
     }
   } catch (error) {
-    console.log('error: ', error);
+    console.error('error: ', error);
   } finally {
     dirsearch && dirsearch.Release();
     adsi.CoUninitialize();
