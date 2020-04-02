@@ -7,6 +7,15 @@ describe('ADSI Unit Test', function() {
     adsi.CoUninitialize();
   });
 
+  it('can CoInitialize many times', async function() {
+    this.timeout(8000);
+    adsi.CoInitializeEx(['COINIT_MULTITHREADED']);
+    adsi.CoInitializeEx(['COINIT_MULTITHREADED']);
+    adsi.CoUninitialize();
+    adsi.CoUninitialize();
+    await sso.sleep(5000);
+  });
+
   if (sso.isOnDomain() && sso.isActiveDirectoryReachable()) {
     it('should test CoInitializeEx', function() {
       adsi.CoInitializeEx(['COINIT_MULTITHREADED']);
