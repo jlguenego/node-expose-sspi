@@ -43,7 +43,9 @@ export class ServerContextHandleManager {
   }
 
   release() {
-    clearTimeout(this.authItem.timeout);
+    if (this.authItem) {
+      clearTimeout(this.authItem.timeout);
+    }
     this.serverContextHandle = undefined;
     this.authItem = undefined;
     if (this.queue.length > 0) {
