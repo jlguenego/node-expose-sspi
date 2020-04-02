@@ -9,7 +9,7 @@ import { hexDump } from './misc';
 import { SSO } from './SSO';
 import './express';
 import { client } from './client';
-import { init, database, authIsReady } from './userdb';
+import { init, database, authIsReady, getUsers, getUser } from './userdb';
 
 const sleep = (time: number) =>
   new Promise(resolve => setTimeout(resolve, time));
@@ -27,4 +27,6 @@ export const sso = {
   authIsReady,
   database,
   sleep,
+  getUsers,
+  getUser,
 };

@@ -63,35 +63,34 @@ export async function getUser(ldapFilter: string): Promise<ADUser> {
     return;
   }
   adsi.CoInitializeEx(['COINIT_MULTITHREADED']);
+  let dirsearch: IDirectorySearch;
+  try {
+    const distinguishedName = await getDistinguishedName();
+    dirsearch = await adsi.ADsOpenObject<IDirectorySearch>({
+      binding: `LDAP://${distinguishedName}`,
+      riid: 'IID_IDirectorySearch',
+    });
+    dirsearch.SetSearchPreference();
+    dirsearch.ExecuteSearch({
+      filter: `(&(objectClass=user)(objectCategory=person)${ldapFilter})`,
+    });
 
-  const distinguishedName = await getDistinguishedName();
-  const dirsearch = await adsi.ADsOpenObject<IDirectorySearch>({
-    binding: `LDAP://${distinguishedName}`,
-    riid: 'IID_IDirectorySearch',
-  });
-  dirsearch.SetSearchPreference();
-  dirsearch.ExecuteSearch({
-    filter: `(&(objectClass=user)(objectCategory=person)${ldapFilter})`,
-  });
-
-  let row: ADUser;
-  const hr = dirsearch.GetNextRow();
-  if (hr === adsi.S_ADS_NOMORE_ROWS) {
-    dirsearch.Release();
+    const hr = dirsearch.GetNextRow();
+    if (hr === adsi.S_ADS_NOMORE_ROWS) {
+      return undefined;
+    }
+    const row: ADUser = {};
+    let colName = dirsearch.GetNextColumnName();
+    while (colName !== adsi.S_ADS_NOMORE_COLUMNS) {
+      const value = await dirsearch.GetColumn(colName as string);
+      row[colName] = value;
+      colName = dirsearch.GetNextColumnName();
+    }
+    return row;
+  } finally {
+    dirsearch && dirsearch.Release();
     adsi.CoUninitialize();
-    return undefined;
   }
-  row = {};
-  let colName = dirsearch.GetNextColumnName();
-  while (colName !== adsi.S_ADS_NOMORE_COLUMNS) {
-    const value = await dirsearch.GetColumn(colName as string);
-    row[colName] = value;
-    colName = dirsearch.GetNextColumnName();
-  }
-
-  dirsearch.Release();
-  adsi.CoUninitialize();
-  return row;
 }
 
 export async function getUsers(): Promise<ADUsers> {
