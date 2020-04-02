@@ -44,6 +44,7 @@ export function auth(options: AuthOptions = {}): RequestHandler {
       if (!authorization) {
         debug('no authorization');
         await schManager.waitForReleased();
+        debug('schManager released');
         res.statusCode = 401;
         res.setHeader('WWW-Authenticate', 'Negotiate');
         return res.end();
