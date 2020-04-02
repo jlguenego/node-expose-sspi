@@ -7,32 +7,9 @@ import { EventEmitter } from 'events';
 
 const debug = dbg('node-expose-sspi:userdb');
 
-const initAuthEvent = new EventEmitter();
-let isAuthReady = false;
-
 export const database: Database = {
   users: [],
 };
-
-/**
- * Waits until authentication middleware is ready.
- *
- * When on domain, the sso.auth() function may takes time to init properly.
- * You should use authIsReady to wait for sso.auth() is completely ready.
- *
- * @export
- * @returns {Promise<void>}
- */
-export function authIsReady(): Promise<void> {
-  return new Promise(resolve => {
-    if (isAuthReady) {
-      resolve();
-    }
-    initAuthEvent.on('ready', () => {
-      resolve();
-    });
-  });
-}
 
 /**
  * 
@@ -54,8 +31,6 @@ export async function init(): Promise<void> {
     debug('init');
     // request all accounts from domain
     database.users = await getUsers();
-    initAuthEvent.emit('ready');
-    isAuthReady = true;
   } catch (e) {
     debug('Cannot get users from AD. e: ', e);
   }
