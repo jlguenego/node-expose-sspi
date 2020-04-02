@@ -6,13 +6,11 @@ import {
   isActiveDirectoryReachable,
 } from './domain';
 import { hexDump } from './misc';
+import { sleep } from './sleep';
 import { SSO } from './SSO';
 import './express';
 import { client } from './client';
 import { init, database, getUsers, getUser } from './userdb';
-
-const sleep = (time: number) =>
-  new Promise(resolve => setTimeout(resolve, time));
 
 export const sso = {
   hexDump,
