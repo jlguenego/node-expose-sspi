@@ -62,6 +62,7 @@ export class ServerContextHandleManager {
       clearTimeout(authItem.timeout);
       this.authItem.reject();
     }
-    return authItem.resolve();
+    this.authItem = authItem;
+    return this.authItem.resolve();
   }
 }
