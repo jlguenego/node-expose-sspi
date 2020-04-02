@@ -25,7 +25,7 @@
 
 \+ **new ServerContextHandleManager**(`delayMax`: number): *[ServerContextHandleManager](_src_servercontexthandlemanager_.servercontexthandlemanager.md)*
 
-*Defined in [src/ServerContextHandleManager.ts:7](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/src/ServerContextHandleManager.ts#L7)*
+*Defined in [src/ServerContextHandleManager.ts:7](https://github.com/jlguenego/node-expose-sspi/blob/7b16afe/src/ServerContextHandleManager.ts#L7)*
 
 **Parameters:**
 
@@ -41,7 +41,7 @@ Name | Type | Default |
 
 ▸ **getServerContextHandle**(): *[CtxtHandle](../interfaces/_lib_sspi_d_.ctxthandle.md)*
 
-*Defined in [src/ServerContextHandleManager.ts:29](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/src/ServerContextHandleManager.ts#L29)*
+*Defined in [src/ServerContextHandleManager.ts:29](https://github.com/jlguenego/node-expose-sspi/blob/7b16afe/src/ServerContextHandleManager.ts#L29)*
 
 **Returns:** *[CtxtHandle](../interfaces/_lib_sspi_d_.ctxthandle.md)*
 
@@ -51,7 +51,7 @@ ___
 
 ▸ **release**(): *void*
 
-*Defined in [src/ServerContextHandleManager.ts:33](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/src/ServerContextHandleManager.ts#L33)*
+*Defined in [src/ServerContextHandleManager.ts:33](https://github.com/jlguenego/node-expose-sspi/blob/7b16afe/src/ServerContextHandleManager.ts#L33)*
 
 **Returns:** *void*
 
@@ -61,7 +61,7 @@ ___
 
 ▸ **set**(`serverContextHandle`: [CtxtHandle](../interfaces/_lib_sspi_d_.ctxthandle.md)): *void*
 
-*Defined in [src/ServerContextHandleManager.ts:25](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/src/ServerContextHandleManager.ts#L25)*
+*Defined in [src/ServerContextHandleManager.ts:25](https://github.com/jlguenego/node-expose-sspi/blob/7b16afe/src/ServerContextHandleManager.ts#L25)*
 
 **Parameters:**
 
@@ -77,6 +77,6 @@ ___
 
 ▸ **waitForReleased**(): *Promise‹unknown›*
 
-*Defined in [src/ServerContextHandleManager.ts:11](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/src/ServerContextHandleManager.ts#L11)*
+*Defined in [src/ServerContextHandleManager.ts:11](https://github.com/jlguenego/node-expose-sspi/blob/7b16afe/src/ServerContextHandleManager.ts#L11)*
 
 **Returns:** *Promise‹unknown›*

@@ -14,7 +14,7 @@
 
 ▸ **hexDump**(`buffer`: ArrayBuffer): *string*
 
-*Defined in [src/misc.ts:22](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/src/misc.ts#L22)*
+*Defined in [src/misc.ts:22](https://github.com/jlguenego/node-expose-sspi/blob/7b16afe/src/misc.ts#L22)*
 
 Gives a string representation of binary data.
 

@@ -18,4 +18,4 @@
 
 • **users**: *[ADUsers](../modules/_src_interfaces_.md#adusers)*
 
-*Defined in [src/interfaces.ts:52](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/src/interfaces.ts#L52)*
+*Defined in [src/interfaces.ts:52](https://github.com/jlguenego/node-expose-sspi/blob/7b16afe/src/interfaces.ts#L52)*

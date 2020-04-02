@@ -20,9 +20,9 @@
 
 ###  authIsReady
 
-▸ **authIsReady**(): *Promise‹unknown›*
+▸ **authIsReady**(): *Promise‹void›*
 
-*Defined in [src/userdb.ts:25](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/src/userdb.ts#L25)*
+*Defined in [src/userdb.ts:26](https://github.com/jlguenego/node-expose-sspi/blob/7b16afe/src/userdb.ts#L26)*
 
 Waits until authentication middleware is ready.
 
@@ -31,7 +31,7 @@ You should use authIsReady to wait for sso.auth() is completely ready.
 
 **`export`** 
 
-**Returns:** *Promise‹unknown›*
+**Returns:** *Promise‹void›*
 
 ___
 
@@ -39,7 +39,7 @@ ___
 
 ▸ **getDistinguishedName**(): *Promise‹string›*
 
-*Defined in [src/userdb.ts:123](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/src/userdb.ts#L123)*
+*Defined in [src/userdb.ts:139](https://github.com/jlguenego/node-expose-sspi/blob/7b16afe/src/userdb.ts#L139)*
 
 **Returns:** *Promise‹string›*
 
@@ -49,7 +49,7 @@ ___
 
 ▸ **getUser**(`ldapFilter`: string): *Promise‹[ADUser](../interfaces/_src_interfaces_.aduser.md)›*
 
-*Defined in [src/userdb.ts:47](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/src/userdb.ts#L47)*
+*Defined in [src/userdb.ts:64](https://github.com/jlguenego/node-expose-sspi/blob/7b16afe/src/userdb.ts#L64)*
 
 **Parameters:**
 
@@ -65,7 +65,7 @@ ___
 
 ▸ **getUsers**(): *Promise‹[ADUsers](_src_interfaces_.md#adusers)›*
 
-*Defined in [src/userdb.ts:83](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/src/userdb.ts#L83)*
+*Defined in [src/userdb.ts:99](https://github.com/jlguenego/node-expose-sspi/blob/7b16afe/src/userdb.ts#L99)*
 
 **Returns:** *Promise‹[ADUsers](_src_interfaces_.md#adusers)›*
 
@@ -75,7 +75,16 @@ ___
 
 ▸ **init**(): *Promise‹void›*
 
-*Defined in [src/userdb.ts:33](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/src/userdb.ts#L33)*
+*Defined in [src/userdb.ts:49](https://github.com/jlguenego/node-expose-sspi/blob/7b16afe/src/userdb.ts#L49)*
+
+This function is recommanded to be called before starting a server.
+
+Purpose is to cache all Active Directory (AD) users for
+performance during authentication, just for increasing performance.
+
+Useless if you do not use AD.
+
+**`export`** 
 
 **Returns:** *Promise‹void›*
 
@@ -85,10 +94,10 @@ ___
 
 ### ▪ **database**: *object*
 
-*Defined in [src/userdb.ts:12](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/src/userdb.ts#L12)*
+*Defined in [src/userdb.ts:13](https://github.com/jlguenego/node-expose-sspi/blob/7b16afe/src/userdb.ts#L13)*
 
 ###  users
 
 • **users**: *undefined[]* = []
 
-*Defined in [src/userdb.ts:13](https://github.com/jlguenego/node-expose-sspi/blob/52464ac/src/userdb.ts#L13)*
+*Defined in [src/userdb.ts:14](https://github.com/jlguenego/node-expose-sspi/blob/7b16afe/src/userdb.ts#L14)*
