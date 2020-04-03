@@ -213,6 +213,10 @@ npm run build
 npm run test
 ```
 
+There is 2 areas :
+- **C++ code**: run `npm run dev` to watch the modifications and recompile ASAP. It runs the test as well.
+- **Typescript code**: run `npm run build:tsw` to recompile while watching.
+
 All tests are done with [mocha](https://github.com/mochajs/mocha).
 
 The module [debug](https://github.com/visionmedia/debug) is used for printing some debug info.
