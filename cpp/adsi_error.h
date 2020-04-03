@@ -1,6 +1,7 @@
-#include <atlstr.h>
+#include <string>
+#include <Activeds.h>
 
 namespace myADSI {
-    CString GetErrorMessage(HRESULT hr);
-    CString GetADSIError(HRESULT hr);
-}
+std::string GetErrorMessage(HRESULT hr);
+std::string GetADSIError(HRESULT hr);
+}  // namespace myADSI

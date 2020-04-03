@@ -24,8 +24,10 @@ class IADsGetWorker : public Napi::AsyncWorker {
 
     VARIANT var;
     VariantInit(&var);
-
-    HRESULT hr = m_iads->Get(CComBSTR((const wchar_t *)m_name.c_str()), &var);
+    std::wstring ws = (const wchar_t *)m_name.c_str();
+    BSTR bstr = SysAllocStringLen(ws.c_str(), ws.size());
+    HRESULT hr = m_iads->Get(bstr, &var);
+    SysFreeString(bstr);
     if (FAILED(hr)) {
       return SetError("IADs.Get has failed. " + plf::ad_error_msg(hr));
     }

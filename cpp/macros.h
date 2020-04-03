@@ -1,5 +1,3 @@
-#include <atlstr.h>
-
 #define AD_CHECK_ERROR(hr, name)                                            \
   if (FAILED(hr)) {                                                         \
     throw Napi::Error::New(env,                                             \

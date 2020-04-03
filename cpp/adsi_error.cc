@@ -1,16 +1,16 @@
 #include "adsi_error.h"
-#include <Activeds.h>
-
+#include "polyfill.h"
 
 namespace myADSI {
 
-CString GetErrorMessage(HRESULT hr) {
+std::string GetErrorMessage(HRESULT hr) {
   BOOL bRet;
-  CString s;
+  std::string s;
   LPTSTR lpBuffer = NULL;
 
   if (SUCCEEDED(hr)) {
-    return _T("Success");
+    s = "Success";
+    return s;
   }
 
   // standard ADSI Errors
@@ -18,7 +18,7 @@ CString GetErrorMessage(HRESULT hr) {
     return GetADSIError(hr);
   }
   if (HRESULT_FACILITY(hr) != FACILITY_WIN32) {
-    s.Format(_T("0x%08X"), hr);
+    s = plf::string_format("0x%08X", hr);
     return s;
   }
   /////////////////////////////////////////////
@@ -31,12 +31,13 @@ CString GetErrorMessage(HRESULT hr) {
                     (LPTSTR)&lpBuffer, 0, NULL);
 
   if (!bRet) {
-    s.Format(_T("Error %08X"), hr);
+    s = plf::string_format("Error %08X", hr);
     return s;
   }
 
   if (lpBuffer) {
-    s = lpBuffer;
+    std::wstring ws = lpBuffer;
+    s = plf::wstrtostr(ws);
     LocalFree(lpBuffer);
   }
 
@@ -57,11 +58,12 @@ CString GetErrorMessage(HRESULT hr) {
                        (sizeof(szName) / sizeof(WCHAR)) - 1);
 
   if (SUCCEEDED(hr) && dwError != ERROR_INVALID_DATA && wcslen(szBuffer)) {
-    USES_CONVERSION;
-    s += _T("  -- Extended Error --- ");
-    s += OLE2T(szName);
-    s += _T(" : ");
-    s += OLE2T(szBuffer);
+    std::string s1 = plf::wstrtostr(szName);
+    std::string s2 = plf::wstrtostr(szBuffer);
+    s += "  -- Extended Error --- ";
+    s += s1;
+    s += " : ";
+    s += s2;
   }
 
   return s;
@@ -69,10 +71,10 @@ CString GetErrorMessage(HRESULT hr) {
 
 typedef struct tagADSERRMSG {
   HRESULT hr;
-  LPCTSTR pszError;
+  const char *pszError;
 } ADSERRMSG;
 
-#define ADDADSERROR(x) x, _T(#x)
+#define ADDADSERROR(x) x, #x
 
 ADSERRMSG adsErr[] = {
     ADDADSERROR(E_ADS_BAD_PATHNAME),
@@ -101,8 +103,8 @@ ADSERRMSG adsErr[] = {
 // Error message specific to ADSI
 //
 ////////////////////////////////////////////
-CString GetADSIError(HRESULT hr) {
-  CString s;
+std::string GetADSIError(HRESULT hr) {
+  std::string s;
 
   if (hr & 0x00005000) {
     int idx = 0;
@@ -114,7 +116,7 @@ CString GetADSIError(HRESULT hr) {
     }
   }
 
-  s.Format(_T("0x%08X"), hr);
+  s = plf::string_format("0x%08X", hr);
   return s;
 }
 

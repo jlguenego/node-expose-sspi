@@ -1,7 +1,6 @@
 #include "../../misc.h"
 
 #include <atlenc.h>
-#include <atlstr.h>
 #include <iomanip>
 #include <iostream>
 #include <sstream>
@@ -51,9 +50,9 @@ Napi::Value e_GetTokenInformation(const Napi::CallbackInfo& info) {
       SID_NAME_USE sidtype;
       if (LookupAccountSidW(NULL, groupinfo->Groups[i].Sid, group_name,
                             &grouplen, domain_name, &domainlen, &sidtype)) {
-        std::string grpNm = std::string(CW2A(domain_name, CP_UTF8)) +
+        std::string grpNm = plf::wstrtostr(domain_name) +
                             std::string("\\") +
-                            std::string(CW2A(group_name, CP_UTF8));
+                            plf::wstrtostr(group_name);
         result[std::to_string(i)] = Napi::String::New(env, grpNm);
       }
     }

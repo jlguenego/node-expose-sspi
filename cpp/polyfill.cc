@@ -98,11 +98,8 @@ std::string error_msg(DWORD code) {
 }
 
 std::string ad_error_msg(HRESULT hr) {
-  CString cs = myADSI::GetErrorMessage(hr);
-  // convert the CString to std::string
-  CT2CA a(cs);
-  std::string result(a);
-  return result;
+  std::string cs = myADSI::GetErrorMessage(hr);
+  return cs;
 }
 
 }  // namespace plf
