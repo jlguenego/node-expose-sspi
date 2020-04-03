@@ -230,6 +230,7 @@ Any idea of new features ? Please tell me and raise an issue. :blush:
 - Test with 10000 users.
 - Filter groups options.
 - BUG: Connect to a local account while being on a domain
+- UTF8 everywhere
 
 ## Thanks
 
