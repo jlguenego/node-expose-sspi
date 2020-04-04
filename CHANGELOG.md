@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.8](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.7...v0.1.8) (2020-04-04)
+
+
+### Features
+
+* add cookie management to auth and client ([1e8e8de](https://github.com/jlguenego/node-expose-sspi/commit/1e8e8debcee40aae508ad0315701be204425ff39))
+
+
+### Bug Fixes
+
+* c++ code does not rely on atlstr.h anymore ([b8d0c90](https://github.com/jlguenego/node-expose-sspi/commit/b8d0c90e596f7000eafac3ca56c75e328e600965))
+* small check of release method ([c242a77](https://github.com/jlguenego/node-expose-sspi/commit/c242a771cfcdd996ede27ec63225b80cb89e791d))
+* tooLate and this.authItem ([9c63c97](https://github.com/jlguenego/node-expose-sspi/commit/9c63c9719ae249b82b2f82c796ef3d75f797f861))
+
 ### [0.1.7](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.6...v0.1.7) (2020-04-02)
 
 
