@@ -9,7 +9,7 @@ import { hexDump } from './misc';
 import { sleep } from './sleep';
 import { SSO } from './SSO';
 import './express';
-import { client } from './client';
+import { Client } from './client';
 import { init, database, getUsers, getUser } from './userdb';
 
 export const sso = {
@@ -20,7 +20,7 @@ export const sso = {
   getDefaultDomain,
   isOnDomain,
   isActiveDirectoryReachable,
-  client,
+  Client,
   init,
   database,
   sleep,

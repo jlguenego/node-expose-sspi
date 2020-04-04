@@ -49,9 +49,8 @@ describe('ClientServer', function() {
       async function simulateClient(i) {
         try {
           debug('start client', i);
-          const { fetch } = sso.client;
           state.increment();
-          const response = await fetch('http://localhost:3000');
+          const response = await new sso.Client().fetch('http://localhost:3000');
           const json = await response.json();
           state.decrement();
           assert(json.sso.user, 'json.sso.user should be truthy');

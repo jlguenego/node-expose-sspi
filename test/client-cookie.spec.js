@@ -19,9 +19,7 @@ describe('COOKIE Unit Test', function() {
     debug('server started');
 
     debug('start client');
-    const { fetch } = sso.client;
-
-    const response = await fetch('http://localhost:3000');
+    const response = await new sso.Client().fetch('http://localhost:3000');
     const json = await response.json();
     assert.equal(json.sso.method, 'NTLM');
     debug('cookie', json.cookie);

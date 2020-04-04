@@ -19,25 +19,3 @@ export function parseCookies(request: http.IncomingMessage): CookieList {
   return list;
 }
 
-const cookieList: CookieList = {};
-
-export function saveCookies(response: Response): void {
-  response.headers.forEach((value, name) => {
-    if (name !== 'Set-Cookie'.toLowerCase()) {
-      return;
-    }
-    // parse something like <key>=<val>[; Expires=xxxxx;]
-    const [key, val] = value.split(/[=;]/g);
-    debug('val: ', val);
-    debug('key: ', key);
-    cookieList[key] = val;
-  });
-  debug('cookieList: ', cookieList);
-}
-
-export function restituteCookies(requestInit: RequestInit): void {
-  const cookieStr = Object.keys(cookieList)
-    .map((key) => key + '=' + cookieList[key])
-    .join('; ');
-  Object.assign(requestInit.headers, { cookie: cookieStr });
-}
