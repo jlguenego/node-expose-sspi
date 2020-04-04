@@ -17,6 +17,14 @@ const debug = dbg('node-expose-sspi:auth');
  * @returns {RequestHandler} a middleware
  */
 export function auth(options: AuthOptions = {}): RequestHandler {
+  const opts: AuthOptions = {
+    useActiveDirectory: true,
+    useGroups: true,
+    useOwner: false,
+    useCookies: true,
+  };
+  Object.assign(opts, options);
+
   let { credential, tsExpiry } = sspi.AcquireCredentialsHandle({
     packageName: 'Negotiate',
   });
@@ -39,6 +47,11 @@ export function auth(options: AuthOptions = {}): RequestHandler {
   return async (req, res, next) => {
     try {
       checkCredentials();
+
+
+      if (opts.useCookies) {
+        schManager.setCookieMode(req, res);
+      }
 
       const authorization = req.headers.authorization;
       if (!authorization) {
@@ -98,7 +111,7 @@ export function auth(options: AuthOptions = {}): RequestHandler {
         );
         const serverContextHandle = schManager.getServerContextHandle();
         const sso = new SSO(serverContextHandle, method);
-        sso.setOptions(options);
+        sso.setOptions(opts);
         await sso.load();
         req.sso = sso.getJSON();
         sspi.DeleteSecurityContext(serverContextHandle);

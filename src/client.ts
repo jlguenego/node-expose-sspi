@@ -2,6 +2,7 @@ import fetch, { RequestInit, Response } from 'node-fetch';
 import { sspi, InitializeSecurityContextInput } from '../lib/api';
 import { encode, decode } from 'base64-arraybuffer';
 import dbg from 'debug';
+import { saveCookies, restituteCookies } from './cookies';
 
 const debug = dbg('node-expose-sspi:client');
 
@@ -11,12 +12,19 @@ async function handleAuth(
   init: RequestInit = {}
 ): Promise<Response> {
   debug('handleAuth: start. headers', response.headers);
+
+  // has cookies ?
+  saveCookies(response);
+
   if (!response.headers.has('www-authenticate')) {
     debug('no header www-authenticate');
     return response;
   }
   if (!response.headers.get('www-authenticate').startsWith('Negotiate')) {
-    debug('no header www-authenticate with Negotiate:', response.headers.get('www-authenticate'));
+    debug(
+      'no header www-authenticate with Negotiate:',
+      response.headers.get('www-authenticate')
+    );
     return response;
   }
   if (response.status !== 401) {
@@ -24,7 +32,7 @@ async function handleAuth(
     return response;
   }
 
-  debug('starting auth');
+  debug('starting negotiate auth');
 
   const clientCred = sspi.AcquireCredentialsHandle({
     packageName: 'Negotiate',
@@ -45,6 +53,8 @@ async function handleAuth(
     ...init.headers,
     Authorization: 'Negotiate ' + base64,
   };
+  // cookies case
+  restituteCookies(requestInit);
   response = await fetch(resource, requestInit);
   while (
     response.headers.has('www-authenticate') &&
@@ -74,6 +84,7 @@ async function handleAuth(
       ...init.headers,
       Authorization: 'Negotiate ' + base64,
     };
+    restituteCookies(requestInit);
     response = await fetch(resource, requestInit);
   }
   debug('handleAuth: end');

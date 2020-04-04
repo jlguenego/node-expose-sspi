@@ -19,7 +19,7 @@ export interface AuthOptions {
    * Brings back the Active Directory user information
    *
    * Note: only if we can reach Active Directory of the Domain Controller
-   * 
+   *
    * @default true
    *
    * @type {boolean}
@@ -27,16 +27,26 @@ export interface AuthOptions {
    */
   useActiveDirectory?: boolean;
 
-
   /**
    * Brings back the server process owner info.
-   * 
+   *
    * @default true
    *
    * @type {boolean}
    * @memberof AuthOptions
    */
   useOwner?: boolean;
+
+  /**
+   * Manage authentication with cookie.
+   * Useful for performance when many users try to connect at the same time.
+   *
+   * @default true
+   *
+   * @type {boolean}
+   * @memberof AuthOptions
+   */
+  useCookies?: boolean;
 }
 
 export interface User {
@@ -60,3 +70,7 @@ export interface ADUser {
 }
 
 export type ADUsers = ADUser[];
+
+export interface CookieList {
+  [name: string]: string;
+}
