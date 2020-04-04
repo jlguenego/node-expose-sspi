@@ -12,7 +12,7 @@ describe('ClientServer', function() {
       await sso.init();
       debug('init completed');
       const app = express();
-      app.use(sso.auth({ useActiveDirectory: true }));
+      app.use(sso.auth({ useOwner: true, useActiveDirectory: true, useCookies: false }));
       app.use((req, res) => {
         res.json({
           sso: req.sso,
