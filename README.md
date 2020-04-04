@@ -235,6 +235,7 @@ Any idea of new features ? Please tell me and raise an issue. :blush:
 - Filter groups options.
 - BUG: Connect to a local account while being on a domain
 - UTF8 everywhere
+- Cookie management in client
 
 ## Thanks
 
