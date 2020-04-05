@@ -10,6 +10,7 @@ import { sleep } from './sleep';
 import { SSO } from './SSO';
 import './express';
 import { Client } from './client';
+import { Mutex } from './mutex';
 import { init, database, getUsers, getUser } from './userdb';
 
 export const sso = {
@@ -26,4 +27,5 @@ export const sso = {
   sleep,
   getUsers,
   getUser,
+  Mutex,
 };

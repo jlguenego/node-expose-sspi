@@ -1,4 +1,3 @@
-import { EventEmitter } from 'events';
 import dbg from 'debug';
 
 const debug = dbg('node-expose-sspi:mutex');
@@ -14,39 +13,28 @@ interface Task {
 export class Mutex {
   private isBusy = false;
   private queue: Task[] = [];
-  private signal = new EventEmitter();
 
-  constructor() {
-    const releaseFn = () => {
+  private onRelease() {
+    debug('release');
+    if (this.queue.length === 0) {
       this.isBusy = false;
-      this.signal.emit('release');
-    };
-
-    this.signal.on('release', () => {
-      debug('release');
-      if (this.queue.length === 0) {
-        this.isBusy = false;
-        return;
-      }
-      const { resolve } = this.queue.shift();
-      this.isBusy = true;
-      resolve(releaseFn);
-    });
+      return;
+    }
+    const { resolve } = this.queue.shift();
+    debug('decrease queue size', this.queue.length);
+    this.isBusy = true;
+    resolve(this.onRelease.bind(this));
   }
 
   async acquire(): Promise<ReleaseFn> {
     return new Promise((resolve) => {
       debug('acquire');
-      const releaseFn = () => {
-        this.isBusy = false;
-        this.signal.emit('release');
-      };
-
       if (!this.isBusy) {
         this.isBusy = true;
-        return resolve(releaseFn);
+        return resolve(this.onRelease.bind(this));
       }
       this.queue.push({ resolve });
+      debug('increase queue size', this.queue.length);
     });
   }
 }
