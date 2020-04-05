@@ -21,7 +21,7 @@
 
 ▸ **QueryInterface**(`str`: "IID_IDirectorySearch"): *[IDirectorySearch](_lib_adsi_d_.idirectorysearch.md)*
 
-*Defined in [lib/adsi.d.ts:14](https://github.com/jlguenego/node-expose-sspi/blob/4e8c359/lib/adsi.d.ts#L14)*
+*Defined in [lib/adsi.d.ts:14](https://github.com/jlguenego/node-expose-sspi/blob/19d0c3f/lib/adsi.d.ts#L14)*
 
 **Parameters:**
 
@@ -39,6 +39,6 @@ ___
 
 *Inherited from [IID](_lib_adsi_d_.iid.md).[Release](_lib_adsi_d_.iid.md#release)*
 
-*Defined in [lib/adsi.d.ts:4](https://github.com/jlguenego/node-expose-sspi/blob/4e8c359/lib/adsi.d.ts#L4)*
+*Defined in [lib/adsi.d.ts:4](https://github.com/jlguenego/node-expose-sspi/blob/19d0c3f/lib/adsi.d.ts#L4)*
 
 **Returns:** *void*

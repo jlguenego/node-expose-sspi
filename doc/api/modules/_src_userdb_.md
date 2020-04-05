@@ -21,7 +21,7 @@
 
 ▸ **getDistinguishedName**(): *Promise‹string›*
 
-*Defined in [src/userdb.ts:113](https://github.com/jlguenego/node-expose-sspi/blob/4e8c359/src/userdb.ts#L113)*
+*Defined in [src/userdb.ts:130](https://github.com/jlguenego/node-expose-sspi/blob/19d0c3f/src/userdb.ts#L130)*
 
 **Returns:** *Promise‹string›*
 
@@ -31,7 +31,7 @@ ___
 
 ▸ **getUser**(`ldapFilter`: string): *Promise‹[ADUser](../interfaces/_src_interfaces_.aduser.md)›*
 
-*Defined in [src/userdb.ts:38](https://github.com/jlguenego/node-expose-sspi/blob/4e8c359/src/userdb.ts#L38)*
+*Defined in [src/userdb.ts:39](https://github.com/jlguenego/node-expose-sspi/blob/19d0c3f/src/userdb.ts#L39)*
 
 **Parameters:**
 
@@ -47,7 +47,7 @@ ___
 
 ▸ **getUsers**(): *Promise‹[ADUsers](_src_interfaces_.md#adusers)›*
 
-*Defined in [src/userdb.ts:73](https://github.com/jlguenego/node-expose-sspi/blob/4e8c359/src/userdb.ts#L73)*
+*Defined in [src/userdb.ts:82](https://github.com/jlguenego/node-expose-sspi/blob/19d0c3f/src/userdb.ts#L82)*
 
 **Returns:** *Promise‹[ADUsers](_src_interfaces_.md#adusers)›*
 
@@ -57,7 +57,7 @@ ___
 
 ▸ **init**(): *Promise‹void›*
 
-*Defined in [src/userdb.ts:25](https://github.com/jlguenego/node-expose-sspi/blob/4e8c359/src/userdb.ts#L25)*
+*Defined in [src/userdb.ts:26](https://github.com/jlguenego/node-expose-sspi/blob/19d0c3f/src/userdb.ts#L26)*
 
 This function is recommanded to be called before starting a server.
 
@@ -76,10 +76,10 @@ Useless if you do not use AD.
 
 ### ▪ **database**: *object*
 
-*Defined in [src/userdb.ts:9](https://github.com/jlguenego/node-expose-sspi/blob/4e8c359/src/userdb.ts#L9)*
+*Defined in [src/userdb.ts:10](https://github.com/jlguenego/node-expose-sspi/blob/19d0c3f/src/userdb.ts#L10)*
 
 ###  users
 
 • **users**: *undefined[]* = []
 
-*Defined in [src/userdb.ts:10](https://github.com/jlguenego/node-expose-sspi/blob/4e8c359/src/userdb.ts#L10)*
+*Defined in [src/userdb.ts:11](https://github.com/jlguenego/node-expose-sspi/blob/19d0c3f/src/userdb.ts#L11)*

@@ -30,4 +30,4 @@
 
 Ƭ **InformationClass**: *"TokenGroups"*
 
-*Defined in [lib/sspi.d.ts:61](https://github.com/jlguenego/node-expose-sspi/blob/4e8c359/lib/sspi.d.ts#L61)*
+*Defined in [lib/sspi.d.ts:61](https://github.com/jlguenego/node-expose-sspi/blob/19d0c3f/lib/sspi.d.ts#L61)*

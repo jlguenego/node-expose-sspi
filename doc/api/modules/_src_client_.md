@@ -4,14 +4,6 @@
 
 ## Index
 
-### Variables
+### Classes
 
-* [client](_src_client_.md#const-client)
-
-## Variables
-
-### `Const` client
-
-• **client**: *Client‹›* = new Client()
-
-*Defined in [src/client.ts:86](https://github.com/jlguenego/node-expose-sspi/blob/4e8c359/src/client.ts#L86)*
+* [Client](../classes/_src_client_.client.md)

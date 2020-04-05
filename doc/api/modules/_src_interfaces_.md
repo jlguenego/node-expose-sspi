@@ -8,6 +8,7 @@
 
 * [ADUser](../interfaces/_src_interfaces_.aduser.md)
 * [AuthOptions](../interfaces/_src_interfaces_.authoptions.md)
+* [CookieList](../interfaces/_src_interfaces_.cookielist.md)
 * [Database](../interfaces/_src_interfaces_.database.md)
 * [User](../interfaces/_src_interfaces_.user.md)
 
@@ -21,4 +22,4 @@
 
 Ƭ **ADUsers**: *[ADUser](../interfaces/_src_interfaces_.aduser.md)[]*
 
-*Defined in [src/interfaces.ts:62](https://github.com/jlguenego/node-expose-sspi/blob/4e8c359/src/interfaces.ts#L62)*
+*Defined in [src/interfaces.ts:75](https://github.com/jlguenego/node-expose-sspi/blob/19d0c3f/src/interfaces.ts#L75)*
