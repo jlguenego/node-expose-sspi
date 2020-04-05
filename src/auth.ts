@@ -14,16 +14,24 @@ const debug = dbg('node-expose-sspi:auth');
  * Tries to get SSO information from browser. If success, the SSO info
  * is stored under req.sso
  *
- * @returns {RequestHandler} a middleware
+ * @export
+ * @param {AuthOptions} [options={}]
+ * @returns {RequestHandler}
  */
 export function auth(options: AuthOptions = {}): RequestHandler {
   const opts: AuthOptions = {
     useActiveDirectory: true,
     useGroups: true,
     useOwner: false,
-    useCookies: true,
+    useCookies: false,
   };
   Object.assign(opts, options);
+
+  if (opts.useActiveDirectory && opts.useCookies) {
+    throw new Error(
+      'Sorry. Limitation... Cannot have both useActiveDirectory=true and useCookies=true... because it will crash when calling ActiveDirectory.'
+    );
+  }
 
   let { credential, tsExpiry } = sspi.AcquireCredentialsHandle({
     packageName: 'Negotiate',
@@ -47,7 +55,6 @@ export function auth(options: AuthOptions = {}): RequestHandler {
   return async (req, res, next) => {
     try {
       checkCredentials();
-
 
       if (opts.useCookies) {
         schManager.setCookieMode(req, res);

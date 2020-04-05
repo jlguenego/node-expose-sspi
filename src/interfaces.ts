@@ -18,7 +18,8 @@ export interface AuthOptions {
   /**
    * Brings back the Active Directory user information
    *
-   * Note: only if we can reach Active Directory of the Domain Controller
+   * Note 1: only if we can reach Active Directory of the Domain Controller
+   * Note 2: cannot works with useCookies=true.
    *
    * @default true
    *
@@ -40,6 +41,8 @@ export interface AuthOptions {
   /**
    * Manage authentication with cookie.
    * Useful for performance when many users try to connect at the same time.
+   * 
+   * Note : Cannot work with useActiveDirectory=true.
    *
    * @default true
    *

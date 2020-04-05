@@ -1,8 +1,9 @@
 import { adsi } from '../lib/api';
 import { IDirectorySearch, IADs } from '../lib/adsi';
-import { isOnDomain } from './domain';
+import { isOnDomain, isActiveDirectoryReachable } from './domain';
 import dbg from 'debug';
 import { Database, ADUser, ADUsers } from './interfaces';
+import { activeDirectoryMutex } from './mutex';
 
 const debug = dbg('node-expose-sspi:userdb');
 
@@ -11,12 +12,12 @@ export const database: Database = {
 };
 
 /**
- * 
+ *
  * This function is recommanded to be called before starting a server.
- * 
+ *
  * Purpose is to cache all Active Directory (AD) users for
  * performance during authentication, just for increasing performance.
- * 
+ *
  * Useless if you do not use AD.
  *
  * @export
@@ -36,7 +37,13 @@ export async function init(): Promise<void> {
 }
 
 export async function getUser(ldapFilter: string): Promise<ADUser> {
+  debug('getUser start ');
   if (!isOnDomain()) {
+    return;
+  }
+  const adRelease = await activeDirectoryMutex.acquire();
+  if (!isActiveDirectoryReachable()) {
+    console.error('Warning: Active Directory not reachable');
     return;
   }
   adsi.CoInitializeEx(['COINIT_MULTITHREADED']);
@@ -67,11 +74,19 @@ export async function getUser(ldapFilter: string): Promise<ADUser> {
   } finally {
     dirsearch && dirsearch.Release();
     adsi.CoUninitialize();
+    adRelease();
+    debug('getUser end');
   }
 }
 
 export async function getUsers(): Promise<ADUsers> {
+  debug('getUsers start ');
   if (!isOnDomain()) {
+    return;
+  }
+  const adRelease = await activeDirectoryMutex.acquire();
+  if (!isActiveDirectoryReachable()) {
+    console.error('Warning: Active Directory not reachable');
     return;
   }
   const result: ADUsers = [];
@@ -106,14 +121,13 @@ export async function getUsers(): Promise<ADUsers> {
   } finally {
     dirsearch && dirsearch.Release();
     adsi.CoUninitialize();
+    adRelease();
+    debug('getUsers end');
   }
   return result;
 }
 
 export async function getDistinguishedName(): Promise<string> {
-  if (!isOnDomain()) {
-    return;
-  }
   let root: IADs;
   try {
     root = await adsi.ADsGestObject('LDAP://rootDSE');

@@ -5,7 +5,7 @@
 Expose the Microsoft Windows SSPI (SSP Interface) to [Node.js®](https://nodejs.org/).
 
 :smirk: Use cases:
-- **NTLM** and **Kerberos** SSO authentication inside a private organization network, for instance an ERP in a private company.
+- **NTLM** and **Kerberos** SSO authentication, both server and client inside a private windows organization network, for instance an ERP in a private company.
 - **Active Directory** access to users for detailed info.
 
 Requirements: Microsoft Windows OS, NodeJS version >=12.16.1.
@@ -236,6 +236,7 @@ Any idea of new features ? Please tell me and raise an issue. :blush:
 - BUG: Connect to a local account while being on a domain
 - UTF8 everywhere
 - semaphore for AD directory
+- Refactor by using node module import statement 
 
 ## Thanks
 
