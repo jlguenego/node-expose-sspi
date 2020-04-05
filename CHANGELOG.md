@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.9](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.8...v0.1.9) (2020-04-05)
+
+
+### Features
+
+* added mutex ([93f4c6d](https://github.com/jlguenego/node-expose-sspi/commit/93f4c6d78202c507b9d3ff5b6ea8cbbf85b95109))
+
 ### [0.1.8](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.7...v0.1.8) (2020-04-04)
 
 
