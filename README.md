@@ -235,8 +235,6 @@ Any idea of new features ? Please tell me and raise an issue. :blush:
 - Filter groups options.
 - BUG: Connect to a local account while being on a domain
 - UTF8 everywhere
-- semaphore for AD directory
-- Refactor by using node module import statement 
 
 ## Thanks
 
