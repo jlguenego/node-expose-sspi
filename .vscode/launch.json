@@ -12,14 +12,23 @@
       "program": "${workspaceFolder}\\test\\index.js"
     },
     {
+      "name": "Current TS File",
       "type": "node",
       "request": "launch",
-      "name": "Current TS File",
       "skipFiles": ["<node_internals>/**"],
       "args": ["${relativeFile}"],
       "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
       "sourceMaps": true,
       "cwd": "${workspaceFolder}",
+      "protocol": "inspector"
+    },
+    {
+      "name": "Current TS Tests File",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
+      "args": ["-r", "ts-node/register", "${relativeFile}"],
+      "cwd": "${workspaceRoot}",
       "protocol": "inspector"
     }
   ]
