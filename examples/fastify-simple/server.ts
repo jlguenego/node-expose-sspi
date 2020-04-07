@@ -7,10 +7,12 @@ const app = fastify({ logger: true });
 app.use(sso.auth());
 
 // Declare a route
-app.get('/', async request => (<any>request.raw).sso);
+app.get('/', (request, reply): void => {
+  reply.send(request.raw.sso);
+});
 
 // Run the server!
-const start = async () => {
+const start = async (): Promise<void> => {
   try {
     await app.listen(3000);
   } catch (err) {
