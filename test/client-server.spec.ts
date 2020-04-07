@@ -1,18 +1,25 @@
-const express = require('express');
-const { sso } = require('node-expose-sspi');
-const assert = require('assert').strict;
-const debug = require('debug')('node-expose-sspi:test');
-const util = require('util');
+import express from 'express';
+import { sso } from 'node-expose-sspi';
+import a from 'assert';
+const assert = a.strict;
+import dbg from 'debug';
+const debug = dbg('node-expose-sspi:test');
 
-describe('ClientServer', function() {
+describe('ClientServer', function () {
   if (sso.isOnDomain() && sso.isActiveDirectoryReachable()) {
-    it('should return the right json', async function() {
+    it('should return the right json', async function () {
       this.timeout(15000);
       debug('start');
       await sso.init();
       debug('init completed');
       const app = express();
-      app.use(sso.auth({ useOwner: true, useActiveDirectory: true, useCookies: false }));
+      app.use(
+        sso.auth({
+          useOwner: true,
+          useActiveDirectory: true,
+          useCookies: false,
+        })
+      );
       app.use((req, res) => {
         res.json({
           sso: req.sso,
@@ -28,11 +35,11 @@ describe('ClientServer', function() {
       const state = {
         i: 0,
         clientsNbr: 0,
-        resolve: undefined,
-        increment() {
+        resolve: (): void => {},
+        increment(): void {
           this.clientsNbr++;
         },
-        decrement() {
+        decrement(): void {
           this.clientsNbr--;
           if (this.clientsNbr === 0 && this.i >= TIMES - 1) {
             debug('about to close');
@@ -46,11 +53,13 @@ describe('ClientServer', function() {
         },
       };
 
-      async function simulateClient(i) {
+      async function simulateClient(i: number): Promise<void> {
         try {
           debug('start client', i);
           state.increment();
-          const response = await new sso.Client().fetch('http://localhost:3000');
+          const response = await new sso.Client().fetch(
+            'http://localhost:3000'
+          );
           const json = await response.json();
           state.decrement();
           assert(json.sso.user, 'json.sso.user should be truthy');
@@ -68,8 +77,8 @@ describe('ClientServer', function() {
         await sso.sleep(DELAY);
       }
 
-      function clean() {
-        return new Promise((resolve, reject) => {
+      function clean(): Promise<void> {
+        return new Promise((resolve) => {
           state.resolve = resolve;
         });
       }

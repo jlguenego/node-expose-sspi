@@ -56,7 +56,7 @@ export interface HANDLE {}
  *
  * @interface Token
  */
-export interface Token {}
+export type Token = string;
 
 export type InformationClass = 'TokenGroups';
 
@@ -134,6 +134,18 @@ export interface InitializeSecurityContextInput {
 }
 
 /**
+ * Input of function AcquireCredentialsHandle
+ *
+ * @export
+ * @interface AcquireCredHandleInput
+ */
+export interface AcquireCredHandleInput {
+  packageName: string;
+  authData?: UserCredential;
+  credentialUse?: CredentialUseFlag;
+}
+
+/**
  * Input of AcceptSecurityContext function.
  *
  * @interface AcceptSecurityContextInput
@@ -186,11 +198,7 @@ export interface Sspi {
    * @returns {CredentialWithExpiry}
    * @memberof Sspi
    */
-  AcquireCredentialsHandle(input: {
-    packageName: string;
-    authData?: UserCredential;
-    credentialUse?: CredentialUseFlag;
-  }): CredentialWithExpiry;
+  AcquireCredentialsHandle(input: AcquireCredHandleInput): CredentialWithExpiry;
 
   /**
    * This function must be used only by a client. Its purpose is to setup a client/server security context.

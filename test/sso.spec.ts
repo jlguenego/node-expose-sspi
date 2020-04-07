@@ -1,7 +1,9 @@
-const assert = require('assert');
-const os = require('os');
-const { sso, sysinfo } = require('node-expose-sspi');
-const debug = require('debug')('node-expose-sspi:test');
+import assert from 'assert';
+import os from 'os';
+import { sso, sysinfo } from 'node-expose-sspi';
+import dbg from 'debug';
+
+const debug = dbg('node-expose-sspi:test');
 
 describe('SSO Unit Test', function () {
   it('should test getDefaultDomain', function () {
@@ -31,12 +33,12 @@ describe('SSO Unit Test', function () {
     await sso.getUser(`sAMAccountName=${os.userInfo().username}`);
   });
 
-  it('should test sso.mutex', async function () {
+  it('should test sso.mutex', function () {
     this.timeout(15000);
     const mutex = new sso.Mutex();
     const sleep = sso.sleep;
 
-    async function doSomething(label) {
+    async function doSomething(label: number): Promise<void> {
       const release = await mutex.acquire();
       debug(label, 'start');
       for (let i = 0; i < 10; i++) {

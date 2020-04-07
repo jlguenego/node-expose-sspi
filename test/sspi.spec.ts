@@ -1,26 +1,28 @@
-const { sspi, sso } = require('node-expose-sspi');
-const os = require('os');
-const assert = require('assert').strict;
+import { sspi, sso, AcquireCredHandleInput } from 'node-expose-sspi';
+import os from 'os';
+import a from 'assert';
+import { CredentialWithExpiry, ServerSecurityContext, SecurityContext, InitializeSecurityContextInput, AcceptSecurityContextInput, Token } from '../lib/sspi';
+const assert = a.strict;
 
-describe('SSPI Unit Test', function() {
-  it('should return hello', function() {
+describe('SSPI Unit Test', function () {
+  it('should return hello', function () {
     const result = sspi.hello();
     assert.equal(result, 'Coucou JL!!!');
   });
 
-  it('should test EnumerateSecurityPackages', function() {
+  it('should test EnumerateSecurityPackages', function () {
     const securityPackages = sspi.EnumerateSecurityPackages();
     assert(securityPackages instanceof Array);
     assert(securityPackages[0].Comment);
   });
 
-  it('should test QuerySecurityPackageInfo', function() {
+  it('should test QuerySecurityPackageInfo', function () {
     const packageInfo = sspi.QuerySecurityPackageInfo('Negotiate');
     assert(packageInfo);
     assert.equal(packageInfo.Name, 'Negotiate');
   });
 
-  const acquireCredentialsHandleClientInput = {
+  const acquireCredentialsHandleClientInput: AcquireCredHandleInput = {
     packageName: 'Negotiate',
     credentialUse: 'SECPKG_CRED_OUTBOUND',
   };
@@ -33,7 +35,7 @@ describe('SSPI Unit Test', function() {
     };
   }
 
-  it('should test AcquireCredentialsHandle for client', function() {
+  it('should test AcquireCredentialsHandle for client', function () {
     const clientCred = sspi.AcquireCredentialsHandle(
       acquireCredentialsHandleClientInput
     );
@@ -41,25 +43,25 @@ describe('SSPI Unit Test', function() {
     assert(clientCred.credential);
   });
 
-  const acquireCredentialsHandleServerInput = {
+  const acquireCredentialsHandleServerInput: AcquireCredHandleInput = {
     packageName: 'Negotiate',
     credentialUse: 'SECPKG_CRED_INBOUND',
   };
 
-  it('should test AcquireCredentialsHandle for server', function() {
-    const serverCred = sspi.AcquireCredentialsHandle(
+  it('should test AcquireCredentialsHandle for server', function () {
+    const sc = sspi.AcquireCredentialsHandle(
       acquireCredentialsHandleServerInput
     );
-    assert(serverCred);
-    assert(serverCred.credential);
+    assert(sc);
+    assert(sc.credential);
   });
 
-  let serverCred;
-  let username;
-  let serverSecurityContext;
-  let clientSecurityContext;
+  let serverCred: CredentialWithExpiry;
+  let username: string;
+  let serverSecurityContext: ServerSecurityContext;
+  let clientSecurityContext: SecurityContext;
 
-  it('should test creating a security context', function() {
+  it('should test creating a security context', function () {
     const packageInfo = sspi.QuerySecurityPackageInfo('Negotiate');
     const clientCred = sspi.AcquireCredentialsHandle(
       acquireCredentialsHandleClientInput
@@ -68,7 +70,7 @@ describe('SSPI Unit Test', function() {
       acquireCredentialsHandleServerInput
     );
 
-    const input = {
+    const input: InitializeSecurityContextInput = {
       credential: clientCred.credential,
       targetName: 'kiki',
       cbMaxToken: packageInfo.cbMaxToken,
@@ -80,7 +82,7 @@ describe('SSPI Unit Test', function() {
       clientSecurityContext.SecBufferDesc.buffers[0] instanceof ArrayBuffer
     );
 
-    const serverInput = {
+    const serverInput: AcceptSecurityContextInput = {
       credential: serverCred.credential,
       clientSecurityContext,
       contextReq: ['ASC_REQ_CONNECTION'],
@@ -150,14 +152,14 @@ describe('SSPI Unit Test', function() {
     assert(wentInCatch);
   });
 
-  it('should test LookupAccountName', function() {
+  it('should test LookupAccountName', function () {
     const sidObject = sspi.LookupAccountName(username);
     assert(sidObject instanceof Object);
     assert(sidObject.domain);
     assert(sidObject.sid);
   });
 
-  it('should test GetUserName', function() {
+  it('should test GetUserName', function () {
     const username2 = sspi.GetUserName();
     // on Domain, username2='Guest'
     if (sso.isOnDomain()) {
@@ -167,7 +169,7 @@ describe('SSPI Unit Test', function() {
     }
   });
 
-  it('should test QueryCredentialsAttributes', function() {
+  it('should test QueryCredentialsAttributes', function () {
     const attributes = sspi.QueryCredentialsAttributes(
       serverCred.credential,
       'SECPKG_CRED_ATTR_NAMES'
@@ -176,7 +178,7 @@ describe('SSPI Unit Test', function() {
     assert(attributes.sUserName);
   });
 
-  it('should test QueryContextAttributes', function() {
+  it('should test QueryContextAttributes', function () {
     const names = sspi.QueryContextAttributes(
       serverSecurityContext.contextHandle,
       'SECPKG_ATTR_NAMES'
@@ -185,8 +187,8 @@ describe('SSPI Unit Test', function() {
     assert(names.sUserName);
   });
 
-  let accessToken;
-  it('should test QuerySecurityContextToken', function() {
+  let accessToken: Token;
+  it('should test QuerySecurityContextToken', function () {
     accessToken = sspi.QuerySecurityContextToken(
       serverSecurityContext.contextHandle
     );
@@ -194,13 +196,13 @@ describe('SSPI Unit Test', function() {
     assert(accessToken.startsWith('0x'));
   });
 
-  it('should test GetTokenInformation', function() {
+  it('should test GetTokenInformation', function () {
     const groups = sspi.GetTokenInformation(accessToken, 'TokenGroups');
     assert(groups instanceof Array);
     assert(typeof groups[0] === 'string');
   });
 
-  it('should test CloseHandle', function() {
+  it('should test CloseHandle', function () {
     sspi.CloseHandle(accessToken);
     let wentInCatch = false;
     try {
@@ -211,7 +213,7 @@ describe('SSPI Unit Test', function() {
     assert(wentInCatch);
   });
 
-  it('should test DeleteSecurityContext', function() {
+  it('should test DeleteSecurityContext', function () {
     sspi.DeleteSecurityContext(serverSecurityContext.contextHandle);
     sspi.DeleteSecurityContext(clientSecurityContext.contextHandle);
     let wentInCatch = false;
@@ -223,7 +225,7 @@ describe('SSPI Unit Test', function() {
     assert(wentInCatch);
   });
 
-  it('should test FreeCredentialsHandle', function() {
+  it('should test FreeCredentialsHandle', function () {
     sspi.FreeCredentialsHandle(serverCred.credential);
     sspi.FreeCredentialsHandle(serverCred.credential);
   });
