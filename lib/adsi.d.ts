@@ -5,7 +5,7 @@ export interface IID {
 }
 
 export interface IADs extends IID {
-  Get(name: string): string;
+  Get(name: string): Promise<string>;
 }
 export interface IADsContainer extends IID {
   Next(): IDispatch;
@@ -18,8 +18,7 @@ export interface IDirectorySearch extends IID {
   ExecuteSearch(input: { filter: string }): void;
   GetNextRow(): HRESULT;
   GetNextColumnName(): string | HRESULT;
-  GetColumn(colName: string): (string | number | boolean | undefined)[];
-  
+  GetColumn(colName: string): Promise<(string | number | boolean | undefined)[]>;
 }
 
 export type RiidFlag =

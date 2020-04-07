@@ -72,7 +72,9 @@ export async function getUser(ldapFilter: string): Promise<ADUser> {
     }
     return row;
   } finally {
-    dirsearch && dirsearch.Release();
+    if (dirsearch) {
+      dirsearch.Release();
+    }
     adsi.CoUninitialize();
     adRelease();
     debug('getUser end');
@@ -119,7 +121,9 @@ export async function getUsers(): Promise<ADUsers> {
   } catch (error) {
     console.error('error: ', error);
   } finally {
-    dirsearch && dirsearch.Release();
+    if (dirsearch) {
+      dirsearch.Release();
+    }
     adsi.CoUninitialize();
     adRelease();
     debug('getUsers end');
@@ -134,6 +138,8 @@ export async function getDistinguishedName(): Promise<string> {
     const distinguishedName = await root.Get('defaultNamingContext');
     return distinguishedName;
   } finally {
-    root && root.Release();
+    if (root) {
+      root.Release();
+    }
   }
 }

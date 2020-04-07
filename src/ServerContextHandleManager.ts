@@ -5,9 +5,7 @@ import dbg from 'debug';
 
 const debug = dbg('node-expose-sspi:schManager');
 
-interface IPromiseFn {
-  (value?: unknown): void;
-}
+type IPromiseFn = (value?: unknown) => void;
 
 interface AuthItem {
   resolve: IPromiseFn;
@@ -29,7 +27,7 @@ export class ServerContextHandleManager {
 
   constructor(private delayMax = 20000) {}
 
-  setCookieMode(req: http.IncomingMessage, res: http.OutgoingMessage) {
+  setCookieMode(req: http.IncomingMessage, res: http.OutgoingMessage): void {
     debug('setCookieMode');
     this.useCookies = true;
     this.req = req;
@@ -38,7 +36,7 @@ export class ServerContextHandleManager {
     debug('sessionMap', this.sessionMap);
   }
 
-  async waitForReleased() {
+  async waitForReleased(): Promise<void> {
     if (this.useCookies) {
       const negotiateId = parseCookies(this.req)[COOKIE_KEY];
       if (!negotiateId) {
@@ -67,7 +65,7 @@ export class ServerContextHandleManager {
     });
   }
 
-  set(serverContextHandle: CtxtHandle) {
+  set(serverContextHandle: CtxtHandle): void {
     if (this.useCookies) {
       const negotiateId = parseCookies(this.req)[COOKIE_KEY];
       if (negotiateId === undefined) {
@@ -90,7 +88,7 @@ export class ServerContextHandleManager {
     return this.serverContextHandle;
   }
 
-  release() {
+  release(): void {
     if (this.useCookies) {
       const negotiateId = parseCookies(this.req)[COOKIE_KEY];
       this.sessionMap.set(negotiateId, undefined);
@@ -120,13 +118,13 @@ export class ServerContextHandleManager {
    * @returns
    * @memberof ServerContextHandleManager
    */
-  tooLate(authItem: AuthItem) {
+  tooLate(authItem: AuthItem): void {
     while (this.queue.length > 0) {
-      const authItem = this.queue.shift();
-      clearTimeout(authItem.timeout);
+      const ai = this.queue.shift();
+      clearTimeout(ai.timeout);
       this.authItem.reject();
     }
     this.authItem = authItem;
-    return this.authItem.resolve();
+    this.authItem.resolve();
   }
 }

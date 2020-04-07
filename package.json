@@ -7,7 +7,7 @@
     "node": ">=12.16.1"
   },
   "scripts": {
-    "lint": "tslint -p .",
+    "lint": "eslint --ext ts .",
     "build": "node-gyp rebuild -j 8",
     "build:doc": "typedoc ./src ./lib",
     "build:ts": "tsc -p src",
@@ -54,7 +54,10 @@
     "@types/http-errors": "^1.6.3",
     "@types/node-fetch": "^2.5.5",
     "@types/serve-index": "^1.7.30",
+    "@typescript-eslint/eslint-plugin": "^2.27.0",
+    "@typescript-eslint/parser": "^2.27.0",
     "ejs": "^3.0.1",
+    "eslint": "^6.8.0",
     "express": "^4.17.1",
     "express-jwt": "^5.3.1",
     "express-session": "^1.17.0",
@@ -66,7 +69,6 @@
     "serve-index": "^1.9.1",
     "standard-version": "^7.1.0",
     "ts-node": "^8.6.2",
-    "tslint": "^6.0.0",
     "typedoc": "^0.17.3",
     "typedoc-plugin-markdown": "^2.2.17",
     "typescript": "^3.7.5"

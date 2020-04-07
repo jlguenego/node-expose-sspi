@@ -23,7 +23,7 @@ export class SSO {
     public method?: SSOMethod
   ) {}
 
-  async load() {
+  async load(): Promise<void> {
     const names = sspi.QueryContextAttributes(
       this.serverContextHandle,
       'SECPKG_ATTR_NAMES'
@@ -102,14 +102,14 @@ export class SSO {
     }
   }
 
-  getJSON() {
+  getJSON(): SSO {
     const json = { ...this };
     delete json.options;
     delete json.serverContextHandle;
     return json;
   }
 
-  setOptions(options: AuthOptions) {
+  setOptions(options: AuthOptions): void {
     Object.assign(this.options, options);
   }
 }

@@ -1,8 +1,5 @@
 {
     "C_Cpp.clang_format_fallbackStyle": "Google",
-    "files.exclude": {
-        "**/*.js": false
-    },
     "files.associations": {
         "algorithm": "cpp",
         "array": "cpp",
@@ -76,5 +73,8 @@
         "xtr1common": "cpp",
         "xtree": "cpp",
         "xutility": "cpp"
+    },
+    "files.exclude": {
+        "**/*.js": false
     }
 }
