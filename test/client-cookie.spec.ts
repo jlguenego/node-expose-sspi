@@ -1,7 +1,9 @@
-const assert = require('assert');
-const express = require('express');
-const debug = require('debug')('node-expose-sspi:test');
-const { sso } = require('node-expose-sspi');
+import assert from 'assert';
+import express from 'express';
+import dbg from 'debug';
+import { sso } from 'node-expose-sspi';
+
+const debug = dbg('node-expose-sspi:test');
 
 describe('COOKIE Unit Test', function() {
   it('should test client with cookie', async function() {
