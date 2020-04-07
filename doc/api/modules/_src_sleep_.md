@@ -14,7 +14,7 @@
 
 ▸ **sleep**(`time`: number): *Promise‹void›*
 
-*Defined in [src/sleep.ts:5](https://github.com/jlguenego/node-expose-sspi/blob/d279f70/src/sleep.ts#L5)*
+*Defined in [src/sleep.ts:5](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/src/sleep.ts#L5)*
 
 **Parameters:**
 

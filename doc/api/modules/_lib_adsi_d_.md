@@ -24,7 +24,7 @@
 
 Ƭ **HRESULT**: *number*
 
-*Defined in [lib/adsi.d.ts:29](https://github.com/jlguenego/node-expose-sspi/blob/d279f70/lib/adsi.d.ts#L29)*
+*Defined in [lib/adsi.d.ts:29](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/lib/adsi.d.ts#L29)*
 
 ___
 
@@ -32,4 +32,4 @@ ___
 
 Ƭ **RiidFlag**: *"IID_IADs" | "IID_IADsContainer" | "IID_IDirectorySearch"*
 
-*Defined in [lib/adsi.d.ts:24](https://github.com/jlguenego/node-expose-sspi/blob/d279f70/lib/adsi.d.ts#L24)*
+*Defined in [lib/adsi.d.ts:24](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/lib/adsi.d.ts#L24)*

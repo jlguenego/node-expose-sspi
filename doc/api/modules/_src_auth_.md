@@ -14,7 +14,7 @@
 
 ▸ **auth**(`options`: [AuthOptions](../interfaces/_src_interfaces_.authoptions.md)): *[AsyncMiddleware](_src_interfaces_.md#asyncmiddleware)*
 
-*Defined in [src/auth.ts:21](https://github.com/jlguenego/node-expose-sspi/blob/d279f70/src/auth.ts#L21)*
+*Defined in [src/auth.ts:21](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/src/auth.ts#L21)*
 
 Tries to get SSO information from browser. If success, the SSO info
 is stored under req.sso

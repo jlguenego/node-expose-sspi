@@ -24,7 +24,7 @@
 
 • **cn**? : *string*
 
-*Defined in [src/interfaces.ts:95](https://github.com/jlguenego/node-expose-sspi/blob/d279f70/src/interfaces.ts#L95)*
+*Defined in [src/interfaces.ts:94](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/src/interfaces.ts#L94)*
 
 ___
 
@@ -32,7 +32,7 @@ ___
 
 • **givenName**? : *string*
 
-*Defined in [src/interfaces.ts:94](https://github.com/jlguenego/node-expose-sspi/blob/d279f70/src/interfaces.ts#L94)*
+*Defined in [src/interfaces.ts:93](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/src/interfaces.ts#L93)*
 
 ___
 
@@ -40,4 +40,4 @@ ___
 
 • **sn**? : *string*
 
-*Defined in [src/interfaces.ts:93](https://github.com/jlguenego/node-expose-sspi/blob/d279f70/src/interfaces.ts#L93)*
+*Defined in [src/interfaces.ts:92](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/src/interfaces.ts#L92)*

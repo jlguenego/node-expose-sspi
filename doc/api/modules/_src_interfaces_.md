@@ -24,7 +24,7 @@
 
 Ƭ **ADUsers**: *[ADUser](../interfaces/_src_interfaces_.aduser.md)[]*
 
-*Defined in [src/interfaces.ts:99](https://github.com/jlguenego/node-expose-sspi/blob/d279f70/src/interfaces.ts#L99)*
+*Defined in [src/interfaces.ts:98](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/src/interfaces.ts#L98)*
 
 ___
 
@@ -32,7 +32,7 @@ ___
 
 Ƭ **AsyncMiddleware**: *function*
 
-*Defined in [src/interfaces.ts:16](https://github.com/jlguenego/node-expose-sspi/blob/d279f70/src/interfaces.ts#L16)*
+*Defined in [src/interfaces.ts:16](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/src/interfaces.ts#L16)*
 
 #### Type declaration:
 
@@ -52,7 +52,7 @@ ___
 
 Ƭ **NextFunction**: *function*
 
-*Defined in [src/interfaces.ts:22](https://github.com/jlguenego/node-expose-sspi/blob/d279f70/src/interfaces.ts#L22)*
+*Defined in [src/interfaces.ts:22](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/src/interfaces.ts#L22)*
 
 #### Type declaration:
 

@@ -27,13 +27,11 @@ options to provide to sso.auth() and SSO.setOptions().
 
 • **useActiveDirectory**? : *boolean*
 
-*Defined in [src/interfaces.ts:53](https://github.com/jlguenego/node-expose-sspi/blob/d279f70/src/interfaces.ts#L53)*
+*Defined in [src/interfaces.ts:51](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/src/interfaces.ts#L51)*
 
 Brings back the Active Directory user information
 
 Note 1: only if we can reach Active Directory of the Domain Controller
-
-Note 2: cannot works with useCookies=true.
 
 **`default`** true
 
@@ -45,12 +43,13 @@ ___
 
 • **useCookies**? : *boolean*
 
-*Defined in [src/interfaces.ts:76](https://github.com/jlguenego/node-expose-sspi/blob/d279f70/src/interfaces.ts#L76)*
+*Defined in [src/interfaces.ts:75](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/src/interfaces.ts#L75)*
 
 Manage authentication with cookie.
 Useful for performance when many users try to connect at the same time.
 
-Note : Cannot work with useActiveDirectory=true.
+Note: useCookies will be rewritten to false automatically if useActiveDirectory is set to true.
+(Because of Windows parallelism issues with COM interfaces. See Issues #4)
 
 **`default`** false
 
@@ -62,7 +61,7 @@ ___
 
 • **useGroups**? : *boolean*
 
-*Defined in [src/interfaces.ts:39](https://github.com/jlguenego/node-expose-sspi/blob/d279f70/src/interfaces.ts#L39)*
+*Defined in [src/interfaces.ts:39](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/src/interfaces.ts#L39)*
 
 Brings back the groups the user belongs to.
 
@@ -76,7 +75,7 @@ ___
 
 • **useOwner**? : *boolean*
 
-*Defined in [src/interfaces.ts:63](https://github.com/jlguenego/node-expose-sspi/blob/d279f70/src/interfaces.ts#L63)*
+*Defined in [src/interfaces.ts:61](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/src/interfaces.ts#L61)*
 
 Brings back the server process owner info.
 
