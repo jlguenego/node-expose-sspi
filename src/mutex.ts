@@ -2,9 +2,7 @@ import dbg from 'debug';
 
 const debug = dbg('node-expose-sspi:mutex');
 
-interface ReleaseFn {
-  (): void;
-}
+type ReleaseFn = () => void;
 
 interface Task {
   resolve(releaseFn: ReleaseFn): void;
@@ -14,7 +12,7 @@ export class Mutex {
   private isBusy = false;
   private queue: Task[] = [];
 
-  private onRelease() {
+  private onRelease(): void {
     debug('release');
     if (this.queue.length === 0) {
       this.isBusy = false;

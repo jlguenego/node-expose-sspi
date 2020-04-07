@@ -2,7 +2,7 @@ import dbg from 'debug';
 
 const debug = dbg('node-expose-sspi:misc');
 
-function isPrintable(keycode: number) {
+function isPrintable(keycode: number): boolean {
   const valid =
     (keycode > 47 && keycode < 58) || // number keys
     keycode === 32 || // spacebar & return key(s) (if you want to allow carriage returns)

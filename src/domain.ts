@@ -40,9 +40,9 @@ export function isActiveDirectoryReachable(): boolean {
   } catch (e) {
     return false;
   } finally {
-    ds && ds.Release();
-    element && element.Release();
-    gc && gc.Release();
+    ds?.Release();
+    element?.Release();
+    gc?.Release();
     adsi.CoUninitialize();
   }
   return true;

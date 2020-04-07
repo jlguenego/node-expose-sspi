@@ -1,3 +1,18 @@
+import { SSO } from './SSO';
+
+declare module "http" {
+  interface IncomingMessage {
+    /**
+     * Contains the SSO object.
+     *
+     * @type {SSO}
+     * @memberof Request
+     */
+    sso: SSO;
+  }
+}
+
+
 /**
  * options to provide to sso.auth() and SSO.setOptions().
  *
@@ -41,7 +56,7 @@ export interface AuthOptions {
   /**
    * Manage authentication with cookie.
    * Useful for performance when many users try to connect at the same time.
-   * 
+   *
    * Note : Cannot work with useActiveDirectory=true.
    *
    * @default true

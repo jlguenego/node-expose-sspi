@@ -1,7 +1,7 @@
 import express = require('express');
 import { sso } from 'node-expose-sspi';
 
-(async () => {
+(async (): Promise<void> => {
   await sso.init();
   const app = express();
 
@@ -9,7 +9,7 @@ import { sso } from 'node-expose-sspi';
     sso.auth({ useGroups: true, useOwner: false, useActiveDirectory: true })
   );
 
-  app.use((req, res, next) => {
+  app.use((req, res) => {
     res.json({
       sso: req.sso,
     });
