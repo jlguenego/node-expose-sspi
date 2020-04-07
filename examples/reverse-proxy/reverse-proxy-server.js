@@ -27,7 +27,7 @@ function str2ab(str) {
     next();
   });
 
-  app.use((req, res, next) => {
+  app.use((req, res) => {
     res.json({
       sso: req.sso,
     });

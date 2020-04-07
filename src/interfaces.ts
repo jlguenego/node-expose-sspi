@@ -19,7 +19,7 @@ export type AsyncMiddleware = (
   next: NextFunction,
 ) => Promise<void>;
 
-export type NextFunction = (error?: Error) => void;
+export type NextFunction = (error?: Error) => (void | Promise<void>);
 
 /**
  * options to provide to sso.auth() and SSO.setOptions().
