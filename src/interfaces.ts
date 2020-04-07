@@ -16,10 +16,10 @@ declare module 'http' {
 export type AsyncMiddleware = (
   req: IncomingMessage,
   res: ServerResponse,
-  next: NextFunction,
+  next: NextFunction
 ) => Promise<void>;
 
-export type NextFunction = (error?: Error) => (void | Promise<void>);
+export type NextFunction = (error?: Error) => void | Promise<void>;
 
 /**
  * options to provide to sso.auth() and SSO.setOptions().
@@ -42,7 +42,7 @@ export interface AuthOptions {
    * Brings back the Active Directory user information
    *
    * Note 1: only if we can reach Active Directory of the Domain Controller
-   * 
+   *
    * @default true
    *
    * @type {boolean}
@@ -63,7 +63,7 @@ export interface AuthOptions {
   /**
    * Manage authentication with cookie.
    * Useful for performance when many users try to connect at the same time.
-   * 
+   *
    * Note: useCookies will be rewritten to false automatically if useActiveDirectory is set to true.
    * (Because of Windows parallelism issues with COM interfaces. See Issues #4)
    *
