@@ -37,7 +37,7 @@ export function auth(options: AuthOptions = {}): RequestHandler {
     packageName: 'Negotiate',
   });
 
-  const checkCredentials = () => {
+  const checkCredentials = (): void => {
     if (tsExpiry < new Date()) {
       // renew server credentials
       sspi.FreeCredentialsHandle(credential);
@@ -52,7 +52,7 @@ export function auth(options: AuthOptions = {}): RequestHandler {
   const schManager = new ServerContextHandleManager(10000);
 
   // returns the node middleware.
-  return async (req, res, next) => {
+  return async (req, res, next): Promise<void> => {
     try {
       checkCredentials();
 
@@ -116,12 +116,12 @@ export function auth(options: AuthOptions = {}): RequestHandler {
           'WWW-Authenticate',
           'Negotiate ' + encode(serverSecurityContext.SecBufferDesc.buffers[0])
         );
-        const serverContextHandle = schManager.getServerContextHandle();
-        const sso = new SSO(serverContextHandle, method);
+        const sch = schManager.getServerContextHandle();
+        const sso = new SSO(sch, method);
         sso.setOptions(opts);
         await sso.load();
         req.sso = sso.getJSON();
-        sspi.DeleteSecurityContext(serverContextHandle);
+        sspi.DeleteSecurityContext(sch);
         schManager.release();
       }
     } catch (e) {
