@@ -85,4 +85,12 @@ module.exports = {
     'use-isnan': 'error',
     'valid-typeof': 'off',
   },
+  overrides: [
+    {
+      files: ['*.js'],
+      rules: {
+        '@typescript-eslint/no-var-requires': 'off',
+      },
+    },
+  ],
 };
