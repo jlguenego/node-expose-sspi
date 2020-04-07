@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.10](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.9...v0.1.10) (2020-04-07)
+
+
+### Features
+
+* migration tslint to eslint ([c7a08da](https://github.com/jlguenego/node-expose-sspi/commit/c7a08da0d242338d9fd9b5a52fe8abdd6048140b))
+
 ### [0.1.9](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.8...v0.1.9) (2020-04-05)
 
 
