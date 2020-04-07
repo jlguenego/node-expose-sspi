@@ -2,11 +2,11 @@ import createError from 'http-errors';
 import { decode, encode } from 'base64-arraybuffer';
 import { hexDump } from './misc';
 import { sspi, AcceptSecurityContextInput } from '../lib/api';
-import { RequestHandler } from 'express';
 import { SSO } from './SSO';
 import { ServerContextHandleManager } from './ServerContextHandleManager';
 import dbg from 'debug';
-import { AuthOptions } from './interfaces';
+import { AuthOptions, AsyncMiddleware, NextFunction } from './interfaces';
+import { IncomingMessage, ServerResponse } from 'http';
 
 const debug = dbg('node-expose-sspi:auth');
 
@@ -18,7 +18,7 @@ const debug = dbg('node-expose-sspi:auth');
  * @param {AuthOptions} [options={}]
  * @returns {RequestHandler}
  */
-export function auth(options: AuthOptions = {}): RequestHandler {
+export function auth(options: AuthOptions = {}): AsyncMiddleware {
   const opts: AuthOptions = {
     useActiveDirectory: true,
     useGroups: true,
@@ -52,7 +52,7 @@ export function auth(options: AuthOptions = {}): RequestHandler {
   const schManager = new ServerContextHandleManager(10000);
 
   // returns the node middleware.
-  return async (req, res, next): Promise<void> => {
+  return async (req: IncomingMessage, res: ServerResponse, next: NextFunction): Promise<void> => {
     try {
       checkCredentials();
 

@@ -6,7 +6,7 @@ const app = new Koa();
 const middleware = sso.auth();
 
 app.use(async (ctx, next) => {
-  await middleware(ctx.req as any, ctx.res as any, next);
+  await middleware(ctx.req, ctx.res, next);
 });
 
 app.use(async (ctx, next) => {

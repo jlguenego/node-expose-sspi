@@ -1,6 +1,7 @@
 import { SSO } from './SSO';
+import { IncomingMessage, ServerResponse } from 'http';
 
-declare module "http" {
+declare module 'http' {
   interface IncomingMessage {
     /**
      * Contains the SSO object.
@@ -12,6 +13,13 @@ declare module "http" {
   }
 }
 
+export type AsyncMiddleware = (
+  req: IncomingMessage,
+  res: ServerResponse,
+  next: NextFunction,
+) => Promise<void>;
+
+export type NextFunction = (error?: Error) => void;
 
 /**
  * options to provide to sso.auth() and SSO.setOptions().
