@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.12](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.11...v0.1.12) (2020-04-07)
+
+
+### Bug Fixes
+
+* NextFunction can be also async ([5d6005c](https://github.com/jlguenego/node-expose-sspi/commit/5d6005c40e78287eef0f79244d47b81d9ab6a4df))
+
 ### [0.1.11](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.10...v0.1.11) (2020-04-07)
 
 
