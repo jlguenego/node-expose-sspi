@@ -6,6 +6,11 @@ export interface IID {
 
 export interface IADs extends IID {
   Get(name: string): Promise<string>;
+  // eslint-disable-next-line @typescript-eslint/camelcase, camelcase
+  get_GUID(): string;
+  // eslint-disable-next-line @typescript-eslint/camelcase, camelcase
+  get_Name(): string;
+  GetInfoEx(...colNames: string[]): void;
 }
 export interface IADsContainer extends IID {
   Next(): IDispatch;
@@ -17,9 +22,12 @@ export interface IDirectorySearch extends IID {
   SetSearchPreference(): void;
   ExecuteSearch(input: { filter: string }): void;
   GetNextRow(): HRESULT;
+  GetFirstRow(): HRESULT;
   GetNextColumnName(): string | HRESULT;
-  GetColumn(colName: string): Promise<(string | number | boolean | undefined)[]>;
+  GetColumn(colName: string): Promise<ColumnVal>;
 }
+
+export type ColumnVal = (string | number | boolean | undefined)[];
 
 export type RiidFlag =
   | 'IID_IADs'

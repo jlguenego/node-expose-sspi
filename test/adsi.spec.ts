@@ -1,13 +1,16 @@
-const { adsi, sspi, sso } = require('node-expose-sspi');
-const assert = require('assert').strict;
+import { adsi, sspi, sso } from 'node-expose-sspi';
+import a from 'assert';
+import { IADsContainer, IDirectorySearch, ColumnVal } from '../lib/adsi';
 
-describe('ADSI Unit Test', function() {
-  it('should test CoInitialize and CoUninitialize', async function() {
+const assert = a.strict;
+
+describe('ADSI Unit Test', function () {
+  it('should test CoInitialize and CoUninitialize', function () {
     adsi.CoInitialize();
     adsi.CoUninitialize();
   });
 
-  it('can CoInitialize many times', async function() {
+  it('can CoInitialize many times', async function () {
     this.timeout(8000);
     adsi.CoInitializeEx(['COINIT_MULTITHREADED']);
     adsi.CoInitializeEx(['COINIT_MULTITHREADED']);
@@ -17,24 +20,21 @@ describe('ADSI Unit Test', function() {
   });
 
   if (sso.isOnDomain() && sso.isActiveDirectoryReachable()) {
-    it('should test CoInitializeEx', function() {
+    it('should test CoInitializeEx', function () {
       adsi.CoInitializeEx(['COINIT_MULTITHREADED']);
     });
 
-    it('should test ADsOpenObject with global catalog', async function() {
+    it('should test ADsOpenObject with global catalog', async function () {
       try {
-        const gc = await adsi.ADsOpenObject({
+        const gc = await adsi.ADsOpenObject<IADsContainer>({
           binding: 'GC:',
           riid: 'IID_IADsContainer',
         });
         if (gc === undefined) {
           throw new Error('Domain controller not reachable');
         }
-        assert(gc instanceof adsi.IADsContainer);
         const element = gc.Next();
-        assert(element instanceof adsi.IDispatch);
         const ds = element.QueryInterface('IID_IDirectorySearch');
-        assert(ds instanceof adsi.IDirectorySearch);
         element.Release();
         ds.Release();
         gc.Release();
@@ -43,22 +43,20 @@ describe('ADSI Unit Test', function() {
       }
     });
 
-    let distinguishedName;
-    it('should get the Root Distinguished Name (LDAP notion) for the domain', async function() {
+    let distinguishedName: string;
+    it('should get the Root Distinguished Name (LDAP notion) for the domain', async function () {
       const root = await adsi.ADsGestObject('LDAP://rootDSE');
-      assert(root instanceof adsi.IADs);
       distinguishedName = await root.Get('defaultNamingContext');
       assert(distinguishedName);
       assert(distinguishedName.startsWith('DC='));
     });
 
-    it('should get all users that have a defined surname', async function() {
+    it('should get all users that have a defined surname', async function () {
       this.timeout(15000);
-      const dirsearch = await adsi.ADsOpenObject({
+      const dirsearch = await adsi.ADsOpenObject<IDirectorySearch>({
         binding: `LDAP://${distinguishedName}`,
         riid: 'IID_IDirectorySearch',
       });
-      assert(dirsearch instanceof adsi.IDirectorySearch);
       dirsearch.SetSearchPreference();
       dirsearch.ExecuteSearch({
         filter: '(&(objectClass=user)(objectCategory=person)(sn=*))',
@@ -68,25 +66,25 @@ describe('ADSI Unit Test', function() {
       if (hr === adsi.S_ADS_NOMORE_ROWS) {
         throw new Error('GetFirstRow: no more rows');
       }
-      const firstRow = {};
+      const firstRow: { [colName: string]: ColumnVal } = {};
 
       let colName = dirsearch.GetNextColumnName();
       while (colName !== adsi.S_ADS_NOMORE_COLUMNS) {
-        const value = await dirsearch.GetColumn(colName);
+        const value = await dirsearch.GetColumn(colName as string);
         firstRow[colName] = value;
         colName = dirsearch.GetNextColumnName();
       }
       result.push(firstRow);
 
       while (true) {
-        const row = {};
+        const row: { [colName: string]: ColumnVal } = {};
         hr = dirsearch.GetNextRow();
         if (hr === adsi.S_ADS_NOMORE_ROWS) {
           break;
         }
-        let colName = dirsearch.GetNextColumnName();
+        colName = dirsearch.GetNextColumnName();
         while (colName !== adsi.S_ADS_NOMORE_COLUMNS) {
-          const value = await dirsearch.GetColumn(colName);
+          const value = await dirsearch.GetColumn(colName as string);
           row[colName] = value;
           colName = dirsearch.GetNextColumnName();
         }
@@ -95,8 +93,8 @@ describe('ADSI Unit Test', function() {
       dirsearch.Release();
     });
 
-    let fullName;
-    it('should test ADsGestObject with WinNT provider', async function() {
+    let fullName: string;
+    it('should test ADsGestObject with WinNT provider', async function () {
       const username = sspi.GetUserName();
       const myself = await adsi.ADsGestObject(
         `WinNT://jlg.local/${username},user`
@@ -108,12 +106,11 @@ describe('ADSI Unit Test', function() {
       assert(objectGUID.length === 38);
     });
 
-    let guid;
-    it('should test AdsGestObject with LDAP provider', async function() {
+    let guid: string;
+    it('should test AdsGestObject with LDAP provider', async function () {
       const iads = await adsi.ADsGestObject(
         `LDAP://CN=${fullName},OU=JLG_LOCAL,${distinguishedName}`
       );
-      assert(iads instanceof adsi.IADs);
       const str = iads.get_Name();
       assert(str);
       assert(str === 'CN=' + fullName);
@@ -122,15 +119,15 @@ describe('ADSI Unit Test', function() {
       const sn = await iads.Get('sn');
       assert(sn);
       assert(typeof sn === 'string');
-      assert(str.indexOf(sn) !== -1);
+      assert(str.includes(sn));
       const givenName = await iads.Get('givenName');
-      assert(str.indexOf(givenName) !== -1);
+      assert(str.includes(givenName));
       guid = iads.get_GUID();
       assert(guid.length === 32);
       iads.Release();
     });
 
-    it('should test ADsGestObject with GUID', async function() {
+    it('should test ADsGestObject with GUID', async function () {
       const myself2 = await adsi.ADsGestObject(
         `LDAP://jlg.local/<GUID=${guid}>`
       );
@@ -139,7 +136,7 @@ describe('ADSI Unit Test', function() {
       myself2.Release();
     });
 
-    it('should test CoUninitialize', function() {
+    it('should test CoUninitialize', function () {
       adsi.CoUninitialize();
     });
   }

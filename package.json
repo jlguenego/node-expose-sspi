@@ -7,7 +7,7 @@
     "node": ">=12.16.1"
   },
   "scripts": {
-    "lint": "eslint --ext ts .",
+    "lint": "eslint .",
     "build": "node-gyp rebuild -j 8",
     "build:doc": "typedoc ./src ./lib",
     "build:ts": "tsc -p src",
@@ -52,6 +52,7 @@
     "@types/express": "^4.17.2",
     "@types/express-session": "^1.15.16",
     "@types/http-errors": "^1.6.3",
+    "@types/mocha": "^7.0.2",
     "@types/node-fetch": "^2.5.5",
     "@types/serve-index": "^1.7.30",
     "@typescript-eslint/eslint-plugin": "^2.27.0",
