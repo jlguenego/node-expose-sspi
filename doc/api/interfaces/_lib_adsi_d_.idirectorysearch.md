@@ -25,7 +25,7 @@
 
 ▸ **ExecuteSearch**(`input`: object): *void*
 
-*Defined in [lib/adsi.d.ts:18](https://github.com/jlguenego/node-expose-sspi/blob/19d0c3f/lib/adsi.d.ts#L18)*
+*Defined in [lib/adsi.d.ts:18](https://github.com/jlguenego/node-expose-sspi/blob/d279f70/lib/adsi.d.ts#L18)*
 
 **Parameters:**
 
@@ -41,9 +41,9 @@ ___
 
 ###  GetColumn
 
-▸ **GetColumn**(`colName`: string): *string | number | false | true[]*
+▸ **GetColumn**(`colName`: string): *Promise‹string | number | false | true[]›*
 
-*Defined in [lib/adsi.d.ts:21](https://github.com/jlguenego/node-expose-sspi/blob/19d0c3f/lib/adsi.d.ts#L21)*
+*Defined in [lib/adsi.d.ts:21](https://github.com/jlguenego/node-expose-sspi/blob/d279f70/lib/adsi.d.ts#L21)*
 
 **Parameters:**
 
@@ -51,7 +51,7 @@ Name | Type |
 ------ | ------ |
 `colName` | string |
 
-**Returns:** *string | number | false | true[]*
+**Returns:** *Promise‹string | number | false | true[]›*
 
 ___
 
@@ -59,7 +59,7 @@ ___
 
 ▸ **GetNextColumnName**(): *string | [HRESULT](../modules/_lib_adsi_d_.md#hresult)*
 
-*Defined in [lib/adsi.d.ts:20](https://github.com/jlguenego/node-expose-sspi/blob/19d0c3f/lib/adsi.d.ts#L20)*
+*Defined in [lib/adsi.d.ts:20](https://github.com/jlguenego/node-expose-sspi/blob/d279f70/lib/adsi.d.ts#L20)*
 
 **Returns:** *string | [HRESULT](../modules/_lib_adsi_d_.md#hresult)*
 
@@ -69,7 +69,7 @@ ___
 
 ▸ **GetNextRow**(): *[HRESULT](../modules/_lib_adsi_d_.md#hresult)*
 
-*Defined in [lib/adsi.d.ts:19](https://github.com/jlguenego/node-expose-sspi/blob/19d0c3f/lib/adsi.d.ts#L19)*
+*Defined in [lib/adsi.d.ts:19](https://github.com/jlguenego/node-expose-sspi/blob/d279f70/lib/adsi.d.ts#L19)*
 
 **Returns:** *[HRESULT](../modules/_lib_adsi_d_.md#hresult)*
 
@@ -81,7 +81,7 @@ ___
 
 *Inherited from [IID](_lib_adsi_d_.iid.md).[Release](_lib_adsi_d_.iid.md#release)*
 
-*Defined in [lib/adsi.d.ts:4](https://github.com/jlguenego/node-expose-sspi/blob/19d0c3f/lib/adsi.d.ts#L4)*
+*Defined in [lib/adsi.d.ts:4](https://github.com/jlguenego/node-expose-sspi/blob/d279f70/lib/adsi.d.ts#L4)*
 
 **Returns:** *void*
 
@@ -91,6 +91,6 @@ ___
 
 ▸ **SetSearchPreference**(): *void*
 
-*Defined in [lib/adsi.d.ts:17](https://github.com/jlguenego/node-expose-sspi/blob/19d0c3f/lib/adsi.d.ts#L17)*
+*Defined in [lib/adsi.d.ts:17](https://github.com/jlguenego/node-expose-sspi/blob/d279f70/lib/adsi.d.ts#L17)*
 
 **Returns:** *void*

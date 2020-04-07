@@ -18,6 +18,6 @@
 
 ▸ **acquire**(): *Promise‹ReleaseFn›*
 
-*Defined in [src/mutex.ts:29](https://github.com/jlguenego/node-expose-sspi/blob/19d0c3f/src/mutex.ts#L29)*
+*Defined in [src/mutex.ts:27](https://github.com/jlguenego/node-expose-sspi/blob/d279f70/src/mutex.ts#L27)*
 
 **Returns:** *Promise‹ReleaseFn›*

@@ -12,9 +12,9 @@
 
 ### `Const` sleep
 
-▸ **sleep**(`time`: number): *Promise‹unknown›*
+▸ **sleep**(`time`: number): *Promise‹void›*
 
-*Defined in [src/sleep.ts:5](https://github.com/jlguenego/node-expose-sspi/blob/19d0c3f/src/sleep.ts#L5)*
+*Defined in [src/sleep.ts:5](https://github.com/jlguenego/node-expose-sspi/blob/d279f70/src/sleep.ts#L5)*
 
 **Parameters:**
 
@@ -22,4 +22,4 @@ Name | Type |
 ------ | ------ |
 `time` | number |
 
-**Returns:** *Promise‹unknown›*
+**Returns:** *Promise‹void›*

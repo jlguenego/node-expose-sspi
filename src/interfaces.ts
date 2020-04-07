@@ -42,6 +42,7 @@ export interface AuthOptions {
    * Brings back the Active Directory user information
    *
    * Note 1: only if we can reach Active Directory of the Domain Controller
+   * 
    * Note 2: cannot works with useCookies=true.
    *
    * @default true
@@ -54,7 +55,7 @@ export interface AuthOptions {
   /**
    * Brings back the server process owner info.
    *
-   * @default true
+   * @default false
    *
    * @type {boolean}
    * @memberof AuthOptions
@@ -67,7 +68,7 @@ export interface AuthOptions {
    *
    * Note : Cannot work with useActiveDirectory=true.
    *
-   * @default true
+   * @default false
    *
    * @type {boolean}
    * @memberof AuthOptions

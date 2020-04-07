@@ -15,6 +15,8 @@
 ### Type aliases
 
 * [ADUsers](_src_interfaces_.md#adusers)
+* [AsyncMiddleware](_src_interfaces_.md#asyncmiddleware)
+* [NextFunction](_src_interfaces_.md#nextfunction)
 
 ## Type aliases
 
@@ -22,4 +24,42 @@
 
 Ƭ **ADUsers**: *[ADUser](../interfaces/_src_interfaces_.aduser.md)[]*
 
-*Defined in [src/interfaces.ts:75](https://github.com/jlguenego/node-expose-sspi/blob/19d0c3f/src/interfaces.ts#L75)*
+*Defined in [src/interfaces.ts:99](https://github.com/jlguenego/node-expose-sspi/blob/d279f70/src/interfaces.ts#L99)*
+
+___
+
+###  AsyncMiddleware
+
+Ƭ **AsyncMiddleware**: *function*
+
+*Defined in [src/interfaces.ts:16](https://github.com/jlguenego/node-expose-sspi/blob/d279f70/src/interfaces.ts#L16)*
+
+#### Type declaration:
+
+▸ (`req`: IncomingMessage, `res`: ServerResponse, `next`: [NextFunction](_src_interfaces_.md#nextfunction)): *Promise‹void›*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`req` | IncomingMessage |
+`res` | ServerResponse |
+`next` | [NextFunction](_src_interfaces_.md#nextfunction) |
+
+___
+
+###  NextFunction
+
+Ƭ **NextFunction**: *function*
+
+*Defined in [src/interfaces.ts:22](https://github.com/jlguenego/node-expose-sspi/blob/d279f70/src/interfaces.ts#L22)*
+
+#### Type declaration:
+
+▸ (`error?`: Error): *void | Promise‹void›*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`error?` | Error |

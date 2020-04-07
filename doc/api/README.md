@@ -26,7 +26,6 @@
 * ["src/connect"](modules/_src_connect_.md)
 * ["src/cookies"](modules/_src_cookies_.md)
 * ["src/domain"](modules/_src_domain_.md)
-* ["src/express"](modules/_src_express_.md)
 * ["src/index"](modules/_src_index_.md)
 * ["src/interfaces"](modules/_src_interfaces_.md)
 * ["src/misc"](modules/_src_misc_.md)

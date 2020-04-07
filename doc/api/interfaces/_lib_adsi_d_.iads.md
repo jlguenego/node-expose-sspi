@@ -19,9 +19,9 @@
 
 ###  Get
 
-▸ **Get**(`name`: string): *string*
+▸ **Get**(`name`: string): *Promise‹string›*
 
-*Defined in [lib/adsi.d.ts:8](https://github.com/jlguenego/node-expose-sspi/blob/19d0c3f/lib/adsi.d.ts#L8)*
+*Defined in [lib/adsi.d.ts:8](https://github.com/jlguenego/node-expose-sspi/blob/d279f70/lib/adsi.d.ts#L8)*
 
 **Parameters:**
 
@@ -29,7 +29,7 @@ Name | Type |
 ------ | ------ |
 `name` | string |
 
-**Returns:** *string*
+**Returns:** *Promise‹string›*
 
 ___
 
@@ -39,6 +39,6 @@ ___
 
 *Inherited from [IID](_lib_adsi_d_.iid.md).[Release](_lib_adsi_d_.iid.md#release)*
 
-*Defined in [lib/adsi.d.ts:4](https://github.com/jlguenego/node-expose-sspi/blob/19d0c3f/lib/adsi.d.ts#L4)*
+*Defined in [lib/adsi.d.ts:4](https://github.com/jlguenego/node-expose-sspi/blob/d279f70/lib/adsi.d.ts#L4)*
 
 **Returns:** *void*
