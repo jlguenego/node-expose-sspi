@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.13](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.12...v0.1.13) (2020-04-07)
+
+
+### Bug Fixes
+
+* issue [#4](https://github.com/jlguenego/node-expose-sspi/issues/4) UX about AuthOptions. ([502a4fd](https://github.com/jlguenego/node-expose-sspi/commit/502a4fd3cd0a91432c1216da7d8d4392aa268782))
+
 ### [0.1.12](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.11...v0.1.12) (2020-04-07)
 
 
