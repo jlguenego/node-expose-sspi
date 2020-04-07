@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.11](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.10...v0.1.11) (2020-04-07)
+
+
+### Bug Fixes
+
+* typescript asyncmiddleware ([cd11640](https://github.com/jlguenego/node-expose-sspi/commit/cd116404f4f9cbc1c3a48c13610fd8dfc7ea42e6))
+
 ### [0.1.10](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.9...v0.1.10) (2020-04-07)
 
 
