@@ -43,8 +43,6 @@ export interface AuthOptions {
    *
    * Note 1: only if we can reach Active Directory of the Domain Controller
    * 
-   * Note 2: cannot works with useCookies=true.
-   *
    * @default true
    *
    * @type {boolean}
@@ -65,8 +63,9 @@ export interface AuthOptions {
   /**
    * Manage authentication with cookie.
    * Useful for performance when many users try to connect at the same time.
-   *
-   * Note : Cannot work with useActiveDirectory=true.
+   * 
+   * Note: useCookies will be rewritten to false automatically if useActiveDirectory is set to true.
+   * (Because of Windows parallelism issues with COM interfaces. See Issues #4)
    *
    * @default false
    *

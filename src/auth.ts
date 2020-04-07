@@ -28,9 +28,7 @@ export function auth(options: AuthOptions = {}): AsyncMiddleware {
   Object.assign(opts, options);
 
   if (opts.useActiveDirectory && opts.useCookies) {
-    throw new Error(
-      'Sorry. Limitation... Cannot have both useActiveDirectory=true and useCookies=true... because it will crash when calling ActiveDirectory.'
-    );
+    opts.useCookies = false;
   }
 
   let { credential, tsExpiry } = sspi.AcquireCredentialsHandle({
