@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.14](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.13...v0.1.14) (2020-04-08)
+
+
+### Features
+
+* refactor mocha in ts ([4446b64](https://github.com/jlguenego/node-expose-sspi/commit/4446b64a0749d062ce9b875c3d5374dbbe13bf78))
+
+
+### Bug Fixes
+
+* no promise in middleware. ([af3688a](https://github.com/jlguenego/node-expose-sspi/commit/af3688aa2fc02439c655483173513a2f1a99bbff))
+
 ### [0.1.13](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.12...v0.1.13) (2020-04-07)
 
 
