@@ -4,7 +4,6 @@ import { sso } from 'node-expose-sspi';
 
 const app = fastify({ logger: true });
 
-// eslint-disable-next-line @typescript-eslint/no-misused-promises
 app.use(sso.auth());
 
 // Declare a route

@@ -13,11 +13,11 @@ declare module 'http' {
   }
 }
 
-export type AsyncMiddleware = (
+export type Middleware = (
   req: IncomingMessage,
   res: ServerResponse,
   next: NextFunction
-) => Promise<void>;
+) => void;
 
 export type NextFunction = (error?: Error) => void | Promise<void>;
 
