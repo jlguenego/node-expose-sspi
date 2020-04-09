@@ -2,6 +2,8 @@
 
 ## Example
 
+**[Code available here](../../examples/client/)**
+
 Create a node module:
 
 ```
