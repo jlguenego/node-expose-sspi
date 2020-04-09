@@ -1,0 +1,15 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "server": "node server.js",
+    "client": "node client.js"
+  },
+  "author": "Jean-Louis GUENEGO <jlguenego@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "node-expose-sspi": "^0.1.14"
+  }
+}
