@@ -119,6 +119,10 @@ You should see the JSON result with the browser user authentication info and the
 
 Note: To read JSON file on Chrome, you should use the [JSON Formatter Chrome Extension](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa).
 
+### SSO Authentication client use case
+
+**[See the complete example](./doc/use-case/client.md)**
+
 ## Browsers
 
 ### Chrome
