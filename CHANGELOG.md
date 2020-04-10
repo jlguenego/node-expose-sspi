@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.15](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.14...v0.1.15) (2020-04-10)
+
+
+### Features
+
+* added more debug in client ([3d03834](https://github.com/jlguenego/node-expose-sspi/commit/3d03834fbdf89afdf509003451e3e37d6a7e86cb))
+
+
+### Bug Fixes
+
+* client cookie empty use case ([4917af9](https://github.com/jlguenego/node-expose-sspi/commit/4917af983823f0b64df08b2cc4dc437283cd0851))
+* Issue [#5](https://github.com/jlguenego/node-expose-sspi/issues/5) about client documentation ([ba18985](https://github.com/jlguenego/node-expose-sspi/commit/ba18985cdfe6207dec967b7132e2983d7bc9b048))
+
 ### [0.1.14](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.13...v0.1.14) (2020-04-08)
 
 
