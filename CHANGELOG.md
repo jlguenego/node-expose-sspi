@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.16](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.15...v0.1.16) (2020-04-10)
+
+
+### Bug Fixes
+
+* manage targetName utf16 ([df50c3e](https://github.com/jlguenego/node-expose-sspi/commit/df50c3ee9580e8e357341b6b2be5ae5f40280020))
+* reorganize target for watching dev ([6b06644](https://github.com/jlguenego/node-expose-sspi/commit/6b06644aac86f663f7f6511e81bcfba720c880cf))
+* use targetName as SPN (Issue [#6](https://github.com/jlguenego/node-expose-sspi/issues/6)) ([b3b1695](https://github.com/jlguenego/node-expose-sspi/commit/b3b169540a659858e25babf0f7db022128db7765))
+
 ### [0.1.15](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.14...v0.1.15) (2020-04-10)
 
 
