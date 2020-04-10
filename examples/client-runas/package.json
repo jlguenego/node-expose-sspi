@@ -1,0 +1,16 @@
+{
+  "name": "client-runas",
+  "version": "1.0.0",
+  "description": "",
+  "main": "client.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-expose-sspi": "^0.1.16",
+    "yargs": "^15.3.1"
+  }
+}

@@ -1,5 +1,5 @@
 import fetch, { RequestInit, Response } from 'node-fetch';
-import { sspi, InitializeSecurityContextInput } from '../lib/api';
+import { sspi, InitializeSecurityContextInput, AcquireCredHandleInput } from '../lib/api';
 import { encode, decode } from 'base64-arraybuffer';
 import dbg from 'debug';
 import { CookieList } from './interfaces';
@@ -17,6 +17,9 @@ const getSPNFromURI = (url: string): string => {
 
 export class Client {
   private cookieList: CookieList = {};
+  private domain: string;
+  private user: string;
+  private password: string;
 
   saveCookies(response: Response): void {
     response.headers.forEach((value, name) => {
@@ -40,6 +43,12 @@ export class Client {
       return;
     }
     Object.assign(requestInit.headers, { cookie: cookieStr });
+  }
+
+  setCredentials(domain: string, user: string, password: string): void {
+    this.domain = domain;
+    this.user = user;
+    this.password = password;
   }
 
   async fetch(resource: string, init?: RequestInit): Promise<Response> {
@@ -75,11 +84,19 @@ export class Client {
     }
 
     debug('starting negotiate auth');
-
-    const clientCred = sspi.AcquireCredentialsHandle({
+    const credInput = {
       packageName: 'Negotiate',
       credentialUse: 'SECPKG_CRED_OUTBOUND',
-    });
+    } as AcquireCredHandleInput;
+    if (this.user) {
+      credInput.authData = {
+        domain: this.domain,
+        user: this.user,
+        password: this.password
+      };
+    }
+    const clientCred = sspi.AcquireCredentialsHandle(credInput);
+    
     const packageInfo = sspi.QuerySecurityPackageInfo('Negotiate');
     const targetName = getSPNFromURI(resource);
     let input: InitializeSecurityContextInput = {
