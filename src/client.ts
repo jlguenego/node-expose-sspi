@@ -6,6 +6,15 @@ import { CookieList } from './interfaces';
 
 const debug = dbg('node-expose-sspi:client');
 
+// Thanks to the guys of https://stackoverflow.com/questions/8498592/extract-hostname-name-from-string
+const getSPNFromURI = (url: string): string => {
+  const matches = (/^https?\:\/\/([^\/:?#]+)(?:[\/:?#]|$)/i).exec(url);
+  const domain = matches && matches[1];
+  const result = 'HTTP/' + domain;
+  console.log('result: ', result);
+  return result;
+}
+
 export class Client {
   private cookieList: CookieList = {};
 
@@ -72,9 +81,10 @@ export class Client {
       credentialUse: 'SECPKG_CRED_OUTBOUND',
     });
     const packageInfo = sspi.QuerySecurityPackageInfo('Negotiate');
+    const targetName = getSPNFromURI(resource);
     let input: InitializeSecurityContextInput = {
       credential: clientCred.credential,
-      targetName: 'kiki',
+      targetName,
       cbMaxToken: packageInfo.cbMaxToken,
       targetDataRep: 'SECURITY_NATIVE_DREP',
     };
@@ -101,7 +111,7 @@ export class Client {
       );
       input = {
         credential: clientCred.credential,
-        targetName: 'kiki',
+        targetName,
         cbMaxToken: packageInfo.cbMaxToken,
         serverSecurityContext: {
           SecBufferDesc: {
