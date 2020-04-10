@@ -19,8 +19,8 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo &info) {
   CredHandle cred = SecHandleUtil::deserialize(
       input.Get("credential").As<Napi::String>().Utf8Value());
 
-  std::u16string wstr = input.Get("targetName").As<Napi::String>();
-  LPWSTR packageName = (LPWSTR)wstr.c_str();
+  std::u16string wstr = input.Get("targetName").As<Napi::String>().Utf16Value();
+  LPWSTR pszTargetName = (LPWSTR)wstr.c_str();
 
   DWORD fContextReq =
       getFlags(env, ISC_REQ_FLAGS, input, "contextReq", ISC_REQ_CONNECTION);
@@ -73,7 +73,7 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo &info) {
   }
 
   SECURITY_STATUS secStatus = InitializeSecurityContext(
-      &cred, (isFirstCall) ? NULL : (&clientContextHandle), packageName,
+      &cred, (isFirstCall) ? NULL : (&clientContextHandle), pszTargetName,
       fContextReq, RESERVED, targetDataRep, pInput, RESERVED,
       &clientContextHandle, &fromClientSecBufferDesc, &ulContextAttr,
       &tsExpiry);
