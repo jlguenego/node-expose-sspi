@@ -1,4 +1,4 @@
-const { sso } = require('node-expose-sspi');
+const { sso } = require('../..');
 
 (async () => {
   try {

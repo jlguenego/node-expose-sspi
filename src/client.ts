@@ -41,7 +41,7 @@ export class Client {
     resource: string,
     init: RequestInit = {}
   ): Promise<Response> {
-    debug('handleAuth: start. headers', response.headers);
+    debug('start response.headers', response.headers);
 
     // has cookies ?
     this.saveCookies(response);
@@ -85,7 +85,9 @@ export class Client {
     };
     // cookies case
     this.restituteCookies(requestInit);
+    debug('first requestInit.headers', requestInit.headers);
     response = await fetch(resource, requestInit);
+    debug('first response.headers', response.headers);
     while (
       response.headers.has('www-authenticate') &&
       response.status === 401 &&
@@ -115,7 +117,9 @@ export class Client {
         Authorization: 'Negotiate ' + base64,
       };
       this.restituteCookies(requestInit);
+      debug('other requestInit.headers', requestInit.headers);
       response = await fetch(resource, requestInit);
+      debug('other response.headers', response.headers);
     }
     debug('handleAuth: end');
     return response;
