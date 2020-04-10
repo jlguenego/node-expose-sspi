@@ -1,5 +1,9 @@
 import fetch, { RequestInit, Response } from 'node-fetch';
-import { sspi, InitializeSecurityContextInput, AcquireCredHandleInput } from '../lib/api';
+import {
+  sspi,
+  InitializeSecurityContextInput,
+  AcquireCredHandleInput,
+} from '../lib/api';
 import { encode, decode } from 'base64-arraybuffer';
 import dbg from 'debug';
 import { CookieList } from './interfaces';
@@ -8,12 +12,12 @@ const debug = dbg('node-expose-sspi:client');
 
 // Thanks to the guys of https://stackoverflow.com/questions/8498592/extract-hostname-name-from-string
 const getSPNFromURI = (url: string): string => {
-  const matches = (/^https?\:\/\/([^\/:?#]+)(?:[\/:?#]|$)/i).exec(url);
+  const matches = /^https?\:\/\/([^\/:?#]+)(?:[\/:?#]|$)/i.exec(url);
   const domain = matches && matches[1];
   const result = 'HTTP/' + domain;
   console.log('result: ', result);
   return result;
-}
+};
 
 export class Client {
   private cookieList: CookieList = {};
@@ -92,11 +96,11 @@ export class Client {
       credInput.authData = {
         domain: this.domain,
         user: this.user,
-        password: this.password
+        password: this.password,
       };
     }
     const clientCred = sspi.AcquireCredentialsHandle(credInput);
-    
+
     const packageInfo = sspi.QuerySecurityPackageInfo('Negotiate');
     const targetName = getSPNFromURI(resource);
     let input: InitializeSecurityContextInput = {
