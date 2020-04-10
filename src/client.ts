@@ -27,6 +27,9 @@ export class Client {
     const cookieStr = Object.keys(this.cookieList)
       .map((key) => key + '=' + this.cookieList[key])
       .join('; ');
+    if (cookieStr.length === 0) {
+      return;
+    }
     Object.assign(requestInit.headers, { cookie: cookieStr });
   }
 
@@ -125,4 +128,3 @@ export class Client {
     return response;
   }
 }
-
