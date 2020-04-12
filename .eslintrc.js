@@ -1,5 +1,5 @@
 module.exports = {
-  ignorePatterns: ['node_modules/'],
+  ignorePatterns: ['node_modules/', 'dist/', 'index.js'],
   env: {
     browser: true,
     node: true,
