@@ -1,4 +1,4 @@
-[node-expose-sspi](../README.md) › ["lib/sysinfo.d"](_lib_sysinfo_d_.md)
+[node-expose-sspi](../README.md) › [Globals](../globals.md) › ["lib/sysinfo.d"](_lib_sysinfo_d_.md)
 
 # Module: "lib/sysinfo.d"
 

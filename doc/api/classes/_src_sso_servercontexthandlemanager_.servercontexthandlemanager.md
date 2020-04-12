@@ -1,4 +1,4 @@
-[node-expose-sspi](../README.md) › ["src/sso/ServerContextHandleManager"](../modules/_src_sso_servercontexthandlemanager_.md) › [ServerContextHandleManager](_src_sso_servercontexthandlemanager_.servercontexthandlemanager.md)
+[node-expose-sspi](../README.md) › [Globals](../globals.md) › ["src/sso/ServerContextHandleManager"](../modules/_src_sso_servercontexthandlemanager_.md) › [ServerContextHandleManager](_src_sso_servercontexthandlemanager_.servercontexthandlemanager.md)
 
 # Class: ServerContextHandleManager
 
@@ -27,7 +27,7 @@
 
 \+ **new ServerContextHandleManager**(`delayMax`: number): *[ServerContextHandleManager](_src_sso_servercontexthandlemanager_.servercontexthandlemanager.md)*
 
-*Defined in [src/sso/ServerContextHandleManager.ts:26](https://github.com/jlguenego/node-expose-sspi/blob/d63ba44/src/sso/ServerContextHandleManager.ts#L26)*
+*Defined in [src/sso/ServerContextHandleManager.ts:26](https://github.com/jlguenego/node-expose-sspi/blob/3281b4b/src/sso/ServerContextHandleManager.ts#L26)*
 
 **Parameters:**
 
@@ -43,7 +43,7 @@ Name | Type | Default |
 
 ▸ **getServerContextHandle**(): *[CtxtHandle](../interfaces/_lib_sspi_d_.ctxthandle.md)*
 
-*Defined in [src/sso/ServerContextHandleManager.ts:80](https://github.com/jlguenego/node-expose-sspi/blob/d63ba44/src/sso/ServerContextHandleManager.ts#L80)*
+*Defined in [src/sso/ServerContextHandleManager.ts:80](https://github.com/jlguenego/node-expose-sspi/blob/3281b4b/src/sso/ServerContextHandleManager.ts#L80)*
 
 **Returns:** *[CtxtHandle](../interfaces/_lib_sspi_d_.ctxthandle.md)*
 
@@ -53,7 +53,7 @@ ___
 
 ▸ **release**(): *void*
 
-*Defined in [src/sso/ServerContextHandleManager.ts:91](https://github.com/jlguenego/node-expose-sspi/blob/d63ba44/src/sso/ServerContextHandleManager.ts#L91)*
+*Defined in [src/sso/ServerContextHandleManager.ts:91](https://github.com/jlguenego/node-expose-sspi/blob/3281b4b/src/sso/ServerContextHandleManager.ts#L91)*
 
 **Returns:** *void*
 
@@ -63,7 +63,7 @@ ___
 
 ▸ **set**(`serverContextHandle`: [CtxtHandle](../interfaces/_lib_sspi_d_.ctxthandle.md)): *void*
 
-*Defined in [src/sso/ServerContextHandleManager.ts:68](https://github.com/jlguenego/node-expose-sspi/blob/d63ba44/src/sso/ServerContextHandleManager.ts#L68)*
+*Defined in [src/sso/ServerContextHandleManager.ts:68](https://github.com/jlguenego/node-expose-sspi/blob/3281b4b/src/sso/ServerContextHandleManager.ts#L68)*
 
 **Parameters:**
 
@@ -79,7 +79,7 @@ ___
 
 ▸ **setCookieMode**(`req`: IncomingMessage, `res`: OutgoingMessage): *void*
 
-*Defined in [src/sso/ServerContextHandleManager.ts:30](https://github.com/jlguenego/node-expose-sspi/blob/d63ba44/src/sso/ServerContextHandleManager.ts#L30)*
+*Defined in [src/sso/ServerContextHandleManager.ts:30](https://github.com/jlguenego/node-expose-sspi/blob/3281b4b/src/sso/ServerContextHandleManager.ts#L30)*
 
 **Parameters:**
 
@@ -96,7 +96,7 @@ ___
 
 ▸ **tooLate**(`authItem`: AuthItem): *void*
 
-*Defined in [src/sso/ServerContextHandleManager.ts:121](https://github.com/jlguenego/node-expose-sspi/blob/d63ba44/src/sso/ServerContextHandleManager.ts#L121)*
+*Defined in [src/sso/ServerContextHandleManager.ts:121](https://github.com/jlguenego/node-expose-sspi/blob/3281b4b/src/sso/ServerContextHandleManager.ts#L121)*
 
 Used only when a negotiate connection
 does not go to its final state before timeout.
@@ -119,6 +119,6 @@ ___
 
 ▸ **waitForReleased**(): *Promise‹void›*
 
-*Defined in [src/sso/ServerContextHandleManager.ts:39](https://github.com/jlguenego/node-expose-sspi/blob/d63ba44/src/sso/ServerContextHandleManager.ts#L39)*
+*Defined in [src/sso/ServerContextHandleManager.ts:39](https://github.com/jlguenego/node-expose-sspi/blob/3281b4b/src/sso/ServerContextHandleManager.ts#L39)*
 
 **Returns:** *Promise‹void›*

@@ -1,4 +1,4 @@
-[node-expose-sspi](../README.md) › ["lib/api.d"](_lib_api_d_.md)
+[node-expose-sspi](../README.md) › [Globals](../globals.md) › ["lib/api.d"](_lib_api_d_.md)
 
 # Module: "lib/api.d"
 
@@ -124,7 +124,7 @@ ___
 
 • **adsi**: *[Adsi](../interfaces/_lib_adsi_d_.adsi.md)*
 
-*Defined in [lib/api.d.ts:7](https://github.com/jlguenego/node-expose-sspi/blob/d63ba44/lib/api.d.ts#L7)*
+*Defined in [lib/api.d.ts:7](https://github.com/jlguenego/node-expose-sspi/blob/3281b4b/lib/api.d.ts#L7)*
 
 ___
 
@@ -132,7 +132,7 @@ ___
 
 • **sspi**: *[Sspi](../interfaces/_lib_sspi_d_.sspi.md)*
 
-*Defined in [lib/api.d.ts:6](https://github.com/jlguenego/node-expose-sspi/blob/d63ba44/lib/api.d.ts#L6)*
+*Defined in [lib/api.d.ts:6](https://github.com/jlguenego/node-expose-sspi/blob/3281b4b/lib/api.d.ts#L6)*
 
 ___
 
@@ -140,4 +140,4 @@ ___
 
 • **sysinfo**: *[SysInfo](../interfaces/_lib_sysinfo_d_.sysinfo.md)*
 
-*Defined in [lib/api.d.ts:8](https://github.com/jlguenego/node-expose-sspi/blob/d63ba44/lib/api.d.ts#L8)*
+*Defined in [lib/api.d.ts:8](https://github.com/jlguenego/node-expose-sspi/blob/3281b4b/lib/api.d.ts#L8)*

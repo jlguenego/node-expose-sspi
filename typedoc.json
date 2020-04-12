@@ -10,5 +10,5 @@
   "includeDeclarations": true,
 
   "plugin": "typedoc-plugin-markdown",
-  "readme": "none"
+  "readme": "./typedoc/README.md"
 }

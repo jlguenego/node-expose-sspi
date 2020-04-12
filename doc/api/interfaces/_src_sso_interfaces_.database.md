@@ -1,4 +1,4 @@
-[node-expose-sspi](../README.md) › ["src/sso/interfaces"](../modules/_src_sso_interfaces_.md) › [Database](_src_sso_interfaces_.database.md)
+[node-expose-sspi](../README.md) › [Globals](../globals.md) › ["src/sso/interfaces"](../modules/_src_sso_interfaces_.md) › [Database](_src_sso_interfaces_.database.md)
 
 # Interface: Database
 
@@ -18,4 +18,4 @@
 
 • **users**: *[ADUsers](../modules/_src_sso_interfaces_.md#adusers)*
 
-*Defined in [src/sso/interfaces.ts:88](https://github.com/jlguenego/node-expose-sspi/blob/d63ba44/src/sso/interfaces.ts#L88)*
+*Defined in [src/sso/interfaces.ts:88](https://github.com/jlguenego/node-expose-sspi/blob/3281b4b/src/sso/interfaces.ts#L88)*

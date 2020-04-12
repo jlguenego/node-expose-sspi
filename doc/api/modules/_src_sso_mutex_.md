@@ -1,4 +1,4 @@
-[node-expose-sspi](../README.md) › ["src/sso/mutex"](_src_sso_mutex_.md)
+[node-expose-sspi](../README.md) › [Globals](../globals.md) › ["src/sso/mutex"](_src_sso_mutex_.md)
 
 # Module: "src/sso/mutex"
 
@@ -18,4 +18,4 @@
 
 • **activeDirectoryMutex**: *[Mutex](../classes/_src_sso_mutex_.mutex.md)‹›* = new Mutex()
 
-*Defined in [src/sso/mutex.ts:40](https://github.com/jlguenego/node-expose-sspi/blob/d63ba44/src/sso/mutex.ts#L40)*
+*Defined in [src/sso/mutex.ts:40](https://github.com/jlguenego/node-expose-sspi/blob/3281b4b/src/sso/mutex.ts#L40)*

@@ -1,4 +1,4 @@
-[node-expose-sspi](../README.md) › ["src/sso/mutex"](../modules/_src_sso_mutex_.md) › [Mutex](_src_sso_mutex_.mutex.md)
+[node-expose-sspi](../README.md) › [Globals](../globals.md) › ["src/sso/mutex"](../modules/_src_sso_mutex_.md) › [Mutex](_src_sso_mutex_.mutex.md)
 
 # Class: Mutex
 
@@ -18,6 +18,6 @@
 
 ▸ **acquire**(): *Promise‹ReleaseFn›*
 
-*Defined in [src/sso/mutex.ts:27](https://github.com/jlguenego/node-expose-sspi/blob/d63ba44/src/sso/mutex.ts#L27)*
+*Defined in [src/sso/mutex.ts:27](https://github.com/jlguenego/node-expose-sspi/blob/3281b4b/src/sso/mutex.ts#L27)*
 
 **Returns:** *Promise‹ReleaseFn›*

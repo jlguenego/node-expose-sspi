@@ -1,4 +1,4 @@
-[node-expose-sspi](../README.md) › ["src/sso/cookies"](_src_sso_cookies_.md)
+[node-expose-sspi](../README.md) › [Globals](../globals.md) › ["src/sso/cookies"](_src_sso_cookies_.md)
 
 # Module: "src/sso/cookies"
 
@@ -14,7 +14,7 @@
 
 ▸ **parseCookies**(`request`: IncomingMessage): *[CookieList](../interfaces/_src_sso_interfaces_.cookielist.md)*
 
-*Defined in [src/sso/cookies.ts:5](https://github.com/jlguenego/node-expose-sspi/blob/d63ba44/src/sso/cookies.ts#L5)*
+*Defined in [src/sso/cookies.ts:5](https://github.com/jlguenego/node-expose-sspi/blob/3281b4b/src/sso/cookies.ts#L5)*
 
 **Parameters:**
 

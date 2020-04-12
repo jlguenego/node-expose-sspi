@@ -1,4 +1,4 @@
-[node-expose-sspi](../README.md) › ["src/sso/ServerContextHandleManager"](_src_sso_servercontexthandlemanager_.md)
+[node-expose-sspi](../README.md) › [Globals](../globals.md) › ["src/sso/ServerContextHandleManager"](_src_sso_servercontexthandlemanager_.md)
 
 # Module: "src/sso/ServerContextHandleManager"
 

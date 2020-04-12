@@ -1,4 +1,4 @@
-[node-expose-sspi](../README.md) › ["src/sso/client"](_src_sso_client_.md)
+[node-expose-sspi](../README.md) › [Globals](../globals.md) › ["src/sso/client"](_src_sso_client_.md)
 
 # Module: "src/sso/client"
 
@@ -18,7 +18,7 @@
 
 ▸ **getSPNFromURI**(`url`: string): *Promise‹string›*
 
-*Defined in [src/sso/client.ts:30](https://github.com/jlguenego/node-expose-sspi/blob/d63ba44/src/sso/client.ts#L30)*
+*Defined in [src/sso/client.ts:30](https://github.com/jlguenego/node-expose-sspi/blob/3281b4b/src/sso/client.ts#L30)*
 
 Get the SPN the same way Chrome/Firefox or IE does.
 

@@ -1,4 +1,4 @@
-[node-expose-sspi](../README.md) › ["lib/sspi.d"](_lib_sspi_d_.md)
+[node-expose-sspi](../README.md) › [Globals](../globals.md) › ["lib/sspi.d"](_lib_sspi_d_.md)
 
 # Module: "lib/sspi.d"
 
@@ -31,7 +31,7 @@
 
 Ƭ **InformationClass**: *"TokenGroups"*
 
-*Defined in [lib/sspi.d.ts:61](https://github.com/jlguenego/node-expose-sspi/blob/d63ba44/lib/sspi.d.ts#L61)*
+*Defined in [lib/sspi.d.ts:61](https://github.com/jlguenego/node-expose-sspi/blob/3281b4b/lib/sspi.d.ts#L61)*
 
 ___
 
@@ -39,7 +39,7 @@ ___
 
 Ƭ **Token**: *string*
 
-*Defined in [lib/sspi.d.ts:59](https://github.com/jlguenego/node-expose-sspi/blob/d63ba44/lib/sspi.d.ts#L59)*
+*Defined in [lib/sspi.d.ts:59](https://github.com/jlguenego/node-expose-sspi/blob/3281b4b/lib/sspi.d.ts#L59)*
 
 A Token is a pointer to some user information.
 

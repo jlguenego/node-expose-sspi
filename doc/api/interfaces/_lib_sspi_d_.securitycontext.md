@@ -1,4 +1,4 @@
-[node-expose-sspi](../README.md) › ["lib/sspi.d"](../modules/_lib_sspi_d_.md) › [SecurityContext](_lib_sspi_d_.securitycontext.md)
+[node-expose-sspi](../README.md) › [Globals](../globals.md) › ["lib/sspi.d"](../modules/_lib_sspi_d_.md) › [SecurityContext](_lib_sspi_d_.securitycontext.md)
 
 # Interface: SecurityContext
 
@@ -27,7 +27,7 @@ It contains the security buffers exchanged between the client and the server.
 
 • **SECURITY_STATUS**? : *string*
 
-*Defined in [lib/sspi.d.ts:81](https://github.com/jlguenego/node-expose-sspi/blob/d63ba44/lib/sspi.d.ts#L81)*
+*Defined in [lib/sspi.d.ts:81](https://github.com/jlguenego/node-expose-sspi/blob/3281b4b/lib/sspi.d.ts#L81)*
 
 ___
 
@@ -35,7 +35,7 @@ ___
 
 • **SecBufferDesc**? : *any*
 
-*Defined in [lib/sspi.d.ts:82](https://github.com/jlguenego/node-expose-sspi/blob/d63ba44/lib/sspi.d.ts#L82)*
+*Defined in [lib/sspi.d.ts:82](https://github.com/jlguenego/node-expose-sspi/blob/3281b4b/lib/sspi.d.ts#L82)*
 
 ___
 
@@ -43,4 +43,4 @@ ___
 
 • **contextHandle**? : *[CtxtHandle](_lib_sspi_d_.ctxthandle.md)*
 
-*Defined in [lib/sspi.d.ts:80](https://github.com/jlguenego/node-expose-sspi/blob/d63ba44/lib/sspi.d.ts#L80)*
+*Defined in [lib/sspi.d.ts:80](https://github.com/jlguenego/node-expose-sspi/blob/3281b4b/lib/sspi.d.ts#L80)*

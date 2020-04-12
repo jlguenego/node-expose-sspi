@@ -1,4 +1,4 @@
-[node-expose-sspi](../README.md) › ["lib/adsi.d"](../modules/_lib_adsi_d_.md) › [IID](_lib_adsi_d_.iid.md)
+[node-expose-sspi](../README.md) › [Globals](../globals.md) › ["lib/adsi.d"](../modules/_lib_adsi_d_.md) › [IID](_lib_adsi_d_.iid.md)
 
 # Interface: IID
 
@@ -26,6 +26,6 @@
 
 ▸ **Release**(): *void*
 
-*Defined in [lib/adsi.d.ts:4](https://github.com/jlguenego/node-expose-sspi/blob/d63ba44/lib/adsi.d.ts#L4)*
+*Defined in [lib/adsi.d.ts:4](https://github.com/jlguenego/node-expose-sspi/blob/3281b4b/lib/adsi.d.ts#L4)*
 
 **Returns:** *void*

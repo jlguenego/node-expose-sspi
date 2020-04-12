@@ -1,4 +1,4 @@
-[node-expose-sspi](../README.md) › ["src/sso/sleep"](_src_sso_sleep_.md)
+[node-expose-sspi](../README.md) › [Globals](../globals.md) › ["src/sso/sleep"](_src_sso_sleep_.md)
 
 # Module: "src/sso/sleep"
 
@@ -14,7 +14,7 @@
 
 ▸ **sleep**(`time`: number): *Promise‹void›*
 
-*Defined in [src/sso/sleep.ts:5](https://github.com/jlguenego/node-expose-sspi/blob/d63ba44/src/sso/sleep.ts#L5)*
+*Defined in [src/sso/sleep.ts:5](https://github.com/jlguenego/node-expose-sspi/blob/3281b4b/src/sso/sleep.ts#L5)*
 
 **Parameters:**
 

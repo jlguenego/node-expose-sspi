@@ -1,4 +1,4 @@
-[node-expose-sspi](../README.md) › ["lib/flags/CoInitFlag.d"](_lib_flags_coinitflag_d_.md)
+[node-expose-sspi](../README.md) › [Globals](../globals.md) › ["lib/flags/CoInitFlag.d"](_lib_flags_coinitflag_d_.md)
 
 # Module: "lib/flags/CoInitFlag.d"
 
@@ -14,4 +14,4 @@
 
 Ƭ **CoInitFlag**: *"COINIT_APARTMENTTHREADED" | "COINIT_MULTITHREADED" | "COINIT_DISABLE_OLE1DDE" | "COINIT_SPEED_OVER_MEMOR"*
 
-*Defined in [lib/flags/CoInitFlag.d.ts:1](https://github.com/jlguenego/node-expose-sspi/blob/d63ba44/lib/flags/CoInitFlag.d.ts#L1)*
+*Defined in [lib/flags/CoInitFlag.d.ts:1](https://github.com/jlguenego/node-expose-sspi/blob/3281b4b/lib/flags/CoInitFlag.d.ts#L1)*

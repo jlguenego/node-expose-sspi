@@ -1,4 +1,4 @@
-[node-expose-sspi](../README.md) › ["lib/adsi.d"](../modules/_lib_adsi_d_.md) › [IADs](_lib_adsi_d_.iads.md)
+[node-expose-sspi](../README.md) › [Globals](../globals.md) › ["lib/adsi.d"](../modules/_lib_adsi_d_.md) › [IADs](_lib_adsi_d_.iads.md)
 
 # Interface: IADs
 
@@ -24,7 +24,7 @@
 
 ▸ **Get**(`name`: string): *Promise‹string›*
 
-*Defined in [lib/adsi.d.ts:8](https://github.com/jlguenego/node-expose-sspi/blob/d63ba44/lib/adsi.d.ts#L8)*
+*Defined in [lib/adsi.d.ts:8](https://github.com/jlguenego/node-expose-sspi/blob/3281b4b/lib/adsi.d.ts#L8)*
 
 **Parameters:**
 
@@ -40,7 +40,7 @@ ___
 
 ▸ **GetInfoEx**(...`colNames`: string[]): *void*
 
-*Defined in [lib/adsi.d.ts:13](https://github.com/jlguenego/node-expose-sspi/blob/d63ba44/lib/adsi.d.ts#L13)*
+*Defined in [lib/adsi.d.ts:13](https://github.com/jlguenego/node-expose-sspi/blob/3281b4b/lib/adsi.d.ts#L13)*
 
 **Parameters:**
 
@@ -58,7 +58,7 @@ ___
 
 *Inherited from [IID](_lib_adsi_d_.iid.md).[Release](_lib_adsi_d_.iid.md#release)*
 
-*Defined in [lib/adsi.d.ts:4](https://github.com/jlguenego/node-expose-sspi/blob/d63ba44/lib/adsi.d.ts#L4)*
+*Defined in [lib/adsi.d.ts:4](https://github.com/jlguenego/node-expose-sspi/blob/3281b4b/lib/adsi.d.ts#L4)*
 
 **Returns:** *void*
 
@@ -68,7 +68,7 @@ ___
 
 ▸ **get_GUID**(): *string*
 
-*Defined in [lib/adsi.d.ts:10](https://github.com/jlguenego/node-expose-sspi/blob/d63ba44/lib/adsi.d.ts#L10)*
+*Defined in [lib/adsi.d.ts:10](https://github.com/jlguenego/node-expose-sspi/blob/3281b4b/lib/adsi.d.ts#L10)*
 
 **Returns:** *string*
 
@@ -78,6 +78,6 @@ ___
 
 ▸ **get_Name**(): *string*
 
-*Defined in [lib/adsi.d.ts:12](https://github.com/jlguenego/node-expose-sspi/blob/d63ba44/lib/adsi.d.ts#L12)*
+*Defined in [lib/adsi.d.ts:12](https://github.com/jlguenego/node-expose-sspi/blob/3281b4b/lib/adsi.d.ts#L12)*
 
 **Returns:** *string*
