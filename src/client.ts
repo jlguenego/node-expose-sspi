@@ -35,7 +35,10 @@ async function getSPNFromURI(url: string): Promise<string> {
   }
   const matches = /^https?\:\/\/([^\/:?#]+)(?:[\/:?#]|$)/i.exec(url);
   const urlDomain = matches && matches[1];
-  debug('domain: ', urlDomain);
+  debug('urlDomain: ', urlDomain);
+  if (['localhost','127.0.0.1'].includes(urlDomain)) {
+    return 'HTTP/localhost';
+  }
   // needs urlFQDN for the DNS resolver.
   const urlFQDN = urlDomain.includes('.')
     ? urlDomain
