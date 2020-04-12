@@ -27,7 +27,7 @@ const debug = dbg('node-expose-sspi:client');
  * @param {string} url
  * @returns {string}
  */
-async function getSPNFromURI(url: string): Promise<string> {
+export async function getSPNFromURI(url: string): Promise<string> {
   const msDomainName = sysinfo.GetComputerNameEx('ComputerNameDnsDomain');
   if (msDomainName.length === 0) {
     debug('Client running on a host that is not part of a Microsoft domain');

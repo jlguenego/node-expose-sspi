@@ -69,6 +69,7 @@
     "nodemon": "^2.0.2",
     "require-self": "^0.2.2",
     "serve-index": "^1.9.1",
+    "source-map-support": "^0.5.16",
     "standard-version": "^7.1.0",
     "ts-node": "^8.6.2",
     "typedoc": "^0.17.3",

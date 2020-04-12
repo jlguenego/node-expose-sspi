@@ -9,7 +9,7 @@ import { hexDump } from './misc';
 import { sleep } from './sleep';
 import { SSO } from './SSO';
 import './express';
-import { Client } from './client';
+import { Client, getSPNFromURI } from './client';
 import { Mutex } from './mutex';
 import { init, database, getUsers, getUser } from './userdb';
 
@@ -22,6 +22,7 @@ export const sso = {
   isOnDomain,
   isActiveDirectoryReachable,
   Client,
+  getSPNFromURI,
   init,
   database,
   sleep,
