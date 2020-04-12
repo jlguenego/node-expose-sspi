@@ -26,7 +26,7 @@ Input of function AcquireCredentialsHandle
 
 • **authData**? : *[UserCredential](_lib_sspi_d_.usercredential.md)*
 
-*Defined in [lib/sspi.d.ts:144](https://github.com/jlguenego/node-expose-sspi/blob/3281b4b/lib/sspi.d.ts#L144)*
+*Defined in [lib/sspi.d.ts:144](https://github.com/jlguenego/node-expose-sspi/blob/f44ba74/lib/sspi.d.ts#L144)*
 
 ___
 
@@ -34,7 +34,7 @@ ___
 
 • **credentialUse**? : *[CredentialUseFlag](../modules/_lib_flags_credentialuseflag_d_.md#credentialuseflag)*
 
-*Defined in [lib/sspi.d.ts:145](https://github.com/jlguenego/node-expose-sspi/blob/3281b4b/lib/sspi.d.ts#L145)*
+*Defined in [lib/sspi.d.ts:145](https://github.com/jlguenego/node-expose-sspi/blob/f44ba74/lib/sspi.d.ts#L145)*
 
 ___
 
@@ -42,4 +42,4 @@ ___
 
 • **packageName**: *string*
 
-*Defined in [lib/sspi.d.ts:143](https://github.com/jlguenego/node-expose-sspi/blob/3281b4b/lib/sspi.d.ts#L143)*
+*Defined in [lib/sspi.d.ts:143](https://github.com/jlguenego/node-expose-sspi/blob/f44ba74/lib/sspi.d.ts#L143)*

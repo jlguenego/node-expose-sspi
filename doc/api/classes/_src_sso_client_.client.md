@@ -22,7 +22,7 @@
 
 ▸ **fetch**(`resource`: string, `init?`: RequestInit): *Promise‹Response›*
 
-*Defined in [src/sso/client.ts:99](https://github.com/jlguenego/node-expose-sspi/blob/3281b4b/src/sso/client.ts#L99)*
+*Defined in [src/sso/client.ts:99](https://github.com/jlguenego/node-expose-sspi/blob/f44ba74/src/sso/client.ts#L99)*
 
 **Parameters:**
 
@@ -39,7 +39,7 @@ ___
 
 ▸ **handleAuth**(`response`: Response, `resource`: string, `init`: RequestInit): *Promise‹Response›*
 
-*Defined in [src/sso/client.ts:105](https://github.com/jlguenego/node-expose-sspi/blob/3281b4b/src/sso/client.ts#L105)*
+*Defined in [src/sso/client.ts:105](https://github.com/jlguenego/node-expose-sspi/blob/f44ba74/src/sso/client.ts#L105)*
 
 **Parameters:**
 
@@ -57,7 +57,7 @@ ___
 
 ▸ **restituteCookies**(`requestInit`: RequestInit): *void*
 
-*Defined in [src/sso/client.ts:83](https://github.com/jlguenego/node-expose-sspi/blob/3281b4b/src/sso/client.ts#L83)*
+*Defined in [src/sso/client.ts:83](https://github.com/jlguenego/node-expose-sspi/blob/f44ba74/src/sso/client.ts#L83)*
 
 **Parameters:**
 
@@ -73,7 +73,7 @@ ___
 
 ▸ **saveCookies**(`response`: Response): *void*
 
-*Defined in [src/sso/client.ts:69](https://github.com/jlguenego/node-expose-sspi/blob/3281b4b/src/sso/client.ts#L69)*
+*Defined in [src/sso/client.ts:69](https://github.com/jlguenego/node-expose-sspi/blob/f44ba74/src/sso/client.ts#L69)*
 
 **Parameters:**
 
@@ -89,7 +89,7 @@ ___
 
 ▸ **setCredentials**(`domain`: string, `user`: string, `password`: string): *void*
 
-*Defined in [src/sso/client.ts:93](https://github.com/jlguenego/node-expose-sspi/blob/3281b4b/src/sso/client.ts#L93)*
+*Defined in [src/sso/client.ts:93](https://github.com/jlguenego/node-expose-sspi/blob/f44ba74/src/sso/client.ts#L93)*
 
 **Parameters:**
 

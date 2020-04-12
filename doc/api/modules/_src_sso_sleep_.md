@@ -6,15 +6,19 @@
 
 ### Functions
 
-* [sleep](_src_sso_sleep_.md#const-sleep)
+* [sleep](_src_sso_sleep_.md#sleep)
 
 ## Functions
 
-### `Const` sleep
+###  sleep
 
 ▸ **sleep**(`time`: number): *Promise‹void›*
 
-*Defined in [src/sso/sleep.ts:5](https://github.com/jlguenego/node-expose-sspi/blob/3281b4b/src/sso/sleep.ts#L5)*
+*Defined in [src/sso/sleep.ts:12](https://github.com/jlguenego/node-expose-sspi/blob/f44ba74/src/sso/sleep.ts#L12)*
+
+Sleep for time (in millisecond) and wake up.
+
+**`export`** 
 
 **Parameters:**
 
