@@ -1,4 +1,4 @@
-const { sso } = require('node-expose-sspi');
+const { sso } = require('../..');
 const yargs = require('yargs');
 const myArgv = yargs
   .usage('$0 [url]', 'Request a url (by default http://localhost:3000)')

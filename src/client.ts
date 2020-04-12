@@ -1,23 +1,58 @@
 import fetch, { RequestInit, Response } from 'node-fetch';
+import dns from 'dns';
 import {
+  sysinfo,
   sspi,
   InitializeSecurityContextInput,
   AcquireCredHandleInput,
 } from '../lib/api';
+import {} from './domain';
 import { encode, decode } from 'base64-arraybuffer';
 import dbg from 'debug';
 import { CookieList } from './interfaces';
 
 const debug = dbg('node-expose-sspi:client');
 
-// Thanks to the guys of https://stackoverflow.com/questions/8498592/extract-hostname-name-from-string
-const getSPNFromURI = (url: string): string => {
+// Thanks to :
+// -
+// -
+
+/**
+ * Get the SPN the same way Chrome/Firefox or IE does.
+ *
+ * Links:
+ * - getting the domain name: https://stackoverflow.com/questions/8498592/extract-hostname-name-from-string
+ * - algo of IE : https://support.microsoft.com/en-us/help/4551934/kerberos-failures-in-internet-explorer
+ *
+ * @param {string} url
+ * @returns {string}
+ */
+async function getSPNFromURI(url: string): Promise<string> {
+  const msDomainName = sysinfo.GetComputerNameEx('ComputerNameDnsDomain');
+  if (msDomainName.length === 0) {
+    debug('Client running on a host that is not part of a Microsoft domain');
+    return 'whatever';
+  }
   const matches = /^https?\:\/\/([^\/:?#]+)(?:[\/:?#]|$)/i.exec(url);
-  const domain = matches && matches[1];
-  const result = 'HTTP/' + domain;
-  console.log('result: ', result);
+  const urlDomain = matches && matches[1];
+  debug('domain: ', urlDomain);
+  // needs urlFQDN for the DNS resolver.
+  const urlFQDN = urlDomain.includes('.')
+    ? urlDomain
+    : urlDomain + '.' + msDomainName;
+  let hostname = urlFQDN;
+  try {
+    const records = await dns.promises.resolve(urlFQDN, 'CNAME');
+    if (records.length > 0) {
+      hostname = records[0];
+    }
+  } catch (e) {
+    debug('DNS error', e);
+  }
+  const result = 'HTTP/' + hostname;
+  debug('result: ', result);
   return result;
-};
+}
 
 export class Client {
   private cookieList: CookieList = {};
@@ -102,7 +137,7 @@ export class Client {
     const clientCred = sspi.AcquireCredentialsHandle(credInput);
 
     const packageInfo = sspi.QuerySecurityPackageInfo('Negotiate');
-    const targetName = getSPNFromURI(resource);
+    const targetName = await getSPNFromURI(resource);
     let input: InitializeSecurityContextInput = {
       credential: clientCred.credential,
       targetName,
