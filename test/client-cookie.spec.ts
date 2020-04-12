@@ -1,7 +1,7 @@
 import assert from 'assert';
 import express from 'express';
 import dbg from 'debug';
-import { sso } from 'node-expose-sspi';
+import { sso } from '../src';
 
 const debug = dbg('node-expose-sspi:test');
 

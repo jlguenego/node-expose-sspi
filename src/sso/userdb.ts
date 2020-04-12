@@ -1,5 +1,5 @@
-import { adsi } from '../lib/api';
-import { IDirectorySearch, IADs } from '../lib/adsi';
+import { adsi } from '../../lib/api';
+import { IDirectorySearch, IADs } from '../../lib/adsi';
 import { isOnDomain, isActiveDirectoryReachable } from './domain';
 import dbg from 'debug';
 import { Database, ADUser, ADUsers } from './interfaces';

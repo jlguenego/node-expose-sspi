@@ -1,5 +1,5 @@
-import { sspi, sysinfo, adsi } from '../lib/api';
-import { IADsContainer, IDirectorySearch, IDispatch } from '../lib/adsi';
+import { sspi, sysinfo, adsi } from '../../lib/api';
+import { IADsContainer, IDirectorySearch, IDispatch } from '../../lib/adsi';
 
 /**
  * Get the domain (Microsoft domain) or hostname (workgroup) of this machine.

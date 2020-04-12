@@ -5,7 +5,7 @@ import {
   SecurityContext,
   InitializeSecurityContextInput,
   AcceptSecurityContextInput,
-} from '../lib/api';
+} from '../../lib/api';
 import { SSO } from './SSO';
 import dbg from 'debug';
 

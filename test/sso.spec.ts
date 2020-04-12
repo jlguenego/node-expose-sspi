@@ -1,6 +1,6 @@
 import assert from 'assert';
 import os from 'os';
-import { sso, sysinfo } from 'node-expose-sspi';
+import { sso, sysinfo } from '../src';
 import dbg from 'debug';
 
 const debug = dbg('node-expose-sspi:test');

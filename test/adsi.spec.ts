@@ -1,4 +1,4 @@
-import { adsi, sspi, sso } from 'node-expose-sspi';
+import { adsi, sspi, sso } from '../src';
 import a from 'assert';
 import { IADsContainer, IDirectorySearch, ColumnVal } from '../lib/adsi';
 

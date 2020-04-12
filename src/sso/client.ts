@@ -5,7 +5,7 @@ import {
   sspi,
   InitializeSecurityContextInput,
   AcquireCredHandleInput,
-} from '../lib/api';
+} from '../../lib/api';
 import {} from './domain';
 import { encode, decode } from 'base64-arraybuffer';
 import dbg from 'debug';

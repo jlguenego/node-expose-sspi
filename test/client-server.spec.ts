@@ -1,5 +1,5 @@
 import express from 'express';
-import { sso } from 'node-expose-sspi';
+import { sso } from '../src';
 import a from 'assert';
 const assert = a.strict;
 import dbg from 'debug';

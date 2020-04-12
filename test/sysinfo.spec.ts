@@ -1,4 +1,4 @@
-import { sysinfo } from 'node-expose-sspi';
+import { sysinfo } from '../src';
 import a from 'assert';
 const assert = a.strict;
 

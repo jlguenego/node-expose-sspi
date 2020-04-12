@@ -1,4 +1,4 @@
-import { sspi, sso, AcquireCredHandleInput } from 'node-expose-sspi';
+import { sspi, sso, AcquireCredHandleInput } from '../src';
 import os from 'os';
 import a from 'assert';
 import { CredentialWithExpiry, ServerSecurityContext, SecurityContext, InitializeSecurityContextInput, AcceptSecurityContextInput, Token } from '../lib/sspi';

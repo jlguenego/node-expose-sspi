@@ -1,4 +1,4 @@
-import { sspi, CtxtHandle } from '../lib/api';
+import { sspi, CtxtHandle } from '../../lib/api';
 import { getUser } from './userdb';
 import dbg from 'debug';
 import { sso } from '.';

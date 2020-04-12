@@ -1,4 +1,4 @@
-import { CtxtHandle } from '../lib/api';
+import { CtxtHandle } from '../../lib/api';
 import http from 'http';
 import { parseCookies } from './cookies';
 import dbg from 'debug';

@@ -1,32 +1,10 @@
-import { auth } from './auth';
-import { connect } from './connect';
-import {
-  getDefaultDomain,
-  isOnDomain,
-  isActiveDirectoryReachable,
-} from './domain';
-import { hexDump } from './misc';
-import { sleep } from './sleep';
-import { SSO } from './SSO';
-import './express';
-import { Client, getSPNFromURI } from './client';
-import { Mutex } from './mutex';
-import { init, database, getUsers, getUser } from './userdb';
+import os from 'os';
 
-export const sso = {
-  hexDump,
-  auth,
-  connect,
-  SSO,
-  getDefaultDomain,
-  isOnDomain,
-  isActiveDirectoryReachable,
-  Client,
-  getSPNFromURI,
-  init,
-  database,
-  sleep,
-  getUsers,
-  getUser,
-  Mutex,
-};
+if (os.platform() !== 'win32') {
+  throw new Error(
+    "The module 'node-expose-sspi' can only work on Microsoft Windows platform."
+  );
+}
+
+export * from '../lib/api';
+export { sso } from './sso/index';
