@@ -7,6 +7,7 @@
 ### References
 
 * [AcceptSecurityContextInput](_lib_api_d_.md#acceptsecuritycontextinput)
+* [AcquireCredHandleInput](_lib_api_d_.md#acquirecredhandleinput)
 * [CredHandle](_lib_api_d_.md#credhandle)
 * [CredentialWithExpiry](_lib_api_d_.md#credentialwithexpiry)
 * [CtxtHandle](_lib_api_d_.md#ctxthandle)
@@ -32,6 +33,12 @@
 ###  AcceptSecurityContextInput
 
 • **AcceptSecurityContextInput**:
+
+___
+
+###  AcquireCredHandleInput
+
+• **AcquireCredHandleInput**:
 
 ___
 
@@ -117,7 +124,7 @@ ___
 
 • **adsi**: *[Adsi](../interfaces/_lib_adsi_d_.adsi.md)*
 
-*Defined in [lib/api.d.ts:7](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/lib/api.d.ts#L7)*
+*Defined in [lib/api.d.ts:7](https://github.com/jlguenego/node-expose-sspi/blob/e5fb53c/lib/api.d.ts#L7)*
 
 ___
 
@@ -125,7 +132,7 @@ ___
 
 • **sspi**: *[Sspi](../interfaces/_lib_sspi_d_.sspi.md)*
 
-*Defined in [lib/api.d.ts:6](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/lib/api.d.ts#L6)*
+*Defined in [lib/api.d.ts:6](https://github.com/jlguenego/node-expose-sspi/blob/e5fb53c/lib/api.d.ts#L6)*
 
 ___
 
@@ -133,4 +140,4 @@ ___
 
 • **sysinfo**: *[SysInfo](../interfaces/_lib_sysinfo_d_.sysinfo.md)*
 
-*Defined in [lib/api.d.ts:8](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/lib/api.d.ts#L8)*
+*Defined in [lib/api.d.ts:8](https://github.com/jlguenego/node-expose-sspi/blob/e5fb53c/lib/api.d.ts#L8)*

@@ -7,6 +7,7 @@
 ### Interfaces
 
 * [AcceptSecurityContextInput](../interfaces/_lib_sspi_d_.acceptsecuritycontextinput.md)
+* [AcquireCredHandleInput](../interfaces/_lib_sspi_d_.acquirecredhandleinput.md)
 * [CredHandle](../interfaces/_lib_sspi_d_.credhandle.md)
 * [CredentialWithExpiry](../interfaces/_lib_sspi_d_.credentialwithexpiry.md)
 * [CtxtHandle](../interfaces/_lib_sspi_d_.ctxthandle.md)
@@ -17,12 +18,12 @@
 * [ServerSecurityContext](../interfaces/_lib_sspi_d_.serversecuritycontext.md)
 * [SidObject](../interfaces/_lib_sspi_d_.sidobject.md)
 * [Sspi](../interfaces/_lib_sspi_d_.sspi.md)
-* [Token](../interfaces/_lib_sspi_d_.token.md)
 * [UserCredential](../interfaces/_lib_sspi_d_.usercredential.md)
 
 ### Type aliases
 
 * [InformationClass](_lib_sspi_d_.md#informationclass)
+* [Token](_lib_sspi_d_.md#token)
 
 ## Type aliases
 
@@ -30,4 +31,16 @@
 
 Ƭ **InformationClass**: *"TokenGroups"*
 
-*Defined in [lib/sspi.d.ts:61](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/lib/sspi.d.ts#L61)*
+*Defined in [lib/sspi.d.ts:61](https://github.com/jlguenego/node-expose-sspi/blob/e5fb53c/lib/sspi.d.ts#L61)*
+
+___
+
+###  Token
+
+Ƭ **Token**: *string*
+
+*Defined in [lib/sspi.d.ts:59](https://github.com/jlguenego/node-expose-sspi/blob/e5fb53c/lib/sspi.d.ts#L59)*
+
+A Token is a pointer to some user information.
+
+**`interface`** Token

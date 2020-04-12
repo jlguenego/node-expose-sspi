@@ -14,4 +14,4 @@
 
 Ƭ **ComputerNameFormatFlag**: *"ComputerNameNetBIOS" | "ComputerNameDnsHostname" | "ComputerNameDnsDomain" | "ComputerNameDnsFullyQualified" | "ComputerNamePhysicalNetBIOS" | "ComputerNamePhysicalDnsHostname" | "ComputerNamePhysicalDnsDomain" | "ComputerNamePhysicalDnsFullyQualified" | "ComputerNameMax"*
 
-*Defined in [lib/flags/ComputerNameFormatFlag.d.ts:1](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/lib/flags/ComputerNameFormatFlag.d.ts#L1)*
+*Defined in [lib/flags/ComputerNameFormatFlag.d.ts:1](https://github.com/jlguenego/node-expose-sspi/blob/e5fb53c/lib/flags/ComputerNameFormatFlag.d.ts#L1)*

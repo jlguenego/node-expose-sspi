@@ -1,12 +1,12 @@
-[node-expose-sspi](../README.md) › ["src/misc"](_src_misc_.md)
+[node-expose-sspi](../README.md) › ["src/sso/misc"](_src_sso_misc_.md)
 
-# Module: "src/misc"
+# Module: "src/sso/misc"
 
 ## Index
 
 ### Functions
 
-* [hexDump](_src_misc_.md#hexdump)
+* [hexDump](_src_sso_misc_.md#hexdump)
 
 ## Functions
 
@@ -14,7 +14,7 @@
 
 ▸ **hexDump**(`buffer`: ArrayBuffer): *string*
 
-*Defined in [src/misc.ts:22](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/src/misc.ts#L22)*
+*Defined in [src/sso/misc.ts:22](https://github.com/jlguenego/node-expose-sspi/blob/e5fb53c/src/sso/misc.ts#L22)*
 
 Gives a string representation of binary data.
 

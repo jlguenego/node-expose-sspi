@@ -4,98 +4,138 @@
 
 ## Index
 
-### Object literals
+### References
 
-* [sso](_src_index_.md#const-sso)
+* [AcceptSecurityContextInput](_src_index_.md#acceptsecuritycontextinput)
+* [AcquireCredHandleInput](_src_index_.md#acquirecredhandleinput)
+* [CredHandle](_src_index_.md#credhandle)
+* [CredentialWithExpiry](_src_index_.md#credentialwithexpiry)
+* [CtxtHandle](_src_index_.md#ctxthandle)
+* [HANDLE](_src_index_.md#handle)
+* [InformationClass](_src_index_.md#informationclass)
+* [InitializeSecurityContextInput](_src_index_.md#initializesecuritycontextinput)
+* [SecPkgInfo](_src_index_.md#secpkginfo)
+* [SecurityContext](_src_index_.md#securitycontext)
+* [ServerSecurityContext](_src_index_.md#serversecuritycontext)
+* [SidObject](_src_index_.md#sidobject)
+* [Sspi](_src_index_.md#sspi)
+* [Token](_src_index_.md#token)
+* [UserCredential](_src_index_.md#usercredential)
+* [adsi](_src_index_.md#adsi)
+* [sso](_src_index_.md#sso)
+* [sspi](_src_index_.md#sspi)
+* [sysinfo](_src_index_.md#sysinfo)
 
-## Object literals
+## References
 
-### `Const` sso
+###  AcceptSecurityContextInput
 
-### ▪ **sso**: *object*
+• **AcceptSecurityContextInput**:
 
-*Defined in [src/index.ts:16](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/src/index.ts#L16)*
+___
 
-###  Client
+###  AcquireCredHandleInput
 
-• **Client**: *[Client](../classes/_src_client_.client.md)*
+• **AcquireCredHandleInput**:
 
-*Defined in [src/index.ts:24](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/src/index.ts#L24)*
+___
 
-###  Mutex
+###  CredHandle
 
-• **Mutex**: *[Mutex](../classes/_src_mutex_.mutex.md)*
+• **CredHandle**:
 
-*Defined in [src/index.ts:30](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/src/index.ts#L30)*
+___
 
-###  SSO
+###  CredentialWithExpiry
 
-• **SSO**: *[SSO](../classes/_src_sso_.sso.md)*
+• **CredentialWithExpiry**:
 
-*Defined in [src/index.ts:20](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/src/index.ts#L20)*
+___
 
-###  auth
+###  CtxtHandle
 
-• **auth**: *[auth](_src_auth_.md#auth)*
+• **CtxtHandle**:
 
-*Defined in [src/index.ts:18](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/src/index.ts#L18)*
+___
 
-###  connect
+###  HANDLE
 
-• **connect**: *[connect](_src_connect_.md#connect)*
+• **HANDLE**:
 
-*Defined in [src/index.ts:19](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/src/index.ts#L19)*
+___
 
-###  database
+###  InformationClass
 
-• **database**: *[Database](../interfaces/_src_interfaces_.database.md)*
+• **InformationClass**:
 
-*Defined in [src/index.ts:26](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/src/index.ts#L26)*
+___
 
-###  getDefaultDomain
+###  InitializeSecurityContextInput
 
-• **getDefaultDomain**: *[getDefaultDomain](_src_domain_.md#getdefaultdomain)*
+• **InitializeSecurityContextInput**:
 
-*Defined in [src/index.ts:21](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/src/index.ts#L21)*
+___
 
-###  getUser
+###  SecPkgInfo
 
-• **getUser**: *[getUser](_src_userdb_.md#getuser)*
+• **SecPkgInfo**:
 
-*Defined in [src/index.ts:29](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/src/index.ts#L29)*
+___
 
-###  getUsers
+###  SecurityContext
 
-• **getUsers**: *[getUsers](_src_userdb_.md#getusers)*
+• **SecurityContext**:
 
-*Defined in [src/index.ts:28](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/src/index.ts#L28)*
+___
 
-###  hexDump
+###  ServerSecurityContext
 
-• **hexDump**: *[hexDump](_src_misc_.md#hexdump)*
+• **ServerSecurityContext**:
 
-*Defined in [src/index.ts:17](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/src/index.ts#L17)*
+___
 
-###  init
+###  SidObject
 
-• **init**: *[init](_src_userdb_.md#init)*
+• **SidObject**:
 
-*Defined in [src/index.ts:25](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/src/index.ts#L25)*
+___
 
-###  isActiveDirectoryReachable
+###  Sspi
 
-• **isActiveDirectoryReachable**: *[isActiveDirectoryReachable](_src_domain_.md#isactivedirectoryreachable)*
+• **Sspi**:
 
-*Defined in [src/index.ts:23](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/src/index.ts#L23)*
+___
 
-###  isOnDomain
+###  Token
 
-• **isOnDomain**: *[isOnDomain](_src_domain_.md#isondomain)*
+• **Token**:
 
-*Defined in [src/index.ts:22](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/src/index.ts#L22)*
+___
 
-###  sleep
+###  UserCredential
 
-• **sleep**: *sleep*
+• **UserCredential**:
 
-*Defined in [src/index.ts:27](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/src/index.ts#L27)*
+___
+
+###  adsi
+
+• **adsi**:
+
+___
+
+###  sso
+
+• **sso**:
+
+___
+
+###  sspi
+
+• **sspi**:
+
+___
+
+###  sysinfo
+
+• **sysinfo**:

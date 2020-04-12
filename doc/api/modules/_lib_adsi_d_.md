@@ -15,16 +15,25 @@
 
 ### Type aliases
 
+* [ColumnVal](_lib_adsi_d_.md#columnval)
 * [HRESULT](_lib_adsi_d_.md#hresult)
 * [RiidFlag](_lib_adsi_d_.md#riidflag)
 
 ## Type aliases
 
+###  ColumnVal
+
+Ƭ **ColumnVal**: *string | number | false | true[]*
+
+*Defined in [lib/adsi.d.ts:30](https://github.com/jlguenego/node-expose-sspi/blob/e5fb53c/lib/adsi.d.ts#L30)*
+
+___
+
 ###  HRESULT
 
 Ƭ **HRESULT**: *number*
 
-*Defined in [lib/adsi.d.ts:29](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/lib/adsi.d.ts#L29)*
+*Defined in [lib/adsi.d.ts:37](https://github.com/jlguenego/node-expose-sspi/blob/e5fb53c/lib/adsi.d.ts#L37)*
 
 ___
 
@@ -32,4 +41,4 @@ ___
 
 Ƭ **RiidFlag**: *"IID_IADs" | "IID_IADsContainer" | "IID_IDirectorySearch"*
 
-*Defined in [lib/adsi.d.ts:24](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/lib/adsi.d.ts#L24)*
+*Defined in [lib/adsi.d.ts:32](https://github.com/jlguenego/node-expose-sspi/blob/e5fb53c/lib/adsi.d.ts#L32)*

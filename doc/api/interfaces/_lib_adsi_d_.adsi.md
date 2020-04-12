@@ -28,7 +28,7 @@
 
 • **S_ADS_NOMORE_COLUMNS**: *[HRESULT](../modules/_lib_adsi_d_.md#hresult)*
 
-*Defined in [lib/adsi.d.ts:45](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/lib/adsi.d.ts#L45)*
+*Defined in [lib/adsi.d.ts:53](https://github.com/jlguenego/node-expose-sspi/blob/e5fb53c/lib/adsi.d.ts#L53)*
 
 ___
 
@@ -36,7 +36,7 @@ ___
 
 • **S_ADS_NOMORE_ROWS**: *[HRESULT](../modules/_lib_adsi_d_.md#hresult)*
 
-*Defined in [lib/adsi.d.ts:44](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/lib/adsi.d.ts#L44)*
+*Defined in [lib/adsi.d.ts:52](https://github.com/jlguenego/node-expose-sspi/blob/e5fb53c/lib/adsi.d.ts#L52)*
 
 ## Methods
 
@@ -44,7 +44,7 @@ ___
 
 ▸ **ADsGestObject**(`bindingUri`: string): *Promise‹[IADs](_lib_adsi_d_.iads.md)›*
 
-*Defined in [lib/adsi.d.ts:35](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/lib/adsi.d.ts#L35)*
+*Defined in [lib/adsi.d.ts:43](https://github.com/jlguenego/node-expose-sspi/blob/e5fb53c/lib/adsi.d.ts#L43)*
 
 **Parameters:**
 
@@ -60,7 +60,7 @@ ___
 
 ▸ **ADsOpenObject**<**T**>(`input`: object): *Promise‹T›*
 
-*Defined in [lib/adsi.d.ts:36](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/lib/adsi.d.ts#L36)*
+*Defined in [lib/adsi.d.ts:44](https://github.com/jlguenego/node-expose-sspi/blob/e5fb53c/lib/adsi.d.ts#L44)*
 
 **Type parameters:**
 
@@ -83,7 +83,7 @@ ___
 
 ▸ **ADsOpenObjectSync**<**T**>(`input`: object): *T*
 
-*Defined in [lib/adsi.d.ts:40](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/lib/adsi.d.ts#L40)*
+*Defined in [lib/adsi.d.ts:48](https://github.com/jlguenego/node-expose-sspi/blob/e5fb53c/lib/adsi.d.ts#L48)*
 
 **Type parameters:**
 
@@ -106,7 +106,7 @@ ___
 
 ▸ **CoInitialize**(): *void*
 
-*Defined in [lib/adsi.d.ts:32](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/lib/adsi.d.ts#L32)*
+*Defined in [lib/adsi.d.ts:40](https://github.com/jlguenego/node-expose-sspi/blob/e5fb53c/lib/adsi.d.ts#L40)*
 
 **Returns:** *void*
 
@@ -116,7 +116,7 @@ ___
 
 ▸ **CoInitializeEx**(`flags`: [CoInitFlag](../modules/_lib_flags_coinitflag_d_.md#coinitflag)[]): *void*
 
-*Defined in [lib/adsi.d.ts:33](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/lib/adsi.d.ts#L33)*
+*Defined in [lib/adsi.d.ts:41](https://github.com/jlguenego/node-expose-sspi/blob/e5fb53c/lib/adsi.d.ts#L41)*
 
 **Parameters:**
 
@@ -132,6 +132,6 @@ ___
 
 ▸ **CoUninitialize**(): *void*
 
-*Defined in [lib/adsi.d.ts:34](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/lib/adsi.d.ts#L34)*
+*Defined in [lib/adsi.d.ts:42](https://github.com/jlguenego/node-expose-sspi/blob/e5fb53c/lib/adsi.d.ts#L42)*
 
 **Returns:** *void*

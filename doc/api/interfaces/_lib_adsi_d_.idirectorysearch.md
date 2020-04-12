@@ -14,6 +14,7 @@
 
 * [ExecuteSearch](_lib_adsi_d_.idirectorysearch.md#executesearch)
 * [GetColumn](_lib_adsi_d_.idirectorysearch.md#getcolumn)
+* [GetFirstRow](_lib_adsi_d_.idirectorysearch.md#getfirstrow)
 * [GetNextColumnName](_lib_adsi_d_.idirectorysearch.md#getnextcolumnname)
 * [GetNextRow](_lib_adsi_d_.idirectorysearch.md#getnextrow)
 * [Release](_lib_adsi_d_.idirectorysearch.md#release)
@@ -25,7 +26,7 @@
 
 ▸ **ExecuteSearch**(`input`: object): *void*
 
-*Defined in [lib/adsi.d.ts:18](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/lib/adsi.d.ts#L18)*
+*Defined in [lib/adsi.d.ts:23](https://github.com/jlguenego/node-expose-sspi/blob/e5fb53c/lib/adsi.d.ts#L23)*
 
 **Parameters:**
 
@@ -41,9 +42,9 @@ ___
 
 ###  GetColumn
 
-▸ **GetColumn**(`colName`: string): *Promise‹string | number | false | true[]›*
+▸ **GetColumn**(`colName`: string): *Promise‹[ColumnVal](../modules/_lib_adsi_d_.md#columnval)›*
 
-*Defined in [lib/adsi.d.ts:21](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/lib/adsi.d.ts#L21)*
+*Defined in [lib/adsi.d.ts:27](https://github.com/jlguenego/node-expose-sspi/blob/e5fb53c/lib/adsi.d.ts#L27)*
 
 **Parameters:**
 
@@ -51,7 +52,17 @@ Name | Type |
 ------ | ------ |
 `colName` | string |
 
-**Returns:** *Promise‹string | number | false | true[]›*
+**Returns:** *Promise‹[ColumnVal](../modules/_lib_adsi_d_.md#columnval)›*
+
+___
+
+###  GetFirstRow
+
+▸ **GetFirstRow**(): *[HRESULT](../modules/_lib_adsi_d_.md#hresult)*
+
+*Defined in [lib/adsi.d.ts:25](https://github.com/jlguenego/node-expose-sspi/blob/e5fb53c/lib/adsi.d.ts#L25)*
+
+**Returns:** *[HRESULT](../modules/_lib_adsi_d_.md#hresult)*
 
 ___
 
@@ -59,7 +70,7 @@ ___
 
 ▸ **GetNextColumnName**(): *string | [HRESULT](../modules/_lib_adsi_d_.md#hresult)*
 
-*Defined in [lib/adsi.d.ts:20](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/lib/adsi.d.ts#L20)*
+*Defined in [lib/adsi.d.ts:26](https://github.com/jlguenego/node-expose-sspi/blob/e5fb53c/lib/adsi.d.ts#L26)*
 
 **Returns:** *string | [HRESULT](../modules/_lib_adsi_d_.md#hresult)*
 
@@ -69,7 +80,7 @@ ___
 
 ▸ **GetNextRow**(): *[HRESULT](../modules/_lib_adsi_d_.md#hresult)*
 
-*Defined in [lib/adsi.d.ts:19](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/lib/adsi.d.ts#L19)*
+*Defined in [lib/adsi.d.ts:24](https://github.com/jlguenego/node-expose-sspi/blob/e5fb53c/lib/adsi.d.ts#L24)*
 
 **Returns:** *[HRESULT](../modules/_lib_adsi_d_.md#hresult)*
 
@@ -81,7 +92,7 @@ ___
 
 *Inherited from [IID](_lib_adsi_d_.iid.md).[Release](_lib_adsi_d_.iid.md#release)*
 
-*Defined in [lib/adsi.d.ts:4](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/lib/adsi.d.ts#L4)*
+*Defined in [lib/adsi.d.ts:4](https://github.com/jlguenego/node-expose-sspi/blob/e5fb53c/lib/adsi.d.ts#L4)*
 
 **Returns:** *void*
 
@@ -91,6 +102,6 @@ ___
 
 ▸ **SetSearchPreference**(): *void*
 
-*Defined in [lib/adsi.d.ts:17](https://github.com/jlguenego/node-expose-sspi/blob/502a4fd/lib/adsi.d.ts#L17)*
+*Defined in [lib/adsi.d.ts:22](https://github.com/jlguenego/node-expose-sspi/blob/e5fb53c/lib/adsi.d.ts#L22)*
 
 **Returns:** *void*
