@@ -18,4 +18,4 @@
 
 • **users**: *[ADUsers](../modules/_src_sso_interfaces_.md#adusers)*
 
-*Defined in [src/sso/interfaces.ts:88](https://github.com/jlguenego/node-expose-sspi/blob/e5fb53c/src/sso/interfaces.ts#L88)*
+*Defined in [src/sso/interfaces.ts:88](https://github.com/jlguenego/node-expose-sspi/blob/d63ba44/src/sso/interfaces.ts#L88)*

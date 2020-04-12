@@ -19,7 +19,6 @@
 * ["lib/flags/TargetDataRepMapFlag.d"](modules/_lib_flags_targetdatarepmapflag_d_.md)
 * ["lib/sspi.d"](modules/_lib_sspi_d_.md)
 * ["lib/sysinfo.d"](modules/_lib_sysinfo_d_.md)
-* ["src/index"](modules/_src_index_.md)
 * ["src/sso/SSO"](modules/_src_sso_sso_.md)
 * ["src/sso/ServerContextHandleManager"](modules/_src_sso_servercontexthandlemanager_.md)
 * ["src/sso/auth"](modules/_src_sso_auth_.md)

@@ -31,7 +31,7 @@
 
 Ƭ **InformationClass**: *"TokenGroups"*
 
-*Defined in [lib/sspi.d.ts:61](https://github.com/jlguenego/node-expose-sspi/blob/e5fb53c/lib/sspi.d.ts#L61)*
+*Defined in [lib/sspi.d.ts:61](https://github.com/jlguenego/node-expose-sspi/blob/d63ba44/lib/sspi.d.ts#L61)*
 
 ___
 
@@ -39,7 +39,7 @@ ___
 
 Ƭ **Token**: *string*
 
-*Defined in [lib/sspi.d.ts:59](https://github.com/jlguenego/node-expose-sspi/blob/e5fb53c/lib/sspi.d.ts#L59)*
+*Defined in [lib/sspi.d.ts:59](https://github.com/jlguenego/node-expose-sspi/blob/d63ba44/lib/sspi.d.ts#L59)*
 
 A Token is a pointer to some user information.
 

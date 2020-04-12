@@ -27,7 +27,7 @@ options to provide to sso.auth() and SSO.setOptions().
 
 • **useActiveDirectory**? : *boolean*
 
-*Defined in [src/sso/interfaces.ts:51](https://github.com/jlguenego/node-expose-sspi/blob/e5fb53c/src/sso/interfaces.ts#L51)*
+*Defined in [src/sso/interfaces.ts:51](https://github.com/jlguenego/node-expose-sspi/blob/d63ba44/src/sso/interfaces.ts#L51)*
 
 Brings back the Active Directory user information
 
@@ -43,7 +43,7 @@ ___
 
 • **useCookies**? : *boolean*
 
-*Defined in [src/sso/interfaces.ts:75](https://github.com/jlguenego/node-expose-sspi/blob/e5fb53c/src/sso/interfaces.ts#L75)*
+*Defined in [src/sso/interfaces.ts:75](https://github.com/jlguenego/node-expose-sspi/blob/d63ba44/src/sso/interfaces.ts#L75)*
 
 Manage authentication with cookie.
 Useful for performance when many users try to connect at the same time.
@@ -61,7 +61,7 @@ ___
 
 • **useGroups**? : *boolean*
 
-*Defined in [src/sso/interfaces.ts:39](https://github.com/jlguenego/node-expose-sspi/blob/e5fb53c/src/sso/interfaces.ts#L39)*
+*Defined in [src/sso/interfaces.ts:39](https://github.com/jlguenego/node-expose-sspi/blob/d63ba44/src/sso/interfaces.ts#L39)*
 
 Brings back the groups the user belongs to.
 
@@ -75,7 +75,7 @@ ___
 
 • **useOwner**? : *boolean*
 
-*Defined in [src/sso/interfaces.ts:61](https://github.com/jlguenego/node-expose-sspi/blob/e5fb53c/src/sso/interfaces.ts#L61)*
+*Defined in [src/sso/interfaces.ts:61](https://github.com/jlguenego/node-expose-sspi/blob/d63ba44/src/sso/interfaces.ts#L61)*
 
 Brings back the server process owner info.
 

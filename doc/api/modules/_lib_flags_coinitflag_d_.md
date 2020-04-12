@@ -14,4 +14,4 @@
 
 Ƭ **CoInitFlag**: *"COINIT_APARTMENTTHREADED" | "COINIT_MULTITHREADED" | "COINIT_DISABLE_OLE1DDE" | "COINIT_SPEED_OVER_MEMOR"*
 
-*Defined in [lib/flags/CoInitFlag.d.ts:1](https://github.com/jlguenego/node-expose-sspi/blob/e5fb53c/lib/flags/CoInitFlag.d.ts#L1)*
+*Defined in [lib/flags/CoInitFlag.d.ts:1](https://github.com/jlguenego/node-expose-sspi/blob/d63ba44/lib/flags/CoInitFlag.d.ts#L1)*

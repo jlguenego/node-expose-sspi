@@ -9,7 +9,7 @@
   "scripts": {
     "lint": "eslint .",
     "build": "node-gyp rebuild -j 8",
-    "build:doc": "typedoc ./src ./lib",
+    "build:doc": "typedoc ./src/sso ./lib",
     "build:ts": "tsc -p src",
     "build:tsw": "tsc -p src -w",
     "dev": "nodemon -x \"npm run build\"",
