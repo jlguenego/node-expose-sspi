@@ -9,7 +9,6 @@
   "author": "Jean-Louis GUENEGO <jlguenego@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
-    "node-expose-sspi": "^0.1.16"
+    "express": "^4.17.1"
   }
 }

@@ -26,7 +26,17 @@ describe('SPN Unit Test', function () {
   it('should test http://whatever.foo.bar:3000', async function () {
     a.equal(await f('http://whatever.foo.bar:3000'), 'HTTP/whatever.foo.bar');
   });
-//   it('should test http://whatever.foo.bar:3000', async function () {
-//     a.equal(await f('http:///whatever.foo.bar:3000'), 'HTTP/whatever.foo.bar');
-//   });
+  it('should test http://whatever.foo.bar:3000/foo/bar', async function () {
+    a.equal(await f('http://whatever.foo.bar:3000/foo/bar'), 'HTTP/whatever.foo.bar');
+  });
+  it('should test http://whatever.foo.bar/foo/bar', async function () {
+    a.equal(await f('http://whatever.foo.bar/foo/bar'), 'HTTP/whatever.foo.bar');
+  });
+  it('should test http:///whatever.foo.bar:3000', async function () {
+    try {
+      await f('http:///whatever.foo.bar:3000');
+    } catch (e) {
+      a.equal((e as Error).message, 'url is not well parsed. url=http:///whatever.foo.bar:3000');
+    }
+  });
 });

@@ -3,7 +3,6 @@
     "noImplicitAny": true,
     "module": "CommonJS",
     "moduleResolution": "node",
-    "esModuleInterop": true,
-    "sourceMap": true
+    "esModuleInterop": true
   }
 }
