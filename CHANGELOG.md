@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.18](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.17...v0.1.18) (2020-04-12)
+
+
+### Bug Fixes
+
+* get SPN must use the same algo as IE ([15dc162](https://github.com/jlguenego/node-expose-sspi/commit/15dc16292a99aeb06af3f3a353bb0d0d926ed48f))
+* localhost SPN ([e84682d](https://github.com/jlguenego/node-expose-sspi/commit/e84682d437589e420eec9470370a3d9a82364937))
+
 ### [0.1.17](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.16...v0.1.17) (2020-04-10)
 
 
