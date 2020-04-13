@@ -6,6 +6,9 @@ import { AccessTokenFlag } from './flags/AccessTokenFlag';
 import { TargetDataRepMapFlag } from './flags/TargetDataRepMapFlag';
 import { CredentialUseFlag } from './flags/CredentialUseFlag';
 
+
+export type SecuritySupportProvider = "NTLM" | "Kerberos" | "Negotiate";
+
 /**
  * SecPkgInfo is the interface returned by EnumerateSecurityPackages and QuerySecurityPackageInfo
  * for having info about SSP providers.
@@ -19,7 +22,7 @@ interface SecPkgInfo {
   wVersion: number;
   wRPCID: number;
   cbMaxToken: number;
-  Name: string;
+  Name: SecuritySupportProvider;
   Comment: string;
 }
 
@@ -140,7 +143,7 @@ export interface InitializeSecurityContextInput {
  * @interface AcquireCredHandleInput
  */
 export interface AcquireCredHandleInput {
-  packageName: string;
+  packageName: SecuritySupportProvider;
   authData?: UserCredential;
   credentialUse?: CredentialUseFlag;
 }
@@ -178,11 +181,11 @@ export interface Sspi {
   /**
    * Get info about one SSP provider given its name.
    *
-   * @param {string} packageName
+   * @param {SecuritySupportProvider} packageName
    * @returns {SecPkgInfo}
    * @memberof Sspi
    */
-  QuerySecurityPackageInfo(packageName: string): SecPkgInfo;
+  QuerySecurityPackageInfo(packageName: SecuritySupportProvider): SecPkgInfo;
 
   /**
    * Get the credentials of a user, to be used with a specified SSP package.
@@ -190,11 +193,8 @@ export interface Sspi {
    *
    * FreeCredentialsHandle must be used to free the credentials pointer.
    *
-   * @param {{
-   *     packageName: string;
-   *     authData?: UserCredential;
-   *     credentialUse?: CredentialUseFlag;
-   *   }} input
+   *
+   * @param {AcquireCredHandleInput} input
    * @returns {CredentialWithExpiry}
    * @memberof Sspi
    */
