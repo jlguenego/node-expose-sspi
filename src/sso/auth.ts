@@ -80,8 +80,6 @@ export function auth(options: AuthOptions = {}): Middleware {
         }
 
         const token = authorization.substring('Negotiate '.length);
-        const method = token.startsWith('YII') ? 'Kerberos' : 'NTLM';
-        debug('SPNEGO token: ' + method);
         const buffer = decode(token);
 
         const input: AcceptSecurityContextInput = {
@@ -96,6 +94,10 @@ export function auth(options: AuthOptions = {}): Middleware {
         const serverContextHandle = schManager.getServerContextHandle();
         if (serverContextHandle) {
           input.contextHandle = serverContextHandle;
+        } else {
+          const method = token.startsWith('YII') ? 'Kerberos' : 'NTLM';
+          debug('SPNEGO token: ' + method);
+          schManager.setMethod(method);
         }
         debug('input', input);
         debug(hexDump(buffer));
@@ -122,6 +124,7 @@ export function auth(options: AuthOptions = {}): Middleware {
               encode(serverSecurityContext.SecBufferDesc.buffers[0])
           );
           const sch = schManager.getServerContextHandle();
+          const method = schManager.getMethod();
           const sso = new SSO(sch, method);
           sso.setOptions(opts);
           await sso.load();

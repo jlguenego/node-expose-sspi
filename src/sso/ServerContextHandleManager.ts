@@ -2,6 +2,7 @@ import { CtxtHandle } from '../../lib/api';
 import http from 'http';
 import { parseCookies } from './cookies';
 import dbg from 'debug';
+import { SSOMethod } from './SSO';
 
 const debug = dbg('node-expose-sspi:schManager');
 
@@ -24,6 +25,8 @@ export class ServerContextHandleManager {
   private req: http.IncomingMessage;
   private res: http.OutgoingMessage;
   private sessionMap = new Map<string, CtxtHandle>();
+
+  private method: SSOMethod;
 
   constructor(private delayMax = 20000) {}
 
@@ -126,5 +129,13 @@ export class ServerContextHandleManager {
     }
     this.authItem = authItem;
     this.authItem.resolve();
+  }
+
+  setMethod(method: SSOMethod): void {
+    this.method = method;
+  }
+
+  getMethod(): SSOMethod {
+    return this.method;
   }
 }
