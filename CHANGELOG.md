@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.19](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.18...v0.1.19) (2020-04-13)
+
+
+### Features
+
+* add targetName options in client ([4753e22](https://github.com/jlguenego/node-expose-sspi/commit/4753e22d01757b6434a2398018fd95f35d043bb3))
+* added interface SecuritySupportProvider ([e0aec90](https://github.com/jlguenego/node-expose-sspi/commit/e0aec904ca257f0fc29ac4ad78f922cab882b24f))
+* can force the client to use Kerberos ([c1cb932](https://github.com/jlguenego/node-expose-sspi/commit/c1cb9325d4e7de79f3235072a220501366cb5dfd))
+* test stack trace are in ts ([e5fb53c](https://github.com/jlguenego/node-expose-sspi/commit/e5fb53c8a4ab8d4d68534d07fb5c38a3a430475c))
+
+
+### Bug Fixes
+
+* bad error management in auth.ts ([198b68d](https://github.com/jlguenego/node-expose-sspi/commit/198b68d70a8a1a033b2e6ae20843efc7de5cc153))
+* kerberos or ntlm method deduction ([631c947](https://github.com/jlguenego/node-expose-sspi/commit/631c9475e16ec3b47cee6b49ee235c11de92b963))
+
 ### [0.1.18](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.17...v0.1.18) (2020-04-12)
 
 
