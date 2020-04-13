@@ -46,6 +46,11 @@ async function main(argv) {
       client.setTargetName(argv.target);
     }
     const response = await client.fetch(url);
+    debug('response: ', response);
+    if (response.status >= 400) {
+      throw new Error('fetch returned response with error ' + response.status);
+    }
+
     const json = await response.json();
     console.log('json: ', json);
   } catch (e) {
