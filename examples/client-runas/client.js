@@ -7,6 +7,11 @@ const myArgv = yargs
     description: 'Absolute url',
     default: 'http://localhost:3000'
   })
+  .option('target', {
+    alias: 't',
+    type: 'string',
+    description: 'Specify the target name (SPN)',
+  })
   .option('user', {
     alias: 'u',
     type: 'string',
@@ -33,6 +38,9 @@ async function main(argv) {
   try {
     if (argv.user) {
       client.setCredentials(argv.domain, argv.user, argv.password);
+    }
+    if (argv.target) {
+      client.setTargetName(argv.target);
     }
     const response = await client.fetch(url);
     const json = await response.json();

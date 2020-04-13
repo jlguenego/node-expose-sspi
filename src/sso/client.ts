@@ -65,6 +65,7 @@ export class Client {
   private domain: string;
   private user: string;
   private password: string;
+  private targetName: string;
 
   saveCookies(response: Response): void {
     response.headers.forEach((value, name) => {
@@ -90,10 +91,32 @@ export class Client {
     Object.assign(requestInit.headers, { cookie: cookieStr });
   }
 
+  /**
+   * Set the credentials for running the client as another user.
+   *
+   * By default, the credentials are the logged windows account.
+   *
+   * @param {string} domain
+   * @param {string} user
+   * @param {string} password
+   * @memberof Client
+   */
   setCredentials(domain: string, user: string, password: string): void {
     this.domain = domain;
     this.user = user;
     this.password = password;
+  }
+
+  /**
+   * Force the targetName to a value.
+   *
+   * For Kerberos, the targetName is the SPN (Service Principal Name).
+   *
+   * @param {string} targetName
+   * @memberof Client
+   */
+  setTargetName(targetName: string): void {
+    this.targetName = targetName;
   }
 
   async fetch(resource: string, init?: RequestInit): Promise<Response> {
@@ -143,13 +166,14 @@ export class Client {
     const clientCred = sspi.AcquireCredentialsHandle(credInput);
 
     const packageInfo = sspi.QuerySecurityPackageInfo('Negotiate');
-    const targetName = await getSPNFromURI(resource);
+    const targetName = this.targetName || (await getSPNFromURI(resource));
     let input: InitializeSecurityContextInput = {
       credential: clientCred.credential,
       targetName,
       cbMaxToken: packageInfo.cbMaxToken,
       targetDataRep: 'SECURITY_NATIVE_DREP',
     };
+    debug('input: ', input);
     let clientSecurityContext = sspi.InitializeSecurityContext(input);
     // encode to Base64 and send via HTTP
     let base64 = encode(clientSecurityContext.SecBufferDesc.buffers[0]);
