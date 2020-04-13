@@ -125,6 +125,12 @@ export class Client {
     this.targetName = targetName;
   }
 
+  /**
+   * Set the Security Support Provider (NTLM, Kerberos, Negotiate)
+   *
+   * @param {SecuritySupportProvider} ssp
+   * @memberof Client
+   */
   setSSP(ssp: SecuritySupportProvider): void {
     this.ssp = ssp;
   }

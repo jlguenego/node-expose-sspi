@@ -92,9 +92,14 @@ Of course, this will be your windows account display name. Not mine :smile:
 
 `sso.Client` is a Javascript class with `fetch` method.
 
-The `sso.Client.fetch` method exactly runs as the `node-fetch` utility, which was completed by:
-- Negotiate protocol
+The `sso.Client.fetch` method exactly works as the `node-fetch` utility, which is completed by:
+- Negotiate, Kerberos, NTLM protocol
 - Cookies management
+
+The client can be configured:
+- `setSSP()`: set NTLM, Kerberos, or Negotiate.
+- `setCredentials()` : set the credentials of another user.
+- `setTargetName()`: set the Service Principal Name to be what you need exactly. Useful for doing Kerberos on `localhost` for instance. Browsers cannot do that.
 
 Thanks to the 
 [node-fetch](https://github.com/node-fetch/node-fetch) project.
