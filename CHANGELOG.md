@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.20](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.19...v0.1.20) (2020-04-13)
+
+
+### Bug Fixes
+
+* SPN better identification ([bc8e856](https://github.com/jlguenego/node-expose-sspi/commit/bc8e856ee1e3a86d5ad9aeac4b45d0554b11fe1b))
+
 ### [0.1.19](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.18...v0.1.19) (2020-04-13)
 
 
