@@ -49,8 +49,12 @@ export async function getSPNFromURI(url: string): Promise<string> {
     : urlDomain + '.' + msDomainName;
   let hostname = urlFQDN;
   try {
-    const records = await dns.promises.resolve(urlFQDN, 'CNAME');
-    if (records.length > 0) {
+    while (true) {
+      const records = await dns.promises.resolve(hostname, 'CNAME');
+      debug('records', records);
+      if (records.length === 0) {
+        break;
+      }
       hostname = records[0];
     }
   } catch (e) {
