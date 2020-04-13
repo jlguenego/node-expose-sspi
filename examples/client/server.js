@@ -7,7 +7,8 @@ app.use(sso.auth());
 
 app.use((req, res) => {
   res.json({
-    sso: req.sso.user.displayName,
+    method: req.sso.method,
+    displayName: req.sso.user.displayName,
   });
 });
 
