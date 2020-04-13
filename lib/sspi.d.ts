@@ -1,13 +1,14 @@
-import { AscReqFlag } from './flags/AscReqFlag';
-import { IscReqFlag } from './flags/IscReqFlag';
-import { AscRetFlag } from './flags/AscRetFlag';
-import { ExtendedNameFormatFlag } from './flags/ExtendedNameFormatFlag';
-import { AccessTokenFlag } from './flags/AccessTokenFlag';
-import { TargetDataRepMapFlag } from './flags/TargetDataRepMapFlag';
-import { CredentialUseFlag } from './flags/CredentialUseFlag';
+import {
+  AscReqFlag,
+  IscReqFlag,
+  AscRetFlag,
+  ExtendedNameFormatFlag,
+  AccessTokenFlag,
+  TargetDataRepMapFlag,
+  CredentialUseFlag,
+} from './flags';
 
-
-export type SecuritySupportProvider = "NTLM" | "Kerberos" | "Negotiate";
+export type SecuritySupportProvider = 'NTLM' | 'Kerberos' | 'Negotiate';
 
 /**
  * SecPkgInfo is the interface returned by EnumerateSecurityPackages and QuerySecurityPackageInfo
@@ -297,10 +298,7 @@ export interface Sspi {
    * @returns {*}
    * @memberof Sspi
    */
-  GetTokenInformation(
-    token: Token,
-    infoClass: InformationClass
-  ): any;
+  GetTokenInformation(token: Token, infoClass: InformationClass): any;
 
   /**
    * Free allocated memory referenced by the handle.
@@ -327,10 +325,7 @@ export interface Sspi {
    * @returns {*}
    * @memberof Sspi
    */
-  QueryCredentialsAttributes(
-    credential: CredHandle,
-    attribute: string
-  ): any;
+  QueryCredentialsAttributes(credential: CredHandle, attribute: string): any;
 
   /**
    * Query what can be done with a given context handle.
@@ -340,10 +335,7 @@ export interface Sspi {
    * @returns {*}
    * @memberof Sspi
    */
-  QueryContextAttributes(
-    ctxtHandle: CtxtHandle,
-    attribute: string
-  ): any;
+  QueryContextAttributes(ctxtHandle: CtxtHandle, attribute: string): any;
 
   /**
    * Get a client user token.

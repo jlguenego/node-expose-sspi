@@ -1,6 +1,0 @@
-export type CredentialUseFlag =
-  | 'SECPKG_CRED_INBOUND'
-  | 'SECPKG_CRED_OUTBOUND'
-  | 'SECPKG_CRED_BOTH'
-  | 'SECPKG_CRED_DEFAULT'
-  | 'SECPKG_CRED_RESERVED';
