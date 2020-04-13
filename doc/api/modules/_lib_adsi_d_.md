@@ -25,7 +25,7 @@
 
 Ƭ **ColumnVal**: *string | number | false | true[]*
 
-*Defined in [lib/adsi.d.ts:30](https://github.com/jlguenego/node-expose-sspi/blob/c79000f/lib/adsi.d.ts#L30)*
+*Defined in [lib/adsi.d.ts:30](https://github.com/jlguenego/node-expose-sspi/blob/2cf7b18/lib/adsi.d.ts#L30)*
 
 ___
 
@@ -33,7 +33,7 @@ ___
 
 Ƭ **HRESULT**: *number*
 
-*Defined in [lib/adsi.d.ts:37](https://github.com/jlguenego/node-expose-sspi/blob/c79000f/lib/adsi.d.ts#L37)*
+*Defined in [lib/adsi.d.ts:37](https://github.com/jlguenego/node-expose-sspi/blob/2cf7b18/lib/adsi.d.ts#L37)*
 
 ___
 
@@ -41,4 +41,4 @@ ___
 
 Ƭ **RiidFlag**: *"IID_IADs" | "IID_IADsContainer" | "IID_IDirectorySearch"*
 
-*Defined in [lib/adsi.d.ts:32](https://github.com/jlguenego/node-expose-sspi/blob/c79000f/lib/adsi.d.ts#L32)*
+*Defined in [lib/adsi.d.ts:32](https://github.com/jlguenego/node-expose-sspi/blob/2cf7b18/lib/adsi.d.ts#L32)*

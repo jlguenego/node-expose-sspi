@@ -29,7 +29,7 @@
 
 \+ **new ServerContextHandleManager**(`delayMax`: number): *[ServerContextHandleManager](_src_sso_servercontexthandlemanager_.servercontexthandlemanager.md)*
 
-*Defined in [src/sso/ServerContextHandleManager.ts:29](https://github.com/jlguenego/node-expose-sspi/blob/c79000f/src/sso/ServerContextHandleManager.ts#L29)*
+*Defined in [src/sso/ServerContextHandleManager.ts:29](https://github.com/jlguenego/node-expose-sspi/blob/2cf7b18/src/sso/ServerContextHandleManager.ts#L29)*
 
 **Parameters:**
 
@@ -45,7 +45,7 @@ Name | Type | Default |
 
 ▸ **getMethod**(): *[SSOMethod](../modules/_src_sso_sso_.md#ssomethod)*
 
-*Defined in [src/sso/ServerContextHandleManager.ts:138](https://github.com/jlguenego/node-expose-sspi/blob/c79000f/src/sso/ServerContextHandleManager.ts#L138)*
+*Defined in [src/sso/ServerContextHandleManager.ts:138](https://github.com/jlguenego/node-expose-sspi/blob/2cf7b18/src/sso/ServerContextHandleManager.ts#L138)*
 
 **Returns:** *[SSOMethod](../modules/_src_sso_sso_.md#ssomethod)*
 
@@ -55,7 +55,7 @@ ___
 
 ▸ **getServerContextHandle**(): *[CtxtHandle](../interfaces/_lib_sspi_d_.ctxthandle.md)*
 
-*Defined in [src/sso/ServerContextHandleManager.ts:83](https://github.com/jlguenego/node-expose-sspi/blob/c79000f/src/sso/ServerContextHandleManager.ts#L83)*
+*Defined in [src/sso/ServerContextHandleManager.ts:83](https://github.com/jlguenego/node-expose-sspi/blob/2cf7b18/src/sso/ServerContextHandleManager.ts#L83)*
 
 **Returns:** *[CtxtHandle](../interfaces/_lib_sspi_d_.ctxthandle.md)*
 
@@ -65,7 +65,7 @@ ___
 
 ▸ **release**(): *void*
 
-*Defined in [src/sso/ServerContextHandleManager.ts:94](https://github.com/jlguenego/node-expose-sspi/blob/c79000f/src/sso/ServerContextHandleManager.ts#L94)*
+*Defined in [src/sso/ServerContextHandleManager.ts:94](https://github.com/jlguenego/node-expose-sspi/blob/2cf7b18/src/sso/ServerContextHandleManager.ts#L94)*
 
 **Returns:** *void*
 
@@ -75,7 +75,7 @@ ___
 
 ▸ **set**(`serverContextHandle`: [CtxtHandle](../interfaces/_lib_sspi_d_.ctxthandle.md)): *void*
 
-*Defined in [src/sso/ServerContextHandleManager.ts:71](https://github.com/jlguenego/node-expose-sspi/blob/c79000f/src/sso/ServerContextHandleManager.ts#L71)*
+*Defined in [src/sso/ServerContextHandleManager.ts:71](https://github.com/jlguenego/node-expose-sspi/blob/2cf7b18/src/sso/ServerContextHandleManager.ts#L71)*
 
 **Parameters:**
 
@@ -91,7 +91,7 @@ ___
 
 ▸ **setCookieMode**(`req`: IncomingMessage, `res`: OutgoingMessage): *void*
 
-*Defined in [src/sso/ServerContextHandleManager.ts:33](https://github.com/jlguenego/node-expose-sspi/blob/c79000f/src/sso/ServerContextHandleManager.ts#L33)*
+*Defined in [src/sso/ServerContextHandleManager.ts:33](https://github.com/jlguenego/node-expose-sspi/blob/2cf7b18/src/sso/ServerContextHandleManager.ts#L33)*
 
 **Parameters:**
 
@@ -108,7 +108,7 @@ ___
 
 ▸ **setMethod**(`method`: [SSOMethod](../modules/_src_sso_sso_.md#ssomethod)): *void*
 
-*Defined in [src/sso/ServerContextHandleManager.ts:134](https://github.com/jlguenego/node-expose-sspi/blob/c79000f/src/sso/ServerContextHandleManager.ts#L134)*
+*Defined in [src/sso/ServerContextHandleManager.ts:134](https://github.com/jlguenego/node-expose-sspi/blob/2cf7b18/src/sso/ServerContextHandleManager.ts#L134)*
 
 **Parameters:**
 
@@ -124,7 +124,7 @@ ___
 
 ▸ **tooLate**(`authItem`: AuthItem): *void*
 
-*Defined in [src/sso/ServerContextHandleManager.ts:124](https://github.com/jlguenego/node-expose-sspi/blob/c79000f/src/sso/ServerContextHandleManager.ts#L124)*
+*Defined in [src/sso/ServerContextHandleManager.ts:124](https://github.com/jlguenego/node-expose-sspi/blob/2cf7b18/src/sso/ServerContextHandleManager.ts#L124)*
 
 Used only when a negotiate connection
 does not go to its final state before timeout.
@@ -147,6 +147,6 @@ ___
 
 ▸ **waitForReleased**(): *Promise‹void›*
 
-*Defined in [src/sso/ServerContextHandleManager.ts:42](https://github.com/jlguenego/node-expose-sspi/blob/c79000f/src/sso/ServerContextHandleManager.ts#L42)*
+*Defined in [src/sso/ServerContextHandleManager.ts:42](https://github.com/jlguenego/node-expose-sspi/blob/2cf7b18/src/sso/ServerContextHandleManager.ts#L42)*
 
 **Returns:** *Promise‹void›*

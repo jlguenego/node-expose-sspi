@@ -1,6 +1,5 @@
-import { ComputerNameFormatFlag } from "./flags/ComputerNameFormatFlag";
+import { ComputerNameFormatFlag } from './flags';
 
 export interface SysInfo {
-    GetComputerNameEx(name: ComputerNameFormatFlag): string;
+  GetComputerNameEx(name: ComputerNameFormatFlag): string;
 }
-

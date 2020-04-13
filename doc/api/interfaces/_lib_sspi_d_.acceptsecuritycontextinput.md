@@ -26,7 +26,7 @@ Input of AcceptSecurityContext function.
 
 • **clientSecurityContext**: *[SecurityContext](_lib_sspi_d_.securitycontext.md)*
 
-*Defined in [lib/sspi.d.ts:158](https://github.com/jlguenego/node-expose-sspi/blob/c79000f/lib/sspi.d.ts#L158)*
+*Defined in [lib/sspi.d.ts:159](https://github.com/jlguenego/node-expose-sspi/blob/2cf7b18/lib/sspi.d.ts#L159)*
 
 ___
 
@@ -34,15 +34,15 @@ ___
 
 • **contextHandle**? : *[CtxtHandle](_lib_sspi_d_.ctxthandle.md)*
 
-*Defined in [lib/sspi.d.ts:159](https://github.com/jlguenego/node-expose-sspi/blob/c79000f/lib/sspi.d.ts#L159)*
+*Defined in [lib/sspi.d.ts:160](https://github.com/jlguenego/node-expose-sspi/blob/2cf7b18/lib/sspi.d.ts#L160)*
 
 ___
 
 ### `Optional` contextReq
 
-• **contextReq**? : *[AscReqFlag](../modules/_lib_flags_ascreqflag_d_.md#ascreqflag)[]*
+• **contextReq**? : *[AscReqFlag](../modules/_lib_flags_index_d_.md#ascreqflag)[]*
 
-*Defined in [lib/sspi.d.ts:160](https://github.com/jlguenego/node-expose-sspi/blob/c79000f/lib/sspi.d.ts#L160)*
+*Defined in [lib/sspi.d.ts:161](https://github.com/jlguenego/node-expose-sspi/blob/2cf7b18/lib/sspi.d.ts#L161)*
 
 ___
 
@@ -50,12 +50,12 @@ ___
 
 • **credential**: *[CredHandle](_lib_sspi_d_.credhandle.md)*
 
-*Defined in [lib/sspi.d.ts:157](https://github.com/jlguenego/node-expose-sspi/blob/c79000f/lib/sspi.d.ts#L157)*
+*Defined in [lib/sspi.d.ts:158](https://github.com/jlguenego/node-expose-sspi/blob/2cf7b18/lib/sspi.d.ts#L158)*
 
 ___
 
 ### `Optional` targetDataRep
 
-• **targetDataRep**? : *[TargetDataRepMapFlag](../modules/_lib_flags_targetdatarepmapflag_d_.md#targetdatarepmapflag)*
+• **targetDataRep**? : *[TargetDataRepMapFlag](../modules/_lib_flags_index_d_.md#targetdatarepmapflag)*
 
-*Defined in [lib/sspi.d.ts:161](https://github.com/jlguenego/node-expose-sspi/blob/c79000f/lib/sspi.d.ts#L161)*
+*Defined in [lib/sspi.d.ts:162](https://github.com/jlguenego/node-expose-sspi/blob/2cf7b18/lib/sspi.d.ts#L162)*

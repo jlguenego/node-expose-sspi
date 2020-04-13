@@ -1,4 +1,4 @@
-import { CoInitFlag } from './flags/CoInitFlag';
+import { CoInitFlag } from './flags';
 
 export interface IID {
   Release(): void;

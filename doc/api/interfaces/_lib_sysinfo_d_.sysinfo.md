@@ -16,14 +16,14 @@
 
 ###  GetComputerNameEx
 
-▸ **GetComputerNameEx**(`name`: [ComputerNameFormatFlag](../modules/_lib_flags_computernameformatflag_d_.md#computernameformatflag)): *string*
+▸ **GetComputerNameEx**(`name`: [ComputerNameFormatFlag](../modules/_lib_flags_index_d_.md#computernameformatflag)): *string*
 
-*Defined in [lib/sysinfo.d.ts:4](https://github.com/jlguenego/node-expose-sspi/blob/c79000f/lib/sysinfo.d.ts#L4)*
+*Defined in [lib/sysinfo.d.ts:4](https://github.com/jlguenego/node-expose-sspi/blob/2cf7b18/lib/sysinfo.d.ts#L4)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`name` | [ComputerNameFormatFlag](../modules/_lib_flags_computernameformatflag_d_.md#computernameformatflag) |
+`name` | [ComputerNameFormatFlag](../modules/_lib_flags_index_d_.md#computernameformatflag) |
 
 **Returns:** *string*
