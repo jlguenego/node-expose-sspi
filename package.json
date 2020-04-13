@@ -17,6 +17,7 @@
     "pretest": "require-self",
     "test": "mocha",
     "ex:server": "nodemon examples/express-simple/server.js",
+    "ex:client:server": "nodemon examples/client/server.js",
     "ex:ts": "ts-node examples/typescript/index.ts",
     "ex:ts:server": "nodemon examples/typescript/server.ts",
     "release": "standard-version"

@@ -39,7 +39,7 @@ export class ServerContextHandleManager {
     debug('sessionMap', this.sessionMap);
   }
 
-  async waitForReleased(): Promise<void> {
+  waitForReleased(): Promise<void> {
     if (this.useCookies) {
       const negotiateId = parseCookies(this.req)[COOKIE_KEY];
       if (!negotiateId) {
@@ -47,10 +47,10 @@ export class ServerContextHandleManager {
         // create a session cookie (without expiration specified)
         this.res.setHeader('Set-Cookie', COOKIE_KEY + '=' + newId);
         this.sessionMap.set(newId, undefined);
-        return;
+        return Promise.resolve();
       }
       this.sessionMap.set(negotiateId, undefined);
-      return;
+      return Promise.resolve();
     }
     return new Promise((resolve, reject) => {
       // if nobody else is currently authenticating then go now.

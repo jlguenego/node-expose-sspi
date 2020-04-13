@@ -103,6 +103,12 @@ export function auth(options: AuthOptions = {}): Middleware {
         debug(hexDump(buffer));
         const serverSecurityContext = sspi.AcceptSecurityContext(input);
         debug('serverSecurityContext', serverSecurityContext);
+        if (serverSecurityContext.SECURITY_STATUS === 'SEC_E_LOGON_DENIED') {
+          throw new Error('Bad Login. The SPN may be wrong');
+        }
+        if (!['SEC_I_CONTINUE_NEEDED', 'SEC_E_OK'].includes(serverSecurityContext.SECURITY_STATUS)) {
+          throw new Error('AcceptSecurityContext error: ' + serverSecurityContext.SECURITY_STATUS);
+        }
         schManager.set(serverSecurityContext.contextHandle);
 
         debug(hexDump(serverSecurityContext.SecBufferDesc.buffers[0]));
@@ -134,8 +140,9 @@ export function auth(options: AuthOptions = {}): Middleware {
         }
         next();
       } catch (e) {
+        schManager.release();
         console.error(e);
-        next(createError(400, `Error while doing SSO.`));
+        next(createError(400, `Error while doing SSO: ${e.message}`));
       }
     })();
   };
