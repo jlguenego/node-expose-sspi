@@ -5,6 +5,7 @@ import {
   sspi,
   InitializeSecurityContextInput,
   AcquireCredHandleInput,
+  SecuritySupportProvider,
 } from '../../lib/api';
 import {} from './domain';
 import { encode, decode } from 'base64-arraybuffer';
@@ -66,6 +67,7 @@ export class Client {
   private user: string;
   private password: string;
   private targetName: string;
+  private ssp: SecuritySupportProvider = 'Negotiate';
 
   saveCookies(response: Response): void {
     response.headers.forEach((value, name) => {
@@ -119,6 +121,10 @@ export class Client {
     this.targetName = targetName;
   }
 
+  setSSP(ssp: SecuritySupportProvider): void {
+    this.ssp = ssp;
+  }
+
   async fetch(resource: string, init?: RequestInit): Promise<Response> {
     const response = await fetch(resource, init);
     const result = await this.handleAuth(response, resource, init);
@@ -153,7 +159,7 @@ export class Client {
 
     debug('starting negotiate auth');
     const credInput = {
-      packageName: 'Negotiate',
+      packageName: this.ssp,
       credentialUse: 'SECPKG_CRED_OUTBOUND',
     } as AcquireCredHandleInput;
     if (this.user) {
@@ -165,7 +171,7 @@ export class Client {
     }
     const clientCred = sspi.AcquireCredentialsHandle(credInput);
 
-    const packageInfo = sspi.QuerySecurityPackageInfo('Negotiate');
+    const packageInfo = sspi.QuerySecurityPackageInfo(this.ssp);
     const targetName = this.targetName || (await getSPNFromURI(resource));
     let input: InitializeSecurityContextInput = {
       credential: clientCred.credential,

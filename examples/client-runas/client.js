@@ -15,6 +15,11 @@ const myArgv = yargs
     type: 'string',
     description: 'Specify the target name (SPN)',
   })
+  .option('ssp', {
+    alias: 's',
+    type: 'string',
+    description: 'Specify the SSP (Kerberos, NTLM, Negotiate)'
+  })
   .option('user', {
     alias: 'u',
     type: 'string',
@@ -44,6 +49,9 @@ async function main(argv) {
     }
     if (argv.target) {
       client.setTargetName(argv.target);
+    }
+    if (argv.ssp) {
+      client.setSSP(argv.ssp);
     }
     const response = await client.fetch(url);
     debug('response: ', response);
