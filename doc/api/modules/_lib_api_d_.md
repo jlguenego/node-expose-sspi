@@ -16,6 +16,7 @@
 * [InitializeSecurityContextInput](_lib_api_d_.md#initializesecuritycontextinput)
 * [SecPkgInfo](_lib_api_d_.md#secpkginfo)
 * [SecurityContext](_lib_api_d_.md#securitycontext)
+* [SecuritySupportProvider](_lib_api_d_.md#securitysupportprovider)
 * [ServerSecurityContext](_lib_api_d_.md#serversecuritycontext)
 * [SidObject](_lib_api_d_.md#sidobject)
 * [Sspi](_lib_api_d_.md#sspi)
@@ -90,6 +91,12 @@ ___
 
 ___
 
+###  SecuritySupportProvider
+
+• **SecuritySupportProvider**:
+
+___
+
 ###  ServerSecurityContext
 
 • **ServerSecurityContext**:
@@ -124,7 +131,7 @@ ___
 
 • **adsi**: *[Adsi](../interfaces/_lib_adsi_d_.adsi.md)*
 
-*Defined in [lib/api.d.ts:7](https://github.com/jlguenego/node-expose-sspi/blob/f44ba74/lib/api.d.ts#L7)*
+*Defined in [lib/api.d.ts:7](https://github.com/jlguenego/node-expose-sspi/blob/c79000f/lib/api.d.ts#L7)*
 
 ___
 
@@ -132,7 +139,7 @@ ___
 
 • **sspi**: *[Sspi](../interfaces/_lib_sspi_d_.sspi.md)*
 
-*Defined in [lib/api.d.ts:6](https://github.com/jlguenego/node-expose-sspi/blob/f44ba74/lib/api.d.ts#L6)*
+*Defined in [lib/api.d.ts:6](https://github.com/jlguenego/node-expose-sspi/blob/c79000f/lib/api.d.ts#L6)*
 
 ___
 
@@ -140,4 +147,4 @@ ___
 
 • **sysinfo**: *[SysInfo](../interfaces/_lib_sysinfo_d_.sysinfo.md)*
 
-*Defined in [lib/api.d.ts:8](https://github.com/jlguenego/node-expose-sspi/blob/f44ba74/lib/api.d.ts#L8)*
+*Defined in [lib/api.d.ts:8](https://github.com/jlguenego/node-expose-sspi/blob/c79000f/lib/api.d.ts#L8)*

@@ -14,4 +14,4 @@
 
 Ƭ **ExtendedNameFormatFlag**: *"NameUnknown" | "NameFullyQualifiedDN" | "NameSamCompatible" | "NameDisplay" | "NameUniqueId" | "NameCanonical" | "NameUserPrincipal" | "NameCanonicalEx" | "NameServicePrincipal" | "NameDnsDomain" | "NameGivenName" | "NameSurname"*
 
-*Defined in [lib/flags/ExtendedNameFormatFlag.d.ts:1](https://github.com/jlguenego/node-expose-sspi/blob/f44ba74/lib/flags/ExtendedNameFormatFlag.d.ts#L1)*
+*Defined in [lib/flags/ExtendedNameFormatFlag.d.ts:1](https://github.com/jlguenego/node-expose-sspi/blob/c79000f/lib/flags/ExtendedNameFormatFlag.d.ts#L1)*

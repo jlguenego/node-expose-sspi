@@ -23,6 +23,7 @@
 ### Type aliases
 
 * [InformationClass](_lib_sspi_d_.md#informationclass)
+* [SecuritySupportProvider](_lib_sspi_d_.md#securitysupportprovider)
 * [Token](_lib_sspi_d_.md#token)
 
 ## Type aliases
@@ -31,7 +32,15 @@
 
 Ƭ **InformationClass**: *"TokenGroups"*
 
-*Defined in [lib/sspi.d.ts:61](https://github.com/jlguenego/node-expose-sspi/blob/f44ba74/lib/sspi.d.ts#L61)*
+*Defined in [lib/sspi.d.ts:64](https://github.com/jlguenego/node-expose-sspi/blob/c79000f/lib/sspi.d.ts#L64)*
+
+___
+
+###  SecuritySupportProvider
+
+Ƭ **SecuritySupportProvider**: *"NTLM" | "Kerberos" | "Negotiate"*
+
+*Defined in [lib/sspi.d.ts:10](https://github.com/jlguenego/node-expose-sspi/blob/c79000f/lib/sspi.d.ts#L10)*
 
 ___
 
@@ -39,7 +48,7 @@ ___
 
 Ƭ **Token**: *string*
 
-*Defined in [lib/sspi.d.ts:59](https://github.com/jlguenego/node-expose-sspi/blob/f44ba74/lib/sspi.d.ts#L59)*
+*Defined in [lib/sspi.d.ts:62](https://github.com/jlguenego/node-expose-sspi/blob/c79000f/lib/sspi.d.ts#L62)*
 
 A Token is a pointer to some user information.
 

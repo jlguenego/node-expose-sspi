@@ -15,6 +15,8 @@
 * [restituteCookies](_src_sso_client_.client.md#restitutecookies)
 * [saveCookies](_src_sso_client_.client.md#savecookies)
 * [setCredentials](_src_sso_client_.client.md#setcredentials)
+* [setSSP](_src_sso_client_.client.md#setssp)
+* [setTargetName](_src_sso_client_.client.md#settargetname)
 
 ## Methods
 
@@ -22,7 +24,7 @@
 
 ▸ **fetch**(`resource`: string, `init?`: RequestInit): *Promise‹Response›*
 
-*Defined in [src/sso/client.ts:99](https://github.com/jlguenego/node-expose-sspi/blob/f44ba74/src/sso/client.ts#L99)*
+*Defined in [src/sso/client.ts:138](https://github.com/jlguenego/node-expose-sspi/blob/c79000f/src/sso/client.ts#L138)*
 
 **Parameters:**
 
@@ -39,7 +41,7 @@ ___
 
 ▸ **handleAuth**(`response`: Response, `resource`: string, `init`: RequestInit): *Promise‹Response›*
 
-*Defined in [src/sso/client.ts:105](https://github.com/jlguenego/node-expose-sspi/blob/f44ba74/src/sso/client.ts#L105)*
+*Defined in [src/sso/client.ts:144](https://github.com/jlguenego/node-expose-sspi/blob/c79000f/src/sso/client.ts#L144)*
 
 **Parameters:**
 
@@ -57,7 +59,7 @@ ___
 
 ▸ **restituteCookies**(`requestInit`: RequestInit): *void*
 
-*Defined in [src/sso/client.ts:83](https://github.com/jlguenego/node-expose-sspi/blob/f44ba74/src/sso/client.ts#L83)*
+*Defined in [src/sso/client.ts:90](https://github.com/jlguenego/node-expose-sspi/blob/c79000f/src/sso/client.ts#L90)*
 
 **Parameters:**
 
@@ -73,7 +75,7 @@ ___
 
 ▸ **saveCookies**(`response`: Response): *void*
 
-*Defined in [src/sso/client.ts:69](https://github.com/jlguenego/node-expose-sspi/blob/f44ba74/src/sso/client.ts#L69)*
+*Defined in [src/sso/client.ts:76](https://github.com/jlguenego/node-expose-sspi/blob/c79000f/src/sso/client.ts#L76)*
 
 **Parameters:**
 
@@ -89,7 +91,13 @@ ___
 
 ▸ **setCredentials**(`domain`: string, `user`: string, `password`: string): *void*
 
-*Defined in [src/sso/client.ts:93](https://github.com/jlguenego/node-expose-sspi/blob/f44ba74/src/sso/client.ts#L93)*
+*Defined in [src/sso/client.ts:110](https://github.com/jlguenego/node-expose-sspi/blob/c79000f/src/sso/client.ts#L110)*
+
+Set the credentials for running the client as another user.
+
+By default, the credentials are the logged windows account.
+
+**`memberof`** Client
 
 **Parameters:**
 
@@ -98,5 +106,47 @@ Name | Type |
 `domain` | string |
 `user` | string |
 `password` | string |
+
+**Returns:** *void*
+
+___
+
+###  setSSP
+
+▸ **setSSP**(`ssp`: [SecuritySupportProvider](../modules/_lib_sspi_d_.md#securitysupportprovider)): *void*
+
+*Defined in [src/sso/client.ts:134](https://github.com/jlguenego/node-expose-sspi/blob/c79000f/src/sso/client.ts#L134)*
+
+Set the Security Support Provider (NTLM, Kerberos, Negotiate)
+
+**`memberof`** Client
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`ssp` | [SecuritySupportProvider](../modules/_lib_sspi_d_.md#securitysupportprovider) |
+
+**Returns:** *void*
+
+___
+
+###  setTargetName
+
+▸ **setTargetName**(`targetName`: string): *void*
+
+*Defined in [src/sso/client.ts:124](https://github.com/jlguenego/node-expose-sspi/blob/c79000f/src/sso/client.ts#L124)*
+
+Force the targetName to a value.
+
+For Kerberos, the targetName is the SPN (Service Principal Name).
+
+**`memberof`** Client
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`targetName` | string |
 
 **Returns:** *void*

@@ -18,4 +18,4 @@
 
 Ƭ **SSOMethod**: *"NTLM" | "Kerberos"*
 
-*Defined in [src/sso/SSO.ts:10](https://github.com/jlguenego/node-expose-sspi/blob/f44ba74/src/sso/SSO.ts#L10)*
+*Defined in [src/sso/SSO.ts:10](https://github.com/jlguenego/node-expose-sspi/blob/c79000f/src/sso/SSO.ts#L10)*
