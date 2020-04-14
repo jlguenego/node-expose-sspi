@@ -13,6 +13,7 @@
 * ["lib/sysinfo.d"](modules/_lib_sysinfo_d_.md)
 * ["src/sso/SSO"](modules/_src_sso_sso_.md)
 * ["src/sso/ServerContextHandleManager"](modules/_src_sso_servercontexthandlemanager_.md)
+* ["src/sso/adConnection"](modules/_src_sso_adconnection_.md)
 * ["src/sso/auth"](modules/_src_sso_auth_.md)
 * ["src/sso/client"](modules/_src_sso_client_.md)
 * ["src/sso/connect"](modules/_src_sso_connect_.md)

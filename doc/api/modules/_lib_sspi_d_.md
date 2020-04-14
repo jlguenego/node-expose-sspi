@@ -32,7 +32,7 @@
 
 Ƭ **InformationClass**: *"TokenGroups"*
 
-*Defined in [lib/sspi.d.ts:65](https://github.com/jlguenego/node-expose-sspi/blob/2cf7b18/lib/sspi.d.ts#L65)*
+*Defined in [lib/sspi.d.ts:65](https://github.com/jlguenego/node-expose-sspi/blob/1283254/lib/sspi.d.ts#L65)*
 
 ___
 
@@ -40,7 +40,7 @@ ___
 
 Ƭ **SecuritySupportProvider**: *"NTLM" | "Kerberos" | "Negotiate"*
 
-*Defined in [lib/sspi.d.ts:11](https://github.com/jlguenego/node-expose-sspi/blob/2cf7b18/lib/sspi.d.ts#L11)*
+*Defined in [lib/sspi.d.ts:11](https://github.com/jlguenego/node-expose-sspi/blob/1283254/lib/sspi.d.ts#L11)*
 
 ___
 
@@ -48,7 +48,7 @@ ___
 
 Ƭ **Token**: *string*
 
-*Defined in [lib/sspi.d.ts:63](https://github.com/jlguenego/node-expose-sspi/blob/2cf7b18/lib/sspi.d.ts#L63)*
+*Defined in [lib/sspi.d.ts:63](https://github.com/jlguenego/node-expose-sspi/blob/1283254/lib/sspi.d.ts#L63)*
 
 A Token is a pointer to some user information.
 

@@ -73,10 +73,7 @@ export interface AuthOptions {
    * Manage authentication with cookie.
    * Useful for performance when many users try to connect at the same time.
    *
-   * Note: useCookies will be rewritten to false automatically if useActiveDirectory is set to true.
-   * (Because of Windows parallelism issues with COM interfaces. See Issues #4)
-   *
-   * @default false
+   * @default true
    *
    * @type {boolean}
    * @memberof AuthOptions

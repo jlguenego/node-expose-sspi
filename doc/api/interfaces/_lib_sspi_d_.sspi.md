@@ -37,7 +37,7 @@
 
 ▸ **AcceptSecurityContext**(`input`: [AcceptSecurityContextInput](_lib_sspi_d_.acceptsecuritycontextinput.md)): *[ServerSecurityContext](_lib_sspi_d_.serversecuritycontext.md)*
 
-*Defined in [lib/sspi.d.ts:222](https://github.com/jlguenego/node-expose-sspi/blob/2cf7b18/lib/sspi.d.ts#L222)*
+*Defined in [lib/sspi.d.ts:222](https://github.com/jlguenego/node-expose-sspi/blob/1283254/lib/sspi.d.ts#L222)*
 
 AcceptSecurityContext must be used only on server side. Its purpose is to setup a client/server security context
 
@@ -57,7 +57,7 @@ ___
 
 ▸ **AcquireCredentialsHandle**(`input`: [AcquireCredHandleInput](_lib_sspi_d_.acquirecredhandleinput.md)): *[CredentialWithExpiry](_lib_sspi_d_.credentialwithexpiry.md)*
 
-*Defined in [lib/sspi.d.ts:202](https://github.com/jlguenego/node-expose-sspi/blob/2cf7b18/lib/sspi.d.ts#L202)*
+*Defined in [lib/sspi.d.ts:202](https://github.com/jlguenego/node-expose-sspi/blob/1283254/lib/sspi.d.ts#L202)*
 
 Get the credentials of a user, to be used with a specified SSP package.
 The credentials will be used according the specified flags.
@@ -80,7 +80,7 @@ ___
 
 ▸ **CloseHandle**(`handle`: [HANDLE](_lib_sspi_d_.handle.md)): *void*
 
-*Defined in [lib/sspi.d.ts:309](https://github.com/jlguenego/node-expose-sspi/blob/2cf7b18/lib/sspi.d.ts#L309)*
+*Defined in [lib/sspi.d.ts:309](https://github.com/jlguenego/node-expose-sspi/blob/1283254/lib/sspi.d.ts#L309)*
 
 Free allocated memory referenced by the handle.
 
@@ -100,7 +100,7 @@ ___
 
 ▸ **DeleteSecurityContext**(`ctxtHandle`: [CtxtHandle](_lib_sspi_d_.ctxthandle.md)): *void*
 
-*Defined in [lib/sspi.d.ts:355](https://github.com/jlguenego/node-expose-sspi/blob/2cf7b18/lib/sspi.d.ts#L355)*
+*Defined in [lib/sspi.d.ts:355](https://github.com/jlguenego/node-expose-sspi/blob/1283254/lib/sspi.d.ts#L355)*
 
 Free a context handle.
 
@@ -120,7 +120,7 @@ ___
 
 ▸ **EnumerateSecurityPackages**(): *[SecPkgInfo](_lib_sspi_d_.secpkginfo.md)[]*
 
-*Defined in [lib/sspi.d.ts:180](https://github.com/jlguenego/node-expose-sspi/blob/2cf7b18/lib/sspi.d.ts#L180)*
+*Defined in [lib/sspi.d.ts:180](https://github.com/jlguenego/node-expose-sspi/blob/1283254/lib/sspi.d.ts#L180)*
 
 EnumerateSecurityPackages get a list of SSP provider with some info.
 
@@ -134,7 +134,7 @@ ___
 
 ▸ **FreeCredentialsHandle**(`credential`: [CredHandle](_lib_sspi_d_.credhandle.md)): *void*
 
-*Defined in [lib/sspi.d.ts:232](https://github.com/jlguenego/node-expose-sspi/blob/2cf7b18/lib/sspi.d.ts#L232)*
+*Defined in [lib/sspi.d.ts:232](https://github.com/jlguenego/node-expose-sspi/blob/1283254/lib/sspi.d.ts#L232)*
 
 Free a allocated credential memory. Must be used after AcquireCredentialsHandle.
 
@@ -154,7 +154,7 @@ ___
 
 ▸ **GetTokenInformation**(`token`: [Token](../modules/_lib_sspi_d_.md#token), `infoClass`: [InformationClass](../modules/_lib_sspi_d_.md#informationclass)): *any*
 
-*Defined in [lib/sspi.d.ts:301](https://github.com/jlguenego/node-expose-sspi/blob/2cf7b18/lib/sspi.d.ts#L301)*
+*Defined in [lib/sspi.d.ts:301](https://github.com/jlguenego/node-expose-sspi/blob/1283254/lib/sspi.d.ts#L301)*
 
 Get information from a user token.
 
@@ -175,7 +175,7 @@ ___
 
 ▸ **GetUserName**(): *string*
 
-*Defined in [lib/sspi.d.ts:259](https://github.com/jlguenego/node-expose-sspi/blob/2cf7b18/lib/sspi.d.ts#L259)*
+*Defined in [lib/sspi.d.ts:259](https://github.com/jlguenego/node-expose-sspi/blob/1283254/lib/sspi.d.ts#L259)*
 
 Get the username of the current thread. (TODO: to be moved outside of SSPI)
 
@@ -189,7 +189,7 @@ ___
 
 ▸ **GetUserNameEx**(`extendedNameFormat`: [ExtendedNameFormatFlag](../modules/_lib_flags_index_d_.md#extendednameformatflag)): *string*
 
-*Defined in [lib/sspi.d.ts:268](https://github.com/jlguenego/node-expose-sspi/blob/2cf7b18/lib/sspi.d.ts#L268)*
+*Defined in [lib/sspi.d.ts:268](https://github.com/jlguenego/node-expose-sspi/blob/1283254/lib/sspi.d.ts#L268)*
 
 Get the username and much more of the current thread.
 
@@ -209,7 +209,7 @@ ___
 
 ▸ **ImpersonateSecurityContext**(`handle`: [CtxtHandle](_lib_sspi_d_.ctxthandle.md)): *void*
 
-*Defined in [lib/sspi.d.ts:243](https://github.com/jlguenego/node-expose-sspi/blob/2cf7b18/lib/sspi.d.ts#L243)*
+*Defined in [lib/sspi.d.ts:243](https://github.com/jlguenego/node-expose-sspi/blob/1283254/lib/sspi.d.ts#L243)*
 
 Must be used only on server side.
 
@@ -232,7 +232,7 @@ ___
 
 ▸ **InitializeSecurityContext**(`input`: [InitializeSecurityContextInput](_lib_sspi_d_.initializesecuritycontextinput.md)): *[SecurityContext](_lib_sspi_d_.securitycontext.md)*
 
-*Defined in [lib/sspi.d.ts:211](https://github.com/jlguenego/node-expose-sspi/blob/2cf7b18/lib/sspi.d.ts#L211)*
+*Defined in [lib/sspi.d.ts:211](https://github.com/jlguenego/node-expose-sspi/blob/1283254/lib/sspi.d.ts#L211)*
 
 This function must be used only by a client. Its purpose is to setup a client/server security context.
 
@@ -252,7 +252,7 @@ ___
 
 ▸ **LookupAccountName**(`username`: string): *[SidObject](_lib_sspi_d_.sidobject.md)*
 
-*Defined in [lib/sspi.d.ts:318](https://github.com/jlguenego/node-expose-sspi/blob/2cf7b18/lib/sspi.d.ts#L318)*
+*Defined in [lib/sspi.d.ts:318](https://github.com/jlguenego/node-expose-sspi/blob/1283254/lib/sspi.d.ts#L318)*
 
 Get the SID of username.
 
@@ -272,7 +272,7 @@ ___
 
 ▸ **OpenProcessToken**(`flags?`: [AccessTokenFlag](../modules/_lib_flags_index_d_.md#accesstokenflag)[]): *[Token](../modules/_lib_sspi_d_.md#token)*
 
-*Defined in [lib/sspi.d.ts:291](https://github.com/jlguenego/node-expose-sspi/blob/2cf7b18/lib/sspi.d.ts#L291)*
+*Defined in [lib/sspi.d.ts:291](https://github.com/jlguenego/node-expose-sspi/blob/1283254/lib/sspi.d.ts#L291)*
 
 Get the user token associated with the current process. You will get always
 the user that has started the process, and never the impersonated user.
@@ -295,7 +295,7 @@ ___
 
 ▸ **OpenThreadToken**(`flags?`: [AccessTokenFlag](../modules/_lib_flags_index_d_.md#accesstokenflag)[]): *[Token](../modules/_lib_sspi_d_.md#token)*
 
-*Defined in [lib/sspi.d.ts:279](https://github.com/jlguenego/node-expose-sspi/blob/2cf7b18/lib/sspi.d.ts#L279)*
+*Defined in [lib/sspi.d.ts:279](https://github.com/jlguenego/node-expose-sspi/blob/1283254/lib/sspi.d.ts#L279)*
 
 Get the user token associated with the current thread. Used with ImpersonateSecurityContext.
 
@@ -317,7 +317,7 @@ ___
 
 ▸ **QueryContextAttributes**(`ctxtHandle`: [CtxtHandle](_lib_sspi_d_.ctxthandle.md), `attribute`: string): *any*
 
-*Defined in [lib/sspi.d.ts:338](https://github.com/jlguenego/node-expose-sspi/blob/2cf7b18/lib/sspi.d.ts#L338)*
+*Defined in [lib/sspi.d.ts:338](https://github.com/jlguenego/node-expose-sspi/blob/1283254/lib/sspi.d.ts#L338)*
 
 Query what can be done with a given context handle.
 
@@ -338,7 +338,7 @@ ___
 
 ▸ **QueryCredentialsAttributes**(`credential`: [CredHandle](_lib_sspi_d_.credhandle.md), `attribute`: string): *any*
 
-*Defined in [lib/sspi.d.ts:328](https://github.com/jlguenego/node-expose-sspi/blob/2cf7b18/lib/sspi.d.ts#L328)*
+*Defined in [lib/sspi.d.ts:328](https://github.com/jlguenego/node-expose-sspi/blob/1283254/lib/sspi.d.ts#L328)*
 
 Query what can be done with a given credential.
 
@@ -359,7 +359,7 @@ ___
 
 ▸ **QuerySecurityContextToken**(`ctxtHandle`: [CtxtHandle](_lib_sspi_d_.ctxthandle.md)): *[Token](../modules/_lib_sspi_d_.md#token)*
 
-*Defined in [lib/sspi.d.ts:347](https://github.com/jlguenego/node-expose-sspi/blob/2cf7b18/lib/sspi.d.ts#L347)*
+*Defined in [lib/sspi.d.ts:347](https://github.com/jlguenego/node-expose-sspi/blob/1283254/lib/sspi.d.ts#L347)*
 
 Get a client user token.
 
@@ -379,7 +379,7 @@ ___
 
 ▸ **QuerySecurityPackageInfo**(`packageName`: [SecuritySupportProvider](../modules/_lib_sspi_d_.md#securitysupportprovider)): *[SecPkgInfo](_lib_sspi_d_.secpkginfo.md)*
 
-*Defined in [lib/sspi.d.ts:189](https://github.com/jlguenego/node-expose-sspi/blob/2cf7b18/lib/sspi.d.ts#L189)*
+*Defined in [lib/sspi.d.ts:189](https://github.com/jlguenego/node-expose-sspi/blob/1283254/lib/sspi.d.ts#L189)*
 
 Get info about one SSP provider given its name.
 
@@ -399,7 +399,7 @@ ___
 
 ▸ **RevertSecurityContext**(`handle`: [CtxtHandle](_lib_sspi_d_.ctxthandle.md)): *void*
 
-*Defined in [lib/sspi.d.ts:251](https://github.com/jlguenego/node-expose-sspi/blob/2cf7b18/lib/sspi.d.ts#L251)*
+*Defined in [lib/sspi.d.ts:251](https://github.com/jlguenego/node-expose-sspi/blob/1283254/lib/sspi.d.ts#L251)*
 
 Revert the server user back to its original. Must be used with ImpersonateSecurityContext.
 
@@ -419,7 +419,7 @@ ___
 
 ▸ **hello**(): *string*
 
-*Defined in [lib/sspi.d.ts:172](https://github.com/jlguenego/node-expose-sspi/blob/2cf7b18/lib/sspi.d.ts#L172)*
+*Defined in [lib/sspi.d.ts:172](https://github.com/jlguenego/node-expose-sspi/blob/1283254/lib/sspi.d.ts#L172)*
 
 Just a hello world function. Useless... ;)
 
