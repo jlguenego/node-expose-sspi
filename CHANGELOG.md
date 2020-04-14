@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.22](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.21...v0.1.22) (2020-04-14)
+
+
+### Features
+
+* added connection AD ([c10d7f3](https://github.com/jlguenego/node-expose-sspi/commit/c10d7f3d8967fb9304702f77aaa18329e822fa03))
+* cookie and AD can work together ([a1dabf8](https://github.com/jlguenego/node-expose-sspi/commit/a1dabf84be4dcc23dfcc3c7d309579ca93461db2))
+
 ### [0.1.21](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.20...v0.1.21) (2020-04-14)
 
 
