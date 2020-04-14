@@ -238,10 +238,8 @@ Any idea of new features ? Please tell me and raise an issue. :blush:
 - Test with 10000 users.
 - Filter groups options.
 - UTF8 everywhere
-- Refactor cookie management and ctxt handle:
 
 Scenario:
-- browser outside of domain, cancel auth.
 - linux trial.
 
 ## Thanks
