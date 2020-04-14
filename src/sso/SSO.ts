@@ -49,6 +49,7 @@ export class SSO {
         tokenInformationClass: 'TokenGroups',
         filter: this.options.groupFilterRegex,
       });
+      groups.sort();
       debug('groups: ', groups);
       this.user.groups = groups;
     }
@@ -94,6 +95,7 @@ export class SSO {
           tokenInformationClass: 'TokenGroups',
           filter: this.options.groupFilterRegex,
         });
+        ownerGroups.sort();
         debug('ownerGroups: ', ownerGroups);
         this.owner.groups = ownerGroups;
         sspi.CloseHandle(processToken);

@@ -301,10 +301,10 @@ export interface Sspi {
    *
    * @param {Token} token
    * @param {InformationClass} infoClass
-   * @returns {*}
+   * @returns {string[]}
    * @memberof Sspi
    */
-  GetTokenInformation(input: GetTokenInformationInput): any;
+  GetTokenInformation(input: GetTokenInformationInput): string[];
 
   /**
    * Free allocated memory referenced by the handle.
