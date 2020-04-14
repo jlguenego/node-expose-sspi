@@ -203,6 +203,7 @@ export class Client {
     debug('first requestInit.headers', requestInit.headers);
     response = await fetch(resource, requestInit);
     debug('first response.headers', response.headers);
+    this.saveCookies(response);
     while (
       response.headers.has('www-authenticate') &&
       response.status === 401 &&
@@ -235,6 +236,7 @@ export class Client {
       debug('other requestInit.headers', requestInit.headers);
       response = await fetch(resource, requestInit);
       debug('other response.headers', response.headers);
+      this.saveCookies(response);
     }
     debug('handleAuth: end');
     return response;
