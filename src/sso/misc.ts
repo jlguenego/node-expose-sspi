@@ -1,4 +1,6 @@
 import dbg from 'debug';
+import { decode } from 'base64-arraybuffer';
+import { MessageType } from './interfaces';
 
 const debug = dbg('node-expose-sspi:misc');
 
@@ -52,4 +54,35 @@ export function hexDump(buffer: ArrayBuffer): string {
     }
   }
   return result;
+}
+
+export function toHex(buffer: ArrayBuffer): string {
+  const dataView = new DataView(buffer, 0);
+  debug('buffer length', buffer.byteLength);
+  let result = '';
+  for (let i = 0; i < buffer.byteLength; i++) {
+    const n = dataView.getUint8(i);
+    result += n.toString(16).padStart(2, '0');
+  }
+  return result;
+}
+
+export function getMessageType(token: string): MessageType {
+  const buffer = decode(token);
+  const str = toHex(buffer);
+  // manage NTLM
+  if (str.includes('4e544c4d53535000' + '01')) {
+    return 'NTLM_NEGOTIATE';
+  }
+  if (str.includes('4e544c4d53535000' + '02')) {
+    return 'NTLM_CHALLENGE';
+  }
+  if (str.includes('4e544c4d53535000' + '03')) {
+    return 'NTLM_AUTHENTICATE';
+  }
+  // manage Kerberos:
+  if (token.startsWith('YII')) {
+    return 'Kerberos_1';
+  }
+  return 'Kerberos_N';
 }

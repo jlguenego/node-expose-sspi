@@ -1,6 +1,6 @@
 import createError from 'http-errors';
 import { decode, encode } from 'base64-arraybuffer';
-import { hexDump } from './misc';
+import { hexDump, getMessageType } from './misc';
 import { sspi, AcceptSecurityContextInput } from '../../lib/api';
 import { SSO } from './SSO';
 import { ServerContextHandleManager } from './ServerContextHandleManager';
@@ -57,17 +57,9 @@ export function auth(options: AuthOptions = {}): Middleware {
   ): void => {
     (async (): Promise<void> => {
       try {
-        checkCredentials();
-
-        if (opts.useCookies) {
-          schManager.setCookieMode(req, res);
-        }
-
         const authorization = req.headers.authorization;
         if (!authorization) {
-          debug('no authorization');
-          await schManager.waitForReleased();
-          debug('schManager released');
+          debug('no authorization key in header');
           res.statusCode = 401;
           res.setHeader('WWW-Authenticate', 'Negotiate');
           return res.end();
@@ -79,8 +71,25 @@ export function auth(options: AuthOptions = {}): Middleware {
           );
         }
 
+        checkCredentials();
+        const cookieToken = opts.useCookies
+          ? schManager.initCookie(req, res)
+          : undefined;
+        debug('cookieToken: ', cookieToken);
+
         const token = authorization.substring('Negotiate '.length);
         const buffer = decode(token);
+        debug(hexDump(buffer));
+
+        const messageType = getMessageType(token);
+        debug('messageType: ', messageType);
+        // test if first token
+        if (messageType === 'NTLM_NEGOTIATE' || messageType === 'Kerberos_1') {
+          await schManager.waitForReleased(cookieToken);
+          debug('schManager waitForReleased finished.');
+          const method = messageType.startsWith('NTLM') ? 'NTLM' : 'Kerberos';
+          schManager.setMethod(method, cookieToken);
+        }
 
         const input: AcceptSecurityContextInput = {
           credential,
@@ -91,26 +100,30 @@ export function auth(options: AuthOptions = {}): Middleware {
             },
           },
         };
-        const serverContextHandle = schManager.getServerContextHandle();
+        const serverContextHandle = schManager.getServerContextHandle(
+          cookieToken
+        );
         if (serverContextHandle) {
           input.contextHandle = serverContextHandle;
-        } else {
-          const method = token.startsWith('YII') ? 'Kerberos' : 'NTLM';
-          debug('SPNEGO token: ' + method);
-          schManager.setMethod(method);
         }
         debug('input', input);
-        debug(hexDump(buffer));
         const serverSecurityContext = sspi.AcceptSecurityContext(input);
         debug('serverSecurityContext', serverSecurityContext);
-        if (serverSecurityContext.SECURITY_STATUS === 'SEC_E_LOGON_DENIED') {
-          throw new Error('Bad Login. The SPN may be wrong');
+        if (
+          !['SEC_E_OK', 'SEC_I_CONTINUE_NEEDED'].includes(
+            serverSecurityContext.SECURITY_STATUS
+          )
+        ) {
+          // 'SEC_I_COMPLETE_AND_CONTINUE', 'SEC_I_COMPLETE_NEEDED' are considered as errors because it is used
+          // only by 'Digest' SSP. (not by Negotiate, Kerberos or NTLM)
+          throw new Error(
+            'AcceptSecurityContext error: ' +
+              serverSecurityContext.SECURITY_STATUS
+          );
         }
-        if (!['SEC_I_CONTINUE_NEEDED', 'SEC_E_OK'].includes(serverSecurityContext.SECURITY_STATUS)) {
-          throw new Error('AcceptSecurityContext error: ' + serverSecurityContext.SECURITY_STATUS);
-        }
-        schManager.set(serverSecurityContext.contextHandle);
+        schManager.set(serverSecurityContext.contextHandle, cookieToken);
 
+        debug('AcceptSecurityContext output buffer');
         debug(hexDump(serverSecurityContext.SecBufferDesc.buffers[0]));
 
         if (serverSecurityContext.SECURITY_STATUS === 'SEC_I_CONTINUE_NEEDED') {
@@ -129,13 +142,15 @@ export function auth(options: AuthOptions = {}): Middleware {
             'Negotiate ' +
               encode(serverSecurityContext.SecBufferDesc.buffers[0])
           );
-          const sch = schManager.getServerContextHandle();
-          const method = schManager.getMethod();
-          const sso = new SSO(sch, method);
+          const lastServerContextHandle = schManager.getServerContextHandle(
+            cookieToken
+          );
+          const method = schManager.getMethod(cookieToken);
+          const sso = new SSO(lastServerContextHandle, method);
           sso.setOptions(opts);
           await sso.load();
           req.sso = sso.getJSON();
-          sspi.DeleteSecurityContext(sch);
+          sspi.DeleteSecurityContext(lastServerContextHandle);
           schManager.release();
         }
         next();

@@ -3,6 +3,7 @@ import http from 'http';
 import { parseCookies } from './cookies';
 import dbg from 'debug';
 import { SSOMethod } from './SSO';
+import { CookieToken } from './interfaces';
 
 const debug = dbg('node-expose-sspi:schManager');
 
@@ -14,87 +15,89 @@ interface AuthItem {
   timeout?: NodeJS.Timeout;
 }
 
+interface ContextInfo {
+  serverContextHandle?: CtxtHandle;
+  req: http.IncomingMessage;
+  res: http.ServerResponse;
+  method: SSOMethod;
+}
+
 const COOKIE_KEY = 'NEGOTIATE_ID';
+const COOKIE_PREFIX_VALUE = 'NEGOTIATE_';
 
 export class ServerContextHandleManager {
   private serverContextHandle: CtxtHandle;
   private queue: AuthItem[] = [];
   private authItem: AuthItem;
 
-  private useCookies = false;
-  private req: http.IncomingMessage;
-  private res: http.OutgoingMessage;
-  private sessionMap = new Map<string, CtxtHandle>();
+  private sessionMap = new Map<string, ContextInfo>();
 
   private method: SSOMethod;
 
   constructor(private delayMax = 20000) {}
 
-  setCookieMode(req: http.IncomingMessage, res: http.OutgoingMessage): void {
-    debug('setCookieMode');
-    this.useCookies = true;
-    this.req = req;
-    debug('this.req.headers: ', this.req.headers);
-    this.res = res;
-    debug('sessionMap', this.sessionMap);
+  initCookie(
+    req: http.IncomingMessage,
+    res: http.ServerResponse
+  ): CookieToken {
+    debug('initCookie');
+    let cookieToken = parseCookies(req)[COOKIE_KEY];
+    if (!cookieToken) {
+      cookieToken = COOKIE_PREFIX_VALUE + Math.floor(1e10 * Math.random());
+      // create a session cookie (without expiration specified)
+      res.setHeader('Set-Cookie', COOKIE_KEY + '=' + cookieToken);
+      this.sessionMap.set(cookieToken, {
+        req,
+        res,
+      } as ContextInfo);
+    }
+    return cookieToken;
   }
 
-  waitForReleased(): Promise<void> {
-    if (this.useCookies) {
-      const negotiateId = parseCookies(this.req)[COOKIE_KEY];
-      if (!negotiateId) {
-        const newId = 'NEGOTIATE_' + Math.floor(1e10 * Math.random());
-        // create a session cookie (without expiration specified)
-        this.res.setHeader('Set-Cookie', COOKIE_KEY + '=' + newId);
-        this.sessionMap.set(newId, undefined);
-        return Promise.resolve();
-      }
-      this.sessionMap.set(negotiateId, undefined);
+  waitForReleased(cookieToken: CookieToken): Promise<void> {
+    if (cookieToken) {
       return Promise.resolve();
     }
+    debug("waitForReleased: start");
     return new Promise((resolve, reject) => {
+      debug("waitForReleased: start promise");
       // if nobody else is currently authenticating then go now.
       const authItem = { resolve, reject };
       const timeout = setTimeout(() => {
         this.tooLate(authItem);
       }, this.delayMax);
       if (this.authItem === undefined) {
+        debug("waitForReleased: no other authentication ongoing: we can start now.");
         this.authItem = { resolve, reject, timeout };
         return this.authItem.resolve();
       }
 
-      // someone is currently authenticating, go in the queue and wait for your turn.
+      debug('someone is currently authenticating, go in the queue and wait for your turn.');
       this.queue.push({ resolve, reject, timeout });
+      debug('queue length', this.queue.length);
     });
   }
 
-  set(serverContextHandle: CtxtHandle): void {
-    if (this.useCookies) {
-      const negotiateId = parseCookies(this.req)[COOKIE_KEY];
-      if (negotiateId === undefined) {
-        throw new Error('cookie not found');
-      }
-      this.sessionMap.set(negotiateId, serverContextHandle);
+  set(serverContextHandle: CtxtHandle, cookieToken: CookieToken): void {
+    if (cookieToken) {
+      const contextInfo = this.sessionMap.get(cookieToken);
+      contextInfo.serverContextHandle = serverContextHandle;
       return;
     }
     this.serverContextHandle = serverContextHandle;
   }
 
-  getServerContextHandle(): CtxtHandle {
-    if (this.useCookies) {
-      const negotiateId = parseCookies(this.req)[COOKIE_KEY];
-      if (negotiateId === undefined) {
-        throw new Error('cookie not found');
-      }
-      return this.sessionMap.get(negotiateId);
+  getServerContextHandle(cookieToken: CookieToken): CtxtHandle {
+    if (cookieToken) {
+      const contextInfo = this.sessionMap.get(cookieToken);
+      return contextInfo.serverContextHandle;
     }
     return this.serverContextHandle;
   }
 
-  release(): void {
-    if (this.useCookies) {
-      const negotiateId = parseCookies(this.req)[COOKIE_KEY];
-      this.sessionMap.set(negotiateId, undefined);
+  release(cookieToken?: CookieToken): void {
+    if (cookieToken) {
+      this.sessionMap.delete(cookieToken);
       return;
     }
 
@@ -107,6 +110,7 @@ export class ServerContextHandleManager {
       // it means another client B was waiting for authenticating.
       // so we start authenticating this client B.
       this.authItem = this.queue.shift();
+      debug('releasing. queue length', this.queue.length);
       this.authItem.resolve();
     }
   }
@@ -131,11 +135,20 @@ export class ServerContextHandleManager {
     this.authItem.resolve();
   }
 
-  setMethod(method: SSOMethod): void {
+  setMethod(method: SSOMethod, cookieToken: CookieToken): void {
+    if (cookieToken) {
+      const contextInfo = this.sessionMap.get(cookieToken);
+      contextInfo.method = method;
+      return;
+    }
     this.method = method;
   }
 
-  getMethod(): SSOMethod {
+  getMethod(cookieToken: CookieToken): SSOMethod {
+    if (cookieToken) {
+      const contextInfo = this.sessionMap.get(cookieToken);
+      return contextInfo.method;
+    }
     return this.method;
   }
 }

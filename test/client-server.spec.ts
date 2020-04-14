@@ -10,13 +10,11 @@ describe('ClientServer', function () {
     it('should return the right json', async function () {
       this.timeout(15000);
       debug('start');
-      await sso.init();
-      debug('init completed');
       const app = express();
       app.use(
         sso.auth({
           useOwner: true,
-          useActiveDirectory: true,
+          useActiveDirectory: false,
           useCookies: false,
         })
       );
@@ -29,7 +27,7 @@ describe('ClientServer', function () {
       const server = app.listen(3000);
       debug('server started');
 
-      const TIMES = 3;
+      const TIMES = 10;
       const DELAY = 0;
 
       const state = {
@@ -68,13 +66,8 @@ describe('ClientServer', function () {
           debug('end client', i);
         } catch (e) {
           console.error(e);
-          assert(false);
+          throw e;
         }
-      }
-
-      for (state.i = 0; state.i < TIMES; state.i++) {
-        simulateClient(state.i);
-        await sso.sleep(DELAY);
       }
 
       function clean(): Promise<void> {
@@ -83,7 +76,17 @@ describe('ClientServer', function () {
         });
       }
 
-      await clean();
+      try {
+        for (state.i = 0; state.i < TIMES; state.i++) {
+          simulateClient(state.i);
+          await sso.sleep(DELAY);
+        }
+        await clean();
+        debug('finished');
+      } catch (e) {
+        console.error(e);
+        throw e;
+      }
     });
   }
 });

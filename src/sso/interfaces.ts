@@ -19,6 +19,15 @@ export type Middleware = (
   next: NextFunction
 ) => void;
 
+export type CookieToken = string;
+
+export type MessageType =
+  | 'NTLM_NEGOTIATE'
+  | 'NTLM_CHALLENGE'
+  | 'NTLM_AUTHENTICATE'
+  | 'Kerberos_1'
+  | 'Kerberos_N';
+
 export type NextFunction = (error?: Error) => void | Promise<void>;
 
 /**
