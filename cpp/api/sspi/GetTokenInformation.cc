@@ -66,7 +66,6 @@ Napi::Value e_GetTokenInformation(const Napi::CallbackInfo& info) {
         std::string fullGroupName = plf::wstrtostr(domain_name) +
                                     std::string("\\") +
                                     plf::wstrtostr(group_name);
-        log("fullGroupName=%s", fullGroupName.c_str());
         if (!std::regex_match(fullGroupName, std::regex(filter.c_str()))) {
           continue;
         }
