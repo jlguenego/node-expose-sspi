@@ -1,12 +1,12 @@
 import express = require('express');
-import { sso } from 'node-expose-sspi';
+import { sso } from '../../src';
 
 (async (): Promise<void> => {
   await sso.init();
   const app = express();
 
   app.use(
-    sso.auth({ useGroups: true, useOwner: false, useActiveDirectory: true })
+    sso.auth({ useGroups: true, useOwner: false, useActiveDirectory: true, useCookies: true })
   );
 
   app.use((req, res) => {

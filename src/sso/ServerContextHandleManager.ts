@@ -16,9 +16,7 @@ interface AuthItem {
 }
 
 interface ContextInfo {
-  serverContextHandle?: CtxtHandle;
-  req: http.IncomingMessage;
-  res: http.ServerResponse;
+  serverContextHandle: CtxtHandle;
   method: SSOMethod;
 }
 
@@ -36,19 +34,18 @@ export class ServerContextHandleManager {
 
   constructor(private delayMax = 20000) {}
 
-  initCookie(
-    req: http.IncomingMessage,
-    res: http.ServerResponse
-  ): CookieToken {
+  initCookie(req: http.IncomingMessage, res: http.ServerResponse): CookieToken {
     debug('initCookie');
     let cookieToken = parseCookies(req)[COOKIE_KEY];
     if (!cookieToken) {
       cookieToken = COOKIE_PREFIX_VALUE + Math.floor(1e10 * Math.random());
       // create a session cookie (without expiration specified)
       res.setHeader('Set-Cookie', COOKIE_KEY + '=' + cookieToken);
+    }
+    if (!this.sessionMap.has(cookieToken)) {
       this.sessionMap.set(cookieToken, {
-        req,
-        res,
+        method: undefined,
+        serverContextHandle: undefined,
       } as ContextInfo);
     }
     return cookieToken;
@@ -58,21 +55,25 @@ export class ServerContextHandleManager {
     if (cookieToken) {
       return Promise.resolve();
     }
-    debug("waitForReleased: start");
+    debug('waitForReleased: start');
     return new Promise((resolve, reject) => {
-      debug("waitForReleased: start promise");
+      debug('waitForReleased: start promise');
       // if nobody else is currently authenticating then go now.
       const authItem = { resolve, reject };
       const timeout = setTimeout(() => {
         this.tooLate(authItem);
       }, this.delayMax);
       if (this.authItem === undefined) {
-        debug("waitForReleased: no other authentication ongoing: we can start now.");
+        debug(
+          'waitForReleased: no other authentication ongoing: we can start now.'
+        );
         this.authItem = { resolve, reject, timeout };
         return this.authItem.resolve();
       }
 
-      debug('someone is currently authenticating, go in the queue and wait for your turn.');
+      debug(
+        'someone is currently authenticating, go in the queue and wait for your turn.'
+      );
       this.queue.push({ resolve, reject, timeout });
       debug('queue length', this.queue.length);
     });
