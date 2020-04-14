@@ -11,6 +11,7 @@
 * [CredHandle](../interfaces/_lib_sspi_d_.credhandle.md)
 * [CredentialWithExpiry](../interfaces/_lib_sspi_d_.credentialwithexpiry.md)
 * [CtxtHandle](../interfaces/_lib_sspi_d_.ctxthandle.md)
+* [GetTokenInformationInput](../interfaces/_lib_sspi_d_.gettokeninformationinput.md)
 * [HANDLE](../interfaces/_lib_sspi_d_.handle.md)
 * [InitializeSecurityContextInput](../interfaces/_lib_sspi_d_.initializesecuritycontextinput.md)
 * [SecPkgInfo](../interfaces/_lib_sspi_d_.secpkginfo.md)
@@ -32,7 +33,7 @@
 
 Ƭ **InformationClass**: *"TokenGroups"*
 
-*Defined in [lib/sspi.d.ts:65](https://github.com/jlguenego/node-expose-sspi/blob/1283254/lib/sspi.d.ts#L65)*
+*Defined in [lib/sspi.d.ts:65](https://github.com/jlguenego/node-expose-sspi/blob/45f90aa/lib/sspi.d.ts#L65)*
 
 ___
 
@@ -40,7 +41,7 @@ ___
 
 Ƭ **SecuritySupportProvider**: *"NTLM" | "Kerberos" | "Negotiate"*
 
-*Defined in [lib/sspi.d.ts:11](https://github.com/jlguenego/node-expose-sspi/blob/1283254/lib/sspi.d.ts#L11)*
+*Defined in [lib/sspi.d.ts:11](https://github.com/jlguenego/node-expose-sspi/blob/45f90aa/lib/sspi.d.ts#L11)*
 
 ___
 
@@ -48,7 +49,7 @@ ___
 
 Ƭ **Token**: *string*
 
-*Defined in [lib/sspi.d.ts:63](https://github.com/jlguenego/node-expose-sspi/blob/1283254/lib/sspi.d.ts#L63)*
+*Defined in [lib/sspi.d.ts:63](https://github.com/jlguenego/node-expose-sspi/blob/45f90aa/lib/sspi.d.ts#L63)*
 
 A Token is a pointer to some user information.
 

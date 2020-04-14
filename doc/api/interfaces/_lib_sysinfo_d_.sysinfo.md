@@ -18,7 +18,7 @@
 
 ▸ **GetComputerNameEx**(`name`: [ComputerNameFormatFlag](../modules/_lib_flags_index_d_.md#computernameformatflag)): *string*
 
-*Defined in [lib/sysinfo.d.ts:4](https://github.com/jlguenego/node-expose-sspi/blob/1283254/lib/sysinfo.d.ts#L4)*
+*Defined in [lib/sysinfo.d.ts:4](https://github.com/jlguenego/node-expose-sspi/blob/45f90aa/lib/sysinfo.d.ts#L4)*
 
 **Parameters:**
 
