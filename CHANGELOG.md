@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.21](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.20...v0.1.21) (2020-04-14)
+
+
+### Features
+
+* added message type detection ([eaf332f](https://github.com/jlguenego/node-expose-sspi/commit/eaf332fe076a7d1b8031a79b6d9e6a813bbb844a))
+
+
+### Bug Fixes
+
+* client did not saved cookies correctly ([df51b51](https://github.com/jlguenego/node-expose-sspi/commit/df51b519e4b4792919a6a0189d9ac5c1a47a7b69))
+* improve doc readability ([2cf7b18](https://github.com/jlguenego/node-expose-sspi/commit/2cf7b18060fbd7c009a951c79d820974e75c18b8))
+* test independant of domain name ([c5dfefe](https://github.com/jlguenego/node-expose-sspi/commit/c5dfefeccf11f0079640124115162566c7bb39c9))
+
 ### [0.1.20](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.19...v0.1.20) (2020-04-13)
 
 
