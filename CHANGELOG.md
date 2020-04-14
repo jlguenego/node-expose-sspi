@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.23](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.22...v0.1.23) (2020-04-14)
+
+
+### Features
+
+* add filter to GetTokenInformation ([50ae48b](https://github.com/jlguenego/node-expose-sspi/commit/50ae48bbcfa2458baaa6ccad7241445596bab8c8))
+* added filter group options to auth() ([12cc946](https://github.com/jlguenego/node-expose-sspi/commit/12cc946bf9f3a8c8caffdec5169d28d5efb4a228))
+
+
+### Bug Fixes
+
+* useCookie was not working ([c8f2848](https://github.com/jlguenego/node-expose-sspi/commit/c8f2848d7a11fe43e6cd3900775ddc6e195293a1))
+
 ### [0.1.22](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.21...v0.1.22) (2020-04-14)
 
 
