@@ -7,8 +7,9 @@ app.use(
   sso.auth({
     useGroups: true,
     useOwner: false,
-    useActiveDirectory: false,
+    useActiveDirectory: true,
     useCookies: true,
+    groupFilterRegex: ".*NT AUTHORITY.*"
   })
 );
 

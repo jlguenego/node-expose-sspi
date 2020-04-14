@@ -24,6 +24,7 @@ export function auth(options: AuthOptions = {}): Middleware {
     useGroups: true,
     useOwner: false,
     useCookies: true,
+    groupFilterRegex: ".*",
   };
   Object.assign(opts, options);
 

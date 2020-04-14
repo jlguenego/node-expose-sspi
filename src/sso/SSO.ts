@@ -47,6 +47,7 @@ export class SSO {
       const groups = sspi.GetTokenInformation({
         accessToken: userToken,
         tokenInformationClass: 'TokenGroups',
+        filter: this.options.groupFilterRegex,
       });
       debug('groups: ', groups);
       this.user.groups = groups;
@@ -91,6 +92,7 @@ export class SSO {
         const ownerGroups = sspi.GetTokenInformation({
           accessToken: processToken,
           tokenInformationClass: 'TokenGroups',
+          filter: this.options.groupFilterRegex,
         });
         debug('ownerGroups: ', ownerGroups);
         this.owner.groups = ownerGroups;

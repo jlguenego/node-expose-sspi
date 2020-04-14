@@ -79,6 +79,16 @@ export interface AuthOptions {
    * @memberof AuthOptions
    */
   useCookies?: boolean;
+
+  /**
+   * Filter the groups. Useful if there are too much groups to fetch.
+   *
+   * @default ".*"
+   *
+   * @type {string}
+   * @memberof AuthOptions
+   */
+  groupFilterRegex?: string;
 }
 
 export interface User {

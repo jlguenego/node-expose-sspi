@@ -236,8 +236,8 @@ Any idea of new features ? Please tell me and raise an issue. :blush:
 - Funding
 - Integrate with passport?
 - Test with 10000 users.
-- Filter groups options.
 - UTF8 everywhere
+
 
 Scenario:
 - linux trial.
