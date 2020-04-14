@@ -14,6 +14,7 @@
     "build:tsw": "tsc -p src -w",
     "dev": "nodemon -x \"npm run build\"",
     "devtest": "nodemon -x \"npm run build && npm run test\"",
+    "devserve": "nodemon -x \"npm run build && ts-node examples/typescript/server.ts\"",
     "pretest": "require-self",
     "test": "mocha",
     "ex:server": "nodemon examples/express-simple/server.js",

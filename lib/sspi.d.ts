@@ -162,6 +162,12 @@ export interface AcceptSecurityContextInput {
   targetDataRep?: TargetDataRepMapFlag;
 }
 
+export interface GetTokenInformationInput {
+  accessToken: Token;
+  tokenInformationClass: InformationClass;
+  filter?: string;
+}
+
 export interface Sspi {
   /**
    * Just a hello world function. Useless... ;)
@@ -298,7 +304,7 @@ export interface Sspi {
    * @returns {*}
    * @memberof Sspi
    */
-  GetTokenInformation(token: Token, infoClass: InformationClass): any;
+  GetTokenInformation(input: GetTokenInformationInput): any;
 
   /**
    * Free allocated memory referenced by the handle.

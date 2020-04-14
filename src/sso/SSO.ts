@@ -44,7 +44,10 @@ export class SSO {
     sspi.RevertSecurityContext(this.serverContextHandle);
 
     if (this.options.useGroups) {
-      const groups = sspi.GetTokenInformation(userToken, 'TokenGroups');
+      const groups = sspi.GetTokenInformation({
+        accessToken: userToken,
+        tokenInformationClass: 'TokenGroups',
+      });
       debug('groups: ', groups);
       this.user.groups = groups;
     }
@@ -85,10 +88,10 @@ export class SSO {
           'TOKEN_QUERY',
           'TOKEN_QUERY_SOURCE',
         ]);
-        const ownerGroups = sspi.GetTokenInformation(
-          processToken,
-          'TokenGroups'
-        );
+        const ownerGroups = sspi.GetTokenInformation({
+          accessToken: processToken,
+          tokenInformationClass: 'TokenGroups',
+        });
         debug('ownerGroups: ', ownerGroups);
         this.owner.groups = ownerGroups;
         sspi.CloseHandle(processToken);

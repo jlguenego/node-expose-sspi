@@ -1,7 +1,14 @@
 import { sspi, sso, AcquireCredHandleInput } from '../src';
 import os from 'os';
 import a from 'assert';
-import { CredentialWithExpiry, ServerSecurityContext, SecurityContext, InitializeSecurityContextInput, AcceptSecurityContextInput, Token } from '../lib/sspi';
+import {
+  CredentialWithExpiry,
+  ServerSecurityContext,
+  SecurityContext,
+  InitializeSecurityContextInput,
+  AcceptSecurityContextInput,
+  Token,
+} from '../lib/sspi';
 const assert = a.strict;
 
 describe('SSPI Unit Test', function () {
@@ -137,7 +144,10 @@ describe('SSPI Unit Test', function () {
 
     sspi.RevertSecurityContext(serverSecurityContext.contextHandle);
 
-    const userGroups = sspi.GetTokenInformation(userToken, 'TokenGroups');
+    const userGroups = sspi.GetTokenInformation({
+      accessToken: userToken,
+      tokenInformationClass: 'TokenGroups',
+    });
     sspi.CloseHandle(userToken);
     assert(userGroups);
     assert(userGroups instanceof Array);
@@ -197,7 +207,10 @@ describe('SSPI Unit Test', function () {
   });
 
   it('should test GetTokenInformation', function () {
-    const groups = sspi.GetTokenInformation(accessToken, 'TokenGroups');
+    const groups = sspi.GetTokenInformation({
+      accessToken,
+      tokenInformationClass: 'TokenGroups',
+    });
     assert(groups instanceof Array);
     assert(typeof groups[0] === 'string');
   });

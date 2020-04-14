@@ -1,5 +1,10 @@
-import { sso, sspi, sysinfo } from 'node-expose-sspi';
-import { CredentialUseFlag } from '../../lib/flags/CredentialUseFlag';
+import {
+  sso,
+  sspi,
+  sysinfo,
+  CredentialUseFlag,
+  AcquireCredHandleInput,
+} from 'node-expose-sspi';
 import os from 'os';
 
 const result = sspi.hello();
@@ -30,7 +35,7 @@ const credInput = {
     password: 'toto',
   },
   credentialUse: 'SECPKG_CRED_OUTBOUND' as CredentialUseFlag,
-};
+} as AcquireCredHandleInput;
 console.log('credInput: ', credInput);
 
 const clientCred = sspi.AcquireCredentialsHandle(credInput);
@@ -109,7 +114,11 @@ console.log('userToken: ', userToken);
 sspi.RevertSecurityContext(serverSecurityContext.contextHandle);
 console.log('revert security context ok');
 
-const userGroups = sspi.GetTokenInformation(userToken, 'TokenGroups');
+const userGroups = sspi.GetTokenInformation({
+  accessToken: userToken,
+  tokenInformationClass: 'TokenGroups',
+  filter: '.*dmin.*',
+});
 console.log('userGroups: ', userGroups);
 
 sspi.CloseHandle(userToken);
@@ -138,7 +147,10 @@ const accessToken = sspi.QuerySecurityContextToken(
 );
 console.log('accessToken: ', accessToken);
 
-const groups = sspi.GetTokenInformation(accessToken, 'TokenGroups');
+const groups = sspi.GetTokenInformation({
+  accessToken,
+  tokenInformationClass: 'TokenGroups',
+});
 console.log('groups: ', groups);
 
 sspi.CloseHandle(accessToken);
