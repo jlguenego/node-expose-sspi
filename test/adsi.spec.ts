@@ -1,6 +1,11 @@
-import { adsi, sspi, sso } from '../src';
+import { adsi, sspi, sso, sysinfo } from '../src';
 import a from 'assert';
-import { IADsContainer, IDirectorySearch, ColumnVal } from '../lib/adsi';
+import {
+  IADsContainer,
+  IDirectorySearch,
+  ColumnVal,
+  LDAPObject,
+} from '../lib/adsi';
 import dbg from 'debug';
 
 const debug = dbg('node-expose-sspi:test');
@@ -47,6 +52,7 @@ describe('ADSI Unit Test', function () {
     });
 
     let distinguishedName: string;
+    const users: LDAPObject[] = [];
     it('should get the Root Distinguished Name (LDAP notion) for the domain', async function () {
       const root = await adsi.ADsGestObject('LDAP://rootDSE');
       distinguishedName = await root.Get('defaultNamingContext');
@@ -64,7 +70,7 @@ describe('ADSI Unit Test', function () {
       dirsearch.ExecuteSearch({
         filter: '(&(objectClass=user)(objectCategory=person)(sn=*))',
       });
-      const result = [];
+
       let hr = dirsearch.GetFirstRow();
       if (hr === adsi.S_ADS_NOMORE_ROWS) {
         throw new Error('GetFirstRow: no more rows');
@@ -77,7 +83,7 @@ describe('ADSI Unit Test', function () {
         firstRow[colName] = value;
         colName = dirsearch.GetNextColumnName();
       }
-      result.push(firstRow);
+      users.push(firstRow);
 
       while (true) {
         const row: { [colName: string]: ColumnVal } = {};
@@ -91,16 +97,17 @@ describe('ADSI Unit Test', function () {
           row[colName] = value;
           colName = dirsearch.GetNextColumnName();
         }
-        result.push(row);
+        users.push(row);
       }
       dirsearch.Release();
     });
 
     let fullName: string;
+    const domain = sysinfo.GetComputerNameEx('ComputerNameDnsDomain');
     it('should test ADsGestObject with WinNT provider', async function () {
       const username = sspi.GetUserName();
       const myself = await adsi.ADsGestObject(
-        `WinNT://jlg.local/${username},user`
+        `WinNT://${domain}/${username},user`
       );
       fullName = await myself.Get('FullName');
       assert(fullName);
@@ -111,14 +118,11 @@ describe('ADSI Unit Test', function () {
 
     let guid: string;
     it('should test AdsGestObject with LDAP provider', async function () {
-      debug('distinguishedName: ', distinguishedName);
-      debug('fullName: ', fullName);
-      const iads = await adsi.ADsGestObject(
-        `LDAP://CN=${fullName},OU=JLG_LOCAL,${distinguishedName}`
-      );
+      const ldapDistinguisedName = users[0].distinguishedName[0];
+      const iads = await adsi.ADsGestObject(`LDAP://${ldapDistinguisedName}`);
       const str = iads.get_Name();
       assert(str, 'string is falsy');
-      assert(str === 'CN=' + fullName, 'string does not start with CN=' + fullName);
+      assert(str.startsWith('CN='), 'string does not start with CN=');
       iads.GetInfoEx();
       iads.GetInfoEx('sn');
       const sn = await iads.Get('sn');
@@ -137,7 +141,7 @@ describe('ADSI Unit Test', function () {
         `LDAP://jlg.local/<GUID=${guid}>`
       );
       const cname = myself2.get_Name();
-      assert(cname === 'CN=' + fullName);
+      assert(cname.startsWith('CN='));
       myself2.Release();
     });
 

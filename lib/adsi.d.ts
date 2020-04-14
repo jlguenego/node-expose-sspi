@@ -28,6 +28,9 @@ export interface IDirectorySearch extends IID {
 }
 
 export type ColumnVal = (string | number | boolean | undefined)[];
+export interface LDAPObject {
+  [colName: string]: ColumnVal;
+}
 
 export type RiidFlag =
   | 'IID_IADs'
