@@ -15,10 +15,8 @@ const debug = dbg('node-expose-sspi:test');
 describe('CRASH Unit Test', function () {
   this.timeout(15000);
 
-  it('should crash', async function () {
+  it('should crash', function () {
     adsi.CoInitializeEx(['COINIT_MULTITHREADED']);
-
-    const packageInfo = sspi.QuerySecurityPackageInfo('Negotiate');
 
     const clientCred = sspi.AcquireCredentialsHandle({
       packageName: 'Negotiate',
@@ -28,7 +26,7 @@ describe('CRASH Unit Test', function () {
     const clientSecurityContext = sspi.InitializeSecurityContext({
       credential: clientCred.credential,
       targetName: 'kiki',
-      cbMaxToken: packageInfo.cbMaxToken,
+      cbMaxToken: 48256,
       targetDataRep: 'SECURITY_NATIVE_DREP',
     });
 
