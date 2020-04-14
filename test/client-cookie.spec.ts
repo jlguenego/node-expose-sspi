@@ -9,7 +9,7 @@ describe('COOKIE Unit Test', function() {
   it('should test client with cookie', async function() {
     this.timeout(15000);
     const app = express();
-    app.use(sso.auth({ useActiveDirectory: false, useCookies: true }));
+    app.use(sso.auth({ useActiveDirectory: true, useCookies: true }));
     app.use((req, res) => {
       res.json({
         cookie: req.headers.cookie,

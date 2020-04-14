@@ -23,13 +23,13 @@ export function auth(options: AuthOptions = {}): Middleware {
     useActiveDirectory: true,
     useGroups: true,
     useOwner: false,
-    useCookies: false,
+    useCookies: true,
   };
   Object.assign(opts, options);
 
-  if (opts.useActiveDirectory && opts.useCookies) {
-    opts.useCookies = false;
-  }
+  // if (opts.useActiveDirectory && opts.useCookies) {
+  //   opts.useCookies = false;
+  // }
 
   let { credential, tsExpiry } = sspi.AcquireCredentialsHandle({
     packageName: 'Negotiate',
