@@ -4,6 +4,7 @@ import { isOnDomain, isActiveDirectoryReachable } from './domain';
 import dbg from 'debug';
 import { Database, ADUser, ADUsers } from './interfaces';
 import { activeDirectoryMutex } from './mutex';
+import { openADConnection, closeADConnection } from './adConnection';
 
 const debug = dbg('node-expose-sspi:userdb');
 
@@ -46,7 +47,7 @@ export async function getUser(ldapFilter: string): Promise<ADUser> {
     console.error('Warning: Active Directory not reachable');
     return;
   }
-  adsi.CoInitializeEx(['COINIT_MULTITHREADED']);
+  openADConnection();
   let dirsearch: IDirectorySearch;
   try {
     const distinguishedName = await getDistinguishedName();
@@ -75,7 +76,7 @@ export async function getUser(ldapFilter: string): Promise<ADUser> {
     if (dirsearch) {
       dirsearch.Release();
     }
-    adsi.CoUninitialize();
+    closeADConnection();
     adRelease();
     debug('getUser end');
   }
@@ -92,7 +93,7 @@ export async function getUsers(): Promise<ADUsers> {
     return;
   }
   const result: ADUsers = [];
-  adsi.CoInitializeEx(['COINIT_MULTITHREADED']);
+  openADConnection();
   let dirsearch;
   try {
     const distinguishedName = await getDistinguishedName();
@@ -124,7 +125,7 @@ export async function getUsers(): Promise<ADUsers> {
     if (dirsearch) {
       dirsearch.Release();
     }
-    adsi.CoUninitialize();
+    closeADConnection();
     adRelease();
     debug('getUsers end');
   }

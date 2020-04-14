@@ -1,5 +1,6 @@
 import { sspi, sysinfo, adsi } from '../../lib/api';
 import { IADsContainer, IDirectorySearch, IDispatch } from '../../lib/adsi';
+import { openADConnection, closeADConnection } from './adConnection';
 
 /**
  * Get the domain (Microsoft domain) or hostname (workgroup) of this machine.
@@ -28,7 +29,7 @@ export function isActiveDirectoryReachable(): boolean {
   let ds: IDirectorySearch;
 
   try {
-    adsi.CoInitialize();
+    openADConnection();
     gc = adsi.ADsOpenObjectSync<IADsContainer>({
       binding: 'GC:',
       riid: 'IID_IADsContainer',
@@ -41,7 +42,7 @@ export function isActiveDirectoryReachable(): boolean {
     ds?.Release();
     element?.Release();
     gc?.Release();
-    adsi.CoUninitialize();
+    closeADConnection();
   }
   return true;
 }

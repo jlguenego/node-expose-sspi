@@ -12,6 +12,7 @@ import './interfaces';
 import { Client, getSPNFromURI } from './client';
 import { Mutex } from './mutex';
 import { init, database, getUsers, getUser } from './userdb';
+import { openADConnection, closeADConnection } from './adConnection';
 
 export const sso = {
   hexDump,
@@ -29,4 +30,6 @@ export const sso = {
   getUsers,
   getUser,
   Mutex,
+  openADConnection,
+  closeADConnection
 };
