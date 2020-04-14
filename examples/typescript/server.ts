@@ -1,5 +1,5 @@
 import express = require('express');
-import { sso } from '../../src';
+import { sso } from 'node-expose-sspi';
 
 (async (): Promise<void> => {
   await sso.init();
