@@ -1,6 +1,9 @@
 import { adsi, sspi, sso } from '../src';
 import a from 'assert';
 import { IADsContainer, IDirectorySearch, ColumnVal } from '../lib/adsi';
+import dbg from 'debug';
+
+const debug = dbg('node-expose-sspi:test');
 
 const assert = a.strict;
 
@@ -108,12 +111,14 @@ describe('ADSI Unit Test', function () {
 
     let guid: string;
     it('should test AdsGestObject with LDAP provider', async function () {
+      debug('distinguishedName: ', distinguishedName);
+      debug('fullName: ', fullName);
       const iads = await adsi.ADsGestObject(
         `LDAP://CN=${fullName},OU=JLG_LOCAL,${distinguishedName}`
       );
       const str = iads.get_Name();
-      assert(str);
-      assert(str === 'CN=' + fullName);
+      assert(str, 'string is falsy');
+      assert(str === 'CN=' + fullName, 'string does not start with CN=' + fullName);
       iads.GetInfoEx();
       iads.GetInfoEx('sn');
       const sn = await iads.Get('sn');
