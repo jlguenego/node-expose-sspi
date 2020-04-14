@@ -119,6 +119,7 @@ describe('ADSI Unit Test', function () {
     let guid: string;
     it('should test AdsGestObject with LDAP provider', async function () {
       const ldapDistinguisedName = users[0].distinguishedName[0];
+      debug('ldapDistinguisedName: ', ldapDistinguisedName);
       const iads = await adsi.ADsGestObject(`LDAP://${ldapDistinguisedName}`);
       const str = iads.get_Name();
       assert(str, 'string is falsy');
