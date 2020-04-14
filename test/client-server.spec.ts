@@ -15,7 +15,7 @@ describe('ClientServer', function () {
         sso.auth({
           useOwner: true,
           useActiveDirectory: true,
-          useCookies: true,
+          useCookies: false,
         })
       );
       app.use((req, res) => {
