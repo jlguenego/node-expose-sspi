@@ -218,7 +218,7 @@ npm run test
 ```
 
 There are 2 dev areas :
-- **C++ code**: run `npm run dev` to watch the modifications and recompile ASAP. It runs the test as well.
+- **C++ code**: run `npm run dev` to watch the modifications and recompile ASAP.
 - **Typescript code**: run `npm run build:tsw` to recompile while watching.
 
 All tests are done with [mocha](https://github.com/mochajs/mocha).
