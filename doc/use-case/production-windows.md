@@ -34,6 +34,8 @@ For this example, let say that all host have a name:
 
 ## Configuring server-host
 
+Connect with `erp@jlg.local` user account.
+
 ```
 mkdir myserver
 cd myserver
@@ -62,7 +64,7 @@ app.listen(3000, () =>
 );
 ```
 
-You need to be connected as a Window Domain user.
+You need to be connected as the Window Domain user `erp@jlg.local`.
 
 Start the server:
 ```cmd
