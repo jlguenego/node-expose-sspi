@@ -77,5 +77,6 @@
     },
     "files.exclude": {
         "**/*.js": false
-    }
+    },
+    "pasteImage.path": "${currentFileDir}/img"
 }

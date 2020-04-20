@@ -21,7 +21,7 @@ You need to have many hosts:
 For this example, let say the domain name is:
 - jlg.local (NETBIOS: JLG)
 
-Suppose we have two window domain accounts:
+Suppose we have two Windows domain accounts:
 - `marcel@jlg.local`: a user account for client.
 - `erp@jlg.local`: a user account for server.
 Please create the above accounts on the domain controller (AD DS).
@@ -74,12 +74,22 @@ Test the server locally:
 start chrome http://musette:3000
 ```
 
+You should see something like this:
+```cmd
+{
+  "method": "NTLM",
+  "displayName": "<your-account-name>"
+}
+```
+
 ## Configuring reverse-proxy-host
 
 You need to configure the DNS via an app called *DNS Manager*:
-- add a Host(A) rule: `kiki` -> `192.168.1.216`
+- under the domain zone, add a Host(A) rule: `kiki` -> `192.168.1.216`
 
 It means that `jlgdc01` and `kiki` means the same machine: the reverse-proxy-host.
+
+![](img/2020-04-20-12-27-33.png)
 
 You need to configure IIS as a reverse proxy via *IIS Manager*:
 - look at this [microsoft documentation](https://docs.microsoft.com/fr-fr/archive/blogs/friis/setup-iis-with-url-rewrite-as-a-reverse-proxy-for-real-world-apps)
