@@ -149,28 +149,47 @@ Edge does not require any configuration. But the browser ask the credentials to 
 
 The API is automatically documented with [typedoc](https://github.com/TypeStrong/typedoc).
 
-
 **[Access to the detailed API document](./doc/api/README.md)**. 
 
-Note: you should read all the [sso source code](./src). You will see how powerfull the `api.sspi`, and `api.adsi` can bring to you.
+You should read all the [sso source code](./src). You will see how powerfull the native primitive exposed in `api.sspi`, and `api.adsi` can bring to you.
 
 You can also read the `mocha` [unit tests](./test) to see small examples.
 
-#### Typescript
+## Typescript
 
-This module is also integrated with Typescript.
+This module is written in two part: one native in C++ (Windows toolchain) and the other one in Typescript.
+So anything else is needed to use this module in typescript code.
 
 [Typescript example](./doc/typescript.md)
 
-#### NTLM
+## Authentication protocols
 
-If you are not on a Microsoft Windows Active Directory Domain, it will use the NLTM authentication protocol.
+### Kerberos
 
-Note: the NTLM protocol is not very secure, so be sure to be above HTTPS.
+Kerberos is recommanded for production running. For running with Kerberos protocol, both client and server needs to be joined on a [Windows Domain](https://en.wikipedia.org/wiki/Windows_domain).
 
-#### Kerberos
+3 conditions must be met for running Kerberos:
+- The node server, running `node-expose-sspi` needs to be run as a domain user with service principal name (SPN) declared in Active Directory.
+- The client browser needs to be run on a windows domain account.
+- The website url needs to be declared in a white list of intranet website.
 
-You should see [this Node Expose SSPI Kerberos dedicated documentation](./doc/Kerberos.md).
+[You can find more detail in the Kerberos dedicated documentation](./doc/Kerberos.md).
+
+### NTLM
+
+If you are not on a Windows Domain, `node-expose-sspi` will use the NLTM authentication protocol.
+
+If both the server and the client are on a Windows Domain, NTLM will be used if the Kerberos conditions are not met. [See the Kerberos chapter of this README](#Kerberos).
+
+The NTLM protocol is less secure than Kerberos and not secure at all if you are not under an HTTPS connection. This is because both login and password hash go on the HTTP request, just encoded in base64...
+
+Another thing bad in NTLM is that browsers sometimes popup a dialog box to ask credentials to the user. Your users don't like that. This is a bad user experience.
+
+## Production running
+
+### Server behind a reverse proxy
+
+[Example: node server behind an IIS proxy](./doc/use-case/production-windows.md)
 
 ## Examples
 
