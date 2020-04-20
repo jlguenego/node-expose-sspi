@@ -89,8 +89,6 @@ You need to configure the DNS via an app called *DNS Manager*:
 
 It means that `jlgdc01` and `kiki` means the same machine: the reverse-proxy-host.
 
-![](img/2020-04-20-12-27-33.png)
-
 You need to configure IIS as a reverse proxy via *IIS Manager*:
 - look at this [microsoft documentation](https://docs.microsoft.com/fr-fr/archive/blogs/friis/setup-iis-with-url-rewrite-as-a-reverse-proxy-for-real-world-apps)
 - install `URL Rewrite`
