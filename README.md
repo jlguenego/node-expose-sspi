@@ -256,6 +256,7 @@ Any idea of new features ? Please tell me and raise an issue. :blush:
 - Integrate with passport?
 - Test with 10000 users.
 - UTF8 everywhere
+- Compile 32 bits version (node-pre-gyp or something else ?)
 
 
 Scenario:
