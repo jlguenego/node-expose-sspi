@@ -8,7 +8,7 @@ Expose the Microsoft Windows SSPI (SSP Interface) to [Node.js®](https://nodejs.
 - **NTLM** and **Kerberos** SSO authentication, both server and client inside a private windows organization network, for instance an ERP in a private company.
 - **Active Directory** access to users for detailed info.
 
-Requirements: Microsoft Windows OS, NodeJS version >=12.16.1.
+Requirements: Microsoft Windows OS, NodeJS version >=12.16.1. Architecture: x64 or ia32.
 
 ## Install
 
@@ -244,6 +244,10 @@ All tests are done with [mocha](https://github.com/mochajs/mocha).
 
 The module [debug](https://github.com/visionmedia/debug) is used for printing some debug info.
 
+## Hardware architecture
+
+Both ia32 and x64 are compiled. At the `postinstall` stage, the `api.node` file matching the computer architecture is copied into the `/lib/api.node` location.
+
 ## TODO
 
 Any idea of new features ? Please tell me and raise an issue. :blush:
@@ -256,7 +260,6 @@ Any idea of new features ? Please tell me and raise an issue. :blush:
 - Integrate with passport?
 - Test with 10000 users.
 - UTF8 everywhere
-- Compile 32 bits version (node-pre-gyp or something else ?)
 
 
 Scenario:
