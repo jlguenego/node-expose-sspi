@@ -21,17 +21,19 @@ describe('SSO Unit Test', function () {
     assert(domain.length > 0);
   });
 
-  it('should test sso.init()', async function () {
-    this.timeout(15000);
-    sso.init();
-    await sso.getUsers();
-    await sso.sleep(5000);
-  });
+  if (sso.isOnDomain() && sso.isActiveDirectoryReachable()) {
+    it('should test sso.init()', async function () {
+      this.timeout(15000);
+      sso.init();
+      await sso.getUsers();
+      await sso.sleep(5000);
+    });
 
-  it('should test sso.getUser()', async function () {
-    this.timeout(15000);
-    await sso.getUser(`sAMAccountName=${os.userInfo().username}`);
-  });
+    it('should test sso.getUser()', async function () {
+      this.timeout(15000);
+      await sso.getUser(`sAMAccountName=${os.userInfo().username}`);
+    });
+  }
 
   it('should test sso.mutex', function () {
     this.timeout(15000);

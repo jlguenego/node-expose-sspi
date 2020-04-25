@@ -9,6 +9,7 @@
   "scripts": {
     "lint": "eslint .",
     "build": "node-gyp rebuild -j 8",
+    "build:arch": "ts-node ./scripts/build.ts",
     "build:doc": "typedoc ./src/sso ./lib",
     "build:ts": "tsc -p src",
     "build:tsw": "tsc -p src -w",
@@ -21,7 +22,8 @@
     "ex:client:server": "nodemon examples/client/server.js",
     "ex:ts": "ts-node examples/typescript/index.ts",
     "ex:ts:server": "nodemon examples/typescript/server.ts",
-    "release": "standard-version"
+    "release": "standard-version",
+    "postinstall": "node ./scripts/install.js"
   },
   "keywords": [
     "SSPI",

@@ -1,6 +1,6 @@
 node_modules/
 /build
-/lib/*.node
+*.node
 /srs/*.js
 /dist
 *.log
