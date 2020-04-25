@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.24](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.23...v0.1.24) (2020-04-25)
+
+
+### Features
+
+* add ia32 architecture ([71d5a53](https://github.com/jlguenego/node-expose-sspi/commit/71d5a531a78dabca2680d7b66424c0eb731996c3))
+* the groups are ordered ([3b7e141](https://github.com/jlguenego/node-expose-sspi/commit/3b7e1410408c60943005315ee5ab3c8070349595))
+
 ### [0.1.23](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.22...v0.1.23) (2020-04-14)
 
 
