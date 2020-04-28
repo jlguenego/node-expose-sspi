@@ -8,7 +8,7 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "build": "node-gyp rebuild -j 8",
+    "build": "node-gyp rebuild -j 8 && node ./scripts/move-binary.js",
     "build:arch": "ts-node ./scripts/build.ts",
     "build:doc": "typedoc ./src/sso ./lib",
     "build:ts": "tsc -p src",

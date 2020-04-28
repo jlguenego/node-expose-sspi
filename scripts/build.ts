@@ -25,8 +25,8 @@ async function main(): Promise<void> {
   try {
     console.log('start');
     await spawn(
-      'cmd',
-      ['/c', 'node-gyp', 'rebuild', '--verbose', '--arch=x64'],
+      'node-gyp.cmd',
+      ['rebuild', '--verbose', '--arch=x64'],
       { stdio: 'inherit', cwd: projectDir }
     );
     console.log('about to copy');
@@ -35,8 +35,8 @@ async function main(): Promise<void> {
       path.resolve(projectDir, './lib/arch/x64/api.node')
     );
     await spawn(
-      'cmd',
-      ['/c', 'node-gyp', 'rebuild', '--verbose', '--arch=ia32'],
+      'node-gyp.cmd',
+      ['rebuild', '--verbose', '--arch=ia32'],
       { stdio: 'inherit', cwd: projectDir }
     );
     await fs.rename(
