@@ -21,28 +21,32 @@ function spawn(
 
 const projectDir = path.resolve(__dirname, '..');
 
+// got inspired by https://codeburst.io/javascript-async-await-with-foreach-b6ba62bbf404
+async function asyncForEach<T>(
+  array: T[],
+  callback: (n: T, index?: number, array?: T[]) => Promise<void>
+): Promise<void> {
+  for (let i = 0; i < array.length; i++) {
+    await callback(array[i], i, array);
+  }
+}
+
 async function main(): Promise<void> {
   try {
     console.log('start');
-    await spawn(
-      'node-gyp.cmd',
-      ['rebuild', '--verbose', '--arch=x64'],
-      { stdio: 'inherit', cwd: projectDir }
-    );
-    console.log('about to copy');
-    await fs.rename(
-      path.resolve(projectDir, './build/Release/api.node'),
-      path.resolve(projectDir, './lib/arch/x64/api.node')
-    );
-    await spawn(
-      'node-gyp.cmd',
-      ['rebuild', '--verbose', '--arch=ia32'],
-      { stdio: 'inherit', cwd: projectDir }
-    );
-    await fs.rename(
-      path.resolve(projectDir, './build/Release/api.node'),
-      path.resolve(projectDir, './lib/arch/ia32/api.node')
-    );
+    const array = ['ia32', 'x64'] as string[];
+    await asyncForEach<string>(array, async (arch) => {
+      await spawn('node-gyp.cmd', ['rebuild', '--verbose', `--arch=${arch}`], {
+        stdio: 'inherit',
+        cwd: projectDir,
+      });
+      const dest = path.resolve(projectDir, './lib/arch/x64/api.node');
+      console.log(`about to copy to ${dest}`);
+      await fs.rename(
+        path.resolve(projectDir, './build/Release/api.node'),
+        dest
+      );
+    });
   } catch (error) {
     console.error('error: ', error);
   }
