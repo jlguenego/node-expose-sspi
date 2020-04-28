@@ -2,6 +2,8 @@ import childProcess from 'child_process';
 import { promises as fs } from 'fs';
 import path from 'path';
 
+const projectDir = path.resolve(__dirname, '..');
+
 function spawn(
   cmd: string,
   parameters: readonly string[],
@@ -18,8 +20,6 @@ function spawn(
     });
   });
 }
-
-const projectDir = path.resolve(__dirname, '..');
 
 // got inspired by https://codeburst.io/javascript-async-await-with-foreach-b6ba62bbf404
 async function asyncForEach<T>(
