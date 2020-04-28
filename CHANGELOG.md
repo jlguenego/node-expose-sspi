@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.25](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.24...v0.1.25) (2020-04-28)
+
+
+### Features
+
+* run on ia32 or x64 without any postinstall ([484dc47](https://github.com/jlguenego/node-expose-sspi/commit/484dc47f3b499926d515def9aafb127922877097))
+
 ### [0.1.24](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.23...v0.1.24) (2020-04-25)
 
 
