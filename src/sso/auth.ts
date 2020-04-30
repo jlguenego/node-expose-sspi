@@ -24,7 +24,7 @@ export function auth(options: AuthOptions = {}): Middleware {
     useGroups: true,
     useOwner: false,
     useCookies: true,
-    groupFilterRegex: ".*",
+    groupFilterRegex: '.*',
   };
   Object.assign(opts, options);
 
@@ -75,13 +75,16 @@ export function auth(options: AuthOptions = {}): Middleware {
         debug('cookieToken: ', cookieToken);
 
         const token = authorization.substring('Negotiate '.length);
+        const messageType = getMessageType(token);
+        debug('messageType: ', messageType);
         const buffer = decode(token);
         debug(hexDump(buffer));
 
-        const messageType = getMessageType(token);
-        debug('messageType: ', messageType);
         // test if first token
-        if (messageType === 'NTLM_NEGOTIATE_01' || messageType === 'Kerberos_1') {
+        if (
+          messageType === 'NTLM_NEGOTIATE_01' ||
+          messageType === 'Kerberos_1'
+        ) {
           await schManager.waitForReleased(cookieToken);
           debug('schManager waitForReleased finished.');
           const method = messageType.startsWith('NTLM') ? 'NTLM' : 'Kerberos';
@@ -101,11 +104,12 @@ export function auth(options: AuthOptions = {}): Middleware {
           cookieToken
         );
         if (serverContextHandle) {
+          debug('adding to input a serverContextHandle (not first exchange)');
           input.contextHandle = serverContextHandle;
         }
-        debug('input', input);
+        debug('input just before calling AcceptSecurityContext', input);
         const serverSecurityContext = sspi.AcceptSecurityContext(input);
-        debug('serverSecurityContext', serverSecurityContext);
+        debug('serverSecurityContext just after AcceptSecurityContext', serverSecurityContext);
         if (
           !['SEC_E_OK', 'SEC_I_CONTINUE_NEEDED'].includes(
             serverSecurityContext.SECURITY_STATUS
@@ -148,7 +152,7 @@ export function auth(options: AuthOptions = {}): Middleware {
           await sso.load();
           req.sso = sso.getJSON();
           sspi.DeleteSecurityContext(lastServerContextHandle);
-          schManager.release();
+          schManager.release(cookieToken);
         }
         next();
       } catch (e) {
