@@ -8,7 +8,7 @@ app.use(
     useGroups: true,
     useOwner: false,
     useActiveDirectory: true,
-    useCookies: false,
+    useCookies: true,
     // groupFilterRegex: ".*NT AUTHORITY.*"
   })
 );
