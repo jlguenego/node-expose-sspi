@@ -201,7 +201,7 @@ ___
 
 • **adsi**: *[Adsi](../interfaces/_lib_adsi_d_.adsi.md)*
 
-*Defined in [lib/api.d.ts:8](https://github.com/jlguenego/node-expose-sspi/blob/45f90aa/lib/api.d.ts#L8)*
+*Defined in [lib/api.d.ts:8](https://github.com/jlguenego/node-expose-sspi/blob/cdfba3e/lib/api.d.ts#L8)*
 
 ___
 
@@ -209,7 +209,7 @@ ___
 
 • **sspi**: *[Sspi](../interfaces/_lib_sspi_d_.sspi.md)*
 
-*Defined in [lib/api.d.ts:7](https://github.com/jlguenego/node-expose-sspi/blob/45f90aa/lib/api.d.ts#L7)*
+*Defined in [lib/api.d.ts:7](https://github.com/jlguenego/node-expose-sspi/blob/cdfba3e/lib/api.d.ts#L7)*
 
 ___
 
@@ -217,4 +217,4 @@ ___
 
 • **sysinfo**: *[SysInfo](../interfaces/_lib_sysinfo_d_.sysinfo.md)*
 
-*Defined in [lib/api.d.ts:9](https://github.com/jlguenego/node-expose-sspi/blob/45f90aa/lib/api.d.ts#L9)*
+*Defined in [lib/api.d.ts:9](https://github.com/jlguenego/node-expose-sspi/blob/cdfba3e/lib/api.d.ts#L9)*

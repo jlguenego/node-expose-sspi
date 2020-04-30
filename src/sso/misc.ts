@@ -72,13 +72,13 @@ export function getMessageType(token: string): MessageType {
   const str = toHex(buffer);
   // manage NTLM
   if (str.includes('4e544c4d53535000' + '01')) {
-    return 'NTLM_NEGOTIATE';
+    return 'NTLM_NEGOTIATE_01';
   }
   if (str.includes('4e544c4d53535000' + '02')) {
-    return 'NTLM_CHALLENGE';
+    return 'NTLM_CHALLENGE_02';
   }
   if (str.includes('4e544c4d53535000' + '03')) {
-    return 'NTLM_AUTHENTICATE';
+    return 'NTLM_AUTHENTICATE_03';
   }
   // manage Kerberos:
   if (token.startsWith('YII')) {

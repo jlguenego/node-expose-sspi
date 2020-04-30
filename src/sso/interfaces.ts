@@ -22,9 +22,9 @@ export type Middleware = (
 export type CookieToken = string;
 
 export type MessageType =
-  | 'NTLM_NEGOTIATE'
-  | 'NTLM_CHALLENGE'
-  | 'NTLM_AUTHENTICATE'
+  | 'NTLM_NEGOTIATE_01'
+  | 'NTLM_CHALLENGE_02'
+  | 'NTLM_AUTHENTICATE_03'
   | 'Kerberos_1'
   | 'Kerberos_N';
 

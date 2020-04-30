@@ -85,7 +85,7 @@ export function auth(options: AuthOptions = {}): Middleware {
         const messageType = getMessageType(token);
         debug('messageType: ', messageType);
         // test if first token
-        if (messageType === 'NTLM_NEGOTIATE' || messageType === 'Kerberos_1') {
+        if (messageType === 'NTLM_NEGOTIATE_01' || messageType === 'Kerberos_1') {
           await schManager.waitForReleased(cookieToken);
           debug('schManager waitForReleased finished.');
           const method = messageType.startsWith('NTLM') ? 'NTLM' : 'Kerberos';
