@@ -28,10 +28,6 @@ export function auth(options: AuthOptions = {}): Middleware {
   };
   Object.assign(opts, options);
 
-  // if (opts.useActiveDirectory && opts.useCookies) {
-  //   opts.useCookies = false;
-  // }
-
   let { credential, tsExpiry } = sspi.AcquireCredentialsHandle({
     packageName: 'Negotiate',
   });
