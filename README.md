@@ -252,6 +252,7 @@ Both ia32 and x64 are compiled. At the `postinstall` stage, the `api.node` file 
 
 Any idea of new features ? Please tell me and raise an issue. :blush:
 
+- write a loopback example
 - write a nestjs example
 - write a medium article
 - publish on Facebook
