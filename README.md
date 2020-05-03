@@ -255,9 +255,6 @@ Any idea of new features ? Please tell me and raise an issue. :blush:
 - write a loopback example
 - write a nestjs example
 - write a medium article
-- publish on Facebook
-- Reddit
-- Funding
 - Integrate with passport?
 - Test with 10000 users.
 - UTF8 everywhere
