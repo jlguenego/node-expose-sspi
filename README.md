@@ -268,9 +268,16 @@ Scenario:
 
 ## Thanks
 
-Thanks to all the people who wrotes the npm modules required by this project.
+Thanks to all the people who wrotes vthe npm modules required by this project.
 
 And a very special thanks to the authors of the [node-sspi](https://github.com/abbr/NodeSSPI) project that helped me writing this one. I considere node-sspi to be the father of node-expose-sspi.
+
+## Sponsoring
+
+This library design aims to be used in production, in private company environment, doing business, using Microsoft Windows.
+
+[To help maintaining it, you can sponsor me with github](https://github.com/sponsors/jlguenego).
+
 
 ## Author
 
