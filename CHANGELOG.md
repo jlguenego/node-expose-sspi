@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.27](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.26...v0.1.27) (2020-05-03)
+
+
+### Features
+
+* add funding url ([e437859](https://github.com/jlguenego/node-expose-sspi/commit/e437859c347c225bc25866866f21467ae2c6aef6))
+
 ### [0.1.26](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.25...v0.1.26) (2020-04-30)
 
 ### [0.1.25](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.24...v0.1.25) (2020-04-28)
