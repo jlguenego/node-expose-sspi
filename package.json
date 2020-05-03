@@ -43,6 +43,10 @@
     "type": "git",
     "url": "https://github.com/jlguenego/node-expose-sspi.git"
   },
+  "funding": {
+    "type": "individual",
+    "url": "https://github.com/sponsors/jlguenego"
+  },
   "license": "ISC",
   "gypfile": false,
   "dependencies": {
