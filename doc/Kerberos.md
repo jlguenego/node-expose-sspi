@@ -67,6 +67,10 @@ Then go on your `fifi` Chrome, and run `http://spooky:3000` or `http://spooky.jl
 
 The SSO authentication should be in Kerberos. If you set in the `server.js` file
 
+## What is Kerberos ?
+
+[You can find a good youtube video here](https://www.youtube.com/watch?v=5N242XcKAsM).
+
 ## Author
 
 Jean-Louis GUENEGO <jlguenego@gmail.com> (http://jlg-consulting.com/)
