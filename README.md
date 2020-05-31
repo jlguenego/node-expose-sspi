@@ -132,8 +132,7 @@ Edge does not require any configuration. But the browser ask the credentials to 
 
 ## Typescript
 
-This module is written in two part: one native in C++ (Windows toolchain) and the other one in Typescript.
-So anything else is needed to use this module in typescript code.
+This module is ready to be used with both typescript and javascript. No need extra typings.
 
 [Typescript example](./doc/typescript.md)
 
