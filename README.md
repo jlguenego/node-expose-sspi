@@ -79,22 +79,21 @@ You should see the JSON result with the browser user authentication info and the
       "groups": [
         "JLG\\Domain Users",
         "\\Everyone",
-// ...
+        // ...
       ],
       "sid": "S-1-5-21-2022955591-1730574677-3210790899-1103",
       "adUser": {
-// adUser filled only if Active Directory is reachable.
-// ...
+        // adUser filled only if Active Directory is reachable.
+        // ...
         "givenName": ["Jean-Louis"],
         "sn": ["GUÉNÉGO"],
         "c": ["FR"],
         "l": ["TORCY"],
         "postalCode": ["77200"],
         "title": ["IT Consultant"],
-        "description": ["My microsoft domain account for demonstrating SSO"],
+        "description": ["My microsoft domain account for demonstrating SSO"]
       }
-    },
-// ...
+    }
   }
 }
 ```
