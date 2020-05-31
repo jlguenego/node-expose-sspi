@@ -130,6 +130,10 @@ Unlike Chrome, NTLM and Kerberos are not activated by default in Firefox. To mak
 
 Edge does not require any configuration. But the browser ask the credentials to the user each time it is started.
 
+### IE11
+
+IE11 does not require any configuration. Be careful it does not open JSON files in a simple way.
+
 ## Typescript
 
 This module is ready to be used with both typescript and javascript. No need extra typings.
