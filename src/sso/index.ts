@@ -14,22 +14,28 @@ import { Mutex } from './mutex';
 import { init, database, getUsers, getUser } from './userdb';
 import { openADConnection, closeADConnection } from './adConnection';
 
+/**
+ * Wrapper object sso. Everything written in Typescript that is
+ * exported from this module is accessible via the `sso` constant object.
+ *
+ * @export
+ */
 export const sso = {
-  hexDump,
   auth,
+  closeADConnection,
   connect,
-  SSO,
+  database,
+  Client,
   getDefaultDomain,
+  getSPNFromURI,
+  getUser,
+  getUsers,
+  hexDump,
+  init,
   isOnDomain,
   isActiveDirectoryReachable,
-  Client,
-  getSPNFromURI,
-  init,
-  database,
-  sleep,
-  getUsers,
-  getUser,
   Mutex,
   openADConnection,
-  closeADConnection
+  SSO,
+  sleep,
 };
