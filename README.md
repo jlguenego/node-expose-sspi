@@ -1,8 +1,14 @@
-# node-expose-sspi
+<div align="center">
+    <img width="200" height="200" src="doc/img/logo.svg">
+  <br>
+  <br>
 
+  <h1>Node expose sspi</h1>
+  <p>
+    Expose the Microsoft Windows SSPI (SSP Interface) to <a href="https://nodejs.org/">Node.js®</a>.
+  </p>
+</div>
 
-
-Expose the Microsoft Windows SSPI (SSP Interface) to [Node.js®](https://nodejs.org/).
 
 :smirk: Use cases:
 - **NTLM** and **Kerberos** SSO authentication, both server and client inside a private windows organization network, for instance an ERP in a private company.
