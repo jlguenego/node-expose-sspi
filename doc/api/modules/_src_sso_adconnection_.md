@@ -15,7 +15,7 @@
 
 ▸ **closeADConnection**(): *void*
 
-*Defined in [src/sso/adConnection.ts:30](https://github.com/jlguenego/node-expose-sspi/blob/b543e6c/src/sso/adConnection.ts#L30)*
+*Defined in [src/sso/adConnection.ts:30](https://github.com/jlguenego/node-expose-sspi/blob/c193c18/src/sso/adConnection.ts#L30)*
 
 Close an Active Directory connection only if nobodyelse still use a connection.
 
@@ -29,7 +29,7 @@ ___
 
 ▸ **openADConnection**(): *void*
 
-*Defined in [src/sso/adConnection.ts:14](https://github.com/jlguenego/node-expose-sspi/blob/b543e6c/src/sso/adConnection.ts#L14)*
+*Defined in [src/sso/adConnection.ts:14](https://github.com/jlguenego/node-expose-sspi/blob/c193c18/src/sso/adConnection.ts#L14)*
 
 Open an Active Directory connection only if no connection is already open.
 

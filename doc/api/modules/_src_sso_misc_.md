@@ -16,7 +16,7 @@
 
 ▸ **getMessageType**(`token`: string): *[MessageType](_src_sso_interfaces_.md#messagetype)*
 
-*Defined in [src/sso/misc.ts:70](https://github.com/jlguenego/node-expose-sspi/blob/b543e6c/src/sso/misc.ts#L70)*
+*Defined in [src/sso/misc.ts:70](https://github.com/jlguenego/node-expose-sspi/blob/c193c18/src/sso/misc.ts#L70)*
 
 **Parameters:**
 
@@ -32,7 +32,7 @@ ___
 
 ▸ **hexDump**(`buffer`: ArrayBuffer): *string*
 
-*Defined in [src/sso/misc.ts:24](https://github.com/jlguenego/node-expose-sspi/blob/b543e6c/src/sso/misc.ts#L24)*
+*Defined in [src/sso/misc.ts:24](https://github.com/jlguenego/node-expose-sspi/blob/c193c18/src/sso/misc.ts#L24)*
 
 Gives a string representation of binary data.
 
@@ -52,7 +52,7 @@ ___
 
 ▸ **toHex**(`buffer`: ArrayBuffer): *string*
 
-*Defined in [src/sso/misc.ts:59](https://github.com/jlguenego/node-expose-sspi/blob/b543e6c/src/sso/misc.ts#L59)*
+*Defined in [src/sso/misc.ts:59](https://github.com/jlguenego/node-expose-sspi/blob/c193c18/src/sso/misc.ts#L59)*
 
 **Parameters:**
 
