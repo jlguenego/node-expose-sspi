@@ -7,7 +7,7 @@
 </div>
 
 
-:smirk: Use cases:
+Use cases:
 - **NTLM** and **Kerberos** SSO authentication, both server and client inside a private windows organization network, for instance an ERP in a private company.
 - **Active Directory** access to users for detailed info.
 
