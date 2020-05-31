@@ -166,6 +166,12 @@ Another thing bad in NTLM is that browsers sometimes popup a dialog box to ask c
 
 ## Production running
 
+### Performance
+
+You should avoid to use the Negotiate protocol each time a user access an authenticated resources, because it may take times.
+
+Just use the Negotiate protocol once with `sso.auth()` on a specific connection url, and then put a session id cookie associated with the `req.sso` object. [Please see the `express-ejs` example.](./examples/express-ejs])
+
 ### Server behind a reverse proxy
 
 [Example: node server behind an IIS proxy](./doc/use-case/production-windows.md)
