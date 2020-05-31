@@ -126,6 +126,10 @@ Note: To read JSON file on Chrome, you should use the [JSON Formatter Chrome Ext
 
 **[See the complete example](./doc/use-case/client.md)**
 
+## API
+
+**[Fully detailed API document](./doc/api/README.md)**.
+
 ## Browsers
 
 ### Chrome
@@ -147,16 +151,6 @@ Unlike Chrome, NTLM and Kerberos are not activated by default in Firefox. To mak
 ### Edge
 
 Edge does not require any configuration. But the browser ask the credentials to the user each time it is started.
-
-## API
-
-The API is automatically documented with [typedoc](https://github.com/TypeStrong/typedoc).
-
-**[Access to the detailed API document](./doc/api/README.md)**. 
-
-You should read all the [sso source code](./src). You will see how powerfull the native primitive exposed in `api.sspi`, and `api.adsi` can bring to you.
-
-You can also read the `mocha` [unit tests](./test) to see small examples.
 
 ## Typescript
 
