@@ -234,7 +234,7 @@ The module [debug](https://github.com/visionmedia/debug) is used for printing so
 
 ## Hardware architecture
 
-Both ia32 and x64 are compiled. At the `postinstall` stage, the `api.node` file matching the computer architecture is copied into the `/lib/api.node` location.
+To both compile ia32 and x64, run the `npm run build:arch` command.
 
 ## TODO
 
@@ -253,9 +253,11 @@ Scenario:
 
 ## Thanks
 
-Thanks to all the people who wrotes vthe npm modules required by this project.
+Thanks to all the people who wrotes the npm modules required by this project.
 
 And a very special thanks to the authors of the [node-sspi](https://github.com/abbr/NodeSSPI) project that helped me writing this one. I considere node-sspi to be the father of node-expose-sspi.
+
+Thanks also to people raising issues to improve the quality of this module.
 
 ## Sponsoring
 
