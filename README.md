@@ -6,8 +6,8 @@
   </p>
 </div>
 
-
 Use cases:
+
 - **NTLM** and **Kerberos** SSO authentication, both server and client inside a private windows organization network, for instance an ERP in a private company.
 - **Active Directory** access to users for detailed info.
 
@@ -61,11 +61,13 @@ node server.js
 
 Open a Google Chrome web browser and go to `http://localhost:3000`.
 
-**Command line client:** 
+**Command line client:**
+
 - Git Bash: `curl --negotiate -u : http://localhost:3000`
 - Powershell: `Invoke-WebRequest -uri http://localhost:3000 -UseDefaultCredentials`.
 
 You should see the JSON result with the browser user authentication info and the authentication method used (NTLM or Kerberos).
+
 ```
 {
   "sso": {
@@ -81,38 +83,15 @@ You should see the JSON result with the browser user authentication info and the
       ],
       "sid": "S-1-5-21-2022955591-1730574677-3210790899-1103",
       "adUser": {
-        // adUser filled only if Active Directory is reachable.
-        "objectClass": ["top", "person", "organizationalPerson", "user"],
-        "cn": ["Jean-Louis P. GUÉNÉGO"],
+// adUser filled only if Active Directory is reachable.
+// ...
+        "givenName": ["Jean-Louis"],
         "sn": ["GUÉNÉGO"],
         "c": ["FR"],
         "l": ["TORCY"],
+        "postalCode": ["77200"],
         "title": ["IT Consultant"],
         "description": ["My microsoft domain account for demonstrating SSO"],
-        "postalCode": ["77200"],
-        "physicalDeliveryOfficeName": ["Office of my lovely wife Suzana"],
-        "telephoneNumber": ["+33612131415"],
-        "givenName": ["Jean-Louis"],
-        "initials": ["P"],
-        "distinguishedName": [
-          "CN=Jean-Louis P. GUÉNÉGO,OU=JLG_LOCAL,DC=jlg,DC=local"
-        ],
-        "instanceType": [4],
-        "whenCreated": ["3/19/2020 10:58:19 AM"],
-        "whenChanged": ["3/19/2020 5:40:06 PM"],
-        "displayName": ["Jean-Louis P. GUÉNÉGO"],
-// ...
-        "co": ["France"],
-        "company": ["JLG Consulting"],
-        "streetAddress": ["2 allée du Commandant Charcot"],
-        "wWWHomePage": ["www.jlg-consulting.com"],
-// ...
-        "sAMAccountName": ["jlouis"],
-// ...
-        "mail": ["jlguenego@gmail.com"],
-        "ADsPath": [
-          "LDAP://CN=Jean-Louis P. GUÉNÉGO,OU=JLG_LOCAL,DC=jlg,DC=local"
-        ]
       }
     },
 // ...
@@ -166,6 +145,7 @@ So anything else is needed to use this module in typescript code.
 Kerberos is recommanded for production running. For running with Kerberos protocol, both client and server needs to be joined on a [Windows Domain](https://en.wikipedia.org/wiki/Windows_domain).
 
 3 conditions must be met for running Kerberos:
+
 - The node server, running `node-expose-sspi` needs to be run as a domain user with service principal name (SPN) declared in Active Directory.
 - The client browser needs to be run on a windows domain account.
 - The website url needs to be declared in a white list of intranet website.
@@ -203,6 +183,7 @@ cd <***example-name***>
 Look also at the `README.md` of the example.
 
 Examples :
+
 - [Express simple](./examples/express-simple/)
 - [Koa simple](./examples/koa-simple/)
 - [Fastify simple](./examples/fastify-simple/)
@@ -234,6 +215,7 @@ npm run test
 ```
 
 There are 2 dev areas :
+
 - **C++ code**: run `npm run dev` to watch the modifications and recompile ASAP.
 - **Typescript code**: run `npm run build:tsw` to recompile while watching.
 
@@ -256,8 +238,8 @@ Any idea of new features ? Please tell me and raise an issue. :blush:
 - Test with 10000 users.
 - UTF8 everywhere
 
-
 Scenario:
+
 - linux trial.
 
 ## Thanks
@@ -272,7 +254,6 @@ This library design aims to be used in production, in private company environmen
 
 [To help maintaining it, you can sponsor me with github](https://github.com/sponsors/jlguenego).
 
-
 ## Author
 
 Jean-Louis GUENEGO <jlguenego@gmail.com> (http://jlg-consulting.com/)
@@ -280,5 +261,3 @@ Jean-Louis GUENEGO <jlguenego@gmail.com> (http://jlg-consulting.com/)
 You may participate to complete this project. You can improve this doc, or check the code (memory leak, etc.), create new usefull business cases, etc.
 
 Contributors are welcome!
-
-
