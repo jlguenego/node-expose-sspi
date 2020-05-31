@@ -1,8 +1,5 @@
 <div align="center">
     <img width="200" height="200" src="doc/img/logo.svg">
-  <br>
-  <br>
-
   <h1>Node expose sspi</h1>
   <p>
     Expose the Microsoft Windows SSPI (SSP Interface) to <a href="https://nodejs.org/">Node.js®</a>.
