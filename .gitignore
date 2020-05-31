@@ -4,3 +4,5 @@ node_modules/
 /srs/*.js
 /dist
 *.log
+/.nyc_output
+/coverage
