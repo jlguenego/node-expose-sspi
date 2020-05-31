@@ -193,6 +193,7 @@ Look also at the `README.md` of the example.
 Examples :
 
 - [Express simple](./examples/express-simple/)
+- [Express with EJS](./examples/express-ejs/)
 - [Koa simple](./examples/koa-simple/)
 - [Fastify simple](./examples/fastify-simple/)
 - [Restify simple](./examples/restify-simple/)
