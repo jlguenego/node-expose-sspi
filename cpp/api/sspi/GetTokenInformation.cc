@@ -29,6 +29,10 @@ Napi::Value e_GetTokenInformation(const Napi::CallbackInfo& info) {
 
   std::string filter = ".*";
   if (obj.Has("filter")) {
+    if (!obj.Get("filter").IsString()) {
+      throw Napi::Error::New(
+          env, "Cannot GetTokenInformation: filter must be a string");
+    }
     filter = obj.Get("filter").As<Napi::String>().Utf8Value();
   }
   if (tokenInformationClassStr == "TokenGroups") {
