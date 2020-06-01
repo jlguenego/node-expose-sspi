@@ -16,6 +16,7 @@ export class SSO {
     useActiveDirectory: true,
     useGroups: true,
     useOwner: true,
+    groupFilterRegex: '.*',
   };
 
   constructor(
