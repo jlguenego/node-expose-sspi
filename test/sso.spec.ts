@@ -56,19 +56,19 @@ describe('SSO Unit Test', function () {
     }
   });
 
-  // it('should test connect', async function() {
-  //   try {
-  //     // in order to test that it is working,
-  //     // create a local account titi with password toto
-  //     const userCredentials = {
-  //       domain: os.hostname(),
-  //       user: 'titi',
-  //       password: 'toto',
-  //     };
-  //     const mySSO = await sso.connect(userCredentials);
-  //     assert(mySSO);
-  //   } catch (error) {
-  //     assert(error);
-  //   }
-  // });
+  it('should test connect', async function() {
+    try {
+      // in order to test that it is working,
+      // create a local account titi with password toto
+      const userCredentials = {
+        domain: os.hostname(),
+        user: 'titi',
+        password: 'toto',
+      };
+      const mySSO = await sso.connect(userCredentials);
+      assert(mySSO);
+    } catch (error) {
+      assert(error);
+    }
+  });
 });
