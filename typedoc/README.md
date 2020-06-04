@@ -23,9 +23,9 @@ C/C++ part:
 All the javascript part is in fact written in Typescript.
 
 - Server:
-  - [The middleware `sso.auth(options?)`](/api/modules/_src_sso_auth_.md), which can be used with most of the webserver node frameworks (express, fastify, restify, connect, etc.)
+  - [The middleware `sso.auth(options?)`](./api/modules/_src_sso_auth_.md), which can be used with most of the webserver node frameworks (express, fastify, restify, connect, etc.)
 - Client:
-  - [the fetch client](/api/classes/_src_sso_client_.client.md) `const response = await new sso.Client().fetch(url);`, which can be used to query a webserver that uses the Negotiate with Kerberos/NTLM protocols. HTTP cookies are automatically managed.
+  - [the fetch client](./api/classes/_src_sso_client_.client.md) `const response = await new sso.Client().fetch(url);`, which can be used to query a webserver that uses the Negotiate with Kerberos/NTLM protocols. HTTP cookies are automatically managed.
 
 ## Author 
 
