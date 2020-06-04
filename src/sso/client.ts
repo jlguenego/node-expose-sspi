@@ -73,7 +73,7 @@ export class Client {
   private targetName: string;
   private ssp: SecuritySupportProvider = 'Negotiate';
 
-  saveCookies(response: Response): void {
+  private saveCookies(response: Response): void {
     response.headers.forEach((value, name) => {
       if (name !== 'Set-Cookie'.toLowerCase()) {
         return;
@@ -87,7 +87,7 @@ export class Client {
     debug('cookieList: ', this.cookieList);
   }
 
-  restituteCookies(requestInit: RequestInit): void {
+ private restituteCookies(requestInit: RequestInit): void {
     const cookieStr = Object.keys(this.cookieList)
       .map((key) => key + '=' + this.cookieList[key])
       .join('; ');
@@ -135,13 +135,22 @@ export class Client {
     this.ssp = ssp;
   }
 
+  /**
+   * Works as the fetch function of node-fetch node module.
+   * This function can handle the negotiate protocol with SPNEGO tokens.
+   *
+   * @param {string} resource - the URL to fetch
+   * @param {RequestInit} [init] - the options (headers, body, etc.)
+   * @returns {Promise<Response>} a promise with the HTTP response.
+   * @memberof Client
+   */
   async fetch(resource: string, init?: RequestInit): Promise<Response> {
     const response = await fetch(resource, init);
     const result = await this.handleAuth(response, resource, init);
     return result;
   }
 
-  async handleAuth(
+  private async handleAuth(
     response: Response,
     resource: string,
     init: RequestInit = {}
