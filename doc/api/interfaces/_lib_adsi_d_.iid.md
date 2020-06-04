@@ -26,6 +26,6 @@
 
 ▸ **Release**(): *void*
 
-*Defined in [lib/adsi.d.ts:4](https://github.com/jlguenego/node-expose-sspi/blob/8286242/lib/adsi.d.ts#L4)*
+*Defined in [lib/adsi.d.ts:4](https://github.com/jlguenego/node-expose-sspi/blob/6ab0a20/lib/adsi.d.ts#L4)*
 
 **Returns:** *void*

@@ -21,7 +21,7 @@
 
 ▸ **getDistinguishedName**(): *Promise‹string›*
 
-*Defined in [src/sso/userdb.ts:135](https://github.com/jlguenego/node-expose-sspi/blob/8286242/src/sso/userdb.ts#L135)*
+*Defined in [src/sso/userdb.ts:135](https://github.com/jlguenego/node-expose-sspi/blob/6ab0a20/src/sso/userdb.ts#L135)*
 
 **Returns:** *Promise‹string›*
 
@@ -31,7 +31,7 @@ ___
 
 ▸ **getUser**(`ldapFilter`: string): *Promise‹[ADUser](../interfaces/_src_sso_interfaces_.aduser.md)›*
 
-*Defined in [src/sso/userdb.ts:40](https://github.com/jlguenego/node-expose-sspi/blob/8286242/src/sso/userdb.ts#L40)*
+*Defined in [src/sso/userdb.ts:40](https://github.com/jlguenego/node-expose-sspi/blob/6ab0a20/src/sso/userdb.ts#L40)*
 
 **Parameters:**
 
@@ -47,7 +47,7 @@ ___
 
 ▸ **getUsers**(): *Promise‹[ADUsers](_src_sso_interfaces_.md#adusers)›*
 
-*Defined in [src/sso/userdb.ts:85](https://github.com/jlguenego/node-expose-sspi/blob/8286242/src/sso/userdb.ts#L85)*
+*Defined in [src/sso/userdb.ts:85](https://github.com/jlguenego/node-expose-sspi/blob/6ab0a20/src/sso/userdb.ts#L85)*
 
 **Returns:** *Promise‹[ADUsers](_src_sso_interfaces_.md#adusers)›*
 
@@ -57,7 +57,7 @@ ___
 
 ▸ **init**(): *Promise‹void›*
 
-*Defined in [src/sso/userdb.ts:27](https://github.com/jlguenego/node-expose-sspi/blob/8286242/src/sso/userdb.ts#L27)*
+*Defined in [src/sso/userdb.ts:27](https://github.com/jlguenego/node-expose-sspi/blob/6ab0a20/src/sso/userdb.ts#L27)*
 
 This function is recommanded to be called before starting a server.
 
@@ -76,10 +76,10 @@ Useless if you do not use AD.
 
 ### ▪ **database**: *object*
 
-*Defined in [src/sso/userdb.ts:11](https://github.com/jlguenego/node-expose-sspi/blob/8286242/src/sso/userdb.ts#L11)*
+*Defined in [src/sso/userdb.ts:11](https://github.com/jlguenego/node-expose-sspi/blob/6ab0a20/src/sso/userdb.ts#L11)*
 
 ###  users
 
 • **users**: *undefined[]* = []
 
-*Defined in [src/sso/userdb.ts:12](https://github.com/jlguenego/node-expose-sspi/blob/8286242/src/sso/userdb.ts#L12)*
+*Defined in [src/sso/userdb.ts:12](https://github.com/jlguenego/node-expose-sspi/blob/6ab0a20/src/sso/userdb.ts#L12)*
