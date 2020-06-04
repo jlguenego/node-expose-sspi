@@ -95,18 +95,15 @@ describe('SSPI GetTokenInformation Unit Test', function () {
         filter: filter as string,
       });
     } catch (error) {
-      console.log('error: ', error.message);
       assert((error as Error).message.includes('filter must be a string'));
     }
   });
 
   after(function () {
-    console.log('start after');
     sspi.CloseHandle(userToken);
     sspi.DeleteSecurityContext(serverSecurityContext.contextHandle);
     sspi.DeleteSecurityContext(clientSecurityContext.contextHandle);
     sspi.FreeCredentialsHandle(serverCred.credential);
     sspi.FreeCredentialsHandle(clientCred.credential);
-    console.log('end after');
   });
 });
