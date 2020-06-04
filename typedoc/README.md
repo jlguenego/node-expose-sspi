@@ -1,6 +1,6 @@
 ## Introduction
 
-This node module was originally created to expose the Microsoft SSPI API ([Security Support Provider Interface](https://docs.microsoft.com/en-us/windows/win32/secauthn/sspi)). This API is useful for Kerberos and NTLM authentication. Both theses authentications methods allow a Window user account to automatically gives its credentials to a website without to fulfill a login/password form, which saves time for instance when a user has to use an internal company website. This is called [SSO](https://en.wikipedia.org/wiki/Single_sign-on).
+This node module was originally created to expose the Microsoft SSPI API ([Security Support Provider Interface](https://docs.microsoft.com/en-us/windows/win32/secauthn/sspi)). This API is useful for Kerberos and NTLM authentication. Both theses authentications methods allow a Windows user account to automatically gives its credentials to a website without to fulfill a login/password form, which saves time for instance when a user has to use an internal company website. This is called [SSO](https://en.wikipedia.org/wiki/Single_sign-on).
 
 In the SSO scenario, the website may wish to access to an [Active Directory Domain Controller](https://en.wikipedia.org/wiki/Domain_controller_(Windows)) to get more info about the logged user. Therefore, this module also exposes some part of the [Microsoft Active Directory Service Interface (ADSI)](https://docs.microsoft.com/en-us/windows/win32/adsi/active-directory-service-interfaces-adsi).
 
