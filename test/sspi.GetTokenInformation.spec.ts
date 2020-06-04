@@ -27,10 +27,11 @@ describe('SSPI GetTokenInformation Unit Test', function () {
       credentialUse: 'SECPKG_CRED_INBOUND',
     };
     if (sso.isOnDomain()) {
+      const getCredentials = (): string => 'guess';
       acquireCredentialsHandleClientInput.authData = {
         domain: os.hostname().toUpperCase(),
         user: 'whatever',
-        password: 'guess',
+        password: getCredentials(),
       };
     }
 
