@@ -59,8 +59,6 @@ app.listen(3000, () => console.log('Server started on port 3000'));
 node server.js
 ```
 
-Open a Google Chrome web browser and go to `http://localhost:3000`.
-
 **Browser on http://localhost:3000**
 
 ```
