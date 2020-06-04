@@ -61,11 +61,6 @@ node server.js
 
 Open a Google Chrome web browser and go to `http://localhost:3000`.
 
-**Command line client:**
-
-- Git Bash: `curl --negotiate -u : http://localhost:3000`
-- Powershell: `Invoke-WebRequest -uri http://localhost:3000 -UseDefaultCredentials`.
-
 **Browser on http://localhost:3000**
 
 ```
@@ -99,6 +94,11 @@ Open a Google Chrome web browser and go to `http://localhost:3000`.
 ```
 
 Note: To read JSON file on Chrome, you should use the [JSON Formatter Chrome Extension](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa).
+
+**Command line client:**
+
+- Git Bash: `curl --negotiate -u : http://localhost:3000`
+- Powershell: `Invoke-WebRequest -uri http://localhost:3000 -UseDefaultCredentials`.
 
 ### SSO Authentication client use case
 
