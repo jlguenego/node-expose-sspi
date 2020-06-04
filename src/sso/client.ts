@@ -65,6 +65,13 @@ export async function getSPNFromURI(url: string): Promise<string> {
   return result;
 }
 
+/**
+ * Allow to fetch url with a system that uses the negotiate protocol.
+ * Cookies are managed if necessary during the process.
+ *
+ * @export
+ * @class Client
+ */
 export class Client {
   private cookieList: CookieList = {};
   private domain: string;
