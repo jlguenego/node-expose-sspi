@@ -94,7 +94,7 @@ export class Client {
     debug('cookieList: ', this.cookieList);
   }
 
- private restituteCookies(requestInit: RequestInit): void {
+  private restituteCookies(requestInit: RequestInit): void {
     const cookieStr = Object.keys(this.cookieList)
       .map((key) => key + '=' + this.cookieList[key])
       .join('; ');
@@ -157,6 +157,17 @@ export class Client {
     return result;
   }
 
+  /**
+   * The authentication negotiate protocol is handled by this function.
+   * It is called by `Client.fetch`.
+   *
+   * @private
+   * @param {Response} response
+   * @param {string} resource
+   * @param {RequestInit} [init={}]
+   * @returns {Promise<Response>}
+   * @memberof Client
+   */
   private async handleAuth(
     response: Response,
     resource: string,
