@@ -4,9 +4,9 @@ This node module was originally created to expose the Microsoft SSPI API ([Secur
 
 In the SSO scenario, the website may wish to access to an [Active Directory Domain Controller](https://en.wikipedia.org/wiki/Domain_controller_(Windows)) to get more info about the logged user. Therefore, this module also exposes some part of the [Microsoft Active Directory Service Interface (ADSI)](https://docs.microsoft.com/en-us/windows/win32/adsi/active-directory-service-interfaces-adsi).
 
-This library thus exposes a maximum of [SSPI C/C++ functions](./api/modules/_lib_sspi_d_.md) and also some [ADSI C/C++ functions](./api/modules/_lib_adsi_d_.md) to the NodeJS world.
+This library thus exposes a maximum of [SSPI C/C++ functions](./modules/_lib_sspi_d_.md) and also some [ADSI C/C++ functions](./modules/_lib_adsi_d_.md) to the NodeJS world.
 
-It also exposes some C/C++ miscellaneous other functions that may be useful for getting some info about the system. It is called [sysinfo](./api/modules/_lib_sysinfo_d_.md).
+It also exposes some C/C++ miscellaneous other functions that may be useful for getting some info about the system. It is called [sysinfo](./modules/_lib_sysinfo_d_.md).
 
 The remaining part of the module is a set of javascript exported objects (classes, functions, etc.), written in Typescript, all wrapped in the [`sso`]() object. The purpose of them is to give to the developers some utilities to help achieve some basic SSPI use cases (both server and client with negotiate protocol).
 
@@ -14,9 +14,9 @@ The remaining part of the module is a set of javascript exported objects (classe
 
 C/C++ part:
 
-- [adsi](./api/modules/_lib_adsi_d_.md)
-- [sspi](./api/modules/_lib_sspi_d_.md)
-- [sysinfo](./api/modules/_lib_sysinfo_d_.md)
+- [adsi](./modules/_lib_adsi_d_.md)
+- [sspi](./modules/_lib_sspi_d_.md)
+- [sysinfo](./modules/_lib_sysinfo_d_.md)
 
 ## Javascript part:
 
