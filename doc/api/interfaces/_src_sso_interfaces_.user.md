@@ -23,7 +23,7 @@
 
 • **adUser**? : *[ADUser](_src_sso_interfaces_.aduser.md)*
 
-*Defined in [src/sso/interfaces.ts:100](https://github.com/jlguenego/node-expose-sspi/blob/c193c18/src/sso/interfaces.ts#L100)*
+*Defined in [src/sso/interfaces.ts:100](https://github.com/jlguenego/node-expose-sspi/blob/c6cfc34/src/sso/interfaces.ts#L100)*
 
 ___
 
@@ -31,7 +31,7 @@ ___
 
 • **displayName**? : *string*
 
-*Defined in [src/sso/interfaces.ts:97](https://github.com/jlguenego/node-expose-sspi/blob/c193c18/src/sso/interfaces.ts#L97)*
+*Defined in [src/sso/interfaces.ts:97](https://github.com/jlguenego/node-expose-sspi/blob/c6cfc34/src/sso/interfaces.ts#L97)*
 
 ___
 
@@ -39,7 +39,7 @@ ___
 
 • **domain**? : *string*
 
-*Defined in [src/sso/interfaces.ts:98](https://github.com/jlguenego/node-expose-sspi/blob/c193c18/src/sso/interfaces.ts#L98)*
+*Defined in [src/sso/interfaces.ts:98](https://github.com/jlguenego/node-expose-sspi/blob/c6cfc34/src/sso/interfaces.ts#L98)*
 
 ___
 
@@ -47,7 +47,7 @@ ___
 
 • **groups**? : *string[]*
 
-*Defined in [src/sso/interfaces.ts:99](https://github.com/jlguenego/node-expose-sspi/blob/c193c18/src/sso/interfaces.ts#L99)*
+*Defined in [src/sso/interfaces.ts:99](https://github.com/jlguenego/node-expose-sspi/blob/c6cfc34/src/sso/interfaces.ts#L99)*
 
 ___
 
@@ -55,7 +55,7 @@ ___
 
 • **name**? : *string*
 
-*Defined in [src/sso/interfaces.ts:95](https://github.com/jlguenego/node-expose-sspi/blob/c193c18/src/sso/interfaces.ts#L95)*
+*Defined in [src/sso/interfaces.ts:95](https://github.com/jlguenego/node-expose-sspi/blob/c6cfc34/src/sso/interfaces.ts#L95)*
 
 ___
 
@@ -63,4 +63,4 @@ ___
 
 • **sid**? : *string*
 
-*Defined in [src/sso/interfaces.ts:96](https://github.com/jlguenego/node-expose-sspi/blob/c193c18/src/sso/interfaces.ts#L96)*
+*Defined in [src/sso/interfaces.ts:96](https://github.com/jlguenego/node-expose-sspi/blob/c6cfc34/src/sso/interfaces.ts#L96)*

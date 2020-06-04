@@ -4,7 +4,7 @@
 
 ## Introduction
 
-This node module was originally created to expose the Microsoft SSPI API ([Security Support Provider Interface](https://docs.microsoft.com/en-us/windows/win32/secauthn/sspi)). This API is useful for Kerberos and NTLM authentication. Both theses authentications methods allow a Window user account to automatically gives its credentials to a website without to fulfill a login/password form, which saves time for instance when a user has to use an internal company website. This is called [SSO](https://en.wikipedia.org/wiki/Single_sign-on).
+This node module was originally created to expose the Microsoft SSPI API ([Security Support Provider Interface](https://docs.microsoft.com/en-us/windows/win32/secauthn/sspi)). This API is useful for Kerberos and NTLM authentication. Both theses authentications methods allow a Windows user account to automatically gives its credentials to a website without to fulfill a login/password form, which saves time for instance when a user has to use an internal company website. This is called [SSO](https://en.wikipedia.org/wiki/Single_sign-on).
 
 In the SSO scenario, the website may wish to access to an [Active Directory Domain Controller](https://en.wikipedia.org/wiki/Domain_controller_(Windows)) to get more info about the logged user. Therefore, this module also exposes some part of the [Microsoft Active Directory Service Interface (ADSI)](https://docs.microsoft.com/en-us/windows/win32/adsi/active-directory-service-interfaces-adsi).
 
@@ -27,9 +27,9 @@ C/C++ part:
 All the javascript part is in fact written in Typescript.
 
 - Server:
-  - [The middleware `sso.auth(options?)`](/api/modules/_src_sso_auth_.md), which can be used with most of the webserver node frameworks (express, fastify, restify, connect, etc.)
+  - [The middleware `sso.auth(options?)`](./doc/api/modules/_src_sso_auth_.md), which can be used with most of the webserver node frameworks (express, fastify, restify, connect, etc.)
 - Client:
-  - [the fetch client](/api/classes/_src_sso_client_.client.md) `const response = await new sso.Client().fetch(url);`, which can be used to query a webserver that uses the Negotiate with Kerberos/NTLM protocols. HTTP cookies are automatically managed.
+  - [the fetch client](./doc/api/classes/_src_sso_client_.client.md) `const response = await new sso.Client().fetch(url);`, which can be used to query a webserver that uses the Negotiate with Kerberos/NTLM protocols. HTTP cookies are automatically managed.
 
 ## Author 
 
