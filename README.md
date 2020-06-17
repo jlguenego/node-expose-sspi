@@ -15,7 +15,9 @@ Requirements: Microsoft Windows OS, NodeJS version >=12.16.1. Architecture: x64 
 
 ## Install
 
-[![license](https://img.shields.io/badge/license-ISC-green.svg)](./LICENSE) [![npm version](https://badge.fury.io/js/node-expose-sspi.svg)](https://badge.fury.io/js/node-expose-sspi)
+[![license](https://img.shields.io/badge/license-ISC-green.svg)](./LICENSE)
+[![npm version](https://badge.fury.io/js/node-expose-sspi.svg)](https://badge.fury.io/js/node-expose-sspi)
+[![sponsor](https://img.shields.io/badge/github-sponsor-blue.svg)](https://github.com/sponsors/jlguenego)
 
 Just do:
 
