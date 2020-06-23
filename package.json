@@ -23,7 +23,8 @@
     "ex:client:server": "nodemon examples/client/server.js",
     "ex:ts": "ts-node examples/typescript/index.ts",
     "ex:ts:server": "nodemon examples/typescript/server.ts",
-    "release": "standard-version"
+    "release": "standard-version",
+    "start": "nodemon examples/typescript/server.ts"
   },
   "keywords": [
     "SSPI",
