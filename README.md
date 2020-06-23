@@ -164,6 +164,10 @@ The NTLM protocol is less secure than Kerberos and not secure at all if you are 
 
 Another thing bad in NTLM is that browsers sometimes popup a dialog box to ask credentials to the user. Your users don't like that. This is a bad user experience.
 
+## Authentication error scenarios
+
+If you encounter error, [please read this document before submitting an issue](./doc/use-case/errors.md).
+
 ## Production running
 
 ### Performance
