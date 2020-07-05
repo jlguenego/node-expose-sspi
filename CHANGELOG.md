@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.29](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.28...v0.1.29) (2020-07-05)
+
+
+### Bug Fixes
+
+* coverage ([e24421c](https://github.com/jlguenego/node-expose-sspi/commit/e24421cb86f9c1e9cdb4247fb2dc3276e2197e9a))
+* coverage with connect ([353bc5e](https://github.com/jlguenego/node-expose-sspi/commit/353bc5e3c7e1f2ee28dd833a504363174a25a156))
+* GetTokenInformation - filter must be a string ([0b47ade](https://github.com/jlguenego/node-expose-sspi/commit/0b47adec861a2d74243defbcbee47e52b9a985b0))
+* removed express-jwt because not used. ([bad9e5c](https://github.com/jlguenego/node-expose-sspi/commit/bad9e5c135c889021d104934d5919dd5f05778f6))
+
 ### [0.1.28](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.27...v0.1.28) (2020-05-31)
 
 
