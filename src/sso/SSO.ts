@@ -40,6 +40,7 @@ export class SSO {
     try {
       this.user.displayName = sspi.GetUserNameEx('NameDisplay');
     } catch (e) {
+      // exemple of error scenario: local user without displayname.
       this.user.displayName = this.user.name;
     }
     sspi.RevertSecurityContext(this.serverContextHandle);
@@ -83,6 +84,7 @@ export class SSO {
       try {
         this.owner.displayName = sspi.GetUserNameEx('NameDisplay');
       } catch (e) {
+        // exemple of error scenario: local user without displayname.
         this.owner.displayName = this.owner.name;
       }
 
