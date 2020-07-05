@@ -4,8 +4,8 @@ const assert = a.strict;
 
 describe('NETAPI Unit Test', function () {
   it('should test NetUserAdd', function () {
-    const serverName: string = undefined;
-    const levelData = 1;
+    const serverName = "toto";
+    const levelData = 2;
     const userInfo: UserInfo1 = { name: 'tetedemule', password: 'Toto123!' };
     try {
       netapi.NetUserAdd(serverName, levelData, userInfo);
@@ -13,4 +13,5 @@ describe('NETAPI Unit Test', function () {
       assert.fail(err);
     }
   });
+
 });
