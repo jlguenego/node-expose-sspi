@@ -17,6 +17,7 @@
           "ActiveDS.lib",
           "ADSIid.lib",
           "comsuppw.lib",
+          "netapi32.lib",
         ]
       },
       "include_dirs": [
