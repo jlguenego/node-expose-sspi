@@ -64,11 +64,17 @@ Object InitSYSINFO(Env env, Object exports) {
   return exports;
 }
 
+Object InitNETAPI(Env env, Object exports) {
+  EXPORT(NetUserAdd);
+  return exports;
+}
+
 Object Init(Env env, Object exports) {
   initFlags();
   exports.Set("sspi", InitSSPI(env, Object::New(env)));
   exports.Set("adsi", InitADSI(env, Object::New(env)));
   exports.Set("sysinfo", InitSYSINFO(env, Object::New(env)));
+  exports.Set("netapi", InitNETAPI(env, Object::New(env)));
   return exports;
 }
 

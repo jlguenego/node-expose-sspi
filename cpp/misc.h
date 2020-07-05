@@ -62,5 +62,8 @@ Napi::Value e_ADsOpenObjectSync(const Napi::CallbackInfo &info);
 // SYSINFO
 Napi::Value e_GetComputerNameEx(const Napi::CallbackInfo &info);
 
+// NETAPI
+void e_NetUserAdd(const Napi::CallbackInfo &info);
+
 
 }  // namespace myAddon
