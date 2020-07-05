@@ -65,7 +65,7 @@ void e_NetUserAdd(const Napi::CallbackInfo& info) {
   if (err > 0) {
     std::string msg;
     switch (err) {
-      case 5:
+      case ERROR_ACCESS_DENIED:
         msg = "Access is denied. Creating user needs administrator privileges.";
         break;
       case NERR_UserExists:
@@ -79,7 +79,7 @@ void e_NetUserAdd(const Napi::CallbackInfo& info) {
       default:
         msg = plf::string_format("Error adding user: %d\n", err);
     }
-    throw Napi::TypeError::New(env, msg);
+    throw Napi::Error::New(env, msg);
   }
 
   return;

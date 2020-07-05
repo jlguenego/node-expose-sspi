@@ -19,4 +19,13 @@ export interface NetApi {
    * @memberof NetApi
    */
   NetUserAdd(serverName: string, levelData: number, userInfo: UserInfo1): void;
+
+  /**
+   * delete a windows user account
+   *
+   * @param {string} serverName
+   * @param {string} username
+   * @memberof NetApi
+   */
+  NetUserDel(serverName: string, username: string): void;
 }

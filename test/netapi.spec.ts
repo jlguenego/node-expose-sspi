@@ -14,4 +14,13 @@ describe('NETAPI Unit Test', function () {
     }
   });
 
+  it('should test NetUserDel', function () {
+    const serverName: string = undefined;
+    const username = 'tetedemule';
+    try {
+      netapi.NetUserDel(serverName, username);
+    } catch (err) {
+      assert.fail(err);
+    }
+  });
 });

@@ -66,6 +66,7 @@ Object InitSYSINFO(Env env, Object exports) {
 
 Object InitNETAPI(Env env, Object exports) {
   EXPORT(NetUserAdd);
+  EXPORT(NetUserDel);
   return exports;
 }
 
