@@ -23,7 +23,7 @@ Credential with expiry date.
 
 • **credential**: *[CredHandle](_lib_sspi_d_.credhandle.md)*
 
-*Defined in [lib/sspi.d.ts:80](https://github.com/jlguenego/node-expose-sspi/blob/133c769/lib/sspi.d.ts#L80)*
+*Defined in [lib/sspi.d.ts:80](https://github.com/jlguenego/node-expose-sspi/blob/545dc2a/lib/sspi.d.ts#L80)*
 
 ___
 
@@ -31,4 +31,4 @@ ___
 
 • **tsExpiry**: *Date*
 
-*Defined in [lib/sspi.d.ts:81](https://github.com/jlguenego/node-expose-sspi/blob/133c769/lib/sspi.d.ts#L81)*
+*Defined in [lib/sspi.d.ts:81](https://github.com/jlguenego/node-expose-sspi/blob/545dc2a/lib/sspi.d.ts#L81)*

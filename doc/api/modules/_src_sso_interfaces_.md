@@ -26,7 +26,7 @@
 
 Ƭ **ADUsers**: *[ADUser](../interfaces/_src_sso_interfaces_.aduser.md)[]*
 
-*Defined in [src/sso/interfaces.ts:114](https://github.com/jlguenego/node-expose-sspi/blob/133c769/src/sso/interfaces.ts#L114)*
+*Defined in [src/sso/interfaces.ts:114](https://github.com/jlguenego/node-expose-sspi/blob/545dc2a/src/sso/interfaces.ts#L114)*
 
 ___
 
@@ -34,7 +34,7 @@ ___
 
 Ƭ **CookieToken**: *string*
 
-*Defined in [src/sso/interfaces.ts:22](https://github.com/jlguenego/node-expose-sspi/blob/133c769/src/sso/interfaces.ts#L22)*
+*Defined in [src/sso/interfaces.ts:22](https://github.com/jlguenego/node-expose-sspi/blob/545dc2a/src/sso/interfaces.ts#L22)*
 
 ___
 
@@ -42,7 +42,7 @@ ___
 
 Ƭ **MessageType**: *"NTLM_NEGOTIATE_01" | "NTLM_CHALLENGE_02" | "NTLM_AUTHENTICATE_03" | "Kerberos_1" | "Kerberos_N"*
 
-*Defined in [src/sso/interfaces.ts:24](https://github.com/jlguenego/node-expose-sspi/blob/133c769/src/sso/interfaces.ts#L24)*
+*Defined in [src/sso/interfaces.ts:24](https://github.com/jlguenego/node-expose-sspi/blob/545dc2a/src/sso/interfaces.ts#L24)*
 
 ___
 
@@ -50,7 +50,7 @@ ___
 
 Ƭ **Middleware**: *function*
 
-*Defined in [src/sso/interfaces.ts:16](https://github.com/jlguenego/node-expose-sspi/blob/133c769/src/sso/interfaces.ts#L16)*
+*Defined in [src/sso/interfaces.ts:16](https://github.com/jlguenego/node-expose-sspi/blob/545dc2a/src/sso/interfaces.ts#L16)*
 
 #### Type declaration:
 
@@ -70,7 +70,7 @@ ___
 
 Ƭ **NextFunction**: *function*
 
-*Defined in [src/sso/interfaces.ts:31](https://github.com/jlguenego/node-expose-sspi/blob/133c769/src/sso/interfaces.ts#L31)*
+*Defined in [src/sso/interfaces.ts:31](https://github.com/jlguenego/node-expose-sspi/blob/545dc2a/src/sso/interfaces.ts#L31)*
 
 #### Type declaration:
 

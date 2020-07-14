@@ -26,7 +26,7 @@ The domain is a Windows domain, or a computer name.
 
 • **domain**: *string*
 
-*Defined in [lib/sspi.d.ts:129](https://github.com/jlguenego/node-expose-sspi/blob/133c769/lib/sspi.d.ts#L129)*
+*Defined in [lib/sspi.d.ts:129](https://github.com/jlguenego/node-expose-sspi/blob/545dc2a/lib/sspi.d.ts#L129)*
 
 ___
 
@@ -34,7 +34,7 @@ ___
 
 • **password**: *string*
 
-*Defined in [lib/sspi.d.ts:128](https://github.com/jlguenego/node-expose-sspi/blob/133c769/lib/sspi.d.ts#L128)*
+*Defined in [lib/sspi.d.ts:128](https://github.com/jlguenego/node-expose-sspi/blob/545dc2a/lib/sspi.d.ts#L128)*
 
 ___
 
@@ -42,4 +42,4 @@ ___
 
 • **user**: *string*
 
-*Defined in [lib/sspi.d.ts:127](https://github.com/jlguenego/node-expose-sspi/blob/133c769/lib/sspi.d.ts#L127)*
+*Defined in [lib/sspi.d.ts:127](https://github.com/jlguenego/node-expose-sspi/blob/545dc2a/lib/sspi.d.ts#L127)*

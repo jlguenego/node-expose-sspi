@@ -14,7 +14,7 @@
 
 ▸ **auth**(`options`: [AuthOptions](../interfaces/_src_sso_interfaces_.authoptions.md)): *[Middleware](_src_sso_interfaces_.md#middleware)*
 
-*Defined in [src/sso/auth.ts:21](https://github.com/jlguenego/node-expose-sspi/blob/133c769/src/sso/auth.ts#L21)*
+*Defined in [src/sso/auth.ts:21](https://github.com/jlguenego/node-expose-sspi/blob/545dc2a/src/sso/auth.ts#L21)*
 
 Tries to get SSO information from browser. If success, the SSO info
 is stored under req.sso

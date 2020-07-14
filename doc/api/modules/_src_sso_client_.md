@@ -18,7 +18,7 @@
 
 ▸ **getSPNFromURI**(`url`: string): *Promise‹string›*
 
-*Defined in [src/sso/client.ts:31](https://github.com/jlguenego/node-expose-sspi/blob/133c769/src/sso/client.ts#L31)*
+*Defined in [src/sso/client.ts:31](https://github.com/jlguenego/node-expose-sspi/blob/545dc2a/src/sso/client.ts#L31)*
 
 Get the SPN the same way Chrome/Firefox or IE does.
 
