@@ -1,7 +1,6 @@
 import express from 'express';
 import { sso } from '../src';
-import a from 'assert';
-const assert = a.strict;
+import { strict as assert } from 'assert';
 import dbg from 'debug';
 const debug = dbg('node-expose-sspi:test');
 

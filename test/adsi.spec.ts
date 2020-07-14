@@ -1,5 +1,5 @@
 import { adsi, sspi, sso, sysinfo } from '../src';
-import a from 'assert';
+import { strict as assert } from 'assert';
 import {
   IADsContainer,
   IDirectorySearch,
@@ -9,8 +9,6 @@ import {
 import dbg from 'debug';
 
 const debug = dbg('node-expose-sspi:test');
-
-const assert = a.strict;
 
 describe('ADSI Unit Test', function () {
   it('should test CoInitialize and CoUninitialize', function () {

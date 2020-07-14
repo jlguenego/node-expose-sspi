@@ -1,6 +1,6 @@
 import { sspi, sso, AcquireCredHandleInput } from '../src';
 import os from 'os';
-import a from 'assert';
+import { strict as assert } from 'assert';
 import {
   CredentialWithExpiry,
   ServerSecurityContext,
@@ -9,7 +9,6 @@ import {
   AcceptSecurityContextInput,
   Token,
 } from '../lib/sspi';
-const assert = a.strict;
 
 describe('SSPI Unit Test', function () {
   it('should return hello', function () {

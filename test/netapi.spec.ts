@@ -1,6 +1,5 @@
 import { netapi, UserInfo1 } from '../src';
-import a from 'assert';
-const assert = a.strict;
+import { strict as assert } from 'assert';
 
 describe('NETAPI Unit Test', function () {
   it('should test NetUserAdd', function () {

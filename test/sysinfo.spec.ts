@@ -1,6 +1,5 @@
 import { sysinfo } from '../src';
-import a from 'assert';
-const assert = a.strict;
+import { strict as assert } from 'assert';
 
 describe('SYSINFO Unit Test', function () {
   it('should test GetComputerNameEx', function () {
