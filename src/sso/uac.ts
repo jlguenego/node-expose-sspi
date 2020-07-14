@@ -1,3 +1,5 @@
+import { sspi } from '..';
+
 /**
  * Test if the current user token has admin privileges.
  *
@@ -13,6 +15,8 @@
  * @returns {boolean}
  */
 export function hasAdminPrivileges(): boolean {
-  // TODO: to be implemented.
-  return true;
+  const sid = sspi.AllocateAndInitializeSid();
+  const result = sspi.CheckTokenMembership(sid);
+  sspi.FreeSid(sid);
+  return result;
 }
