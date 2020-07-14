@@ -23,14 +23,12 @@ Napi::Value e_OpenThreadToken(const Napi::CallbackInfo& info) {
 
   HANDLE userToken;
 
-  BOOL status =
-      OpenThreadToken(GetCurrentThread(), flags, TRUE, &userToken);
+  BOOL status = OpenThreadToken(GetCurrentThread(), flags, TRUE, &userToken);
   if (status == FALSE) {
     throw Napi::Error::New(env, "OpenThreadToken: error. " + plf::error_msg());
   }
   std::stringstream sa;
-  sa << "0x" << std::setfill('0') << std::setw(4)
-     << std::hex << userToken;
+  sa << "0x" << std::setfill('0') << std::setw(4) << std::hex << userToken;
 
   return Napi::String::New(env, sa.str());
 }
