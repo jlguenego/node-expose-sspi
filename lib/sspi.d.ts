@@ -303,8 +303,26 @@ export interface Sspi {
    */
   OpenProcessToken(flags?: AccessTokenFlag[]): Token;
 
-
+  /**
+   * Allocate an sid. Limitations: get only the NtAuthority sid
+   * (for admin check use case)
+   *
+   * Note: the sid returned must be freed with `FreeSid()`.
+   *
+   * @returns {SidPointer}
+   * @memberof Sspi
+   */
   AllocateAndInitializeSid(): SidPointer;
+
+  /**
+   * Free the given sid.
+   *
+   * Warning: this function may crash the system if not used with a good sid.
+   *
+   * @param {SidPointer} sid
+   * @memberof Sspi
+   */
+  FreeSid(sid: SidPointer): void;
 
   /**
    * Get information from a user token.

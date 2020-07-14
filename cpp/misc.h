@@ -39,7 +39,6 @@ Napi::Value e_QueryContextAttributes(const Napi::CallbackInfo &info);
 Napi::Value e_QuerySecurityContextToken(const Napi::CallbackInfo &info);
 Napi::Value e_OpenThreadToken(const Napi::CallbackInfo &info);
 Napi::Value e_OpenProcessToken(const Napi::CallbackInfo &info);
-Napi::Value e_AllocateAndInitializeSid(const Napi::CallbackInfo &info);
 Napi::Value e_GetTokenInformation(const Napi::CallbackInfo &info);
 void e_CloseHandle(const Napi::CallbackInfo &info);
 void e_FreeCredentialsHandle(const Napi::CallbackInfo &info);
@@ -51,6 +50,8 @@ void e_RevertSecurityContext(const Napi::CallbackInfo &info);
 Napi::Value e_GetUserName(const Napi::CallbackInfo &info);
 Napi::Value e_GetUserNameEx(const Napi::CallbackInfo &info);
 Napi::Value e_LookupAccountName(const Napi::CallbackInfo &info);
+Napi::Value e_AllocateAndInitializeSid(const Napi::CallbackInfo &info);
+void e_FreeSid(const Napi::CallbackInfo &info);
 
 // ADSI
 void e_CoInitialize(const Napi::CallbackInfo &info);

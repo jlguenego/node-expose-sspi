@@ -26,10 +26,7 @@ Napi::Value e_AllocateAndInitializeSid(const Napi::CallbackInfo& info) {
         env, "AllocateAndInitializeSid: error. " + plf::error_msg());
   }
 
-  std::stringstream sa;
-  sa << "0x" << std::setfill('0') << std::setw(4) << std::hex << AdministratorsGroup;
-
-  return Napi::String::New(env, sa.str());
+  return Napi::String::New(env, p2s(AdministratorsGroup));
 }
 
 }  // namespace myAddon

@@ -27,7 +27,6 @@ Object InitSSPI(Env env, Object exports) {
   EXPORT(QuerySecurityContextToken);
   EXPORT(OpenThreadToken);
   EXPORT(OpenProcessToken);
-  EXPORT(AllocateAndInitializeSid);
   EXPORT(GetTokenInformation);
   EXPORT(CloseHandle);
   EXPORT(FreeCredentialsHandle);
@@ -39,6 +38,8 @@ Object InitSSPI(Env env, Object exports) {
   EXPORT(GetUserName);
   EXPORT(GetUserNameEx);
   EXPORT(LookupAccountName);
+  EXPORT(AllocateAndInitializeSid);
+  EXPORT(FreeSid);
   return exports;
 }
 
