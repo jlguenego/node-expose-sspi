@@ -13,6 +13,7 @@ import { Client, getSPNFromURI } from './client';
 import { Mutex } from './mutex';
 import { init, database, getUsers, getUser } from './userdb';
 import { openADConnection, closeADConnection } from './adConnection';
+import { hasAdminPrivileges } from './uac';
 
 /**
  * Wrapper object sso. Everything written in Typescript that is
@@ -38,4 +39,5 @@ export const sso = {
   openADConnection,
   SSO,
   sleep,
+  hasAdminPrivileges
 };

@@ -96,6 +96,7 @@ export async function connect(userCredential: UserCredential): Promise<SSO> {
     }
     return sso;
   } catch (e) {
+    // TODO: this error occurs and console.error is called during test.
     console.error('error', e);
   }
 
