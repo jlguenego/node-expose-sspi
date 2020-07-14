@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.30](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.29...v0.1.30) (2020-07-14)
+
+
+### Features
+
+* added AllocateAndInitializeSid ([039b3c5](https://github.com/jlguenego/node-expose-sspi/commit/039b3c53ee296e23bce1d50d8d1305b9ed1d217f))
+* added CheckTokenMembership ([0f5e7c6](https://github.com/jlguenego/node-expose-sspi/commit/0f5e7c69d1a9d4acec68e0d607e90a25e87b73ec))
+* added FreeSid ([ffe22ed](https://github.com/jlguenego/node-expose-sspi/commit/ffe22edce0236dc496b17985c67a0601a9b53d35))
+* added NetUserDel ([38f0455](https://github.com/jlguenego/node-expose-sspi/commit/38f045582dc481d6381113de0ff56209ab09e599))
+* adding netapi add user ([7b9d62c](https://github.com/jlguenego/node-expose-sspi/commit/7b9d62c26071153f7ca8a37ffcc476f7dbe5fc52))
+* implemented hasAdminPrivileges ([545dc2a](https://github.com/jlguenego/node-expose-sspi/commit/545dc2abbe47b5e8fd0f204f58e2d234c1b7f3e5))
+
+
+### Bug Fixes
+
+* security on dependancies ([a0de1fc](https://github.com/jlguenego/node-expose-sspi/commit/a0de1fccf358eeddea904ea69fa6199bc2f919cb))
+
 ### [0.1.29](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.28...v0.1.29) (2020-07-05)
 
 
