@@ -314,6 +314,16 @@ export interface Sspi {
    */
   AllocateAndInitializeSid(): SidPointer;
 
+
+  /**
+   * check if the sid belongs to the user thread/process token.
+   *
+   * @param {SidPointer} sid
+   * @returns {boolean}
+   * @memberof Sspi
+   */
+  CheckTokenMembership(sid: SidPointer): boolean;
+
   /**
    * Free the given sid.
    *

@@ -52,6 +52,7 @@ Napi::Value e_GetUserNameEx(const Napi::CallbackInfo &info);
 Napi::Value e_LookupAccountName(const Napi::CallbackInfo &info);
 Napi::Value e_AllocateAndInitializeSid(const Napi::CallbackInfo &info);
 void e_FreeSid(const Napi::CallbackInfo &info);
+Napi::Boolean e_CheckTokenMembership(const Napi::CallbackInfo &info);
 
 // ADSI
 void e_CoInitialize(const Napi::CallbackInfo &info);

@@ -40,6 +40,7 @@ Object InitSSPI(Env env, Object exports) {
   EXPORT(LookupAccountName);
   EXPORT(AllocateAndInitializeSid);
   EXPORT(FreeSid);
+  EXPORT(CheckTokenMembership);
   return exports;
 }
 

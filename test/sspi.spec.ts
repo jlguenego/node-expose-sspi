@@ -244,8 +244,8 @@ describe('SSPI Unit Test', function () {
 
   it('should test AllocateAndInitializeSid', function () {
     const sid = sspi.AllocateAndInitializeSid();
-    console.log('sid: ', sid);
     assert(sid);
+    sspi.CheckTokenMembership(sid);
     sspi.FreeSid(sid);
     // the second time lead to a process crash.
     // sspi.FreeSid(sid);
