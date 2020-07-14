@@ -9,6 +9,7 @@
 * ["lib/adsi.d"](modules/_lib_adsi_d_.md)
 * ["lib/api.d"](modules/_lib_api_d_.md)
 * ["lib/flags/index.d"](modules/_lib_flags_index_d_.md)
+* ["lib/netapi.d"](modules/_lib_netapi_d_.md)
 * ["lib/sspi.d"](modules/_lib_sspi_d_.md)
 * ["lib/sysinfo.d"](modules/_lib_sysinfo_d_.md)
 * ["src/sso/SSO"](modules/_src_sso_sso_.md)
@@ -24,4 +25,5 @@
 * ["src/sso/misc"](modules/_src_sso_misc_.md)
 * ["src/sso/mutex"](modules/_src_sso_mutex_.md)
 * ["src/sso/sleep"](modules/_src_sso_sleep_.md)
+* ["src/sso/uac"](modules/_src_sso_uac_.md)
 * ["src/sso/userdb"](modules/_src_sso_userdb_.md)

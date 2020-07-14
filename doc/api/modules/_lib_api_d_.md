@@ -23,19 +23,23 @@
 * [InformationClass](_lib_api_d_.md#informationclass)
 * [InitializeSecurityContextInput](_lib_api_d_.md#initializesecuritycontextinput)
 * [IscReqFlag](_lib_api_d_.md#iscreqflag)
+* [NetApi](_lib_api_d_.md#netapi)
 * [SecPkgInfo](_lib_api_d_.md#secpkginfo)
 * [SecurityContext](_lib_api_d_.md#securitycontext)
 * [SecuritySupportProvider](_lib_api_d_.md#securitysupportprovider)
 * [ServerSecurityContext](_lib_api_d_.md#serversecuritycontext)
 * [SidObject](_lib_api_d_.md#sidobject)
+* [SidPointer](_lib_api_d_.md#sidpointer)
 * [Sspi](_lib_api_d_.md#sspi)
 * [TargetDataRepMapFlag](_lib_api_d_.md#targetdatarepmapflag)
 * [Token](_lib_api_d_.md#token)
 * [UserCredential](_lib_api_d_.md#usercredential)
+* [UserInfo1](_lib_api_d_.md#userinfo1)
 
 ### Variables
 
 * [adsi](_lib_api_d_.md#const-adsi)
+* [netapi](_lib_api_d_.md#const-netapi)
 * [sspi](_lib_api_d_.md#const-sspi)
 * [sysinfo](_lib_api_d_.md#const-sysinfo)
 
@@ -143,6 +147,12 @@ ___
 
 ___
 
+###  NetApi
+
+• **NetApi**:
+
+___
+
 ###  SecPkgInfo
 
 • **SecPkgInfo**:
@@ -173,6 +183,12 @@ ___
 
 ___
 
+###  SidPointer
+
+• **SidPointer**:
+
+___
+
 ###  Sspi
 
 • **Sspi**:
@@ -195,13 +211,27 @@ ___
 
 • **UserCredential**:
 
+___
+
+###  UserInfo1
+
+• **UserInfo1**:
+
 ## Variables
 
 ### `Const` adsi
 
 • **adsi**: *[Adsi](../interfaces/_lib_adsi_d_.adsi.md)*
 
-*Defined in [lib/api.d.ts:8](https://github.com/jlguenego/node-expose-sspi/blob/6ab0a20/lib/api.d.ts#L8)*
+*Defined in [lib/api.d.ts:10](https://github.com/jlguenego/node-expose-sspi/blob/133c769/lib/api.d.ts#L10)*
+
+___
+
+### `Const` netapi
+
+• **netapi**: *[NetApi](../interfaces/_lib_netapi_d_.netapi.md)*
+
+*Defined in [lib/api.d.ts:12](https://github.com/jlguenego/node-expose-sspi/blob/133c769/lib/api.d.ts#L12)*
 
 ___
 
@@ -209,7 +239,7 @@ ___
 
 • **sspi**: *[Sspi](../interfaces/_lib_sspi_d_.sspi.md)*
 
-*Defined in [lib/api.d.ts:7](https://github.com/jlguenego/node-expose-sspi/blob/6ab0a20/lib/api.d.ts#L7)*
+*Defined in [lib/api.d.ts:9](https://github.com/jlguenego/node-expose-sspi/blob/133c769/lib/api.d.ts#L9)*
 
 ___
 
@@ -217,4 +247,4 @@ ___
 
 • **sysinfo**: *[SysInfo](../interfaces/_lib_sysinfo_d_.sysinfo.md)*
 
-*Defined in [lib/api.d.ts:9](https://github.com/jlguenego/node-expose-sspi/blob/6ab0a20/lib/api.d.ts#L9)*
+*Defined in [lib/api.d.ts:11](https://github.com/jlguenego/node-expose-sspi/blob/133c769/lib/api.d.ts#L11)*

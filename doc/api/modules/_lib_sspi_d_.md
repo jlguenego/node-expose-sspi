@@ -25,6 +25,7 @@
 
 * [InformationClass](_lib_sspi_d_.md#informationclass)
 * [SecuritySupportProvider](_lib_sspi_d_.md#securitysupportprovider)
+* [SidPointer](_lib_sspi_d_.md#sidpointer)
 * [Token](_lib_sspi_d_.md#token)
 
 ## Type aliases
@@ -33,7 +34,7 @@
 
 Ƭ **InformationClass**: *"TokenGroups"*
 
-*Defined in [lib/sspi.d.ts:65](https://github.com/jlguenego/node-expose-sspi/blob/6ab0a20/lib/sspi.d.ts#L65)*
+*Defined in [lib/sspi.d.ts:72](https://github.com/jlguenego/node-expose-sspi/blob/133c769/lib/sspi.d.ts#L72)*
 
 ___
 
@@ -41,7 +42,17 @@ ___
 
 Ƭ **SecuritySupportProvider**: *"NTLM" | "Kerberos" | "Negotiate"*
 
-*Defined in [lib/sspi.d.ts:11](https://github.com/jlguenego/node-expose-sspi/blob/6ab0a20/lib/sspi.d.ts#L11)*
+*Defined in [lib/sspi.d.ts:11](https://github.com/jlguenego/node-expose-sspi/blob/133c769/lib/sspi.d.ts#L11)*
+
+___
+
+###  SidPointer
+
+Ƭ **SidPointer**: *string*
+
+*Defined in [lib/sspi.d.ts:70](https://github.com/jlguenego/node-expose-sspi/blob/133c769/lib/sspi.d.ts#L70)*
+
+A pointer to an Sid (to be freed).
 
 ___
 
@@ -49,8 +60,6 @@ ___
 
 Ƭ **Token**: *string*
 
-*Defined in [lib/sspi.d.ts:63](https://github.com/jlguenego/node-expose-sspi/blob/6ab0a20/lib/sspi.d.ts#L63)*
+*Defined in [lib/sspi.d.ts:63](https://github.com/jlguenego/node-expose-sspi/blob/133c769/lib/sspi.d.ts#L63)*
 
 A Token is a pointer to some user information.
-
-**`interface`** Token

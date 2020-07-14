@@ -241,4 +241,10 @@ describe('SSPI Unit Test', function () {
     sspi.FreeCredentialsHandle(serverCred.credential);
     sspi.FreeCredentialsHandle(serverCred.credential);
   });
+
+  it('should test AllocateAndInitializeSid', function () {
+    const sid = sspi.AllocateAndInitializeSid();
+    console.log('sid: ', sid);
+    assert(sid);
+  });
 });

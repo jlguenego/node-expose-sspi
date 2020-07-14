@@ -18,4 +18,4 @@
 
 • **activeDirectoryMutex**: *[Mutex](../classes/_src_sso_mutex_.mutex.md)‹›* = new Mutex()
 
-*Defined in [src/sso/mutex.ts:40](https://github.com/jlguenego/node-expose-sspi/blob/6ab0a20/src/sso/mutex.ts#L40)*
+*Defined in [src/sso/mutex.ts:40](https://github.com/jlguenego/node-expose-sspi/blob/133c769/src/sso/mutex.ts#L40)*

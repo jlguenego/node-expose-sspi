@@ -2,6 +2,11 @@
 
 # Class: Client
 
+Allow to fetch url with a system that uses the negotiate protocol.
+Cookies are managed if necessary during the process.
+
+**`export`** 
+
 ## Hierarchy
 
 * **Client**
@@ -11,9 +16,6 @@
 ### Methods
 
 * [fetch](_src_sso_client_.client.md#fetch)
-* [handleAuth](_src_sso_client_.client.md#handleauth)
-* [restituteCookies](_src_sso_client_.client.md#restitutecookies)
-* [saveCookies](_src_sso_client_.client.md#savecookies)
 * [setCredentials](_src_sso_client_.client.md#setcredentials)
 * [setSSP](_src_sso_client_.client.md#setssp)
 * [setTargetName](_src_sso_client_.client.md#settargetname)
@@ -24,66 +26,23 @@
 
 ▸ **fetch**(`resource`: string, `init?`: RequestInit): *Promise‹Response›*
 
-*Defined in [src/sso/client.ts:138](https://github.com/jlguenego/node-expose-sspi/blob/6ab0a20/src/sso/client.ts#L138)*
+*Defined in [src/sso/client.ts:154](https://github.com/jlguenego/node-expose-sspi/blob/133c769/src/sso/client.ts#L154)*
+
+Works as the fetch function of node-fetch node module.
+This function can handle the negotiate protocol with SPNEGO tokens.
+
+**`memberof`** Client
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`resource` | string |
-`init?` | RequestInit |
-
-**Returns:** *Promise‹Response›*
-
-___
-
-###  handleAuth
-
-▸ **handleAuth**(`response`: Response, `resource`: string, `init`: RequestInit): *Promise‹Response›*
-
-*Defined in [src/sso/client.ts:144](https://github.com/jlguenego/node-expose-sspi/blob/6ab0a20/src/sso/client.ts#L144)*
-
-**Parameters:**
-
-Name | Type | Default |
+Name | Type | Description |
 ------ | ------ | ------ |
-`response` | Response | - |
-`resource` | string | - |
-`init` | RequestInit | {} |
+`resource` | string | the URL to fetch |
+`init?` | RequestInit | - |
 
 **Returns:** *Promise‹Response›*
 
-___
-
-###  restituteCookies
-
-▸ **restituteCookies**(`requestInit`: RequestInit): *void*
-
-*Defined in [src/sso/client.ts:90](https://github.com/jlguenego/node-expose-sspi/blob/6ab0a20/src/sso/client.ts#L90)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`requestInit` | RequestInit |
-
-**Returns:** *void*
-
-___
-
-###  saveCookies
-
-▸ **saveCookies**(`response`: Response): *void*
-
-*Defined in [src/sso/client.ts:76](https://github.com/jlguenego/node-expose-sspi/blob/6ab0a20/src/sso/client.ts#L76)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`response` | Response |
-
-**Returns:** *void*
+a promise with the HTTP response.
 
 ___
 
@@ -91,7 +50,7 @@ ___
 
 ▸ **setCredentials**(`domain`: string, `user`: string, `password`: string): *void*
 
-*Defined in [src/sso/client.ts:110](https://github.com/jlguenego/node-expose-sspi/blob/6ab0a20/src/sso/client.ts#L110)*
+*Defined in [src/sso/client.ts:117](https://github.com/jlguenego/node-expose-sspi/blob/133c769/src/sso/client.ts#L117)*
 
 Set the credentials for running the client as another user.
 
@@ -115,7 +74,7 @@ ___
 
 ▸ **setSSP**(`ssp`: [SecuritySupportProvider](../modules/_lib_sspi_d_.md#securitysupportprovider)): *void*
 
-*Defined in [src/sso/client.ts:134](https://github.com/jlguenego/node-expose-sspi/blob/6ab0a20/src/sso/client.ts#L134)*
+*Defined in [src/sso/client.ts:141](https://github.com/jlguenego/node-expose-sspi/blob/133c769/src/sso/client.ts#L141)*
 
 Set the Security Support Provider (NTLM, Kerberos, Negotiate)
 
@@ -135,7 +94,7 @@ ___
 
 ▸ **setTargetName**(`targetName`: string): *void*
 
-*Defined in [src/sso/client.ts:124](https://github.com/jlguenego/node-expose-sspi/blob/6ab0a20/src/sso/client.ts#L124)*
+*Defined in [src/sso/client.ts:131](https://github.com/jlguenego/node-expose-sspi/blob/133c769/src/sso/client.ts#L131)*
 
 Force the targetName to a value.
 

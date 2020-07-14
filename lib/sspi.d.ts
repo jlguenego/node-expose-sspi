@@ -58,9 +58,16 @@ export interface HANDLE {}
 /**
  * A Token is a pointer to some user information.
  *
- * @interface Token
+ * @type Token
  */
 export type Token = string;
+
+/**
+ * A pointer to an Sid (to be freed).
+ *
+ * @type SidPointer
+ */
+export type SidPointer = string;
 
 export type InformationClass = 'TokenGroups';
 
@@ -295,6 +302,9 @@ export interface Sspi {
    * @memberof Sspi
    */
   OpenProcessToken(flags?: AccessTokenFlag[]): Token;
+
+
+  AllocateAndInitializeSid(): SidPointer;
 
   /**
    * Get information from a user token.
