@@ -27,6 +27,7 @@ Object InitSSPI(Env env, Object exports) {
   EXPORT(QuerySecurityContextToken);
   EXPORT(OpenThreadToken);
   EXPORT(OpenProcessToken);
+  EXPORT(AllocateAndInitializeSid);
   EXPORT(GetTokenInformation);
   EXPORT(CloseHandle);
   EXPORT(FreeCredentialsHandle);
