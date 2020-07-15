@@ -1,6 +1,6 @@
 import assert from 'assert';
 import os from 'os';
-import { sso, sysinfo } from '../src';
+import { sso, sysinfo, netapi } from '../src';
 import dbg from 'debug';
 
 const debug = dbg('node-expose-sspi:test');
@@ -56,19 +56,41 @@ describe('SSO Unit Test', function () {
     }
   });
 
-  it('should test connect', async function() {
+  if (sso.hasAdminPrivileges()) {
+    it('should test connect with a local account', async function () {
+      try {
+        netapi.NetUserAdd(undefined, 1, {
+          name: 'test123',
+          password: 'toto123!',
+        });
+        const userCredentials = {
+          domain: os.hostname(),
+          user: 'titi',
+          password: 'toto',
+        };
+        const mySSO = await sso.connect(userCredentials);
+        assert(mySSO);
+        netapi.NetUserDel(undefined, 'test123');
+      } catch (error) {
+        assert(error);
+      }
+    });
+  }
+
+  it('should test connect with bad login', async function () {
     try {
       // in order to test that it is working,
       // create a local account titi with password toto
       const userCredentials = {
         domain: os.hostname(),
-        user: 'titi',
+        user: 'neverexist',
         password: 'toto',
       };
-      const mySSO = await sso.connect(userCredentials);
-      assert(mySSO);
+      await sso.connect(userCredentials);
+      assert.fail('connect did not thrown any error.');
     } catch (error) {
-      assert(error);
+      assert(error instanceof Error);
+      assert.equal(error.message, 'Sorry mate, wrong login/password.');
     }
   });
 });
