@@ -89,6 +89,28 @@ export interface AuthOptions {
    * @memberof AuthOptions
    */
   groupFilterRegex?: string;
+
+  /**
+   * If true, someone that connects with wrong login/password may be
+   * authenticated as Windows guest user.
+   *
+   * @default false
+   *
+   * @type {boolean}
+   * @memberof AuthOptions
+   */
+  allowsGuest?: boolean;
+
+  /**
+   * If true, someone that connects without login/password may be
+   * authenticated as Windows anonymous user account.
+   *
+   * @default false
+   *
+   * @type {boolean}
+   * @memberof AuthOptions
+   */
+  allowsAnonymousLogon?: boolean;
 }
 
 export interface User {

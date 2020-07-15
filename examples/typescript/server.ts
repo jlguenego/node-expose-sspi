@@ -9,6 +9,8 @@ app.use(
     useOwner: false,
     useActiveDirectory: true,
     useCookies: true,
+    allowsAnonymousLogon: false,
+    allowsGuest: false,
     // groupFilterRegex: ".*NT AUTHORITY.*"
   })
 );

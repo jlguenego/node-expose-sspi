@@ -25,6 +25,8 @@ export function auth(options: AuthOptions = {}): Middleware {
     useOwner: false,
     useCookies: true,
     groupFilterRegex: '.*',
+    allowsGuest: false,
+    allowsAnonymousLogon: false,
   };
   Object.assign(opts, options);
 
@@ -109,7 +111,10 @@ export function auth(options: AuthOptions = {}): Middleware {
         }
         debug('input just before calling AcceptSecurityContext', input);
         const serverSecurityContext = sspi.AcceptSecurityContext(input);
-        debug('serverSecurityContext just after AcceptSecurityContext', serverSecurityContext);
+        debug(
+          'serverSecurityContext just after AcceptSecurityContext',
+          serverSecurityContext
+        );
         if (
           !['SEC_E_OK', 'SEC_I_CONTINUE_NEEDED'].includes(
             serverSecurityContext.SECURITY_STATUS
@@ -137,24 +142,36 @@ export function auth(options: AuthOptions = {}): Middleware {
           return res.end();
         }
 
-        if (serverSecurityContext.SECURITY_STATUS === 'SEC_E_OK') {
-          res.setHeader(
-            'WWW-Authenticate',
-            'Negotiate ' +
-              encode(serverSecurityContext.SecBufferDesc.buffers[0])
-          );
-          const lastServerContextHandle = schManager.getServerContextHandle(
-            cookieToken
-          );
-          const method = schManager.getMethod(cookieToken);
-          const sso = new SSO(lastServerContextHandle, method);
-          sso.setOptions(opts);
-          await sso.load();
-          req.sso = sso.getJSON();
-          sspi.DeleteSecurityContext(lastServerContextHandle);
-          schManager.release(cookieToken);
+        const lastServerContextHandle = schManager.getServerContextHandle(
+          cookieToken
+        );
+        const method = schManager.getMethod(cookieToken);
+        const sso = new SSO(lastServerContextHandle, method);
+        sso.setOptions(opts);
+        await sso.load();
+        req.sso = sso.getJSON();
+        sspi.DeleteSecurityContext(lastServerContextHandle);
+        schManager.release(cookieToken);
+
+        // check if user is allowed.
+        if (
+          !opts.allowsAnonymousLogon &&
+          req.sso.user.name === 'ANONYMOUS LOGON'
+        ) {
+          res.statusCode = 401;
+          return res.end('Anonymous login not authorized.');
         }
-        next();
+        if (!opts.allowsGuest && req.sso.user.name === 'Guest') {
+          res.statusCode = 401;
+          return res.end('Guest not authorized.');
+        }
+
+        // user authenticated and allowed.
+        res.setHeader(
+          'WWW-Authenticate',
+          'Negotiate ' + encode(serverSecurityContext.SecBufferDesc.buffers[0])
+        );
+        return next();
       } catch (e) {
         schManager.release();
         console.error(e);
