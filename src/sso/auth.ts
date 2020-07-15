@@ -89,8 +89,8 @@ export function auth(options: AuthOptions = {}): Middleware {
         ) {
           await schManager.waitForReleased(cookieToken);
           debug('schManager waitForReleased finished.');
-          const method = messageType.startsWith('NTLM') ? 'NTLM' : 'Kerberos';
-          schManager.setMethod(method, cookieToken);
+          const ssoMethod = messageType.startsWith('NTLM') ? 'NTLM' : 'Kerberos';
+          schManager.setMethod(ssoMethod, cookieToken);
         }
 
         const input: AcceptSecurityContextInput = {
