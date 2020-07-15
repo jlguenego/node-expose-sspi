@@ -65,9 +65,8 @@ export function auth(options: AuthOptions = {}): Middleware {
         }
 
         if (!authorization.startsWith('Negotiate ')) {
-          return next(
-            createError(400, `Malformed authentication token ${authorization}`)
-          );
+          res.statusCode = 400;
+          return res.end(`Malformed authentication token: ${authorization}`);
         }
 
         checkCredentials();
