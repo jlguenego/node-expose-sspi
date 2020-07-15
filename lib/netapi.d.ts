@@ -13,9 +13,9 @@ export interface NetApi {
   /**
    * create a windows user account
    *
-   * @param {string} serverName
-   * @param {number} levelData
-   * @param {UserInfo1} userInfo
+   * @param {string} serverName if undefined, then create a local account.
+   * @param {number} levelData. Specify the userInfo structure. 1 is currently the only accepted.
+   * @param {UserInfo1} userInfo specify username and password.
    * @memberof NetApi
    */
   NetUserAdd(serverName: string, levelData: number, userInfo: UserInfo1): void;
