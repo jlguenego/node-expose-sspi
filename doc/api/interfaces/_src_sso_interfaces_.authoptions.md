@@ -16,6 +16,8 @@ options to provide to sso.auth() and SSO.setOptions().
 
 ### Properties
 
+* [allowsAnonymousLogon](_src_sso_interfaces_.authoptions.md#optional-allowsanonymouslogon)
+* [allowsGuest](_src_sso_interfaces_.authoptions.md#optional-allowsguest)
 * [groupFilterRegex](_src_sso_interfaces_.authoptions.md#optional-groupfilterregex)
 * [useActiveDirectory](_src_sso_interfaces_.authoptions.md#optional-useactivedirectory)
 * [useCookies](_src_sso_interfaces_.authoptions.md#optional-usecookies)
@@ -24,11 +26,41 @@ options to provide to sso.auth() and SSO.setOptions().
 
 ## Properties
 
+### `Optional` allowsAnonymousLogon
+
+• **allowsAnonymousLogon**? : *boolean*
+
+*Defined in [src/sso/interfaces.ts:113](https://github.com/jlguenego/node-expose-sspi/blob/c77a3a8/src/sso/interfaces.ts#L113)*
+
+If true, someone that connects without login/password may be
+authenticated as Windows anonymous user account.
+
+**`default`** false
+
+**`memberof`** AuthOptions
+
+___
+
+### `Optional` allowsGuest
+
+• **allowsGuest**? : *boolean*
+
+*Defined in [src/sso/interfaces.ts:102](https://github.com/jlguenego/node-expose-sspi/blob/c77a3a8/src/sso/interfaces.ts#L102)*
+
+If true, someone that connects with wrong login/password may be
+authenticated as Windows guest user.
+
+**`default`** false
+
+**`memberof`** AuthOptions
+
+___
+
 ### `Optional` groupFilterRegex
 
 • **groupFilterRegex**? : *string*
 
-*Defined in [src/sso/interfaces.ts:91](https://github.com/jlguenego/node-expose-sspi/blob/545dc2a/src/sso/interfaces.ts#L91)*
+*Defined in [src/sso/interfaces.ts:91](https://github.com/jlguenego/node-expose-sspi/blob/c77a3a8/src/sso/interfaces.ts#L91)*
 
 Filter the groups. Useful if there are too much groups to fetch.
 
@@ -42,7 +74,7 @@ ___
 
 • **useActiveDirectory**? : *boolean*
 
-*Defined in [src/sso/interfaces.ts:60](https://github.com/jlguenego/node-expose-sspi/blob/545dc2a/src/sso/interfaces.ts#L60)*
+*Defined in [src/sso/interfaces.ts:60](https://github.com/jlguenego/node-expose-sspi/blob/c77a3a8/src/sso/interfaces.ts#L60)*
 
 Brings back the Active Directory user information
 
@@ -58,7 +90,7 @@ ___
 
 • **useCookies**? : *boolean*
 
-*Defined in [src/sso/interfaces.ts:81](https://github.com/jlguenego/node-expose-sspi/blob/545dc2a/src/sso/interfaces.ts#L81)*
+*Defined in [src/sso/interfaces.ts:81](https://github.com/jlguenego/node-expose-sspi/blob/c77a3a8/src/sso/interfaces.ts#L81)*
 
 Manage authentication with cookie.
 Useful for performance when many users try to connect at the same time.
@@ -73,7 +105,7 @@ ___
 
 • **useGroups**? : *boolean*
 
-*Defined in [src/sso/interfaces.ts:48](https://github.com/jlguenego/node-expose-sspi/blob/545dc2a/src/sso/interfaces.ts#L48)*
+*Defined in [src/sso/interfaces.ts:48](https://github.com/jlguenego/node-expose-sspi/blob/c77a3a8/src/sso/interfaces.ts#L48)*
 
 Brings back the groups the user belongs to.
 
@@ -87,7 +119,7 @@ ___
 
 • **useOwner**? : *boolean*
 
-*Defined in [src/sso/interfaces.ts:70](https://github.com/jlguenego/node-expose-sspi/blob/545dc2a/src/sso/interfaces.ts#L70)*
+*Defined in [src/sso/interfaces.ts:70](https://github.com/jlguenego/node-expose-sspi/blob/c77a3a8/src/sso/interfaces.ts#L70)*
 
 Brings back the server process owner info.
 
