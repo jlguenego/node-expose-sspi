@@ -1,7 +1,8 @@
 import { sso } from '../src/sso';
 
-console.log('domain: ', sso.isOnDomain());
-console.log('domain name: ', sso.getDefaultDomain());
+console.log('Has admin privileges: ', sso.hasAdminPrivileges());
+console.log('Is joined to a domain: ', sso.isOnDomain());
+console.log('Domain name: ', sso.getDefaultDomain());
 if (sso.isOnDomain()) {
-  console.log('controller reachable: ', sso.isActiveDirectoryReachable());
+  console.log('Controller reachable: ', sso.isActiveDirectoryReachable());
 }
