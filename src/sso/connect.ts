@@ -17,11 +17,11 @@ const debug = dbg('node-expose-sspi:connect');
  * matches a local account or a domain account.
  *
  * @param {sspi.UserCredential} userCredential
- * @returns {SSO} the SSO object or undefined.
+ * @returns {SSO} the SSO object.
  */
 export async function connect(userCredential: UserCredential): Promise<SSO> {
   const errorMsg = 'Error while building the security context';
-  const badLoginPasswordMsg = 'Sorry mate, wrong login/password.';
+  const badLoginPasswordError = new Error('Sorry mate, wrong login/password.');
   try {
     const packageInfo = sspi.QuerySecurityPackageInfo('Negotiate');
     const clientCred = sspi.AcquireCredentialsHandle({
@@ -75,7 +75,7 @@ export async function connect(userCredential: UserCredential): Promise<SSO> {
         serverSecurityContext.SECURITY_STATUS !== 'SEC_E_OK'
       ) {
         if (serverSecurityContext.SECURITY_STATUS === 'SEC_E_LOGON_DENIED') {
-          throw badLoginPasswordMsg;
+          throw badLoginPasswordError;
         }
         throw errorMsg;
       }
@@ -92,13 +92,14 @@ export async function connect(userCredential: UserCredential): Promise<SSO> {
     const sso = new SSO(serverSecurityContext.contextHandle);
     await sso.load();
     if (sso.user.name === 'Guest') {
-      throw badLoginPasswordMsg;
+      throw badLoginPasswordError;
     }
     return sso;
   } catch (e) {
-    // TODO: this error occurs and console.error is called during test.
+    if (e === badLoginPasswordError) {
+      throw e;
+    }
     console.error('error', e);
+    throw e;
   }
-
-  return undefined;
 }
