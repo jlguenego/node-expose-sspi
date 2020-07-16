@@ -54,7 +54,7 @@ void e_NetUserAdd(const Napi::CallbackInfo& info) {
   user_info.usri1_priv = USER_PRIV_USER;
   user_info.usri1_home_dir = TEXT("");
   user_info.usri1_comment = TEXT("Sample User");
-  user_info.usri1_flags = UF_SCRIPT;
+  user_info.usri1_flags = getFlags(env, USER_INFO_1_FLAGS, userInfo, "flags", UF_SCRIPT);
   user_info.usri1_script_path = TEXT("");
 
   DWORD parm_err = 0;

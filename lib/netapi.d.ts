@@ -1,3 +1,5 @@
+import { UserInfo1Flag } from './flags';
+
 export interface UserInfo1 {
   name: string;
   password: string;
@@ -5,13 +7,15 @@ export interface UserInfo1 {
   priv?: number;
   homeDir?: string;
   comment?: string;
-  flags?: number;
+  flags?: UserInfo1Flag[];
   scriptPath?: string;
 }
 
 export interface NetApi {
   /**
-   * create a windows user account
+   * create a windows user account.
+   * 
+   * By default userInfo flags is set to `['UF_SCRIPT']`.
    *
    * @param {string} serverName if undefined, then create a local account.
    * @param {number} levelData. Specify the userInfo structure. 1 is currently the only accepted.

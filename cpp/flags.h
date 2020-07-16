@@ -14,6 +14,7 @@
 #define ADS_AUTHENTICATION_FLAGS 8
 #define COINIT_FLAGS 9
 #define COMPUTER_NAME_FORMAT_FLAGS 10
+#define USER_INFO_1_FLAGS 11
 
 namespace myAddon {
 

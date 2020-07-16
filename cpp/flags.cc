@@ -10,6 +10,8 @@
 
 #include <iads.h>
 
+#include <LMaccess.h>
+
 #define FLAG_INSERT(map, flag) map[flag] = #flag
 
 #define flagmap std::map<int64_t, std::string>
@@ -25,6 +27,7 @@ flagmap CredentialUseMap;
 flagmap AdsAuthenticationMap;
 flagmap CoInitMap;
 flagmap ComputerNameFormatMap;
+flagmap UserInfo1Map;
 
 std::map<int64_t, flagmap *> contextMap;
 
@@ -42,6 +45,7 @@ void initFlags() {
   contextMap[ADS_AUTHENTICATION_FLAGS] = &AdsAuthenticationMap;
   contextMap[COINIT_FLAGS] = &CoInitMap;
   contextMap[COMPUTER_NAME_FORMAT_FLAGS] = &ComputerNameFormatMap;
+  contextMap[USER_INFO_1_FLAGS] = &UserInfo1Map;
 
   FLAG_INSERT(extendedNameFormatMap, NameUnknown);
   FLAG_INSERT(extendedNameFormatMap, NameFullyQualifiedDN);
@@ -219,6 +223,29 @@ void initFlags() {
   FLAG_INSERT(ComputerNameFormatMap, ComputerNamePhysicalDnsDomain);
   FLAG_INSERT(ComputerNameFormatMap, ComputerNamePhysicalDnsFullyQualified);
   FLAG_INSERT(ComputerNameFormatMap, ComputerNameMax);
+
+  FLAG_INSERT(UserInfo1Map, UF_SCRIPT);
+  FLAG_INSERT(UserInfo1Map, UF_ACCOUNTDISABLE);
+  FLAG_INSERT(UserInfo1Map, UF_HOMEDIR_REQUIRED);
+  FLAG_INSERT(UserInfo1Map, UF_PASSWD_NOTREQD);
+  FLAG_INSERT(UserInfo1Map, UF_PASSWD_CANT_CHANGE);
+  FLAG_INSERT(UserInfo1Map, UF_LOCKOUT);
+  FLAG_INSERT(UserInfo1Map, UF_DONT_EXPIRE_PASSWD);
+  FLAG_INSERT(UserInfo1Map, UF_ENCRYPTED_TEXT_PASSWORD_ALLOWED);
+  FLAG_INSERT(UserInfo1Map, UF_NOT_DELEGATED);
+  FLAG_INSERT(UserInfo1Map, UF_SMARTCARD_REQUIRED);
+  FLAG_INSERT(UserInfo1Map, UF_USE_DES_KEY_ONLY);
+  FLAG_INSERT(UserInfo1Map, UF_DONT_REQUIRE_PREAUTH);
+  FLAG_INSERT(UserInfo1Map, UF_TRUSTED_FOR_DELEGATION);
+  FLAG_INSERT(UserInfo1Map, UF_PASSWORD_EXPIRED);
+  FLAG_INSERT(UserInfo1Map, UF_TRUSTED_TO_AUTHENTICATE_FOR_DELEGATION);
+
+  FLAG_INSERT(UserInfo1Map, UF_NORMAL_ACCOUNT);
+  FLAG_INSERT(UserInfo1Map, UF_TEMP_DUPLICATE_ACCOUNT);
+  FLAG_INSERT(UserInfo1Map, UF_WORKSTATION_TRUST_ACCOUNT);
+  FLAG_INSERT(UserInfo1Map, UF_SERVER_TRUST_ACCOUNT);
+  FLAG_INSERT(UserInfo1Map, UF_INTERDOMAIN_TRUST_ACCOUNT);
+
 }
 
 int64_t getFlagValue(Napi::Env env, int context, std::string str) {
