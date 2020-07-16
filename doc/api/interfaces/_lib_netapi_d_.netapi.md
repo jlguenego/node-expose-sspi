@@ -19,9 +19,11 @@
 
 ▸ **NetUserAdd**(`serverName`: string, `levelData`: number, `userInfo`: [UserInfo1](_lib_netapi_d_.userinfo1.md)): *void*
 
-*Defined in [lib/netapi.d.ts:21](https://github.com/jlguenego/node-expose-sspi/blob/c77a3a8/lib/netapi.d.ts#L21)*
+*Defined in [lib/netapi.d.ts:25](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/lib/netapi.d.ts#L25)*
 
-create a windows user account
+create a windows user account.
+
+By default userInfo flags is set to `['UF_SCRIPT']`.
 
 **`memberof`** NetApi
 
@@ -41,7 +43,7 @@ ___
 
 ▸ **NetUserDel**(`serverName`: string, `username`: string): *void*
 
-*Defined in [lib/netapi.d.ts:30](https://github.com/jlguenego/node-expose-sspi/blob/c77a3a8/lib/netapi.d.ts#L30)*
+*Defined in [lib/netapi.d.ts:34](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/lib/netapi.d.ts#L34)*
 
 delete a windows user account
 

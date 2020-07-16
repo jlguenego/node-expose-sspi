@@ -14,7 +14,7 @@
 
 ▸ **connect**(`userCredential`: [UserCredential](../interfaces/_lib_sspi_d_.usercredential.md)): *Promise‹[SSO](../classes/_src_sso_sso_.sso.md)›*
 
-*Defined in [src/sso/connect.ts:22](https://github.com/jlguenego/node-expose-sspi/blob/c77a3a8/src/sso/connect.ts#L22)*
+*Defined in [src/sso/connect.ts:22](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/src/sso/connect.ts#L22)*
 
 Retrieves SSO information from an explicit credential (login/password and domain).
 The SSO information will be retrieved only if the credential

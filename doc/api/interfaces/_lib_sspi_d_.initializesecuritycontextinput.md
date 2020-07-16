@@ -28,7 +28,7 @@ Input of InitializeSecurityContext function.
 
 • **cbMaxToken**? : *number*
 
-*Defined in [lib/sspi.d.ts:140](https://github.com/jlguenego/node-expose-sspi/blob/c77a3a8/lib/sspi.d.ts#L140)*
+*Defined in [lib/sspi.d.ts:140](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/lib/sspi.d.ts#L140)*
 
 ___
 
@@ -36,7 +36,7 @@ ___
 
 • **contextHandle**? : *[CtxtHandle](_lib_sspi_d_.ctxthandle.md)*
 
-*Defined in [lib/sspi.d.ts:142](https://github.com/jlguenego/node-expose-sspi/blob/c77a3a8/lib/sspi.d.ts#L142)*
+*Defined in [lib/sspi.d.ts:142](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/lib/sspi.d.ts#L142)*
 
 ___
 
@@ -44,7 +44,7 @@ ___
 
 • **contextReq**? : *[IscReqFlag](../modules/_lib_flags_index_d_.md#iscreqflag)[]*
 
-*Defined in [lib/sspi.d.ts:143](https://github.com/jlguenego/node-expose-sspi/blob/c77a3a8/lib/sspi.d.ts#L143)*
+*Defined in [lib/sspi.d.ts:143](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/lib/sspi.d.ts#L143)*
 
 ___
 
@@ -52,7 +52,7 @@ ___
 
 • **credential**: *[CredHandle](_lib_sspi_d_.credhandle.md)*
 
-*Defined in [lib/sspi.d.ts:138](https://github.com/jlguenego/node-expose-sspi/blob/c77a3a8/lib/sspi.d.ts#L138)*
+*Defined in [lib/sspi.d.ts:138](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/lib/sspi.d.ts#L138)*
 
 ___
 
@@ -60,7 +60,7 @@ ___
 
 • **serverSecurityContext**? : *[SecurityContext](_lib_sspi_d_.securitycontext.md)*
 
-*Defined in [lib/sspi.d.ts:141](https://github.com/jlguenego/node-expose-sspi/blob/c77a3a8/lib/sspi.d.ts#L141)*
+*Defined in [lib/sspi.d.ts:141](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/lib/sspi.d.ts#L141)*
 
 ___
 
@@ -68,7 +68,7 @@ ___
 
 • **targetDataRep**? : *[TargetDataRepMapFlag](../modules/_lib_flags_index_d_.md#targetdatarepmapflag)*
 
-*Defined in [lib/sspi.d.ts:144](https://github.com/jlguenego/node-expose-sspi/blob/c77a3a8/lib/sspi.d.ts#L144)*
+*Defined in [lib/sspi.d.ts:144](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/lib/sspi.d.ts#L144)*
 
 ___
 
@@ -76,4 +76,4 @@ ___
 
 • **targetName**: *string*
 
-*Defined in [lib/sspi.d.ts:139](https://github.com/jlguenego/node-expose-sspi/blob/c77a3a8/lib/sspi.d.ts#L139)*
+*Defined in [lib/sspi.d.ts:139](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/lib/sspi.d.ts#L139)*

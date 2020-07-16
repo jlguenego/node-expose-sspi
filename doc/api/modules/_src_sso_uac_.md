@@ -14,7 +14,7 @@
 
 ▸ **hasAdminPrivileges**(): *boolean*
 
-*Defined in [src/sso/uac.ts:17](https://github.com/jlguenego/node-expose-sspi/blob/c77a3a8/src/sso/uac.ts#L17)*
+*Defined in [src/sso/uac.ts:17](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/src/sso/uac.ts#L17)*
 
 Test if the current user token has admin privileges.
 
