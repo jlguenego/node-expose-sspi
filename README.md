@@ -111,7 +111,7 @@ const { sso } = require('node-expose-sspi');
 ```
 
 The `sso` object has following functions to help you:
-- `sso.hasAdminPrivileges()`: check if user has administrator privileges. A user can be administrator, but when starting a process, this process usually do not have administrator privileges. To have it, the process needs to be *started as an administrator*. [See Microsoft documentation about it](https://docs.microsoft.com/en-us/windows/security/identity-protection/user-account-control/how-user-account-control-works).
+- `sso.hasAdminPrivileges()`: check if user has administrator privileges. A user can be administrator, but when starting a process, it does not have administrator privileges by default. To have it, the process needs to be *started as an administrator*. [See Microsoft documentation about it](https://docs.microsoft.com/en-us/windows/security/identity-protection/user-account-control/how-user-account-control-works).
 - `sso.isOnDomain()`: check if the computer has joined a domain.
 - `sso.isActiveDirectoryReachable()`: check if the Active Directory domain controller is reachable.
 
