@@ -6,7 +6,7 @@ const app = express();
 app.use(
   sso.auth({
     useGroups: true,
-    useOwner: false,
+    useOwner: true,
     useActiveDirectory: true,
     useCookies: true,
     allowsAnonymousLogon: false,
