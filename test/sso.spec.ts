@@ -77,6 +77,32 @@ describe('SSO Unit Test', function () {
     });
   }
 
+  if (sso.hasAdminPrivileges()) {
+    it('should test connect with a local disabled account', async function () {
+      try {
+        try {
+          netapi.NetUserDel(undefined, 'test123');
+        } catch (e) {}
+        netapi.NetUserAdd(undefined, 1, {
+          name: 'test123',
+          password: 'toto123!',
+          flags: ['UF_SCRIPT', 'UF_ACCOUNTDISABLE'],
+        });
+        const userCredentials = {
+          domain: os.hostname(),
+          user: 'titi',
+          password: 'toto',
+        };
+        const mySSO = await sso.connect(userCredentials);
+        assert(mySSO);
+        netapi.NetUserDel(undefined, 'test123');
+      } catch (error) {
+        assert.equal(error.message, 'Sorry. Logon denied.');
+        netapi.NetUserDel(undefined, 'test123');
+      }
+    });
+  }
+
   it('should test connect with bad login', async function () {
     try {
       // in order to test that it is working,
@@ -90,7 +116,7 @@ describe('SSO Unit Test', function () {
       assert.fail('connect did not thrown any error.');
     } catch (error) {
       assert(error instanceof Error);
-      assert.equal(error.message, 'Sorry mate, wrong login/password.');
+      assert.equal(error.message, 'Sorry. Logon denied.');
     }
   });
 });

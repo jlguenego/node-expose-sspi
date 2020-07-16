@@ -21,7 +21,7 @@ const debug = dbg('node-expose-sspi:connect');
  */
 export async function connect(userCredential: UserCredential): Promise<SSO> {
   const errorMsg = 'Error while building the security context';
-  const badLoginPasswordError = new Error('Sorry mate, wrong login/password.');
+  const badLoginPasswordError = new Error('Sorry. Logon denied.');
   try {
     const packageInfo = sspi.QuerySecurityPackageInfo('Negotiate');
     const clientCred = sspi.AcquireCredentialsHandle({
