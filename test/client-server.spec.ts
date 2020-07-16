@@ -1,10 +1,67 @@
 import express from 'express';
-import { sso } from '../src';
+import { Server } from 'http';
+import os from 'os';
+import { sso, netapi, UserInfo1 } from '../src';
 import { strict as assert } from 'assert';
 import dbg from 'debug';
 const debug = dbg('node-expose-sspi:test');
 
+class MyServer {
+  app = express();
+  server: Server;
+  constructor() {
+    this.app.use(sso.auth());
+    this.app.use((req, res) => {
+      res.json({
+        sso: req.sso,
+      });
+    });
+  }
+
+  start(): Promise<void> {
+    return new Promise<void>((resolve) => {
+      this.server = this.app.listen(3000, () => resolve());
+    });
+  }
+  stop(): Promise<void> {
+    return new Promise<void>((resolve) => {
+      this.server.close(() => resolve());
+    });
+  }
+}
+
 describe('ClientServer', function () {
+  if (sso.hasAdminPrivileges()) {
+    it('should return bad login', async function () {
+      const username = 'test345';
+      try {
+        try {
+          netapi.NetUserDel(undefined, username);
+        } catch (e) {}
+        netapi.NetUserAdd(undefined, 1, {
+          name: username,
+          password: 'toto123!',
+        } as UserInfo1);
+        const server = new MyServer();
+        await server.start();
+
+        const client = new sso.Client();
+        client.setCredentials(os.hostname(), username, 'nonono');
+        const response = await client.fetch('http://localhost:3000');
+        const body = await response.text();
+        await server.stop();
+        assert.equal(body.startsWith('SEC_E_LOGON_DENIED'), true);
+        assert.equal(response.status, 401);
+      } catch (e) {
+        assert.fail(e);
+      } finally {
+        try {
+          netapi.NetUserDel(undefined, username);
+        } catch (e) {}
+      }
+    });
+  }
+
   if (sso.isOnDomain() && sso.isActiveDirectoryReachable()) {
     it('should return the right json', async function () {
       this.timeout(15000);
