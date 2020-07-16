@@ -97,8 +97,8 @@ Note: To read JSON file on Chrome, you should use the [JSON Formatter Chrome Ext
 
 **Command line client:**
 
-- Git Bash: `curl --negotiate -u : http://localhost:3000`
-- Powershell: `Invoke-WebRequest -uri http://localhost:3000 -UseDefaultCredentials`.
+- Git Bash: `curl --negotiate -u : http://localhost:3000 -b fake.txt`
+- Powershell: `Invoke-WebRequest -uri http://localhost:3000 -UseDefaultCredentials`
 
 ### SSO Authentication client use case
 
