@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.32](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.31...v0.1.32) (2020-07-16)
+
+
+### Features
+
+* added flags setup to user create account ([ca3ab47](https://github.com/jlguenego/node-expose-sspi/commit/ca3ab47849011d1dea9f645be9e93c13a2d8db5b))
+* SEC_E_LOGON_DENIED managed with 401. ([49d30a0](https://github.com/jlguenego/node-expose-sspi/commit/49d30a01ba17b738044ef207e611c464fd6f7164))
+
 ### [0.1.31](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.30...v0.1.31) (2020-07-15)
 
 
