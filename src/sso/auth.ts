@@ -88,7 +88,9 @@ export function auth(options: AuthOptions = {}): Middleware {
         ) {
           await schManager.waitForReleased(cookieToken);
           debug('schManager waitForReleased finished.');
-          const ssoMethod = messageType.startsWith('NTLM') ? 'NTLM' : 'Kerberos';
+          const ssoMethod = messageType.startsWith('NTLM')
+            ? 'NTLM'
+            : 'Kerberos';
           schManager.setMethod(ssoMethod, cookieToken);
         }
 
@@ -121,6 +123,12 @@ export function auth(options: AuthOptions = {}): Middleware {
         ) {
           // 'SEC_I_COMPLETE_AND_CONTINUE', 'SEC_I_COMPLETE_NEEDED' are considered as errors because it is used
           // only by 'Digest' SSP. (not by Negotiate, Kerberos or NTLM)
+          if (serverSecurityContext.SECURITY_STATUS === 'SEC_E_LOGON_DENIED') {
+            res.statusCode = 401;
+            return res.end(
+              'SEC_E_LOGON_DENIED. (incorrect login/password, or account disabled, or locked, etc.)'
+            );
+          }
           throw new Error(
             'AcceptSecurityContext error: ' +
               serverSecurityContext.SECURITY_STATUS
