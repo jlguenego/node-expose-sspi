@@ -126,7 +126,7 @@ export function auth(options: AuthOptions = {}): Middleware {
           if (serverSecurityContext.SECURITY_STATUS === 'SEC_E_LOGON_DENIED') {
             res.statusCode = 401;
             return res.end(
-              'SEC_E_LOGON_DENIED. (incorrect login/password, or account disabled, or locked, etc.)'
+              `SEC_E_LOGON_DENIED. (incorrect login/password, or account disabled, or locked, etc.). Protocol Message = ${messageType}.`
             );
           }
           throw new Error(
