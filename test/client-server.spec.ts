@@ -31,6 +31,48 @@ class MyServer {
 }
 
 describe('ClientServer', function () {
+  it('should test SEC_E_NO_AUTHENTICATING_AUTHORITY', async function () {
+    const server = new MyServer();
+    try {
+      await server.start();
+
+      const client = new sso.Client();
+      // os.hostname() is not the domain, but the local machine.
+      // so because no KDC is on the localhost,
+      // this will lead to 0x80090311 (SEC_E_NO_AUTHENTICATING_AUTHORITY)
+      client.setCredentials(os.hostname(), 'd', '');
+      client.setSSP('Kerberos');
+      await client.fetch('http://localhost:3000');
+    } catch (e) {
+      assert.match(e.message, /0x80090311/);
+    } finally {
+      await server.stop();
+    }
+  });
+
+  if (sso.isActiveDirectoryReachable()) {
+    it('should test SEC_E_LOGON_DENIED', async function () {
+      const server = new MyServer();
+      try {
+        await server.start();
+
+        const client = new sso.Client();
+        // this will lead to 0x80090311 (SEC_E_NO_AUTHENTICATING_AUTHORITY)
+        client.setCredentials(
+          sso.getDefaultDomain(),
+          'doesnotexist',
+          'neither'
+        );
+        client.setSSP('Kerberos');
+        await client.fetch('http://localhost:3000');
+      } catch (e) {
+        assert.match(e.message, /0x8009030c/);
+      } finally {
+        await server.stop();
+      }
+    });
+  }
+
   if (sso.hasAdminPrivileges()) {
     it('should return bad login', async function () {
       const username = 'test345';
