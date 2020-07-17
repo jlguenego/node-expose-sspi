@@ -182,7 +182,7 @@ export function auth(options: AuthOptions = {}): Middleware {
       } catch (e) {
         schManager.release();
         console.error(e);
-        next(createError(400, `Error while doing SSO: ${e.message}`));
+        next(createError(401, `Error while doing SSO: ${e.message}`));
       }
     })();
   };
