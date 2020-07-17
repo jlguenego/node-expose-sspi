@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.33](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.32...v0.1.33) (2020-07-17)
+
+
+### Features
+
+* 400 to 401 on unexpected error ([6949624](https://github.com/jlguenego/node-expose-sspi/commit/69496245dcb671ad92258254481430b7217aa142))
+* added protocol message in error message. ([9017d38](https://github.com/jlguenego/node-expose-sspi/commit/9017d389735183e286c55630c8d25b2962c187c4))
+* added SPN.getListAll ([52305e0](https://github.com/jlguenego/node-expose-sspi/commit/52305e0637795d95e68fb0ac92576f0c0f458c27))
+
 ### [0.1.32](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.31...v0.1.32) (2020-07-16)
 
 

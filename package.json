@@ -1,6 +1,6 @@
 {
   "name": "node-expose-sspi",
-  "version": "0.1.32",
+  "version": "0.1.33",
   "description": "Expose the Microsoft Windows SSPI interface in order to do NTLM and Kerberos authentication.",
   "main": "dist/index.js",
   "engines": {
