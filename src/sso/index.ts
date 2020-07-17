@@ -8,6 +8,7 @@ import {
 import { hexDump } from './misc';
 import { sleep } from './sleep';
 import { SSO } from './SSO';
+import { SPN } from './spn';
 import './interfaces';
 import { Client, getSPNFromURI } from './client';
 import { Mutex } from './mutex';
@@ -31,6 +32,7 @@ export const sso = {
   getSPNFromURI,
   getUser,
   getUsers,
+  hasAdminPrivileges,
   hexDump,
   init,
   isOnDomain,
@@ -39,5 +41,5 @@ export const sso = {
   openADConnection,
   SSO,
   sleep,
-  hasAdminPrivileges
+  SPN,
 };

@@ -3,7 +3,7 @@ import assert from 'assert';
 
 const a = assert.strict;
 
-describe('SPN Unit Test', function () {
+describe('getSPNFromURI Unit Test', function () {
   this.timeout(15000);
   const f = sso.getSPNFromURI;
 
