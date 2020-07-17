@@ -57,7 +57,6 @@ describe('ClientServer', function () {
         await server.start();
 
         const client = new sso.Client();
-        // this will lead to 0x80090311 (SEC_E_NO_AUTHENTICATING_AUTHORITY)
         client.setCredentials(
           sso.getDefaultDomain(),
           'doesnotexist',
@@ -65,6 +64,33 @@ describe('ClientServer', function () {
         );
         client.setSSP('Kerberos');
         await client.fetch('http://localhost:3000');
+      } catch (e) {
+        assert.match(e.message, /0x8009030c/);
+      } finally {
+        await server.stop();
+      }
+    });
+
+    it('should test kerberos with good login', async function () {
+      this.timeout(8000);
+      const server = new MyServer();
+      try {
+        await server.start();
+
+        const client = new sso.Client();
+        client.setSSP('Kerberos');
+        // TODO: you must check that a domain account have the SPN with HTTP/localhost.
+        // client.setTargetName('HTTP/localhost');
+        // client.setCredentials(
+        //   sso.getDefaultDomain(),
+        //   'marcel',
+        //   'Toto123!'
+        // );
+        const response = await client.fetch('http://localhost:3000');
+        const json = await response.json();
+        console.log('json: ', json);
+        console.log('response.status: ', response.status);
+        console.log('fetch passed.');
       } catch (e) {
         assert.match(e.message, /0x8009030c/);
       } finally {
