@@ -54,7 +54,6 @@ export class SPN {
       users.push(row);
     }
     dirsearch.Release();
-    console.log('users: ', users);
     adsi.CoUninitialize();
     return users.map((user) => ({
       username: user.sAMAccountName[0] as string,

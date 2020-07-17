@@ -7,7 +7,6 @@ describe('SPN Unit Test', function () {
       this.timeout(15000);
       const spn = new sso.SPN();
       const list = await spn.getListAll();
-      console.log('list: ', list);
       assert(list instanceof Array);
     });
   }

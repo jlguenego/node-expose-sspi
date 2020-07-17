@@ -30,6 +30,16 @@ class MyServer {
   }
 }
 
+async function isLocalhostSPN(): Promise<boolean> {
+  const spn = new sso.SPN();
+  const list = await spn.getListAll();
+  const spns = list
+    .map((record) => record.spn)
+    .reduce((acc, n) => acc.concat(n));
+  const result = spns.filter((s) => s === 'HTTP/localhost').length > 0;
+  return result;
+}
+
 describe('ClientServer', function () {
   it('should test SEC_E_NO_AUTHENTICATING_AUTHORITY', async function () {
     const server = new MyServer();
@@ -73,26 +83,24 @@ describe('ClientServer', function () {
 
     it('should test kerberos with good login', async function () {
       this.timeout(8000);
+      if (!(await isLocalhostSPN())) {
+        console.log(
+          'to unit test kerberos, you should add HTTP/localhost in the SPN'
+        );
+        return;
+      }
       const server = new MyServer();
       try {
         await server.start();
 
         const client = new sso.Client();
         client.setSSP('Kerberos');
-        // TODO: you must check that a domain account have the SPN with HTTP/localhost.
-        // client.setTargetName('HTTP/localhost');
-        // client.setCredentials(
-        //   sso.getDefaultDomain(),
-        //   'marcel',
-        //   'Toto123!'
-        // );
         const response = await client.fetch('http://localhost:3000');
         const json = await response.json();
-        console.log('json: ', json);
-        console.log('response.status: ', response.status);
-        console.log('fetch passed.');
+        assert(json);
       } catch (e) {
-        assert.match(e.message, /0x8009030c/);
+        console.log('e: ', e);
+        assert.fail('should not reject error');
       } finally {
         await server.stop();
       }
