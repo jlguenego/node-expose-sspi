@@ -163,12 +163,12 @@ export function auth(options: AuthOptions = {}): Middleware {
         // check if user is allowed.
         if (
           !opts.allowsAnonymousLogon &&
-          req.sso.user.name === 'ANONYMOUS LOGON'
+          req.sso?.user?.name === 'ANONYMOUS LOGON'
         ) {
           res.statusCode = 401;
           return res.end('Anonymous login not authorized.');
         }
-        if (!opts.allowsGuest && req.sso.user.name === 'Guest') {
+        if (!opts.allowsGuest && req.sso?.user?.name === 'Guest') {
           res.statusCode = 401;
           return res.end('Guest not authorized.');
         }
