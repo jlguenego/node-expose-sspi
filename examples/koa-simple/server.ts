@@ -1,12 +1,23 @@
 import 'source-map-support/register';
 import Koa from 'koa';
 import { sso } from 'node-expose-sspi';
+import { NextFunction } from '../../src/sso/interfaces';
 const app = new Koa();
 
-const middleware = sso.auth();
+const auth = sso.auth();
+
+const authPromise = (
+  ctx: Koa.ParameterizedContext<Koa.DefaultState, Koa.DefaultContext>
+): Promise<void> => {
+  return new Promise<void>((resolve, reject) => {
+    const next: NextFunction = (err?: Error) => (err ? reject(err) : resolve());
+    auth(ctx.req, ctx.res, next);
+  });
+};
 
 app.use(async (ctx, next) => {
-  await middleware(ctx.req, ctx.res, next);
+  await authPromise(ctx);
+  next();
 });
 
 app.use((ctx) => {
