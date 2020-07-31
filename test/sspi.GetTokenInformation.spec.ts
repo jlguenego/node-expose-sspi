@@ -26,14 +26,6 @@ describe('SSPI GetTokenInformation Unit Test', function () {
       packageName: 'Negotiate',
       credentialUse: 'SECPKG_CRED_INBOUND',
     };
-    if (sso.isOnDomain()) {
-      const getCredentials = (): string => 'guess';
-      acquireCredentialsHandleClientInput.authData = {
-        domain: os.hostname().toUpperCase(),
-        user: 'whatever',
-        password: getCredentials(),
-      };
-    }
 
     const packageInfo = sspi.QuerySecurityPackageInfo('Negotiate');
     clientCred = sspi.AcquireCredentialsHandle(

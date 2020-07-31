@@ -1,5 +1,4 @@
-import { sspi, sso, AcquireCredHandleInput } from '../src';
-import os from 'os';
+import { sspi, AcquireCredHandleInput } from '../src';
 import { strict as assert } from 'assert';
 import {
   CredentialWithExpiry,
@@ -32,14 +31,6 @@ describe('SSPI Unit Test', function () {
     packageName: 'Negotiate',
     credentialUse: 'SECPKG_CRED_OUTBOUND',
   };
-
-  if (sso.isOnDomain()) {
-    acquireCredentialsHandleClientInput.authData = {
-      domain: os.hostname().toUpperCase(),
-      user: 'whatever',
-      password: 'guess',
-    };
-  }
 
   it('should test AcquireCredentialsHandle for client', function () {
     const clientCred = sspi.AcquireCredentialsHandle(
@@ -83,6 +74,7 @@ describe('SSPI Unit Test', function () {
       targetDataRep: 'SECURITY_NATIVE_DREP',
     };
     clientSecurityContext = sspi.InitializeSecurityContext(input);
+
     assert(clientSecurityContext);
     assert(
       clientSecurityContext.SecBufferDesc.buffers[0] instanceof ArrayBuffer
@@ -95,6 +87,7 @@ describe('SSPI Unit Test', function () {
       targetDataRep: 'SECURITY_NATIVE_DREP',
     };
     serverSecurityContext = sspi.AcceptSecurityContext(serverInput);
+
     assert(serverSecurityContext);
     assert(
       serverSecurityContext.SecBufferDesc.buffers[0] instanceof ArrayBuffer
@@ -108,6 +101,7 @@ describe('SSPI Unit Test', function () {
       contextHandle: clientSecurityContext.contextHandle,
     };
     const clientSecurityContext2 = sspi.InitializeSecurityContext(input2);
+
     assert(clientSecurityContext2);
     assert(
       clientSecurityContext2.SecBufferDesc.buffers[0] instanceof ArrayBuffer
@@ -118,6 +112,7 @@ describe('SSPI Unit Test', function () {
       clientSecurityContext: clientSecurityContext2,
       contextHandle: serverSecurityContext.contextHandle,
     });
+
     assert(serverSecurityContext2);
     assert(
       serverSecurityContext2.SecBufferDesc.buffers[0] instanceof ArrayBuffer
@@ -129,6 +124,7 @@ describe('SSPI Unit Test', function () {
     sspi.ImpersonateSecurityContext(serverSecurityContext.contextHandle);
 
     username = sspi.GetUserName();
+
     assert(username);
 
     const nameSamCompatible = sspi.GetUserNameEx('NameSamCompatible');
@@ -170,12 +166,7 @@ describe('SSPI Unit Test', function () {
 
   it('should test GetUserName', function () {
     const username2 = sspi.GetUserName();
-    // on Domain, username2='Guest'
-    if (sso.isOnDomain()) {
-      assert(username2 !== username);
-    } else {
-      assert(username2 === username);
-    }
+    assert(username2 === username);
   });
 
   it('should test QueryCredentialsAttributes', function () {
