@@ -75,7 +75,7 @@
     "http-proxy-middleware": "^1.0.3",
     "mocha": "^7.1.1",
     "node-addon-api": "^2.0.0",
-    "nodemon": "^2.0.2",
+    "nodemon": "^2.0.4",
     "nyc": "^15.0.1",
     "require-self": "^0.2.2",
     "serve-index": "^1.9.1",
