@@ -10,6 +10,7 @@ import { ServerContextHandleManager } from './schm/ServerContextHandleManager';
 import { SCHMWithCookies } from './schm/SCHMWithCookies';
 import { SCHMWithSync } from './schm/SCHMWithSync';
 import { AuthOptions, Middleware, NextFunction, SSOMethod } from './interfaces';
+import { getStatusInfo } from './status';
 
 const debug = dbg('node-expose-sspi:auth');
 
@@ -63,6 +64,8 @@ export function auth(options: AuthOptions = {}): Middleware {
       const cookieToken = schManager.getCookieToken(req, res);
       debug('cookieToken: ', cookieToken);
 
+      let messageType: string;
+
       try {
         const authorization = req.headers.authorization;
         if (!authorization) {
@@ -79,7 +82,7 @@ export function auth(options: AuthOptions = {}): Middleware {
 
         checkCredentials();
         const token = authorization.substring('Negotiate '.length);
-        const messageType = getMessageType(token);
+        messageType = getMessageType(token);
         debug('messageType: ', messageType);
         const buffer = decode(token);
         debug(hexDump(buffer));
@@ -180,6 +183,8 @@ export function auth(options: AuthOptions = {}): Middleware {
       } catch (e) {
         schManager.release(cookieToken);
         console.error(e);
+        console.error('statusInfo: ', getStatusInfo());
+        console.error('messageType: ', messageType);
         next(createError(401, `Error while doing SSO: ${e.message}`));
       }
     })();
