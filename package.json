@@ -80,7 +80,7 @@
     "require-self": "^0.2.2",
     "serve-index": "^1.9.1",
     "source-map-support": "^0.5.16",
-    "standard-version": "^8.0.2",
+    "standard-version": "^9.0.0",
     "ts-node": "^8.6.2",
     "typedoc": "^0.17.3",
     "typedoc-plugin-markdown": "^2.2.17",
