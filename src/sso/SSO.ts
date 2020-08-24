@@ -3,11 +3,9 @@ import { getUser } from './userdb';
 import dbg from 'debug';
 import { sso } from '.';
 import os from 'os';
-import { AuthOptions, User } from './interfaces';
+import { AuthOptions, User, SSOMethod } from './interfaces';
 
 const debug = dbg('node-expose-sspi:SSO');
-
-export type SSOMethod = 'NTLM' | 'Kerberos';
 
 export class SSO {
   user: User;

@@ -138,3 +138,5 @@ export type ADUsers = ADUser[];
 export interface CookieList {
   [name: string]: string;
 }
+
+export type SSOMethod = 'NTLM' | 'Kerberos';

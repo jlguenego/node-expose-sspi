@@ -1,12 +1,15 @@
 import createError from 'http-errors';
 import { decode, encode } from 'base64-arraybuffer';
-import { hexDump, getMessageType } from './misc';
-import { sspi, AcceptSecurityContextInput } from '../../lib/api';
-import { SSO } from './SSO';
-import { ServerContextHandleManager } from './ServerContextHandleManager';
-import dbg from 'debug';
-import { AuthOptions, Middleware, NextFunction } from './interfaces';
 import { IncomingMessage, ServerResponse } from 'http';
+import dbg from 'debug';
+
+import { sspi, AcceptSecurityContextInput } from '../../lib/api';
+import { hexDump, getMessageType } from './misc';
+import { SSO } from './SSO';
+import { ServerContextHandleManager } from './schm/ServerContextHandleManager';
+import { SCHMWithCookies } from './schm/SCHMWithCookies';
+import { SCHMWithSync } from './schm/SCHMWithSync';
+import { AuthOptions, Middleware, NextFunction, SSOMethod } from './interfaces';
 
 const debug = dbg('node-expose-sspi:auth');
 
@@ -46,7 +49,9 @@ export function auth(options: AuthOptions = {}): Middleware {
     }
   };
 
-  const schManager = new ServerContextHandleManager(10000);
+  const schManager: ServerContextHandleManager = opts.useCookies
+    ? new SCHMWithCookies()
+    : new SCHMWithSync(10000);
 
   // returns the node middleware.
   return (
@@ -55,6 +60,9 @@ export function auth(options: AuthOptions = {}): Middleware {
     next: NextFunction
   ): void => {
     (async (): Promise<void> => {
+      const cookieToken = schManager.getCookieToken(req, res);
+      debug('cookieToken: ', cookieToken);
+
       try {
         const authorization = req.headers.authorization;
         if (!authorization) {
@@ -70,11 +78,6 @@ export function auth(options: AuthOptions = {}): Middleware {
         }
 
         checkCredentials();
-        const cookieToken = opts.useCookies
-          ? schManager.initCookie(req, res)
-          : undefined;
-        debug('cookieToken: ', cookieToken);
-
         const token = authorization.substring('Negotiate '.length);
         const messageType = getMessageType(token);
         debug('messageType: ', messageType);
@@ -88,7 +91,7 @@ export function auth(options: AuthOptions = {}): Middleware {
         ) {
           await schManager.waitForReleased(cookieToken);
           debug('schManager waitForReleased finished.');
-          const ssoMethod = messageType.startsWith('NTLM')
+          const ssoMethod: SSOMethod = messageType.startsWith('NTLM')
             ? 'NTLM'
             : 'Kerberos';
           schManager.setMethod(ssoMethod, cookieToken);
@@ -103,9 +106,7 @@ export function auth(options: AuthOptions = {}): Middleware {
             },
           },
         };
-        const serverContextHandle = schManager.getServerContextHandle(
-          cookieToken
-        );
+        const serverContextHandle = schManager.getHandle(cookieToken);
         if (serverContextHandle) {
           debug('adding to input a serverContextHandle (not first exchange)');
           input.contextHandle = serverContextHandle;
@@ -134,11 +135,10 @@ export function auth(options: AuthOptions = {}): Middleware {
               serverSecurityContext.SECURITY_STATUS
           );
         }
-        schManager.set(serverSecurityContext.contextHandle, cookieToken);
+        schManager.setHandle(serverSecurityContext.contextHandle, cookieToken);
 
         debug('AcceptSecurityContext output buffer');
         debug(hexDump(serverSecurityContext.SecBufferDesc.buffers[0]));
-
         if (serverSecurityContext.SECURITY_STATUS === 'SEC_I_CONTINUE_NEEDED') {
           res.statusCode = 401;
           res.setHeader(
@@ -149,9 +149,7 @@ export function auth(options: AuthOptions = {}): Middleware {
           return res.end();
         }
 
-        const lastServerContextHandle = schManager.getServerContextHandle(
-          cookieToken
-        );
+        const lastServerContextHandle = schManager.getHandle(cookieToken);
         const method = schManager.getMethod(cookieToken);
         const sso = new SSO(lastServerContextHandle, method);
         sso.setOptions(opts);
@@ -180,7 +178,7 @@ export function auth(options: AuthOptions = {}): Middleware {
         );
         return next();
       } catch (e) {
-        schManager.release();
+        schManager.release(cookieToken);
         console.error(e);
         next(createError(401, `Error while doing SSO: ${e.message}`));
       }
