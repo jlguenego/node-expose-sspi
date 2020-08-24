@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-WARNING: [please read the doc for debugging yourself](https://github.com/jlguenego/node-expose-sspi/blob/master/doc/use-case/errors.md).
+WARNING: [PLEASE READ THE DOC FOR DEBUGGING YOURSELF](https://github.com/jlguenego/node-expose-sspi/blob/master/doc/use-case/errors.md).
 
 
 **Describe the bug**
