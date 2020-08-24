@@ -20,7 +20,15 @@ It behaves like if the alias was called. For instance, if you have in the `host`
 127.0.0.1 toto.titi.com
 ```
 
-Calling `toto.titi.com:3000` will do exactly as if you were calling `http://127.0.0.1:3000`.
+Calling from an HTTP client `http://toto.titi.com:3000` will do exactly as if you were calling `http://127.0.0.1:3000`.
+
+## Kerberos on localhost from sso.Client
+
+Kerberos on localhost cannot be done from a traditional browser (Chrome, Edge, Firefox, etc.).
+
+But the `new sso.Client()` can do Kerberos on localhost by forcing the target name with `setTargetName(name: string)`.
+
+
 
 ## Author
 
