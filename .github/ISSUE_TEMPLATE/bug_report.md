@@ -7,6 +7,9 @@ assignees: ''
 
 ---
 
+WARNING: [please read the doc for debugging yourself](./doc/use-case/errors.md).
+
+
 **Describe the bug**
 A clear and concise description of what the bug is.
 

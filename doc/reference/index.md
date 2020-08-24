@@ -5,7 +5,7 @@
 - SSO
   - on server side
   - on client side
-- Addons
+- C++ Addons
   - ADSI
   - NETAPI
   - SSPI
