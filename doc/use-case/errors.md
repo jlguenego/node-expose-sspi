@@ -13,6 +13,14 @@ From Chrome, open `http://127.0.0.1:3000`. A popup comes up.
 
 **Note:** You must remove your Browser cache to remove the credentials and see again the popup dialog coming.
 
+## aliases on C:\Windows\System32\drivers\etc\host
+
+It behaves like if the alias was called. For instance, if you have in the `host` file:
+```
+127.0.0.1 toto.titi.com
+```
+
+Calling `toto.titi.com:3000` will do exactly as if you were calling `http://127.0.0.1:3000`.
 
 ## Author
 

@@ -100,6 +100,10 @@ Note: To read JSON file on Chrome, you should use the [JSON Formatter Chrome Ext
 - Git Bash: `curl --negotiate -u : http://localhost:3000 -b cookie.txt`
 - Powershell: `Invoke-WebRequest -uri http://localhost:3000 -UseDefaultCredentials`
 
+To know more, you can follow the [SSO Reference Manual](./doc/reference/index.md).
+
+You can also
+
 ### SSO Authentication client use case
 
 **[See the complete example](./doc/use-case/client.md)**
