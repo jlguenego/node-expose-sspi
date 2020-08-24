@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.34](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.33...v0.1.34) (2020-08-24)
+
+
+### Bug Fixes
+
+* Issue [#27](https://github.com/jlguenego/node-expose-sspi/issues/27) koa example ([4d6f901](https://github.com/jlguenego/node-expose-sspi/commit/4d6f901692f4006dc40659f1335d4ea24afef153))
+* refactored server context handle manager. ([96d3f6d](https://github.com/jlguenego/node-expose-sspi/commit/96d3f6d6f5cd3348a6e797078d75802c9320e468))
+
 ### [0.1.33](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.32...v0.1.33) (2020-07-17)
 
 
