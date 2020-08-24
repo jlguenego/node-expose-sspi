@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.36](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.35...v0.1.36) (2020-08-24)
+
+
+### Bug Fixes
+
+* issue [#33](https://github.com/jlguenego/node-expose-sspi/issues/33) ([7e4936d](https://github.com/jlguenego/node-expose-sspi/commit/7e4936d333bb618119d3a52643b9c75d640e3b6a))
+* max-age to a big number Issue [#33](https://github.com/jlguenego/node-expose-sspi/issues/33) ([0381968](https://github.com/jlguenego/node-expose-sspi/commit/0381968d89382bb5b0d10e7554b4c9fafc9bab51))
+
 ### [0.1.35](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.34...v0.1.35) (2020-08-24)
 
 
