@@ -27,7 +27,7 @@ export class SCHMWithCookies extends ServerContextHandleManager {
       // generate new cookie
       debug('cookie not found, so generating one');
       cookieToken = COOKIE_PREFIX_VALUE + Math.floor(1e10 * Math.random());
-      // create a session cookie (without expiration specified)
+      // create a long lifetime cookie
       res.setHeader('Set-Cookie', `${COOKIE_KEY}=${cookieToken}; Max-Age=999999999`);
     }
     if (!this.sessionMap.has(cookieToken)) {

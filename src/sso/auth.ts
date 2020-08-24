@@ -3,7 +3,7 @@ import { decode, encode } from 'base64-arraybuffer';
 import { IncomingMessage, ServerResponse } from 'http';
 import dbg from 'debug';
 
-import { sspi, AcceptSecurityContextInput } from '../../lib/api';
+import { sspi, AcceptSecurityContextInput, CtxtHandle } from '../../lib/api';
 import { hexDump, getMessageType } from './misc';
 import { SSO } from './SSO';
 import { ServerContextHandleManager } from './schm/ServerContextHandleManager';
@@ -53,6 +53,8 @@ export function auth(options: AuthOptions = {}): Middleware {
   const schManager: ServerContextHandleManager = opts.useCookies
     ? new SCHMWithCookies()
     : new SCHMWithSync(10000);
+
+  let previousServerContextHandle: CtxtHandle;
 
   // returns the node middleware.
   return (
@@ -114,6 +116,10 @@ export function auth(options: AuthOptions = {}): Middleware {
           debug('adding to input a serverContextHandle (not first exchange)');
           input.contextHandle = serverContextHandle;
         }
+        if (!serverContextHandle && messageType !== 'NTLM_NEGOTIATE_01') {
+          debug('set cookie bug management');
+          input.contextHandle = previousServerContextHandle;
+        }
         debug('input just before calling AcceptSecurityContext', input);
         const serverSecurityContext = sspi.AcceptSecurityContext(input);
         debug(
@@ -139,6 +145,7 @@ export function auth(options: AuthOptions = {}): Middleware {
           );
         }
         schManager.setHandle(serverSecurityContext.contextHandle, cookieToken);
+        previousServerContextHandle = serverSecurityContext.contextHandle;
 
         debug('AcceptSecurityContext output buffer');
         debug(hexDump(serverSecurityContext.SecBufferDesc.buffers[0]));
