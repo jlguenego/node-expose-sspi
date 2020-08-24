@@ -13,6 +13,10 @@ Use cases:
 
 Requirements: Microsoft Windows OS, NodeJS version >=12.16.1. Architecture: x64 or ia32.
 
+## Reference
+
+ - [Complete reference guide](./doc/reference/index.md)
+
 ## Install
 
 [![license](https://img.shields.io/badge/license-ISC-green.svg)](./LICENSE)
@@ -101,8 +105,6 @@ Note: To read JSON file on Chrome, you should use the [JSON Formatter Chrome Ext
 - Powershell: `Invoke-WebRequest -uri http://localhost:3000 -UseDefaultCredentials`
 
 To know more, you can follow the [SSO Reference Manual](./doc/reference/index.md).
-
-You can also
 
 ### SSO Authentication client use case
 
