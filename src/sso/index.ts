@@ -15,6 +15,7 @@ import { Mutex } from './mutex';
 import { init, database, getUsers, getUser } from './userdb';
 import { openADConnection, closeADConnection } from './adConnection';
 import { hasAdminPrivileges } from './uac';
+import { getStatusInfo } from './status';
 
 /**
  * Wrapper object sso. Everything written in Typescript that is
@@ -30,6 +31,7 @@ export const sso = {
   Client,
   getDefaultDomain,
   getSPNFromURI,
+  getStatusInfo,
   getUser,
   getUsers,
   hasAdminPrivileges,

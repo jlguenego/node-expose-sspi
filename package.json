@@ -25,7 +25,7 @@
     "ex:ts:server": "nodemon examples/typescript/server.ts",
     "release": "standard-version",
     "start": "nodemon examples/typescript/server.ts",
-    "status": "ts-node scripts/status.ts"
+    "status": "node scripts/status.js"
   },
   "keywords": [
     "SSPI",
