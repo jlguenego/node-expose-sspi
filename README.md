@@ -16,7 +16,7 @@ Requirements: Microsoft Windows OS, NodeJS version >=12.16.1. Architecture: x64 
 ## Reference
 
  - [Complete reference guide](./doc/reference/index.md)
- - [Authentication error analysis](./doc/use-case/index.md)
+ - [Authentication error analysis](./doc/error/index.md)
 
 ## Install
 
