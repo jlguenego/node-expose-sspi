@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.38](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.37...v0.1.38) (2020-08-30)
+
+
+### Bug Fixes
+
+* [#20](https://github.com/jlguenego/node-expose-sspi/issues/20) allow custom management on error ([13f7c15](https://github.com/jlguenego/node-expose-sspi/commit/13f7c15be38a2d74484396312fa5562241031a40))
+* use createError() ([6cadad0](https://github.com/jlguenego/node-expose-sspi/commit/6cadad00634c8e56716bab61ea309a947ab74566))
+
 ### [0.1.37](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.36...v0.1.37) (2020-08-30)
 
 
