@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import { Server } from 'http';
 import os from 'os';
 import { sso, netapi, UserInfo1 } from '../src';
@@ -16,6 +16,14 @@ class MyServer {
         sso: req.sso,
       });
     });
+
+    // to avoid the default error handler do some console.error stuff.
+    this.app.use(
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      (err: any, req: Request, res: Response, next: NextFunction) => {
+        res.status(err.statusCode).end();
+      }
+    );
   }
 
   start(): Promise<void> {
@@ -124,10 +132,8 @@ describe('ClientServer', function () {
         const client = new sso.Client();
         client.setCredentials(os.hostname(), username, 'nonono');
         const response = await client.fetch('http://localhost:3000');
-        const body = await response.text();
-        await server.stop();
-        assert.equal(body.startsWith('SEC_E_LOGON_DENIED'), true);
         assert.equal(response.status, 401);
+        await server.stop();
       } catch (e) {
         assert.fail(e);
       } finally {
