@@ -134,6 +134,7 @@ export function auth(options: AuthOptions = {}): Middleware {
           // 'SEC_I_COMPLETE_AND_CONTINUE', 'SEC_I_COMPLETE_NEEDED' are considered as errors because it is used
           // only by 'Digest' SSP. (not by Negotiate, Kerberos or NTLM)
           if (serverSecurityContext.SECURITY_STATUS === 'SEC_E_LOGON_DENIED') {
+            schManager.release(cookieToken);
             res.statusCode = 401;
             return res.end(
               `SEC_E_LOGON_DENIED. (incorrect login/password, or account disabled, or locked, etc.). Protocol Message = ${messageType}.`
