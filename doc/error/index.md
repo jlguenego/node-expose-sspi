@@ -7,87 +7,11 @@ If you do not see anything useful here to solve your problem, then do not hesita
 ## Summary
 
  - SSO authentication client use case:
-   - [Cannot get Kerberos on localhost](##Cannot+g)
+   - [Cannot get Kerberos on localhost](##Cannot-get-Kerberos-on-localhost)
 
-a
+## Cannot get Kerberos on localhost
 
-a
-a
-
-a
-a
-
-a
-a
-
-a
-a
-
-a
-a
-
-a
-a
-
-a
-a
-
-a
-a
-
-a
-a
-
-a
-a
-
-a
-a
-
-a
-a
-
-a
-a
-
-a
-a
-
-a
-a
-
-a
-a
-
-a
-a
-
-a
-a
-
-a
-a
-
-a
-a
-
-a
-a
-
-a
-a
-
-a
-a
-
-a
-a
-
-a
-
-## Cannot g
-
-hello
+You cannot get Kerberos on localhost with traditionnal browsers (Chrome, Edge, Firefox, etc.), because they have a non configurable algorithm to get the Service Principal Name.
 
 ## Author
 
