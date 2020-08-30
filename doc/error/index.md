@@ -82,6 +82,10 @@ const response = await client.fetch('http://localhost:3000');
 const json = await response.json();
 ```
 
+Note: there is no need to use `client.setTargetName(SPN: string)` here because the `HTTP/localhost` target name is automatically managed by the `sso.Client` when the url is `localhost`.
+
+But if you have an alias url, then use the `client.setTargetName('HTTP/localhost')`.
+
 ## Author
 
 Jean-Louis GUENEGO <jlguenego@gmail.com>
