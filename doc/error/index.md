@@ -8,7 +8,7 @@
 ## Summary
 
 - SSO authentication client use case:
-  - [Cannot get Kerberos on localhost](##Cannot-get-Kerberos-on-localhost)
+  - [Cannot get Kerberos on localhost](#Cannot-get-Kerberos-on-localhost)
 
 ## Cannot get Kerberos on localhost
 
