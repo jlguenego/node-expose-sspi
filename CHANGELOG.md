@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.37](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.36...v0.1.37) (2020-08-30)
+
+
+### Bug Fixes
+
+* accept security context string check. ([276096f](https://github.com/jlguenego/node-expose-sspi/commit/276096f3d36a30e4effbe9fdc31c9e2cf9dc5e64))
+* check version for issue [#32](https://github.com/jlguenego/node-expose-sspi/issues/32) ([2fc549b](https://github.com/jlguenego/node-expose-sspi/commit/2fc549b6e70cc6692cdd003e121e8bdf5b191fc3))
+* doc ([40eb29d](https://github.com/jlguenego/node-expose-sspi/commit/40eb29d12629803fa883eafe44f61ebd14aae68f))
+* issue [#30](https://github.com/jlguenego/node-expose-sspi/issues/30) - release resource correctly ([271044a](https://github.com/jlguenego/node-expose-sspi/commit/271044a775d321968d745a0b32d903fc262ab639))
+
 ### [0.1.36](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.35...v0.1.36) (2020-08-24)
 
 
