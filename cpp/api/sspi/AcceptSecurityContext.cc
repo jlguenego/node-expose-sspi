@@ -41,7 +41,7 @@ Napi::Value e_AcceptSecurityContext(const Napi::CallbackInfo& info) {
 
   CtxtHandle serverContextHandle = {0, 0};
   bool isFirstCall = true;
-  if (input.Has("contextHandle")) {
+  if (input.Has("contextHandle") && input.Get("contextHandle").IsString()) {
     isFirstCall = false;
     Napi::String serverContextHandleString =
         input.Get("contextHandle").As<Napi::String>();
