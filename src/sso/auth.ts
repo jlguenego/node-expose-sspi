@@ -135,10 +135,8 @@ export function auth(options: AuthOptions = {}): Middleware {
           // only by 'Digest' SSP. (not by Negotiate, Kerberos or NTLM)
           if (serverSecurityContext.SECURITY_STATUS === 'SEC_E_LOGON_DENIED') {
             schManager.release(cookieToken);
-            res.statusCode = 401;
-            return res.end(
-              `SEC_E_LOGON_DENIED. (incorrect login/password, or account disabled, or locked, etc.). Protocol Message = ${messageType}.`
-            );
+            next(createError(401, `SEC_E_LOGON_DENIED. (incorrect login/password, or account disabled, or locked, etc.). Protocol Message = ${messageType}.`));
+            return;
           }
           throw new Error(
             'AcceptSecurityContext error: ' +
