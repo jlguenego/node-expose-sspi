@@ -3,7 +3,7 @@
 ## Summary
 
 - SSO
-  - on server side
+  - [on server side](#On-server-side)
   - [on client side](#On-client-side)
 - C++ Addons
   - ADSI
@@ -12,6 +12,30 @@
   - SYSINFO
 
 ## SSO
+
+### On server side
+
+The `node-expose-sspi` module allows you to have SSO on a web server. It gives a middleware `sso.auth(options)` that will bring to the request a new properties `req.sso` with authenticated user information.
+
+Here is an minimalist example:
+
+```js
+const express = require('express');
+const { sso } = require('node-expose-sspi');
+
+const app = express();
+app.use(sso.auth());
+
+app.use((req, res) => {
+  res.json({
+    sso: req.sso,
+  });
+});
+
+app.listen(3000, () => console.log('Server started on port 3000'));
+```
+
+Note that the `sso.auth()` is a middleware calling async functions, it may take time to achieve its work, specially if a connection to the domain controller needs to be done. So for performance reason it is better to use this middleware only when really needed and not for every requests. The best way is to associate the `sso.auth()` middleware to a cookie for having a session: using the `sso.auth()` the first time user needs to authenticate, and then use the session cookie for the remaining connections.
 
 ### On client side
 
