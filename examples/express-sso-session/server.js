@@ -15,17 +15,9 @@ app.use(
 const auth = sso.auth();
 
 app.use(
+  (req, res, next) => (req.session.sso ? next() : auth(req, res, next)),
   (req, res, next) => {
-    if (!req.session.sso) {
-      auth(req, res, next);
-      return;
-    }
-    next();
-  },
-  (req, res, next) => {
-    if (!req.session.sso && req.sso) {
-      req.session.sso = req.sso;
-    }
+    req.session.sso = req.sso ? req.sso : req.session.sso;
     next();
   }
 );
@@ -33,7 +25,7 @@ app.use(
 app.use((req, res) => {
   res.json({
     sso: req.session.sso,
-    ssoAuth: req.sso !== undefined,
+    ssoAuthUsed: req.sso !== undefined,
   });
 });
 
