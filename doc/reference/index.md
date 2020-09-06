@@ -17,7 +17,7 @@
 
 The `node-expose-sspi` module allows you to have SSO on a web server. It gives a middleware `sso.auth(options)` that will bring to the request a new properties `req.sso` with authenticated user information.
 
-Here is an minimalist example:
+#### Minimalist example
 
 ```js
 const express = require('express');
@@ -36,6 +36,52 @@ app.listen(3000, () => console.log('Server started on port 3000'));
 ```
 
 Note that the `sso.auth()` is a middleware calling async functions, it may take time to achieve its work, specially if a connection to the domain controller needs to be done. So for performance reason it is better to use this middleware only when really needed and not for every requests. The best way is to associate the `sso.auth()` middleware to a cookie for having a session: using the `sso.auth()` the first time user needs to authenticate, and then use the session cookie for the remaining connections.
+
+#### Session integration
+
+Here is an example of integration with a session:
+
+```js
+const express = require('express');
+const { sso } = require('node-expose-sspi');
+const session = require('express-session');
+
+const app = express();
+app.use(
+  session({
+    name: 'express-sso-session',
+    resave: false,
+    saveUninitialized: true,
+    secret: 'keyboard cat',
+  })
+);
+
+const auth = sso.auth();
+
+app.use(
+  (req, res, next) => (req.session.sso ? next() : auth(req, res, next)),
+  (req, res, next) => {
+    req.session.sso = req.sso ? req.sso : req.session.sso;
+    next();
+  }
+);
+
+app.use((req, res) => {
+  res.json({
+    sso: req.session.sso,
+    ssoAuthUsed: req.sso !== undefined,
+  });
+});
+
+app.listen(3000, () => console.log('Server started on port 3000'));
+```
+
+If `req.session.sso` does not exist, the SSO is computed and the `req.sso` object is copied to `req.session.sso`.
+If `req.session.sso` already exists, then it is not computed again.
+
+This saves times foreach request, supposing accessing to the session is faster than accessing to the (unfortunately slow) SSPI Microsoft API. 
+
+**Production use**: the `express-session` module needs to be assisted with a [production ready memory store](https://github.com/expressjs/session#compatible-session-stores).
 
 ### On client side
 
