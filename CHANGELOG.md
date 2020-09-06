@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.39](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.38...v0.1.39) (2020-09-06)
+
+
+### Bug Fixes
+
+* added express-webpack example [#34](https://github.com/jlguenego/node-expose-sspi/issues/34) ([de3fe32](https://github.com/jlguenego/node-expose-sspi/commit/de3fe321da461eb0ca5469b1f3976a19e9c53933))
+* rename api.node to node-expose-sspi.node ([7375149](https://github.com/jlguenego/node-expose-sspi/commit/7375149462f2b67f72dd5cb262216350140539f0))
+
 ### [0.1.38](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.37...v0.1.38) (2020-08-30)
 
 
