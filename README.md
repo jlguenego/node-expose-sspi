@@ -216,6 +216,8 @@ Examples :
 
 - [Express simple](./examples/express-simple/)
 - [Express with EJS](./examples/express-ejs/)
+- [Express with Webpack](./examples/express-webpack/)
+- [Express with pkg](./examples/express-pkg/)
 - [Koa simple](./examples/koa-simple/)
 - [Fastify simple](./examples/fastify-simple/)
 - [Restify simple](./examples/restify-simple/)
