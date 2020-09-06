@@ -1,7 +1,7 @@
 {
   "targets": [
     {
-      "target_name": "api",
+      "target_name": "node_expose_sspi",
       "sources": [
         "cpp/**/*.cc",
       ],
