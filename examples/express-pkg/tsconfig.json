@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "target": "ES2018",
+    "module": "CommonJS",
+    "outDir": "./dist"
+  },
+  "files": ["src/server.ts"]
+}
