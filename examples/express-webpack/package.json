@@ -4,6 +4,7 @@
   "description": "",
   "main": "dist/bundle.js",
   "scripts": {
+    "build": "webpack",
     "start": "nodemon"
   },
   "keywords": [],

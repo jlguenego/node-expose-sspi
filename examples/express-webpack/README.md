@@ -1,27 +1,16 @@
-# Express simple example
+# Express webpack example
 
-To authenticate with SSO, just use the middleware `sso.auth()`.
+Purpose is to show a simple project with `webpack`.
 
-Simple !
-
-The `server.js` file:
+## Install
 
 ```
-const express = require('express');
-const { sso } = require('node-expose-sspi');
-
-const app = express();
-app.use(sso.auth());
-
-app.use((req, res, next) => {
-  res.json({
-    sso: req.sso,
-  });
-});
-
-app.listen(3000, () => console.log('Server started on port 3000'));
-
+npm i
+npm run build
+npm start
 ```
+
+The `build` target run `webpack`.
 
 ## Author
 
