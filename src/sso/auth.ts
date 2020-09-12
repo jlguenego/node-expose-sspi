@@ -37,6 +37,7 @@ export function auth(options: AuthOptions = {}): Middleware {
     groupFilterRegex: '.*',
     allowsGuest: false,
     allowsAnonymousLogon: false,
+    useSession: false,
   };
   Object.assign(opts, options);
 
@@ -68,6 +69,13 @@ export function auth(options: AuthOptions = {}): Middleware {
     res: ServerResponse,
     next: NextFunction
   ): void => {
+    if (opts.useSession) {
+      if ((req as any).session.sso) {
+        (req as any).session.sso.cached = true;
+        next();
+        return;
+      }
+    }
     (async (): Promise<void> => {
       const cookieToken = schManager.getCookieToken(req, res);
       debug('cookieToken: ', cookieToken);
@@ -176,6 +184,10 @@ export function auth(options: AuthOptions = {}): Middleware {
         sso.setOptions(opts);
         await sso.load();
         req.sso = sso.getJSON();
+        if (opts.useSession && (req as any).session) {
+          req.sso.cached = false;
+          (req as any).session.sso = req.sso;
+        }
         sspi.DeleteSecurityContext(lastServerContextHandle);
         schManager.release(cookieToken);
 

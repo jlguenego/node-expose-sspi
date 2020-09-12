@@ -3,7 +3,8 @@ import { IncomingMessage, ServerResponse } from 'http';
 export interface SSOObject {
   user?: User;
   owner?: User;
-  method: SSOMethod;
+  method?: SSOMethod;
+  cached?: boolean;
 }
 
 declare module 'http' {

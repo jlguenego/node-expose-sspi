@@ -1,16 +1,26 @@
-import express, { Request, Response } from 'express';
-import { Server } from 'http';
-import { sso } from '../src';
 import { strict as assert } from 'assert';
+import express, { Request, Response } from 'express';
+import session from 'express-session';
+import { Server } from 'http';
+
+import { sso } from '../src';
 
 class MyServer {
   app = express();
   server!: Server;
   constructor() {
+    this.app.use(
+      session({
+        name: 'express-sso-session',
+        resave: false,
+        saveUninitialized: true,
+        secret: 'voila...',
+      })
+    );
     this.app.use(sso.auth({ useSession: true }));
     this.app.use((req, res) => {
       res.json({
-        sso: req.sso,
+        sso: req?.session?.sso,
       });
     });
 
@@ -46,7 +56,7 @@ describe('Session', function () {
       await client.fetch('http://localhost:3000');
       const response = await client.fetch('http://localhost:3000');
       const json = await response.json();
-      assert.equal(json.cached, true);
+      assert.equal(json.sso.cached, true);
     } catch (e) {
       assert.fail(e);
     } finally {
