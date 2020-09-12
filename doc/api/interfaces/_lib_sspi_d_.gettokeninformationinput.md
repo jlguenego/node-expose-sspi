@@ -20,15 +20,15 @@
 
 • **accessToken**: *[Token](../modules/_lib_sspi_d_.md#token)*
 
-*Defined in [lib/sspi.d.ts:173](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/lib/sspi.d.ts#L173)*
+*Defined in [lib/sspi.d.ts:189](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/lib/sspi.d.ts#L189)*
 
 ___
 
 ### `Optional` filter
 
-• **filter**? : *string*
+• **filter**? : *undefined | string*
 
-*Defined in [lib/sspi.d.ts:175](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/lib/sspi.d.ts#L175)*
+*Defined in [lib/sspi.d.ts:191](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/lib/sspi.d.ts#L191)*
 
 ___
 
@@ -36,4 +36,4 @@ ___
 
 • **tokenInformationClass**: *[InformationClass](../modules/_lib_sspi_d_.md#informationclass)*
 
-*Defined in [lib/sspi.d.ts:174](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/lib/sspi.d.ts#L174)*
+*Defined in [lib/sspi.d.ts:190](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/lib/sspi.d.ts#L190)*

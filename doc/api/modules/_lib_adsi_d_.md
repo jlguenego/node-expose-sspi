@@ -24,9 +24,9 @@
 
 ###  ColumnVal
 
-Ƭ **ColumnVal**: *string | number | false | true[]*
+Ƭ **ColumnVal**: *undefined | string | number | false | true[]*
 
-*Defined in [lib/adsi.d.ts:30](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/lib/adsi.d.ts#L30)*
+*Defined in [lib/adsi.d.ts:30](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/lib/adsi.d.ts#L30)*
 
 ___
 
@@ -34,7 +34,7 @@ ___
 
 Ƭ **HRESULT**: *number*
 
-*Defined in [lib/adsi.d.ts:40](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/lib/adsi.d.ts#L40)*
+*Defined in [lib/adsi.d.ts:40](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/lib/adsi.d.ts#L40)*
 
 ___
 
@@ -42,4 +42,4 @@ ___
 
 Ƭ **RiidFlag**: *"IID_IADs" | "IID_IADsContainer" | "IID_IDirectorySearch"*
 
-*Defined in [lib/adsi.d.ts:35](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/lib/adsi.d.ts#L35)*
+*Defined in [lib/adsi.d.ts:35](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/lib/adsi.d.ts#L35)*

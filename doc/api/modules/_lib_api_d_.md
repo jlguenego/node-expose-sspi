@@ -24,6 +24,7 @@
 * [InitializeSecurityContextInput](_lib_api_d_.md#initializesecuritycontextinput)
 * [IscReqFlag](_lib_api_d_.md#iscreqflag)
 * [NetApi](_lib_api_d_.md#netapi)
+* [SecBufferDesc](_lib_api_d_.md#secbufferdesc)
 * [SecPkgInfo](_lib_api_d_.md#secpkginfo)
 * [SecurityContext](_lib_api_d_.md#securitycontext)
 * [SecuritySupportProvider](_lib_api_d_.md#securitysupportprovider)
@@ -154,6 +155,12 @@ ___
 
 ___
 
+###  SecBufferDesc
+
+• **SecBufferDesc**:
+
+___
+
 ###  SecPkgInfo
 
 • **SecPkgInfo**:
@@ -230,7 +237,7 @@ ___
 
 • **adsi**: *[Adsi](../interfaces/_lib_adsi_d_.adsi.md)*
 
-*Defined in [lib/api.d.ts:10](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/lib/api.d.ts#L10)*
+*Defined in [lib/api.d.ts:10](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/lib/api.d.ts#L10)*
 
 ___
 
@@ -238,7 +245,7 @@ ___
 
 • **netapi**: *[NetApi](../interfaces/_lib_netapi_d_.netapi.md)*
 
-*Defined in [lib/api.d.ts:12](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/lib/api.d.ts#L12)*
+*Defined in [lib/api.d.ts:12](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/lib/api.d.ts#L12)*
 
 ___
 
@@ -246,7 +253,7 @@ ___
 
 • **sspi**: *[Sspi](../interfaces/_lib_sspi_d_.sspi.md)*
 
-*Defined in [lib/api.d.ts:9](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/lib/api.d.ts#L9)*
+*Defined in [lib/api.d.ts:9](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/lib/api.d.ts#L9)*
 
 ___
 
@@ -254,4 +261,4 @@ ___
 
 • **sysinfo**: *[SysInfo](../interfaces/_lib_sysinfo_d_.sysinfo.md)*
 
-*Defined in [lib/api.d.ts:11](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/lib/api.d.ts#L11)*
+*Defined in [lib/api.d.ts:11](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/lib/api.d.ts#L11)*

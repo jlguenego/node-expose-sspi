@@ -17,9 +17,9 @@
 
 ###  NetUserAdd
 
-▸ **NetUserAdd**(`serverName`: string, `levelData`: number, `userInfo`: [UserInfo1](_lib_netapi_d_.userinfo1.md)): *void*
+▸ **NetUserAdd**(`serverName`: string | undefined, `levelData`: number, `userInfo`: [UserInfo1](_lib_netapi_d_.userinfo1.md)): *void*
 
-*Defined in [lib/netapi.d.ts:25](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/lib/netapi.d.ts#L25)*
+*Defined in [lib/netapi.d.ts:25](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/lib/netapi.d.ts#L25)*
 
 create a windows user account.
 
@@ -31,7 +31,7 @@ By default userInfo flags is set to `['UF_SCRIPT']`.
 
 Name | Type | Description |
 ------ | ------ | ------ |
-`serverName` | string | if undefined, then create a local account. |
+`serverName` | string &#124; undefined | if undefined, then create a local account. |
 `levelData` | number | - |
 `userInfo` | [UserInfo1](_lib_netapi_d_.userinfo1.md) | specify username and password. |
 
@@ -41,9 +41,9 @@ ___
 
 ###  NetUserDel
 
-▸ **NetUserDel**(`serverName`: string, `username`: string): *void*
+▸ **NetUserDel**(`serverName`: string | undefined, `username`: string): *void*
 
-*Defined in [lib/netapi.d.ts:34](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/lib/netapi.d.ts#L34)*
+*Defined in [lib/netapi.d.ts:34](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/lib/netapi.d.ts#L34)*
 
 delete a windows user account
 
@@ -53,7 +53,7 @@ delete a windows user account
 
 Name | Type |
 ------ | ------ |
-`serverName` | string |
+`serverName` | string &#124; undefined |
 `username` | string |
 
 **Returns:** *void*

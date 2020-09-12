@@ -10,38 +10,32 @@ When the server want to send to the client authentication token input, this is d
 
 ## Hierarchy
 
-* [SecurityContext](_lib_sspi_d_.securitycontext.md)
-
-  ↳ **ServerSecurityContext**
+* **ServerSecurityContext**
 
 ## Index
 
 ### Properties
 
-* [SECURITY_STATUS](_lib_sspi_d_.serversecuritycontext.md#optional-security_status)
-* [SecBufferDesc](_lib_sspi_d_.serversecuritycontext.md#optional-secbufferdesc)
+* [SECURITY_STATUS](_lib_sspi_d_.serversecuritycontext.md#security_status)
+* [SecBufferDesc](_lib_sspi_d_.serversecuritycontext.md#secbufferdesc)
 * [contextAttr](_lib_sspi_d_.serversecuritycontext.md#contextattr)
-* [contextHandle](_lib_sspi_d_.serversecuritycontext.md#optional-contexthandle)
+* [contextHandle](_lib_sspi_d_.serversecuritycontext.md#contexthandle)
 
 ## Properties
 
-### `Optional` SECURITY_STATUS
+###  SECURITY_STATUS
 
-• **SECURITY_STATUS**? : *string*
+• **SECURITY_STATUS**: *string*
 
-*Inherited from [SecurityContext](_lib_sspi_d_.securitycontext.md).[SECURITY_STATUS](_lib_sspi_d_.securitycontext.md#optional-security_status)*
-
-*Defined in [lib/sspi.d.ts:92](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/lib/sspi.d.ts#L92)*
+*Defined in [lib/sspi.d.ts:118](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/lib/sspi.d.ts#L118)*
 
 ___
 
-### `Optional` SecBufferDesc
+###  SecBufferDesc
 
-• **SecBufferDesc**? : *any*
+• **SecBufferDesc**: *[SecBufferDesc](_lib_sspi_d_.secbufferdesc.md)*
 
-*Inherited from [SecurityContext](_lib_sspi_d_.securitycontext.md).[SecBufferDesc](_lib_sspi_d_.securitycontext.md#optional-secbufferdesc)*
-
-*Defined in [lib/sspi.d.ts:93](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/lib/sspi.d.ts#L93)*
+*Defined in [lib/sspi.d.ts:121](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/lib/sspi.d.ts#L121)*
 
 ___
 
@@ -49,14 +43,12 @@ ___
 
 • **contextAttr**: *[AscRetFlag](../modules/_lib_flags_index_d_.md#ascretflag)[]*
 
-*Defined in [lib/sspi.d.ts:105](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/lib/sspi.d.ts#L105)*
+*Defined in [lib/sspi.d.ts:120](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/lib/sspi.d.ts#L120)*
 
 ___
 
-### `Optional` contextHandle
+###  contextHandle
 
-• **contextHandle**? : *[CtxtHandle](_lib_sspi_d_.ctxthandle.md)*
+• **contextHandle**: *[CtxtHandle](_lib_sspi_d_.ctxthandle.md)*
 
-*Inherited from [SecurityContext](_lib_sspi_d_.securitycontext.md).[contextHandle](_lib_sspi_d_.securitycontext.md#optional-contexthandle)*
-
-*Defined in [lib/sspi.d.ts:91](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/lib/sspi.d.ts#L91)*
+*Defined in [lib/sspi.d.ts:119](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/lib/sspi.d.ts#L119)*

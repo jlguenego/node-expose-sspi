@@ -11,36 +11,34 @@ It contains the security buffers exchanged between the client and the server.
 
 * **SecurityContext**
 
-  ↳ [ServerSecurityContext](_lib_sspi_d_.serversecuritycontext.md)
-
 ## Index
 
 ### Properties
 
-* [SECURITY_STATUS](_lib_sspi_d_.securitycontext.md#optional-security_status)
-* [SecBufferDesc](_lib_sspi_d_.securitycontext.md#optional-secbufferdesc)
-* [contextHandle](_lib_sspi_d_.securitycontext.md#optional-contexthandle)
+* [SECURITY_STATUS](_lib_sspi_d_.securitycontext.md#security_status)
+* [SecBufferDesc](_lib_sspi_d_.securitycontext.md#secbufferdesc)
+* [contextHandle](_lib_sspi_d_.securitycontext.md#contexthandle)
 
 ## Properties
 
-### `Optional` SECURITY_STATUS
+###  SECURITY_STATUS
 
-• **SECURITY_STATUS**? : *string*
+• **SECURITY_STATUS**: *string*
 
-*Defined in [lib/sspi.d.ts:92](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/lib/sspi.d.ts#L92)*
-
-___
-
-### `Optional` SecBufferDesc
-
-• **SecBufferDesc**? : *any*
-
-*Defined in [lib/sspi.d.ts:93](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/lib/sspi.d.ts#L93)*
+*Defined in [lib/sspi.d.ts:92](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/lib/sspi.d.ts#L92)*
 
 ___
 
-### `Optional` contextHandle
+###  SecBufferDesc
 
-• **contextHandle**? : *[CtxtHandle](_lib_sspi_d_.ctxthandle.md)*
+• **SecBufferDesc**: *[SecBufferDesc](_lib_sspi_d_.secbufferdesc.md)*
 
-*Defined in [lib/sspi.d.ts:91](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/lib/sspi.d.ts#L91)*
+*Defined in [lib/sspi.d.ts:93](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/lib/sspi.d.ts#L93)*
+
+___
+
+###  contextHandle
+
+• **contextHandle**: *[CtxtHandle](_lib_sspi_d_.ctxthandle.md)*
+
+*Defined in [lib/sspi.d.ts:91](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/lib/sspi.d.ts#L91)*

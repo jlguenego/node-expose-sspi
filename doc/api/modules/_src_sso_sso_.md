@@ -7,15 +7,3 @@
 ### Classes
 
 * [SSO](../classes/_src_sso_sso_.sso.md)
-
-### Type aliases
-
-* [SSOMethod](_src_sso_sso_.md#ssomethod)
-
-## Type aliases
-
-###  SSOMethod
-
-Ƭ **SSOMethod**: *"NTLM" | "Kerberos"*
-
-*Defined in [src/sso/SSO.ts:10](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/src/sso/SSO.ts#L10)*

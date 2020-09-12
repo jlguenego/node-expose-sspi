@@ -22,22 +22,22 @@
 
 ### `Optional` cn
 
-• **cn**? : *string*
+• **cn**? : *undefined | string*
 
-*Defined in [src/sso/interfaces.ts:132](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/src/sso/interfaces.ts#L132)*
+*Defined in [src/sso/interfaces.ts:138](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/interfaces.ts#L138)*
 
 ___
 
 ### `Optional` givenName
 
-• **givenName**? : *string*
+• **givenName**? : *undefined | string*
 
-*Defined in [src/sso/interfaces.ts:131](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/src/sso/interfaces.ts#L131)*
+*Defined in [src/sso/interfaces.ts:137](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/interfaces.ts#L137)*
 
 ___
 
 ### `Optional` sn
 
-• **sn**? : *string*
+• **sn**? : *undefined | string*
 
-*Defined in [src/sso/interfaces.ts:130](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/src/sso/interfaces.ts#L130)*
+*Defined in [src/sso/interfaces.ts:136](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/interfaces.ts#L136)*

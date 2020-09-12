@@ -23,23 +23,23 @@
 
 • **adUser**? : *[ADUser](_src_sso_interfaces_.aduser.md)*
 
-*Defined in [src/sso/interfaces.ts:122](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/src/sso/interfaces.ts#L122)*
+*Defined in [src/sso/interfaces.ts:128](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/interfaces.ts#L128)*
 
 ___
 
 ### `Optional` displayName
 
-• **displayName**? : *string*
+• **displayName**? : *undefined | string*
 
-*Defined in [src/sso/interfaces.ts:119](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/src/sso/interfaces.ts#L119)*
+*Defined in [src/sso/interfaces.ts:125](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/interfaces.ts#L125)*
 
 ___
 
 ### `Optional` domain
 
-• **domain**? : *string*
+• **domain**? : *undefined | string*
 
-*Defined in [src/sso/interfaces.ts:120](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/src/sso/interfaces.ts#L120)*
+*Defined in [src/sso/interfaces.ts:126](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/interfaces.ts#L126)*
 
 ___
 
@@ -47,20 +47,20 @@ ___
 
 • **groups**? : *string[]*
 
-*Defined in [src/sso/interfaces.ts:121](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/src/sso/interfaces.ts#L121)*
+*Defined in [src/sso/interfaces.ts:127](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/interfaces.ts#L127)*
 
 ___
 
 ### `Optional` name
 
-• **name**? : *string*
+• **name**? : *undefined | string*
 
-*Defined in [src/sso/interfaces.ts:117](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/src/sso/interfaces.ts#L117)*
+*Defined in [src/sso/interfaces.ts:123](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/interfaces.ts#L123)*
 
 ___
 
 ### `Optional` sid
 
-• **sid**? : *string*
+• **sid**? : *undefined | string*
 
-*Defined in [src/sso/interfaces.ts:118](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/src/sso/interfaces.ts#L118)*
+*Defined in [src/sso/interfaces.ts:124](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/interfaces.ts#L124)*

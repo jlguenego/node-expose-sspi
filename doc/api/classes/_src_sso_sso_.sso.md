@@ -14,7 +14,7 @@
 
 ### Properties
 
-* [method](_src_sso_sso_.sso.md#optional-method)
+* [method](_src_sso_sso_.sso.md#method)
 * [owner](_src_sso_sso_.sso.md#owner)
 * [user](_src_sso_sso_.sso.md#user)
 
@@ -28,26 +28,26 @@
 
 ###  constructor
 
-\+ **new SSO**(`serverContextHandle`: [CtxtHandle](../interfaces/_lib_sspi_d_.ctxthandle.md), `method?`: [SSOMethod](../modules/_src_sso_sso_.md#ssomethod)): *[SSO](_src_sso_sso_.sso.md)*
+\+ **new SSO**(`serverContextHandle`: [CtxtHandle](../interfaces/_lib_sspi_d_.ctxthandle.md), `method`: [SSOMethod](../modules/_src_sso_interfaces_.md#ssomethod)): *[SSO](_src_sso_sso_.sso.md)*
 
-*Defined in [src/sso/SSO.ts:20](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/src/sso/SSO.ts#L20)*
+*Defined in [src/sso/SSO.ts:18](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/SSO.ts#L18)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
 `serverContextHandle` | [CtxtHandle](../interfaces/_lib_sspi_d_.ctxthandle.md) |
-`method?` | [SSOMethod](../modules/_src_sso_sso_.md#ssomethod) |
+`method` | [SSOMethod](../modules/_src_sso_interfaces_.md#ssomethod) |
 
 **Returns:** *[SSO](_src_sso_sso_.sso.md)*
 
 ## Properties
 
-### `Optional` method
+###  method
 
-• **method**? : *[SSOMethod](../modules/_src_sso_sso_.md#ssomethod)*
+• **method**: *[SSOMethod](../modules/_src_sso_interfaces_.md#ssomethod)*
 
-*Defined in [src/sso/SSO.ts:24](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/src/sso/SSO.ts#L24)*
+*Defined in [src/sso/SSO.ts:22](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/SSO.ts#L22)*
 
 ___
 
@@ -55,7 +55,7 @@ ___
 
 • **owner**: *[User](../interfaces/_src_sso_interfaces_.user.md)*
 
-*Defined in [src/sso/SSO.ts:14](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/src/sso/SSO.ts#L14)*
+*Defined in [src/sso/SSO.ts:12](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/SSO.ts#L12)*
 
 ___
 
@@ -63,17 +63,17 @@ ___
 
 • **user**: *[User](../interfaces/_src_sso_interfaces_.user.md)*
 
-*Defined in [src/sso/SSO.ts:13](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/src/sso/SSO.ts#L13)*
+*Defined in [src/sso/SSO.ts:11](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/SSO.ts#L11)*
 
 ## Methods
 
 ###  getJSON
 
-▸ **getJSON**(): *[SSO](_src_sso_sso_.sso.md)*
+▸ **getJSON**(): *[SSOObject](../interfaces/_src_sso_interfaces_.ssoobject.md)*
 
-*Defined in [src/sso/SSO.ts:115](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/src/sso/SSO.ts#L115)*
+*Defined in [src/sso/SSO.ts:113](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/SSO.ts#L113)*
 
-**Returns:** *[SSO](_src_sso_sso_.sso.md)*
+**Returns:** *[SSOObject](../interfaces/_src_sso_interfaces_.ssoobject.md)*
 
 ___
 
@@ -81,7 +81,7 @@ ___
 
 ▸ **load**(): *Promise‹void›*
 
-*Defined in [src/sso/SSO.ts:27](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/src/sso/SSO.ts#L27)*
+*Defined in [src/sso/SSO.ts:25](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/SSO.ts#L25)*
 
 **Returns:** *Promise‹void›*
 
@@ -91,7 +91,7 @@ ___
 
 ▸ **setOptions**(`options`: [AuthOptions](../interfaces/_src_sso_interfaces_.authoptions.md)): *void*
 
-*Defined in [src/sso/SSO.ts:122](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/src/sso/SSO.ts#L122)*
+*Defined in [src/sso/SSO.ts:124](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/SSO.ts#L124)*
 
 **Parameters:**
 

@@ -14,7 +14,7 @@ Input of AcceptSecurityContext function.
 
 ### Properties
 
-* [clientSecurityContext](_lib_sspi_d_.acceptsecuritycontextinput.md#clientsecuritycontext)
+* [SecBufferDesc](_lib_sspi_d_.acceptsecuritycontextinput.md#optional-secbufferdesc)
 * [contextHandle](_lib_sspi_d_.acceptsecuritycontextinput.md#optional-contexthandle)
 * [contextReq](_lib_sspi_d_.acceptsecuritycontextinput.md#optional-contextreq)
 * [credential](_lib_sspi_d_.acceptsecuritycontextinput.md#credential)
@@ -22,11 +22,11 @@ Input of AcceptSecurityContext function.
 
 ## Properties
 
-###  clientSecurityContext
+### `Optional` SecBufferDesc
 
-• **clientSecurityContext**: *[SecurityContext](_lib_sspi_d_.securitycontext.md)*
+• **SecBufferDesc**? : *[SecBufferDesc](_lib_sspi_d_.acceptsecuritycontextinput.md#optional-secbufferdesc)*
 
-*Defined in [lib/sspi.d.ts:166](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/lib/sspi.d.ts#L166)*
+*Defined in [lib/sspi.d.ts:182](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/lib/sspi.d.ts#L182)*
 
 ___
 
@@ -34,7 +34,7 @@ ___
 
 • **contextHandle**? : *[CtxtHandle](_lib_sspi_d_.ctxthandle.md)*
 
-*Defined in [lib/sspi.d.ts:167](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/lib/sspi.d.ts#L167)*
+*Defined in [lib/sspi.d.ts:183](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/lib/sspi.d.ts#L183)*
 
 ___
 
@@ -42,7 +42,7 @@ ___
 
 • **contextReq**? : *[AscReqFlag](../modules/_lib_flags_index_d_.md#ascreqflag)[]*
 
-*Defined in [lib/sspi.d.ts:168](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/lib/sspi.d.ts#L168)*
+*Defined in [lib/sspi.d.ts:184](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/lib/sspi.d.ts#L184)*
 
 ___
 
@@ -50,7 +50,7 @@ ___
 
 • **credential**: *[CredHandle](_lib_sspi_d_.credhandle.md)*
 
-*Defined in [lib/sspi.d.ts:165](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/lib/sspi.d.ts#L165)*
+*Defined in [lib/sspi.d.ts:181](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/lib/sspi.d.ts#L181)*
 
 ___
 
@@ -58,4 +58,4 @@ ___
 
 • **targetDataRep**? : *[TargetDataRepMapFlag](../modules/_lib_flags_index_d_.md#targetdatarepmapflag)*
 
-*Defined in [lib/sspi.d.ts:169](https://github.com/jlguenego/node-expose-sspi/blob/3a7c182/lib/sspi.d.ts#L169)*
+*Defined in [lib/sspi.d.ts:185](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/lib/sspi.d.ts#L185)*
