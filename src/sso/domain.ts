@@ -24,9 +24,9 @@ export function isOnDomain(): boolean {
 }
 
 export function isActiveDirectoryReachable(): boolean {
-  let gc: IADsContainer;
-  let element: IDispatch;
-  let ds: IDirectorySearch;
+  let gc!: IADsContainer;
+  let element!: IDispatch;
+  let ds!: IDirectorySearch;
 
   try {
     openADConnection();

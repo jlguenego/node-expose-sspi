@@ -3,13 +3,13 @@ import { getUser } from './userdb';
 import dbg from 'debug';
 import { sso } from '.';
 import os from 'os';
-import { AuthOptions, User, SSOMethod } from './interfaces';
+import { AuthOptions, User, SSOMethod, SSOObject } from './interfaces';
 
 const debug = dbg('node-expose-sspi:SSO');
 
 export class SSO {
-  user: User;
-  owner: User;
+  user!: User;
+  owner!: User;
   private options: AuthOptions = {
     useActiveDirectory: true,
     useGroups: true,
@@ -19,7 +19,7 @@ export class SSO {
 
   constructor(
     private serverContextHandle: CtxtHandle,
-    public method?: SSOMethod
+    public method: SSOMethod
   ) {}
 
   async load(): Promise<void> {
@@ -110,10 +110,14 @@ export class SSO {
     }
   }
 
-  getJSON(): SSO {
-    const json = { ...this };
-    delete json.options;
-    delete json.serverContextHandle;
+  getJSON(): SSOObject {
+    const json: SSOObject = { method: this.method };
+    if (this.user) {
+      json.user = this.user;
+    }
+    if (this.owner) {
+      json.owner = this.owner;
+    }
     return json;
   }
 

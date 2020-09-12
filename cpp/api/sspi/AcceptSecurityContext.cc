@@ -5,22 +5,14 @@ namespace myAddon {
 Napi::Value e_AcceptSecurityContext(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
 
-  if (info.Length() < 1) {
-    throw Napi::Error::New(
-        env,
-        "AcceptSecurityContext: Wrong number of arguments. "
-        "AcceptSecurityContext({ credential, contextReq?: AscReqFlag[],"
-        "clientSecurityContext, contextHandle })");
-  }
+  CHECK_INPUT("AcceptSecurityContext(input: AcceptSecurityContextInput)", 1);
 
   Napi::Object input = info[0].As<Napi::Object>();
   CredHandle cred = SecHandleUtil::deserialize(
       input.Get("credential").As<Napi::String>().Utf8Value());
-  Napi::Object clientSecurityContext =
-      input.Get("clientSecurityContext").As<Napi::Object>();
 
   PSecBufferDesc pInput = JS::initSecBufferDesc(
-      clientSecurityContext.Get("SecBufferDesc").As<Napi::Object>());
+      input.Get("SecBufferDesc").As<Napi::Object>());
 
   DWORD fContextReq =
       getFlags(env, ASC_REQ_FLAGS, input, "contextReq", ASC_REQ_CONNECTION);
@@ -56,20 +48,25 @@ Napi::Value e_AcceptSecurityContext(const Napi::CallbackInfo& info) {
       targetDataRep, &serverContextHandle, &fromServerSecBufferDesc,
       &ulServerContextAttr, &tsExpiry);
 
+  if (secStatus < 0 && secStatus != SEC_E_LOGON_DENIED) {
+    throw Napi::Error::New(
+        env, "AcceptSecurityContext: SECURITY_STATUS incorrect (<0): " +
+                 plf::error_msg(secStatus));
+  }
+
   Napi::Object result = Napi::Object::New(env);
   result["contextHandle"] =
       Napi::String::New(env, SecHandleUtil::serialize(serverContextHandle));
   result["contextAttr"] = setFlags(env, ASC_RET_FLAGS, ulServerContextAttr);
+  result["SecBufferDesc"] = JS::convert(env, &fromServerSecBufferDesc);
 
   switch (secStatus) {
     case SEC_I_CONTINUE_NEEDED:
       result["SECURITY_STATUS"] =
           Napi::String::New(env, "SEC_I_CONTINUE_NEEDED");
-      result["SecBufferDesc"] = JS::convert(env, &fromServerSecBufferDesc);
       break;
     case SEC_E_OK:
       result["SECURITY_STATUS"] = Napi::String::New(env, "SEC_E_OK");
-      result["SecBufferDesc"] = JS::convert(env, &fromServerSecBufferDesc);
       break;
     case SEC_E_LOGON_DENIED:
       result["SECURITY_STATUS"] = Napi::String::New(env, "SEC_E_LOGON_DENIED");
@@ -77,11 +74,6 @@ Napi::Value e_AcceptSecurityContext(const Napi::CallbackInfo& info) {
     default:
       result["SECURITY_STATUS"] =
           Napi::String::New(env, plf::string_format("0x%08x", secStatus));
-  }
-  if (secStatus < 0 && secStatus != SEC_E_LOGON_DENIED) {
-    throw Napi::Error::New(
-        env, "AcceptSecurityContext: SECURITY_STATUS incorrect (<0): " +
-                 plf::error_msg(secStatus));
   }
 
   return result;

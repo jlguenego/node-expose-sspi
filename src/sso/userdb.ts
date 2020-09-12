@@ -37,7 +37,7 @@ export async function init(): Promise<void> {
   }
 }
 
-export async function getUser(ldapFilter: string): Promise<ADUser> {
+export async function getUser(ldapFilter: string): Promise<ADUser | undefined> {
   debug('getUser start ');
   if (!isOnDomain()) {
     return;
@@ -48,7 +48,7 @@ export async function getUser(ldapFilter: string): Promise<ADUser> {
     return;
   }
   openADConnection();
-  let dirsearch: IDirectorySearch;
+  let dirsearch: IDirectorySearch | undefined;
   try {
     const distinguishedName = await getDistinguishedName();
     dirsearch = await adsi.ADsOpenObject<IDirectorySearch>({
@@ -85,12 +85,12 @@ export async function getUser(ldapFilter: string): Promise<ADUser> {
 export async function getUsers(): Promise<ADUsers> {
   debug('getUsers start ');
   if (!isOnDomain()) {
-    return;
+    return [];
   }
   const adRelease = await activeDirectoryMutex.acquire();
   if (!isActiveDirectoryReachable()) {
     console.error('Warning: Active Directory not reachable');
-    return;
+    return [];
   }
   const result: ADUsers = [];
   openADConnection();
@@ -133,7 +133,7 @@ export async function getUsers(): Promise<ADUsers> {
 }
 
 export async function getDistinguishedName(): Promise<string> {
-  let root: IADs;
+  let root: IADs | undefined;
   try {
     root = await adsi.ADsGestObject('LDAP://rootDSE');
     const distinguishedName = await root.Get('defaultNamingContext');

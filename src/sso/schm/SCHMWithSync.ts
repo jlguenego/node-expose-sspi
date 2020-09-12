@@ -6,7 +6,7 @@ import { SSOMethod } from '../interfaces';
 
 const debug = dbg('node-expose-sspi:schManager');
 
-type IPromiseFn = (value?: unknown) => void;
+type IPromiseFn = (value?: any) => void;
 
 interface AuthItem {
   resolve?: IPromiseFn;
@@ -24,7 +24,7 @@ export class SCHMWithSync extends ServerContextHandleManager {
    * @type {AuthItem}
    * @memberof SCHMWithSync
    */
-  private authItem: AuthItem;
+  private authItem: AuthItem | undefined;
 
   /**
    * The queue of other authentication that are waiting.
@@ -35,8 +35,8 @@ export class SCHMWithSync extends ServerContextHandleManager {
    */
   private queue: AuthItem[] = [];
 
-  private serverContextHandle: CtxtHandle;
-  private method: SSOMethod;
+  private serverContextHandle: CtxtHandle | undefined;
+  private method!: SSOMethod;
 
   constructor(private delayMax = 20000) {
     super();
@@ -71,7 +71,7 @@ export class SCHMWithSync extends ServerContextHandleManager {
     this.method = ssoMethod;
   }
 
-  getHandle(): CtxtHandle {
+  getHandle(): CtxtHandle | undefined {
     return this.serverContextHandle;
   }
 
@@ -90,7 +90,9 @@ export class SCHMWithSync extends ServerContextHandleManager {
       // so we start authenticating this client B.
       this.authItem = this.queue.shift();
       debug('releasing. queue length', this.queue.length);
-      this.authItem.resolve();
+      if (this.authItem?.resolve) {
+        this.authItem.resolve();
+      }
     }
   }
 
@@ -106,8 +108,12 @@ export class SCHMWithSync extends ServerContextHandleManager {
   interrupt(): void {
     while (this.queue.length > 0) {
       const ai = this.queue.pop();
-      clearTimeout(ai.timeout);
-      ai.reject(TOO_LATE_ERROR_MSG);
+      if (ai) {
+        clearTimeout(ai.timeout);
+        if (ai.reject) {
+          ai.reject(TOO_LATE_ERROR_MSG);
+        }
+      }
     }
     this.authItem = undefined;
     this.serverContextHandle = undefined;

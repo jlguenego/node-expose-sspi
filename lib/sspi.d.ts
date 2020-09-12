@@ -88,9 +88,22 @@ export interface CredentialWithExpiry {
  * @interface SecurityContext
  */
 export interface SecurityContext {
-  readonly contextHandle?: CtxtHandle;
-  readonly SECURITY_STATUS?: string;
-  readonly SecBufferDesc?: any;
+  readonly contextHandle: CtxtHandle;
+  readonly SECURITY_STATUS: string;
+  readonly SecBufferDesc: SecBufferDesc;
+}
+
+/**
+ * Same as Microsoft SecBufferDesc: The SecBufferDesc structure describes
+ * an array of SecBuffer structures to pass from a transport application
+ * to a security package.
+ *
+ * @export
+ * @interface SecBufferDesc
+ */
+export interface SecBufferDesc {
+  ulVersion: number;
+  buffers: ArrayBuffer[];
 }
 
 /**
@@ -101,8 +114,11 @@ export interface SecurityContext {
  * @interface ServerSecurityContext
  * @extends {SecurityContext}
  */
-export interface ServerSecurityContext extends SecurityContext {
-  contextAttr: AscRetFlag[];
+export interface ServerSecurityContext {
+  readonly SECURITY_STATUS: string;
+  readonly contextHandle: CtxtHandle;
+  readonly contextAttr: AscRetFlag[];
+  readonly SecBufferDesc: SecBufferDesc;
 }
 
 /**
@@ -138,7 +154,7 @@ export interface InitializeSecurityContextInput {
   credential: CredHandle;
   targetName: string;
   cbMaxToken?: number;
-  serverSecurityContext?: SecurityContext;
+  SecBufferDesc?: SecBufferDesc;
   contextHandle?: CtxtHandle;
   contextReq?: IscReqFlag[];
   targetDataRep?: TargetDataRepMapFlag;
@@ -163,7 +179,7 @@ export interface AcquireCredHandleInput {
  */
 export interface AcceptSecurityContextInput {
   credential: CredHandle;
-  clientSecurityContext: SecurityContext;
+  SecBufferDesc?: SecBufferDesc;
   contextHandle?: CtxtHandle;
   contextReq?: AscReqFlag[];
   targetDataRep?: TargetDataRepMapFlag;
@@ -313,7 +329,6 @@ export interface Sspi {
    * @memberof Sspi
    */
   AllocateAndInitializeSid(): SidPointer;
-
 
   /**
    * check if the sid belongs to the user thread/process token.

@@ -1,15 +1,20 @@
-import { SSO } from './SSO';
 import { IncomingMessage, ServerResponse } from 'http';
+
+export interface SSOObject {
+  user?: User;
+  owner?: User;
+  method: SSOMethod;
+}
 
 declare module 'http' {
   interface IncomingMessage {
     /**
-     * Contains the SSO object.
+     * Contains the SSOObject.
      *
-     * @type {SSO}
+     * @type {SSOObject}
      * @memberof Request
      */
-    sso: SSO;
+    sso: SSOObject;
   }
 }
 
@@ -22,6 +27,7 @@ export type Middleware = (
 export type CookieToken = string;
 
 export type MessageType =
+  | 'Unknown'
   | 'NTLM_NEGOTIATE_01'
   | 'NTLM_CHALLENGE_02'
   | 'NTLM_AUTHENTICATE_03'
@@ -139,4 +145,4 @@ export interface CookieList {
   [name: string]: string;
 }
 
-export type SSOMethod = 'NTLM' | 'Kerberos';
+export type SSOMethod = 'NTLM' | 'Kerberos' | undefined;

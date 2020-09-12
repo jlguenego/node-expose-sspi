@@ -14,7 +14,7 @@ export interface UserInfo1 {
 export interface NetApi {
   /**
    * create a windows user account.
-   * 
+   *
    * By default userInfo flags is set to `['UF_SCRIPT']`.
    *
    * @param {string} serverName if undefined, then create a local account.
@@ -22,7 +22,7 @@ export interface NetApi {
    * @param {UserInfo1} userInfo specify username and password.
    * @memberof NetApi
    */
-  NetUserAdd(serverName: string, levelData: number, userInfo: UserInfo1): void;
+  NetUserAdd(serverName: string | undefined, levelData: number, userInfo: UserInfo1): void;
 
   /**
    * delete a windows user account
@@ -31,5 +31,5 @@ export interface NetApi {
    * @param {string} username
    * @memberof NetApi
    */
-  NetUserDel(serverName: string, username: string): void;
+  NetUserDel(serverName: string | undefined, username: string): void;
 }

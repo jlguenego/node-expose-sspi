@@ -18,7 +18,7 @@ export class Mutex {
       this.isBusy = false;
       return;
     }
-    const { resolve } = this.queue.shift();
+    const { resolve } = this.queue.shift() as Task;
     debug('decrease queue size', this.queue.length);
     this.isBusy = true;
     resolve(this.onRelease.bind(this));

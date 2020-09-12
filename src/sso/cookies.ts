@@ -6,12 +6,10 @@ export function parseCookies(request: http.IncomingMessage): CookieList {
   const list: CookieList = {};
   const rc = request.headers.cookie;
 
-  rc &&
-    rc.split(';').forEach((cookie) => {
-      const parts = cookie.split('=');
-      list[parts.shift().trim()] = decodeURI(parts.join('='));
-    });
+  rc?.split(';').forEach((cookie) => {
+    const parts = cookie.split('=');
+    list[(parts.shift() as string).trim()] = decodeURI(parts.join('='));
+  });
 
   return list;
 }
-

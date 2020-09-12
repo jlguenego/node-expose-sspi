@@ -8,7 +8,7 @@ const debug = dbg('node-expose-sspi:test');
 
 class MyServer {
   app = express();
-  server: Server;
+  server!: Server;
   constructor() {
     this.app.use(sso.auth());
     this.app.use((req, res) => {

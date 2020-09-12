@@ -5,6 +5,7 @@ import {
   SecurityContext,
   InitializeSecurityContextInput,
   AcceptSecurityContextInput,
+  ServerSecurityContext,
 } from '../../lib/api';
 import { SSO } from './SSO';
 import dbg from 'debug';
@@ -32,8 +33,8 @@ export async function connect(userCredential: UserCredential): Promise<SSO> {
       packageName: 'Negotiate',
     });
 
-    let serverSecurityContext: SecurityContext;
-    let clientSecurityContext: SecurityContext;
+    let serverSecurityContext!: ServerSecurityContext;
+    let clientSecurityContext!: SecurityContext;
     const clientInput: InitializeSecurityContextInput = {
       credential: clientCred.credential,
       targetName: 'kiki',
@@ -42,7 +43,6 @@ export async function connect(userCredential: UserCredential): Promise<SSO> {
 
     const serverInput: AcceptSecurityContextInput = {
       credential: serverCred.credential,
-      clientSecurityContext: undefined,
     };
     let i = 0;
     while (true) {
@@ -50,8 +50,8 @@ export async function connect(userCredential: UserCredential): Promise<SSO> {
       i++;
 
       if (serverSecurityContext) {
-        clientInput.serverSecurityContext = serverSecurityContext;
-        clientInput.contextHandle = clientSecurityContext.contextHandle;
+        clientInput.SecBufferDesc = serverSecurityContext.SecBufferDesc;
+        clientInput.contextHandle = clientSecurityContext?.contextHandle;
       }
       clientSecurityContext = sspi.InitializeSecurityContext(clientInput);
       debug('clientSecurityContext: ', clientSecurityContext);
@@ -63,7 +63,7 @@ export async function connect(userCredential: UserCredential): Promise<SSO> {
         throw errorMsg;
       }
 
-      serverInput.clientSecurityContext = clientSecurityContext;
+      serverInput.SecBufferDesc = clientSecurityContext.SecBufferDesc;
       if (serverSecurityContext) {
         serverInput.contextHandle = serverSecurityContext.contextHandle;
       }
@@ -89,7 +89,7 @@ export async function connect(userCredential: UserCredential): Promise<SSO> {
       break;
     }
 
-    const sso = new SSO(serverSecurityContext.contextHandle);
+    const sso = new SSO(serverSecurityContext.contextHandle, undefined);
     await sso.load();
     if (sso.user.name === 'Guest') {
       throw badLoginPasswordError;

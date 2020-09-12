@@ -1,6 +1,6 @@
-import { sspi, sso, AcquireCredHandleInput } from '../src';
-import os from 'os';
 import { strict as assert } from 'assert';
+
+import { sspi, sso, AcquireCredHandleInput } from '../src';
 import {
   CredentialWithExpiry,
   ServerSecurityContext,
@@ -49,7 +49,7 @@ describe('SSPI GetTokenInformation Unit Test', function () {
 
     const serverInput: AcceptSecurityContextInput = {
       credential: serverCred.credential,
-      clientSecurityContext,
+      SecBufferDesc: clientSecurityContext.SecBufferDesc,
       contextReq: ['ASC_REQ_CONNECTION'],
       targetDataRep: 'SECURITY_NATIVE_DREP',
     };
@@ -59,13 +59,13 @@ describe('SSPI GetTokenInformation Unit Test', function () {
       credential: clientCred.credential,
       targetName: 'kiki',
       cbMaxToken: packageInfo.cbMaxToken,
-      serverSecurityContext,
+      SecBufferDesc: serverSecurityContext.SecBufferDesc,
       contextHandle: clientSecurityContext.contextHandle,
-    };
+    } as InitializeSecurityContextInput;
     const clientSecurityContext2 = sspi.InitializeSecurityContext(input2);
     const serverSecurityContext2 = sspi.AcceptSecurityContext({
       credential: serverCred.credential,
-      clientSecurityContext: clientSecurityContext2,
+      SecBufferDesc: clientSecurityContext2.SecBufferDesc,
       contextHandle: serverSecurityContext.contextHandle,
     });
     assert(serverSecurityContext2.SECURITY_STATUS === 'SEC_E_OK');

@@ -74,10 +74,10 @@ export async function getSPNFromURI(url: string): Promise<string> {
  */
 export class Client {
   private cookieList: CookieList = {};
-  private domain: string;
-  private user: string;
-  private password: string;
-  private targetName: string;
+  private domain!: string;
+  private user!: string;
+  private password!: string;
+  private targetName!: string;
   private ssp: SecuritySupportProvider = 'Negotiate';
 
   private saveCookies(response: Response): void {
@@ -182,7 +182,7 @@ export class Client {
       debug('no header www-authenticate');
       return response;
     }
-    if (!response.headers.get('www-authenticate').startsWith('Negotiate')) {
+    if (!response.headers.get('www-authenticate')?.startsWith('Negotiate')) {
       debug(
         'no header www-authenticate with Negotiate:',
         response.headers.get('www-authenticate')
@@ -234,20 +234,20 @@ export class Client {
     while (
       response.headers.has('www-authenticate') &&
       response.status === 401 &&
-      response.headers.get('www-authenticate').startsWith('Negotiate ')
+      response.headers.get('www-authenticate')?.startsWith('Negotiate ')
     ) {
       const buffer = decode(
-        response.headers.get('www-authenticate').substring('Negotiate '.length)
+        (response.headers.get('www-authenticate') as string).substring(
+          'Negotiate '.length
+        )
       );
       input = {
         credential: clientCred.credential,
         targetName,
         cbMaxToken: packageInfo.cbMaxToken,
-        serverSecurityContext: {
-          SecBufferDesc: {
-            ulVersion: 0,
-            buffers: [buffer],
-          },
+        SecBufferDesc: {
+          ulVersion: 0,
+          buffers: [buffer],
         },
         contextHandle: clientSecurityContext.contextHandle,
         targetDataRep: 'SECURITY_NATIVE_DREP',

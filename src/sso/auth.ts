@@ -9,7 +9,13 @@ import { SSO } from './SSO';
 import { ServerContextHandleManager } from './schm/ServerContextHandleManager';
 import { SCHMWithCookies } from './schm/SCHMWithCookies';
 import { SCHMWithSync } from './schm/SCHMWithSync';
-import { AuthOptions, Middleware, NextFunction, SSOMethod } from './interfaces';
+import {
+  AuthOptions,
+  MessageType,
+  Middleware,
+  NextFunction,
+  SSOMethod,
+} from './interfaces';
 import { getStatusInfo } from './status';
 
 const debug = dbg('node-expose-sspi:auth');
@@ -66,7 +72,7 @@ export function auth(options: AuthOptions = {}): Middleware {
       const cookieToken = schManager.getCookieToken(req, res);
       debug('cookieToken: ', cookieToken);
 
-      let messageType: string;
+      let messageType: MessageType = 'Unknown';
 
       try {
         const authorization = req.headers.authorization;
@@ -104,11 +110,9 @@ export function auth(options: AuthOptions = {}): Middleware {
 
         const input: AcceptSecurityContextInput = {
           credential,
-          clientSecurityContext: {
-            SecBufferDesc: {
-              ulVersion: 0,
-              buffers: [buffer],
-            },
+          SecBufferDesc: {
+            ulVersion: 0,
+            buffers: [buffer],
           },
         };
         const serverContextHandle = schManager.getHandle(cookieToken);
@@ -135,7 +139,12 @@ export function auth(options: AuthOptions = {}): Middleware {
           // only by 'Digest' SSP. (not by Negotiate, Kerberos or NTLM)
           if (serverSecurityContext.SECURITY_STATUS === 'SEC_E_LOGON_DENIED') {
             schManager.release(cookieToken);
-            next(createError(401, `SEC_E_LOGON_DENIED. (incorrect login/password, or account disabled, or locked, etc.). Protocol Message = ${messageType}.`));
+            next(
+              createError(
+                401,
+                `SEC_E_LOGON_DENIED. (incorrect login/password, or account disabled, or locked, etc.). Protocol Message = ${messageType}.`
+              )
+            );
             return;
           }
           throw new Error(
@@ -159,6 +168,9 @@ export function auth(options: AuthOptions = {}): Middleware {
         }
 
         const lastServerContextHandle = schManager.getHandle(cookieToken);
+        if (!lastServerContextHandle) {
+          throw new Error('cannot get the server context handle');
+        }
         const method = schManager.getMethod(cookieToken);
         const sso = new SSO(lastServerContextHandle, method);
         sso.setOptions(opts);

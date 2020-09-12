@@ -3,13 +3,13 @@ import { CookieToken, SSOMethod } from '../interfaces';
 import { CtxtHandle } from '../..';
 
 export abstract class ServerContextHandleManager {
-  req: IncomingMessage;
-  res: ServerResponse;
+  req!: IncomingMessage;
+  res!: ServerResponse;
 
   getCookieToken(req: IncomingMessage, res: ServerResponse): CookieToken {
     this.req = req;
     this.res = res;
-    return undefined;
+    return '';
   }
 
   abstract waitForReleased(cookieToken: CookieToken): Promise<void>;
@@ -18,7 +18,7 @@ export abstract class ServerContextHandleManager {
 
   abstract setMethod(ssoMethod: SSOMethod, cookieToken: CookieToken): void;
 
-  abstract getHandle(cookieToken: CookieToken): CtxtHandle;
+  abstract getHandle(cookieToken: CookieToken): CtxtHandle | undefined;
 
   abstract setHandle(contextHandle: CtxtHandle, cookieToken: CookieToken): void;
 

@@ -28,7 +28,10 @@ export class SCHMWithCookies extends ServerContextHandleManager {
       debug('cookie not found, so generating one');
       cookieToken = COOKIE_PREFIX_VALUE + Math.floor(1e10 * Math.random());
       // create a long lifetime cookie
-      res.setHeader('Set-Cookie', `${COOKIE_KEY}=${cookieToken}; Max-Age=999999999`);
+      res.setHeader(
+        'Set-Cookie',
+        `${COOKIE_KEY}=${cookieToken}; Max-Age=999999999`
+      );
     }
     if (!this.sessionMap.has(cookieToken)) {
       this.sessionMap.set(cookieToken, {});
@@ -43,22 +46,28 @@ export class SCHMWithCookies extends ServerContextHandleManager {
 
   getMethod(cookieToken: CookieToken): SSOMethod {
     const contextInfo = this.sessionMap.get(cookieToken);
-    return contextInfo.method;
+    return contextInfo?.method;
   }
 
   setMethod(ssoMethod: SSOMethod, cookieToken: CookieToken): void {
     const contextInfo = this.sessionMap.get(cookieToken);
+    if (!contextInfo) {
+      return;
+    }
     contextInfo.method = ssoMethod;
   }
 
-  getHandle(cookieToken: CookieToken): CtxtHandle {
+  getHandle(cookieToken: CookieToken): CtxtHandle | undefined {
     debug('cookieToken: ', cookieToken);
     const contextInfo = this.sessionMap.get(cookieToken);
-    return contextInfo.serverContextHandle;
+    return contextInfo?.serverContextHandle;
   }
 
   setHandle(contextHandle: CtxtHandle, cookieToken: CookieToken): void {
     const contextInfo = this.sessionMap.get(cookieToken);
+    if (!contextInfo) {
+      return;
+    }
     contextInfo.serverContextHandle = contextHandle;
   }
 

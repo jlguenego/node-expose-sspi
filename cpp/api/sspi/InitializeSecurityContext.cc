@@ -5,15 +5,8 @@ namespace myAddon {
 Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo &info) {
   Napi::Env env = info.Env();
 
-  if (info.Length() < 1) {
-    throw Napi::Error::New(
-        env,
-        "InitializeSecurityContext: Wrong number of arguments. "
-        "InitializeSecurityContext({ credential: string, targetName: string, "
-        "cbMaxToken?: number, contextReq?: IscReqFlag[],"
-        "contextHandle, "
-        "serverSecurityContext?: Object })");
-  }
+  CHECK_INPUT(
+      "InitializeSecurityContext(input: InitializeSecurityContextInput)", 1);
 
   Napi::Object input = info[0].As<Napi::Object>();
   CredHandle cred = SecHandleUtil::deserialize(
@@ -26,7 +19,7 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo &info) {
       getFlags(env, ISC_REQ_FLAGS, input, "contextReq", ISC_REQ_CONNECTION);
 
   DWORD targetDataRep = getFlag(env, SECURITY_DREP_FLAGS, input,
-                                 "targetDataRep", SECURITY_NATIVE_DREP);
+                                "targetDataRep", SECURITY_NATIVE_DREP);
 
   unsigned int cbMaxToken = 48256;
   if (input.Has("cbMaxToken")) {
@@ -34,14 +27,10 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo &info) {
   }
 
   PSecBufferDesc pInput = NULL;
-  if (input.Has("serverSecurityContext")) {
-    Napi::Object serverSecurityContext =
-        input.Get("serverSecurityContext").As<Napi::Object>();
-    if (serverSecurityContext.Has("SecBufferDesc")) {
-      Napi::Object secBufferDesc =
-          serverSecurityContext.Get("SecBufferDesc").As<Napi::Object>();
-      pInput = JS::initSecBufferDesc(secBufferDesc);
-    }
+
+  if (input.Has("SecBufferDesc")) {
+    Napi::Object secBufferDesc = input.Get("SecBufferDesc").As<Napi::Object>();
+    pInput = JS::initSecBufferDesc(secBufferDesc);
   }
 
   TimeStamp tsExpiry;
@@ -104,7 +93,9 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo &info) {
   free(buffer);
 
   if (secStatus < SEC_E_OK) {
-    throw Napi::Error::New(env, "Cannot InitializeSecurityContext: secStatus = " + plf::error_msg(secStatus));
+    throw Napi::Error::New(env,
+                           "Cannot InitializeSecurityContext: secStatus = " +
+                               plf::error_msg(secStatus));
   }
 
   return result;

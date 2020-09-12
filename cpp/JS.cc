@@ -9,6 +9,11 @@ namespace myAddon {
 
 Napi::Value JS::convert(Napi::Env env, SecBufferDesc* pSecBufferDesc) {
   Napi::Object result = Napi::Object::New(env);
+  if (!pSecBufferDesc) {
+    result["ulVersion"] = SECBUFFER_VERSION;
+    result["buffers"] = Napi::Array::New(env);
+    return result;
+  }
   result["ulVersion"] = pSecBufferDesc->ulVersion;
   Napi::Array array = Napi::Array::New(env);
   for (unsigned long i = 0; i < pSecBufferDesc->cBuffers; i++) {
