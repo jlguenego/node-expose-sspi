@@ -11,6 +11,10 @@ import {
 } from '../lib/sspi';
 
 describe('SSPI GetTokenInformation Unit Test', function () {
+  if (sso.isOnDomain() && !sso.isActiveDirectoryReachable()) {
+    return;
+  }
+
   let clientCred: CredentialWithExpiry;
   let serverCred: CredentialWithExpiry;
   let clientSecurityContext: SecurityContext;

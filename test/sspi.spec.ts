@@ -1,5 +1,6 @@
-import { sspi, AcquireCredHandleInput } from '../src';
 import { strict as assert } from 'assert';
+
+import { sspi, AcquireCredHandleInput, sso } from '../src';
 import {
   CredentialWithExpiry,
   ServerSecurityContext,
@@ -52,6 +53,10 @@ describe('SSPI Unit Test', function () {
     assert(sc);
     assert(sc.credential);
   });
+
+  if (sso.isOnDomain() && !sso.isActiveDirectoryReachable()) {
+    return;
+  }
 
   let serverCred: CredentialWithExpiry;
   let username: string;
