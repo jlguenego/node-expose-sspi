@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.42](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.41...v0.1.42) (2020-09-12)
+
+
+### Bug Fixes
+
+* make typescript strict [#36](https://github.com/jlguenego/node-expose-sspi/issues/36) ([9a7ed80](https://github.com/jlguenego/node-expose-sspi/commit/9a7ed80d490f8b44ba50fb0332db06c301412723))
+
 ### [0.1.41](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.40...v0.1.41) (2020-09-12)
 
 
