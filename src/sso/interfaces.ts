@@ -117,6 +117,19 @@ export interface AuthOptions {
    * @memberof AuthOptions
    */
   allowsAnonymousLogon?: boolean;
+
+  /**
+   * If true, cache the req.sso into req.session.sso.
+   * module `express-session` should be used.
+   * Add an `cached` attribute in the req.session.sso object
+   * indicating if the object was already cached.
+   *
+   * @default false
+   *
+   * @type {boolean}
+   * @memberof AuthOptions
+   */
+  useSession?: boolean;
 }
 
 export interface User {
