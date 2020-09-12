@@ -28,7 +28,7 @@ app.use(
 
 app.use((req, res) => {
   res.json({
-    sso: req?.session?.sso,
+    sso: req?.session?.sso || req.sso,
   });
 });
 
