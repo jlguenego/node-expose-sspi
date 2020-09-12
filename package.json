@@ -55,8 +55,8 @@
   "dependencies": {
     "base64-arraybuffer": "^0.2.0",
     "debug": "^4.1.1",
-    "http-errors": "^1.7.3",
-    "node-fetch": "^2.6.0"
+    "http-errors": "^1.8.0",
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "@types/debug": "^4.1.5",
