@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.40](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.39...v0.1.40) (2020-09-12)
+
+
+### Bug Fixes
+
+* test working on domain with unreachable ctrl ([84540d0](https://github.com/jlguenego/node-expose-sspi/commit/84540d0cee93b02709e633feefde905ac9ea1722))
+* try catch in getstatusinfo [#37](https://github.com/jlguenego/node-expose-sspi/issues/37) ([8111b43](https://github.com/jlguenego/node-expose-sspi/commit/8111b439a23105c620ec8b962125c6eadcebc8c6))
+
 ### [0.1.39](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.38...v0.1.39) (2020-09-06)
 
 
