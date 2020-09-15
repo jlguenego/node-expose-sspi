@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.44](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.43...v0.1.44) (2020-09-15)
+
+
+### Bug Fixes
+
+* added req.sso = req.session.sso ([191c448](https://github.com/jlguenego/node-expose-sspi/commit/191c4486f2a547bf739ee602df319addb33be5bf))
+* better typing - remove any ([39590d6](https://github.com/jlguenego/node-expose-sspi/commit/39590d6adc4541ce7af145340b8b82ffb33f5a8f))
+
 ### [0.1.43](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.42...v0.1.43) (2020-09-12)
 
 
