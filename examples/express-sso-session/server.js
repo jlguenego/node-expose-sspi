@@ -1,5 +1,5 @@
 const express = require('express');
-const { sso } = require('node-expose-sspi');
+const { sso } = require('../..');
 const session = require('express-session');
 
 const app = express();
@@ -16,7 +16,7 @@ app.use(sso.auth({ useSession: true }));
 
 app.use((req, res) => {
   res.json({
-    sso: req.session.sso,
+    sso: req.sso,
   });
 });
 

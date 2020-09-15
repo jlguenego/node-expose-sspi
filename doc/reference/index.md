@@ -37,7 +37,7 @@ app.listen(3000, () => console.log('Server started on port 3000'));
 
 Note that the `sso.auth()` is a middleware calling async functions, it may take time to achieve its work, specially if a connection to the domain controller needs to be done. So for performance reason it is better to use this middleware only when really needed and not for every requests. The best way is to associate the `sso.auth()` middleware to a cookie for having a session: using the `sso.auth()` the first time user needs to authenticate, and then use the session cookie for the remaining connections.
 
-#### Session integration
+#### Increasing performance: session integration
 
 Here is an example of integration with a session:
 
@@ -56,36 +56,25 @@ app.use(
   })
 );
 
-const auth = sso.auth();
-
-app.use(
-  (req, res, next) => (req.session.sso ? next() : auth(req, res, next)),
-  (req, res, next) => {
-    req.session.sso = req.sso ? req.sso : req.session.sso;
-    next();
-  }
-);
+app.use(sso.auth({ useSession: true }));
 
 app.use((req, res) => {
   res.json({
-    sso: req.session.sso,
-    ssoAuthUsed: req.sso !== undefined,
+    sso: req.sso,
   });
 });
 
 app.listen(3000, () => console.log('Server started on port 3000'));
 ```
 
-If `req.session.sso` does not exist, the SSO is computed and the `req.sso` object is copied to `req.session.sso`.
-If `req.session.sso` already exists, then it is not computed again.
 
-This saves times foreach request, supposing accessing to the session is faster than accessing to the (unfortunately slow) SSPI Microsoft API. 
+This saves times foreach request, supposing accessing to the session is faster than accessing to the (unfortunately slow) SSPI Microsoft API.
 
 **Production use**: the `express-session` module needs to be assisted with a [production ready memory store](https://github.com/expressjs/session#compatible-session-stores).
 
 ### On client side
 
-If you have a server with SSO, you can use it with a traditionnal browser (Chrome, Edge, Firefox, etc.) 
+If you have a server with SSO, you can use it with a traditionnal browser (Chrome, Edge, Firefox, etc.)
 but also with a client utility of the `node-expose-sspi` module.
 
 Here is an example:
@@ -108,6 +97,7 @@ const { sso } = require('node-expose-sspi');
 The API reference [is located here](../api/classes/_src_sso_client_.client.md).
 
 The client can be configured with the following methods:
+
 - `setCredentials(domain: string, user: string, password: string)`: connect with the credential of another windows account.
 - `setSSP(ssp: SecuritySupportProvider)`: set the SecuritySupportProvider. A SecuritySupportProvider is just one of the following strings:
   - NTLM
@@ -118,6 +108,7 @@ The client can be configured with the following methods:
 #### Example
 
 See:
+
 - [client](../../examples/client)
 - [client-runas](../../examples/client-runas)
 
