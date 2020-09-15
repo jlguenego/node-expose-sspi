@@ -16,6 +16,8 @@ declare module 'http' {
      * @memberof Request
      */
     sso: SSOObject;
+
+    session?: Express.Session;
   }
 }
 

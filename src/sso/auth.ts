@@ -70,9 +70,9 @@ export function auth(options: AuthOptions = {}): Middleware {
     next: NextFunction
   ): void => {
     if (opts.useSession) {
-      if ((req as any).session.sso) {
-        (req as any).session.sso.cached = true;
-        req.sso = (req as any).session.sso;
+      if (req.session?.sso) {
+        req.session.sso.cached = true;
+        req.sso = req.session.sso;
         next();
         return;
       }
@@ -185,9 +185,9 @@ export function auth(options: AuthOptions = {}): Middleware {
         sso.setOptions(opts);
         await sso.load();
         req.sso = sso.getJSON();
-        if (opts.useSession && (req as any).session) {
+        if (opts.useSession && req.session) {
           req.sso.cached = false;
-          (req as any).session.sso = req.sso;
+          req.session.sso = req.sso;
         }
         sspi.DeleteSecurityContext(lastServerContextHandle);
         schManager.release(cookieToken);
