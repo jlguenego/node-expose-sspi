@@ -12,20 +12,11 @@ app.use(
   })
 );
 
-const auth = sso.auth();
-
-app.use(
-  (req, res, next) => (req.session.sso ? next() : auth(req, res, next)),
-  (req, res, next) => {
-    req.session.sso = req.sso ? req.sso : req.session.sso;
-    next();
-  }
-);
+app.use(sso.auth({ useSession: true }));
 
 app.use((req, res) => {
   res.json({
     sso: req.session.sso,
-    ssoAuthUsed: req.sso !== undefined,
   });
 });
 
