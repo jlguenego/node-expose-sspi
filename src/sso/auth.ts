@@ -72,6 +72,7 @@ export function auth(options: AuthOptions = {}): Middleware {
     if (opts.useSession) {
       if ((req as any).session.sso) {
         (req as any).session.sso.cached = true;
+        req.sso = (req as any).session.sso;
         next();
         return;
       }
