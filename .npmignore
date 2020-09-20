@@ -1,5 +1,15 @@
+/.github
+/.nyc_output
+/.vscode
+/cpp
+/doc
 /examples
 /build
 /test
-/doc
-/.vscode
+/typedoc
+.eslintrc.js
+.mocharc.js
+.prettierrc
+binding.gyp
+README.md
+typedoc.json
