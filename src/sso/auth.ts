@@ -15,6 +15,7 @@ import {
   Middleware,
   NextFunction,
   SSOMethod,
+  SSOObject,
 } from './interfaces';
 import { getStatusInfo } from './status';
 
@@ -70,9 +71,11 @@ export function auth(options: AuthOptions = {}): Middleware {
     next: NextFunction
   ): void => {
     if (opts.useSession) {
-      if (req.session?.sso) {
-        req.session.sso.cached = true;
-        req.sso = req.session.sso;
+      const session = ((req as unknown) as { session?: { sso: SSOObject } })
+        .session;
+      if (session?.sso) {
+        session.sso.cached = true;
+        req.sso = session.sso;
         next();
         return;
       }
@@ -185,9 +188,13 @@ export function auth(options: AuthOptions = {}): Middleware {
         sso.setOptions(opts);
         await sso.load();
         req.sso = sso.getJSON();
-        if (opts.useSession && req.session) {
-          req.sso.cached = false;
-          req.session.sso = req.sso;
+        if (opts.useSession) {
+          const session = ((req as unknown) as { session?: { sso: SSOObject } })
+            .session;
+          if (session) {
+            req.sso.cached = false;
+            session.sso = req.sso;
+          }
         }
         sspi.DeleteSecurityContext(lastServerContextHandle);
         schManager.release(cookieToken);
