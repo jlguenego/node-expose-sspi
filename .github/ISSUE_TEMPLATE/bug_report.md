@@ -35,9 +35,9 @@ A clear and concise description of what you expected to happen.
 If applicable, add screenshots to help explain your problem.
 
 **Environment version:**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+ - OS: [ex: Windows 10 Pro version 1903 x64]
+ - Browser version: [ex: Chrome 85]
+ - Node version and architecture: [ex: 12.19.0 32bits]
 
 Please indicates also:
  - Are you on a Windows domain ? yes/no
