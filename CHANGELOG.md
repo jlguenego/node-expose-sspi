@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.45](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.44...v0.1.45) (2020-10-21)
+
+
+### Bug Fixes
+
+* become independant of express-session ([6f991bf](https://github.com/jlguenego/node-expose-sspi/commit/6f991bfb554bb2a9ec4ed0dc666ad7fa750e53db))
+* wrap ([afce1e3](https://github.com/jlguenego/node-expose-sspi/commit/afce1e3c138ad5e0dfeb193f52e69af4e794cf29))
+
 ### [0.1.44](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.43...v0.1.44) (2020-09-15)
 
 
