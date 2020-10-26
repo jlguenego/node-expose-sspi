@@ -27,6 +27,9 @@
     "start": "nodemon examples/typescript/server.ts",
     "status": "node scripts/status.js"
   },
+  "os": [
+    "win32"
+  ],
   "keywords": [
     "SSPI",
     "SSO",
