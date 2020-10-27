@@ -18,7 +18,7 @@ const myArgv = yargs
   .option('ssp', {
     alias: 's',
     type: 'string',
-    description: 'Specify the SSP (Kerberos, NTLM, Negotiate)'
+    description: 'Specify the SSP (Kerberos, NTLM, Negotiate)',
   })
   .option('user', {
     alias: 'u',
