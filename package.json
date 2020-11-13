@@ -2,34 +2,6 @@
   "name": "node-expose-sspi",
   "version": "0.1.48",
   "description": "Expose the Microsoft Windows SSPI interface in order to do NTLM and Kerberos authentication.",
-  "main": "dist/index.js",
-  "engines": {
-    "node": ">=12.16.1"
-  },
-  "scripts": {
-    "lint": "eslint .",
-    "build": "node-gyp rebuild -j 8 && node ./scripts/move-binary.js",
-    "build:arch": "ts-node ./scripts/build.ts",
-    "build:doc": "typedoc ./src/sso ./lib",
-    "build:ts": "tsc -p src",
-    "build:tsw": "tsc -p src -w",
-    "coverage": "nyc --reporter=html mocha",
-    "dev": "nodemon -x \"npm run build\"",
-    "devtest": "nodemon -x \"npm run build && npm run test\"",
-    "devserve": "nodemon -x \"npm run build && ts-node examples/typescript/server.ts\"",
-    "pretest": "require-self",
-    "test": "mocha",
-    "ex:server": "nodemon examples/express-simple/server.js",
-    "ex:client:server": "nodemon examples/client/server.js",
-    "ex:ts": "ts-node examples/typescript/index.ts",
-    "ex:ts:server": "nodemon examples/typescript/server.ts",
-    "release": "standard-version",
-    "start": "nodemon examples/typescript/server.ts",
-    "status": "node scripts/status.js"
-  },
-  "os": [
-    "win32"
-  ],
   "keywords": [
     "SSPI",
     "SSO",
@@ -44,7 +16,6 @@
     "Microsoft",
     "Windows"
   ],
-  "author": "Jean-Louis GUENEGO <jlguenego@gmail.com> (http://jlg-consulting.com/)",
   "repository": {
     "type": "git",
     "url": "https://github.com/jlguenego/node-expose-sspi.git"
@@ -54,8 +25,31 @@
     "url": "https://github.com/sponsors/jlguenego"
   },
   "license": "ISC",
-  "gypfile": false,
+  "author": "Jean-Louis GUENEGO <jlguenego@gmail.com> (http://jlg-consulting.com/)",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "node-gyp rebuild -j 8 && node ./scripts/move-binary.js",
+    "build:arch": "ts-node ./scripts/build.ts",
+    "build:doc": "typedoc ./src/sso ./lib",
+    "build:ts": "tsc -p src",
+    "build:tsw": "tsc -p src -w",
+    "coverage": "nyc --reporter=html mocha",
+    "dev": "nodemon -x \"npm run build\"",
+    "devserve": "nodemon -x \"npm run build && ts-node examples/typescript/server.ts\"",
+    "devtest": "nodemon -x \"npm run build && npm run test\"",
+    "ex:client:server": "nodemon examples/client/server.js",
+    "ex:server": "nodemon examples/express-simple/server.js",
+    "ex:ts": "ts-node examples/typescript/index.ts",
+    "ex:ts:server": "nodemon examples/typescript/server.ts",
+    "lint": "eslint .",
+    "release": "standard-version",
+    "start": "nodemon examples/typescript/server.ts",
+    "status": "node scripts/status.js",
+    "pretest": "require-self",
+    "test": "mocha"
+  },
   "dependencies": {
+    "@types/node-fetch": "^2.5.7",
     "base64-arraybuffer": "^0.2.0",
     "debug": "^4.2.0",
     "http-errors": "^1.8.0",
@@ -67,7 +61,6 @@
     "@types/express-session": "^1.17.2",
     "@types/http-errors": "^1.8.0",
     "@types/mocha": "^7.0.2",
-    "@types/node-fetch": "^2.5.7",
     "@types/serve-index": "^1.7.30",
     "@typescript-eslint/eslint-plugin": "^2.34.0",
     "@typescript-eslint/parser": "^2.34.0",
@@ -89,5 +82,12 @@
     "typedoc": "^0.17.8",
     "typedoc-plugin-markdown": "^2.4.2",
     "typescript": "^4.0.5"
-  }
+  },
+  "engines": {
+    "node": ">=12.16.1"
+  },
+  "os": [
+    "win32"
+  ],
+  "gypfile": false
 }
