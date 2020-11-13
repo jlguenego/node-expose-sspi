@@ -1,0 +1,16 @@
+{
+  "extends": "./node_modules/gts/",
+  "rules": {
+    "node/no-extraneous-require": "off"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.ts", "**/*.tsx"],
+      "rules": {
+        "@typescript-eslint/interface-name-prefix": "off",
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": "off"
+      }
+    }
+  ]
+}

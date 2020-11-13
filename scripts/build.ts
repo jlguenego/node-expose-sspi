@@ -40,7 +40,10 @@ async function main(): Promise<void> {
         stdio: 'inherit',
         cwd: projectDir,
       });
-      const dest = path.resolve(projectDir, `./lib/arch/${arch}/node-expose-sspi.node`);
+      const dest = path.resolve(
+        projectDir,
+        `./lib/arch/${arch}/node-expose-sspi.node`
+      );
       console.log(`about to copy to ${dest}`);
       await fs.rename(
         path.resolve(projectDir, './build/Release/node_expose_sspi.node'),

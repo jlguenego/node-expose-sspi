@@ -11,6 +11,7 @@
     "noEmitOnError": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
+    "noUnusedLocals": true,
     "sourceMap": true,
     "strict": true,
     "noImplicitReturns": true,
