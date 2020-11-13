@@ -19,6 +19,18 @@ declare module 'http' {
   }
 }
 
+declare module 'express-session' {
+  interface SessionData {
+    /**
+     * Contains the SSOObject.
+     *
+     * @type {SSOObject}
+     * @memberof Request
+     */
+    sso: SSOObject;
+  }
+}
+
 export type Middleware = (
   req: IncomingMessage,
   res: ServerResponse,
