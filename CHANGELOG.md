@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.48](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.47...v0.1.48) (2020-11-13)
+
+
+### Bug Fixes
+
+* downgrad node-addon-api to 2.0.0 ([b1ec237](https://github.com/jlguenego/node-expose-sspi/commit/b1ec237d8522b4650d40c41e95371ec27a0edf59))
+* npm upgrade ([f3613d8](https://github.com/jlguenego/node-expose-sspi/commit/f3613d88c850ed0899d86355333f7fe93e39453a))
+
 ### [0.1.47](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.46...v0.1.47) (2020-10-27)
 
 ### [0.1.46](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.45...v0.1.46) (2020-10-23)
