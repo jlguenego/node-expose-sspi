@@ -4,6 +4,7 @@ import {
   sysinfo,
   CredentialUseFlag,
   AcquireCredHandleInput,
+  InitializeSecurityContextInput,
 } from 'node-expose-sspi';
 import os from 'os';
 
@@ -49,14 +50,14 @@ const input = {
   credential: clientCred.credential,
   targetName: 'kiki',
   cbMaxToken: packageInfo.cbMaxToken,
-};
+} as InitializeSecurityContextInput;
 console.log('input: ', input);
 const clientSecurityContext = sspi.InitializeSecurityContext(input);
 console.log('clientSecurityContext: ', clientSecurityContext);
 console.log(sso.hexDump(clientSecurityContext.SecBufferDesc.buffers[0]));
 const serverSecurityContext = sspi.AcceptSecurityContext({
   credential: serverCred.credential,
-  clientSecurityContext,
+  SecBufferDesc: clientSecurityContext.SecBufferDesc,
   contextReq: ['ASC_REQ_CONNECTION'],
   targetDataRep: 'SECURITY_NATIVE_DREP',
 });
@@ -66,9 +67,9 @@ const input2 = {
   credential: clientCred.credential,
   targetName: 'kiki',
   cbMaxToken: packageInfo.cbMaxToken,
-  serverSecurityContext,
+  SecBufferDesc: serverSecurityContext.SecBufferDesc,
   contextHandle: clientSecurityContext.contextHandle,
-};
+} as InitializeSecurityContextInput;
 console.log('input2: ', input2);
 const clientSecurityContext2 = sspi.InitializeSecurityContext(input2);
 console.log('clientSecurityContext2: ', clientSecurityContext2);
@@ -76,7 +77,7 @@ console.log(sso.hexDump(clientSecurityContext2.SecBufferDesc.buffers[0]));
 
 const serverSecurityContext2 = sspi.AcceptSecurityContext({
   credential: serverCred.credential,
-  clientSecurityContext: clientSecurityContext2,
+  SecBufferDesc: clientSecurityContext2.SecBufferDesc,
   contextHandle: serverSecurityContext.contextHandle,
 });
 console.log('serverSecurityContext2: ', serverSecurityContext2);
