@@ -14,7 +14,7 @@
 
 ▸ **sleep**(`time`: number): *Promise‹void›*
 
-*Defined in [src/sso/sleep.ts:12](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/sleep.ts#L12)*
+*Defined in [src/sso/sleep.ts:12](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/sleep.ts#L12)*
 
 Sleep for time (in millisecond) and wake up.
 

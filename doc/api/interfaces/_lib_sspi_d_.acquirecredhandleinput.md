@@ -26,7 +26,7 @@ Input of function AcquireCredentialsHandle
 
 • **authData**? : *[UserCredential](_lib_sspi_d_.usercredential.md)*
 
-*Defined in [lib/sspi.d.ts:171](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/lib/sspi.d.ts#L171)*
+*Defined in [lib/sspi.d.ts:171](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/lib/sspi.d.ts#L171)*
 
 ___
 
@@ -34,7 +34,7 @@ ___
 
 • **credentialUse**? : *[CredentialUseFlag](../modules/_lib_flags_index_d_.md#credentialuseflag)*
 
-*Defined in [lib/sspi.d.ts:172](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/lib/sspi.d.ts#L172)*
+*Defined in [lib/sspi.d.ts:172](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/lib/sspi.d.ts#L172)*
 
 ___
 
@@ -42,4 +42,4 @@ ___
 
 • **packageName**: *[SecuritySupportProvider](../modules/_lib_sspi_d_.md#securitysupportprovider)*
 
-*Defined in [lib/sspi.d.ts:170](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/lib/sspi.d.ts#L170)*
+*Defined in [lib/sspi.d.ts:170](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/lib/sspi.d.ts#L170)*

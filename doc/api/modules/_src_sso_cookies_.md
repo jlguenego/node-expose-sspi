@@ -12,14 +12,14 @@
 
 ###  parseCookies
 
-▸ **parseCookies**(`request`: IncomingMessage): *[CookieList](../interfaces/_src_sso_interfaces_.cookielist.md)*
+▸ **parseCookies**(`request`: [IncomingMessage](../interfaces/_src_sso_interfaces_._http_.incomingmessage.md)): *[CookieList](../interfaces/_src_sso_interfaces_.cookielist.md)*
 
-*Defined in [src/sso/cookies.ts:5](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/cookies.ts#L5)*
+*Defined in [src/sso/cookies.ts:5](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/cookies.ts#L5)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`request` | IncomingMessage |
+`request` | [IncomingMessage](../interfaces/_src_sso_interfaces_._http_.incomingmessage.md) |
 
 **Returns:** *[CookieList](../interfaces/_src_sso_interfaces_.cookielist.md)*

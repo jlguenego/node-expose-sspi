@@ -14,6 +14,6 @@
 
 ▸ **getStatusInfo**(): *any*
 
-*Defined in [src/sso/status.ts:3](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/status.ts#L3)*
+*Defined in [src/sso/status.ts:3](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/status.ts#L3)*
 
 **Returns:** *any*

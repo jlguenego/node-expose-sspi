@@ -19,7 +19,7 @@
 
 • **spn**: *string[]*
 
-*Defined in [src/sso/spn.ts:6](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/spn.ts#L6)*
+*Defined in [src/sso/spn.ts:6](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/spn.ts#L6)*
 
 ___
 
@@ -27,4 +27,4 @@ ___
 
 • **username**: *string*
 
-*Defined in [src/sso/spn.ts:5](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/spn.ts#L5)*
+*Defined in [src/sso/spn.ts:5](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/spn.ts#L5)*

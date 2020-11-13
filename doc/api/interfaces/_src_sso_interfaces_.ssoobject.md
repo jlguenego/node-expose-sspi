@@ -10,17 +10,26 @@
 
 ### Properties
 
-* [method](_src_sso_interfaces_.ssoobject.md#method)
+* [cached](_src_sso_interfaces_.ssoobject.md#optional-cached)
+* [method](_src_sso_interfaces_.ssoobject.md#optional-method)
 * [owner](_src_sso_interfaces_.ssoobject.md#optional-owner)
 * [user](_src_sso_interfaces_.ssoobject.md#optional-user)
 
 ## Properties
 
-###  method
+### `Optional` cached
 
-• **method**: *[SSOMethod](../modules/_src_sso_interfaces_.md#ssomethod)*
+• **cached**? : *undefined | false | true*
 
-*Defined in [src/sso/interfaces.ts:6](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/interfaces.ts#L6)*
+*Defined in [src/sso/interfaces.ts:7](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/interfaces.ts#L7)*
+
+___
+
+### `Optional` method
+
+• **method**? : *[SSOMethod](../modules/_src_sso_interfaces_.md#ssomethod)*
+
+*Defined in [src/sso/interfaces.ts:6](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/interfaces.ts#L6)*
 
 ___
 
@@ -28,7 +37,7 @@ ___
 
 • **owner**? : *[User](_src_sso_interfaces_.user.md)*
 
-*Defined in [src/sso/interfaces.ts:5](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/interfaces.ts#L5)*
+*Defined in [src/sso/interfaces.ts:5](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/interfaces.ts#L5)*
 
 ___
 
@@ -36,4 +45,4 @@ ___
 
 • **user**? : *[User](_src_sso_interfaces_.user.md)*
 
-*Defined in [src/sso/interfaces.ts:4](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/interfaces.ts#L4)*
+*Defined in [src/sso/interfaces.ts:4](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/interfaces.ts#L4)*

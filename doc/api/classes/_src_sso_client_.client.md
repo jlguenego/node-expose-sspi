@@ -26,7 +26,7 @@ Cookies are managed if necessary during the process.
 
 ▸ **fetch**(`resource`: string, `init?`: RequestInit): *Promise‹Response›*
 
-*Defined in [src/sso/client.ts:154](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/client.ts#L154)*
+*Defined in [src/sso/client.ts:154](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/client.ts#L154)*
 
 Works as the fetch function of node-fetch node module.
 This function can handle the negotiate protocol with SPNEGO tokens.
@@ -50,7 +50,7 @@ ___
 
 ▸ **setCredentials**(`domain`: string, `user`: string, `password`: string): *void*
 
-*Defined in [src/sso/client.ts:117](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/client.ts#L117)*
+*Defined in [src/sso/client.ts:117](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/client.ts#L117)*
 
 Set the credentials for running the client as another user.
 
@@ -74,7 +74,7 @@ ___
 
 ▸ **setSSP**(`ssp`: [SecuritySupportProvider](../modules/_lib_sspi_d_.md#securitysupportprovider)): *void*
 
-*Defined in [src/sso/client.ts:141](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/client.ts#L141)*
+*Defined in [src/sso/client.ts:141](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/client.ts#L141)*
 
 Set the Security Support Provider (NTLM, Kerberos, Negotiate)
 
@@ -94,7 +94,7 @@ ___
 
 ▸ **setTargetName**(`targetName`: string): *void*
 
-*Defined in [src/sso/client.ts:131](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/client.ts#L131)*
+*Defined in [src/sso/client.ts:131](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/client.ts#L131)*
 
 Force the targetName to a value.
 

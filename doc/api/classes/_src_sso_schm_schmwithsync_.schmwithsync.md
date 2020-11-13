@@ -36,7 +36,7 @@
 
 \+ **new SCHMWithSync**(`delayMax`: number): *[SCHMWithSync](_src_sso_schm_schmwithsync_.schmwithsync.md)*
 
-*Defined in [src/sso/schm/SCHMWithSync.ts:39](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/schm/SCHMWithSync.ts#L39)*
+*Defined in [src/sso/schm/SCHMWithSync.ts:39](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/schm/SCHMWithSync.ts#L39)*
 
 **Parameters:**
 
@@ -50,11 +50,11 @@ Name | Type | Default |
 
 ###  req
 
-• **req**: *IncomingMessage*
+• **req**: *[IncomingMessage](../interfaces/_src_sso_interfaces_._http_.incomingmessage.md)*
 
 *Inherited from [ServerContextHandleManager](_src_sso_schm_servercontexthandlemanager_.servercontexthandlemanager.md).[req](_src_sso_schm_servercontexthandlemanager_.servercontexthandlemanager.md#req)*
 
-*Defined in [src/sso/schm/ServerContextHandleManager.ts:6](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/schm/ServerContextHandleManager.ts#L6)*
+*Defined in [src/sso/schm/ServerContextHandleManager.ts:6](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/schm/ServerContextHandleManager.ts#L6)*
 
 ___
 
@@ -64,23 +64,23 @@ ___
 
 *Inherited from [ServerContextHandleManager](_src_sso_schm_servercontexthandlemanager_.servercontexthandlemanager.md).[res](_src_sso_schm_servercontexthandlemanager_.servercontexthandlemanager.md#res)*
 
-*Defined in [src/sso/schm/ServerContextHandleManager.ts:7](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/schm/ServerContextHandleManager.ts#L7)*
+*Defined in [src/sso/schm/ServerContextHandleManager.ts:7](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/schm/ServerContextHandleManager.ts#L7)*
 
 ## Methods
 
 ###  getCookieToken
 
-▸ **getCookieToken**(`req`: IncomingMessage, `res`: ServerResponse): *[CookieToken](../modules/_src_sso_interfaces_.md#cookietoken)*
+▸ **getCookieToken**(`req`: [IncomingMessage](../interfaces/_src_sso_interfaces_._http_.incomingmessage.md), `res`: ServerResponse): *[CookieToken](../modules/_src_sso_interfaces_.md#cookietoken)*
 
 *Inherited from [ServerContextHandleManager](_src_sso_schm_servercontexthandlemanager_.servercontexthandlemanager.md).[getCookieToken](_src_sso_schm_servercontexthandlemanager_.servercontexthandlemanager.md#getcookietoken)*
 
-*Defined in [src/sso/schm/ServerContextHandleManager.ts:9](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/schm/ServerContextHandleManager.ts#L9)*
+*Defined in [src/sso/schm/ServerContextHandleManager.ts:9](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/schm/ServerContextHandleManager.ts#L9)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`req` | IncomingMessage |
+`req` | [IncomingMessage](../interfaces/_src_sso_interfaces_._http_.incomingmessage.md) |
 `res` | ServerResponse |
 
 **Returns:** *[CookieToken](../modules/_src_sso_interfaces_.md#cookietoken)*
@@ -93,7 +93,7 @@ ___
 
 *Overrides [ServerContextHandleManager](_src_sso_schm_servercontexthandlemanager_.servercontexthandlemanager.md).[getHandle](_src_sso_schm_servercontexthandlemanager_.servercontexthandlemanager.md#abstract-gethandle)*
 
-*Defined in [src/sso/schm/SCHMWithSync.ts:74](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/schm/SCHMWithSync.ts#L74)*
+*Defined in [src/sso/schm/SCHMWithSync.ts:74](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/schm/SCHMWithSync.ts#L74)*
 
 **Returns:** *[CtxtHandle](../interfaces/_lib_sspi_d_.ctxthandle.md) | undefined*
 
@@ -105,7 +105,7 @@ ___
 
 *Overrides [ServerContextHandleManager](_src_sso_schm_servercontexthandlemanager_.servercontexthandlemanager.md).[getMethod](_src_sso_schm_servercontexthandlemanager_.servercontexthandlemanager.md#abstract-getmethod)*
 
-*Defined in [src/sso/schm/SCHMWithSync.ts:66](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/schm/SCHMWithSync.ts#L66)*
+*Defined in [src/sso/schm/SCHMWithSync.ts:66](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/schm/SCHMWithSync.ts#L66)*
 
 **Returns:** *[SSOMethod](../modules/_src_sso_interfaces_.md#ssomethod)*
 
@@ -115,7 +115,7 @@ ___
 
 ▸ **interrupt**(): *void*
 
-*Defined in [src/sso/schm/SCHMWithSync.ts:108](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/schm/SCHMWithSync.ts#L108)*
+*Defined in [src/sso/schm/SCHMWithSync.ts:108](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/schm/SCHMWithSync.ts#L108)*
 
 after timeout, all the queue is removed and rejected.
 does not go to its final state before timeout.
@@ -132,7 +132,7 @@ ___
 
 *Overrides [ServerContextHandleManager](_src_sso_schm_servercontexthandlemanager_.servercontexthandlemanager.md).[release](_src_sso_schm_servercontexthandlemanager_.servercontexthandlemanager.md#abstract-release)*
 
-*Defined in [src/sso/schm/SCHMWithSync.ts:82](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/schm/SCHMWithSync.ts#L82)*
+*Defined in [src/sso/schm/SCHMWithSync.ts:82](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/schm/SCHMWithSync.ts#L82)*
 
 **Returns:** *void*
 
@@ -144,7 +144,7 @@ ___
 
 *Overrides [ServerContextHandleManager](_src_sso_schm_servercontexthandlemanager_.servercontexthandlemanager.md).[setHandle](_src_sso_schm_servercontexthandlemanager_.servercontexthandlemanager.md#abstract-sethandle)*
 
-*Defined in [src/sso/schm/SCHMWithSync.ts:78](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/schm/SCHMWithSync.ts#L78)*
+*Defined in [src/sso/schm/SCHMWithSync.ts:78](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/schm/SCHMWithSync.ts#L78)*
 
 **Parameters:**
 
@@ -162,7 +162,7 @@ ___
 
 *Overrides [ServerContextHandleManager](_src_sso_schm_servercontexthandlemanager_.servercontexthandlemanager.md).[setMethod](_src_sso_schm_servercontexthandlemanager_.servercontexthandlemanager.md#abstract-setmethod)*
 
-*Defined in [src/sso/schm/SCHMWithSync.ts:70](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/schm/SCHMWithSync.ts#L70)*
+*Defined in [src/sso/schm/SCHMWithSync.ts:70](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/schm/SCHMWithSync.ts#L70)*
 
 **Parameters:**
 
@@ -180,6 +180,6 @@ ___
 
 *Overrides [ServerContextHandleManager](_src_sso_schm_servercontexthandlemanager_.servercontexthandlemanager.md).[waitForReleased](_src_sso_schm_servercontexthandlemanager_.servercontexthandlemanager.md#abstract-waitforreleased)*
 
-*Defined in [src/sso/schm/SCHMWithSync.ts:45](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/schm/SCHMWithSync.ts#L45)*
+*Defined in [src/sso/schm/SCHMWithSync.ts:45](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/schm/SCHMWithSync.ts#L45)*
 
 **Returns:** *Promise‹void›*

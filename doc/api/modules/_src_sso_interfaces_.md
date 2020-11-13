@@ -4,6 +4,11 @@
 
 ## Index
 
+### Modules
+
+* ["express-session"](_src_sso_interfaces_._express_session_.md)
+* ["http"](_src_sso_interfaces_._http_.md)
+
 ### Interfaces
 
 * [ADUser](../interfaces/_src_sso_interfaces_.aduser.md)
@@ -28,7 +33,7 @@
 
 Ƭ **ADUsers**: *[ADUser](../interfaces/_src_sso_interfaces_.aduser.md)[]*
 
-*Defined in [src/sso/interfaces.ts:142](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/interfaces.ts#L142)*
+*Defined in [src/sso/interfaces.ts:168](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/interfaces.ts#L168)*
 
 ___
 
@@ -36,7 +41,7 @@ ___
 
 Ƭ **CookieToken**: *string*
 
-*Defined in [src/sso/interfaces.ts:27](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/interfaces.ts#L27)*
+*Defined in [src/sso/interfaces.ts:40](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/interfaces.ts#L40)*
 
 ___
 
@@ -44,7 +49,7 @@ ___
 
 Ƭ **MessageType**: *"Unknown" | "NTLM_NEGOTIATE_01" | "NTLM_CHALLENGE_02" | "NTLM_AUTHENTICATE_03" | "Kerberos_1" | "Kerberos_N"*
 
-*Defined in [src/sso/interfaces.ts:29](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/interfaces.ts#L29)*
+*Defined in [src/sso/interfaces.ts:42](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/interfaces.ts#L42)*
 
 ___
 
@@ -52,17 +57,17 @@ ___
 
 Ƭ **Middleware**: *function*
 
-*Defined in [src/sso/interfaces.ts:21](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/interfaces.ts#L21)*
+*Defined in [src/sso/interfaces.ts:34](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/interfaces.ts#L34)*
 
 #### Type declaration:
 
-▸ (`req`: IncomingMessage, `res`: ServerResponse, `next`: [NextFunction](_src_sso_interfaces_.md#nextfunction)): *void*
+▸ (`req`: [IncomingMessage](../interfaces/_src_sso_interfaces_._http_.incomingmessage.md), `res`: ServerResponse, `next`: [NextFunction](_src_sso_interfaces_.md#nextfunction)): *void*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`req` | IncomingMessage |
+`req` | [IncomingMessage](../interfaces/_src_sso_interfaces_._http_.incomingmessage.md) |
 `res` | ServerResponse |
 `next` | [NextFunction](_src_sso_interfaces_.md#nextfunction) |
 
@@ -72,7 +77,7 @@ ___
 
 Ƭ **NextFunction**: *function*
 
-*Defined in [src/sso/interfaces.ts:37](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/interfaces.ts#L37)*
+*Defined in [src/sso/interfaces.ts:50](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/interfaces.ts#L50)*
 
 #### Type declaration:
 
@@ -90,4 +95,4 @@ ___
 
 Ƭ **SSOMethod**: *"NTLM" | "Kerberos" | undefined*
 
-*Defined in [src/sso/interfaces.ts:148](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/interfaces.ts#L148)*
+*Defined in [src/sso/interfaces.ts:174](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/interfaces.ts#L174)*

@@ -29,11 +29,11 @@
 
 ###  req
 
-• **req**: *IncomingMessage*
+• **req**: *[IncomingMessage](../interfaces/_src_sso_interfaces_._http_.incomingmessage.md)*
 
 *Inherited from [ServerContextHandleManager](_src_sso_schm_servercontexthandlemanager_.servercontexthandlemanager.md).[req](_src_sso_schm_servercontexthandlemanager_.servercontexthandlemanager.md#req)*
 
-*Defined in [src/sso/schm/ServerContextHandleManager.ts:6](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/schm/ServerContextHandleManager.ts#L6)*
+*Defined in [src/sso/schm/ServerContextHandleManager.ts:6](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/schm/ServerContextHandleManager.ts#L6)*
 
 ___
 
@@ -43,23 +43,23 @@ ___
 
 *Inherited from [ServerContextHandleManager](_src_sso_schm_servercontexthandlemanager_.servercontexthandlemanager.md).[res](_src_sso_schm_servercontexthandlemanager_.servercontexthandlemanager.md#res)*
 
-*Defined in [src/sso/schm/ServerContextHandleManager.ts:7](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/schm/ServerContextHandleManager.ts#L7)*
+*Defined in [src/sso/schm/ServerContextHandleManager.ts:7](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/schm/ServerContextHandleManager.ts#L7)*
 
 ## Methods
 
 ###  getCookieToken
 
-▸ **getCookieToken**(`req`: IncomingMessage, `res`: ServerResponse): *[CookieToken](../modules/_src_sso_interfaces_.md#cookietoken)*
+▸ **getCookieToken**(`req`: [IncomingMessage](../interfaces/_src_sso_interfaces_._http_.incomingmessage.md), `res`: ServerResponse): *[CookieToken](../modules/_src_sso_interfaces_.md#cookietoken)*
 
 *Overrides [ServerContextHandleManager](_src_sso_schm_servercontexthandlemanager_.servercontexthandlemanager.md).[getCookieToken](_src_sso_schm_servercontexthandlemanager_.servercontexthandlemanager.md#getcookietoken)*
 
-*Defined in [src/sso/schm/SCHMWithCookies.ts:22](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/schm/SCHMWithCookies.ts#L22)*
+*Defined in [src/sso/schm/SCHMWithCookies.ts:22](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/schm/SCHMWithCookies.ts#L22)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`req` | IncomingMessage |
+`req` | [IncomingMessage](../interfaces/_src_sso_interfaces_._http_.incomingmessage.md) |
 `res` | ServerResponse |
 
 **Returns:** *[CookieToken](../modules/_src_sso_interfaces_.md#cookietoken)*
@@ -72,7 +72,7 @@ ___
 
 *Overrides [ServerContextHandleManager](_src_sso_schm_servercontexthandlemanager_.servercontexthandlemanager.md).[getHandle](_src_sso_schm_servercontexthandlemanager_.servercontexthandlemanager.md#abstract-gethandle)*
 
-*Defined in [src/sso/schm/SCHMWithCookies.ts:60](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/schm/SCHMWithCookies.ts#L60)*
+*Defined in [src/sso/schm/SCHMWithCookies.ts:60](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/schm/SCHMWithCookies.ts#L60)*
 
 **Parameters:**
 
@@ -90,7 +90,7 @@ ___
 
 *Overrides [ServerContextHandleManager](_src_sso_schm_servercontexthandlemanager_.servercontexthandlemanager.md).[getMethod](_src_sso_schm_servercontexthandlemanager_.servercontexthandlemanager.md#abstract-getmethod)*
 
-*Defined in [src/sso/schm/SCHMWithCookies.ts:47](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/schm/SCHMWithCookies.ts#L47)*
+*Defined in [src/sso/schm/SCHMWithCookies.ts:47](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/schm/SCHMWithCookies.ts#L47)*
 
 **Parameters:**
 
@@ -108,7 +108,7 @@ ___
 
 *Overrides [ServerContextHandleManager](_src_sso_schm_servercontexthandlemanager_.servercontexthandlemanager.md).[release](_src_sso_schm_servercontexthandlemanager_.servercontexthandlemanager.md#abstract-release)*
 
-*Defined in [src/sso/schm/SCHMWithCookies.ts:81](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/schm/SCHMWithCookies.ts#L81)*
+*Defined in [src/sso/schm/SCHMWithCookies.ts:81](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/schm/SCHMWithCookies.ts#L81)*
 
 At the end of the negotiation this method MUST be called to release the context handle.
 
@@ -132,7 +132,7 @@ ___
 
 *Overrides [ServerContextHandleManager](_src_sso_schm_servercontexthandlemanager_.servercontexthandlemanager.md).[setHandle](_src_sso_schm_servercontexthandlemanager_.servercontexthandlemanager.md#abstract-sethandle)*
 
-*Defined in [src/sso/schm/SCHMWithCookies.ts:66](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/schm/SCHMWithCookies.ts#L66)*
+*Defined in [src/sso/schm/SCHMWithCookies.ts:66](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/schm/SCHMWithCookies.ts#L66)*
 
 **Parameters:**
 
@@ -151,7 +151,7 @@ ___
 
 *Overrides [ServerContextHandleManager](_src_sso_schm_servercontexthandlemanager_.servercontexthandlemanager.md).[setMethod](_src_sso_schm_servercontexthandlemanager_.servercontexthandlemanager.md#abstract-setmethod)*
 
-*Defined in [src/sso/schm/SCHMWithCookies.ts:52](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/schm/SCHMWithCookies.ts#L52)*
+*Defined in [src/sso/schm/SCHMWithCookies.ts:52](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/schm/SCHMWithCookies.ts#L52)*
 
 **Parameters:**
 
@@ -170,7 +170,7 @@ ___
 
 *Overrides [ServerContextHandleManager](_src_sso_schm_servercontexthandlemanager_.servercontexthandlemanager.md).[waitForReleased](_src_sso_schm_servercontexthandlemanager_.servercontexthandlemanager.md#abstract-waitforreleased)*
 
-*Defined in [src/sso/schm/SCHMWithCookies.ts:42](https://github.com/jlguenego/node-expose-sspi/blob/9a7ed80/src/sso/schm/SCHMWithCookies.ts#L42)*
+*Defined in [src/sso/schm/SCHMWithCookies.ts:42](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/schm/SCHMWithCookies.ts#L42)*
 
 **Parameters:**
 
