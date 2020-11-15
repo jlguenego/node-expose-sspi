@@ -54,12 +54,12 @@ export class DigestHandler extends AbstractHandler {
     }
 
     debug('digestHeader: ', digestHeader);
-    const digest = (digestHeader.split(',').reduce((acc, prop) => {
+    const digestChallenge = (digestHeader.split(/, */).reduce((acc, prop) => {
       const [key, value] = prop.split('=');
       acc[key] = value.replace(/^"?(.*?)"?$/, '$1');
       return acc;
     }, {} as Props) as unknown) as DigestChallenge;
-    debug('digest: ', digest);
+    debug('digestChallenge: ', digestChallenge);
 
     let requestInit: RequestInit = { ...init };
 
@@ -70,34 +70,36 @@ export class DigestHandler extends AbstractHandler {
     );
 
     // HA1 = MD5(username:realm:password)
-    const ha1 = getHA1(clientInfo, digest, cnonce);
+    const ha1 = getHA1(clientInfo, digestChallenge, cnonce);
 
     // HA2 = MD5(method:digestURI)
     const method = requestInit.method ?? 'GET';
     const entityBody = (requestInit.body as string) ?? '';
     const digestURI = url.parse(resource).path as string;
-    const ha2 = getHA2(digest.qop, method, digestURI, entityBody);
+    const ha2 = getHA2(digestChallenge.qop, method, digestURI, entityBody);
 
     // response = MD5(HA1:nonce:nonceCount:cnonce:qop:HA2)
     const nonceCount = '00000001';
     const qop = 'auth';
     const digestResponse = md5(
-      `${ha1}:${digest.nonce}:${nonceCount}:${cnonce}:${qop}:${ha2}`
+      `${ha1}:${digestChallenge.nonce}:${nonceCount}:${cnonce}:${qop}:${ha2}`
     );
+
+    debug('digestChallenge.nonce: ', digestChallenge.nonce);
 
     const digestAnswer: DigestAnswer = {
       username: `"${clientInfo.user}"`,
-      realm: `"${digest.realm}"`,
-      nonce: `"${digest.nonce}"`,
+      realm: `"${digestChallenge.realm}"`,
+      nonce: `"${digestChallenge.nonce}"`,
       uri: `"${digestURI}"`,
-      algorithm: digest.algorithm,
+      algorithm: digestChallenge.algorithm,
       response: `"${digestResponse}"`,
       qop: qop,
       nc: nonceCount,
       cnonce: `"${cnonce}"`,
     };
-    if (digest.opaque) {
-      digestAnswer.opaque = digest.opaque;
+    if (digestChallenge.opaque) {
+      digestAnswer.opaque = digestChallenge.opaque;
     }
     debug('digestAnswer: ', digestAnswer);
     requestInit.headers = {

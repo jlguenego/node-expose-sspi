@@ -61,7 +61,7 @@ class Server {
   }
 }
 
-describe('Client Authentication Method Unit Test', function () {
+describe('Client Authentication Basic Test', function () {
   it('should test client with Basic Authentication', async function () {
     this.timeout(15000);
     const server = new Server();
