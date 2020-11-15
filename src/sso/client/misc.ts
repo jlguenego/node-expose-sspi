@@ -1,5 +1,6 @@
 import dns from 'dns';
 import dbg from 'debug';
+import crypto from 'crypto';
 
 import { sysinfo } from '../../../lib/api';
 
@@ -55,4 +56,8 @@ export async function getSPNFromURI(url: string): Promise<string> {
 export function encodeBase64(str: string) {
   let buff = Buffer.from(str);
   return buff.toString('base64');
+}
+
+export function md5(str: string) {
+  return crypto.createHash('md5').update(str).digest('hex');
 }

@@ -1,4 +1,4 @@
-const { sso } = require('node-expose-sspi');
+const { sso } = require('../..');
 const yargs = require('yargs');
 const dbg = require('debug');
 const debug = dbg('node-expose-sspi:client-runas');

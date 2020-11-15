@@ -94,23 +94,18 @@ export class Client {
     // has cookies ?
     this.clientCookie.saveCookies(response);
 
-    const authHeader = response.headers.get('www-authenticate');
-
-    if (authHeader === null) {
-      debug('no header www-authenticate');
-      return response;
-    }
-    const authMethod = authHeader.split(' ')[0];
-    const supportedAuthMethod = ['Negotiate', 'Basic'];
-    if (!supportedAuthMethod.includes(authMethod)) {
-      debug('www-authenticate method not supported: ', authHeader);
-      return response;
-    }
     if (response.status !== 401) {
       debug('no status 401');
       return response;
     }
 
+    const authHeader = response.headers.get('www-authenticate');
+    if (authHeader === null) {
+      debug('no header www-authenticate');
+      return response;
+    }
+
+    const authMethod = authHeader.split(' ')[0];
     const handler = HandlerFactory.instantiate(authMethod);
     return await handler.handle(
       this.clientInfo,

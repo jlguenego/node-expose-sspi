@@ -1,5 +1,6 @@
 import { AbstractHandler } from './AbstractHandler';
 import { BasicHandler } from './BasicHandler';
+import { DigestHandler } from './DigestHandler';
 import { NegotiateHandler } from './NegotiateHandler';
 
 export class HandlerFactory {
@@ -9,6 +10,9 @@ export class HandlerFactory {
     }
     if (method === 'Basic') {
       return new BasicHandler();
+    }
+    if (method === 'Digest') {
+      return new DigestHandler();
     }
     throw new Error('Cannot handle this authentication method');
   }
