@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.50](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.49...v0.1.50) (2020-11-15)
+
+
+### Bug Fixes
+
+* added Basic method to client ([b855ea6](https://github.com/jlguenego/node-expose-sspi/commit/b855ea69018273e00e9a65c62fc16017931906a6))
+* added support for mocha eslint ([b751429](https://github.com/jlguenego/node-expose-sspi/commit/b751429337e0a5efd3082e75936bda8b7aed9758))
+
 ### [0.1.49](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.48...v0.1.49) (2020-11-13)
 
 ### [0.1.48](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.47...v0.1.48) (2020-11-13)
