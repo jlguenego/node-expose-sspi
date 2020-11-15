@@ -7,21 +7,39 @@ import { sso } from '../src';
 
 const debug = dbg('node-expose-sspi:test');
 
+declare global {
+  namespace Express {
+    export interface Request {
+      auth: {
+        user: string;
+        password: string;
+      };
+    }
+  }
+}
+
+const users = { jlouis: 'toto' };
+
 class Server {
   app: express.Express;
   server!: http.Server;
   constructor(private port = 3000, method = 'Basic') {
     this.app = express();
+    this.app.use((req, res, next) => {
+      debug('req.url', req.url);
+      debug('req.headers', req.headers);
+      next();
+    });
     this.app.use(
       basicAuth({
-        users: { jlg: 'mypasswd' },
+        users,
         challenge: true,
-        realm: 'my nice realm',
+        // realm: 'my nice realm',
       })
     );
     this.app.use((req, res) => {
       res.json({
-        hello: 'world',
+        auth: req.auth,
       });
     });
   }
@@ -51,7 +69,7 @@ describe('Client Authentication Method Unit Test', function () {
 
     debug('start client');
     const client = new sso.Client();
-    client.setCredentials('', 'jlg', 'mypasswd');
+    client.setCredentials('', 'jlouis', users.jlouis);
     const response = await client.fetch('http://localhost:3000');
     await server.stop();
     assert.strictEqual(response.status, 200);

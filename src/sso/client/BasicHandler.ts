@@ -1,10 +1,12 @@
-import { RequestInit, Response } from 'node-fetch';
+import dbg from 'debug';
+import fetch, { RequestInit, Response } from 'node-fetch';
+
 import { AbstractHandler } from './AbstractHandler';
 import { ClientCookie } from './ClientCookie';
 import { ClientInfo } from './ClientInfo';
+import { encodeBase64 } from './misc';
 
-import dbg from 'debug';
-const debug = dbg('node-expose-sspi:test');
+const debug = dbg('node-expose-sspi:client');
 
 export class BasicHandler extends AbstractHandler {
   async handle(
@@ -15,7 +17,17 @@ export class BasicHandler extends AbstractHandler {
     init: RequestInit = {}
   ): Promise<Response> {
     debug('basic handler');
-
+    let requestInit: RequestInit = { ...init };
+    const str = clientInfo.user + ':' + clientInfo.password;
+    requestInit.headers = {
+      ...init.headers,
+      Authorization: 'Basic ' + encodeBase64(str),
+    };
+    clientCookie.restituteCookies(requestInit);
+    debug('first requestInit.headers', requestInit.headers);
+    response = await fetch(resource, requestInit);
+    debug('first response.headers', response.headers);
+    clientCookie.saveCookies(response);
     return response;
   }
 }

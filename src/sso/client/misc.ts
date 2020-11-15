@@ -51,3 +51,8 @@ export async function getSPNFromURI(url: string): Promise<string> {
   debug('result: ', result);
   return result;
 }
+
+export function encodeBase64(str: string) {
+  let buff = Buffer.from(str);
+  return buff.toString('base64');
+}
