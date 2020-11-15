@@ -124,6 +124,12 @@ The client can be configured with the following methods:
   default like Chrome, Edge, etc. but sometimes, you need to indicate it
   yourself because the default calculation may not be what is expected.
 
+The client automatically supports the following authentication methods:
+
+- Basic
+- Digest
+- Negotiate/Kerberos/NTLM
+
 #### Example
 
 See:

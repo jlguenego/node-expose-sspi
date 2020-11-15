@@ -5,8 +5,8 @@ import { sso } from '../src';
 
 const debug = dbg('node-expose-sspi:test');
 
-describe('COOKIE Unit Test', function() {
-  it('should test client with cookie', async function() {
+describe('COOKIE Unit Test', function () {
+  it('should test client with cookie', async function () {
     this.timeout(15000);
     const app = express();
     app.use(sso.auth({ useActiveDirectory: true, useCookies: true }));
