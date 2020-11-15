@@ -129,7 +129,6 @@ function getHA1(
     throw new Error('needs a password');
   }
   const a1 = `${clientInfo.user}:${digest.realm}:${clientInfo.password}`;
-  console.log('a1: ', a1);
   const ha1 = md5(a1);
   if (digest.algorithm === 'MD5-sess') {
     // MD5(MD5(username:realm:password):nonce:cnonce)
