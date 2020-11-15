@@ -3,6 +3,7 @@
   "rules": {
     "node/no-extraneous-require": "off"
   },
+  "plugins": ["mocha"],
   "overrides": [
     {
       "files": ["**/*.ts", "**/*.tsx"],
