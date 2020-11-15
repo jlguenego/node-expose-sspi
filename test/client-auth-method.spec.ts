@@ -15,6 +15,8 @@ class Server {
     this.app.use(
       basicAuth({
         users: { jlg: 'mypasswd' },
+        challenge: true,
+        realm: 'my nice realm',
       })
     );
     this.app.use((req, res) => {
