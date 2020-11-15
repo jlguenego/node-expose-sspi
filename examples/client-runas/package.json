@@ -10,7 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "node-expose-sspi": "^0.1.17",
     "yargs": "^15.3.1"
   }
 }
