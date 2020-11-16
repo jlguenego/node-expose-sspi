@@ -1,5 +1,14 @@
 import { IncomingMessage, ServerResponse } from 'http';
 
+export interface Props {
+  [key: string]: string;
+}
+
+export interface Flag {
+  label: string;
+  value: number;
+}
+
 export interface SSOObject {
   user?: User;
   owner?: User;

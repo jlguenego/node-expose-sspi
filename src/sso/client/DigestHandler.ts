@@ -1,15 +1,12 @@
 import dbg from 'debug';
 import fetch, { RequestInit, Response } from 'node-fetch';
 import url from 'url';
+import { Props } from '../interfaces';
 
 import { AbstractHandler } from './AbstractHandler';
 import { ClientCookie } from './ClientCookie';
 import { ClientInfo } from './ClientInfo';
 import { md5 } from './misc';
-
-interface Props {
-  [key: string]: string;
-}
 
 interface DigestChallenge {
   realm: string;
