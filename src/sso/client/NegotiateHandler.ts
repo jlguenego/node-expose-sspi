@@ -51,7 +51,7 @@ export class NegotiateHandler extends AbstractHandler {
     let requestInit: RequestInit = { ...init };
     requestInit.headers = {
       ...init.headers,
-      Authorization: 'Negotiate ' + base64,
+      Authorization: clientInfo.ssp + ' ' + base64,
     };
     // cookies case
     clientCookie.restituteCookies(requestInit);
