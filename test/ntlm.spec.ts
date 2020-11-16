@@ -8,6 +8,16 @@ describe('NTLM Message Unit Test', function () {
     assert.deepStrictEqual(props, {
       messageType: 'NTLM Type 1',
       flags: 'UNICODE OEM REQUEST_TARGET NTLM ALWAYS_SIGN NEG_28 NEG_56',
+      suppliedDomain: { length: 0, allocated: 0, offset: 0 },
+      suppliedWorkstation: { length: 0, allocated: 0, offset: 0 },
+      osVersionStructure: {
+        majorVersion: 10,
+        minorVersion: 0,
+        buildNumber: 18362,
+        unknown: 15,
+      },
+      suppliedDomainData: '',
+      suppliedWorkstationData: '',
     });
   });
   it('should NTLM_hex', function () {
