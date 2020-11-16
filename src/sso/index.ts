@@ -17,6 +17,7 @@ import { init, database, getUsers, getUser } from './userdb';
 import { openADConnection, closeADConnection } from './adConnection';
 import { hasAdminPrivileges } from './uac';
 import { getStatusInfo } from './status';
+import { negotiateParse } from './msgParser';
 
 /**
  * Wrapper object sso. Everything written in Typescript that is
@@ -41,6 +42,7 @@ export const sso = {
   isOnDomain,
   isActiveDirectoryReachable,
   Mutex,
+  negotiateParse,
   openADConnection,
   SSO,
   sleep,
