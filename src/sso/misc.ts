@@ -1,6 +1,6 @@
 import dbg from 'debug';
 import { decode } from 'base64-arraybuffer';
-import { MessageType } from './interfaces';
+import { Flag, MessageType } from './interfaces';
 
 const debug = dbg('node-expose-sspi:misc');
 
@@ -91,5 +91,13 @@ export function hex2a(hex: string) {
   var str = '';
   for (var i = 0; i < hex.length && hex.substr(i, 2) !== '00'; i += 2)
     str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+  return str;
+}
+
+export function getFlags(flags: Flag[], value: number): string {
+  const str = flags
+    .filter((flag) => value & flag.value)
+    .map((flag) => flag.label)
+    .join(' ');
   return str;
 }

@@ -1,10 +1,10 @@
-import dbg from 'debug';
 import { ParserFactory } from './parser/ParserFactory';
+import { decode } from 'base64-arraybuffer';
+import { Props } from './interfaces';
 
-const debug = dbg('node-expose-sspi:msgParser');
-
-export function messageDebug(buffer: ArrayBuffer) {
+export function negotiateParse(base64: string): Props {
+  const buffer = decode(base64);
   const parser = ParserFactory.instantiateFromContent(buffer);
-  const message = parser.parse();
-  debug('message: ', message);
+  const object = parser.parse();
+  return object;
 }

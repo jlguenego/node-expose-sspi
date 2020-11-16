@@ -1,7 +1,7 @@
 import { IncomingMessage, ServerResponse } from 'http';
 
 export interface Props {
-  [key: string]: string;
+  [key: string]: any;
 }
 
 export interface Flag {

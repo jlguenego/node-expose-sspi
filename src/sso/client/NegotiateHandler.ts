@@ -1,7 +1,7 @@
 import { encode, decode } from 'base64-arraybuffer';
 import dbg from 'debug';
 import fetch, { RequestInit, Response } from 'node-fetch';
-import { messageDebug } from '../msgParser';
+import { negotiateParse } from '../msgParser';
 
 import {
   sspi,
@@ -76,7 +76,8 @@ export class NegotiateHandler extends AbstractHandler {
       debug('input: ', input);
       clientSecurityContext = sspi.InitializeSecurityContext(input);
       const base64 = encode(clientSecurityContext.SecBufferDesc.buffers[0]);
-      messageDebug(clientSecurityContext.SecBufferDesc.buffers[0]);
+      const debugObject = negotiateParse(base64);
+      debug('debugObject: ', debugObject);
       const requestInit = { ...init };
       requestInit.headers = {
         ...init.headers,
