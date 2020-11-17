@@ -66,7 +66,6 @@ export type AscRetFlag =
   | 'ASC_RET_FRAGMENT_ONLY'
   | 'ASC_RET_NO_TOKEN'
   | 'ASC_RET_NO_ADDITIONAL_TOKEN'
-  | 'ASC_RET_ALLOW_NON_USER_LOGONS'
   | 'ASC_RET_MESSAGES';
 
 export type CoInitFlag =
