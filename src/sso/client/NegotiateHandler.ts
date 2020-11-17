@@ -12,6 +12,7 @@ import { getSPNFromURI } from './misc';
 import { ClientCookie } from './ClientCookie';
 import { ClientInfo } from './ClientInfo';
 import { AbstractHandler } from './AbstractHandler';
+import { hexDump } from '../misc';
 
 const debug = dbg('node-expose-sspi:client');
 
@@ -24,8 +25,11 @@ export class NegotiateHandler extends AbstractHandler {
     init: RequestInit = {}
   ): Promise<Response> {
     debug('starting negotiate auth');
+    const packageInfo = sspi.QuerySecurityPackageInfo(clientInfo.ssp);
+    debug('packageInfo: ', packageInfo);
+
     const credInput = {
-      packageName: clientInfo.ssp,
+      packageName: packageInfo.Name,
       credentialUse: 'SECPKG_CRED_OUTBOUND',
     } as AcquireCredHandleInput;
     if (clientInfo.user) {
@@ -38,8 +42,6 @@ export class NegotiateHandler extends AbstractHandler {
     debug('credInput: ', credInput);
     const clientCred = sspi.AcquireCredentialsHandle(credInput);
 
-    const packageInfo = sspi.QuerySecurityPackageInfo(clientInfo.ssp);
-    debug('packageInfo: ', packageInfo);
     const targetName = clientInfo.targetName || (await getSPNFromURI(resource));
     const input: InitializeSecurityContextInput = {
       credential: clientCred.credential,
@@ -75,6 +77,7 @@ export class NegotiateHandler extends AbstractHandler {
 
       debug('input: ', input);
       clientSecurityContext = sspi.InitializeSecurityContext(input);
+      debug(hexDump(clientSecurityContext.SecBufferDesc.buffers[0]));
       const base64 = encode(clientSecurityContext.SecBufferDesc.buffers[0]);
       const debugObject = negotiateParse(base64);
       debug('debugObject: ', debugObject);

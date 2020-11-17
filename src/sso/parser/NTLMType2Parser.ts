@@ -12,7 +12,7 @@ import { NTLMType1 } from '../ntlm/interfaces';
 
 // const debug = dbg('node-expose-sspi:ntlm-parser');
 
-export class NTLMType1Parser extends AbstractParser {
+export class NTLMType2Parser extends AbstractParser {
   constructor(buffer: ArrayBuffer) {
     super(buffer);
   }

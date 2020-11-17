@@ -1,4 +1,17 @@
+import { Flag } from '../interfaces';
 import { OSVersionStructure, SecurityBuffer } from './interfaces';
+
+export const ntlmFlags: Flag[] = [
+  { label: 'UNICODE', value: 0x1 },
+  { label: 'OEM', value: 0x2 },
+  { label: 'REQUEST_TARGET', value: 0x4 },
+  { label: 'NTLM', value: 0x200 },
+  { label: 'DOMAIN_SUPPLIED', value: 0x1000 },
+  { label: 'WORKSTATION_SUPPLIED', value: 0x2000 },
+  { label: 'ALWAYS_SIGN', value: 0x8000 },
+  { label: 'NEG_28', value: 0x20000000 },
+  { label: 'NEG_56', value: 0x80000000 },
+];
 
 export function getSecBuf(buffer: ArrayBuffer, offset: number): SecurityBuffer {
   const dataView = new DataView(buffer, offset);

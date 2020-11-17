@@ -15,8 +15,7 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo &info) {
   std::u16string wstr = input.Get("targetName").As<Napi::String>().Utf16Value();
   LPWSTR pszTargetName = (LPWSTR)wstr.c_str();
 
-  DWORD fContextReq =
-      getFlags(env, ISC_REQ_FLAGS, input, "contextReq", ISC_REQ_CONNECTION);
+  DWORD fContextReq = getFlags(env, ISC_REQ_FLAGS, input, "contextReq", 0);
 
   DWORD targetDataRep = getFlag(env, SECURITY_DREP_FLAGS, input,
                                 "targetDataRep", SECURITY_NATIVE_DREP);
