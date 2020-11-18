@@ -6,7 +6,8 @@ Napi::Value e_AcquireCredentialsHandle(const Napi::CallbackInfo &info) {
   Napi::Env env = info.Env();
 
   CHECK_INPUT(
-      "AcquireCredentialsHandle({ packageName: string, authData?: {user: "
+      "AcquireCredentialsHandle({ packageName: string, credentialUse?: string, "
+      "authData?: {user: "
       "string, password: string, domain: string} })",
       1);
 
@@ -54,7 +55,6 @@ Napi::Value e_AcquireCredentialsHandle(const Napi::CallbackInfo &info) {
 
   DWORD fCredentialUse = getFlag(env, CREDENTIAL_USE_FLAG, input,
                                  "credentialUse", SECPKG_CRED_BOTH);
-
   CredHandle credHandle = {0, 0};
   TimeStamp tsExpiry;
 
@@ -69,11 +69,7 @@ Napi::Value e_AcquireCredentialsHandle(const Napi::CallbackInfo &info) {
       &credHandle,  // _Out_ PCredHandle    phCredential,
       &tsExpiry     // _Out_ PTimeStamp     ptsExpiry
   );
-  if (secStatus != SEC_E_OK) {
-    throw Napi::Error::New(env,
-                           "Cannot AcquireCredentialsHandle: secStatus = " +
-                               plf::error_msg(secStatus));
-  }
+  SSPI_CHECK_ERROR(secStatus, "AcquireCredentialsHandle");
 
   Napi::Object result = Napi::Object::New(env);
   result["credential"] =
