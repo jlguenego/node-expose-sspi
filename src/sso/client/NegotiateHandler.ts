@@ -67,6 +67,8 @@ export class NegotiateHandler extends AbstractHandler {
           .split(',')[0]
           .substr('Negotiate '.length);
         debug('bufferStr: ', bufferStr);
+        const responseToken = negotiateParse(bufferStr);
+        debug('responseToken: ', responseToken);
         const buffer = decode(bufferStr);
         input.SecBufferDesc = {
           ulVersion: 0,
