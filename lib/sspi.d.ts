@@ -158,6 +158,7 @@ export interface InitializeSecurityContextInput {
   contextHandle?: CtxtHandle;
   contextReq?: IscReqFlag[];
   targetDataRep?: TargetDataRepMapFlag;
+  isFirstCall?: boolean;
 }
 
 /**

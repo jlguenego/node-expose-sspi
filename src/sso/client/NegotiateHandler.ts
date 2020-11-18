@@ -48,8 +48,14 @@ export class NegotiateHandler extends AbstractHandler {
         : clientInfo.targetName;
     debug('targetName: ', targetName);
     const input: InitializeSecurityContextInput = {
+      isFirstCall: true,
       credential: clientCred.credential,
       targetName,
+      contextReq: [
+        'ISC_REQ_CONFIDENTIALITY',
+        'ISC_REQ_MUTUAL_AUTH',
+        'ISC_REQ_REPLAY_DETECT',
+      ],
       cbMaxToken: packageInfo.cbMaxToken,
       targetDataRep: 'SECURITY_NATIVE_DREP',
     };
@@ -79,6 +85,7 @@ export class NegotiateHandler extends AbstractHandler {
           buffers: [buffer],
         };
         input.contextHandle = clientSecurityContext.contextHandle;
+        input.isFirstCall = false;
       }
 
       debug('input: ', input);

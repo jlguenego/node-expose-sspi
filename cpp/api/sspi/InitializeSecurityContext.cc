@@ -19,7 +19,6 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo &info) {
 
   DWORD targetDataRep = getFlag(env, SECURITY_DREP_FLAGS, input,
                                 "targetDataRep", SECURITY_NATIVE_DREP);
-
   unsigned int cbMaxToken = 48256;
   if (input.Has("cbMaxToken")) {
     cbMaxToken = input.Get("cbMaxToken").As<Napi::Number>().Uint32Value();
@@ -33,18 +32,18 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo &info) {
   }
 
   TimeStamp tsExpiry;
-  BYTE *buffer = (BYTE *)malloc(cbMaxToken * sizeof(BYTE));
+  BYTE *buffer = (BYTE *)calloc(cbMaxToken, sizeof(BYTE));
   SecBuffer secBuffer;
   secBuffer.cbBuffer = cbMaxToken;
   secBuffer.BufferType = SECBUFFER_TOKEN;
   secBuffer.pvBuffer = buffer;
 
   SecBufferDesc fromClientSecBufferDesc;
-  fromClientSecBufferDesc.ulVersion = 0;
+  fromClientSecBufferDesc.ulVersion = SECBUFFER_VERSION;
   fromClientSecBufferDesc.cBuffers = 1;
   fromClientSecBufferDesc.pBuffers = &secBuffer;
 
-  ULONG ulContextAttr;
+  ULONG ulContextAttr = 0;
 
   CtxtHandle clientContextHandle = {0, 0};
   bool isFirstCall = true;
@@ -61,10 +60,21 @@ Napi::Value e_InitializeSecurityContext(const Napi::CallbackInfo &info) {
   }
 
   SECURITY_STATUS secStatus = InitializeSecurityContext(
-      &cred, (isFirstCall) ? NULL : (&clientContextHandle), pszTargetName,
-      fContextReq, RESERVED, targetDataRep, pInput, RESERVED,
-      &clientContextHandle, &fromClientSecBufferDesc, &ulContextAttr,
-      &tsExpiry);
+      &cred,  // _In_opt_    PCredHandle    phCredential,
+      (isFirstCall)
+          ? NULL
+          : (&clientContextHandle),  // _In_opt_    PCtxtHandle    phContext,
+      pszTargetName,             // _In_opt_    SEC_CHAR       *pszTargetName,
+      fContextReq,               // _In_        ULONG          fContextReq,
+      RESERVED,                  // _In_        ULONG          Reserved1,
+      targetDataRep,             // _In_        ULONG          TargetDataRep,
+      pInput,                    // _In_opt_    PSecBufferDesc pInput,
+      RESERVED,                  // _In_        ULONG          Reserved2,
+      &clientContextHandle,      // _Inout_opt_ PCtxtHandle    phNewContext,
+      &fromClientSecBufferDesc,  // _Inout_opt_ PSecBufferDesc pOutput,
+      &ulContextAttr,            // _Out_       PULONG         pfContextAttr,
+      &tsExpiry                  // _Out_opt_   PTimeStamp     ptsExpiry
+  );
 
   Napi::Object result = Napi::Object::New(env);
 
