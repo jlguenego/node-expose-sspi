@@ -33,3 +33,11 @@
     deferred.Reject(Napi::TypeError::New(env, msg ": Bad arguments").Value()); \
     return deferred.Promise();                                                 \
   }
+
+#define CHECK_PROP(input, key, IsTypeFn)                            \
+  if (!input.Has(key)) {                                            \
+    throw Napi::TypeError::New(env, key " not found");              \
+  }                                                                 \
+  if (!input.Get(key).IsTypeFn()) {                                 \
+    throw Napi::TypeError::New(env, key ": " #IsTypeFn " failed."); \
+  }
