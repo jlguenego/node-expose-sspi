@@ -42,7 +42,11 @@ export class NegotiateHandler extends AbstractHandler {
     debug('credInput: ', credInput);
     const clientCred = sspi.AcquireCredentialsHandle(credInput);
 
-    const targetName = clientInfo.targetName || (await getSPNFromURI(resource));
+    const targetName =
+      clientInfo.targetName === undefined
+        ? await getSPNFromURI(resource)
+        : clientInfo.targetName;
+    debug('targetName: ', targetName);
     const input: InitializeSecurityContextInput = {
       credential: clientCred.credential,
       targetName,
