@@ -52,6 +52,7 @@ export class NegotiateHandler extends AbstractHandler {
       credential: clientCred.credential,
       targetName,
       contextReq: [
+        'ISC_REQ_CONNECTION',
         'ISC_REQ_CONFIDENTIALITY',
         'ISC_REQ_MUTUAL_AUTH',
         'ISC_REQ_REPLAY_DETECT',
