@@ -44,13 +44,13 @@ async function main(argv) {
   const url = argv.url;
   const client = new sso.Client();
   try {
-    if (argv.user) {
+    if (argv.user !== undefined) {
       client.setCredentials(argv.domain, argv.user, argv.password);
     }
-    if (argv.target) {
+    if (argv.target !== undefined) {
       client.setTargetName(argv.target);
     }
-    if (argv.ssp) {
+    if (argv.ssp !== undefined) {
       client.setSSP(argv.ssp);
     }
     const response = await client.fetch(url);
