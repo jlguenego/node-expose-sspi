@@ -1,10 +1,9 @@
 import createError from 'http-errors';
-import { decode, encode } from 'base64-arraybuffer';
 import { IncomingMessage, ServerResponse } from 'http';
 import dbg from 'debug';
 
 import { sspi, AcceptSecurityContextInput, CtxtHandle } from '../../lib/api';
-import { hexDump, getMessageType } from './misc';
+import { hexDump, getMessageType, encode, decode } from './misc';
 import { SSO } from './SSO';
 import { ServerContextHandleManager } from './schm/ServerContextHandleManager';
 import { SCHMWithCookies } from './schm/SCHMWithCookies';

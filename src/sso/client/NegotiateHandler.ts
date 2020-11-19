@@ -1,4 +1,3 @@
-import { encode, decode } from 'base64-arraybuffer';
 import dbg from 'debug';
 import fetch, { RequestInit, Response } from 'node-fetch';
 import { negotiateParse } from '../msgParser';
@@ -12,7 +11,7 @@ import { getSPNFromURI } from './misc';
 import { ClientCookie } from './ClientCookie';
 import { ClientInfo } from './ClientInfo';
 import { AbstractHandler } from './AbstractHandler';
-import { hexDump } from '../misc';
+import { decode, encode, hexDump } from '../misc';
 
 const debug = dbg('node-expose-sspi:client');
 

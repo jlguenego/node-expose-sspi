@@ -1,10 +1,10 @@
-import { encode } from 'base64-arraybuffer';
 import {
   AcquireCredHandleInput,
   InitializeSecurityContextInput,
   sspi,
 } from '../..';
 import { hexDump } from '../../dist/sso/misc';
+import { encode } from '../../src/sso/misc';
 import { negotiateParse } from '../../src/sso/msgParser';
 
 const packageInfo = sspi.QuerySecurityPackageInfo('Negotiate');

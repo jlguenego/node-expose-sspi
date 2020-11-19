@@ -1,6 +1,5 @@
 const express = require('express');
-const { sso } = require('node-expose-sspi');
-const { encode, decode } = require('base64-arraybuffer');
+const { sso } = require('../..');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
 // Thanks https://developers.google.com/web/updates/2012/06/How-to-convert-ArrayBuffer-to-and-from-String
@@ -22,7 +21,7 @@ function str2ab(str) {
 
   app.use((req, res, next) => {
     if (req.header('x-sso')) {
-      req.sso = JSON.parse(ab2str(decode(req.header('x-sso'))));
+      req.sso = JSON.parse(ab2str(sso.decode(req.header('x-sso'))));
     }
     next();
   });
@@ -48,7 +47,7 @@ function str2ab(str) {
       const xSso = {
         user: req.sso.user,
       };
-      req.headers['x-sso'] = encode(str2ab(JSON.stringify(xSso)));
+      req.headers['x-sso'] = sso.encode(str2ab(JSON.stringify(xSso)));
     }
     next();
   });

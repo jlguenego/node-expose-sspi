@@ -1,5 +1,4 @@
 import dbg from 'debug';
-import { decode } from 'base64-arraybuffer';
 import { Flag, MessageType } from './interfaces';
 
 const debug = dbg('node-expose-sspi:misc');
@@ -100,4 +99,27 @@ export function getFlags(flags: Flag[], value: number): string {
     .map((flag) => flag.label)
     .join(' ');
   return str;
+}
+
+/**
+ * Decode a base64 string into an arraybuffer.
+ *
+ * @export
+ * @param {string} base64
+ * @returns {ArrayBuffer}
+ */
+export function decode(base64: string): ArrayBuffer {
+  const b = Buffer.from(base64, 'base64');
+  return b.buffer.slice(b.byteOffset, b.byteOffset + b.byteLength);
+}
+
+/**
+ * Encode an arraybuffer to base64 string.
+ *
+ * @export
+ * @param {ArrayBuffer} b
+ * @returns {string}
+ */
+export function encode(b: ArrayBuffer): string {
+  return Buffer.from(b).toString('base64');
 }

@@ -5,7 +5,7 @@ import {
   isOnDomain,
   isActiveDirectoryReachable,
 } from './domain';
-import { hexDump } from './misc';
+import { decode, encode, hexDump } from './misc';
 import { sleep } from './sleep';
 import { SSO } from './SSO';
 import { SPN } from './spn';
@@ -31,6 +31,8 @@ export const sso = {
   connect,
   database,
   Client,
+  decode,
+  encode,
   getDefaultDomain,
   getSPNFromURI,
   getStatusInfo,
