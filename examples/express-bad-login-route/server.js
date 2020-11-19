@@ -13,7 +13,7 @@ app.use((req, res) => {
 app.use((err, req, res, next) => {
   if (err.message.startsWith('SEC_E_LOGON_DENIED')) {
     // do what you want here
-    return res.status(401).send('you have done a bad login');
+    return res.status(200).send({ msg: 'bad login' });
   }
   next(err);
 });
