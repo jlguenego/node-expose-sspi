@@ -1,4 +1,7 @@
 import fetch, { RequestInit, Response } from 'node-fetch';
+import http from 'http';
+import https from 'https';
+import { URL } from 'url';
 import dbg from 'debug';
 
 import { HandlerFactory } from './client/HandlerFactory';
@@ -7,6 +10,16 @@ import { ClientInfo } from './client/ClientInfo';
 import { SecuritySupportProvider } from '..';
 
 const debug = dbg('node-expose-sspi:client');
+
+const httpAgent = new http.Agent({
+  keepAlive: true,
+});
+const httpsAgent = new https.Agent({
+  keepAlive: true,
+});
+
+const agent = (parsedURL: URL): http.Agent =>
+  parsedURL.protocol == 'http:' ? httpAgent : httpsAgent;
 
 /**
  * Allow to fetch url with a system that uses the negotiate protocol.
@@ -18,6 +31,7 @@ const debug = dbg('node-expose-sspi:client');
 export class Client {
   clientCookie = new ClientCookie();
   clientInfo = new ClientInfo();
+  agent = agent;
 
   /**
    * Set the credentials for running the client as another user.
@@ -67,8 +81,9 @@ export class Client {
    * @memberof Client
    */
   async fetch(resource: string, init?: RequestInit): Promise<Response> {
+    const initKeepAlive = { ...init, agent: this.agent };
     const response = await fetch(resource, init);
-    const result = await this.handleAuth(response, resource, init);
+    const result = await this.handleAuth(response, resource, initKeepAlive);
     return result;
   }
 
