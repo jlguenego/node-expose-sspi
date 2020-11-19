@@ -10,7 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "ntlm-parser": "^1.0.7",
     "yargs": "^15.3.1"
   }
 }
