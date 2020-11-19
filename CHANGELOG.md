@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.51](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.50...v0.1.51) (2020-11-19)
+
+
+### Bug Fixes
+
+* better www-authenticate parsing ([296ec9c](https://github.com/jlguenego/node-expose-sspi/commit/296ec9c0b56989e1185d2d9e85c3e51a16c69ba7))
+* client must be keep alive ([fb1839f](https://github.com/jlguenego/node-expose-sspi/commit/fb1839f7340f0a8cada90ab60aa1811915654377))
+* digest authentication testing ([8e788bd](https://github.com/jlguenego/node-expose-sspi/commit/8e788bd18740eff27ab49a992ff9cc0388090cff))
+
 ### [0.1.50](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.49...v0.1.50) (2020-11-15)
 
 
