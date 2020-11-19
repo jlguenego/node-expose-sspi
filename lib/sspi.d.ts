@@ -89,9 +89,15 @@ export interface CredentialWithExpiry {
  */
 export interface SecurityContext {
   readonly contextHandle: CtxtHandle;
-  readonly SECURITY_STATUS: string;
+  readonly SECURITY_STATUS: SecurityStatus;
   readonly SecBufferDesc: SecBufferDesc;
 }
+
+export type SecurityStatus =
+  | 'SEC_E_OK'
+  | 'SEC_I_COMPLETE_AND_CONTINUE'
+  | 'SEC_I_COMPLETE_NEEDED'
+  | 'SEC_I_CONTINUE_NEEDED';
 
 /**
  * Same as Microsoft SecBufferDesc: The SecBufferDesc structure describes

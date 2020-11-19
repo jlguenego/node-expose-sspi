@@ -91,7 +91,15 @@ export class NegotiateHandler extends AbstractHandler {
 
       debug('input: ', input);
       clientSecurityContext = sspi.InitializeSecurityContext(input);
+      debug('clientSecurityContext: ', clientSecurityContext);
       debug(hexDump(clientSecurityContext.SecBufferDesc.buffers[0]));
+      if (
+        ['SEC_I_COMPLETE_NEEDED', 'SEC_I_COMPLETE_AND_CONTINUE'].includes(
+          clientSecurityContext.SECURITY_STATUS
+        )
+      ) {
+        debug('you should not see this');
+      }
       const base64 = encode(clientSecurityContext.SecBufferDesc.buffers[0]);
       const debugObject = negotiateParse(base64);
       debug('debugObject: ', debugObject);
