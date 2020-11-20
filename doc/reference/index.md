@@ -130,6 +130,9 @@ The client automatically supports the following authentication methods:
 - Digest
 - Negotiate/Kerberos/NTLM
 
+It has been tested until now with IIS and the node-expose-sspi auth client.
+TODO: test with Apache on Windows.
+
 #### Example
 
 See:
