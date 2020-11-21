@@ -1,22 +1,22 @@
 // Require the framework and instantiate it
-import fastify from 'fastify';
+import f from 'fastify';
+import fastifyExpress from 'fastify-express';
 import { sso } from 'node-expose-sspi';
 
-const app = fastify({ logger: true });
-
-app.use(sso.auth());
-
-// Declare a route
-app.get('/', (request, reply): void => {
-  reply.send(request.raw.sso);
-});
+const fastify = f({ logger: true });
 
 // Run the server!
 const start = async (): Promise<void> => {
   try {
-    await app.listen(3000);
+    await fastify.register(fastifyExpress);
+    fastify.use(sso.auth());
+    // Declare a route
+    fastify.get('/', (request, reply): void => {
+      reply.send({ sso: request.raw.sso });
+    });
+    await fastify.listen(3000);
   } catch (err) {
-    app.log.error(err);
+    fastify.log.error(err);
     process.exit(1);
   }
 };

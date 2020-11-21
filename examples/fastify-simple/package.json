@@ -10,8 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "fastify": "^2.15.1",
-    "node-expose-sspi": "^0.1.14",
+    "fastify": "^3.8.0",
+    "fastify-express": "^0.3.2",
+    "node-expose-sspi": "^0.1.51",
     "nodemon": "^2.0.2",
     "ts-node": "^8.8.1",
     "typescript": "^3.8.3"
