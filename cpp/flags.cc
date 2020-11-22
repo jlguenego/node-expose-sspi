@@ -28,6 +28,7 @@ flagmap AdsAuthenticationMap;
 flagmap CoInitMap;
 flagmap ComputerNameFormatMap;
 flagmap UserInfo1Map;
+flagmap UserPrivilegeMap;
 
 std::map<int64_t, flagmap *> contextMap;
 
@@ -46,6 +47,7 @@ void initFlags() {
   contextMap[COINIT_FLAGS] = &CoInitMap;
   contextMap[COMPUTER_NAME_FORMAT_FLAGS] = &ComputerNameFormatMap;
   contextMap[USER_INFO_1_FLAGS] = &UserInfo1Map;
+  contextMap[USER_PRIVILEGE_FLAGS] = &UserPrivilegeMap;
 
   FLAG_INSERT(extendedNameFormatMap, NameUnknown);
   FLAG_INSERT(extendedNameFormatMap, NameFullyQualifiedDN);
@@ -246,6 +248,10 @@ void initFlags() {
   FLAG_INSERT(UserInfo1Map, UF_SERVER_TRUST_ACCOUNT);
   FLAG_INSERT(UserInfo1Map, UF_INTERDOMAIN_TRUST_ACCOUNT);
 
+  FLAG_INSERT(UserPrivilegeMap, SE_PRIVILEGE_ENABLED);
+  FLAG_INSERT(UserPrivilegeMap, SE_PRIVILEGE_ENABLED_BY_DEFAULT);
+  FLAG_INSERT(UserPrivilegeMap, SE_PRIVILEGE_REMOVED);
+  FLAG_INSERT(UserPrivilegeMap, SE_PRIVILEGE_USED_FOR_ACCESS);
 }
 
 int64_t getFlagValue(Napi::Env env, int context, std::string str) {

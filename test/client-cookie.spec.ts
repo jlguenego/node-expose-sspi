@@ -1,13 +1,16 @@
 import assert from 'assert';
-import express from 'express';
+import express, { Express } from 'express';
 import dbg from 'debug';
+import { Server } from 'http';
+
 import { sso } from '../src';
 
 const debug = dbg('node-expose-sspi:test');
 
-describe('COOKIE Unit Test', function () {
-  it('should test client with cookie', async function () {
-    this.timeout(15000);
+class MyServer {
+  app: Express;
+  server!: Server;
+  constructor() {
     const app = express();
     app.use(sso.auth({ useActiveDirectory: true, useCookies: true }));
     app.use((req, res) => {
@@ -16,15 +19,39 @@ describe('COOKIE Unit Test', function () {
         sso: req.sso,
       });
     });
+    this.app = app;
+  }
 
-    const server = app.listen(3000);
-    debug('server started');
+  start(): Promise<void> {
+    return new Promise<void>((resolve) => {
+      this.server = this.app.listen(3000, () => resolve());
+    });
+  }
+  stop(): Promise<void> {
+    return new Promise<void>((resolve) => {
+      this.server.close(() => resolve());
+    });
+  }
+}
 
-    debug('start client');
-    const response = await new sso.Client().fetch('http://localhost:3000');
-    const json = await response.json();
-    assert.equal(json.sso.method, 'NTLM');
-    debug('cookie', json.cookie);
-    server.close();
+describe('COOKIE Unit Test', async function () {
+  it('should test client with cookie', async function () {
+    this.timeout(15000);
+    const server = new MyServer();
+
+    try {
+      await server.start();
+      debug('server started');
+
+      const client = new sso.Client();
+      const response = await client.fetch('http://localhost:3000');
+      const json = await response.json();
+      assert.strictEqual(json.sso.method, 'NTLM');
+      debug('cookie', json.cookie);
+    } catch (e) {
+      assert.fail(e);
+    } finally {
+      await server.stop();
+    }
   });
 });

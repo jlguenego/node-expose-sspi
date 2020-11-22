@@ -122,6 +122,12 @@ const userGroups = sspi.GetTokenInformation({
 });
 console.log('userGroups: ', userGroups);
 
+const userPrivileges = sspi.GetTokenInformation({
+  accessToken: userToken,
+  tokenInformationClass: 'TokenPrivileges',
+});
+console.log('userPrivileges: ', userPrivileges);
+
 sspi.CloseHandle(userToken);
 console.log('CloseHandle ok');
 

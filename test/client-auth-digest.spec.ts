@@ -71,11 +71,14 @@ describe('Client Authentication Digest Test', function () {
     const server = new Server();
     await server.start();
 
-    debug('start client');
-    const client = new sso.Client();
-    client.setCredentials('', 'jlouis', users.jlouis);
-    const response = await client.fetch('http://localhost:3000');
-    await server.stop();
-    assert.strictEqual(response.status, 200);
+    try {
+      debug('start client');
+      const client = new sso.Client();
+      client.setCredentials('', 'jlouis', users.jlouis);
+      const response = await client.fetch('http://localhost:3000');
+      assert.strictEqual(response.status, 200);
+    } finally {
+      await server.stop();
+    }
   });
 });

@@ -1,4 +1,5 @@
-import { strict as assert } from 'assert';
+import assert from 'assert';
+
 import express, { Request, Response } from 'express';
 import session from 'express-session';
 import { Server } from 'http';
@@ -56,7 +57,7 @@ describe('Session', function () {
       await client.fetch('http://localhost:3000');
       const response = await client.fetch('http://localhost:3000');
       const json = await response.json();
-      assert.equal(json.sso.cached, true);
+      assert.strictEqual(json.sso.cached, true);
     } catch (e) {
       assert.fail(e);
     } finally {

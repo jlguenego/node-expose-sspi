@@ -15,6 +15,7 @@
 #define COINIT_FLAGS 9
 #define COMPUTER_NAME_FORMAT_FLAGS 10
 #define USER_INFO_1_FLAGS 11
+#define USER_PRIVILEGE_FLAGS 12
 
 namespace myAddon {
 

@@ -69,7 +69,7 @@ export type Token = string;
  */
 export type SidPointer = string;
 
-export type InformationClass = 'TokenGroups';
+export type InformationClass = 'TokenGroups' | 'TokenPrivileges';
 
 /**
  * Credential with expiry date.
