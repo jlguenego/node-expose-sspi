@@ -118,7 +118,6 @@ Napi::Value e_GetTokenInformation(const Napi::CallbackInfo& info) {
           privilegeName,  // Receive the string privilege name
           &privilegeLen   // Effective length of the privilegeName);
       );
-      log("status %d", status);
       if (!status) {
         continue;
       }

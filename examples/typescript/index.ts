@@ -131,6 +131,15 @@ console.log('userPrivileges: ', userPrivileges);
 sspi.CloseHandle(userToken);
 console.log('CloseHandle ok');
 
+const ownerToken = sspi.OpenProcessToken(['TOKEN_QUERY', 'TOKEN_QUERY_SOURCE']);
+console.log('ownerToken: ', ownerToken);
+
+const ownerPrivileges = sspi.GetTokenInformation({
+  accessToken: ownerToken,
+  tokenInformationClass: 'TokenPrivileges',
+});
+console.log('ownerPrivileges: ', ownerPrivileges);
+
 const sidObject = sspi.LookupAccountName(username);
 console.log('sidObject: ', sidObject);
 
