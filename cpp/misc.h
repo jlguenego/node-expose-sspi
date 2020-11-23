@@ -69,5 +69,9 @@ Napi::Value e_GetComputerNameEx(const Napi::CallbackInfo &info);
 void e_NetUserAdd(const Napi::CallbackInfo &info);
 void e_NetUserDel(const Napi::CallbackInfo &info);
 
+// USER
+void e_ExitWindows(const Napi::CallbackInfo &info);
+
+
 
 }  // namespace myAddon

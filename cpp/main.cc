@@ -1,9 +1,8 @@
-#include "misc.h"
-
 #include "api/adsi/IADs.h"
 #include "api/adsi/IADsContainer.h"
 #include "api/adsi/IDirectorySearch.h"
 #include "api/adsi/IDispatch.h"
+#include "misc.h"
 
 #define F(fn) Function::New(env, fn)
 #define EXPORT(str) exports.Set(#str, F(e_##str))
@@ -73,12 +72,18 @@ Object InitNETAPI(Env env, Object exports) {
   return exports;
 }
 
+Object InitUSER(Env env, Object exports) {
+  EXPORT(ExitWindows);
+  return exports;
+}
+
 Object Init(Env env, Object exports) {
   initFlags();
   exports.Set("sspi", InitSSPI(env, Object::New(env)));
   exports.Set("adsi", InitADSI(env, Object::New(env)));
   exports.Set("sysinfo", InitSYSINFO(env, Object::New(env)));
   exports.Set("netapi", InitNETAPI(env, Object::New(env)));
+  exports.Set("user", InitUSER(env, Object::New(env)));
   return exports;
 }
 
