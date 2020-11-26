@@ -7,6 +7,7 @@ import {
   TargetDataRepMapFlag,
   CredentialUseFlag,
 } from './flags';
+import { AccessToken, TokenPrivileges } from './user';
 
 export type SecuritySupportProvider = 'NTLM' | 'Kerberos' | 'Negotiate';
 
@@ -54,13 +55,6 @@ export interface CredHandle {}
  * @interface HANDLE
  */
 export interface HANDLE {}
-
-/**
- * A Token is a pointer to some user information.
- *
- * @type Token
- */
-export type Token = string;
 
 /**
  * A pointer to an Sid (to be freed).
@@ -193,10 +187,12 @@ export interface AcceptSecurityContextInput {
 }
 
 export interface GetTokenInformationInput {
-  accessToken: Token;
+  accessToken: AccessToken;
   tokenInformationClass: InformationClass;
   filter?: string;
 }
+
+export type Groups = string[];
 
 export interface Sspi {
   /**
@@ -309,10 +305,10 @@ export interface Sspi {
    * Token must be freed with CloseHandle.
    *
    * @param {AccessTokenFlag[]} [flags]
-   * @returns {Token}
+   * @returns {AccessToken}
    * @memberof Sspi
    */
-  OpenThreadToken(flags?: AccessTokenFlag[]): Token;
+  OpenThreadToken(flags?: AccessTokenFlag[]): AccessToken;
 
   /**
    * Get the user token associated with the current process. You will get always
@@ -321,10 +317,10 @@ export interface Sspi {
    * CloseHandle must be used for freeing the token.
    *
    * @param {AccessTokenFlag[]} [flags]
-   * @returns {Token}
+   * @returns {AccessToken}
    * @memberof Sspi
    */
-  OpenProcessToken(flags?: AccessTokenFlag[]): Token;
+  OpenProcessToken(flags?: AccessTokenFlag[]): AccessToken;
 
   /**
    * Allocate an sid. Limitations: get only the NtAuthority sid
@@ -364,7 +360,9 @@ export interface Sspi {
    * @returns {string[]}
    * @memberof Sspi
    */
-  GetTokenInformation(input: GetTokenInformationInput): string[];
+  GetTokenInformation(
+    input: GetTokenInformationInput
+  ): Groups | TokenPrivileges;
 
   /**
    * Free allocated memory referenced by the handle.
@@ -407,10 +405,10 @@ export interface Sspi {
    * Get a client user token.
    *
    * @param {CtxtHandle} ctxtHandle
-   * @returns {Token}
+   * @returns {AccessToken}
    * @memberof Sspi
    */
-  QuerySecurityContextToken(ctxtHandle: CtxtHandle): Token;
+  QuerySecurityContextToken(ctxtHandle: CtxtHandle): AccessToken;
 
   /**
    * Free a context handle.

@@ -11,7 +11,7 @@ void e_ExitWindowsEx(const Napi::CallbackInfo& info) {
   CHECK_PROP(input, "flag", IsString);
   CHECK_PROP(input, "reason", IsArray);
 
-  UINT flag = getFlag(env, EWX_FLAGS, input, "flags", EWX_LOGOFF);
+  UINT flag = getFlag(env, EWX_FLAGS, input, "flag", EWX_LOGOFF);
   UINT reason = getFlags(env, SHTDN_FLAGS, input, "reason",
                          SHTDN_REASON_MAJOR_OTHER | SHTDN_REASON_MINOR_HUNG);
 

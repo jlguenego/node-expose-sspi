@@ -1,4 +1,21 @@
-import { user } from '../../dist';
+import { user, sspi } from '../../dist';
+
+// add shutdown privileges.
+const accessToken = sspi.OpenProcessToken(['TOKEN_ALL_ACCESS']);
+
+user.AdjustTokenPrivileges({
+  accessToken,
+  disableAllPrivileges: false,
+  newState: {
+    SeShutdownPrivilege: ['SE_PRIVILEGE_ENABLED'],
+  },
+});
+
+const ownerPrivileges = sspi.GetTokenInformation({
+  accessToken: accessToken,
+  tokenInformationClass: 'TokenPrivileges',
+});
+console.log('ownerPrivileges: ', ownerPrivileges);
 
 console.log('about to logoff in 2s');
 setTimeout(() => {

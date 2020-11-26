@@ -27,7 +27,7 @@ When the server want to send to the client authentication token input, this is d
 
 • **SECURITY_STATUS**: *string*
 
-*Defined in [lib/sspi.d.ts:118](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/lib/sspi.d.ts#L118)*
+*Defined in [lib/sspi.d.ts:118](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/lib/sspi.d.ts#L118)*
 
 ___
 
@@ -35,7 +35,7 @@ ___
 
 • **SecBufferDesc**: *[SecBufferDesc](_lib_sspi_d_.secbufferdesc.md)*
 
-*Defined in [lib/sspi.d.ts:121](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/lib/sspi.d.ts#L121)*
+*Defined in [lib/sspi.d.ts:121](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/lib/sspi.d.ts#L121)*
 
 ___
 
@@ -43,7 +43,7 @@ ___
 
 • **contextAttr**: *[AscRetFlag](../modules/_lib_flags_index_d_.md#ascretflag)[]*
 
-*Defined in [lib/sspi.d.ts:120](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/lib/sspi.d.ts#L120)*
+*Defined in [lib/sspi.d.ts:120](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/lib/sspi.d.ts#L120)*
 
 ___
 
@@ -51,4 +51,4 @@ ___
 
 • **contextHandle**: *[CtxtHandle](_lib_sspi_d_.ctxthandle.md)*
 
-*Defined in [lib/sspi.d.ts:119](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/lib/sspi.d.ts#L119)*
+*Defined in [lib/sspi.d.ts:119](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/lib/sspi.d.ts#L119)*

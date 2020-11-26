@@ -105,28 +105,7 @@ Napi::Value e_GetTokenInformation(const Napi::CallbackInfo& info) {
                    plf::error_msg());
     }
 
-    Napi::Object result = Napi::Object::New(env);
-
-    DWORD counter = 0;
-
-    for (DWORD i = 0; i < privileges->PrivilegeCount; i++) {
-      DWORD privilegeLen = _MAX_PATH;
-      wchar_t privilegeName[_MAX_PATH];
-      BOOL status = LookupPrivilegeName(
-          NULL,  // NULL = privilege on the local system
-          &(privileges->Privileges[i].Luid),  // LUID pointer
-          privilegeName,  // Receive the string privilege name
-          &privilegeLen   // Effective length of the privilegeName);
-      );
-      if (!status) {
-        continue;
-      }
-
-      Napi::Array array = setFlags(env, USER_PRIVILEGE_FLAGS,
-                                   privileges->Privileges[i].Attributes);
-      result[plf::wstrtostr(privilegeName)] = array;
-      counter++;
-    }
+    Napi::Object result = JS::fromTokenPrivileges(env, privileges);
     free(privileges);
     return result;
   }

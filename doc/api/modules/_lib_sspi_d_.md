@@ -24,18 +24,35 @@
 
 ### Type aliases
 
+* [Groups](_lib_sspi_d_.md#groups)
 * [InformationClass](_lib_sspi_d_.md#informationclass)
+* [SecurityStatus](_lib_sspi_d_.md#securitystatus)
 * [SecuritySupportProvider](_lib_sspi_d_.md#securitysupportprovider)
 * [SidPointer](_lib_sspi_d_.md#sidpointer)
-* [Token](_lib_sspi_d_.md#token)
 
 ## Type aliases
 
+###  Groups
+
+Ƭ **Groups**: *string[]*
+
+*Defined in [lib/sspi.d.ts:195](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/lib/sspi.d.ts#L195)*
+
+___
+
 ###  InformationClass
 
-Ƭ **InformationClass**: *"TokenGroups"*
+Ƭ **InformationClass**: *"TokenGroups" | "TokenPrivileges"*
 
-*Defined in [lib/sspi.d.ts:72](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/lib/sspi.d.ts#L72)*
+*Defined in [lib/sspi.d.ts:66](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/lib/sspi.d.ts#L66)*
+
+___
+
+###  SecurityStatus
+
+Ƭ **SecurityStatus**: *"SEC_E_OK" | "SEC_I_COMPLETE_AND_CONTINUE" | "SEC_I_COMPLETE_NEEDED" | "SEC_I_CONTINUE_NEEDED"*
+
+*Defined in [lib/sspi.d.ts:90](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/lib/sspi.d.ts#L90)*
 
 ___
 
@@ -43,7 +60,7 @@ ___
 
 Ƭ **SecuritySupportProvider**: *"NTLM" | "Kerberos" | "Negotiate"*
 
-*Defined in [lib/sspi.d.ts:11](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/lib/sspi.d.ts#L11)*
+*Defined in [lib/sspi.d.ts:12](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/lib/sspi.d.ts#L12)*
 
 ___
 
@@ -51,16 +68,6 @@ ___
 
 Ƭ **SidPointer**: *string*
 
-*Defined in [lib/sspi.d.ts:70](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/lib/sspi.d.ts#L70)*
+*Defined in [lib/sspi.d.ts:64](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/lib/sspi.d.ts#L64)*
 
 A pointer to an Sid (to be freed).
-
-___
-
-###  Token
-
-Ƭ **Token**: *string*
-
-*Defined in [lib/sspi.d.ts:63](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/lib/sspi.d.ts#L63)*
-
-A Token is a pointer to some user information.

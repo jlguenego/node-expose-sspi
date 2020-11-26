@@ -21,7 +21,7 @@
 
 • **cached**? : *undefined | false | true*
 
-*Defined in [src/sso/interfaces.ts:7](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/interfaces.ts#L7)*
+*Defined in [src/sso/interfaces.ts:16](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/interfaces.ts#L16)*
 
 ___
 
@@ -29,7 +29,7 @@ ___
 
 • **method**? : *[SSOMethod](../modules/_src_sso_interfaces_.md#ssomethod)*
 
-*Defined in [src/sso/interfaces.ts:6](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/interfaces.ts#L6)*
+*Defined in [src/sso/interfaces.ts:15](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/interfaces.ts#L15)*
 
 ___
 
@@ -37,7 +37,7 @@ ___
 
 • **owner**? : *[User](_src_sso_interfaces_.user.md)*
 
-*Defined in [src/sso/interfaces.ts:5](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/interfaces.ts#L5)*
+*Defined in [src/sso/interfaces.ts:14](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/interfaces.ts#L14)*
 
 ___
 
@@ -45,4 +45,4 @@ ___
 
 • **user**? : *[User](_src_sso_interfaces_.user.md)*
 
-*Defined in [src/sso/interfaces.ts:4](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/interfaces.ts#L4)*
+*Defined in [src/sso/interfaces.ts:13](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/interfaces.ts#L13)*

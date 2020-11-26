@@ -19,6 +19,9 @@ class JS {
   static Napi::Object fromLuid(Napi::Env env, LUID* pLUID);
   static LUID toLuid(Napi::Object value);
 
+  static Napi::Object fromTokenPrivileges(Napi::Env env, PTOKEN_PRIVILEGES pTokenPrivileges);
+  static PTOKEN_PRIVILEGES toTokenPrivileges(Napi::Object value);
+
   static Napi::Value convert(Napi::Env env, SecBufferDesc* pSecBufferDesc);
   static Napi::Value convert(Napi::Env env, TimeStamp* pTimeStamp);
   static Napi::Array convert(Napi::Env env, unsigned long cPackages,

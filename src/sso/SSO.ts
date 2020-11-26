@@ -1,4 +1,4 @@
-import { sspi, CtxtHandle } from '../../lib/api';
+import { sspi, CtxtHandle, Groups } from '../../lib/api';
 import { getUser } from './userdb';
 import dbg from 'debug';
 import { sso } from '.';
@@ -52,7 +52,7 @@ export class SSO {
         accessToken: userToken,
         tokenInformationClass: 'TokenGroups',
         filter: this.options.groupFilterRegex,
-      });
+      }) as Groups;
       groups.sort();
       debug('groups: ', groups);
       this.user.groups = groups;
@@ -109,7 +109,7 @@ export class SSO {
           accessToken: processToken,
           tokenInformationClass: 'TokenGroups',
           filter: this.options.groupFilterRegex,
-        });
+        }) as Groups;
         ownerGroups.sort();
         debug('ownerGroups: ', ownerGroups);
         this.owner.groups = ownerGroups;

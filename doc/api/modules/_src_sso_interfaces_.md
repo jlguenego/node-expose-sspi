@@ -15,6 +15,8 @@
 * [AuthOptions](../interfaces/_src_sso_interfaces_.authoptions.md)
 * [CookieList](../interfaces/_src_sso_interfaces_.cookielist.md)
 * [Database](../interfaces/_src_sso_interfaces_.database.md)
+* [Flag](../interfaces/_src_sso_interfaces_.flag.md)
+* [Props](../interfaces/_src_sso_interfaces_.props.md)
 * [SSOObject](../interfaces/_src_sso_interfaces_.ssoobject.md)
 * [User](../interfaces/_src_sso_interfaces_.user.md)
 
@@ -33,7 +35,7 @@
 
 Ƭ **ADUsers**: *[ADUser](../interfaces/_src_sso_interfaces_.aduser.md)[]*
 
-*Defined in [src/sso/interfaces.ts:168](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/interfaces.ts#L168)*
+*Defined in [src/sso/interfaces.ts:177](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/interfaces.ts#L177)*
 
 ___
 
@@ -41,7 +43,7 @@ ___
 
 Ƭ **CookieToken**: *string*
 
-*Defined in [src/sso/interfaces.ts:40](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/interfaces.ts#L40)*
+*Defined in [src/sso/interfaces.ts:49](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/interfaces.ts#L49)*
 
 ___
 
@@ -49,7 +51,7 @@ ___
 
 Ƭ **MessageType**: *"Unknown" | "NTLM_NEGOTIATE_01" | "NTLM_CHALLENGE_02" | "NTLM_AUTHENTICATE_03" | "Kerberos_1" | "Kerberos_N"*
 
-*Defined in [src/sso/interfaces.ts:42](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/interfaces.ts#L42)*
+*Defined in [src/sso/interfaces.ts:51](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/interfaces.ts#L51)*
 
 ___
 
@@ -57,7 +59,7 @@ ___
 
 Ƭ **Middleware**: *function*
 
-*Defined in [src/sso/interfaces.ts:34](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/interfaces.ts#L34)*
+*Defined in [src/sso/interfaces.ts:43](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/interfaces.ts#L43)*
 
 #### Type declaration:
 
@@ -77,7 +79,7 @@ ___
 
 Ƭ **NextFunction**: *function*
 
-*Defined in [src/sso/interfaces.ts:50](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/interfaces.ts#L50)*
+*Defined in [src/sso/interfaces.ts:59](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/interfaces.ts#L59)*
 
 #### Type declaration:
 
@@ -95,4 +97,4 @@ ___
 
 Ƭ **SSOMethod**: *"NTLM" | "Kerberos" | undefined*
 
-*Defined in [src/sso/interfaces.ts:174](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/interfaces.ts#L174)*
+*Defined in [src/sso/interfaces.ts:183](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/interfaces.ts#L183)*

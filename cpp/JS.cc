@@ -1,6 +1,8 @@
 #include "JS.h"
 #include "log.h"
 #include "polyfill.h"
+#include "macros.h"
+#include "flags.h"
 
 #define WINDOWS_TICK 10000000
 #define SEC_TO_UNIX_EPOCH 11644473600LL
@@ -101,5 +103,57 @@ LUID JS::toLuid(Napi::Object value) {
   result.HighPart = value.Get("HightPart").As<Napi::Number>().Int32Value();
   return result;
 }
+
+Napi::Object JS::fromTokenPrivileges(Napi::Env env,
+                                     PTOKEN_PRIVILEGES privileges) {
+  Napi::Object result = Napi::Object::New(env);
+
+  DWORD counter = 0;
+
+  for (DWORD i = 0; i < privileges->PrivilegeCount; i++) {
+    DWORD privilegeLen = _MAX_PATH;
+    wchar_t privilegeName[_MAX_PATH];
+    BOOL status = LookupPrivilegeName(
+        NULL,  // NULL = privilege on the local system
+        &(privileges->Privileges[i].Luid),  // LUID pointer
+        privilegeName,                      // Receive the string privilege name
+        &privilegeLen  // Effective length of the privilegeName);
+    );
+    if (!status) {
+      continue;
+    }
+
+    Napi::Array array = setFlags(env, USER_PRIVILEGE_FLAGS,
+                                 privileges->Privileges[i].Attributes);
+    result[plf::wstrtostr(privilegeName)] = array;
+    counter++;
+  }
+  return result;
+}
+
+PTOKEN_PRIVILEGES JS::toTokenPrivileges(Napi::Object value) {
+  Napi::Env env = value.Env();
+  Napi::Array keys = value.GetPropertyNames();
+  uint32_t length = keys.Length();
+  PTOKEN_PRIVILEGES result = (PTOKEN_PRIVILEGES)malloc(
+      sizeof(DWORD) + sizeof(LUID_AND_ATTRIBUTES) * length);
+
+  result->PrivilegeCount = length;
+  for (uint32_t i = 0; i < length; i++) {
+    LUID luid;
+    std::u16string sPrivilegeName = keys.Get(i).As<Napi::String>();
+    LPCWSTR privilegeName = (LPCWSTR)sPrivilegeName.c_str();
+
+    BOOL status = LookupPrivilegeValue(NULL, privilegeName, &luid);
+    CHECK_ERROR(status, "LookupPrivilegeValue");
+    result->Privileges[i].Luid = luid;
+
+    DWORD flags = getFlags(env, USER_PRIVILEGE_FLAGS,
+                           value.Get(keys.Get(i)).As<Napi::Array>(), 0);
+    result->Privileges[i].Attributes = flags;
+  }
+
+  return result;
+};
 
 }  // namespace myAddon

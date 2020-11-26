@@ -23,9 +23,9 @@ It contains the security buffers exchanged between the client and the server.
 
 ### `Readonly` SECURITY_STATUS
 
-• **SECURITY_STATUS**: *string*
+• **SECURITY_STATUS**: *[SecurityStatus](../modules/_lib_sspi_d_.md#securitystatus)*
 
-*Defined in [lib/sspi.d.ts:92](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/lib/sspi.d.ts#L92)*
+*Defined in [lib/sspi.d.ts:86](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/lib/sspi.d.ts#L86)*
 
 ___
 
@@ -33,7 +33,7 @@ ___
 
 • **SecBufferDesc**: *[SecBufferDesc](_lib_sspi_d_.secbufferdesc.md)*
 
-*Defined in [lib/sspi.d.ts:93](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/lib/sspi.d.ts#L93)*
+*Defined in [lib/sspi.d.ts:87](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/lib/sspi.d.ts#L87)*
 
 ___
 
@@ -41,4 +41,4 @@ ___
 
 • **contextHandle**: *[CtxtHandle](_lib_sspi_d_.ctxthandle.md)*
 
-*Defined in [lib/sspi.d.ts:91](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/lib/sspi.d.ts#L91)*
+*Defined in [lib/sspi.d.ts:85](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/lib/sspi.d.ts#L85)*

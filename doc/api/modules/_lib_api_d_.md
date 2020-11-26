@@ -17,23 +17,27 @@
 * [CredentialUseFlag](_lib_api_d_.md#credentialuseflag)
 * [CredentialWithExpiry](_lib_api_d_.md#credentialwithexpiry)
 * [CtxtHandle](_lib_api_d_.md#ctxthandle)
+* [EwxFlag](_lib_api_d_.md#ewxflag)
 * [ExtendedNameFormatFlag](_lib_api_d_.md#extendednameformatflag)
 * [GetTokenInformationInput](_lib_api_d_.md#gettokeninformationinput)
+* [Groups](_lib_api_d_.md#groups)
 * [HANDLE](_lib_api_d_.md#handle)
 * [InformationClass](_lib_api_d_.md#informationclass)
 * [InitializeSecurityContextInput](_lib_api_d_.md#initializesecuritycontextinput)
 * [IscReqFlag](_lib_api_d_.md#iscreqflag)
 * [NetApi](_lib_api_d_.md#netapi)
+* [PrivilegeAttributeFlag](_lib_api_d_.md#privilegeattributeflag)
 * [SecBufferDesc](_lib_api_d_.md#secbufferdesc)
 * [SecPkgInfo](_lib_api_d_.md#secpkginfo)
 * [SecurityContext](_lib_api_d_.md#securitycontext)
+* [SecurityStatus](_lib_api_d_.md#securitystatus)
 * [SecuritySupportProvider](_lib_api_d_.md#securitysupportprovider)
 * [ServerSecurityContext](_lib_api_d_.md#serversecuritycontext)
+* [ShutdownReasonFlag](_lib_api_d_.md#shutdownreasonflag)
 * [SidObject](_lib_api_d_.md#sidobject)
 * [SidPointer](_lib_api_d_.md#sidpointer)
 * [Sspi](_lib_api_d_.md#sspi)
 * [TargetDataRepMapFlag](_lib_api_d_.md#targetdatarepmapflag)
-* [Token](_lib_api_d_.md#token)
 * [UserCredential](_lib_api_d_.md#usercredential)
 * [UserInfo1](_lib_api_d_.md#userinfo1)
 * [UserInfo1Flag](_lib_api_d_.md#userinfo1flag)
@@ -44,6 +48,7 @@
 * [netapi](_lib_api_d_.md#const-netapi)
 * [sspi](_lib_api_d_.md#const-sspi)
 * [sysinfo](_lib_api_d_.md#const-sysinfo)
+* [user](_lib_api_d_.md#const-user)
 
 ## References
 
@@ -113,6 +118,12 @@ ___
 
 ___
 
+###  EwxFlag
+
+• **EwxFlag**:
+
+___
+
 ###  ExtendedNameFormatFlag
 
 • **ExtendedNameFormatFlag**:
@@ -122,6 +133,12 @@ ___
 ###  GetTokenInformationInput
 
 • **GetTokenInformationInput**:
+
+___
+
+###  Groups
+
+• **Groups**:
 
 ___
 
@@ -155,6 +172,12 @@ ___
 
 ___
 
+###  PrivilegeAttributeFlag
+
+• **PrivilegeAttributeFlag**:
+
+___
+
 ###  SecBufferDesc
 
 • **SecBufferDesc**:
@@ -173,6 +196,12 @@ ___
 
 ___
 
+###  SecurityStatus
+
+• **SecurityStatus**:
+
+___
+
 ###  SecuritySupportProvider
 
 • **SecuritySupportProvider**:
@@ -182,6 +211,12 @@ ___
 ###  ServerSecurityContext
 
 • **ServerSecurityContext**:
+
+___
+
+###  ShutdownReasonFlag
+
+• **ShutdownReasonFlag**:
 
 ___
 
@@ -209,12 +244,6 @@ ___
 
 ___
 
-###  Token
-
-• **Token**:
-
-___
-
 ###  UserCredential
 
 • **UserCredential**:
@@ -237,7 +266,7 @@ ___
 
 • **adsi**: *[Adsi](../interfaces/_lib_adsi_d_.adsi.md)*
 
-*Defined in [lib/api.d.ts:10](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/lib/api.d.ts#L10)*
+*Defined in [lib/api.d.ts:11](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/lib/api.d.ts#L11)*
 
 ___
 
@@ -245,7 +274,7 @@ ___
 
 • **netapi**: *[NetApi](../interfaces/_lib_netapi_d_.netapi.md)*
 
-*Defined in [lib/api.d.ts:12](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/lib/api.d.ts#L12)*
+*Defined in [lib/api.d.ts:14](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/lib/api.d.ts#L14)*
 
 ___
 
@@ -253,7 +282,7 @@ ___
 
 • **sspi**: *[Sspi](../interfaces/_lib_sspi_d_.sspi.md)*
 
-*Defined in [lib/api.d.ts:9](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/lib/api.d.ts#L9)*
+*Defined in [lib/api.d.ts:10](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/lib/api.d.ts#L10)*
 
 ___
 
@@ -261,4 +290,12 @@ ___
 
 • **sysinfo**: *[SysInfo](../interfaces/_lib_sysinfo_d_.sysinfo.md)*
 
-*Defined in [lib/api.d.ts:11](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/lib/api.d.ts#L11)*
+*Defined in [lib/api.d.ts:12](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/lib/api.d.ts#L12)*
+
+___
+
+### `Const` user
+
+• **user**: *[User](../interfaces/_lib_user_d_.user.md)*
+
+*Defined in [lib/api.d.ts:13](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/lib/api.d.ts#L13)*

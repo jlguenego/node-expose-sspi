@@ -33,7 +33,7 @@
 
 • **req**: *[IncomingMessage](../interfaces/_src_sso_interfaces_._http_.incomingmessage.md)*
 
-*Defined in [src/sso/schm/ServerContextHandleManager.ts:6](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/schm/ServerContextHandleManager.ts#L6)*
+*Defined in [src/sso/schm/ServerContextHandleManager.ts:6](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/schm/ServerContextHandleManager.ts#L6)*
 
 ___
 
@@ -41,7 +41,7 @@ ___
 
 • **res**: *ServerResponse*
 
-*Defined in [src/sso/schm/ServerContextHandleManager.ts:7](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/schm/ServerContextHandleManager.ts#L7)*
+*Defined in [src/sso/schm/ServerContextHandleManager.ts:7](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/schm/ServerContextHandleManager.ts#L7)*
 
 ## Methods
 
@@ -49,7 +49,7 @@ ___
 
 ▸ **getCookieToken**(`req`: [IncomingMessage](../interfaces/_src_sso_interfaces_._http_.incomingmessage.md), `res`: ServerResponse): *[CookieToken](../modules/_src_sso_interfaces_.md#cookietoken)*
 
-*Defined in [src/sso/schm/ServerContextHandleManager.ts:9](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/schm/ServerContextHandleManager.ts#L9)*
+*Defined in [src/sso/schm/ServerContextHandleManager.ts:9](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/schm/ServerContextHandleManager.ts#L9)*
 
 **Parameters:**
 
@@ -66,7 +66,7 @@ ___
 
 ▸ **getHandle**(`cookieToken`: [CookieToken](../modules/_src_sso_interfaces_.md#cookietoken)): *[CtxtHandle](../interfaces/_lib_sspi_d_.ctxthandle.md) | undefined*
 
-*Defined in [src/sso/schm/ServerContextHandleManager.ts:21](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/schm/ServerContextHandleManager.ts#L21)*
+*Defined in [src/sso/schm/ServerContextHandleManager.ts:21](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/schm/ServerContextHandleManager.ts#L21)*
 
 **Parameters:**
 
@@ -82,7 +82,7 @@ ___
 
 ▸ **getMethod**(`cookieToken`: [CookieToken](../modules/_src_sso_interfaces_.md#cookietoken)): *[SSOMethod](../modules/_src_sso_interfaces_.md#ssomethod)*
 
-*Defined in [src/sso/schm/ServerContextHandleManager.ts:17](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/schm/ServerContextHandleManager.ts#L17)*
+*Defined in [src/sso/schm/ServerContextHandleManager.ts:17](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/schm/ServerContextHandleManager.ts#L17)*
 
 **Parameters:**
 
@@ -98,7 +98,7 @@ ___
 
 ▸ **release**(`cookieToken`: [CookieToken](../modules/_src_sso_interfaces_.md#cookietoken)): *void*
 
-*Defined in [src/sso/schm/ServerContextHandleManager.ts:32](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/schm/ServerContextHandleManager.ts#L32)*
+*Defined in [src/sso/schm/ServerContextHandleManager.ts:32](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/schm/ServerContextHandleManager.ts#L32)*
 
 At the end of the negotiation this method MUST be called to release the context handle.
 
@@ -120,7 +120,7 @@ ___
 
 ▸ **setHandle**(`contextHandle`: [CtxtHandle](../interfaces/_lib_sspi_d_.ctxthandle.md), `cookieToken`: [CookieToken](../modules/_src_sso_interfaces_.md#cookietoken)): *void*
 
-*Defined in [src/sso/schm/ServerContextHandleManager.ts:23](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/schm/ServerContextHandleManager.ts#L23)*
+*Defined in [src/sso/schm/ServerContextHandleManager.ts:23](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/schm/ServerContextHandleManager.ts#L23)*
 
 **Parameters:**
 
@@ -137,7 +137,7 @@ ___
 
 ▸ **setMethod**(`ssoMethod`: [SSOMethod](../modules/_src_sso_interfaces_.md#ssomethod), `cookieToken`: [CookieToken](../modules/_src_sso_interfaces_.md#cookietoken)): *void*
 
-*Defined in [src/sso/schm/ServerContextHandleManager.ts:19](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/schm/ServerContextHandleManager.ts#L19)*
+*Defined in [src/sso/schm/ServerContextHandleManager.ts:19](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/schm/ServerContextHandleManager.ts#L19)*
 
 **Parameters:**
 
@@ -154,7 +154,7 @@ ___
 
 ▸ **waitForReleased**(`cookieToken`: [CookieToken](../modules/_src_sso_interfaces_.md#cookietoken)): *Promise‹void›*
 
-*Defined in [src/sso/schm/ServerContextHandleManager.ts:15](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/schm/ServerContextHandleManager.ts#L15)*
+*Defined in [src/sso/schm/ServerContextHandleManager.ts:15](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/schm/ServerContextHandleManager.ts#L15)*
 
 **Parameters:**
 

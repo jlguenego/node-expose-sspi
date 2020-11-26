@@ -31,7 +31,7 @@ options to provide to sso.auth() and SSO.setOptions().
 
 • **allowsAnonymousLogon**? : *undefined | false | true*
 
-*Defined in [src/sso/interfaces.ts:132](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/interfaces.ts#L132)*
+*Defined in [src/sso/interfaces.ts:141](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/interfaces.ts#L141)*
 
 If true, someone that connects without login/password may be
 authenticated as Windows anonymous user account.
@@ -46,7 +46,7 @@ ___
 
 • **allowsGuest**? : *undefined | false | true*
 
-*Defined in [src/sso/interfaces.ts:121](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/interfaces.ts#L121)*
+*Defined in [src/sso/interfaces.ts:130](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/interfaces.ts#L130)*
 
 If true, someone that connects with wrong login/password may be
 authenticated as Windows guest user.
@@ -61,7 +61,7 @@ ___
 
 • **groupFilterRegex**? : *undefined | string*
 
-*Defined in [src/sso/interfaces.ts:110](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/interfaces.ts#L110)*
+*Defined in [src/sso/interfaces.ts:119](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/interfaces.ts#L119)*
 
 Filter the groups. Useful if there are too much groups to fetch.
 
@@ -75,7 +75,7 @@ ___
 
 • **useActiveDirectory**? : *undefined | false | true*
 
-*Defined in [src/sso/interfaces.ts:79](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/interfaces.ts#L79)*
+*Defined in [src/sso/interfaces.ts:88](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/interfaces.ts#L88)*
 
 Brings back the Active Directory user information
 
@@ -91,7 +91,7 @@ ___
 
 • **useCookies**? : *undefined | false | true*
 
-*Defined in [src/sso/interfaces.ts:100](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/interfaces.ts#L100)*
+*Defined in [src/sso/interfaces.ts:109](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/interfaces.ts#L109)*
 
 Manage authentication with cookie.
 Useful for performance when many users try to connect at the same time.
@@ -106,7 +106,7 @@ ___
 
 • **useGroups**? : *undefined | false | true*
 
-*Defined in [src/sso/interfaces.ts:67](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/interfaces.ts#L67)*
+*Defined in [src/sso/interfaces.ts:76](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/interfaces.ts#L76)*
 
 Brings back the groups the user belongs to.
 
@@ -120,7 +120,7 @@ ___
 
 • **useOwner**? : *undefined | false | true*
 
-*Defined in [src/sso/interfaces.ts:89](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/interfaces.ts#L89)*
+*Defined in [src/sso/interfaces.ts:98](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/interfaces.ts#L98)*
 
 Brings back the server process owner info.
 
@@ -134,7 +134,7 @@ ___
 
 • **useSession**? : *undefined | false | true*
 
-*Defined in [src/sso/interfaces.ts:145](https://github.com/jlguenego/node-expose-sspi/blob/e4d7005/src/sso/interfaces.ts#L145)*
+*Defined in [src/sso/interfaces.ts:154](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/interfaces.ts#L154)*
 
 If true, cache the req.sso into req.session.sso.
 module `express-session` should be used.
