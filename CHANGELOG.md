@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.52](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.51...v0.1.52) (2020-11-26)
+
+
+### Features
+
+* added better watch to npm run dev ([4760192](https://github.com/jlguenego/node-expose-sspi/commit/47601920b71d1cb1696920d3c4e5015904d703dd))
+* added LookupPrivilegeValue ([927f02c](https://github.com/jlguenego/node-expose-sspi/commit/927f02c1934dea78eeb072c2190594c1814747be))
+* added privileges management ([378a32a](https://github.com/jlguenego/node-expose-sspi/commit/378a32a09de78567a0b62414c9e5b70ce0b42028))
+* added TokenPrivileges ([d6a46b4](https://github.com/jlguenego/node-expose-sspi/commit/d6a46b47edd5cdefab5bcdad37e8e94fc1591b1a))
+
 ### [0.1.51](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.50...v0.1.51) (2020-11-19)
 
 
