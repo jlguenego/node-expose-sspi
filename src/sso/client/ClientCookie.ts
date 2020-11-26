@@ -29,6 +29,6 @@ export class ClientCookie {
     if (cookieStr.length === 0) {
       return;
     }
-    Object.assign(requestInit.headers, { cookie: cookieStr });
+    requestInit.headers = { ...requestInit.headers, cookie: cookieStr };
   }
 }

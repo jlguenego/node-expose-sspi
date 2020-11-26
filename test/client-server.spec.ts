@@ -54,7 +54,8 @@ async function isLocalhostSPN(): Promise<boolean> {
 }
 
 describe('ClientServer', () => {
-  it('should test SEC_E_NO_AUTHENTICATING_AUTHORITY', async () => {
+  it('should test SEC_E_NO_AUTHENTICATING_AUTHORITY', async function () {
+    this.timeout(15000);
     const server = new MyServer();
     try {
       await server.start();

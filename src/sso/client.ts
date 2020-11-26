@@ -82,7 +82,8 @@ export class Client {
    */
   async fetch(resource: string, init?: RequestInit): Promise<Response> {
     const initKeepAlive = { ...init, agent: this.agent };
-    const response = await fetch(resource, init);
+    this.clientCookie.restituteCookies(initKeepAlive);
+    const response = await fetch(resource, initKeepAlive);
     const result = await this.handleAuth(response, resource, initKeepAlive);
     return result;
   }
