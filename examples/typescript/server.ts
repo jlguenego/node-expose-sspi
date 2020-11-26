@@ -1,6 +1,6 @@
 import express from 'express';
 import session from 'express-session';
-import { sso } from 'node-expose-sspi';
+import { sso } from '../..';
 
 const app = express();
 

@@ -5,7 +5,7 @@ import {
   CredentialUseFlag,
   AcquireCredHandleInput,
   InitializeSecurityContextInput,
-} from 'node-expose-sspi';
+} from '../..';
 import os from 'os';
 
 const result = sspi.hello();

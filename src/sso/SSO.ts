@@ -26,7 +26,7 @@ export class SSO {
     const names = sspi.QueryContextAttributes(
       this.serverContextHandle,
       'SECPKG_ATTR_NAMES'
-    );
+    ) as { sUserName: string };
     const [domain, name] = names.sUserName.split('\\');
     this.user = { domain, name };
 

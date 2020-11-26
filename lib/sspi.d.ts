@@ -9,6 +9,10 @@ import {
 } from './flags';
 import { AccessToken, TokenPrivileges } from './user';
 
+export interface Props {
+  [key: string]: unknown;
+}
+
 export type SecuritySupportProvider = 'NTLM' | 'Kerberos' | 'Negotiate';
 
 /**
@@ -37,6 +41,7 @@ interface SecPkgInfo {
  *
  * @interface CtxtHandle
  */
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface CtxtHandle {}
 
 /**
@@ -47,6 +52,7 @@ export interface CtxtHandle {}
  *
  * @interface CredHandle
  */
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface CredHandle {}
 
 /**
@@ -54,6 +60,7 @@ export interface CredHandle {}
  *
  * @interface HANDLE
  */
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface HANDLE {}
 
 /**
@@ -389,7 +396,7 @@ export interface Sspi {
    * @returns {*}
    * @memberof Sspi
    */
-  QueryCredentialsAttributes(credential: CredHandle, attribute: string): any;
+  QueryCredentialsAttributes(credential: CredHandle, attribute: string): Props;
 
   /**
    * Query what can be done with a given context handle.
@@ -399,7 +406,7 @@ export interface Sspi {
    * @returns {*}
    * @memberof Sspi
    */
-  QueryContextAttributes(ctxtHandle: CtxtHandle, attribute: string): any;
+  QueryContextAttributes(ctxtHandle: CtxtHandle, attribute: string): Props;
 
   /**
    * Get a client user token.

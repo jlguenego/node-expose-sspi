@@ -6,12 +6,13 @@ import { SSOMethod } from '../interfaces';
 
 const debug = dbg('node-expose-sspi:schManager');
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type IPromiseFn = (value?: any) => void;
 
 interface AuthItem {
   resolve?: IPromiseFn;
   reject?: IPromiseFn;
-  timeout: NodeJS.Timeout;
+  timeout: ReturnType<typeof setTimeout>;
 }
 
 const TOO_LATE_ERROR_MSG = 'too many concurrent connections.';

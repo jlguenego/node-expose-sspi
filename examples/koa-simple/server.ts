@@ -1,7 +1,7 @@
 import 'source-map-support/register';
 import Koa from 'koa';
-import { sso } from 'node-expose-sspi';
-import { NextFunction } from '../../src/sso/interfaces';
+// eslint-disable-next-line node/no-unpublished-import
+import { sso, NextFunction } from '../..';
 const app = new Koa();
 
 const auth = sso.auth();

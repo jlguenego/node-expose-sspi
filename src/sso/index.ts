@@ -1,3 +1,4 @@
+export * from './interfaces';
 import { auth } from './auth';
 import { connect } from './connect';
 import {

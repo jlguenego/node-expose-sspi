@@ -17,7 +17,7 @@ const start = async (): Promise<void> => {
     await fastify.listen(3000);
   } catch (err) {
     fastify.log.error(err);
-    process.exit(1);
+    throw err;
   }
 };
 start();
