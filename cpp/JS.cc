@@ -156,4 +156,31 @@ PTOKEN_PRIVILEGES JS::toTokenPrivileges(Napi::Object value) {
   return result;
 };
 
+PPRIVILEGE_SET JS::toSetPrivileges(Napi::Object value, DWORD control) {
+  Napi::Env env = value.Env();
+  Napi::Array keys = value.GetPropertyNames();
+  uint32_t length = keys.Length();
+  PPRIVILEGE_SET result = (PPRIVILEGE_SET)malloc(
+      sizeof(DWORD) * 2 + sizeof(LUID_AND_ATTRIBUTES) * length);
+
+  result->PrivilegeCount = length;
+  result->Control = control;
+
+  for (uint32_t i = 0; i < length; i++) {
+    LUID luid;
+    std::u16string sPrivilegeName = keys.Get(i).As<Napi::String>();
+    LPCWSTR privilegeName = (LPCWSTR)sPrivilegeName.c_str();
+
+    BOOL status = LookupPrivilegeValue(NULL, privilegeName, &luid);
+    CHECK_ERROR(status, "LookupPrivilegeValue");
+    result->Privilege[i].Luid = luid;
+
+    DWORD flags = getFlags(env, USER_PRIVILEGE_FLAGS,
+                           value.Get(keys.Get(i)).As<Napi::Array>(), 0);
+    result->Privilege[i].Attributes = flags;
+  }
+
+  return result;
+};
+
 }  // namespace myAddon

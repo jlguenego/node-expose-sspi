@@ -73,6 +73,7 @@ Object InitNETAPI(Env env, Object exports) {
 }
 
 Object InitUSER(Env env, Object exports) {
+  EXPORT(PrivilegeCheck);
   EXPORT(AdjustTokenPrivileges);
   EXPORT(LookupPrivilegeValue);
   EXPORT(ExitWindows);

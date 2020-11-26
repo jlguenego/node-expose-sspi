@@ -9,6 +9,33 @@ const ownerPrivileges = sspi.GetTokenInformation({
 });
 console.log('ownerPrivileges: ', ownerPrivileges);
 
+const canShutdown = user.PrivilegeCheck({
+  accessToken: ownerToken,
+  requireAll: true,
+  requiredPrivileges: {
+    SeShutdownPrivilege: ['SE_PRIVILEGE_ENABLED'],
+  },
+});
+
+console.log('canShutdown: ', canShutdown);
+
+user.AdjustTokenPrivileges({
+  accessToken: ownerToken,
+  disableAllPrivileges: false,
+  newState: {
+    SeShutdownPrivilege: ['SE_PRIVILEGE_ENABLED'],
+  },
+});
+
+const canShutdown2 = user.PrivilegeCheck({
+  accessToken: ownerToken,
+  requireAll: true,
+  requiredPrivileges: {
+    SeShutdownPrivilege: ['SE_PRIVILEGE_ENABLED'],
+  },
+});
+console.log('canShutdown2: ', canShutdown2);
+
 const luid = user.LookupPrivilegeValue({
   privilegeName: 'SeChangeNotifyPrivilege',
 });

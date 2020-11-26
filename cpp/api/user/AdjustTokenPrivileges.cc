@@ -22,8 +22,10 @@ void e_AdjustTokenPrivileges(const Napi::CallbackInfo& info) {
   BOOL disableAllPrivileges =
       input.Get("disableAllPrivileges").As<Napi::Boolean>();
 
-  PTOKEN_PRIVILEGES pNewState =
-      JS::toTokenPrivileges(input.Get("newState").As<Napi::Object>());
+  PTOKEN_PRIVILEGES pNewState = NULL;
+  if (input.Has("newState")) {
+    pNewState = JS::toTokenPrivileges(input.Get("newState").As<Napi::Object>());
+  }
 
   BOOL status = AdjustTokenPrivileges(  //
       accessTokenHandle,                // access token
@@ -33,6 +35,9 @@ void e_AdjustTokenPrivileges(const Napi::CallbackInfo& info) {
       NULL,  // we do not use previousState so we put NULL
       NULL   // we do not use previousState so we put NULL
   );
+  if (pNewState) {
+    free(pNewState);
+  }
   CHECK_ERROR(status, "AdjustTokenPrivileges");
 
 }  // namespace myAddon
