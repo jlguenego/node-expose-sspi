@@ -19,7 +19,7 @@ const httpsAgent = new https.Agent({
 });
 
 const agent = (parsedURL: URL): http.Agent =>
-  parsedURL.protocol == 'http:' ? httpAgent : httpsAgent;
+  parsedURL.protocol === 'http:' ? httpAgent : httpsAgent;
 
 /**
  * Allow to fetch url with a system that uses the negotiate protocol.

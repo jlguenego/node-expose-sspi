@@ -1,6 +1,6 @@
 import dbg from 'debug';
 import fetch, { RequestInit, Response } from 'node-fetch';
-import url from 'url';
+import { URL } from 'url';
 import { Props } from '../interfaces';
 
 import { AbstractHandler } from './AbstractHandler';
@@ -72,7 +72,7 @@ export class DigestHandler extends AbstractHandler {
     // HA2 = MD5(method:digestURI)
     const method = requestInit.method ?? 'GET';
     const entityBody = (requestInit.body as string) ?? '';
-    const digestURI = url.parse(resource).path as string;
+    const digestURI = new URL(resource).pathname;
     const ha2 = getHA2(digestChallenge.qop, method, digestURI, entityBody);
 
     // response = MD5(HA1:nonce:nonceCount:cnonce:qop:HA2)
