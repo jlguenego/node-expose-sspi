@@ -1,5 +1,5 @@
 import { IncomingMessage, ServerResponse } from 'http';
-import { Props } from '../../lib/api';
+import { AccessToken, Props } from '../../lib/api';
 
 export interface Flag {
   label: string;
@@ -158,6 +158,7 @@ export interface User {
   domain?: string;
   groups?: string[];
   adUser?: ADUser;
+  accessToken?: AccessToken;
 }
 
 export interface Database {

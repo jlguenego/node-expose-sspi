@@ -30,7 +30,7 @@ export class SSO {
     const [domain, name] = names.sUserName.split('\\');
     this.user = { domain, name };
 
-    // impersonate to retrieve the userToken.
+    // impersonate to retrieve the used access token.
     sspi.ImpersonateSecurityContext(this.serverContextHandle);
     debug('impersonate security context ok');
     const userToken = sspi.OpenThreadToken();
@@ -44,6 +44,8 @@ export class SSO {
     }
     debug('about to do RevertSecurityContext');
     sspi.RevertSecurityContext(this.serverContextHandle);
+
+    this.user.accessToken = userToken;
 
     debug('this.options.useGroups: ', this.options.useGroups);
     if (this.options.useGroups) {
