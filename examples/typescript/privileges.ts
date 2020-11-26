@@ -36,6 +36,12 @@ const canShutdown2 = user.PrivilegeCheck({
 });
 console.log('canShutdown2: ', canShutdown2);
 
+const ownerPrivileges2 = sspi.GetTokenInformation({
+  accessToken: ownerToken,
+  tokenInformationClass: 'TokenPrivileges',
+});
+console.log('ownerPrivileges2: ', ownerPrivileges2);
+
 const luid = user.LookupPrivilegeValue({
   privilegeName: 'SeChangeNotifyPrivilege',
 });
