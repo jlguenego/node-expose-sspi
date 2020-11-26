@@ -58,7 +58,7 @@ export class DigestHandler extends AbstractHandler {
     }, {} as Props) as unknown) as DigestChallenge;
     debug('digestChallenge: ', digestChallenge);
 
-    let requestInit: RequestInit = { ...init };
+    const requestInit: RequestInit = { ...init };
 
     // client nonce.
     const cnonce = md5(Math.round(Math.random() * 1e10).toString(16)).substr(

@@ -1,7 +1,7 @@
 import { sso } from '../src';
 import { strict as assert } from 'assert';
 
-describe('SPN Unit Test', function () {
+describe('SPN Unit Test', () => {
   if (sso.isOnDomain() && sso.isActiveDirectoryReachable()) {
     it('should test SPN', async function () {
       this.timeout(15000);

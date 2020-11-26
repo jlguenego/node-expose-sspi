@@ -65,7 +65,7 @@ class Server {
   }
 }
 
-describe('Client Authentication Digest Test', function () {
+describe('Client Authentication Digest Test', () => {
   it('should test client with Digest Authentication', async function () {
     this.timeout(15000);
     const server = new Server();

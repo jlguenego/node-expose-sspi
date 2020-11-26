@@ -7,46 +7,46 @@ describe('getSPNFromURI Unit Test', function () {
 
   const msDomain = sysinfo.GetComputerNameEx('ComputerNameDnsDomain');
 
-  it('should test localhost', async function () {
+  it('should test localhost', async () => {
     assert.equal(await f('http://localhost:3000'), 'HTTP/localhost');
   });
 
-  it('should test 127.0.0.1', async function () {
+  it('should test 127.0.0.1', async () => {
     assert.equal(await f('http://127.0.0.1:3000'), 'HTTP/localhost');
   });
 
-  it('should test whatever', async function () {
+  it('should test whatever', async () => {
     assert.equal(await f('http://whatever:3000'), 'HTTP/whatever.' + msDomain);
   });
 
-  it('should test ' + `http://whatever.${msDomain}:3000`, async function () {
+  it('should test ' + `http://whatever.${msDomain}:3000`, async () => {
     assert.equal(
       await f(`http://whatever.${msDomain}:3000`),
       'HTTP/whatever.' + msDomain
     );
   });
-  it('should test http://whatever.foo.bar:3000', async function () {
+  it('should test http://whatever.foo.bar:3000', async () => {
     assert.equal(
       await f('http://whatever.foo.bar:3000'),
       'HTTP/whatever.foo.bar'
     );
   });
 
-  it('should test http://whatever.foo.bar:3000/foo/bar', async function () {
+  it('should test http://whatever.foo.bar:3000/foo/bar', async () => {
     assert.equal(
       await f('http://whatever.foo.bar:3000/foo/bar'),
       'HTTP/whatever.foo.bar'
     );
   });
 
-  it('should test http://whatever.foo.bar/foo/bar', async function () {
+  it('should test http://whatever.foo.bar/foo/bar', async () => {
     assert.equal(
       await f('http://whatever.foo.bar/foo/bar'),
       'HTTP/whatever.foo.bar'
     );
   });
 
-  it('should test http:///whatever.foo.bar:3000', async function () {
+  it('should test http:///whatever.foo.bar:3000', async () => {
     try {
       await f('http:///whatever.foo.bar:3000');
     } catch (e) {

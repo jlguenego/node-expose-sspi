@@ -20,7 +20,12 @@ class MyServer {
     // to avoid the default error handler do some console.error stuff.
     this.app.use(
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      (err: any, req: Request, res: Response, next: NextFunction) => {
+      (
+        err: { statusCode: number },
+        req: Request,
+        res: Response,
+        next: NextFunction
+      ) => {
         res.status(err.statusCode).end();
       }
     );
@@ -48,8 +53,8 @@ async function isLocalhostSPN(): Promise<boolean> {
   return result;
 }
 
-describe('ClientServer', function () {
-  it('should test SEC_E_NO_AUTHENTICATING_AUTHORITY', async function () {
+describe('ClientServer', () => {
+  it('should test SEC_E_NO_AUTHENTICATING_AUTHORITY', async () => {
     const server = new MyServer();
     try {
       await server.start();
@@ -69,7 +74,7 @@ describe('ClientServer', function () {
   });
 
   if (sso.isActiveDirectoryReachable()) {
-    it('should test SEC_E_LOGON_DENIED', async function () {
+    it('should test SEC_E_LOGON_DENIED', async () => {
       const server = new MyServer();
       try {
         await server.start();
@@ -116,12 +121,14 @@ describe('ClientServer', function () {
   }
 
   if (sso.hasAdminPrivileges()) {
-    it('should return bad login', async function () {
+    it('should return bad login', async () => {
       const username = 'test345';
       try {
         try {
           netapi.NetUserDel(undefined, username);
-        } catch (e) {}
+        } catch (e) {
+          debug('no account to delete');
+        }
         netapi.NetUserAdd(undefined, 1, {
           name: username,
           password: 'toto123!',
@@ -139,7 +146,9 @@ describe('ClientServer', function () {
       } finally {
         try {
           netapi.NetUserDel(undefined, username);
-        } catch (e) {}
+        } catch (e) {
+          debug('no account to delete');
+        }
       }
     });
   }

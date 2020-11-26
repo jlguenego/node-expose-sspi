@@ -22,7 +22,7 @@ export async function getSPNFromURI(url: string): Promise<string> {
     debug('Client running on a host that is not part of a Microsoft domain');
     return 'whatever';
   }
-  const matches = /^https?\:\/\/([^\/:?#]+)(?:[\/:?#]|$)/i.exec(url);
+  const matches = /^https?:\/\/([^/:?#]+)(?:[/:?#]|$)/i.exec(url);
   const urlDomain = matches && matches[1];
   if (!urlDomain) {
     throw new Error('url is not well parsed. url=' + url);
@@ -54,7 +54,7 @@ export async function getSPNFromURI(url: string): Promise<string> {
 }
 
 export function encodeBase64(str: string) {
-  let buff = Buffer.from(str);
+  const buff = Buffer.from(str);
   return buff.toString('base64');
 }
 

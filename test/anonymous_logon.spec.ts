@@ -1,7 +1,7 @@
 import { strict as assert } from 'assert';
 
-describe('Anonymous logon', function () {
-  it('should connect with anonymous logon', function () {
+describe('Anonymous logon', () => {
+  it('should connect with anonymous logon', () => {
     assert.equal(true, true);
   });
 });

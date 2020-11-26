@@ -1,12 +1,13 @@
 import { sso } from './index';
+import { Props } from './interfaces';
 
-export function getStatusInfo(): any {
+export function getStatusInfo() {
   try {
     const result = {
       adminPrivileges: sso.hasAdminPrivileges(),
       isOnDomain: sso.isOnDomain(),
       domain: sso.getDefaultDomain(),
-    } as any;
+    } as Props;
     if (sso.isOnDomain()) {
       result.isActiveDirectoryReachable = sso.isActiveDirectoryReachable();
     }

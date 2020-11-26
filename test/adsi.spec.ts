@@ -10,8 +10,8 @@ import dbg from 'debug';
 
 const debug = dbg('node-expose-sspi:test');
 
-describe('ADSI Unit Test', function () {
-  it('should test CoInitialize and CoUninitialize', function () {
+describe('ADSI Unit Test', () => {
+  it('should test CoInitialize and CoUninitialize', () => {
     adsi.CoInitialize();
     adsi.CoUninitialize();
   });
@@ -26,11 +26,11 @@ describe('ADSI Unit Test', function () {
   });
 
   if (sso.isOnDomain() && sso.isActiveDirectoryReachable()) {
-    it('should test CoInitializeEx', function () {
+    it('should test CoInitializeEx', () => {
       adsi.CoInitializeEx(['COINIT_MULTITHREADED']);
     });
 
-    it('should test ADsOpenObject with global catalog', async function () {
+    it('should test ADsOpenObject with global catalog', async () => {
       try {
         const gc = await adsi.ADsOpenObject<IADsContainer>({
           binding: 'GC:',
@@ -51,7 +51,7 @@ describe('ADSI Unit Test', function () {
 
     let distinguishedName: string;
     const users: LDAPObject[] = [];
-    it('should get the Root Distinguished Name (LDAP notion) for the domain', async function () {
+    it('should get the Root Distinguished Name (LDAP notion) for the domain', async () => {
       const root = await adsi.ADsGestObject('LDAP://rootDSE');
       distinguishedName = await root.Get('defaultNamingContext');
       assert(distinguishedName);
@@ -102,7 +102,7 @@ describe('ADSI Unit Test', function () {
 
     let fullName: string;
     const domain = sysinfo.GetComputerNameEx('ComputerNameDnsDomain');
-    it('should test ADsGestObject with WinNT provider', async function () {
+    it('should test ADsGestObject with WinNT provider', async () => {
       const username = sspi.GetUserName();
       const myself = await adsi.ADsGestObject(
         `WinNT://${domain}/${username},user`
@@ -115,7 +115,7 @@ describe('ADSI Unit Test', function () {
     });
 
     let guid: string;
-    it('should test AdsGestObject with LDAP provider', async function () {
+    it('should test AdsGestObject with LDAP provider', async () => {
       const ldapDistinguisedName = users[0].distinguishedName[0];
       debug('ldapDistinguisedName: ', ldapDistinguisedName);
       const iads = await adsi.ADsGestObject(`LDAP://${ldapDistinguisedName}`);
@@ -135,7 +135,7 @@ describe('ADSI Unit Test', function () {
       iads.Release();
     });
 
-    it('should test ADsGestObject with GUID', async function () {
+    it('should test ADsGestObject with GUID', async () => {
       const myself2 = await adsi.ADsGestObject(
         `LDAP://jlg.local/<GUID=${guid}>`
       );
@@ -144,7 +144,7 @@ describe('ADSI Unit Test', function () {
       myself2.Release();
     });
 
-    it('should test CoUninitialize', function () {
+    it('should test CoUninitialize', () => {
       adsi.CoUninitialize();
     });
   }

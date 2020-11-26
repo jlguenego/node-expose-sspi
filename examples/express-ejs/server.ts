@@ -7,6 +7,13 @@ import dbg from 'debug';
 
 const debug = dbg('node-expose-sspi:test');
 
+declare module 'express-session' {
+  interface SessionData {
+    user: unknown;
+    error: string;
+  }
+}
+
 const app = express();
 
 app.set('view engine', 'ejs');

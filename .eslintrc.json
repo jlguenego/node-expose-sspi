@@ -1,7 +1,11 @@
 {
   "extends": "./node_modules/gts/",
+  "env": {
+    "mocha": true
+  },
   "rules": {
-    "node/no-extraneous-require": "off"
+    "node/no-extraneous-require": "off",
+    "no-constant-condition": ["error", { "checkLoops": false }]
   },
   "plugins": ["mocha"],
   "overrides": [

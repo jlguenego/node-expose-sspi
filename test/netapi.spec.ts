@@ -1,9 +1,9 @@
 import { netapi, UserInfo1, sso } from '../src';
 import { strict as assert } from 'assert';
 
-describe('NETAPI Unit Test', function () {
+describe('NETAPI Unit Test', () => {
   if (sso.hasAdminPrivileges()) {
-    it('should test NetUserAdd', function () {
+    it('should test NetUserAdd', () => {
       const levelData = 1;
       const userInfo: UserInfo1 = { name: 'tetedemule', password: 'Toto123!' };
       try {
@@ -13,7 +13,7 @@ describe('NETAPI Unit Test', function () {
       }
     });
 
-    it('should test NetUserDel', function () {
+    it('should test NetUserDel', () => {
       const username = 'tetedemule';
       try {
         netapi.NetUserDel(undefined, username);

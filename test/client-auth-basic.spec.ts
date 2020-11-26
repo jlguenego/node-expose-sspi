@@ -8,6 +8,7 @@ import { sso } from '../src';
 const debug = dbg('node-expose-sspi:test');
 
 declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace Express {
     export interface Request {
       auth: {
@@ -61,7 +62,7 @@ class Server {
   }
 }
 
-describe('Client Authentication Basic Test', function () {
+describe('Client Authentication Basic Test', () => {
   it('should test client with Basic Authentication', async function () {
     this.timeout(15000);
     const server = new Server();

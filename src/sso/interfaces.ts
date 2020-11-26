@@ -1,7 +1,7 @@
 import { IncomingMessage, ServerResponse } from 'http';
 
 export interface Props {
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export interface Flag {
@@ -167,11 +167,10 @@ export interface Database {
   users: ADUsers;
 }
 
-export interface ADUser {
+export interface ADUser extends Props {
   sn?: string;
   givenName?: string;
   cn?: string;
-  [key: string]: any;
 }
 
 export type ADUsers = ADUser[];

@@ -1,5 +1,5 @@
 const express = require('express');
-const { sso } = require('../..');
+const { sso } = require('node-expose-sspi');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
 // Thanks https://developers.google.com/web/updates/2012/06/How-to-convert-ArrayBuffer-to-and-from-String

@@ -5,8 +5,8 @@ import dbg from 'debug';
 
 const debug = dbg('node-expose-sspi:test');
 
-describe('SSO Unit Test', function () {
-  it('should test getDefaultDomain', function () {
+describe('SSO Unit Test', () => {
+  it('should test getDefaultDomain', () => {
     const defaultDomain = sso.getDefaultDomain();
     const domain = sysinfo.GetComputerNameEx('ComputerNameDnsDomain');
     if (domain.length === 0) {
@@ -57,7 +57,7 @@ describe('SSO Unit Test', function () {
   });
 
   if (sso.hasAdminPrivileges()) {
-    it('should test connect with a local account', async function () {
+    it('should test connect with a local account', async () => {
       try {
         netapi.NetUserAdd(undefined, 1, {
           name: 'test123',
@@ -78,11 +78,14 @@ describe('SSO Unit Test', function () {
   }
 
   if (sso.hasAdminPrivileges()) {
-    it('should test connect with a local disabled account', async function () {
+    it('should test connect with a local disabled account', async () => {
       try {
         try {
           netapi.NetUserDel(undefined, 'test123');
-        } catch (e) {}
+          // eslint-disable-next-line no-empty
+        } catch (e) {
+          debug('no account to delete');
+        }
         netapi.NetUserAdd(undefined, 1, {
           name: 'test123',
           password: 'toto123!',
@@ -103,7 +106,7 @@ describe('SSO Unit Test', function () {
     });
   }
 
-  it('should test connect with bad login', async function () {
+  it('should test connect with bad login', async () => {
     try {
       // in order to test that it is working,
       // create a local account titi with password toto

@@ -17,7 +17,7 @@ export class BasicHandler extends AbstractHandler {
     init: RequestInit = {}
   ): Promise<Response> {
     debug('basic handler');
-    let requestInit: RequestInit = { ...init };
+    const requestInit: RequestInit = { ...init };
     const str = clientInfo.user + ':' + clientInfo.password;
     requestInit.headers = {
       ...init.headers,

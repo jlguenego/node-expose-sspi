@@ -7,10 +7,11 @@ import {
   SecurityContext,
   InitializeSecurityContextInput,
   AcceptSecurityContextInput,
-  Token,
-} from '../lib/sspi';
+  Groups,
+  AccessToken,
+} from '..';
 
-describe('SSPI GetTokenInformation Unit Test', function () {
+describe('SSPI GetTokenInformation Unit Test', () => {
   if (sso.isOnDomain() && !sso.isActiveDirectoryReachable()) {
     return;
   }
@@ -19,9 +20,9 @@ describe('SSPI GetTokenInformation Unit Test', function () {
   let serverCred: CredentialWithExpiry;
   let clientSecurityContext: SecurityContext;
   let serverSecurityContext: ServerSecurityContext;
-  let userToken: Token;
+  let userToken: AccessToken;
 
-  before(function () {
+  before(() => {
     const acquireCredentialsHandleClientInput: AcquireCredHandleInput = {
       packageName: 'Negotiate',
       credentialUse: 'SECPKG_CRED_OUTBOUND',
@@ -75,28 +76,28 @@ describe('SSPI GetTokenInformation Unit Test', function () {
     sspi.RevertSecurityContext(serverSecurityContext.contextHandle);
   });
 
-  it('should test GetTokenInformation', function () {
+  it('should test GetTokenInformation', () => {
     const userGroups = sspi.GetTokenInformation({
       accessToken: userToken,
       tokenInformationClass: 'TokenGroups',
-    });
+    }) as Groups;
     assert(typeof userGroups[0] === 'string');
   });
 
-  it('should test GetTokenInformation with bad filter', function () {
-    const filter: any = true;
+  it('should test GetTokenInformation with bad filter', () => {
+    const filter = true;
     try {
       sspi.GetTokenInformation({
         accessToken: userToken,
         tokenInformationClass: 'TokenGroups',
-        filter: filter as string,
+        filter: (filter as unknown) as string,
       });
     } catch (error) {
       assert((error as Error).message.includes('filter must be a string'));
     }
   });
 
-  after(function () {
+  after(() => {
     sspi.CloseHandle(userToken);
     sspi.DeleteSecurityContext(serverSecurityContext.contextHandle);
     sspi.DeleteSecurityContext(clientSecurityContext.contextHandle);

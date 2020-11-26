@@ -34,7 +34,7 @@ class MyServer {
   }
 }
 
-describe('COOKIE Unit Test', async function () {
+describe('COOKIE Unit Test', async () => {
   it('should test client with cookie', async function () {
     this.timeout(15000);
     const server = new MyServer();

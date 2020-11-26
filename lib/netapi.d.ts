@@ -22,7 +22,11 @@ export interface NetApi {
    * @param {UserInfo1} userInfo specify username and password.
    * @memberof NetApi
    */
-  NetUserAdd(serverName: string | undefined, levelData: number, userInfo: UserInfo1): void;
+  NetUserAdd(
+    serverName: string | undefined,
+    levelData: number,
+    userInfo: UserInfo1
+  ): void;
 
   /**
    * delete a windows user account

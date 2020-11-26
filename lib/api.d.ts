@@ -1,6 +1,7 @@
 export * from './sspi';
 export * from './netapi';
 export * from './flags';
+export * from './user';
 import { Sspi } from './sspi';
 import { Adsi } from './adsi';
 import { SysInfo } from './sysinfo';

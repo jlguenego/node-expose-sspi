@@ -1,6 +1,6 @@
 import assert from 'assert';
 
-import express, { Request, Response } from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import session from 'express-session';
 import { Server } from 'http';
 
@@ -27,8 +27,12 @@ class MyServer {
 
     // to avoid the default error handler do some console.error stuff.
     this.app.use(
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      (err: any, req: Request, res: Response) => {
+      (
+        err: { statusCode: number },
+        req: Request,
+        res: Response,
+        next: NextFunction
+      ) => {
         res.status(err.statusCode).end();
       }
     );
@@ -46,7 +50,7 @@ class MyServer {
   }
 }
 
-describe('Session', function () {
+describe('Session', () => {
   it('should test session is used', async function () {
     this.timeout(15000);
     const server = new MyServer();
