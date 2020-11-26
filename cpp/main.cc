@@ -74,6 +74,7 @@ Object InitNETAPI(Env env, Object exports) {
 
 Object InitUSER(Env env, Object exports) {
   EXPORT(ExitWindows);
+  EXPORT(ExitWindowsEx);
   return exports;
 }
 
