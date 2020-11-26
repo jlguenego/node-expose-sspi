@@ -70,6 +70,7 @@ void e_NetUserAdd(const Napi::CallbackInfo &info);
 void e_NetUserDel(const Napi::CallbackInfo &info);
 
 // USER
+Napi::Object e_LookupPrivilegeValue(const Napi::CallbackInfo &info);
 void e_ExitWindows(const Napi::CallbackInfo &info);
 void e_ExitWindowsEx(const Napi::CallbackInfo &info);
 

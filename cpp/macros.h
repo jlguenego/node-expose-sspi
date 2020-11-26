@@ -1,3 +1,8 @@
+#define CHECK_ERROR(status, name)                                            \
+  if (!status) {                                                             \
+    throw Napi::Error::New(env, ##name " has failed: " + plf::error_msg(0)); \
+  }
+
 #define AD_CHECK_ERROR(hr, name)                                            \
   if (FAILED(hr)) {                                                         \
     throw Napi::Error::New(env,                                             \
@@ -39,5 +44,10 @@
     throw Napi::TypeError::New(env, key " not found");              \
   }                                                                 \
   if (!input.Get(key).IsTypeFn()) {                                 \
+    throw Napi::TypeError::New(env, key ": " #IsTypeFn " failed."); \
+  }
+
+#define CHECK_PROP_OPTIONAL(input, key, IsTypeFn)                   \
+  if (input.Has(key) && !input.Get(key).IsTypeFn()) {               \
     throw Napi::TypeError::New(env, key ": " #IsTypeFn " failed."); \
   }

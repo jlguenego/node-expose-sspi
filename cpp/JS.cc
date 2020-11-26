@@ -88,4 +88,18 @@ PSecBufferDesc JS::initSecBufferDesc(Napi::Object& napiSecBufferDesc) {
   return pSecBufferDesc;
 }
 
+Napi::Object JS::fromLuid(Napi::Env env, LUID* pLUID) {
+  Napi::Object result = Napi::Object::New(env);
+  result["LowPart"] = Napi::Number::New(env, pLUID->LowPart);
+  result["HighPart"] = Napi::Number::New(env, pLUID->HighPart);
+  return result;
+}
+
+LUID JS::toLuid(Napi::Object value) {
+  LUID result;
+  result.LowPart = value.Get("LowPart").As<Napi::Number>().Uint32Value();
+  result.HighPart = value.Get("HightPart").As<Napi::Number>().Int32Value();
+  return result;
+}
+
 }  // namespace myAddon
