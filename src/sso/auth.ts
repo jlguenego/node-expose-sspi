@@ -2,12 +2,10 @@ import createError from 'http-errors';
 import { IncomingMessage, ServerResponse } from 'http';
 import dbg from 'debug';
 
-import { sspi, AcceptSecurityContextInput, CtxtHandle } from '../../lib/api';
+import { sspi, AcceptSecurityContextInput } from '../../lib/api';
 import { hexDump, getMessageType, encode, decode } from './misc';
 import { SSO } from './SSO';
 import { ServerContextHandleManager } from './schm/ServerContextHandleManager';
-import { SCHMWithCookies } from './schm/SCHMWithCookies';
-import { SCHMWithSync } from './schm/SCHMWithSync';
 import {
   AuthOptions,
   MessageType,
@@ -57,11 +55,7 @@ export function auth(options: AuthOptions = {}): Middleware {
     }
   };
 
-  const schManager: ServerContextHandleManager = opts.useCookies
-    ? new SCHMWithCookies()
-    : new SCHMWithSync(10000);
-
-  let previousServerContextHandle: CtxtHandle;
+  const schManager = new ServerContextHandleManager();
 
   // returns the node middleware.
   return (
@@ -72,17 +66,16 @@ export function auth(options: AuthOptions = {}): Middleware {
     if (opts.useSession) {
       const session = ((req as unknown) as { session?: { sso: SSOObject } })
         .session;
+      debug('check the session: ', session);
       if (session?.sso) {
         session.sso.cached = true;
         req.sso = session.sso;
         next();
         return;
       }
+      debug('no session.sso');
     }
     (async (): Promise<void> => {
-      const cookieToken = schManager.getCookieToken(req, res);
-      debug('cookieToken: ', cookieToken);
-
       let messageType: MessageType = 'Unknown';
 
       try {
@@ -111,12 +104,7 @@ export function auth(options: AuthOptions = {}): Middleware {
           messageType === 'NTLM_NEGOTIATE_01' ||
           messageType === 'Kerberos_1'
         ) {
-          await schManager.waitForReleased(cookieToken);
-          debug('schManager waitForReleased finished.');
-          const ssoMethod: SSOMethod = messageType.startsWith('NTLM')
-            ? 'NTLM'
-            : 'Kerberos';
-          schManager.setMethod(ssoMethod, cookieToken);
+          schManager.release(req);
         }
 
         const input: AcceptSecurityContextInput = {
@@ -126,30 +114,26 @@ export function auth(options: AuthOptions = {}): Middleware {
             buffers: [buffer],
           },
         };
-        const serverContextHandle = schManager.getHandle(cookieToken);
+        const serverContextHandle = schManager.get(req);
         if (serverContextHandle) {
           debug('adding to input a serverContextHandle (not first exchange)');
           input.contextHandle = serverContextHandle;
         }
-        if (!serverContextHandle && messageType !== 'NTLM_NEGOTIATE_01') {
-          debug('set cookie bug management');
-          input.contextHandle = previousServerContextHandle;
-        }
+
         debug('input just before calling AcceptSecurityContext', input);
         const serverSecurityContext = sspi.AcceptSecurityContext(input);
         debug(
           'serverSecurityContext just after AcceptSecurityContext',
           serverSecurityContext
         );
-        if (
-          !['SEC_E_OK', 'SEC_I_CONTINUE_NEEDED'].includes(
-            serverSecurityContext.SECURITY_STATUS
-          )
-        ) {
+        const failed = !['SEC_E_OK', 'SEC_I_CONTINUE_NEEDED'].includes(
+          serverSecurityContext.SECURITY_STATUS
+        );
+        if (failed) {
+          schManager.release(req);
           // 'SEC_I_COMPLETE_AND_CONTINUE', 'SEC_I_COMPLETE_NEEDED' are considered as errors because it is used
           // only by 'Digest' SSP. (not by Negotiate, Kerberos or NTLM)
           if (serverSecurityContext.SECURITY_STATUS === 'SEC_E_LOGON_DENIED') {
-            schManager.release(cookieToken);
             next(
               createError(
                 401,
@@ -163,8 +147,7 @@ export function auth(options: AuthOptions = {}): Middleware {
               serverSecurityContext.SECURITY_STATUS
           );
         }
-        schManager.setHandle(serverSecurityContext.contextHandle, cookieToken);
-        previousServerContextHandle = serverSecurityContext.contextHandle;
+        schManager.set(req, serverSecurityContext.contextHandle);
 
         debug('AcceptSecurityContext output buffer');
         debug(hexDump(serverSecurityContext.SecBufferDesc.buffers[0]));
@@ -178,25 +161,30 @@ export function auth(options: AuthOptions = {}): Middleware {
           return res.end();
         }
 
-        const lastServerContextHandle = schManager.getHandle(cookieToken);
+        const lastServerContextHandle = serverSecurityContext.contextHandle;
         if (!lastServerContextHandle) {
           throw new Error('cannot get the server context handle');
         }
-        const method = schManager.getMethod(cookieToken);
+        const method: SSOMethod = messageType.startsWith('NTLM')
+          ? 'NTLM'
+          : 'Kerberos';
         const sso = new SSO(lastServerContextHandle, method);
         sso.setOptions(opts);
         await sso.load();
         req.sso = sso.getJSON();
         if (opts.useSession) {
+          debug('session case');
           const session = ((req as unknown) as { session?: { sso: SSOObject } })
             .session;
+          debug('session: ', session);
           if (session) {
             req.sso.cached = false;
             session.sso = req.sso;
           }
+          debug('session again: ', session);
         }
         sspi.DeleteSecurityContext(lastServerContextHandle);
-        schManager.release(cookieToken);
+        schManager.release(req);
 
         // check if user is allowed.
         if (
@@ -218,7 +206,7 @@ export function auth(options: AuthOptions = {}): Middleware {
         );
         return next();
       } catch (e) {
-        schManager.release(cookieToken);
+        schManager.release(req);
         console.error(e);
         console.error('statusInfo: ', getStatusInfo());
         console.error('messageType: ', messageType);

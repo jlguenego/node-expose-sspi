@@ -1,9 +1,9 @@
 import assert from 'assert';
-
 import express, { NextFunction, Request, Response } from 'express';
 import session from 'express-session';
 import { Server } from 'http';
 
+import { sleep } from '../src/sso/sleep';
 import { sso } from '../src';
 
 class MyServer {
@@ -59,6 +59,7 @@ describe('Session', () => {
 
       const client = new sso.Client();
       await client.fetch('http://localhost:3000');
+      await sleep(1000);
       const response = await client.fetch('http://localhost:3000');
       const json = await response.json();
       assert.strictEqual(json.sso.cached, true);

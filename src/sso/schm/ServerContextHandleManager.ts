@@ -1,33 +1,49 @@
-import { IncomingMessage, ServerResponse } from 'http';
-import { CookieToken, SSOMethod } from '../interfaces';
-import { CtxtHandle } from '../..';
+import { IncomingMessage } from 'http';
+import { CtxtHandle } from '../../../lib/api';
 
-export abstract class ServerContextHandleManager {
-  req!: IncomingMessage;
-  res!: ServerResponse;
+interface Item {
+  id: string;
+  timestamp: number;
+  handle: CtxtHandle;
+}
 
-  getCookieToken(req: IncomingMessage, res: ServerResponse): CookieToken {
-    this.req = req;
-    this.res = res;
-    return '';
+// 2 minutes
+const DELAY = 1000 * 60 * 2;
+
+const getId = (req: IncomingMessage): string => {
+  return req.socket.remoteAddress + '_' + req.socket.remotePort;
+};
+
+export class ServerContextHandleManager {
+  cache: Item[] = [];
+
+  release(req: IncomingMessage) {
+    this.refresh();
+    this.cache = this.cache.filter((v) => v.id !== getId(req));
   }
 
-  abstract waitForReleased(cookieToken: CookieToken): Promise<void>;
+  get(req: IncomingMessage) {
+    this.refresh();
+    return this.cache.find((v) => v.id === getId(req))?.handle;
+  }
 
-  abstract getMethod(cookieToken: CookieToken): SSOMethod;
+  set(req: IncomingMessage, handle: CtxtHandle) {
+    this.refresh();
+    const item = this.cache.find((v) => v.id === getId(req));
+    if (item) {
+      item.handle = handle;
+      return;
+    }
+    this.cache.push({
+      id: getId(req),
+      handle,
+      timestamp: new Date().getTime(),
+    });
+  }
 
-  abstract setMethod(ssoMethod: SSOMethod, cookieToken: CookieToken): void;
-
-  abstract getHandle(cookieToken: CookieToken): CtxtHandle | undefined;
-
-  abstract setHandle(contextHandle: CtxtHandle, cookieToken: CookieToken): void;
-
-  /**
-   * At the end of the negotiation this method MUST be called to release the context handle.
-   *
-   * @abstract
-   * @param {CookieToken} cookieToken
-   * @memberof ServerContextHandleManager
-   */
-  abstract release(cookieToken: CookieToken): void;
+  refresh() {
+    this.cache = this.cache.filter(
+      (v) => v.timestamp > new Date().getTime() - DELAY
+    );
+  }
 }
