@@ -20,7 +20,7 @@ export interface TokenPrivileges {
   [privilege: string]: PrivilegeAttributeFlag[];
 }
 
-export interface User {
+export interface WindowsUser {
   AdjustTokenPrivileges(input: {
     accessToken: AccessToken;
     disableAllPrivileges: boolean;

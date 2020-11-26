@@ -1,5 +1,5 @@
+import { Props } from '../../lib/api';
 import { sso } from './index';
-import { Props } from './interfaces';
 
 export function getStatusInfo() {
   try {

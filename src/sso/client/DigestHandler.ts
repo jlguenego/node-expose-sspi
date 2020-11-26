@@ -1,7 +1,7 @@
 import dbg from 'debug';
 import fetch, { RequestInit, Response } from 'node-fetch';
 import { URL } from 'url';
-import { Props } from '../interfaces';
+import { Props } from '../../../lib/api';
 
 import { AbstractHandler } from './AbstractHandler';
 import { ClientCookie } from './ClientCookie';

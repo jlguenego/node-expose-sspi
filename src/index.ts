@@ -15,4 +15,4 @@ if (process.version < 'v12.16.1') {
 }
 
 export * from '../lib/api';
-export { sso, NextFunction } from './sso/index';
+export * from './sso/index';

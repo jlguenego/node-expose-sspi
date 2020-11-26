@@ -1,8 +1,5 @@
 import { IncomingMessage, ServerResponse } from 'http';
-
-export interface Props {
-  [key: string]: unknown;
-}
+import { Props } from '../../lib/api';
 
 export interface Flag {
   label: string;
