@@ -34,7 +34,7 @@
     "build:ts": "tsc -p src",
     "build:tsw": "tsc -p src -w",
     "coverage": "nyc --reporter=html mocha",
-    "dev": "nodemon -x \"npm run build\"",
+    "dev": "nodemon --config cpp/nodemon.json",
     "devserve": "nodemon -x \"npm run build && ts-node examples/typescript/server.ts\"",
     "devtest": "nodemon -x \"npm run build && npm run test\"",
     "ex:client:server": "nodemon examples/client/server.js",

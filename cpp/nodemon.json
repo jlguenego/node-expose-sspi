@@ -1,4 +1,5 @@
 {
   "$schema": "https://json.schemastore.org/nodemon",
-  "ext": "js,json,ts"
+  "ext": "cc,cpp,h,gyp",
+  "exec": "npm run build"
 }
