@@ -5,6 +5,8 @@
 - SSO
   - [on server side](#On-server-side)
   - [on client side](#On-client-side)
+- Windows user administration
+  - [Restarting windows](#Restarting-windows)
 - C++ Addons
   - ADSI
   - NETAPI
@@ -139,6 +141,54 @@ See:
 
 - [client](../../examples/client)
 - [client-runas](../../examples/client-runas)
+
+## Windows user administration
+
+### Restarting windows
+
+the module exposes win32 primitives such as:
+
+- **ExitWindows**: logoff
+- **ExitWindowsEx**: logoff, shutdown, restart
+- **OpenProcessToken**: get the access token of the user owning the current
+  process.
+- **AdjustTokenPrivileges**: update the privileges of a given user
+- **GetTokenInformation**: read the privileges of a given user (and much more
+  like groups, etc.)
+
+So you can do this script to restart windows:
+
+```ts
+import { user, sspi } from 'node-expose-sspi';
+
+// get the user token.
+const accessToken = sspi.OpenProcessToken(['TOKEN_ALL_ACCESS']);
+
+// give itself the privilege for restarting windows.
+user.AdjustTokenPrivileges({
+  accessToken,
+  disableAllPrivileges: false,
+  newState: {
+    SeShutdownPrivilege: ['SE_PRIVILEGE_ENABLED'],
+  },
+});
+
+// read the privileges
+const ownerPrivileges = sspi.GetTokenInformation({
+  accessToken: accessToken,
+  tokenInformationClass: 'TokenPrivileges',
+});
+console.log('ownerPrivileges: ', ownerPrivileges);
+
+// To let us see the logs before restarting
+console.log('about to restart in 2s');
+setTimeout(() => {
+  user.ExitWindowsEx({
+    flag: 'EWX_REBOOT',
+    reason: ['SHTDN_REASON_FLAG_PLANNED', 'SHTDN_REASON_MINOR_HUNG'],
+  });
+}, 2000);
+```
 
 ## Author
 

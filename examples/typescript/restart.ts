@@ -1,4 +1,6 @@
-import { user, sspi } from '../../dist';
+// this script restarts windows.
+
+import { user, sspi } from '../..';
 
 // add shutdown privileges.
 const accessToken = sspi.OpenProcessToken(['TOKEN_ALL_ACCESS']);
@@ -17,7 +19,8 @@ const ownerPrivileges = sspi.GetTokenInformation({
 });
 console.log('ownerPrivileges: ', ownerPrivileges);
 
-console.log('about to logoff in 2s');
+// To let us see the logs before restarting
+console.log('about to restart in 2s');
 setTimeout(() => {
   user.ExitWindowsEx({
     flag: 'EWX_REBOOT',
