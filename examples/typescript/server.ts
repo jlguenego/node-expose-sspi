@@ -19,10 +19,10 @@ app.use(
     useGroups: true,
     useOwner: true,
     useActiveDirectory: true,
-    useCookies: true,
     allowsAnonymousLogon: false,
     allowsGuest: false,
     useSession: true,
+    forceNTLM: true,
     // groupFilterRegex: ".*NT AUTHORITY.*"
   })
 );

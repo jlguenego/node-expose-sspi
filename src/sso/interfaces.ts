@@ -55,23 +55,7 @@ export type MessageType =
 
 export type NextFunction = (error?: Error) => void | Promise<void>;
 
-/**
- * options to provide to sso.auth() and SSO.setOptions().
- *
- * @export
- * @interface AuthOptions
- */
-export interface AuthOptions {
-  /**
-   * Brings back the groups the user belongs to.
-   *
-   * @default true
-   *
-   * @type {boolean}
-   * @memberof AuthOptions
-   */
-  useGroups?: boolean;
-
+export interface SSOOptions {
   /**
    * Brings back the Active Directory user information
    *
@@ -80,9 +64,19 @@ export interface AuthOptions {
    * @default true
    *
    * @type {boolean}
-   * @memberof AuthOptions
+   * @memberof SSOOptions
    */
-  useActiveDirectory?: boolean;
+  useActiveDirectory: boolean;
+
+  /**
+   * Brings back the groups the user belongs to.
+   *
+   * @default true
+   *
+   * @type {boolean}
+   * @memberof SSOOptions
+   */
+  useGroups: boolean;
 
   /**
    * Brings back the server process owner info.
@@ -90,20 +84,9 @@ export interface AuthOptions {
    * @default false
    *
    * @type {boolean}
-   * @memberof AuthOptions
+   * @memberof SSOOptions
    */
-  useOwner?: boolean;
-
-  /**
-   * Manage authentication with cookie.
-   * Useful for performance when many users try to connect at the same time.
-   *
-   * @default true
-   *
-   * @type {boolean}
-   * @memberof AuthOptions
-   */
-  useCookies?: boolean;
+  useOwner: boolean;
 
   /**
    * Filter the groups. Useful if there are too much groups to fetch.
@@ -111,10 +94,18 @@ export interface AuthOptions {
    * @default ".*"
    *
    * @type {string}
-   * @memberof AuthOptions
+   * @memberof SSOOptions
    */
-  groupFilterRegex?: string;
+  groupFilterRegex: string;
+}
 
+/**
+ * options to provide to sso.auth() and SSO.setOptions().
+ *
+ * @export
+ * @interface AuthOptions
+ */
+export interface AuthOptions extends SSOOptions {
   /**
    * If true, someone that connects with wrong login/password may be
    * authenticated as Windows guest user.
@@ -124,7 +115,7 @@ export interface AuthOptions {
    * @type {boolean}
    * @memberof AuthOptions
    */
-  allowsGuest?: boolean;
+  allowsGuest: boolean;
 
   /**
    * If true, someone that connects without login/password may be
@@ -135,7 +126,7 @@ export interface AuthOptions {
    * @type {boolean}
    * @memberof AuthOptions
    */
-  allowsAnonymousLogon?: boolean;
+  allowsAnonymousLogon: boolean;
 
   /**
    * If true, cache the req.sso into req.session.sso.
@@ -148,7 +139,18 @@ export interface AuthOptions {
    * @type {boolean}
    * @memberof AuthOptions
    */
-  useSession?: boolean;
+  useSession: boolean;
+
+  /**
+   * If true, the WWW-Authenticate will propose NTLM instead of Negotiate.
+   * This will force the NTLM protocol to be used, and not Kerberos.
+   *
+   * @default false
+   *
+   * @type {boolean}
+   * @memberof AuthOptions
+   */
+  forceNTLM: boolean;
 }
 
 export interface User {

@@ -87,6 +87,29 @@ than accessing to the (unfortunately slow) SSPI Microsoft API.
 **Production use**: the `express-session` module needs to be assisted with a
 [production ready memory store](https://github.com/expressjs/session#compatible-session-stores).
 
+#### AuthOptions
+
+The middleware `sso.auth(options: AuthOptions)` comes with the following
+options:
+
+- **useActiveDirectory**: boolean. If server is on domain, then ask the server
+  to contact a Active Directory Controller to get more detailed information
+  about a user. Default true.
+- **useGroups**: boolean. Show the group of the user (via its access token).
+  Default true.
+- **useOwner**: boolean. Show the user that run the server. Default false.
+- **groupFilterRegex**: string. Filter the groups (C++ Regex). Default is
+  `'.*'`.
+- **allowsGuest**: boolean. Allow authentication as Guest, ie with a wrong
+  login/password. Default false.
+- **allowsAnonymousLogon**: boolean. Allo authentication as Anonymous, ie
+  without providing a login and a password. Default false.
+- **forceNTLM**: boolean. Force the NTLM authentication type instead of
+  Negotiate. Default false.
+- **useSession**: boolean. Use a session cache in order to avoid the
+  authentication challenge foreach request. You must use `express-session` or
+  equivalent. Default false.
+
 ### On client side
 
 If you have a server with SSO, you can use it with a traditionnal browser

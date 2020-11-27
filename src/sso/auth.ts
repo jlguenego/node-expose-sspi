@@ -18,6 +18,8 @@ import { getStatusInfo } from './status';
 
 const debug = dbg('node-expose-sspi:auth');
 
+const WWW_AUTHENTICATE = 'WWW-Authenticate';
+
 /**
  * Tries to get SSO information from browser. If success, the SSO info
  * is stored under req.sso
@@ -26,21 +28,25 @@ const debug = dbg('node-expose-sspi:auth');
  * @param {AuthOptions} [options={}]
  * @returns {RequestHandler}
  */
-export function auth(options: AuthOptions = {}): Middleware {
-  const opts: AuthOptions = {
+export function auth(options: Partial<AuthOptions> = {}): Middleware {
+  const defaultOptions: AuthOptions = {
     useActiveDirectory: true,
     useGroups: true,
     useOwner: false,
-    useCookies: true,
     groupFilterRegex: '.*',
     allowsGuest: false,
     allowsAnonymousLogon: false,
     useSession: false,
+    forceNTLM: false,
   };
-  Object.assign(opts, options);
+
+  const opts = { ...defaultOptions, ...options };
+
+  const authenticationType = opts.forceNTLM ? 'NTLM' : 'Negotiate';
+  const packageName = 'Negotiate';
 
   let { credential, tsExpiry } = sspi.AcquireCredentialsHandle({
-    packageName: 'Negotiate',
+    packageName,
   });
 
   const checkCredentials = (): void => {
@@ -48,7 +54,7 @@ export function auth(options: AuthOptions = {}): Middleware {
       // renew server credentials
       sspi.FreeCredentialsHandle(credential);
       const renewed = sspi.AcquireCredentialsHandle({
-        packageName: 'Negotiate',
+        packageName,
       });
       credential = renewed.credential;
       tsExpiry = renewed.tsExpiry;
@@ -83,17 +89,19 @@ export function auth(options: AuthOptions = {}): Middleware {
         if (!authorization) {
           debug('no authorization key in header');
           res.statusCode = 401;
-          res.setHeader('WWW-Authenticate', 'Negotiate');
+          res.setHeader(WWW_AUTHENTICATE, authenticationType);
           return res.end();
         }
 
-        if (!authorization.startsWith('Negotiate ')) {
+        if (!authorization.startsWith(authenticationType + ' ')) {
           res.statusCode = 400;
           return res.end(`Malformed authentication token: ${authorization}`);
         }
 
         checkCredentials();
-        const token = authorization.substring('Negotiate '.length);
+        const token = authorization.substring(
+          (authenticationType + ' ').length
+        );
         messageType = getMessageType(token);
         debug('messageType: ', messageType);
         const buffer = decode(token);
@@ -154,8 +162,9 @@ export function auth(options: AuthOptions = {}): Middleware {
         if (serverSecurityContext.SECURITY_STATUS === 'SEC_I_CONTINUE_NEEDED') {
           res.statusCode = 401;
           res.setHeader(
-            'WWW-Authenticate',
-            'Negotiate ' +
+            WWW_AUTHENTICATE,
+            authenticationType +
+              ' ' +
               encode(serverSecurityContext.SecBufferDesc.buffers[0])
           );
           return res.end();
@@ -201,8 +210,10 @@ export function auth(options: AuthOptions = {}): Middleware {
 
         // user authenticated and allowed.
         res.setHeader(
-          'WWW-Authenticate',
-          'Negotiate ' + encode(serverSecurityContext.SecBufferDesc.buffers[0])
+          WWW_AUTHENTICATE,
+          authenticationType +
+            ' ' +
+            encode(serverSecurityContext.SecBufferDesc.buffers[0])
         );
         return next();
       } catch (e) {

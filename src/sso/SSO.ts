@@ -3,14 +3,14 @@ import { getUser } from './userdb';
 import dbg from 'debug';
 import { sso } from '.';
 import os from 'os';
-import { AuthOptions, User, SSOMethod, SSOObject } from './interfaces';
+import { User, SSOMethod, SSOObject, SSOOptions } from './interfaces';
 
 const debug = dbg('node-expose-sspi:SSO');
 
 export class SSO {
   user!: User;
   owner!: User;
-  private options: AuthOptions = {
+  private options: SSOOptions = {
     useActiveDirectory: true,
     useGroups: true,
     useOwner: true,
@@ -142,7 +142,7 @@ export class SSO {
     return json;
   }
 
-  setOptions(options: AuthOptions): void {
-    Object.assign(this.options, options);
+  setOptions(options: Partial<SSOOptions>): void {
+    this.options = { ...this.options, ...options };
   }
 }
