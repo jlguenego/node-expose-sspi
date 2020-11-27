@@ -163,7 +163,6 @@ describe('ClientServer', () => {
         sso.auth({
           useOwner: true,
           useActiveDirectory: true,
-          useCookies: false,
         })
       );
       app.use((req, res) => {
