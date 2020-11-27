@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.53](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.52...v0.1.53) (2020-11-27)
+
+
+### Features
+
+* added accessToken to the sso object. ([01fa353](https://github.com/jlguenego/node-expose-sspi/commit/01fa353bf9f3130805229309cc555d0f0348a397))
+* added forceNTLM options [#60](https://github.com/jlguenego/node-expose-sspi/issues/60) ([99632f1](https://github.com/jlguenego/node-expose-sspi/commit/99632f10787f87fe4bf8a74fa57f7c666afda4e7))
+* added PrivilegeCheck ([df02ff3](https://github.com/jlguenego/node-expose-sspi/commit/df02ff31d8ff1acb324224fef7e8525c4324ffd5))
+* remove old schm ([81ae34b](https://github.com/jlguenego/node-expose-sspi/commit/81ae34bf0cfcf7d6c10b67f6e122841cb682328a))
+
+
+### Bug Fixes
+
+* cookie not well set in client ([8f5b4e9](https://github.com/jlguenego/node-expose-sspi/commit/8f5b4e92c5639062fa71457bf21da834b5664141))
+
 ### [0.1.52](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.51...v0.1.52) (2020-11-26)
 
 
