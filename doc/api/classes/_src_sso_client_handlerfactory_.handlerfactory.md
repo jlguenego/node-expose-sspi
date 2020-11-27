@@ -18,7 +18,7 @@
 
 ▸ **instantiate**(`method`: string): *[AbstractHandler](_src_sso_client_abstracthandler_.abstracthandler.md)*
 
-*Defined in [src/sso/client/HandlerFactory.ts:7](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/client/HandlerFactory.ts#L7)*
+*Defined in [src/sso/client/HandlerFactory.ts:7](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/client/HandlerFactory.ts#L7)*
 
 **Parameters:**
 

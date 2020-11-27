@@ -20,7 +20,7 @@
 
 ▸ **decode**(`base64`: string): *ArrayBuffer*
 
-*Defined in [src/sso/misc.ts:111](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/misc.ts#L111)*
+*Defined in [src/sso/misc.ts:111](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/misc.ts#L111)*
 
 Decode a base64 string into an arraybuffer.
 
@@ -40,7 +40,7 @@ ___
 
 ▸ **encode**(`b`: ArrayBuffer): *string*
 
-*Defined in [src/sso/misc.ts:123](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/misc.ts#L123)*
+*Defined in [src/sso/misc.ts:123](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/misc.ts#L123)*
 
 Encode an arraybuffer to base64 string.
 
@@ -60,7 +60,7 @@ ___
 
 ▸ **getFlags**(`flags`: [Flag](../interfaces/_src_sso_interfaces_.flag.md)[], `value`: number): *string*
 
-*Defined in [src/sso/misc.ts:96](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/misc.ts#L96)*
+*Defined in [src/sso/misc.ts:96](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/misc.ts#L96)*
 
 **Parameters:**
 
@@ -77,7 +77,7 @@ ___
 
 ▸ **getMessageType**(`token`: string): *[MessageType](_src_sso_interfaces_.md#messagetype)*
 
-*Defined in [src/sso/misc.ts:69](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/misc.ts#L69)*
+*Defined in [src/sso/misc.ts:69](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/misc.ts#L69)*
 
 **Parameters:**
 
@@ -93,7 +93,7 @@ ___
 
 ▸ **hex2a**(`hex`: string): *string*
 
-*Defined in [src/sso/misc.ts:89](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/misc.ts#L89)*
+*Defined in [src/sso/misc.ts:89](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/misc.ts#L89)*
 
 **Parameters:**
 
@@ -109,7 +109,7 @@ ___
 
 ▸ **hexDump**(`buffer`: ArrayBuffer): *string*
 
-*Defined in [src/sso/misc.ts:23](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/misc.ts#L23)*
+*Defined in [src/sso/misc.ts:23](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/misc.ts#L23)*
 
 Gives a string representation of binary data.
 
@@ -129,7 +129,7 @@ ___
 
 ▸ **toHex**(`buffer`: ArrayBuffer): *string*
 
-*Defined in [src/sso/misc.ts:58](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/misc.ts#L58)*
+*Defined in [src/sso/misc.ts:58](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/misc.ts#L58)*
 
 **Parameters:**
 

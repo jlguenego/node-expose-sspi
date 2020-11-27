@@ -4,11 +4,13 @@
 
 ## Hierarchy
 
-* **ADUser**
+* [Props](_lib_sspi_d_.props.md)
+
+  ↳ **ADUser**
 
 ## Indexable
 
-* \[ **key**: *string*\]: any
+* \[ **key**: *string*\]: unknown
 
 ## Index
 
@@ -24,7 +26,7 @@
 
 • **cn**? : *undefined | string*
 
-*Defined in [src/sso/interfaces.ts:173](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/interfaces.ts#L173)*
+*Defined in [src/sso/interfaces.ts:173](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/interfaces.ts#L173)*
 
 ___
 
@@ -32,7 +34,7 @@ ___
 
 • **givenName**? : *undefined | string*
 
-*Defined in [src/sso/interfaces.ts:172](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/interfaces.ts#L172)*
+*Defined in [src/sso/interfaces.ts:172](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/interfaces.ts#L172)*
 
 ___
 
@@ -40,4 +42,4 @@ ___
 
 • **sn**? : *undefined | string*
 
-*Defined in [src/sso/interfaces.ts:171](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/interfaces.ts#L171)*
+*Defined in [src/sso/interfaces.ts:171](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/interfaces.ts#L171)*

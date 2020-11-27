@@ -7,6 +7,7 @@
 ### References
 
 * [AcceptSecurityContextInput](_lib_api_d_.md#acceptsecuritycontextinput)
+* [AccessToken](_lib_api_d_.md#accesstoken)
 * [AccessTokenFlag](_lib_api_d_.md#accesstokenflag)
 * [AcquireCredHandleInput](_lib_api_d_.md#acquirecredhandleinput)
 * [AscReqFlag](_lib_api_d_.md#ascreqflag)
@@ -25,8 +26,10 @@
 * [InformationClass](_lib_api_d_.md#informationclass)
 * [InitializeSecurityContextInput](_lib_api_d_.md#initializesecuritycontextinput)
 * [IscReqFlag](_lib_api_d_.md#iscreqflag)
+* [Luid](_lib_api_d_.md#luid)
 * [NetApi](_lib_api_d_.md#netapi)
 * [PrivilegeAttributeFlag](_lib_api_d_.md#privilegeattributeflag)
+* [Props](_lib_api_d_.md#props)
 * [SecBufferDesc](_lib_api_d_.md#secbufferdesc)
 * [SecPkgInfo](_lib_api_d_.md#secpkginfo)
 * [SecurityContext](_lib_api_d_.md#securitycontext)
@@ -38,9 +41,11 @@
 * [SidPointer](_lib_api_d_.md#sidpointer)
 * [Sspi](_lib_api_d_.md#sspi)
 * [TargetDataRepMapFlag](_lib_api_d_.md#targetdatarepmapflag)
+* [TokenPrivileges](_lib_api_d_.md#tokenprivileges)
 * [UserCredential](_lib_api_d_.md#usercredential)
 * [UserInfo1](_lib_api_d_.md#userinfo1)
 * [UserInfo1Flag](_lib_api_d_.md#userinfo1flag)
+* [WindowsUser](_lib_api_d_.md#windowsuser)
 
 ### Variables
 
@@ -55,6 +60,12 @@
 ###  AcceptSecurityContextInput
 
 • **AcceptSecurityContextInput**:
+
+___
+
+###  AccessToken
+
+• **AccessToken**:
 
 ___
 
@@ -166,6 +177,12 @@ ___
 
 ___
 
+###  Luid
+
+• **Luid**:
+
+___
+
 ###  NetApi
 
 • **NetApi**:
@@ -175,6 +192,12 @@ ___
 ###  PrivilegeAttributeFlag
 
 • **PrivilegeAttributeFlag**:
+
+___
+
+###  Props
+
+• **Props**:
 
 ___
 
@@ -244,6 +267,12 @@ ___
 
 ___
 
+###  TokenPrivileges
+
+• **TokenPrivileges**:
+
+___
+
 ###  UserCredential
 
 • **UserCredential**:
@@ -260,13 +289,19 @@ ___
 
 • **UserInfo1Flag**:
 
+___
+
+###  WindowsUser
+
+• **WindowsUser**:
+
 ## Variables
 
 ### `Const` adsi
 
 • **adsi**: *[Adsi](../interfaces/_lib_adsi_d_.adsi.md)*
 
-*Defined in [lib/api.d.ts:11](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/lib/api.d.ts#L11)*
+*Defined in [lib/api.d.ts:12](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/api.d.ts#L12)*
 
 ___
 
@@ -274,7 +309,7 @@ ___
 
 • **netapi**: *[NetApi](../interfaces/_lib_netapi_d_.netapi.md)*
 
-*Defined in [lib/api.d.ts:14](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/lib/api.d.ts#L14)*
+*Defined in [lib/api.d.ts:15](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/api.d.ts#L15)*
 
 ___
 
@@ -282,7 +317,7 @@ ___
 
 • **sspi**: *[Sspi](../interfaces/_lib_sspi_d_.sspi.md)*
 
-*Defined in [lib/api.d.ts:10](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/lib/api.d.ts#L10)*
+*Defined in [lib/api.d.ts:11](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/api.d.ts#L11)*
 
 ___
 
@@ -290,12 +325,12 @@ ___
 
 • **sysinfo**: *[SysInfo](../interfaces/_lib_sysinfo_d_.sysinfo.md)*
 
-*Defined in [lib/api.d.ts:12](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/lib/api.d.ts#L12)*
+*Defined in [lib/api.d.ts:13](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/api.d.ts#L13)*
 
 ___
 
 ### `Const` user
 
-• **user**: *[User](../interfaces/_lib_user_d_.user.md)*
+• **user**: *[WindowsUser](../interfaces/_lib_user_d_.windowsuser.md)*
 
-*Defined in [lib/api.d.ts:13](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/lib/api.d.ts#L13)*
+*Defined in [lib/api.d.ts:14](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/api.d.ts#L14)*

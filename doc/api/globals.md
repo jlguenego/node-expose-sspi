@@ -33,8 +33,6 @@
 * ["src/sso/misc"](modules/_src_sso_misc_.md)
 * ["src/sso/msgParser"](modules/_src_sso_msgparser_.md)
 * ["src/sso/mutex"](modules/_src_sso_mutex_.md)
-* ["src/sso/schm/SCHMWithCookies"](modules/_src_sso_schm_schmwithcookies_.md)
-* ["src/sso/schm/SCHMWithSync"](modules/_src_sso_schm_schmwithsync_.md)
 * ["src/sso/schm/ServerContextHandleManager"](modules/_src_sso_schm_servercontexthandlemanager_.md)
 * ["src/sso/sleep"](modules/_src_sso_sleep_.md)
 * ["src/sso/spn"](modules/_src_sso_spn_.md)

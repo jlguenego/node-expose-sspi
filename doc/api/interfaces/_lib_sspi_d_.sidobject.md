@@ -24,7 +24,7 @@ sid = security id.
 
 • **domain**: *string*
 
-*Defined in [lib/sspi.d.ts:132](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/lib/sspi.d.ts#L132)*
+*Defined in [lib/sspi.d.ts:139](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/sspi.d.ts#L139)*
 
 ___
 
@@ -32,4 +32,4 @@ ___
 
 • **sid**: *string*
 
-*Defined in [lib/sspi.d.ts:131](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/lib/sspi.d.ts#L131)*
+*Defined in [lib/sspi.d.ts:138](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/sspi.d.ts#L138)*

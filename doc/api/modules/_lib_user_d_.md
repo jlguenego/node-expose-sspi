@@ -8,7 +8,7 @@
 
 * [Luid](../interfaces/_lib_user_d_.luid.md)
 * [TokenPrivileges](../interfaces/_lib_user_d_.tokenprivileges.md)
-* [User](../interfaces/_lib_user_d_.user.md)
+* [WindowsUser](../interfaces/_lib_user_d_.windowsuser.md)
 
 ### Type aliases
 
@@ -20,6 +20,6 @@
 
 Ƭ **AccessToken**: *string*
 
-*Defined in [lib/user.d.ts:12](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/lib/user.d.ts#L12)*
+*Defined in [lib/user.d.ts:12](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/user.d.ts#L12)*
 
 An AccessToken is a pointer to some user information.

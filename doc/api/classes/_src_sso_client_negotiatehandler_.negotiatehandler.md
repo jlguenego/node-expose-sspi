@@ -22,7 +22,7 @@
 
 *Overrides [AbstractHandler](_src_sso_client_abstracthandler_.abstracthandler.md).[handle](_src_sso_client_abstracthandler_.abstracthandler.md#abstract-handle)*
 
-*Defined in [src/sso/client/NegotiateHandler.ts:19](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/client/NegotiateHandler.ts#L19)*
+*Defined in [src/sso/client/NegotiateHandler.ts:19](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/client/NegotiateHandler.ts#L19)*
 
 **Parameters:**
 

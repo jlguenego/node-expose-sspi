@@ -14,6 +14,7 @@
 * [GetTokenInformationInput](../interfaces/_lib_sspi_d_.gettokeninformationinput.md)
 * [HANDLE](../interfaces/_lib_sspi_d_.handle.md)
 * [InitializeSecurityContextInput](../interfaces/_lib_sspi_d_.initializesecuritycontextinput.md)
+* [Props](../interfaces/_lib_sspi_d_.props.md)
 * [SecBufferDesc](../interfaces/_lib_sspi_d_.secbufferdesc.md)
 * [SecPkgInfo](../interfaces/_lib_sspi_d_.secpkginfo.md)
 * [SecurityContext](../interfaces/_lib_sspi_d_.securitycontext.md)
@@ -36,7 +37,7 @@
 
 Ƭ **Groups**: *string[]*
 
-*Defined in [lib/sspi.d.ts:195](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/lib/sspi.d.ts#L195)*
+*Defined in [lib/sspi.d.ts:202](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/sspi.d.ts#L202)*
 
 ___
 
@@ -44,7 +45,7 @@ ___
 
 Ƭ **InformationClass**: *"TokenGroups" | "TokenPrivileges"*
 
-*Defined in [lib/sspi.d.ts:66](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/lib/sspi.d.ts#L66)*
+*Defined in [lib/sspi.d.ts:73](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/sspi.d.ts#L73)*
 
 ___
 
@@ -52,7 +53,7 @@ ___
 
 Ƭ **SecurityStatus**: *"SEC_E_OK" | "SEC_I_COMPLETE_AND_CONTINUE" | "SEC_I_COMPLETE_NEEDED" | "SEC_I_CONTINUE_NEEDED"*
 
-*Defined in [lib/sspi.d.ts:90](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/lib/sspi.d.ts#L90)*
+*Defined in [lib/sspi.d.ts:97](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/sspi.d.ts#L97)*
 
 ___
 
@@ -60,7 +61,7 @@ ___
 
 Ƭ **SecuritySupportProvider**: *"NTLM" | "Kerberos" | "Negotiate"*
 
-*Defined in [lib/sspi.d.ts:12](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/lib/sspi.d.ts#L12)*
+*Defined in [lib/sspi.d.ts:16](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/sspi.d.ts#L16)*
 
 ___
 
@@ -68,6 +69,6 @@ ___
 
 Ƭ **SidPointer**: *string*
 
-*Defined in [lib/sspi.d.ts:64](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/lib/sspi.d.ts#L64)*
+*Defined in [lib/sspi.d.ts:71](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/sspi.d.ts#L71)*
 
 A pointer to an Sid (to be freed).

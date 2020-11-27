@@ -12,8 +12,8 @@
 
 ###  getStatusInfo
 
-▸ **getStatusInfo**(): *any*
+▸ **getStatusInfo**(): *[Props](../interfaces/_lib_sspi_d_.props.md)*
 
-*Defined in [src/sso/status.ts:3](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/status.ts#L3)*
+*Defined in [src/sso/status.ts:4](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/status.ts#L4)*
 
-**Returns:** *any*
+**Returns:** *[Props](../interfaces/_lib_sspi_d_.props.md)*

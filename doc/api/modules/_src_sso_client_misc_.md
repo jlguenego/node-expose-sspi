@@ -16,7 +16,7 @@
 
 ▸ **encodeBase64**(`str`: string): *string*
 
-*Defined in [src/sso/client/misc.ts:56](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/client/misc.ts#L56)*
+*Defined in [src/sso/client/misc.ts:56](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/client/misc.ts#L56)*
 
 **Parameters:**
 
@@ -32,7 +32,7 @@ ___
 
 ▸ **getSPNFromURI**(`url`: string): *Promise‹string›*
 
-*Defined in [src/sso/client/misc.ts:19](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/client/misc.ts#L19)*
+*Defined in [src/sso/client/misc.ts:19](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/client/misc.ts#L19)*
 
 Get the SPN the same way Chrome/Firefox or IE does.
 
@@ -54,7 +54,7 @@ ___
 
 ▸ **md5**(`str`: string): *string*
 
-*Defined in [src/sso/client/misc.ts:61](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/client/misc.ts#L61)*
+*Defined in [src/sso/client/misc.ts:61](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/client/misc.ts#L61)*
 
 **Parameters:**
 

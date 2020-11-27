@@ -25,7 +25,7 @@
 
 • **comment**? : *undefined | string*
 
-*Defined in [lib/netapi.d.ts:9](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/lib/netapi.d.ts#L9)*
+*Defined in [lib/netapi.d.ts:9](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/netapi.d.ts#L9)*
 
 ___
 
@@ -33,7 +33,7 @@ ___
 
 • **flags**? : *[UserInfo1Flag](../modules/_lib_flags_index_d_.md#userinfo1flag)[]*
 
-*Defined in [lib/netapi.d.ts:10](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/lib/netapi.d.ts#L10)*
+*Defined in [lib/netapi.d.ts:10](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/netapi.d.ts#L10)*
 
 ___
 
@@ -41,7 +41,7 @@ ___
 
 • **homeDir**? : *undefined | string*
 
-*Defined in [lib/netapi.d.ts:8](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/lib/netapi.d.ts#L8)*
+*Defined in [lib/netapi.d.ts:8](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/netapi.d.ts#L8)*
 
 ___
 
@@ -49,7 +49,7 @@ ___
 
 • **name**: *string*
 
-*Defined in [lib/netapi.d.ts:4](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/lib/netapi.d.ts#L4)*
+*Defined in [lib/netapi.d.ts:4](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/netapi.d.ts#L4)*
 
 ___
 
@@ -57,7 +57,7 @@ ___
 
 • **password**: *string*
 
-*Defined in [lib/netapi.d.ts:5](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/lib/netapi.d.ts#L5)*
+*Defined in [lib/netapi.d.ts:5](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/netapi.d.ts#L5)*
 
 ___
 
@@ -65,7 +65,7 @@ ___
 
 • **passwordAge**? : *undefined | number*
 
-*Defined in [lib/netapi.d.ts:6](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/lib/netapi.d.ts#L6)*
+*Defined in [lib/netapi.d.ts:6](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/netapi.d.ts#L6)*
 
 ___
 
@@ -73,7 +73,7 @@ ___
 
 • **priv**? : *undefined | number*
 
-*Defined in [lib/netapi.d.ts:7](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/lib/netapi.d.ts#L7)*
+*Defined in [lib/netapi.d.ts:7](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/netapi.d.ts#L7)*
 
 ___
 
@@ -81,4 +81,4 @@ ___
 
 • **scriptPath**? : *undefined | string*
 
-*Defined in [lib/netapi.d.ts:11](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/lib/netapi.d.ts#L11)*
+*Defined in [lib/netapi.d.ts:11](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/netapi.d.ts#L11)*

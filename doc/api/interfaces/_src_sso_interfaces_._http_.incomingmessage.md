@@ -18,7 +18,7 @@
 
 • **sso**: *[SSOObject](_src_sso_interfaces_.ssoobject.md)*
 
-*Defined in [src/sso/interfaces.ts:27](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/interfaces.ts#L27)*
+*Defined in [src/sso/interfaces.ts:24](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/interfaces.ts#L24)*
 
 Contains the SSOObject.
 

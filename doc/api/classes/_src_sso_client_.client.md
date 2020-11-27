@@ -32,7 +32,7 @@ Cookies are managed if necessary during the process.
 
 • **agent**: *agent* = agent
 
-*Defined in [src/sso/client.ts:34](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/client.ts#L34)*
+*Defined in [src/sso/client.ts:34](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/client.ts#L34)*
 
 ___
 
@@ -40,7 +40,7 @@ ___
 
 • **clientCookie**: *[ClientCookie](_src_sso_client_clientcookie_.clientcookie.md)‹›* = new ClientCookie()
 
-*Defined in [src/sso/client.ts:32](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/client.ts#L32)*
+*Defined in [src/sso/client.ts:32](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/client.ts#L32)*
 
 ___
 
@@ -48,7 +48,7 @@ ___
 
 • **clientInfo**: *[ClientInfo](_src_sso_client_clientinfo_.clientinfo.md)‹›* = new ClientInfo()
 
-*Defined in [src/sso/client.ts:33](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/client.ts#L33)*
+*Defined in [src/sso/client.ts:33](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/client.ts#L33)*
 
 ## Methods
 
@@ -56,7 +56,7 @@ ___
 
 ▸ **fetch**(`resource`: string, `init?`: RequestInit): *Promise‹Response›*
 
-*Defined in [src/sso/client.ts:83](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/client.ts#L83)*
+*Defined in [src/sso/client.ts:83](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/client.ts#L83)*
 
 Works as the fetch function of node-fetch node module.
 This function can handle the negotiate protocol with SPNEGO tokens.
@@ -80,7 +80,7 @@ ___
 
 ▸ **setCredentials**(`domain`: string, `user`: string, `password`: string): *void*
 
-*Defined in [src/sso/client.ts:46](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/client.ts#L46)*
+*Defined in [src/sso/client.ts:46](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/client.ts#L46)*
 
 Set the credentials for running the client as another user.
 
@@ -104,7 +104,7 @@ ___
 
 ▸ **setSSP**(`ssp`: [SecuritySupportProvider](../modules/_lib_sspi_d_.md#securitysupportprovider)): *void*
 
-*Defined in [src/sso/client.ts:70](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/client.ts#L70)*
+*Defined in [src/sso/client.ts:70](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/client.ts#L70)*
 
 Set the Security Support Provider (NTLM, Kerberos, Negotiate)
 
@@ -124,7 +124,7 @@ ___
 
 ▸ **setTargetName**(`targetName`: string): *void*
 
-*Defined in [src/sso/client.ts:60](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/client.ts#L60)*
+*Defined in [src/sso/client.ts:60](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/client.ts#L60)*
 
 Force the targetName to a value.
 

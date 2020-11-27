@@ -22,7 +22,7 @@
 
 • **domain**: *string*
 
-*Defined in [src/sso/client/ClientInfo.ts:4](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/client/ClientInfo.ts#L4)*
+*Defined in [src/sso/client/ClientInfo.ts:4](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/client/ClientInfo.ts#L4)*
 
 ___
 
@@ -30,7 +30,7 @@ ___
 
 • **password**: *string*
 
-*Defined in [src/sso/client/ClientInfo.ts:6](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/client/ClientInfo.ts#L6)*
+*Defined in [src/sso/client/ClientInfo.ts:6](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/client/ClientInfo.ts#L6)*
 
 ___
 
@@ -38,7 +38,7 @@ ___
 
 • **ssp**: *[SecuritySupportProvider](../modules/_lib_sspi_d_.md#securitysupportprovider)* = "Negotiate"
 
-*Defined in [src/sso/client/ClientInfo.ts:8](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/client/ClientInfo.ts#L8)*
+*Defined in [src/sso/client/ClientInfo.ts:8](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/client/ClientInfo.ts#L8)*
 
 ___
 
@@ -46,7 +46,7 @@ ___
 
 • **targetName**: *string*
 
-*Defined in [src/sso/client/ClientInfo.ts:7](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/client/ClientInfo.ts#L7)*
+*Defined in [src/sso/client/ClientInfo.ts:7](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/client/ClientInfo.ts#L7)*
 
 ___
 
@@ -54,4 +54,4 @@ ___
 
 • **user**: *string*
 
-*Defined in [src/sso/client/ClientInfo.ts:5](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/client/ClientInfo.ts#L5)*
+*Defined in [src/sso/client/ClientInfo.ts:5](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/client/ClientInfo.ts#L5)*

@@ -23,7 +23,7 @@
 
 \+ **new SPN**(): *[SPN](_src_sso_spn_.spn.md)*
 
-*Defined in [src/sso/spn.ts:9](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/spn.ts#L9)*
+*Defined in [src/sso/spn.ts:9](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/spn.ts#L9)*
 
 **Returns:** *[SPN](_src_sso_spn_.spn.md)*
 
@@ -33,7 +33,7 @@
 
 ▸ **add**(): *Promise‹void›*
 
-*Defined in [src/sso/spn.ts:64](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/spn.ts#L64)*
+*Defined in [src/sso/spn.ts:64](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/spn.ts#L64)*
 
 **Returns:** *Promise‹void›*
 
@@ -43,6 +43,6 @@ ___
 
 ▸ **getListAll**(): *Promise‹[SPNRecord](../interfaces/_src_sso_spn_.spnrecord.md)[]›*
 
-*Defined in [src/sso/spn.ts:12](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/spn.ts#L12)*
+*Defined in [src/sso/spn.ts:12](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/spn.ts#L12)*
 
 **Returns:** *Promise‹[SPNRecord](../interfaces/_src_sso_spn_.spnrecord.md)[]›*

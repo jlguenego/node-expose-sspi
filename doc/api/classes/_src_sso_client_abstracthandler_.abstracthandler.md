@@ -24,7 +24,7 @@
 
 ▸ **handle**(`clientInfo`: [ClientInfo](_src_sso_client_clientinfo_.clientinfo.md), `clientCookie`: [ClientCookie](_src_sso_client_clientcookie_.clientcookie.md), `response`: Response, `resource`: string, `init`: RequestInit): *Promise‹Response›*
 
-*Defined in [src/sso/client/AbstractHandler.ts:6](https://github.com/jlguenego/node-expose-sspi/blob/927f02c/src/sso/client/AbstractHandler.ts#L6)*
+*Defined in [src/sso/client/AbstractHandler.ts:6](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/client/AbstractHandler.ts#L6)*
 
 **Parameters:**
 
