@@ -116,7 +116,8 @@ The client can be configured with the following methods:
 
 - `setCredentials(domain: string, user: string, password: string)`: connect with
   the credential of another windows account.
-- `setSSP(ssp: SecuritySupportProvider)`: set the SecuritySupportProvider. A
+- `setSSP(ssp: SecuritySupportProvider)`: set the SecuritySupportProvider to
+  force the client to use NTLM or Kerberos, or Negotiate. A
   SecuritySupportProvider is just one of the following strings:
   - NTLM
   - Kerberos
