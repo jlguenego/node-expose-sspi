@@ -121,8 +121,8 @@ export class Client {
       return response;
     }
 
-    const authMethod = authHeader.split(/[, ]/)[0];
-    const handler = HandlerFactory.instantiate(authMethod);
+    const authenticationType = authHeader.split(/[, ]/)[0];
+    const handler = HandlerFactory.instantiate(authenticationType);
     return await handler.handle(
       this.clientInfo,
       this.clientCookie,

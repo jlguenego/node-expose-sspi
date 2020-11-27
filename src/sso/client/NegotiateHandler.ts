@@ -16,6 +16,10 @@ import { decode, encode, hexDump } from '../misc';
 const debug = dbg('node-expose-sspi:client');
 
 export class NegotiateHandler extends AbstractHandler {
+  constructor(private authenticationType = 'Negotiate') {
+    super();
+  }
+
   async handle(
     clientInfo: ClientInfo,
     clientCookie: ClientCookie,
@@ -24,6 +28,9 @@ export class NegotiateHandler extends AbstractHandler {
     init: RequestInit = {}
   ): Promise<Response> {
     debug('starting negotiate auth');
+    if (this.authenticationType === 'NTLM') {
+      clientInfo.ssp = 'NTLM';
+    }
     const packageInfo = sspi.QuerySecurityPackageInfo(clientInfo.ssp);
     debug('packageInfo: ', packageInfo);
 
@@ -63,19 +70,21 @@ export class NegotiateHandler extends AbstractHandler {
     while (
       response.headers.has('www-authenticate') &&
       response.status === 401 &&
-      response.headers.get('www-authenticate')?.startsWith('Negotiate')
+      response.headers
+        .get('www-authenticate')
+        ?.startsWith(this.authenticationType)
     ) {
       const wwwAuthenticateHeader = response.headers.get(
         'www-authenticate'
       ) as string;
       debug('wwwAuthenticateHeader: ', wwwAuthenticateHeader);
       if (clientSecurityContext) {
-        if (!wwwAuthenticateHeader.startsWith('Negotiate ')) {
+        if (!wwwAuthenticateHeader.startsWith(this.authenticationType + ' ')) {
           break;
         }
         const bufferStr = wwwAuthenticateHeader
           .split(',')[0]
-          .substr('Negotiate '.length);
+          .substr((this.authenticationType + ' ').length);
         debug('bufferStr: ', bufferStr);
         const responseToken = negotiateParse(bufferStr);
         debug('responseToken: ', responseToken);
@@ -105,7 +114,7 @@ export class NegotiateHandler extends AbstractHandler {
       const requestInit = { ...init };
       requestInit.headers = {
         ...init.headers,
-        Authorization: 'Negotiate ' + base64,
+        Authorization: this.authenticationType + ' ' + base64,
       };
       clientCookie.restituteCookies(requestInit);
       debug('requestInit.headers', requestInit.headers);

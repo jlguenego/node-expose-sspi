@@ -4,14 +4,17 @@ import { DigestHandler } from './DigestHandler';
 import { NegotiateHandler } from './NegotiateHandler';
 
 export class HandlerFactory {
-  static instantiate(method: string): AbstractHandler {
-    if (method === 'Negotiate') {
+  static instantiate(authenticationType: string): AbstractHandler {
+    if (authenticationType === 'Negotiate') {
       return new NegotiateHandler();
     }
-    if (method === 'Basic') {
+    if (authenticationType === 'NTLM') {
+      return new NegotiateHandler('NTLM');
+    }
+    if (authenticationType === 'Basic') {
       return new BasicHandler();
     }
-    if (method === 'Digest') {
+    if (authenticationType === 'Digest') {
       return new DigestHandler();
     }
     throw new Error('Cannot handle this authentication method');
