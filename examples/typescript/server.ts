@@ -4,6 +4,7 @@ import { sso } from '../..';
 
 const app = express();
 
+app.use(express.json());
 app.use(
   session({
     name: 'express-sso-session',
@@ -25,6 +26,13 @@ app.use(
     // groupFilterRegex: ".*NT AUTHORITY.*"
   })
 );
+
+app.post('/api/article', (req, res) => {
+  const result = { ...req.body };
+  result.id = 'a123';
+  result.sso = req.sso;
+  res.json(result);
+});
 
 app.use((req, res) => {
   res.json({
