@@ -7,6 +7,7 @@
 /build
 /test
 /typedoc
+/src
 .eslintrc.js
 .mocharc.js
 .prettierrc

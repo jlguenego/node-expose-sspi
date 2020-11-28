@@ -6,7 +6,6 @@ import { TestServer } from './lib/TestServer';
 
 const debug = dbg('node-expose-sspi:test');
 
-const server = new TestServer();
 const app = express();
 app.use(sso.auth({ forceNTLM: true }));
 app.use((req, res) => {
@@ -14,7 +13,7 @@ app.use((req, res) => {
     auth: req.sso,
   });
 });
-server.app = app;
+const server = new TestServer(app);
 
 describe('forceNTLM Test', () => {
   it('should test forceNTLM', async function () {

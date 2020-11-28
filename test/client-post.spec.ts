@@ -65,7 +65,11 @@ describe('Client Post Test', () => {
           'Content-Type': 'application/json',
         },
       });
-      const json = await response.json();
+      const json = (await response.json()) as {
+        toto: number;
+        id: string;
+        sso: unknown;
+      };
       assert.strictEqual(json.toto, 123);
       assert.strictEqual(json.id, 'a123');
       assert(json.sso);

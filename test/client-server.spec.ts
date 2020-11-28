@@ -1,7 +1,7 @@
 import express, { Request, Response, NextFunction } from 'express';
 import { Server } from 'http';
 import os from 'os';
-import { sso, netapi, UserInfo1 } from '../src';
+import { sso, netapi, UserInfo1, SSOObject } from '../src';
 import { strict as assert } from 'assert';
 import dbg from 'debug';
 const debug = dbg('node-expose-sspi:test');
@@ -75,7 +75,8 @@ describe('ClientServer', () => {
   });
 
   if (sso.isActiveDirectoryReachable()) {
-    it('should test SEC_E_LOGON_DENIED', async () => {
+    it('should test SEC_E_LOGON_DENIED', async function () {
+      this.timeout(15000);
       const server = new MyServer();
       try {
         await server.start();
@@ -122,7 +123,8 @@ describe('ClientServer', () => {
   }
 
   if (sso.hasAdminPrivileges()) {
-    it('should return bad login', async () => {
+    it('should return bad login', async function () {
+      this.timeout(15000);
       const username = 'test345';
       try {
         try {
@@ -205,7 +207,7 @@ describe('ClientServer', () => {
           const response = await new sso.Client().fetch(
             'http://localhost:3000'
           );
-          const json = await response.json();
+          const json = (await response.json()) as { sso: SSOObject };
           state.decrement();
           assert(json.sso.user, 'json.sso.user should be truthy');
           assert(json.sso.owner, 'json.sso.owner should be truthy');
