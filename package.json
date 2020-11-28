@@ -20,6 +20,9 @@
     "type": "git",
     "url": "https://github.com/jlguenego/node-expose-sspi.git"
   },
+  "bugs": {
+    "url": "https://github.com/jlguenego/node-expose-sspi/issues"
+  },
   "funding": {
     "type": "individual",
     "url": "https://github.com/sponsors/jlguenego"
