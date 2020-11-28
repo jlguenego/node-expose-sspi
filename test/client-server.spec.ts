@@ -1,47 +1,32 @@
 import express, { Request, Response, NextFunction } from 'express';
-import { Server } from 'http';
 import os from 'os';
 import { sso, netapi, UserInfo1, SSOObject } from '../src';
 import { strict as assert } from 'assert';
 import dbg from 'debug';
+import { TestServer } from './lib/TestServer';
 const debug = dbg('node-expose-sspi:test');
 
-class MyServer {
-  app = express();
-  server!: Server;
-  constructor() {
-    this.app.use(sso.auth());
-    this.app.use((req, res) => {
-      res.json({
-        sso: req.sso,
-      });
-    });
+const app = express();
+app.use(sso.auth());
+app.use((req, res) => {
+  res.json({
+    sso: req.sso,
+  });
+});
 
-    // to avoid the default error handler do some console.error stuff.
-    this.app.use(
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      (
-        err: { statusCode: number },
-        req: Request,
-        res: Response,
-        next: NextFunction
-      ) => {
-        res.status(err.statusCode).end();
-      }
-    );
+// to avoid the default error handler do some console.error stuff.
+app.use(
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  (
+    err: { statusCode: number },
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+    res.status(err.statusCode).end();
   }
-
-  start(): Promise<void> {
-    return new Promise<void>((resolve) => {
-      this.server = this.app.listen(3000, () => resolve());
-    });
-  }
-  stop(): Promise<void> {
-    return new Promise<void>((resolve) => {
-      this.server.close(() => resolve());
-    });
-  }
-}
+);
+const server = new TestServer(app);
 
 async function isLocalhostSPN(): Promise<boolean> {
   const spn = new sso.SPN();
@@ -56,7 +41,6 @@ async function isLocalhostSPN(): Promise<boolean> {
 describe('ClientServer', () => {
   it('should test SEC_E_NO_AUTHENTICATING_AUTHORITY', async function () {
     this.timeout(15000);
-    const server = new MyServer();
     try {
       await server.start();
 
@@ -77,7 +61,6 @@ describe('ClientServer', () => {
   if (sso.isActiveDirectoryReachable()) {
     it('should test SEC_E_LOGON_DENIED', async function () {
       this.timeout(15000);
-      const server = new MyServer();
       try {
         await server.start();
 
@@ -97,14 +80,13 @@ describe('ClientServer', () => {
     });
 
     it('should test kerberos with good login', async function () {
-      this.timeout(8000);
+      this.timeout(15000);
       if (!(await isLocalhostSPN())) {
         console.log(
           'to unit test kerberos, you should add HTTP/localhost in the SPN'
         );
         return;
       }
-      const server = new MyServer();
       try {
         await server.start();
 
@@ -136,17 +118,16 @@ describe('ClientServer', () => {
           name: username,
           password: 'toto123!',
         } as UserInfo1);
-        const server = new MyServer();
         await server.start();
 
         const client = new sso.Client();
         client.setCredentials(os.hostname(), username, 'nonono');
         const response = await client.fetch('http://localhost:3000');
         assert.equal(response.status, 401);
-        await server.stop();
       } catch (e) {
         assert.fail(e);
       } finally {
+        await server.stop();
         try {
           netapi.NetUserDel(undefined, username);
         } catch (e) {
@@ -158,83 +139,51 @@ describe('ClientServer', () => {
 
   if (sso.isOnDomain() && sso.isActiveDirectoryReachable()) {
     it('should return the right json', async function () {
-      this.timeout(15000);
+      this.timeout(30000);
       debug('start');
-      const app = express();
-      app.use(
+      const myApp = express();
+      myApp.use(
         sso.auth({
           useOwner: true,
           useActiveDirectory: true,
         })
       );
-      app.use((req, res) => {
+      myApp.use((req, res) => {
         res.json({
           sso: req.sso,
         });
       });
 
-      const server = app.listen(3000);
-      debug('server started');
-
-      const TIMES = 10;
-      const DELAY = 0;
-
-      const state = {
-        i: 0,
-        clientsNbr: 0,
-        resolve: (): void => {},
-        increment(): void {
-          this.clientsNbr++;
-        },
-        decrement(): void {
-          this.clientsNbr--;
-          if (this.clientsNbr === 0 && this.i >= TIMES - 1) {
-            debug('about to close');
-            server.close(() => {
-              debug('server closed');
-              if (this.resolve) {
-                this.resolve();
-              }
-            });
-          }
-        },
-      };
-
-      async function simulateClient(i: number): Promise<void> {
-        try {
-          debug('start client', i);
-          state.increment();
-          const response = await new sso.Client().fetch(
-            'http://localhost:3000'
-          );
-          const json = (await response.json()) as { sso: SSOObject };
-          state.decrement();
-          assert(json.sso.user, 'json.sso.user should be truthy');
-          assert(json.sso.owner, 'json.sso.owner should be truthy');
-          assert.equal(json.sso.method, 'NTLM');
-          debug('end client', i);
-        } catch (e) {
-          console.error(e);
-          throw e;
-        }
-      }
-
-      function clean(): Promise<void> {
-        return new Promise((resolve) => {
-          state.resolve = resolve;
-        });
-      }
-
+      const myServer = new TestServer(myApp);
       try {
-        for (state.i = 0; state.i < TIMES; state.i++) {
-          simulateClient(state.i);
-          await sso.sleep(DELAY);
-        }
-        await clean();
+        await myServer.start();
+
+        const client = new sso.Client();
+        const url = 'http://localhost:3000';
+
+        const TIMES = 10;
+        const DELAY = 10;
+
+        const array = new Array(TIMES).fill(0).map((n, i) => {
+          return async () => {
+            debug('start', i);
+            await sso.sleep(DELAY * i);
+            debug('fetch url', i);
+            const response = await client.fetch(url);
+            debug('response', i);
+            const json = (await response.json()) as { sso: SSOObject };
+            assert(json.sso.user, 'json.sso.user should be truthy');
+            assert(json.sso.owner, 'json.sso.owner should be truthy');
+            assert.equal(json.sso.method, 'NTLM');
+            debug('end client', i);
+          };
+        });
+        await Promise.all(array.map((f) => f()));
         debug('finished');
-      } catch (e) {
-        console.error(e);
-        throw e;
+      } finally {
+        debug('about to stop server');
+        await myServer.stop();
+        debug('server stopped');
       }
     });
   }

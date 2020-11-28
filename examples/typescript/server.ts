@@ -22,7 +22,7 @@ app.use(
     allowsAnonymousLogon: false,
     allowsGuest: false,
     useSession: true,
-    forceNTLM: true,
+    forceNTLM: false,
     // groupFilterRegex: ".*NT AUTHORITY.*"
   })
 );
