@@ -42,11 +42,11 @@ export async function getUser(ldapFilter: string): Promise<ADUser | undefined> {
   if (!isOnDomain()) {
     return;
   }
-  const adRelease = await activeDirectoryMutex.acquire();
   if (!isActiveDirectoryReachable()) {
     console.error('Warning: Active Directory not reachable');
     return;
   }
+  const adRelease = await activeDirectoryMutex.acquire();
   openADConnection();
   let dirsearch: IDirectorySearch | undefined;
   try {

@@ -1,3 +1,7 @@
+const util = require('util');
 const { sso } = require('..');
 
-console.log('status: ', sso.getStatusInfo());
+(async () => {
+  const status = await sso.getStatusInfo();
+  console.log('status: ', util.inspect(status, false, null, true));
+})();

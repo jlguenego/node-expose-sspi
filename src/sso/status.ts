@@ -1,16 +1,42 @@
-import { Props } from '../../lib/api';
 import { sso } from './index';
+import { SPNRecord } from './spn';
 
-export function getStatusInfo() {
+interface StatusInfo {
+  adminPrivileges: boolean;
+  isOnDomain: boolean;
+  domain: string;
+  isActiveDirectoryReachable: boolean;
+  spns: SPNRecord[];
+  error: string;
+}
+
+export async function getStatusInfo(context?: {
+  kerberosMsg: string;
+}): Promise<Partial<StatusInfo>> {
   try {
     const result = {
       adminPrivileges: sso.hasAdminPrivileges(),
       isOnDomain: sso.isOnDomain(),
       domain: sso.getDefaultDomain(),
-    } as Props;
-    if (sso.isOnDomain()) {
-      result.isActiveDirectoryReachable = sso.isActiveDirectoryReachable();
+    } as StatusInfo;
+    if (!result.isOnDomain) {
+      return result;
     }
+    result.isActiveDirectoryReachable = sso.isActiveDirectoryReachable();
+    if (!result.isActiveDirectoryReachable) {
+      return result;
+    }
+    const ssoSPN = new sso.SPN();
+    result.spns = await ssoSPN.getListAll();
+
+    if (!context?.kerberosMsg) {
+      return result;
+    }
+    // Get the SPN recorded in the kerberos message
+    // const ClientSpn = getClientSPN(context?.kerberosMsg);
+    // if (!allowedSpns.includes(spn)) {
+    //   result.error = `spn (${spn}) not included in allowedSpn (${spns})`;
+    // }
     return result;
   } catch (e) {
     return {
