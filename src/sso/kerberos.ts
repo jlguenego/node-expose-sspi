@@ -1,4 +1,5 @@
 import { ASN1 } from '@jlguenego/asn.1';
+import { inspect } from 'util';
 import { ASN1MsgUtils } from '@jlguenego/asn.1/build/src/ASN1MsgUtils';
 import { EncodingRule } from '@jlguenego/asn.1/build/src/EncodingRule';
 
@@ -22,4 +23,17 @@ export function getKerberosDetails(buffer: ArrayBuffer) {
     realm,
   };
   return result;
+}
+
+export function getKerberosResponseDetails(buffer: ArrayBuffer) {
+  const message = ASN1.parseMsg(buffer, {
+    encodingRule: EncodingRule.DER,
+  });
+  const msgId = ASN1MsgUtils.query(message, 'tagLabel', '15');
+  if (msgId) {
+    return 'Regular KRB_AP_REP message';
+  }
+  return (
+    'probably an GSS-API KRB_ERROR message: ' + inspect(message, false, null)
+  );
 }

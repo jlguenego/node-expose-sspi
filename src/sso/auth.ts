@@ -15,7 +15,7 @@ import {
   SSOObject,
 } from './interfaces';
 import { getStatusInfo } from './status';
-import { getKerberosDetails } from './kerberos';
+import { getKerberosDetails, getKerberosResponseDetails } from './kerberos';
 
 const DEBUG_KEY = 'node-expose-sspi:auth';
 const debug = dbg(DEBUG_KEY);
@@ -141,6 +141,14 @@ export function auth(options: Partial<AuthOptions> = {}): Middleware {
           'serverSecurityContext just after AcceptSecurityContext',
           serverSecurityContext
         );
+        if (isDbgEnabled && messageType.startsWith('Kerberos')) {
+          debug(
+            'Kerberos output details: ',
+            getKerberosResponseDetails(
+              serverSecurityContext.SecBufferDesc.buffers[0]
+            )
+          );
+        }
         const failed = !['SEC_E_OK', 'SEC_I_CONTINUE_NEEDED'].includes(
           serverSecurityContext.SECURITY_STATUS
         );
@@ -166,6 +174,7 @@ export function auth(options: Partial<AuthOptions> = {}): Middleware {
 
         debug('AcceptSecurityContext output buffer');
         debug(hexDump(serverSecurityContext.SecBufferDesc.buffers[0]));
+
         if (serverSecurityContext.SECURITY_STATUS === 'SEC_I_CONTINUE_NEEDED') {
           res.statusCode = 401;
           res.setHeader(
