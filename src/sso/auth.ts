@@ -15,8 +15,11 @@ import {
   SSOObject,
 } from './interfaces';
 import { getStatusInfo } from './status';
+import { getKerberosDetails } from './kerberos';
 
-const debug = dbg('node-expose-sspi:auth');
+const DEBUG_KEY = 'node-expose-sspi:auth';
+const debug = dbg(DEBUG_KEY);
+const isDbgEnabled = dbg.enabled(DEBUG_KEY);
 
 const WWW_AUTHENTICATE = 'WWW-Authenticate';
 
@@ -29,7 +32,7 @@ const WWW_AUTHENTICATE = 'WWW-Authenticate';
  * @returns {RequestHandler}
  */
 export function auth(options: Partial<AuthOptions> = {}): Middleware {
-  const defaultOptions: AuthOptions = {
+  const opts: AuthOptions = {
     useActiveDirectory: true,
     useGroups: true,
     useOwner: false,
@@ -38,9 +41,8 @@ export function auth(options: Partial<AuthOptions> = {}): Middleware {
     allowsAnonymousLogon: false,
     useSession: false,
     forceNTLM: false,
+    ...options,
   };
-
-  const opts = { ...defaultOptions, ...options };
 
   const authenticationType = opts.forceNTLM ? 'NTLM' : 'Negotiate';
   const packageName = 'Negotiate';
@@ -113,6 +115,11 @@ export function auth(options: Partial<AuthOptions> = {}): Middleware {
           messageType === 'Kerberos_1'
         ) {
           schManager.release(req);
+        }
+
+        // kerberos token case
+        if (isDbgEnabled && messageType === 'Kerberos_1') {
+          debug('Kerberos_1 details: ', getKerberosDetails(buffer));
         }
 
         const input: AcceptSecurityContextInput = {
