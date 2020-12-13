@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.55](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.54...v0.1.55) (2020-12-13)
+
+
+### Features
+
+* added bug info in package.json ([30f2d03](https://github.com/jlguenego/node-expose-sspi/commit/30f2d03daa89d87d608c12d6f8309eab2e84c286))
+* added spn list from status command ([ec2e1cf](https://github.com/jlguenego/node-expose-sspi/commit/ec2e1cfcf32e05106017e39533f44301913b9e86))
+
+
+### Bug Fixes
+
+* all test ok ([0d5dd4f](https://github.com/jlguenego/node-expose-sspi/commit/0d5dd4f48247ca38101211986deff6eb276be84d))
+* test ok ([a4fcd93](https://github.com/jlguenego/node-expose-sspi/commit/a4fcd93b9cb720fc4a4c3df6979406bd6a0cc27a))
+
 ### [0.1.54](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.53...v0.1.54) (2020-11-28)
 
 
