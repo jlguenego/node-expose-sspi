@@ -14,8 +14,8 @@
     "express": "^4.17.1",
     "node-expose-sspi": "^0.1.38",
     "nodemon": "^2.0.2",
-    "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12",
+    "webpack": "^5.28.0",
+    "webpack-cli": "^4.6.0",
     "webpack-node-externals": "^2.5.2"
   }
 }
