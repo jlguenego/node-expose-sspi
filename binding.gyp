@@ -3,8 +3,9 @@
     {
       "target_name": "node_expose_sspi",
       "sources": [
-        "cpp/**/*.cc",
+        "<!@(node -p \"require('./scripts/read-cpp-source-filename')\")",
       ],
+      # "<!@(node -p \"require('./scripts/read-cpp-source-filename')\")",
 
       # Macros to define for using WCHAR on Windows.
       "defines": ["_UNICODE", "UNICODE"],
