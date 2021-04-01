@@ -3,7 +3,7 @@ import { ClientCookie } from './ClientCookie';
 import { ClientInfo } from './ClientInfo';
 
 export abstract class AbstractHandler {
-  abstract async handle(
+  abstract handle(
     clientInfo: ClientInfo,
     clientCookie: ClientCookie,
     response: Response,
