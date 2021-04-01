@@ -33,7 +33,7 @@ options to provide to sso.auth() and SSO.setOptions().
 
 • **allowsAnonymousLogon**: *boolean*
 
-*Defined in [src/sso/interfaces.ts:129](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/interfaces.ts#L129)*
+*Defined in [src/sso/interfaces.ts:129](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/src/sso/interfaces.ts#L129)*
 
 If true, someone that connects without login/password may be
 authenticated as Windows anonymous user account.
@@ -48,7 +48,7 @@ ___
 
 • **allowsGuest**: *boolean*
 
-*Defined in [src/sso/interfaces.ts:118](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/interfaces.ts#L118)*
+*Defined in [src/sso/interfaces.ts:118](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/src/sso/interfaces.ts#L118)*
 
 If true, someone that connects with wrong login/password may be
 authenticated as Windows guest user.
@@ -63,7 +63,7 @@ ___
 
 • **forceNTLM**: *boolean*
 
-*Defined in [src/sso/interfaces.ts:153](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/interfaces.ts#L153)*
+*Defined in [src/sso/interfaces.ts:153](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/src/sso/interfaces.ts#L153)*
 
 If true, the WWW-Authenticate will propose NTLM instead of Negotiate.
 This will force the NTLM protocol to be used, and not Kerberos.
@@ -80,7 +80,7 @@ ___
 
 *Inherited from [SSOOptions](_src_sso_interfaces_.ssooptions.md).[groupFilterRegex](_src_sso_interfaces_.ssooptions.md#groupfilterregex)*
 
-*Defined in [src/sso/interfaces.ts:99](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/interfaces.ts#L99)*
+*Defined in [src/sso/interfaces.ts:99](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/src/sso/interfaces.ts#L99)*
 
 Filter the groups. Useful if there are too much groups to fetch.
 
@@ -96,7 +96,7 @@ ___
 
 *Inherited from [SSOOptions](_src_sso_interfaces_.ssooptions.md).[useActiveDirectory](_src_sso_interfaces_.ssooptions.md#useactivedirectory)*
 
-*Defined in [src/sso/interfaces.ts:69](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/interfaces.ts#L69)*
+*Defined in [src/sso/interfaces.ts:69](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/src/sso/interfaces.ts#L69)*
 
 Brings back the Active Directory user information
 
@@ -114,7 +114,7 @@ ___
 
 *Inherited from [SSOOptions](_src_sso_interfaces_.ssooptions.md).[useGroups](_src_sso_interfaces_.ssooptions.md#usegroups)*
 
-*Defined in [src/sso/interfaces.ts:79](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/interfaces.ts#L79)*
+*Defined in [src/sso/interfaces.ts:79](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/src/sso/interfaces.ts#L79)*
 
 Brings back the groups the user belongs to.
 
@@ -130,7 +130,7 @@ ___
 
 *Inherited from [SSOOptions](_src_sso_interfaces_.ssooptions.md).[useOwner](_src_sso_interfaces_.ssooptions.md#useowner)*
 
-*Defined in [src/sso/interfaces.ts:89](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/interfaces.ts#L89)*
+*Defined in [src/sso/interfaces.ts:89](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/src/sso/interfaces.ts#L89)*
 
 Brings back the server process owner info.
 
@@ -144,7 +144,7 @@ ___
 
 • **useSession**: *boolean*
 
-*Defined in [src/sso/interfaces.ts:142](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/interfaces.ts#L142)*
+*Defined in [src/sso/interfaces.ts:142](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/src/sso/interfaces.ts#L142)*
 
 If true, cache the req.sso into req.session.sso.
 module `express-session` should be used.

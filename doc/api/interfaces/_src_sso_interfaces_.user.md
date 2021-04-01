@@ -24,7 +24,7 @@
 
 • **accessToken**? : *[AccessToken](../modules/_lib_user_d_.md#accesstoken)*
 
-*Defined in [src/sso/interfaces.ts:163](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/interfaces.ts#L163)*
+*Defined in [src/sso/interfaces.ts:163](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/src/sso/interfaces.ts#L163)*
 
 ___
 
@@ -32,7 +32,7 @@ ___
 
 • **adUser**? : *[ADUser](_src_sso_interfaces_.aduser.md)*
 
-*Defined in [src/sso/interfaces.ts:162](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/interfaces.ts#L162)*
+*Defined in [src/sso/interfaces.ts:162](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/src/sso/interfaces.ts#L162)*
 
 ___
 
@@ -40,7 +40,7 @@ ___
 
 • **displayName**? : *undefined | string*
 
-*Defined in [src/sso/interfaces.ts:159](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/interfaces.ts#L159)*
+*Defined in [src/sso/interfaces.ts:159](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/src/sso/interfaces.ts#L159)*
 
 ___
 
@@ -48,7 +48,7 @@ ___
 
 • **domain**? : *undefined | string*
 
-*Defined in [src/sso/interfaces.ts:160](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/interfaces.ts#L160)*
+*Defined in [src/sso/interfaces.ts:160](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/src/sso/interfaces.ts#L160)*
 
 ___
 
@@ -56,7 +56,7 @@ ___
 
 • **groups**? : *string[]*
 
-*Defined in [src/sso/interfaces.ts:161](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/interfaces.ts#L161)*
+*Defined in [src/sso/interfaces.ts:161](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/src/sso/interfaces.ts#L161)*
 
 ___
 
@@ -64,7 +64,7 @@ ___
 
 • **name**? : *undefined | string*
 
-*Defined in [src/sso/interfaces.ts:157](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/interfaces.ts#L157)*
+*Defined in [src/sso/interfaces.ts:157](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/src/sso/interfaces.ts#L157)*
 
 ___
 
@@ -72,4 +72,4 @@ ___
 
 • **sid**? : *undefined | string*
 
-*Defined in [src/sso/interfaces.ts:158](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/interfaces.ts#L158)*
+*Defined in [src/sso/interfaces.ts:158](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/src/sso/interfaces.ts#L158)*

@@ -27,7 +27,7 @@ to a security package.
 
 • **buffers**: *ArrayBuffer[]*
 
-*Defined in [lib/sspi.d.ts:113](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/sspi.d.ts#L113)*
+*Defined in [lib/sspi.d.ts:113](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/lib/sspi.d.ts#L113)*
 
 ___
 
@@ -35,4 +35,4 @@ ___
 
 • **ulVersion**: *number*
 
-*Defined in [lib/sspi.d.ts:112](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/sspi.d.ts#L112)*
+*Defined in [lib/sspi.d.ts:112](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/lib/sspi.d.ts#L112)*

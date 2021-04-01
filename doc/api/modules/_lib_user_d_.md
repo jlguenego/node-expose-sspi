@@ -20,6 +20,6 @@
 
 Ƭ **AccessToken**: *string*
 
-*Defined in [lib/user.d.ts:12](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/user.d.ts#L12)*
+*Defined in [lib/user.d.ts:12](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/lib/user.d.ts#L12)*
 
 An AccessToken is a pointer to some user information.

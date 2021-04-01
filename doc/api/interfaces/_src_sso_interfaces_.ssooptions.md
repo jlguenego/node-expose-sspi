@@ -23,7 +23,7 @@
 
 • **groupFilterRegex**: *string*
 
-*Defined in [src/sso/interfaces.ts:99](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/interfaces.ts#L99)*
+*Defined in [src/sso/interfaces.ts:99](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/src/sso/interfaces.ts#L99)*
 
 Filter the groups. Useful if there are too much groups to fetch.
 
@@ -37,7 +37,7 @@ ___
 
 • **useActiveDirectory**: *boolean*
 
-*Defined in [src/sso/interfaces.ts:69](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/interfaces.ts#L69)*
+*Defined in [src/sso/interfaces.ts:69](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/src/sso/interfaces.ts#L69)*
 
 Brings back the Active Directory user information
 
@@ -53,7 +53,7 @@ ___
 
 • **useGroups**: *boolean*
 
-*Defined in [src/sso/interfaces.ts:79](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/interfaces.ts#L79)*
+*Defined in [src/sso/interfaces.ts:79](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/src/sso/interfaces.ts#L79)*
 
 Brings back the groups the user belongs to.
 
@@ -67,7 +67,7 @@ ___
 
 • **useOwner**: *boolean*
 
-*Defined in [src/sso/interfaces.ts:89](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/interfaces.ts#L89)*
+*Defined in [src/sso/interfaces.ts:89](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/src/sso/interfaces.ts#L89)*
 
 Brings back the server process owner info.
 

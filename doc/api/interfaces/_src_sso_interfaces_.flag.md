@@ -19,7 +19,7 @@
 
 • **label**: *string*
 
-*Defined in [src/sso/interfaces.ts:5](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/interfaces.ts#L5)*
+*Defined in [src/sso/interfaces.ts:5](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/src/sso/interfaces.ts#L5)*
 
 ___
 
@@ -27,4 +27,4 @@ ___
 
 • **value**: *number*
 
-*Defined in [src/sso/interfaces.ts:6](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/interfaces.ts#L6)*
+*Defined in [src/sso/interfaces.ts:6](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/src/sso/interfaces.ts#L6)*

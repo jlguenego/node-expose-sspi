@@ -35,7 +35,7 @@
 
 Ƭ **ADUsers**: *[ADUser](../interfaces/_src_sso_interfaces_.aduser.md)[]*
 
-*Defined in [src/sso/interfaces.ts:176](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/interfaces.ts#L176)*
+*Defined in [src/sso/interfaces.ts:176](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/src/sso/interfaces.ts#L176)*
 
 ___
 
@@ -43,7 +43,7 @@ ___
 
 Ƭ **CookieToken**: *string*
 
-*Defined in [src/sso/interfaces.ts:46](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/interfaces.ts#L46)*
+*Defined in [src/sso/interfaces.ts:46](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/src/sso/interfaces.ts#L46)*
 
 ___
 
@@ -51,7 +51,7 @@ ___
 
 Ƭ **MessageType**: *"Unknown" | "NTLM_NEGOTIATE_01" | "NTLM_CHALLENGE_02" | "NTLM_AUTHENTICATE_03" | "Kerberos_1" | "Kerberos_N"*
 
-*Defined in [src/sso/interfaces.ts:48](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/interfaces.ts#L48)*
+*Defined in [src/sso/interfaces.ts:48](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/src/sso/interfaces.ts#L48)*
 
 ___
 
@@ -59,7 +59,7 @@ ___
 
 Ƭ **Middleware**: *function*
 
-*Defined in [src/sso/interfaces.ts:40](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/interfaces.ts#L40)*
+*Defined in [src/sso/interfaces.ts:40](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/src/sso/interfaces.ts#L40)*
 
 #### Type declaration:
 
@@ -79,7 +79,7 @@ ___
 
 Ƭ **NextFunction**: *function*
 
-*Defined in [src/sso/interfaces.ts:56](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/interfaces.ts#L56)*
+*Defined in [src/sso/interfaces.ts:56](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/src/sso/interfaces.ts#L56)*
 
 #### Type declaration:
 
@@ -97,4 +97,4 @@ ___
 
 Ƭ **SSOMethod**: *"NTLM" | "Kerberos" | undefined*
 
-*Defined in [src/sso/interfaces.ts:182](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/interfaces.ts#L182)*
+*Defined in [src/sso/interfaces.ts:182](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/src/sso/interfaces.ts#L182)*

@@ -19,7 +19,7 @@
 
 ▸ **NetUserAdd**(`serverName`: string | undefined, `levelData`: number, `userInfo`: [UserInfo1](_lib_netapi_d_.userinfo1.md)): *void*
 
-*Defined in [lib/netapi.d.ts:25](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/netapi.d.ts#L25)*
+*Defined in [lib/netapi.d.ts:25](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/lib/netapi.d.ts#L25)*
 
 create a windows user account.
 
@@ -43,7 +43,7 @@ ___
 
 ▸ **NetUserDel**(`serverName`: string | undefined, `username`: string): *void*
 
-*Defined in [lib/netapi.d.ts:38](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/netapi.d.ts#L38)*
+*Defined in [lib/netapi.d.ts:38](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/lib/netapi.d.ts#L38)*
 
 delete a windows user account
 

@@ -25,7 +25,7 @@
 
 • **cache**: *Item[]* = []
 
-*Defined in [src/sso/schm/ServerContextHandleManager.ts:18](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/schm/ServerContextHandleManager.ts#L18)*
+*Defined in [src/sso/schm/ServerContextHandleManager.ts:18](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/src/sso/schm/ServerContextHandleManager.ts#L18)*
 
 ## Methods
 
@@ -33,7 +33,7 @@
 
 ▸ **get**(`req`: [IncomingMessage](../interfaces/_src_sso_interfaces_._http_.incomingmessage.md)): *undefined | [CtxtHandle](../interfaces/_lib_sspi_d_.ctxthandle.md)*
 
-*Defined in [src/sso/schm/ServerContextHandleManager.ts:25](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/schm/ServerContextHandleManager.ts#L25)*
+*Defined in [src/sso/schm/ServerContextHandleManager.ts:25](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/src/sso/schm/ServerContextHandleManager.ts#L25)*
 
 **Parameters:**
 
@@ -49,7 +49,7 @@ ___
 
 ▸ **refresh**(): *void*
 
-*Defined in [src/sso/schm/ServerContextHandleManager.ts:44](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/schm/ServerContextHandleManager.ts#L44)*
+*Defined in [src/sso/schm/ServerContextHandleManager.ts:44](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/src/sso/schm/ServerContextHandleManager.ts#L44)*
 
 **Returns:** *void*
 
@@ -59,7 +59,7 @@ ___
 
 ▸ **release**(`req`: [IncomingMessage](../interfaces/_src_sso_interfaces_._http_.incomingmessage.md)): *void*
 
-*Defined in [src/sso/schm/ServerContextHandleManager.ts:20](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/schm/ServerContextHandleManager.ts#L20)*
+*Defined in [src/sso/schm/ServerContextHandleManager.ts:20](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/src/sso/schm/ServerContextHandleManager.ts#L20)*
 
 **Parameters:**
 
@@ -75,7 +75,7 @@ ___
 
 ▸ **set**(`req`: [IncomingMessage](../interfaces/_src_sso_interfaces_._http_.incomingmessage.md), `handle`: [CtxtHandle](../interfaces/_lib_sspi_d_.ctxthandle.md)): *void*
 
-*Defined in [src/sso/schm/ServerContextHandleManager.ts:30](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/schm/ServerContextHandleManager.ts#L30)*
+*Defined in [src/sso/schm/ServerContextHandleManager.ts:30](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/src/sso/schm/ServerContextHandleManager.ts#L30)*
 
 **Parameters:**
 

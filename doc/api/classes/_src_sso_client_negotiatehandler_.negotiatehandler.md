@@ -10,9 +10,29 @@
 
 ## Index
 
+### Constructors
+
+* [constructor](_src_sso_client_negotiatehandler_.negotiatehandler.md#constructor)
+
 ### Methods
 
 * [handle](_src_sso_client_negotiatehandler_.negotiatehandler.md#handle)
+
+## Constructors
+
+###  constructor
+
+\+ **new NegotiateHandler**(`authenticationType`: string): *[NegotiateHandler](_src_sso_client_negotiatehandler_.negotiatehandler.md)*
+
+*Defined in [src/sso/client/NegotiateHandler.ts:18](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/src/sso/client/NegotiateHandler.ts#L18)*
+
+**Parameters:**
+
+Name | Type | Default |
+------ | ------ | ------ |
+`authenticationType` | string | "Negotiate" |
+
+**Returns:** *[NegotiateHandler](_src_sso_client_negotiatehandler_.negotiatehandler.md)*
 
 ## Methods
 
@@ -22,7 +42,7 @@
 
 *Overrides [AbstractHandler](_src_sso_client_abstracthandler_.abstracthandler.md).[handle](_src_sso_client_abstracthandler_.abstracthandler.md#abstract-handle)*
 
-*Defined in [src/sso/client/NegotiateHandler.ts:19](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/client/NegotiateHandler.ts#L19)*
+*Defined in [src/sso/client/NegotiateHandler.ts:23](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/src/sso/client/NegotiateHandler.ts#L23)*
 
 **Parameters:**
 

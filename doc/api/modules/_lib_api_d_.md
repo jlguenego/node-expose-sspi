@@ -301,7 +301,7 @@ ___
 
 • **adsi**: *[Adsi](../interfaces/_lib_adsi_d_.adsi.md)*
 
-*Defined in [lib/api.d.ts:12](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/api.d.ts#L12)*
+*Defined in [lib/api.d.ts:12](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/lib/api.d.ts#L12)*
 
 ___
 
@@ -309,7 +309,7 @@ ___
 
 • **netapi**: *[NetApi](../interfaces/_lib_netapi_d_.netapi.md)*
 
-*Defined in [lib/api.d.ts:15](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/api.d.ts#L15)*
+*Defined in [lib/api.d.ts:15](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/lib/api.d.ts#L15)*
 
 ___
 
@@ -317,7 +317,7 @@ ___
 
 • **sspi**: *[Sspi](../interfaces/_lib_sspi_d_.sspi.md)*
 
-*Defined in [lib/api.d.ts:11](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/api.d.ts#L11)*
+*Defined in [lib/api.d.ts:11](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/lib/api.d.ts#L11)*
 
 ___
 
@@ -325,7 +325,7 @@ ___
 
 • **sysinfo**: *[SysInfo](../interfaces/_lib_sysinfo_d_.sysinfo.md)*
 
-*Defined in [lib/api.d.ts:13](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/api.d.ts#L13)*
+*Defined in [lib/api.d.ts:13](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/lib/api.d.ts#L13)*
 
 ___
 
@@ -333,4 +333,4 @@ ___
 
 • **user**: *[WindowsUser](../interfaces/_lib_user_d_.windowsuser.md)*
 
-*Defined in [lib/api.d.ts:14](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/api.d.ts#L14)*
+*Defined in [lib/api.d.ts:14](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/lib/api.d.ts#L14)*

@@ -22,7 +22,7 @@
 
 ▸ **AdjustTokenPrivileges**(`input`: object): *void*
 
-*Defined in [lib/user.d.ts:31](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/user.d.ts#L31)*
+*Defined in [lib/user.d.ts:31](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/lib/user.d.ts#L31)*
 
 **Parameters:**
 
@@ -42,7 +42,7 @@ ___
 
 ▸ **ExitWindows**(): *void*
 
-*Defined in [lib/user.d.ts:42](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/user.d.ts#L42)*
+*Defined in [lib/user.d.ts:42](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/lib/user.d.ts#L42)*
 
 **Returns:** *void*
 
@@ -52,7 +52,7 @@ ___
 
 ▸ **ExitWindowsEx**(`input`: object): *void*
 
-*Defined in [lib/user.d.ts:44](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/user.d.ts#L44)*
+*Defined in [lib/user.d.ts:44](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/lib/user.d.ts#L44)*
 
 **Parameters:**
 
@@ -71,7 +71,7 @@ ___
 
 ▸ **LookupPrivilegeValue**(`input`: object): *[Luid](_lib_user_d_.luid.md)*
 
-*Defined in [lib/user.d.ts:37](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/user.d.ts#L37)*
+*Defined in [lib/user.d.ts:37](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/lib/user.d.ts#L37)*
 
 **Parameters:**
 
@@ -90,7 +90,7 @@ ___
 
 ▸ **PrivilegeCheck**(`input`: object): *boolean*
 
-*Defined in [lib/user.d.ts:25](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/user.d.ts#L25)*
+*Defined in [lib/user.d.ts:25](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/lib/user.d.ts#L25)*
 
 **Parameters:**
 

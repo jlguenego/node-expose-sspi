@@ -12,8 +12,14 @@
 
 ###  getStatusInfo
 
-▸ **getStatusInfo**(): *[Props](../interfaces/_lib_sspi_d_.props.md)*
+▸ **getStatusInfo**(`context?`: undefined | object): *Promise‹Partial‹StatusInfo››*
 
-*Defined in [src/sso/status.ts:4](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/status.ts#L4)*
+*Defined in [src/sso/status.ts:13](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/src/sso/status.ts#L13)*
 
-**Returns:** *[Props](../interfaces/_lib_sspi_d_.props.md)*
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`context?` | undefined &#124; object |
+
+**Returns:** *Promise‹Partial‹StatusInfo››*

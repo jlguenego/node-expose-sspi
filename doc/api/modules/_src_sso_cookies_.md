@@ -14,7 +14,7 @@
 
 ▸ **parseCookies**(`request`: [IncomingMessage](../interfaces/_src_sso_interfaces_._http_.incomingmessage.md)): *[CookieList](../interfaces/_src_sso_interfaces_.cookielist.md)*
 
-*Defined in [src/sso/cookies.ts:5](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/cookies.ts#L5)*
+*Defined in [src/sso/cookies.ts:5](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/src/sso/cookies.ts#L5)*
 
 **Parameters:**
 

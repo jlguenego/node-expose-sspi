@@ -14,7 +14,7 @@
 
 ▸ **negotiateParse**(`base64`: string): *[Props](../interfaces/_lib_sspi_d_.props.md)*
 
-*Defined in [src/sso/msgParser.ts:4](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/msgParser.ts#L4)*
+*Defined in [src/sso/msgParser.ts:4](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/src/sso/msgParser.ts#L4)*
 
 **Parameters:**
 

@@ -30,7 +30,7 @@ When doing SSO, you need to use a SSP provider (ex: Negotiate SSP provider).
 
 • **Comment**: *string*
 
-*Defined in [lib/sspi.d.ts:32](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/sspi.d.ts#L32)*
+*Defined in [lib/sspi.d.ts:32](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/lib/sspi.d.ts#L32)*
 
 ___
 
@@ -38,7 +38,7 @@ ___
 
 • **Name**: *[SecuritySupportProvider](../modules/_lib_sspi_d_.md#securitysupportprovider)*
 
-*Defined in [lib/sspi.d.ts:31](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/sspi.d.ts#L31)*
+*Defined in [lib/sspi.d.ts:31](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/lib/sspi.d.ts#L31)*
 
 ___
 
@@ -46,7 +46,7 @@ ___
 
 • **cbMaxToken**: *number*
 
-*Defined in [lib/sspi.d.ts:30](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/sspi.d.ts#L30)*
+*Defined in [lib/sspi.d.ts:30](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/lib/sspi.d.ts#L30)*
 
 ___
 
@@ -54,7 +54,7 @@ ___
 
 • **fCapabilities**: *number*
 
-*Defined in [lib/sspi.d.ts:27](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/sspi.d.ts#L27)*
+*Defined in [lib/sspi.d.ts:27](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/lib/sspi.d.ts#L27)*
 
 ___
 
@@ -62,7 +62,7 @@ ___
 
 • **wRPCID**: *number*
 
-*Defined in [lib/sspi.d.ts:29](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/sspi.d.ts#L29)*
+*Defined in [lib/sspi.d.ts:29](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/lib/sspi.d.ts#L29)*
 
 ___
 
@@ -70,4 +70,4 @@ ___
 
 • **wVersion**: *number*
 
-*Defined in [lib/sspi.d.ts:28](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/sspi.d.ts#L28)*
+*Defined in [lib/sspi.d.ts:28](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/lib/sspi.d.ts#L28)*

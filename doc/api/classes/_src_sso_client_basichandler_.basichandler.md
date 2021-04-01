@@ -22,7 +22,7 @@
 
 *Overrides [AbstractHandler](_src_sso_client_abstracthandler_.abstracthandler.md).[handle](_src_sso_client_abstracthandler_.abstracthandler.md#abstract-handle)*
 
-*Defined in [src/sso/client/BasicHandler.ts:12](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/client/BasicHandler.ts#L12)*
+*Defined in [src/sso/client/BasicHandler.ts:12](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/src/sso/client/BasicHandler.ts#L12)*
 
 **Parameters:**
 

@@ -19,7 +19,7 @@
 
 • **HighPart**: *number*
 
-*Defined in [lib/user.d.ts:16](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/user.d.ts#L16)*
+*Defined in [lib/user.d.ts:16](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/lib/user.d.ts#L16)*
 
 ___
 
@@ -27,4 +27,4 @@ ___
 
 • **LowPart**: *number*
 
-*Defined in [lib/user.d.ts:15](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/user.d.ts#L15)*
+*Defined in [lib/user.d.ts:15](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/lib/user.d.ts#L15)*

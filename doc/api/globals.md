@@ -30,6 +30,7 @@
 * ["src/sso/domain"](modules/_src_sso_domain_.md)
 * ["src/sso/index"](modules/_src_sso_index_.md)
 * ["src/sso/interfaces"](modules/_src_sso_interfaces_.md)
+* ["src/sso/kerberos"](modules/_src_sso_kerberos_.md)
 * ["src/sso/misc"](modules/_src_sso_misc_.md)
 * ["src/sso/msgParser"](modules/_src_sso_msgparser_.md)
 * ["src/sso/mutex"](modules/_src_sso_mutex_.md)

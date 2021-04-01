@@ -16,14 +16,14 @@
 
 ### `Static` instantiate
 
-▸ **instantiate**(`method`: string): *[AbstractHandler](_src_sso_client_abstracthandler_.abstracthandler.md)*
+▸ **instantiate**(`authenticationType`: string): *[AbstractHandler](_src_sso_client_abstracthandler_.abstracthandler.md)*
 
-*Defined in [src/sso/client/HandlerFactory.ts:7](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/src/sso/client/HandlerFactory.ts#L7)*
+*Defined in [src/sso/client/HandlerFactory.ts:7](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/src/sso/client/HandlerFactory.ts#L7)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`method` | string |
+`authenticationType` | string |
 
 **Returns:** *[AbstractHandler](_src_sso_client_abstracthandler_.abstracthandler.md)*

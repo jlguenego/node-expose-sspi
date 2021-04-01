@@ -37,7 +37,7 @@
 
 Ƭ **Groups**: *string[]*
 
-*Defined in [lib/sspi.d.ts:202](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/sspi.d.ts#L202)*
+*Defined in [lib/sspi.d.ts:202](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/lib/sspi.d.ts#L202)*
 
 ___
 
@@ -45,7 +45,7 @@ ___
 
 Ƭ **InformationClass**: *"TokenGroups" | "TokenPrivileges"*
 
-*Defined in [lib/sspi.d.ts:73](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/sspi.d.ts#L73)*
+*Defined in [lib/sspi.d.ts:73](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/lib/sspi.d.ts#L73)*
 
 ___
 
@@ -53,7 +53,7 @@ ___
 
 Ƭ **SecurityStatus**: *"SEC_E_OK" | "SEC_I_COMPLETE_AND_CONTINUE" | "SEC_I_COMPLETE_NEEDED" | "SEC_I_CONTINUE_NEEDED"*
 
-*Defined in [lib/sspi.d.ts:97](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/sspi.d.ts#L97)*
+*Defined in [lib/sspi.d.ts:97](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/lib/sspi.d.ts#L97)*
 
 ___
 
@@ -61,7 +61,7 @@ ___
 
 Ƭ **SecuritySupportProvider**: *"NTLM" | "Kerberos" | "Negotiate"*
 
-*Defined in [lib/sspi.d.ts:16](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/sspi.d.ts#L16)*
+*Defined in [lib/sspi.d.ts:16](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/lib/sspi.d.ts#L16)*
 
 ___
 
@@ -69,6 +69,6 @@ ___
 
 Ƭ **SidPointer**: *string*
 
-*Defined in [lib/sspi.d.ts:71](https://github.com/jlguenego/node-expose-sspi/blob/93b1415/lib/sspi.d.ts#L71)*
+*Defined in [lib/sspi.d.ts:71](https://github.com/jlguenego/node-expose-sspi/blob/7ca1305/lib/sspi.d.ts#L71)*
 
 A pointer to an Sid (to be freed).
