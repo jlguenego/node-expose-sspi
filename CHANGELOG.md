@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.56](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.55...v0.1.56) (2021-04-01)
+
+
+### Bug Fixes
+
+* Kerberos output detailed message ([2010df2](https://github.com/jlguenego/node-expose-sspi/commit/2010df29d25f048025a6e7c2924e33326eb1d558))
+
 ### [0.1.55](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.54...v0.1.55) (2020-12-13)
 
 
