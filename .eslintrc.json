@@ -6,7 +6,8 @@
   },
   "rules": {
     "node/no-extraneous-require": "off",
-    "no-constant-condition": ["error", { "checkLoops": false }]
+    "no-constant-condition": ["error", { "checkLoops": false }],
+    "node/no-missing-require": "off"
   },
   "plugins": ["mocha"],
   "overrides": [
