@@ -82,7 +82,7 @@ export async function getUser(ldapFilter: string): Promise<ADUser | undefined> {
   }
 }
 
-export async function getUsers(): Promise<ADUsers> {
+export async function getUsers(ldapFilter?: string): Promise<ADUsers> {
   debug('getUsers start ');
   if (!isOnDomain()) {
     return [];
@@ -103,7 +103,7 @@ export async function getUsers(): Promise<ADUsers> {
     });
     dirsearch.SetSearchPreference();
     dirsearch.ExecuteSearch({
-      filter: '(&(objectClass=user)(objectCategory=person)(sn=*))',
+      filter: `&(objectClass=user)(objectCategory=person)(sn=*)${ldapFilter || ''})`,
     });
 
     while (true) {
