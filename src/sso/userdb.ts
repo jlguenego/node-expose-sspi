@@ -103,7 +103,7 @@ export async function getUsers(ldapFilter?: string): Promise<ADUsers> {
     });
     dirsearch.SetSearchPreference();
     dirsearch.ExecuteSearch({
-      filter: `&(objectClass=user)(objectCategory=person)(sn=*)${ldapFilter || ''})`,
+      filter: `(&(objectClass=user)(objectCategory=person)(sn=*)${ldapFilter || ''})`,
     });
 
     while (true) {
