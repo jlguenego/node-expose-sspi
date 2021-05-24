@@ -33,6 +33,11 @@ describe('SSO Unit Test', () => {
       this.timeout(15000);
       await sso.getUser(`sAMAccountName=${os.userInfo().username}`);
     });
+
+    it('should test sso.getUsers() with an LDAP filter', async function () {
+      this.timeout(15000);
+      await sso.getUsers(`sAMAccountName=${os.userInfo().username}`);
+    });
   }
 
   it('should test sso.mutex', function () {
