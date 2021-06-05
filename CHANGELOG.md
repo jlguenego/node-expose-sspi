@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.58](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.57...v0.1.58) (2021-06-05)
+
+
+### Bug Fixes
+
+* lint and upgrade package-lock ([15d14ae](https://github.com/jlguenego/node-expose-sspi/commit/15d14aee73d201ac216801a5762a9175a7dcdf5b))
+* proxy issue [#91](https://github.com/jlguenego/node-expose-sspi/issues/91) ([2575e29](https://github.com/jlguenego/node-expose-sspi/commit/2575e298c050820ae40c230973e3cd62b7e50bbd))
+* remove console.log ([e68112c](https://github.com/jlguenego/node-expose-sspi/commit/e68112c7502e1875dac34cbfe35f1e4c3c49a0eb))
+* upgrade version ([fd17e33](https://github.com/jlguenego/node-expose-sspi/commit/fd17e3360f0d859b71d97159096ba6820d1e9910))
+* upgrade version ([4961cb6](https://github.com/jlguenego/node-expose-sspi/commit/4961cb62e0d687b745dec8be2d1ffb660368d4cf))
+* upgraded webpack ([c2d94d8](https://github.com/jlguenego/node-expose-sspi/commit/c2d94d83f49d83cc9d8fc46979f110736ab677e8))
+
 ### [0.1.57](https://github.com/jlguenego/node-expose-sspi/compare/v0.1.56...v0.1.57) (2021-04-01)
 
 
