@@ -43,7 +43,6 @@ export class ServerContextHandleManager {
   get(req: IncomingMessage): CtxtHandle | undefined {
     this.refresh();
     const handle = this.cache.get(getId(req))?.handle;
-    console.log('handle: ', handle);
     return handle;
   }
 
