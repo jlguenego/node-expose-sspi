@@ -23,6 +23,8 @@ const isDbgEnabled = dbg.enabled(DEBUG_KEY);
 
 const WWW_AUTHENTICATE = 'WWW-Authenticate';
 
+const startMessageList = ['NTLM_NEGOTIATE_01', 'Kerberos_1'];
+
 /**
  * Tries to get SSO information from browser. If success, the SSO info
  * is stored under req.sso
@@ -110,10 +112,7 @@ export function auth(options: Partial<AuthOptions> = {}): Middleware {
         debug(hexDump(buffer));
 
         // test if first token
-        if (
-          messageType === 'NTLM_NEGOTIATE_01' ||
-          messageType === 'Kerberos_1'
-        ) {
+        if (startMessageList.includes(messageType)) {
           schManager.release(req);
         }
 
@@ -133,6 +132,8 @@ export function auth(options: Partial<AuthOptions> = {}): Middleware {
         if (serverContextHandle) {
           debug('adding to input a serverContextHandle (not first exchange)');
           input.contextHandle = serverContextHandle;
+        } else if (!startMessageList.includes(messageType)) {
+          throw new Error('serverContextHandle not retrieved.');
         }
 
         debug('input just before calling AcceptSecurityContext', input);
