@@ -76,7 +76,7 @@
     "http-auth": "^4.1.4",
     "http-proxy-middleware": "^1.1.0",
     "mocha": "^8.3.2",
-    "node-addon-api": "2.0.0",
+    "node-addon-api": "^2.0.0",
     "nodemon": "^2.0.7",
     "nyc": "^15.1.0",
     "require-self": "^0.2.3",
