@@ -14,7 +14,7 @@ export function getKerberosDetails(buffer: ArrayBuffer) {
   });
   const array = ASN1MsgUtils.queryAll(message, 'tagLabel', 'GeneralString');
   const principalName = array
-    .map((m) => m.value)
+    .map((m) => m?.value)
     .slice(1)
     .join('/');
   const realm = array[0].value as string;
@@ -26,6 +26,7 @@ export function getKerberosDetails(buffer: ArrayBuffer) {
 }
 
 export function getKerberosResponseDetails(buffer: ArrayBuffer) {
+try {
   const message = ASN1.parseMsg(buffer, {
     encodingRule: EncodingRule.DER,
   });
@@ -36,4 +37,7 @@ export function getKerberosResponseDetails(buffer: ArrayBuffer) {
   return (
     'probably an GSS-API KRB_ERROR message: ' + inspect(message, false, null)
   );
+  } catch (err:any) {
+	return err?.message;
+  }
 }

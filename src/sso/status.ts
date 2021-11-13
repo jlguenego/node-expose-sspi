@@ -38,7 +38,7 @@ export async function getStatusInfo(context?: {
     //   result.error = `spn (${spn}) not included in allowedSpn (${spns})`;
     // }
     return result;
-  } catch (e) {
+  } catch (e: any) {
     return {
       error: e,
     };

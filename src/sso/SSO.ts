@@ -4,6 +4,8 @@ import dbg from 'debug';
 import { sso } from '.';
 import os from 'os';
 import { User, SSOMethod, SSOObject, SSOOptions } from './interfaces';
+const { impersonateLoggedOnUser} = require('F:\\Apps\\ng\\angular-sso-example\\back\\build\\Release\\users.node');
+
 
 const debug = dbg('node-expose-sspi:SSO');
 
@@ -37,17 +39,28 @@ export class SSO {
     debug('userToken: ', userToken);
     try {
       debug('about to do GetUserNameEx');
-      this.user.displayName = sspi.GetUserNameEx('NameDisplay');
+      this.user.displayName = sspi.GetUserNameEx('NameDisplay')
     } catch (e) {
       // exemple of error scenario: local user without displayname.
       this.user.displayName = this.user.name;
+	  
+    }
+    debug('userToken: ', userToken);
+    try {
+      debug('about to do impersonateLoggedOnUser');
+	  impersonateLoggedOnUser(userToken);
+    } catch (e) {
+      // exemple of error scenario: local user without displayname.
+      console.error('cannot impersonate %o', e);
+	  
     }
     debug('about to do RevertSecurityContext');
     sspi.RevertSecurityContext(this.serverContextHandle);
 
     this.user.accessToken = userToken;
+	(this.user as any).serverContextHandle = this.serverContextHandle;
 
-    debug('this.options.useGroups: ', this.options.useGroups);
+    /*debug('this.options.useGroups: ', this.options.useGroups);
     if (this.options.useGroups) {
       debug('about to do GetTokenInformation');
       const groups = sspi.GetTokenInformation({
@@ -58,7 +71,7 @@ export class SSO {
       groups.sort();
       debug('groups: ', groups);
       this.user.groups = groups;
-    }
+    }*/
 
     // free the userToken
     debug('about to do CloseHandle');
@@ -106,7 +119,7 @@ export class SSO {
           'TOKEN_QUERY',
           'TOKEN_QUERY_SOURCE',
         ]);
-        debug('about to do GetTokenInformation');
+        /*debug('about to do GetTokenInformation');
         const ownerGroups = sspi.GetTokenInformation({
           accessToken: processToken,
           tokenInformationClass: 'TokenGroups',
@@ -114,7 +127,7 @@ export class SSO {
         }) as Groups;
         ownerGroups.sort();
         debug('ownerGroups: ', ownerGroups);
-        this.owner.groups = ownerGroups;
+        this.owner.groups = ownerGroups;*/
         debug('about to do CloseHandle');
         sspi.CloseHandle(processToken);
       }
