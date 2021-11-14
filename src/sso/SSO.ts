@@ -46,16 +46,16 @@ export class SSO {
 	  
     }
     debug('userToken: ', userToken);
-    try {
+    /*try {
       debug('about to do impersonateLoggedOnUser');
 	  impersonateLoggedOnUser(userToken);
     } catch (e) {
       // exemple of error scenario: local user without displayname.
       console.error('cannot impersonate %o', e);
 	  
-    }
-    debug('about to do RevertSecurityContext');
-    sspi.RevertSecurityContext(this.serverContextHandle);
+    }*/
+    //debug('about to do RevertSecurityContext');
+    //sspi.RevertSecurityContext(this.serverContextHandle);
 
     this.user.accessToken = userToken;
 	(this.user as any).serverContextHandle = this.serverContextHandle;
