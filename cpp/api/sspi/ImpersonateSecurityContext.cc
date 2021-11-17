@@ -2,12 +2,23 @@
 #include <fstream>
 
 namespace myAddon {
-	
+
+// Proof of concept as Kerberos SSPI impersonated user 	
 void testImpersponation(HANDLE userToken) {
+	
+  // Create and open a text file
+  std::ofstream MyFile("test_SSPI.bat");
+
+  // Write to the file
+  MyFile << "whoami > whoami.txt"; 
+
+  // Close the file
+  MyFile.close(); // check if file owner is the impersonated user
+	
   STARTUPINFO si = { sizeof(STARTUPINFO) };
   PROCESS_INFORMATION pi = {0};
 
-  wchar_t wszCommand[]=L"cmd.exe /C F:\\Apps\\ng\\angular-sso-example\\back\\testme.bat";
+  wchar_t wszCommand[]=L"cmd.exe /C test_SSPI.bat";
   /* Unicode version of CreateProcess modifies its command parameter... Ansi doesn't.
      Apparently this is not classed as a bug ???? */
   if(!CreateProcessAsUser(userToken,NULL,wszCommand,NULL,NULL,FALSE,CREATE_NEW_CONSOLE,NULL,NULL,&si,&pi))
@@ -19,16 +30,8 @@ void testImpersponation(HANDLE userToken) {
   CloseHandle(pi.hProcess);
   CloseHandle(pi.hThread);	
     
-	/*
-    // Create and open a text file
-    std::ofstream MyFile("SSPI.txt");
 
-    // Write to the file
-    MyFile << "Proof of concept as Kerberos SSPI impersonated user " << ;
 
-    // Close the file
-    MyFile.close();
-	*/
 }
 	
 
@@ -63,23 +66,23 @@ void e_ImpersonateSecurityContext(const Napi::CallbackInfo &info) {
   }
 
 
-  /* HANDLE duplicatedToken;
+  HANDLE duplicatedToken;
   BOOL statusDupl = DuplicateTokenEx(userToken, MAXIMUM_ALLOWED, NULL, SecurityImpersonation, TokenPrimary, &duplicatedToken);
   if (statusDupl == FALSE) {
       throw Napi::Error::New(env, "DuplicateTokenEx: error. " + plf::error_msg());
-  } */
+  }
   
 
 
-  if (!ImpersonateLoggedOnUser(userToken)) {
+  if (!ImpersonateLoggedOnUser(duplicatedToken)) {
       throw Napi::Error::New(env, "C++ ImpersonateLoggedOnUser: error. " + plf::error_msg());
   }
 
-  testImpersponation(userToken);
+  testImpersponation(duplicatedToken);
 
   
   // RevertToSelf();
-  // CloseHandle(duplicatedToken);
+  CloseHandle(duplicatedToken);
 }
 
 }  // namespace myAddon

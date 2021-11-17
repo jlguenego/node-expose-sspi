@@ -74,8 +74,8 @@ export class SSO {
     }*/
 
     // free the userToken
-    debug('about to do CloseHandle');
-    sspi.CloseHandle(userToken);
+    // debug('about to do CloseHandle');
+    // sspi.CloseHandle(userToken);
 
     debug('about to do LookupAccountName');
     const { sid } = sspi.LookupAccountName(names.sUserName);
@@ -128,8 +128,8 @@ export class SSO {
         ownerGroups.sort();
         debug('ownerGroups: ', ownerGroups);
         this.owner.groups = ownerGroups;*/
-        debug('about to do CloseHandle');
-        sspi.CloseHandle(processToken);
+        //debug('about to do CloseHandle');
+        //sspi.CloseHandle(processToken);
       }
 
       try {
