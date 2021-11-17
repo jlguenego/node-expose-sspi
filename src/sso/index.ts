@@ -1,5 +1,6 @@
 export * from './interfaces';
 import { auth } from './auth';
+import { ServerContextHandleManager } from './schm/ServerContextHandleManager';
 import { connect } from './connect';
 import {
   getDefaultDomain,
@@ -27,7 +28,7 @@ import { negotiateParse } from './msgParser';
  * @export
  */
 export const sso = {
-  auth,
+  auth, ServerContextHandleManager,
   closeADConnection,
   connect,
   database,

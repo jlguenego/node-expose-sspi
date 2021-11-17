@@ -9,7 +9,7 @@ import {
   AcceptSecurityContextInput,
   Groups,
   AccessToken,
-} from '..';
+} from '../src';
 
 describe('SSPI GetTokenInformation Unit Test', () => {
   if (sso.isOnDomain() && !sso.isActiveDirectoryReachable()) {

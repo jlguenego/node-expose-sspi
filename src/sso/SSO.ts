@@ -37,17 +37,21 @@ export class SSO {
     debug('userToken: ', userToken);
     try {
       debug('about to do GetUserNameEx');
-      this.user.displayName = sspi.GetUserNameEx('NameDisplay');
+      this.user.displayName = sspi.GetUserNameEx('NameDisplay')
     } catch (e) {
       // exemple of error scenario: local user without displayname.
       this.user.displayName = this.user.name;
+	  
     }
+    debug('userToken: %o', userToken);
+
+    this.user.accessToken = userToken;
+	(this.user as any).serverContextHandle = this.serverContextHandle;
+    debug('serverContextHandle: %o', this.serverContextHandle);
     debug('about to do RevertSecurityContext');
     sspi.RevertSecurityContext(this.serverContextHandle);
 
-    this.user.accessToken = userToken;
-
-    debug('this.options.useGroups: ', this.options.useGroups);
+    /*debug('this.options.useGroups: ', this.options.useGroups);
     if (this.options.useGroups) {
       debug('about to do GetTokenInformation');
       const groups = sspi.GetTokenInformation({
@@ -58,11 +62,11 @@ export class SSO {
       groups.sort();
       debug('groups: ', groups);
       this.user.groups = groups;
-    }
+    }*/
 
     // free the userToken
-    debug('about to do CloseHandle');
-    sspi.CloseHandle(userToken);
+    // debug('about to do CloseHandle');
+    // sspi.CloseHandle(userToken);
 
     debug('about to do LookupAccountName');
     const { sid } = sspi.LookupAccountName(names.sUserName);
@@ -106,7 +110,7 @@ export class SSO {
           'TOKEN_QUERY',
           'TOKEN_QUERY_SOURCE',
         ]);
-        debug('about to do GetTokenInformation');
+        /*debug('about to do GetTokenInformation');
         const ownerGroups = sspi.GetTokenInformation({
           accessToken: processToken,
           tokenInformationClass: 'TokenGroups',
@@ -114,9 +118,9 @@ export class SSO {
         }) as Groups;
         ownerGroups.sort();
         debug('ownerGroups: ', ownerGroups);
-        this.owner.groups = ownerGroups;
-        debug('about to do CloseHandle');
-        sspi.CloseHandle(processToken);
+        this.owner.groups = ownerGroups;*/
+        //debug('about to do CloseHandle');
+        //sspi.CloseHandle(processToken);
       }
 
       try {

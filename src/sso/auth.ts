@@ -74,7 +74,7 @@ export function auth(options: Partial<AuthOptions> = {}): Middleware {
     next: NextFunction
   ): void => {
     if (opts.useSession) {
-      const session = ((req as unknown) as { session?: { sso: SSOObject } })
+      const session = ((req as any) as { session?: { sso: SSOObject } })
         .session;
       debug('check the session: ', session);
       if (session?.sso) {
@@ -118,7 +118,7 @@ export function auth(options: Partial<AuthOptions> = {}): Middleware {
 
         // kerberos token case
         if (isDbgEnabled && messageType === 'Kerberos_1') {
-          debug('Kerberos_1 details: ', getKerberosDetails(buffer));
+          debug('Kerberos_1 details: ', 'getKerberosDetails(buffer)');
         }
 
         const input: AcceptSecurityContextInput = {
@@ -145,9 +145,8 @@ export function auth(options: Partial<AuthOptions> = {}): Middleware {
         if (isDbgEnabled && messageType.startsWith('Kerberos')) {
           debug(
             'Kerberos output details: ',
-            getKerberosResponseDetails(
-              serverSecurityContext.SecBufferDesc.buffers[0]
-            )
+			'skip crash',
+            'getKerberosResponseDetails'
           );
         }
         const failed = !['SEC_E_OK', 'SEC_I_CONTINUE_NEEDED'].includes(
@@ -233,7 +232,7 @@ export function auth(options: Partial<AuthOptions> = {}): Middleware {
             encode(serverSecurityContext.SecBufferDesc.buffers[0])
         );
         return next();
-      } catch (e) {
+      } catch (e: any) {
         schManager.release(req);
         console.error(e);
         console.error('statusInfo: ', getStatusInfo());
