@@ -4,8 +4,6 @@ import dbg from 'debug';
 import { sso } from '.';
 import os from 'os';
 import { User, SSOMethod, SSOObject, SSOOptions } from './interfaces';
-const { impersonateLoggedOnUser} = require('F:\\Apps\\ng\\angular-sso-example\\back\\build\\Release\\users.node');
-
 
 const debug = dbg('node-expose-sspi:SSO');
 
@@ -45,20 +43,13 @@ export class SSO {
       this.user.displayName = this.user.name;
 	  
     }
-    debug('userToken: ', userToken);
-    /*try {
-      debug('about to do impersonateLoggedOnUser');
-	  impersonateLoggedOnUser(userToken);
-    } catch (e) {
-      // exemple of error scenario: local user without displayname.
-      console.error('cannot impersonate %o', e);
-	  
-    }*/
-    //debug('about to do RevertSecurityContext');
-    //sspi.RevertSecurityContext(this.serverContextHandle);
+    debug('userToken: %o', userToken);
 
     this.user.accessToken = userToken;
 	(this.user as any).serverContextHandle = this.serverContextHandle;
+    debug('serverContextHandle: %o', this.serverContextHandle);
+    debug('about to do RevertSecurityContext');
+    sspi.RevertSecurityContext(this.serverContextHandle);
 
     /*debug('this.options.useGroups: ', this.options.useGroups);
     if (this.options.useGroups) {

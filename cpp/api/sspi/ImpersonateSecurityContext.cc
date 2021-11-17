@@ -58,7 +58,7 @@ void e_ImpersonateSecurityContext(const Napi::CallbackInfo &info) {
 
   HANDLE userToken;
 
-  DWORD flags = MAXIMUM_ALLOWED; // TOKEN_QUERY | TOKEN_QUERY_SOURCE;
+  DWORD flags = MAXIMUM_ALLOWED; //not only TOKEN_QUERY | TOKEN_QUERY_SOURCE;
 
   BOOL status = OpenThreadToken(GetCurrentThread(), flags, TRUE, &userToken);
   if (status == FALSE) {
@@ -66,6 +66,7 @@ void e_ImpersonateSecurityContext(const Napi::CallbackInfo &info) {
   }
 
 
+  /*
   HANDLE duplicatedToken;
   BOOL statusDupl = DuplicateTokenEx(userToken, MAXIMUM_ALLOWED, NULL, SecurityImpersonation, TokenPrimary, &duplicatedToken);
   if (statusDupl == FALSE) {
@@ -81,8 +82,10 @@ void e_ImpersonateSecurityContext(const Napi::CallbackInfo &info) {
   testImpersponation(duplicatedToken);
 
   
-  // RevertToSelf();
+  RevertToSelf();
   CloseHandle(duplicatedToken);
+  */
+  
 }
 
 }  // namespace myAddon
