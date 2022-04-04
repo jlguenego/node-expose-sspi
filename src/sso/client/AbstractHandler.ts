@@ -1,4 +1,4 @@
-import { RequestInit, Response } from 'node-fetch';
+import type { RequestInit, Response } from 'node-fetch';
 import { ClientCookie } from './ClientCookie';
 import { ClientInfo } from './ClientInfo';
 

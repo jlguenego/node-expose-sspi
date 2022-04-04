@@ -1,5 +1,5 @@
 import dbg from 'debug';
-import fetch, { RequestInit, Response } from 'node-fetch';
+import type { RequestInit, Response } from 'node-fetch';
 import { negotiateParse } from '../msgParser';
 
 import {
@@ -12,6 +12,7 @@ import { ClientCookie } from './ClientCookie';
 import { ClientInfo } from './ClientInfo';
 import { AbstractHandler } from './AbstractHandler';
 import { decode, encode, hexDump } from '../misc';
+import { loadNodeFetch } from '../loadNodeFetch';
 
 const debug = dbg('node-expose-sspi:client');
 
@@ -118,6 +119,7 @@ export class NegotiateHandler extends AbstractHandler {
       };
       clientCookie.restituteCookies(requestInit);
       debug('requestInit.headers', requestInit.headers);
+      const { fetch } = await loadNodeFetch();
       response = await fetch(resource, requestInit);
       debug('response.status', response.status);
       debug('response.headers', response.headers);

@@ -1,5 +1,6 @@
 import dbg from 'debug';
-import fetch, { RequestInit, Response } from 'node-fetch';
+import type { RequestInit, Response } from 'node-fetch';
+import { loadNodeFetch } from '../loadNodeFetch';
 
 import { AbstractHandler } from './AbstractHandler';
 import { ClientCookie } from './ClientCookie';
@@ -25,6 +26,7 @@ export class BasicHandler extends AbstractHandler {
     };
     clientCookie.restituteCookies(requestInit);
     debug('first requestInit.headers', requestInit.headers);
+    const { fetch } = await loadNodeFetch();
     response = await fetch(resource, requestInit);
     debug('first response.headers', response.headers);
     clientCookie.saveCookies(response);
