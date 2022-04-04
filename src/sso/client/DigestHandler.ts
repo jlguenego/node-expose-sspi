@@ -1,7 +1,8 @@
 import dbg from 'debug';
-import fetch, { RequestInit, Response } from 'node-fetch';
+import type { RequestInit, Response } from 'node-fetch';
 import { URL } from 'url';
 import { Props } from '../../../lib/api';
+import { loadNodeFetch } from '../loadNodeFetch';
 
 import { AbstractHandler } from './AbstractHandler';
 import { ClientCookie } from './ClientCookie';
@@ -51,11 +52,11 @@ export class DigestHandler extends AbstractHandler {
     }
 
     debug('digestHeader: ', digestHeader);
-    const digestChallenge = (digestHeader.split(/, */).reduce((acc, prop) => {
+    const digestChallenge = digestHeader.split(/, */).reduce((acc, prop) => {
       const [key, value] = prop.split('=');
       acc[key] = value.replace(/^"?(.*?)"?$/, '$1');
       return acc;
-    }, {} as Props) as unknown) as DigestChallenge;
+    }, {} as Props) as unknown as DigestChallenge;
     debug('digestChallenge: ', digestChallenge);
 
     const requestInit: RequestInit = { ...init };
@@ -104,11 +105,12 @@ export class DigestHandler extends AbstractHandler {
       Authorization:
         'Digest ' +
         Object.keys(digestAnswer)
-          .map((k) => `${k}=${((digestAnswer as unknown) as Props)[k]}`)
+          .map((k) => `${k}=${(digestAnswer as unknown as Props)[k]}`)
           .join(', '),
     };
     clientCookie.restituteCookies(requestInit);
     debug('first requestInit.headers', requestInit.headers);
+    const { fetch } = await loadNodeFetch();
     response = await fetch(resource, requestInit);
     debug('first response.headers', response.headers);
     clientCookie.saveCookies(response);
