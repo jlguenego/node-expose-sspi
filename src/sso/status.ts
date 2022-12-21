@@ -39,8 +39,9 @@ export async function getStatusInfo(context?: {
     // }
     return result;
   } catch (e) {
+    const errorMsg = e instanceof Error ? e.message : (e as string);
     return {
-      error: e,
+      error: errorMsg,
     };
   }
 }

@@ -46,7 +46,7 @@ describe('Session', () => {
       const json = (await response.json()) as { sso: SSOObject };
       assert.strictEqual(json.sso.cached, true);
     } catch (e) {
-      assert.fail(e);
+      assert.fail(e as Error);
     } finally {
       await server.stop();
     }

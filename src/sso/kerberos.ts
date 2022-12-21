@@ -9,7 +9,7 @@ interface KrbApReq {
 }
 
 export function getKerberosDetails(buffer: ArrayBuffer) {
-  const message = ASN1.parseMsg(buffer, {
+  const message = ASN1.decode(buffer, {
     encodingRule: EncodingRule.DER,
   });
   const array = ASN1MsgUtils.queryAll(message, 'tagLabel', 'GeneralString');
@@ -26,7 +26,7 @@ export function getKerberosDetails(buffer: ArrayBuffer) {
 }
 
 export function getKerberosResponseDetails(buffer: ArrayBuffer) {
-  const message = ASN1.parseMsg(buffer, {
+  const message = ASN1.decode(buffer, {
     encodingRule: EncodingRule.DER,
   });
   const msgId = ASN1MsgUtils.query(message, 'tagLabel', '15');

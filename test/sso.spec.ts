@@ -105,7 +105,7 @@ describe('SSO Unit Test', () => {
         assert(mySSO);
         netapi.NetUserDel(undefined, 'test123');
       } catch (error) {
-        assert.equal(error.message, 'Sorry. Logon denied.');
+        assert.equal((error as Error).message, 'Sorry. Logon denied.');
         netapi.NetUserDel(undefined, 'test123');
       }
     });

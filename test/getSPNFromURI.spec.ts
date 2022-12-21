@@ -6,6 +6,10 @@ describe('getSPNFromURI Unit Test', function () {
   const f = sso.getSPNFromURI;
 
   const msDomain = sysinfo.GetComputerNameEx('ComputerNameDnsDomain');
+  if (msDomain === '') {
+    // the Windows OS is not part of a Microsoft Domain.
+    return;
+  }
 
   it('should test localhost', async () => {
     assert.equal(await f('http://localhost:3000'), 'HTTP/localhost');

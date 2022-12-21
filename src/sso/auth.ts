@@ -74,7 +74,7 @@ export function auth(options: Partial<AuthOptions> = {}): Middleware {
     next: NextFunction
   ): void => {
     if (opts.useSession) {
-      const session = ((req as unknown) as { session?: { sso: SSOObject } })
+      const session = (req as unknown as { session?: { sso: SSOObject } })
         .session;
       debug('check the session: ', session);
       if (session?.sso) {
@@ -94,12 +94,14 @@ export function auth(options: Partial<AuthOptions> = {}): Middleware {
           debug('no authorization key in header');
           res.statusCode = 401;
           res.setHeader(WWW_AUTHENTICATE, authenticationType);
-          return res.end();
+          res.end();
+          return;
         }
 
         if (!authorization.startsWith(authenticationType + ' ')) {
           res.statusCode = 400;
-          return res.end(`Malformed authentication token: ${authorization}`);
+          res.end(`Malformed authentication token: ${authorization}`);
+          return;
         }
 
         checkCredentials();
@@ -184,7 +186,8 @@ export function auth(options: Partial<AuthOptions> = {}): Middleware {
               ' ' +
               encode(serverSecurityContext.SecBufferDesc.buffers[0])
           );
-          return res.end();
+          res.end();
+          return;
         }
 
         const lastServerContextHandle = serverSecurityContext.contextHandle;
@@ -200,7 +203,7 @@ export function auth(options: Partial<AuthOptions> = {}): Middleware {
         req.sso = sso.getJSON();
         if (opts.useSession) {
           debug('session case');
-          const session = ((req as unknown) as { session?: { sso: SSOObject } })
+          const session = (req as unknown as { session?: { sso: SSOObject } })
             .session;
           debug('session: ', session);
           if (session) {
@@ -218,11 +221,13 @@ export function auth(options: Partial<AuthOptions> = {}): Middleware {
           req.sso?.user?.name === 'ANONYMOUS LOGON'
         ) {
           res.statusCode = 401;
-          return res.end('Anonymous login not authorized.');
+          res.end('Anonymous login not authorized.');
+          return;
         }
         if (!opts.allowsGuest && req.sso?.user?.name === 'Guest') {
           res.statusCode = 401;
-          return res.end('Guest not authorized.');
+          res.end('Guest not authorized.');
+          return;
         }
 
         // user authenticated and allowed.
@@ -238,7 +243,8 @@ export function auth(options: Partial<AuthOptions> = {}): Middleware {
         console.error(e);
         console.error('statusInfo: ', getStatusInfo());
         console.error('messageType: ', messageType);
-        next(createError(401, `Error while doing SSO: ${e.message}`));
+        const message = e instanceof Error ? e.message : e;
+        next(createError(401, `Error while doing SSO: ${message}`));
       }
     })();
   };

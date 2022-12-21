@@ -9,7 +9,7 @@ describe('NETAPI Unit Test', () => {
       try {
         netapi.NetUserAdd(undefined, levelData, userInfo);
       } catch (err) {
-        assert.fail(err);
+        assert.fail(err as Error);
       }
     });
 
@@ -18,7 +18,7 @@ describe('NETAPI Unit Test', () => {
       try {
         netapi.NetUserDel(undefined, username);
       } catch (err) {
-        assert.fail(err);
+        assert.fail(err as Error);
       }
     });
   }

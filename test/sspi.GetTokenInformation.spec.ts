@@ -90,7 +90,7 @@ describe('SSPI GetTokenInformation Unit Test', () => {
       sspi.GetTokenInformation({
         accessToken: userToken,
         tokenInformationClass: 'TokenGroups',
-        filter: (filter as unknown) as string,
+        filter: filter as unknown as string,
       });
     } catch (error) {
       assert((error as Error).message.includes('filter must be a string'));

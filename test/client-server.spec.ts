@@ -52,6 +52,9 @@ describe('ClientServer', () => {
       client.setSSP('Kerberos');
       await client.fetch('http://localhost:3000');
     } catch (e) {
+      if (!(e instanceof Error)) {
+        throw e;
+      }
       assert.match(e.message, /0x80090311/);
     } finally {
       await server.stop();
@@ -73,6 +76,9 @@ describe('ClientServer', () => {
         client.setSSP('Kerberos');
         await client.fetch('http://localhost:3000');
       } catch (e) {
+        if (!(e instanceof Error)) {
+          throw e;
+        }
         assert.match(e.message, /0x8009030c/);
       } finally {
         await server.stop();
@@ -125,7 +131,7 @@ describe('ClientServer', () => {
         const response = await client.fetch('http://localhost:3000');
         assert.equal(response.status, 401);
       } catch (e) {
-        assert.fail(e);
+        assert.fail(e as Error);
       } finally {
         await server.stop();
         try {
