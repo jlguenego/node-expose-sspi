@@ -6,9 +6,7 @@ export interface IID {
 
 export interface IADs extends IID {
   Get(name: string): Promise<string>;
-  // eslint-disable-next-line @typescript-eslint/camelcase, camelcase
   get_GUID(): string;
-  // eslint-disable-next-line @typescript-eslint/camelcase, camelcase
   get_Name(): string;
   GetInfoEx(...colNames: string[]): void;
 }
