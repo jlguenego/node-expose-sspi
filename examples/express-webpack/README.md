@@ -7,7 +7,7 @@ Purpose is to show a simple project with `webpack`.
 ```
 npm i
 npm run build
-npm start
+npm run start:prod
 ```
 
 The `build` target run `webpack`.
