@@ -1,9 +1,9 @@
-import express = require('express');
-import path = require('path');
-import session = require('express-session');
-import { sso, UserCredential } from 'node-expose-sspi';
-import serveIndex = require('serve-index');
 import dbg from 'debug';
+import express from 'express';
+import session from 'express-session';
+import { sso, UserCredential } from 'node-expose-sspi';
+import path from 'path';
+import serveIndex from 'serve-index';
 
 const debug = dbg('node-expose-sspi:test');
 
@@ -13,6 +13,8 @@ declare module 'express-session' {
     error: string;
   }
 }
+
+const wwwDir = path.resolve(__dirname, '.');
 
 const app = express();
 
@@ -94,7 +96,7 @@ app.get('/protected/welcome', (req, res) => {
   return res.render('welcome', { user: req.session.user });
 });
 
-app.use(express.static(path.resolve(__dirname, '.')));
-app.use(serveIndex(path.resolve(__dirname, '.'), { icons: true }));
+app.use(express.static(wwwDir));
+app.use(serveIndex(wwwDir, { icons: true }));
 
 app.listen(3000, () => console.log('Server started on port 3000'));
