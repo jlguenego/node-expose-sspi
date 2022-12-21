@@ -11,6 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "node-expose-sspi": "^0.1.11",
-    "restify": "^8.5.1"
+    "restify": "^10.0.0"
   }
 }

@@ -3,7 +3,7 @@ const { sso } = require('node-expose-sspi');
 
 const server = restify.createServer();
 server.use(sso.auth());
-server.get('/', (req, res) => {
+server.get('/', async (req, res) => {
   res.json(req.sso);
 });
 
