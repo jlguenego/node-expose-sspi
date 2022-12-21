@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "node-expose-sspi": "^0.1.52"
+    "node-expose-sspi": "^0.1.59"
   }
 }
