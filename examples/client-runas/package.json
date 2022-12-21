@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
-    "node-expose-sspi": "^0.1.53",
+    "node-expose-sspi": "^0.1.59",
     "yargs": "^15.3.1"
   }
 }
