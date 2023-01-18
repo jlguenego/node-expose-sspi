@@ -29,7 +29,7 @@ The webserver will be run with another account. Create it as well:
 - password (example): Toto123!
 - Password must not expire.
 
-Set two Service Principal Names (SPN) on this wpookyweb account:
+Set two Service Principal Names (SPN) on this spookyweb account:
 ```
 setspn -a HTTP/spooky.jlg.local JLG\SPOOKYWEB
 setspn -a HTTP/spooky JLG\SPOOKYWEB
